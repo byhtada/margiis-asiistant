@@ -1,0 +1,973 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>HYLS</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+
+          <link rel="manifest" href="site.webmanifest">
+          <link rel="apple-touch-icon" href="icon.png">
+          <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/jquery-3.2.1.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/jquery.base64.js"></script>
+        <script src="js/jquery-ui.min.js"></script>
+        <link href="js/jquery-ui.css" rel="stylesheet" type="text/css"/>
+
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link href="css/animate.min.css" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        <link href="css/bootstrap-dropdownhover.min.css" rel="stylesheet">
+        <script src="js/bootstrap-dropdownhover.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-ru_RU.min.js"></script>
+
+
+        <script                 src="js/bs-table.js"></script>
+        <link rel="stylesheet" href="css/bs-table.css" >
+
+        <link rel="stylesheet" href="node_modules/pretty-checkbox/dist/pretty-checkbox.min.css">
+
+
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+
+        <div id="page_login" hidden>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-0  col-sm-4"></div>
+                    <div class="col-xs-12 col-sm-4">
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <h1 align="center"><span class="yoga_color">Марафон</span> H<span class="yoga_color">Y</span>LS</h1>
+                        <h3 align="center">Вход в личный кабинет</h3>
+                        <br/>
+
+                        <form>
+                            <div class="form-group">
+                                <label for="login_login">Логин</label>
+                                <input type="text" class="form-control" id="login_login" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="login_password">Пароль</label>
+                                <input type="password" class="form-control" id="login_password" placeholder="">
+                            </div>
+
+                            <button type="button" id="btn_login"    class="btn btn-success btn-block">Вход</button>
+                        </form>
+                    </div>
+                    <div class="col-xs-0  col-sm-4"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="page_admin_main" hidden>
+
+            <nav class="navbar navbar-default" >
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation_bar_admin" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">HYLS</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="navigation_bar_admin">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link-admin" id="nav_groups"   href="#">Группы </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link-admin" id="nav_curators" href="#">Кураторы</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link-admin" id="nav_users"    href="#">Пользователи</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link-admin" id="nav_program"   href="#">Программа</a>
+                            </li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a id="btn_exit" href="#" hidden>Выход</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+
+            <div id="page_groups"  class="container-fluid" hidden>
+                <h2 align="center">
+                    Перечень всех групп
+                    <button id="btn_modal_add_group" type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#modal_add_group">       <span class="glyphicon glyphicon-plus"       aria-hidden="true"></span></button>
+                </h2>
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-8">
+                        <div id="groups_table"></div>
+                        <div class="modal fade" id="modal_add_group" tabindex="-1" role="dialog" aria-labelledby="modal_label_group">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="modal_label_group">Создание группы</h4>
+                                    </div>
+                                    <div class="modal-body" id="group_modal_body" align="center">
+                                        <table style="border: 0">
+                                            <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Название группы</h5></td>  <td class="db_row_input_admin"><input type="text" class="form-control" id="group_name"  placeholder=""></td></tr>
+                                            <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Дата старта</h5></td>      <td class="db_row_input_admin"><input type="date" class="form-control" id="group_start"    placeholder=""></td></tr>
+                                            <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Куратор группы</h5></td>   <td class="db_row_input_admin"><select id="group_add_curator"   class="selectpicker"></select></td></tr>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                        <button id="btn_group_add" type="button" class="btn btn-success">Сформировать группу</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-2"></div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal_group_delete" tabindex="-1" role="dialog" aria-labelledby="modal_label_group_delete">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="modal_label_group_delete">Удаление группы</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3>Вы уверены что хотите удалить группу? Удаление группы повлечет за собой удаление текущих программ Всех участников группы.</h3>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                            <button id="btn_group_delete" type="button" class="btn btn-danger">Удалить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modal_group_user_delete" tabindex="-1" role="dialog" aria-labelledby="modal_label_group_user_delete">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="modal_label_group_user_delete">Удаление пользователя из группы</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3>Вы уверены что хотите удалить пользователя из группы? Удаление пользователя повлечет за собой удаление его текущей программы.</h3>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                            <button id="btn_group_user_delete" type="button" class="btn btn-danger">Удалить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div id="page_curators"  class="container-fluid" hidden>
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-8">
+                        <h2 align="center">
+                            Перечень кураторов
+                            <button id="btn_modal_add_curator" type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#modal_add_curator">       <span class="glyphicon glyphicon-plus"       aria-hidden="true"></span></button>
+                        </h2>
+
+                        <div id="curators_table"></div>
+
+                        <div class="modal fade" id="modal_add_curator" tabindex="-1" role="dialog" aria-labelledby="modal_label_curator">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="modal_label_curator">Добавление куратора</h4>
+                                    </div>
+                                    <div class="modal-body" align="center">
+                                        <table style="border: 0">
+                                            <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Имя куратора</h5></td>  <td class="db_row_input_admin"><input type="text" class="form-control" id="curator_add_name"  placeholder=""></td></tr>
+                                            <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Профиль ВК</h5></td>    <td class="db_row_input_admin"><input type="text" class="form-control" id="curator_add_vk"    placeholder=""></td></tr>
+                                            <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Телефон</h5></td>       <td class="db_row_input_admin"><input type="text" class="form-control" id="curator_add_phone" placeholder=""></td></tr>
+                                            <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Пароль</h5></td>        <td class="db_row_input_admin"><input type="text" class="form-control" id="curator_add_pass"  placeholder=""></td></tr>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                        <button id="btn_curator_add" type="button" class="btn btn-success">Сохранить куратора</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-2"></div>
+                </div>
+            </div>
+
+            <div id="page_users"  class="container-fluid" hidden>
+                <h2 align="center">
+                    Перечень пользователей
+                    <button id="btn_hide_user_register" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
+                    <button id="btn_hide_user_paid"     type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
+                    <button id="btn_hide_user_group"    type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
+                </h2>
+                <div id="div_table_users_register" class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-10">
+                        <h3 align="center">
+                            Зарегистрированные
+                            <button id="btn_modal_register" type="button" class="btn btn-success"  data-toggle="modal" data-target="#modal_register"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                        </h3>
+                        <div id="table_users_register"></div>
+                    </div>
+                    <div class="col-xs-1"></div>
+                </div>
+
+                <div id="div_table_users_pay" class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-10">
+                        <h3 align="center">Оплатившие</h3>
+                        <div id="table_users_pay"></div>
+                    </div>
+                    <div class="col-xs-1"></div>
+                </div>
+
+                <div id="div_table_users_in_group" class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-10">
+                        <h3 align="center">В группах</h3>
+                        <div id="table_users_in_group"></div>
+                    </div>
+                    <div class="col-xs-1"></div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal_register"    tabindex="-1" role="dialog" aria-labelledby="modal_label_register">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="modal_label_register">Регистрация пользователя</h4>
+                        </div>
+                        <div class="modal-body" align="center">
+                            <table style="border: 0">
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>E-mail пользователя</h5></td>          <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_email"        placeholder=""></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Имя пользователя</h5></td>             <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_name"         placeholder=""></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Телефон(логин) пользователя</h5></td>         <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_phone"        placeholder=""></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Пароль пользователя</h5></td>          <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_password"     placeholder=""></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Профиль ВК/ФБ</h5></td>                <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_vk"           placeholder=""></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Способ коммуникации</h5></td>          <td class="db_row_input_admin">
+                                    <div class="dropdown">
+                                        <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_messenger">
+                                            Способ общения <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#" class="messenger_link" name="WhatsApp">WhatsApp</a></li>
+                                            <li><a href="#" class="messenger_link" name="VK">VK</a></li>
+                                            <li><a href="#" class="messenger_link" name="Я не знаю что это">Я не знаю что это</a></li>
+                                        </ul>
+                                    </div>
+                                </td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Предполагаемая сумма оплаты</h5></td>  <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_payment_plan" placeholder=""></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Комментарий</h5></td>                  <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_comment"      placeholder=""></td></tr>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                            <button id="btn_register" type="button" class="btn btn-success">Зарегистрировать</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal_confirm_pay" tabindex="-1" role="dialog" aria-labelledby="modal_label_confirm_pay">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="modal_label_confirm_pay">Подтверждение оплаты</h4>
+                        </div>
+                        <div class="modal-body" align="center">
+                            <table style="border: 0">
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Дата оплаты</h5></td>       <td class="db_row_input_admin"><input type="date"   class="form-control" id="payment_date"    placeholder=""></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Сумма оплаты</h5></td>      <td class="db_row_input_admin"><input type="number" class="form-control" id="payment_size"    placeholder=""></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Метод оплаты</h5></td>      <td class="db_row_input_admin"><input type="text"   class="form-control" id="payment_method"    placeholder=""></td></tr>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                            <button id="btn_confirm_pay" type="button" class="btn btn-success">Подвтвердить оплату</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal_to_group"    tabindex="-1" role="dialog" aria-labelledby="modal_label_to_group">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="modal_label_to_group">Определение в группу </h4>
+                        </div>
+                        <div class="modal-body" id="modal_to_group_body" align="center">
+                            <table style="border: 0">
+
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Выберите группу</h5></td>       <td class="db_row_input_admin"><select id="group_add_user"   class="selectpicker"></select></td></tr>
+
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                            <button id="btn_to_group" type="button" class="btn btn-success">Определить в группу</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal_user_delete" tabindex="-1" role="dialog" aria-labelledby="modal_label_user_delete">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="modal_label_user_delete">Удаление пользователя</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3>Вы уверены что хотите удалить пользователя?</h3>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                            <button id="btn_user_delete" type="button" class="btn btn-danger">Удалить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="page_program"  class="container-fluid" hidden>
+                <h2 align="center">Базовая Программа</h2>
+                <div id="table_programm_main"></div>
+            </div>
+            <div class="modal fade" id="modal_edit_programm_main" tabindex="-1" role="dialog" aria-labelledby="modal_label_to_edit_day_main">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="modal_label_to_edit_day_main">Редактирование программы на День</h4>
+                        </div>
+                        <div class="modal-body" align="center">
+                            <table style="border: 0">
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Без перекусов</h5></td>    <td class="db_row_input_admin"><input type="checkbox"  id="field_eat_no_snacking_active"></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Диета</h5></td>            <td class="db_row_input_admin"><input type="checkbox"  id="field_eat_diet_active"></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Детали диеты</h5></td>     <td class="db_row_input_admin"><input type="text"      id="field_eat_diet_description"   class="form-control" ></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Чистка языка</h5></td>     <td class="db_row_input_admin"><input type="checkbox"  id="field_tongue_clean_active"></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"></td> <td class="db_row_input_admin"></td></tr>
+
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Медитация (утро) </h5></td>      <td class="db_row_input_admin"><input type="number"   class="form-control" id="field_meditation_day_target"    placeholder=""></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Медитация (вечер)</h5></td>      <td class="db_row_input_admin"><input type="number"   class="form-control" id="field_meditation_night_target"    placeholder=""></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Каушики</h5></td>                <td class="db_row_input_admin"><input type="number"   class="form-control" id="field_kaoshiki_minutes_target"    placeholder=""></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"></td> <td class="db_row_input_admin"></td></tr>
+
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Физ. активность</h5></td>     <td class="db_row_input_admin"><input type="checkbox"  id="field_phisic_active"></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Терапия </h5></td>            <td class="db_row_input_admin"><input type="checkbox"  id="field_therapy_active"></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Асаны</h5></td>               <td class="db_row_input_admin"><input type="checkbox"  id="field_asana_active"  ></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Псих. упр.</h5></td>          <td class="db_row_input_admin"><input type="checkbox"  id="field_psi_active"></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"></td> <td class="db_row_input_admin"></td></tr>
+
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Киртан (утро)</h5></td>          <td class="db_row_input_admin"><input type="number"  id="field_kirtan_day_target"></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Киртан (вечер)</h5></td>         <td class="db_row_input_admin"><input type="number"  id="field_kirtan_night_target"></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"></td> <td class="db_row_input_admin"></td></tr>
+
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>t на теорию</h5></td>          <td class="db_row_input_admin"><input type="number"  id="field_time_to_read"></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>t на практики</h5></td>        <td class="db_row_input_admin"><input type="number"  id="field_time_to_practise"></td></tr>
+
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Материалы на день</h5></td>        <td class="db_row_input_admin"><input type="text"  id="field_day_materials"></td></tr>
+
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                            <button id="btn_edit_programm_main" type="button" class="btn btn-success">Сохранить день</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="page_group_info"  class="container-fluid" hidden>
+                <div class="row">
+                    <div class="col-xs-1">
+                        <br/>
+                        <button id="btn_group_back" type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></button>
+
+                    </div>
+
+                    <div class="col-xs-10">
+                        <h2 align="center">
+                            <span id="group_info_name"></span>
+                            <span  id="group_info_curator"></span>
+                        </h2>
+                        <div id="table_group_users"></div>
+                    </div>
+
+                    <div class="col-xs-1">
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="page_user_info"  class="container-fluid" hidden>
+                <div class="row">
+                    <div class="col-xs-1">
+                        <br/>
+                        <button id="btn_user_back" type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></button>
+
+                    </div>
+
+                    <div class="col-xs-10">
+                        <h2 align="center">Программа пользователя <span id="user_info_name"></span></h2>
+                        <div id="table_user_programm"></div>
+                    </div>
+
+                    <div class="col-xs-1">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div id="page_user_main" hidden>
+            <nav class="navbar navbar-default" >
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation_bar_user" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">HYLS</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="navigation_bar_user">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link-user" id="nav_user_programm"   href="#">Программа</a>
+                            </li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav-item">
+                                <a class="nav-link-user" id="nav_user_settings"   href="#">Настройки</a>
+                            </li>
+                            <li><a id="btn_user_exit" href="#" hidden>Выход</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+
+
+            <div id="page_user_programm"  class="container-fluid">
+                <div id="user_marafon_start" hidden>
+                    <div class="row">
+                        <div class="col-xs-0  col-sm-4"></div>
+                        <div class="col-xs-12 col-sm-4" align="center">
+                            <h3 id="user_programm_day" align="center">
+                                <button id="btn_user_previus_day" type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+                                <span id="user_current_day">День Х (сегодня)</span>
+                                <button id="btn_user_next_day"    type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+                            </h3>
+
+                            <br/>
+                            <button id="btn_user_material"  type="button" class="btn btn-info btn-block">Открыть материал дня</button>
+                            <br/>
+
+
+                            <div id="table_question_water" hidden>
+                                <div id="water_alert_no_answer"     class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                                <table class="table  table-hover">
+                                    <thead>
+                                    <tr class="db_row_dialog">
+                                        <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
+                                        <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr id="row_quest_water" class="db_row_dialog">
+                                        <td valign="middle">      <h5>Сколько воды вы выпиваете в среднем за день (в мл)?</h5></td>
+                                        <td > <input type="number" class="form-control" id="filed_question_water"></td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                                <button id="btn_question_water_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                                <br/>
+                                <br/>
+
+                            </div>
+                            <div id="table_question_wake_up" hidden>
+                                <div id="wake_up_alert_no_answer"   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                                <table class="table  table-hover">
+                                    <thead>
+                                    <tr class="db_row_dialog">
+                                        <td><h4 align="center"><b>Вопросы (отвечайте после прочтения материала)</b></h4></td>
+                                        <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr id="row_quest_wake_up_fact" class="db_row_dialog">
+                                        <td valign="middle">      <h5>Во сколько Вы обычно просыпаетесь?</h5></td>
+                                        <td >
+                                            <p>
+                                                <input type="number" class="field_wake_up" id="filed_question_wake_up_fact_hour"   placeholder="чч">
+                                                <span>:</span>
+                                                <input type="number" class="field_wake_up" id="filed_question_wake_up_fact_minute" placeholder="мм">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr id="row_quest_wake_up_plan" class="db_row_dialog">
+                                        <td valign="middle">      <h5>Установите цель по времени подъема</h5></td>
+                                        <td >
+                                            <p>
+                                                <input type="number" class="field_wake_up" id="filed_question_wake_up_target_hour"   placeholder="чч"  value="5">
+                                                <span>:</span>
+                                                <input type="number" class="field_wake_up" id="filed_question_wake_up_target_minute" placeholder="мм"  value="30" >
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <button id="btn_question_wake_up_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                            </div>
+                            <div id="table_question_detox" hidden>
+                                <div id="detox_alert_no_answer"   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопросы ниже. От этого зависит дальнейшая программа</div>
+                                <table class="table  table-hover">
+                                    <thead>
+                                    <tr class="db_row_dialog">
+                                        <td><h4 align="center"><b>Вопросы (отвечайте после прочтения материала)</b></h4></td>
+                                        <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr id="row_quest_detox_type"  class="db_row_dialog">
+                                            <td valign="middle"><h5>Выберите вариант детокса</h5></td>
+                                            <td  class="db_row_input">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_detox_type">
+                                                        Выберите вариант <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#" class="link_detox_type" name="1">Полезная йоговская (оставите без изменений)</a></li>
+                                                        <li><a href="#" class="link_detox_type" name="2">Фрукты, сырые и приготовленные овощи</a></li>
+                                                        <li><a href="#" class="link_detox_type" name="3">Фрукты</a></li>
+                                                        <li><a href="#" class="link_detox_type" name="4">Соки и овощные бульоны</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr id="row_quest_detox_time"  hidden class="db_row_dialog">
+                                            <td valign="middle" ><h5>Выберите длительность детокса, дней</h5></td>
+                                            <td  class="db_row_input">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_detox_time">
+                                                        Выберите кол-во <span class="caret"></span>
+                                                    </button>
+                                                    <ul id="detox_answer_time" class="dropdown-menu">             </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr id="row_quest_detox_start" hidden class="db_row_dialog">
+                                            <td valign="middle"><h5>Выберите день старта детокса</h5></td>
+                                            <td  class="db_row_input">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_detox_start">
+                                                        Выберите день старта <span class="caret"></span>
+                                                    </button>
+                                                    <ul id="detox_answer_start" class="dropdown-menu">                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <button id="btn_question_detox_save" hidden type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                            </div>
+
+
+
+                            <br/>
+
+                            <table  class="table  table-hover">
+                                <thead>
+                                <tr class="db_row_dialog">
+                                    <td><h4 align="center"><b>Практика</b></h4></td>
+                                    <td><h4 align="center"><b>План</b></h4></td>
+                                    <td><h4 align="center"><b>Сделал</b></h4></td>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr id="row_water" class="db_row_dialog">
+                                    <td valign="middle"> <h5>Питьё воды, мл</h5></td>
+                                    <td class="db_row_input">          <input type="number" class="form-control" id="filed_water_plan" disabled></td>
+                                    <td class="db_row_input">          <input type="number" class="form-control" id="filed_water_fact"></td>
+                                </tr>
+
+                                <tr id="row_no_snacking" class="db_row_dialog">
+                                    <td valign="middle"> <h5>День без перекусов и переедания</h5></td>
+                                    <td class="db_row_input">          </td>
+                                    <td class="db_row_input">
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_no_snacking_fact" />
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr id="row_diet" class="db_row_dialog">
+                                    <td valign="middle"> <h5 id="text_diet">Диета</h5></td>
+                                    <td class="db_row_input">          </td>
+                                    <td class="db_row_input">
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_diet" />
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr id="row_wake_up" class="db_row_dialog">
+                                    <td valign="middle">
+                                        <p class="wake_up_string"> Подъем (время) <br/>
+                                        Время для отхода ко сну <span id="wake_up_text"></span><br/>
+                                        Время подъема на завтра <span id="wake_up_tomorrow"></span>
+                                        </p>
+                                    </td>
+                                    <td class="db_row_input">                  <h5 align="center"  id="filed_wake_up_plan" ></h5></td>
+                                    <td valign="middle" class="db_row_input">
+                                        <p>
+                                            <input type="number" class="field_wake_up" id="filed_wake_up_fact_hour"   placeholder="чч">
+                                            <span>:</span>
+                                            <input type="number" class="field_wake_up" id="filed_wake_up_fact_minute" placeholder="мм">
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr id="row_tongue" class="db_row_dialog">
+                                    <td valign="middle"> <h5>Чистка языка (утро и вечер)</h5></td>
+                                    <td class="db_row_input">          </td>
+                                    <td class="db_row_input">
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_tongue_day" />
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_tongue_night" />
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                                <tr id="row_meditation_day" class="db_row_dialog">
+                                    <td valign="middle"> <h5>Медитация утро, минут</h5></td>
+                                    <td class="db_row_input">          <input type="number" class="form-control" id="filed_meditation_day_plan" disabled></td>
+                                    <td valign="middle" class="db_row_input">          <input type="number" class="form-control" id="filed_meditation_day_fact"></td>
+                                </tr>
+
+
+                                <tr id="row_meditation_night" class="db_row_dialog">
+                                    <td valign="middle"> <h5>Медитация вечер, минут</h5></td>
+                                    <td class="db_row_input">          <input type="number" class="form-control" id="filed_meditation_night_plan" disabled></td>
+                                    <td valign="middle" class="db_row_input">          <input type="number" class="form-control" id="filed_meditation_night_fact"></td>
+                                </tr>
+
+                                <tr id="row_kaoshiki" class="db_row_dialog">
+                                    <td valign="middle"> <h5>Каушики, минут</h5></td>
+                                    <td class="db_row_input">          <input type="number" class="form-control" id="filed_kaoshiki_plan" disabled></td>
+                                    <td valign="middle" class="db_row_input">          <input type="number" class="form-control" id="filed_kaoshiki_fact"></td>
+                                </tr>
+
+                                <tr id="row_phisic" class="db_row_dialog">
+                                    <td valign="middle"> <h5>Физические упражнения</h5></td>
+                                    <td class="db_row_input">          </td>
+                                    <td class="db_row_input">
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_phisic" />
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr id="row_therapy" class="db_row_dialog">
+                                    <td valign="middle"> <h5>Терапии</h5></td>
+                                    <td class="db_row_input">          </td>
+                                    <td class="db_row_input">
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_therapy" />
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr id="row_asana" class="db_row_dialog">
+                                    <td valign="middle"> <h5>Асаны</h5></td>
+                                    <td class="db_row_input">          </td>
+                                    <td class="db_row_input">
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_asana" />
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                                <tr id="row_psy" class="db_row_dialog">
+                                    <td valign="middle"> <h5>Психологические практики</h5></td>
+                                    <td class="db_row_input">          </td>
+                                    <td class="db_row_input">
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_psy" />
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr id="row_kirtan_day" class="db_row_dialog">
+                                    <td valign="middle"> <h5>Киртан утро, минут</h5></td>
+                                    <td class="db_row_input">          <input type="number" class="form-control" id="filed_kirtan_day_plan" disabled></td>
+                                    <td valign="middle" class="db_row_input">          <input type="number" class="form-control" id="filed_kirtan_day_fact"></td>
+                                </tr>
+
+                                <tr id="row_kirtan_night" class="db_row_dialog">
+                                    <td valign="middle"> <h5>Киртан вечер, минут</h5></td>
+                                    <td class="db_row_input">          <input type="number" class="form-control" id="filed_kirtan_night_plan" disabled></td>
+                                    <td valign="middle" class="db_row_input">          <input type="number" class="form-control" id="filed_kirtan_night_fact"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+
+                            <div class="progress">
+                                <div id="user_progress_bar" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                                    <span class="sr-only"></span>
+                                </div>
+                            </div>
+                            <!--
+                            <button id="btn_user_save_day"  type="button" class="btn btn-success btn-block">Сохранить отчет</button>
+
+-->
+
+
+
+
+                            <br/>
+                            <br/>
+                            <br/>
+
+
+
+                            <!--
+                             <br/>
+                             <br/>
+                             <br/>
+                             <br/>
+                             <br/>
+                             <br/>
+                             <br/>
+                             <br/>
+                             <h1 align="center">Ожидайте старта марафона 25 апреля 2018.</h1> -->
+
+                        </div>
+                        <div class="col-xs-0  col-sm-4"></div>
+                    </div>
+                </div>
+
+                <div id="user_marafon_wait" hidden>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h1 id="user_marafon_wait_text" align="center"></h1>
+                </div>
+
+            </div>
+
+            <div id="page_user_settings"  class="container-fluid">
+                <div class="col-xs-4"></div>
+                <div class="col-xs-4" align="center">
+
+                    <div id="detox_settings" >
+                        <h4>Ваша текущая детокс программа: <span id="detox_name"></span> длительностью <span id="detox_time"></span></h4>
+                        <table class="table  table-hover">
+                            <tbody>
+                                <tr id="row_quest_detox_time_edit"  hidden class="db_row_dialog">
+                                    <td valign="middle" ><h5>Изменить длительность детокса, дней</h5></td>
+                                    <td  class="db_row_input">
+                                        <div class="dropdown">
+                                            <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_detox_time_edit">
+                                                Выберите кол-во <span class="caret"></span>
+                                            </button>
+                                            <ul id="detox_answer_time_edit" class="dropdown-menu">             </ul>
+                                        </div>
+                                    </td>
+                                    <td > <button id="btn_detox_edit_time"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
+
+                                </tr>
+
+                                <tr id="row_quest_detox_start_edit" hidden class="db_row_dialog">
+                                    <td valign="middle"><h5>Изменить день старта детокса</h5></td>
+                                    <td  class="db_row_input">
+                                        <div class="dropdown">
+                                            <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_detox_start_edit">
+                                                Выберите день старта <span class="caret"></span>
+                                            </button>
+                                            <ul id="detox_answer_start_edit" class="dropdown-menu">                                                    </ul>
+                                        </div>
+                                    </td>
+                                    <td > <button id="btn_detox_edit_start"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
+
+                                </tr>
+
+
+                                <tr class="db_row_dialog">
+                                    <td valign="middle"><h5>Прервать детокс Программу</h5></td>
+                                    <td > </td>
+                                    <td > <button  data-toggle="modal" data-target="#modal_detox_stop" type="button" class="btn btn-danger btn-block">Прервать</button></td>
+                                    <div class="modal fade" id="modal_detox_stop"    tabindex="-1" role="dialog" aria-labelledby="modal_label_detox_stop">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="modal_label_detox_stop">Остановка детокса</h4>
+                                                </div>
+                                                <div class="modal-body" align="center">
+                                                    <h5>Вы уверены что хотите остановить детокс? Отменить действие будет невозможно.</h5>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                                                    <button id="btn_detox_stop"  type="button" class="btn btn-danger">Прервать Детокс</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                        <br/>
+                        <br/>
+                    </div>
+
+
+
+
+                    <div id="table_question_hour_tail" >
+                        <table class="table  table-hover">
+                            <tbody>
+                            <tr id="row_quest_hour_tail" class="db_row_dialog">
+                                <td valign="middle">      <h5>Ваш часовой пояс от -12 до +12?</h5></td>
+                                <td > <input type="number" class="form-control" id="filed_question_hour_tail" max="12" min="-12"></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        <button id="btn_question_hour_tail_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                    </div>
+
+                    <br/>
+                    <br/>
+
+                    <h3>Смена пароля</h3>
+                    <table  class="table  table-hover">
+                        <thead>
+                        <tr class="db_row_dialog">
+                            <td><h4 align="center"><b>Параметр</b></h4></td>
+                            <td><h4 align="center"><b>Значение</b></h4></td>
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td ><h5>Старый пароль</h5></td>
+                            <td ><input type="text" class="form-control" id="password_old"></td>
+                        </tr>
+
+                        <tr>
+                            <td ><h5>Новый пароль</h5></td>
+                            <td ><input type="text" class="form-control" id="password_new"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button id="btn_password_save"  type="button" class="btn btn-info btn-block">Сохранить пароль</button>
+
+
+
+                </div>
+                <div class="col-xs-4"></div>
+            </div>
+        </div>
+
+        <!-- Latest compiled and minified JavaScript -->
+
+
+
+    </body>
+</html>
