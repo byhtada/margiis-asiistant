@@ -8,8 +8,8 @@ $(document).ready(function() {
     var cookie_token = getCookie(cookie_name_token);
     var api_url      = "https://зйож.рф/";
     var api_url_full = "https://зйож.рф/users";
-  //  var api_url      = "http://localhost:3001/";
-  //  var api_url_full = "http://localhost:3001/users";
+  // var api_url      = "http://localhost:3000/";
+  // var api_url_full = "http://localhost:3000/users";
 
     $.ajaxSetup({
         error: function (data, textStatus, jqXHR) {
@@ -301,6 +301,12 @@ $(document).ready(function() {
                 $('#wake_up_alert_no_answer').hide();
                 $('#table_question_wake_up').hide();
             }
+        }
+
+        if (current_day.detox_answer) {
+            $('#table_question_detox').hide();
+        } else {
+            $('#table_question_detox').show();
         }
 
 
