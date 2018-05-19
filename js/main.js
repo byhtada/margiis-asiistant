@@ -8,8 +8,8 @@ $(document).ready(function() {
     var cookie_token = getCookie(cookie_name_token);
     var api_url      = "https://зйож.рф/";
     var api_url_full = "https://зйож.рф/users";
-  // var api_url      = "http://localhost:3000/";
-  // var api_url_full = "http://localhost:3000/users";
+  // var api_url      = "https://0.0.0.0:3000/";
+  // var api_url_full = "https://0.0.0.0:3000/users";
 
     $.ajaxSetup({
         error: function (data, textStatus, jqXHR) {
@@ -21,7 +21,7 @@ $(document).ready(function() {
               //  console.log(data.responseText.includes("Incorrect credentials"));
 
                 if (data.responseText.includes("Incorrect credentials")) {
-                    alert("Вход не выплнен. Проверьте корректность введенных данных")
+                    alert("Вход не выполнен. Проверьте корректность введенных данных")
                 }
                 if (data.responseText.includes("Bad Token")) {
                     cookie_token = getCookie(cookie_name_token);
@@ -180,10 +180,11 @@ $(document).ready(function() {
         hide_all_in_user();
 
         switch ($(this).attr("id")){
-
-
             case "nav_user_programm":
                 $('#page_user_programm').show();
+                break;
+            case "nav_user_diary":
+                $('#page_user_diary').show();
                 break;
             case "nav_user_settings":
                 $('#page_user_settings').show();
@@ -192,6 +193,7 @@ $(document).ready(function() {
     });
     function hide_all_in_user() {
         $('#page_user_programm').hide();
+        $('#page_user_diary').hide();
         $('#page_user_settings').hide();
     }
 
@@ -245,13 +247,9 @@ $(document).ready(function() {
                 },
                 success: function (data) {
                     console.log(data);
-                    var currentdate = new Date();
+                    setUserDiary(data.user_diary);
+                    day_show_now = data.marafon_day;
 
-                    var datetime = "Last Sync: " + currentdate.getDate() + "/"+(currentdate.getMonth()+1)
-                        + "/" + currentdate.getFullYear() + " @ "
-                        + currentdate.getHours() + ":"
-                        + currentdate.getMinutes() + ":" + currentdate.getSeconds();
-                    console.log(datetime);
                     if (data.marafon_day < 1) {
                         $('#user_marafon_start').hide();
                         $('#user_marafon_wait') .show();
@@ -261,6 +259,11 @@ $(document).ready(function() {
                         setUserMarafonDay(data.marafon_info_today, data.marafon_day);
                     }
 
+                    if (data.detox_type !== null){
+                        $('#detox_settings').show();
+                        $('#detox_name')    .text(data.detox_type);
+                        $('#detox_time')    .text(user.detox_time);
+                    }
                 },
                 failure: function (errMsg) {
                     alert(errMsg);
@@ -273,8 +276,46 @@ $(document).ready(function() {
     }
 
     var day_num;
+    var day_show_now;
     function setUserMarafonDay(current_day, marafon_day){
         day_num = current_day.day_num;
+
+        if (day_show_now !== day_num) {
+            $('#row_water')           .hide();
+            $('#row_no_snacking')     .hide();
+            $('#row_diet')            .hide();
+            $('#row_wake_up')         .hide();
+            $('#row_tongue')          .hide();
+            $('#row_meditation_day')  .hide();
+            $('#row_meditation_night').hide();
+            $('#row_kaoshiki')        .hide();
+            $('#row_phisic')          .hide();
+            $('#row_therapy')         .hide();
+            $('#row_asana')           .hide();
+            $('#row_psy')             .hide();
+            $('#row_kirtan_day')      .hide();
+            $('#row_kirtan_night')    .hide();
+
+            $('#filed_no_snacking_fact')       .prop("checked", false);
+            $('#filed_diet')                   .prop("checked", false);
+            $('#filed_tongue_day')             .prop("checked", false);
+            $('#filed_tongue_night')           .prop("checked", false);
+            $('#filed_phisic')                 .prop("checked", false);
+            $('#filed_therapy')                .prop("checked", false);
+            $('#filed_asana')                  .prop("checked", false);
+            $('#filed_psy')                    .prop("checked", false);
+
+            $('#filed_water_fact')             .val(null);
+            $('#filed_wake_up_fact')           .val(null);
+            $('#filed_meditation_day_fact')    .val(null);
+            $('#filed_meditation_night_fact')  .val(null);
+            $('#filed_kaoshiki_fact')          .val(null);
+            $('#filed_kirtan_day_fact')        .val(null);
+            $('#filed_kirtan_night_fact')      .val(null);
+            $('#filed_day_comment')      .val(null);
+        }
+
+
         console.log(current_day);
 
         if (current_day.water_target_answer) {
@@ -305,26 +346,13 @@ $(document).ready(function() {
 
         if (current_day.detox_answer) {
             $('#table_question_detox').hide();
+            $('#detox_settings').hide();
         } else {
             $('#table_question_detox').show();
+            $('#detox_settings').show();
         }
 
 
-
-        $('#row_water')           .hide();
-        $('#row_no_snacking')     .hide();
-        $('#row_diet')            .hide();
-        $('#row_wake_up')         .hide();
-        $('#row_tongue')          .hide();
-        $('#row_meditation_day')  .hide();
-        $('#row_meditation_night').hide();
-        $('#row_kaoshiki')        .hide();
-        $('#row_phisic')          .hide();
-        $('#row_therapy')         .hide();
-        $('#row_asana')           .hide();
-        $('#row_psy')             .hide();
-        $('#row_kirtan_day')      .hide();
-        $('#row_kirtan_night')    .hide();
 
 
 
@@ -422,22 +450,6 @@ $(document).ready(function() {
         }
 
 
-        $('#filed_no_snacking_fact')       .prop("checked", false);
-        $('#filed_diet')                   .prop("checked", false);
-        $('#filed_tongue_day')             .prop("checked", false);
-        $('#filed_tongue_night')           .prop("checked", false);
-        $('#filed_phisic')                 .prop("checked", false);
-        $('#filed_therapy')                .prop("checked", false);
-        $('#filed_asana')                  .prop("checked", false);
-        $('#filed_psy')                    .prop("checked", false);
-
-        $('#filed_water_fact')             .val(null);
-        $('#filed_wake_up_fact')           .val(null);
-        $('#filed_meditation_day_fact')    .val(null);
-        $('#filed_meditation_night_fact')  .val(null);
-        $('#filed_kaoshiki_fact')          .val(null);
-        $('#filed_kirtan_day_fact')        .val(null);
-        $('#filed_kirtan_night_fact')      .val(null);
 
 
 
@@ -459,6 +471,7 @@ $(document).ready(function() {
 
         var kirtan_day_fact        = current_day.kirtan_day_fact;
         var kirtan_night_fact      = current_day.kirtan_night_fact;
+        var day_comment            = current_day.day_comment;
         var day_materials          = current_day.day_materials;
 
 
@@ -485,11 +498,12 @@ $(document).ready(function() {
         }
 
 
-        meditation_day_fact         != null && meditation_day_fact !=false ?  $('#filed_meditation_day_fact').val(meditation_day_fact)   : $('#filed_meditation_day_fact').val();
-        meditation_night_fact         != null && meditation_night_fact !=false ?  $('#filed_meditation_night_fact').val(meditation_night_fact)   : $('#filed_meditation_night_fact').val();
-        kaoshiki_minutes_fact         != null && kaoshiki_minutes_fact !=false ?  $('#filed_kaoshiki_fact').val(kaoshiki_minutes_fact)   : $('#filed_kaoshiki_fact').val();
-        kirtan_day_fact         != null && kirtan_day_fact !=false ?  $('#filed_kirtan_day_fact').val(kirtan_day_fact)   : $('#filed_kirtan_day_fact').val();
-        kirtan_night_fact         != null && kirtan_night_fact !=false ?  $('#filed_kirtan_night_fact').val(kirtan_night_fact)   : $('#filed_kirtan_night_fact').val();
+        meditation_day_fact       != null && meditation_day_fact !=false   ?  $('#filed_meditation_day_fact').val(meditation_day_fact)   : $('#filed_meditation_day_fact').val();
+        meditation_night_fact     != null && meditation_night_fact !=false ?  $('#filed_meditation_night_fact').val(meditation_night_fact)   : $('#filed_meditation_night_fact').val();
+        kaoshiki_minutes_fact     != null && kaoshiki_minutes_fact !=false ?  $('#filed_kaoshiki_fact').val(kaoshiki_minutes_fact)   : $('#filed_kaoshiki_fact').val();
+        kirtan_day_fact           != null && kirtan_day_fact !=false       ?  $('#filed_kirtan_day_fact').val(kirtan_day_fact)       : $('#filed_kirtan_day_fact').val();
+        kirtan_night_fact         != null && kirtan_night_fact !=false     ?  $('#filed_kirtan_night_fact').val(kirtan_night_fact)   : $('#filed_kirtan_night_fact').val();
+        day_comment         != null && day_comment !=false     ?  $('#filed_day_comment').val(day_comment)   : $('#filed_day_comment').val();
 
 
 
@@ -497,41 +511,21 @@ $(document).ready(function() {
         $('#user_progress_bar').css('width', progress+'%').attr('aria-valuenow', progress);
         $('#user_marafon_start').show();
     }
-    $('#btn_user_save_day').click(function (){
-        $.ajax({
-            type: "GET",
-            url:  api_url_full,
-            data: { query_update: "user_save_day_status",
-                day_num: $(this).val(),
-                water_fact:            $('#filed_water_fact')             .val(),
-                no_snacking_fact:      $('#filed_no_snacking_fact')       .is(':checked'),
-                diet_fact:             $('#filed_diet')                   .is(':checked'),
-                wake_up_fact:          $('#filed_wake_up_fact')           .mTimePicker('getTime'),
-                tongue_day:            $('#filed_tongue_day')             .is(':checked'),
-                tongue_night:          $('#filed_tongue_night')           .is(':checked'),
-                meditation_day_fact:   $('#filed_meditation_day_fact')    .val(),
-                meditation_night_fact: $('#filed_meditation_night_fact')  .val(),
-                kaoshiki_fact:         $('#filed_kaoshiki_fact')          .val(),
-                phisic:                $('#filed_phisic')                 .is(':checked'),
-                therapy:               $('#filed_therapy')                .is(':checked'),
-                asana:                 $('#filed_asana')                  .is(':checked'),
-                psy:                   $('#filed_psy')                    .is(':checked'),
-                kirtan_day_fact:       $('#filed_kirtan_day_fact')        .val(),
-                kirtan_night_fact:     $('#filed_kirtan_night_fact')      .val()
-            },
-            headers: {
-                'Authorization':'Token token=' + cookie_token,
-                'Content-Type':'application/x-www-form-urlencoded'
-            },
-            success: function(data){
-                setUserMarafonDay(data.current_day, data.marafon_day);
 
-            },
-            failure: function(errMsg) {
-                alert(errMsg.toString());
-            }
+    function setUserDiary(diary){
+        var diary_row = '<table id="table_diary" class="table table-hover table-bordered table-condensed" >';
+        diary_row    += '<thead><tr> <th>День</th> <th>Выполнено</th><th>Запись</th></tr></thead><tbody>';
+        $.each(diary, function (i, item) {
+            diary_row += '<tr>';
+            diary_row += '<td><h5>' + item.day_num + '</h5></td>';
+            diary_row += '<td><h5>' + item.day_progress + '</h5></td>';
+            diary_row += '<td><h5>' + item.day_comment + '</h5></td>';
+            diary_row += '</tr>';
         });
-    });
+        diary_row += '</tbody></table';
+        $('#user_diary').empty();
+        $('#user_diary').append(diary_row);
+    }
 
     $('#btn_question_water_save').click(function (){
         $('#btn_question_water_save').prop('disabled', true);
@@ -640,13 +634,19 @@ $(document).ready(function() {
         }
 
         var i;
-        var detox_time      = '';
+        var detox_time_row      = '';
         for (i = 1; i < detox_days + 1; i++) {
-            detox_time      += '<li><a href="#" class="link_detox_time" name="'+ i +'">' + i + '</a></li>';
+            detox_time_row      += '<li><a href="#" class="link_detox_time" name="'+ i +'">' + i + '</a></li>';
         }
         $('#detox_answer_time') .empty();
-        $('#detox_answer_time') .append(detox_time);
+        $('#detox_answer_time') .append(detox_time_row);
         $('#row_quest_detox_time').show();
+        $('#row_quest_detox_start').hide();
+        $('#btn_question_detox_save').hide();
+        detox_time = null;
+        detox_start = null;
+        $('#btn_dd_detox_time').text("Кол-во дней");
+        $('#btn_dd_detox_start').text("День старта");
     });
     $(document).on('click', '.link_detox_time',  function () {
         console.log($(this).attr("name"));
@@ -679,6 +679,9 @@ $(document).ready(function() {
         $('#detox_answer_start') .append(detox_start);
 
         $('#row_quest_detox_start').show();
+        $('#btn_question_detox_save').hide();
+        detox_start = null;
+        $('#btn_dd_detox_start').text("День старта");
     });
     $(document).on('click', '.link_detox_start', function () {
         console.log($(this).attr("name"));
@@ -738,11 +741,15 @@ $(document).ready(function() {
         });
     });
 
+
+
+
+
     $('#filed_no_snacking_fact, #filed_diet, #filed_tongue_day, #filed_tongue_night, #filed_phisic, #filed_therapy, #filed_asana, #filed_psy').change(function() {
         userSaveDay();
     });
 
-    $("#filed_water_fact, #filed_meditation_day_fact, #filed_meditation_night_fact, #filed_kaoshiki_fact, #filed_kirtan_day_fact, #filed_kirtan_night_fact, #filed_wake_up_fact_hour, #filed_wake_up_fact_minute").on('change keyup paste', function () {
+    $("#filed_water_fact, #filed_meditation_day_fact, #filed_meditation_night_fact, #filed_kaoshiki_fact, #filed_kirtan_day_fact, #filed_kirtan_night_fact, #filed_wake_up_fact_hour, #filed_wake_up_fact_minute, #filed_day_comment").on('change keyup paste', function () {
         userSaveDay();
     });
 
@@ -756,8 +763,8 @@ $(document).ready(function() {
                 water_fact:            $('#filed_water_fact')             .val(),
                 no_snacking_fact:      $('#filed_no_snacking_fact')       .is(':checked'),
                 diet_fact:             $('#filed_diet')                   .is(':checked'),
-                wake_up_hours_fact:          $('#filed_wake_up_fact_hour')           .val(),
-                wake_up_minutes_fact:        $('#filed_wake_up_fact_minute')         .val(),
+                wake_up_hours_fact:    $('#filed_wake_up_fact_hour')           .val(),
+                wake_up_minutes_fact:  $('#filed_wake_up_fact_minute')         .val(),
                 tongue_day:            $('#filed_tongue_day')             .is(':checked'),
                 tongue_night:          $('#filed_tongue_night')           .is(':checked'),
                 meditation_day_fact:   $('#filed_meditation_day_fact')    .val(),
@@ -768,7 +775,8 @@ $(document).ready(function() {
                 asana:                 $('#filed_asana')                  .is(':checked'),
                 psy:                   $('#filed_psy')                    .is(':checked'),
                 kirtan_day_fact:       $('#filed_kirtan_day_fact')        .val(),
-                kirtan_night_fact:     $('#filed_kirtan_night_fact')      .val()
+                kirtan_night_fact:     $('#filed_kirtan_night_fact')      .val(),
+                day_comment:           $('#filed_day_comment')      .val()
 
             //    question_wake_up_fact: $('#filed_question_wake_up_fact').mTimePicker('getTime'),
             //    question_wake_up_plan: $('#filed_question_wake_up_plan').mTimePicker('getTime')
@@ -803,6 +811,7 @@ $(document).ready(function() {
                 },
                 success: function(data){
                   //  console.log(data);
+                    day_show_now = data.current_day;
                     if (data.error == 0) {
                         setUserMarafonDay(data.current_day, data.marafon_day);
                     } else {
