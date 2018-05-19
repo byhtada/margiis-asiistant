@@ -4,7 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/index.html" line="911" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="" />
+    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -26,8 +29,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="252" column="47" lean-forward="true" selection-start-line="252" selection-start-column="39" selection-end-line="252" selection-end-column="47" />
+            <state relative-caret-position="342">
+              <caret line="1716" column="51" lean-forward="true" selection-start-line="1716" selection-start-column="51" selection-end-line="1716" selection-end-column="51" />
               <folding>
                 <element signature="e#65#128#0" />
                 <element signature="e#6547#7791#0" />
@@ -64,8 +67,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="911" column="36" selection-start-line="911" selection-start-column="36" selection-end-line="911" selection-end-column="36" />
+            <state relative-caret-position="342">
+              <caret line="582" column="44" lean-forward="true" selection-start-line="582" selection-start-column="44" selection-end-line="582" selection-end-column="44" />
               <folding>
                 <element signature="n#head#0;n#html#0;n#!!top" />
                 <element signature="e#2506#2747#0" />
@@ -190,7 +193,6 @@
                 <element signature="n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#li#0;n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#h3#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -209,8 +211,6 @@
                 <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#p#0;n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#button#0;n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -238,6 +238,7 @@
                 <element signature="n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -265,7 +266,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>options</find>
       <find>setCookie</find>
       <find>table_question_wake_up</find>
       <find>user_save_wake_up_answer</find>
@@ -295,6 +295,7 @@
       <find>get_user_info</find>
       <find>update_user_info</find>
       <find>nav-item&quot;</find>
+      <find>btns_group_user_info</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -305,8 +306,8 @@
       <list>
         <option value="$PROJECT_DIR$/css/bs-table.css" />
         <option value="$PROJECT_DIR$/css/main.css" />
-        <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/main.js" />
       </list>
     </option>
   </component>
@@ -454,12 +455,12 @@
       <workItem from="1526522441399" duration="12169000" />
       <workItem from="1526649874089" duration="13000" />
       <workItem from="1526649903800" duration="10522000" />
-      <workItem from="1526705780194" duration="5558000" />
+      <workItem from="1526705780194" duration="6459000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="221843000" />
+    <option name="totallyTimeSpent" value="222744000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="24" width="1313" height="744" extended-state="6" />
@@ -658,7 +659,6 @@
             <element signature="n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#li#0;n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#h3#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -677,8 +677,6 @@
             <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#p#0;n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#button#0;n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -706,6 +704,7 @@
             <element signature="n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -889,7 +888,6 @@
             <element signature="n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#li#0;n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#h3#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -908,8 +906,6 @@
             <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#p#0;n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#button#0;n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -937,6 +933,7 @@
             <element signature="n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -1120,7 +1117,6 @@
             <element signature="n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#li#0;n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#h3#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -1139,8 +1135,6 @@
             <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#p#0;n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#button#0;n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -1168,6 +1162,7 @@
             <element signature="n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -1351,7 +1346,6 @@
             <element signature="n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#li#0;n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#h3#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -1370,8 +1364,6 @@
             <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#p#0;n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#button#0;n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -1399,6 +1391,7 @@
             <element signature="n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -1556,7 +1549,6 @@
             <element signature="n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#li#0;n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#h3#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -1575,8 +1567,6 @@
             <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#p#0;n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#button#0;n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -1604,6 +1594,7 @@
             <element signature="n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -1780,7 +1771,6 @@
             <element signature="n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#li#0;n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#h3#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -1799,8 +1789,6 @@
             <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#p#0;n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#button#0;n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -1828,6 +1816,7 @@
             <element signature="n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -2018,7 +2007,6 @@
             <element signature="n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#li#0;n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#h3#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -2037,8 +2025,6 @@
             <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#p#0;n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#button#0;n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -2066,6 +2052,7 @@
             <element signature="n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -2255,7 +2242,6 @@
             <element signature="n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#li#0;n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#h3#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -2274,8 +2260,6 @@
             <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#p#0;n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#button#0;n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -2303,6 +2287,7 @@
             <element signature="n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -2407,8 +2392,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="911" column="36" selection-start-line="911" selection-start-column="36" selection-end-line="911" selection-end-column="36" />
+        <state relative-caret-position="342">
+          <caret line="582" column="44" lean-forward="true" selection-start-line="582" selection-start-column="44" selection-end-line="582" selection-end-column="44" />
           <folding>
             <element signature="n#head#0;n#html#0;n#!!top" />
             <element signature="e#2506#2747#0" />
@@ -2533,7 +2518,6 @@
             <element signature="n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#li#0;n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#h3#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -2552,8 +2536,6 @@
             <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#p#0;n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#button#0;n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -2581,6 +2563,7 @@
             <element signature="n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -2605,8 +2588,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="252" column="47" lean-forward="true" selection-start-line="252" selection-start-column="39" selection-end-line="252" selection-end-column="47" />
+        <state relative-caret-position="342">
+          <caret line="1716" column="51" lean-forward="true" selection-start-line="1716" selection-start-column="51" selection-end-line="1716" selection-end-column="51" />
           <folding>
             <element signature="e#65#128#0" />
             <element signature="e#6547#7791#0" />

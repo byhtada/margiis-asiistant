@@ -247,7 +247,7 @@ $(document).ready(function() {
                 },
                 success: function (data) {
                     console.log(data);
-                    setUserDiary(data.user_diary);
+                    //setUserDiary(data.user_diary);
                     day_show_now = data.marafon_day;
 
                     if (data.marafon_day < 1) {
@@ -1668,7 +1668,7 @@ $(document).ready(function() {
       //  console.log(user_programm);
 
         var user_programm_row = '<table id="table_programm_main1" class="table table-hover table-bordered table-condensed" >';
-        user_programm_row    += '<thead><tr> <th>День</th> <th>Вода</th><th>Перекусы</th><th>Диета</th><th>Подъем</th><th>Язык</th>';
+        user_programm_row    += '<thead><tr> <th>День</th> <th>Вода</th><th>Перекусы</th><th>Диета статус</th><th>Диета тип</th><th>Подъем</th><th>Язык</th>';
         user_programm_row    += '        <th>Медитация (утро)</th> <th>Медитация (вечер)</th><th>Каушики</th><th>Физ. упр.</th><th>Терапии</th><th>Асаны</th>';
         user_programm_row    += '        <th>Псих. упр.</th> <th>Киртан (утро)</th><th>Киртан (вечер)</th>';
         user_programm_row    += '</tr></thead><tbody>';
@@ -1703,11 +1703,7 @@ $(document).ready(function() {
             }
 
             if ( item.eat_diet_active != null  &&  item.eat_diet_active != false) {
-                if (item.eat_diet_fact) {
-                    user_programm_row += '<td class="warning"><h5>' + "+"  + '</h5></td>';
-                } else {
-                    user_programm_row += '<td class="warning"><h5></h5></td>';
-                }
+                user_programm_row += '<td class="warning"><h5>' + item.diet_description  + '</h5></td>';
             } else {
                 user_programm_row += '<td><h5></h5></td>';
             }
