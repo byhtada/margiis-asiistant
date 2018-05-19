@@ -1703,7 +1703,17 @@ $(document).ready(function() {
             }
 
             if ( item.eat_diet_active != null  &&  item.eat_diet_active != false) {
-                user_programm_row += '<td class="warning"><h5>' + item.diet_description  + '</h5></td>';
+                if (item.eat_diet_fact) {
+                    user_programm_row += '<td class="warning"><h5>' + "+"  + '</h5></td>';
+                } else {
+                    user_programm_row += '<td class="warning"><h5></h5></td>';
+                }
+            } else {
+                user_programm_row += '<td><h5></h5></td>';
+            }
+
+            if ( item.eat_diet_active != null  &&  item.eat_diet_active != false) {
+                user_programm_row += '<td class="warning"><h5>' + item.eat_diet_description  + '</h5></td>';
             } else {
                 user_programm_row += '<td><h5></h5></td>';
             }
