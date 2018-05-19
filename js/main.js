@@ -530,8 +530,7 @@ $(document).ready(function() {
         $.ajax({
             type: "GET",
             url:  api_url_full,
-            data: { query_info: "get_user_diary"
-            },
+            data: { query_info: "get_user_diary"},
             headers: {
                 'Authorization':'Token token=' + cookie_token,
                 'Content-Type':'application/x-www-form-urlencoded'
