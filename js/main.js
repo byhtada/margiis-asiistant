@@ -262,7 +262,7 @@ $(document).ready(function() {
                     if (data.detox_type !== null){
                         $('#detox_settings').show();
                         $('#detox_name')    .text(data.detox_type);
-                        $('#detox_time')    .text(user.detox_time);
+                        $('#detox_time')    .text(data.user.detox_time);
                     }
                 },
                 failure: function (errMsg) {
@@ -279,6 +279,48 @@ $(document).ready(function() {
     var day_show_now;
     function setUserMarafonDay(current_day, marafon_day){
         day_num = current_day.day_num;
+
+
+        var eat_no_snacking_fact   = current_day.eat_no_snacking_fact;
+        var eat_diet_fact          = current_day.eat_diet_fact;
+        var tongue_clean_day       = current_day.tongue_clean_day;
+        var tongue_clean_night     = current_day.tongue_clean_night;
+        var phisic_fact            = current_day.phisic_fact;
+        var therapy_fact           = current_day.therapy_fact;
+        var asana_fact             = current_day.asana_fact;
+        var psi_fact               = current_day.psi_fact;
+
+        var water_fact             = current_day.water_fact;
+        var wake_up_hours_fact     = current_day.wake_up_hours_fact;
+        var wake_up_minutes_fact   = current_day.wake_up_minutes_fact;
+        var meditation_day_fact    = current_day.meditation_day_fact;
+        var meditation_night_fact  = current_day.meditation_night_fact;
+        var kaoshiki_minutes_fact  = current_day.kaoshiki_minutes_fact;
+
+        var kirtan_day_fact        = current_day.kirtan_day_fact;
+        var kirtan_night_fact      = current_day.kirtan_night_fact;
+        var day_comment            = current_day.day_comment;
+        var day_materials          = current_day.day_materials;
+
+
+        var eat_no_snacking_active = current_day.eat_no_snacking_active;
+        var eat_diet_active        = current_day.eat_diet_active;
+        var tongue_clean_active    = current_day.tongue_clean_active;
+        var phisic_active          = current_day.phisic_active;
+        var therapy_active         = current_day.therapy_active;
+        var asana_active           = current_day.asana_active;
+        var psi_active             = current_day.psi_active;
+
+        var water_target            = current_day.water_target;
+        var wake_up_hours_target    = current_day.wake_up_hours_target;
+        var wake_up_minutes_target  = current_day.wake_up_minutes_target;
+        var meditation_day_target   = current_day.meditation_day_target;
+        var meditation_night_target = current_day.meditation_night_target;
+        var kaoshiki_minutes_target = current_day.kaoshiki_minutes_target;
+        var kirtan_day_target       = current_day.kirtan_day_target;
+        var kirtan_night_target     = current_day.kirtan_night_target;
+
+
 
         if (day_show_now !== day_num) {
             $('#row_water')           .hide();
@@ -313,6 +355,8 @@ $(document).ready(function() {
             $('#filed_kirtan_day_fact')        .val(null);
             $('#filed_kirtan_night_fact')      .val(null);
             $('#filed_day_comment')      .val(null);
+            day_comment               != null && day_comment !=false     ?  $('#filed_day_comment').val(day_comment)   : $('#filed_day_comment').val();
+
         }
 
 
@@ -344,12 +388,18 @@ $(document).ready(function() {
             }
         }
 
-        if (current_day.detox_answer) {
+        $('#btn_question_detox_save').hide();
+        if (current_day.detox_answer ) {
             $('#table_question_detox').hide();
             $('#detox_settings').hide();
         } else {
-            $('#table_question_detox').show();
-            $('#detox_settings').show();
+            if (day_num > 26) {
+                $('#table_question_detox').show();
+                $('#detox_settings').show();
+            } else {
+                $('#table_question_detox').hide();
+                $('#detox_settings').hide();
+            }
         }
 
 
@@ -372,23 +422,6 @@ $(document).ready(function() {
         $('#btn_user_next_day')    .val(day_num + 1);
         $('#btn_user_save_day')    .val(day_num);
 
-
-        var eat_no_snacking_active = current_day.eat_no_snacking_active;
-        var eat_diet_active        = current_day.eat_diet_active;
-        var tongue_clean_active    = current_day.tongue_clean_active;
-        var phisic_active          = current_day.phisic_active;
-        var therapy_active         = current_day.therapy_active;
-        var asana_active           = current_day.asana_active;
-        var psi_active             = current_day.psi_active;
-
-        var water_target            = current_day.water_target;
-        var wake_up_hours_target    = current_day.wake_up_hours_target;
-        var wake_up_minutes_target  = current_day.wake_up_minutes_target;
-        var meditation_day_target   = current_day.meditation_day_target;
-        var meditation_night_target = current_day.meditation_night_target;
-        var kaoshiki_minutes_target = current_day.kaoshiki_minutes_target;
-        var kirtan_day_target       = current_day.kirtan_day_target;
-        var kirtan_night_target     = current_day.kirtan_night_target;
 
 
         if (eat_no_snacking_active != null && eat_no_snacking_active != false) {$('#row_no_snacking').show();}
@@ -453,26 +486,7 @@ $(document).ready(function() {
 
 
 
-        var eat_no_snacking_fact   = current_day.eat_no_snacking_fact;
-        var eat_diet_fact          = current_day.eat_diet_fact;
-        var tongue_clean_day       = current_day.tongue_clean_day;
-        var tongue_clean_night     = current_day.tongue_clean_night;
-        var phisic_fact            = current_day.phisic_fact;
-        var therapy_fact           = current_day.therapy_fact;
-        var asana_fact             = current_day.asana_fact;
-        var psi_fact               = current_day.psi_fact;
 
-        var water_fact             = current_day.water_fact;
-        var wake_up_hours_fact     = current_day.wake_up_hours_fact;
-        var wake_up_minutes_fact   = current_day.wake_up_minutes_fact;
-        var meditation_day_fact    = current_day.meditation_day_fact;
-        var meditation_night_fact  = current_day.meditation_night_fact;
-        var kaoshiki_minutes_fact  = current_day.kaoshiki_minutes_fact;
-
-        var kirtan_day_fact        = current_day.kirtan_day_fact;
-        var kirtan_night_fact      = current_day.kirtan_night_fact;
-        var day_comment            = current_day.day_comment;
-        var day_materials          = current_day.day_materials;
 
 
 
@@ -503,7 +517,6 @@ $(document).ready(function() {
         kaoshiki_minutes_fact     != null && kaoshiki_minutes_fact !=false ?  $('#filed_kaoshiki_fact').val(kaoshiki_minutes_fact)   : $('#filed_kaoshiki_fact').val();
         kirtan_day_fact           != null && kirtan_day_fact !=false       ?  $('#filed_kirtan_day_fact').val(kirtan_day_fact)       : $('#filed_kirtan_day_fact').val();
         kirtan_night_fact         != null && kirtan_night_fact !=false     ?  $('#filed_kirtan_night_fact').val(kirtan_night_fact)   : $('#filed_kirtan_night_fact').val();
-        day_comment         != null && day_comment !=false     ?  $('#filed_day_comment').val(day_comment)   : $('#filed_day_comment').val();
 
 
 
