@@ -525,6 +525,25 @@ $(document).ready(function() {
         $('#user_marafon_start').show();
     }
 
+
+    $('#nav_user_diary').click(function (){
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_info: "get_user_diary"
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data) {
+                setUserDiary(data.user_diary);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
     function setUserDiary(diary){
         var diary_row = '<table id="table_diary" class="table table-hover table-bordered table-condensed" >';
         diary_row    += '<thead><tr> <th>День</th> <th>Выполнено</th><th>Запись</th></tr></thead><tbody>';
