@@ -6,6 +6,30 @@ window.onload = function () {
                 console.log(data);
             },
         "authUrl": "/"});
+
+    var timerId = setInterval(function() {
+        console.log( "тик" );
+
+        var url_string = window.location.href; //window.location.href
+        console.log(url_string);
+
+        var url = new URL(url_string);
+        console.log(url);
+
+        var access_token = url.searchParams.get("access_token");
+        var user_id = url.searchParams.get("user_id");
+        var expires_in = url.searchParams.get("expires_in");
+        var state = url.searchParams.get("state");
+
+        if (typeof access_token !== 'undefined'){
+            console.log(access_token);
+            console.log(user_id);
+            console.log(expires_in);
+            console.log(state);
+            clearInterval(timerId);
+        }
+    }, 1000);
+
 };
 
 $(document).ready(function() {
