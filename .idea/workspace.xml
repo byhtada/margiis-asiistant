@@ -4,10 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/index.html" line="935" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
-    </list>
+    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -29,10 +26,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="15" column="19" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="19" />
-              <caret line="16" column="22" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="22" />
-              <caret line="17" column="17" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="17" />
+            <state relative-caret-position="213">
+              <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
               <folding>
                 <element signature="e#717#1473#0" />
               </folding>
@@ -230,7 +225,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>modal</find>
       <find>hour_tail_answer</find>
       <find>water_target_answer</find>
       <find>btn_login</find>
@@ -260,6 +254,7 @@
       <find>btn_edit_programm_main</find>
       <find>filed_question_water</find>
       <find>detox_settings</find>
+      <find>typeof</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -445,16 +440,15 @@
       <workItem from="1526980543720" duration="2576000" />
       <workItem from="1527042129672" duration="4245000" />
       <workItem from="1527061219540" duration="2093000" />
-      <workItem from="1527064168241" duration="1854000" />
+      <workItem from="1527064168241" duration="2112000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="254712000" />
+    <option name="totallyTimeSpent" value="254970000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="752" y="52" width="1168" height="1028" extended-state="4" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48262548" visible="true" weight="0.16681223" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -1947,10 +1941,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="15" column="19" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="19" />
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="22" />
-          <caret line="17" column="17" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="17" />
+        <state relative-caret-position="213">
+          <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
           <folding>
             <element signature="e#717#1473#0" />
           </folding>

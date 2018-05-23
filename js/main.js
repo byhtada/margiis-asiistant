@@ -21,7 +21,7 @@ window.onload = function () {
         var expires_in = url.searchParams.get("expires_in");
         var state = url.searchParams.get("state");
 
-        if (access_token == null){
+        if (access_token !== null){
             console.log(access_token);
             console.log(user_id);
             console.log(expires_in);
