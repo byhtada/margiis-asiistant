@@ -2,7 +2,7 @@ $(document).ready(function() {
     VK.init({
         apiId: 6487614
     });
-    VK.Widgets.Auth("vk_auth", {"onAuth":"function(data) {alert('user '+data['uid']+' authorized');}"});
+    VK.Widgets.Auth("vk_auth", {"onAuth":alert(data)});
 
     if (!navigator.cookieEnabled) {
         alert('Включите cookie для комфортной работы');
