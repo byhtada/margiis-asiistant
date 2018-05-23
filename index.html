@@ -406,6 +406,7 @@
                                 <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Терапия </h5></td>            <td class="db_row_input_admin"><input type="checkbox"  id="field_therapy_active"></td></tr>
                                 <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Асаны</h5></td>               <td class="db_row_input_admin"><input type="checkbox"  id="field_asana_active"  ></td></tr>
                                 <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Псих. упр.</h5></td>          <td class="db_row_input_admin"><input type="checkbox"  id="field_psi_active"></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Полуванна</h5></td>           <td class="db_row_input_admin"><input type="checkbox"  id="field_half_bath_active"></td></tr>
                                 <tr class="db_row_dialog"><td align="right" valign="middle"></td> <td class="db_row_input_admin"></td></tr>
 
                                 <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Киртан (утро)</h5></td>          <td class="db_row_input_admin"><input type="number"  id="field_kirtan_day_target"></td></tr>
@@ -755,6 +756,27 @@
                                         </div>
                                     </td>
                                 </tr>
+
+                                <tr id="row_half_bath" class="db_row_dialog">
+                                    <td valign="middle"> <h5>Полуванна</h5></td>
+                                    <td class="db_row_input">          </td>
+                                    <td class="db_row_input">
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_half_bath_day" />
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_half_bath_night" />
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
                                 <tr id="row_kaoshiki" class="db_row_dialog">
                                     <td valign="middle"> <h5>Каушики, минут</h5></td>
                                     <td class="db_row_input">          <input type="number" class="form-control" id="filed_kaoshiki_plan" disabled></td>

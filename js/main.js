@@ -430,6 +430,8 @@ $(document).ready(function() {
         var therapy_fact           = current_day.therapy_fact;
         var asana_fact             = current_day.asana_fact;
         var psi_fact               = current_day.psi_fact;
+        var half_bath_day          = current_day.half_bath_day;
+        var half_bath_night        = current_day.half_bath_night;
 
         var water_fact             = current_day.water_fact;
         var wake_up_hours_fact     = current_day.wake_up_hours_fact;
@@ -451,6 +453,7 @@ $(document).ready(function() {
         var therapy_active         = current_day.therapy_active;
         var asana_active           = current_day.asana_active;
         var psi_active             = current_day.psi_active;
+        var half_bath_active             = current_day.half_bath_active;
 
         var water_target            = current_day.water_target;
         var wake_up_hours_target    = current_day.wake_up_hours_target;
@@ -477,6 +480,7 @@ $(document).ready(function() {
             $('#row_therapy')         .hide();
             $('#row_asana')           .hide();
             $('#row_psy')             .hide();
+            $('#row_half_bath')       .hide();
             $('#row_kirtan_day')      .hide();
             $('#row_kirtan_night')    .hide();
 
@@ -488,6 +492,8 @@ $(document).ready(function() {
             $('#filed_therapy')                .prop("checked", false);
             $('#filed_asana')                  .prop("checked", false);
             $('#filed_psy')                    .prop("checked", false);
+            $('#filed_half_bath_day')          .prop("checked", false);
+            $('#filed_half_bath_night')        .prop("checked", false);
 
             $('#filed_water_fact')             .val(null);
             $('#filed_wake_up_fact')           .val(null);
@@ -510,6 +516,7 @@ $(document).ready(function() {
             if (therapy_active         != null && therapy_active         != false) {$('#row_therapy').show();}
             if (asana_active           != null && asana_active           != false) {$('#row_asana').show();}
             if (psi_active             != null && psi_active             != false) {$('#row_psy').show();}
+            if (half_bath_active       != null && half_bath_active             != false) {$('#row_half_bath').show();}
 
             if (water_target != null) {
                 $('#row_water').show();
@@ -565,6 +572,10 @@ $(document).ready(function() {
             therapy_fact         != null && therapy_fact         !=false ?  $('#filed_therapy')         .prop("checked", true) : $('#filed_therapy')         .prop("checked", false);
             asana_fact           != null && asana_fact           !=false ?  $('#filed_asana')           .prop("checked", true) : $('#filed_asana')           .prop("checked", false);
             psi_fact             != null && psi_fact             !=false ?  $('#filed_psy')             .prop("checked", true) : $('#filed_psy')             .prop("checked", false);
+            half_bath_day        != null && half_bath_day        !=false ?  $('#filed_half_bath_day')   .prop("checked", true) : $('#filed_half_bath_day')   .prop("checked", false);
+            half_bath_night      != null && half_bath_night      !=false ?  $('#filed_half_bath_night') .prop("checked", true) : $('#filed_half_bath_night') .prop("checked", false);
+
+
 
             var wake_up_time_fact = wake_up_hours_fact + ":" + wake_up_minutes_fact;
             water_fact         != null && water_fact !=false         ?  $('#filed_water_fact').val(water_fact)   : $('#filed_water_fact').val();
@@ -1034,6 +1045,8 @@ $(document).ready(function() {
                 therapy:               $('#filed_therapy')                .is(':checked'),
                 asana:                 $('#filed_asana')                  .is(':checked'),
                 psy:                   $('#filed_psy')                    .is(':checked'),
+                half_bath_day:         $('#filed_half_bath_day')         .is(':checked'),
+                half_bath_night:       $('#filed_half_bath_night')         .is(':checked'),
                 kirtan_day_fact:       $('#filed_kirtan_day_fact')        .val(),
                 kirtan_night_fact:     $('#filed_kirtan_night_fact')      .val(),
                 day_comment:           $('#filed_day_comment')      .val()
@@ -1122,7 +1135,7 @@ $(document).ready(function() {
         var programm_main_row = '<table id="table_programm_main1" class="table table-hover table-bordered table-condensed" >';
         programm_main_row    += '<thead><tr> <th>День</th> <th>Вода</th><th>Перекусы</th><th>Диета</th><th>Подъем</th><th>Язык</th>';
             programm_main_row    += '        <th>Медитация (утро)</th> <th>Медитация (вечер)</th><th>Каушики</th><th>Физ. упр.</th><th>Терапии</th><th>Асаны</th>';
-            programm_main_row    += '        <th>Псих. упр.</th> <th>Киртан (утро)</th><th>Киртан (вечер)</th><th>t чтения</th><th>t практик</th><th></th>';
+            programm_main_row    += '        <th>Псих. упр.</th> <th>Полуванна</th> <th>Киртан (утро)</th><th>Киртан (вечер)</th><th>t чтения</th><th>t практик</th><th></th>';
         programm_main_row    += '</tr></thead><tbody>';
         $.each(programm_main, function (i, item) {
             programm_main_row += '<tr><td><h5>';
@@ -1150,6 +1163,7 @@ $(document).ready(function() {
             item.therapy_active != null && item.therapy_active != false      ? programm_main_row += "+"  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
             item.asana_active  != null && item.asana_active    !=false       ? programm_main_row += "+"  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
             item.psi_active     != null && item.psi_active     != false      ? programm_main_row += "+"  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
+            item.half_bath_active     != null && item.half_bath_active     != false      ? programm_main_row += "+"  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
 
             item.kirtan_day_target    != null       ? programm_main_row +=  item.kirtan_day_target  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
             item.kirtan_night_target  != null       ? programm_main_row +=  item.kirtan_night_target  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
@@ -1187,7 +1201,10 @@ $(document).ready(function() {
         $('#field_therapy_decription')     .val();
         $('#field_asana_active')           .prop("checked", false);
         $('#field_psi_active')              .prop("checked", false);
-        $('#field_kirtan_day_target')      .val();
+        $('#field_half_bath_active')              .prop("checked", false);
+
+
+            $('#field_kirtan_day_target')      .val();
         $('#field_kirtan_night_target')    .val();
         $('#field_time_to_read')           .val();
         $('#field_time_to_practise')       .val();
@@ -1216,6 +1233,7 @@ $(document).ready(function() {
                 var therapy_active         = current_day.therapy_active;
                 var asana_active           = current_day.asana_active;
                 var psi_active             = current_day.psi_active;
+                var half_bath_active       = current_day.half_bath_active;
 
                 eat_no_snacking_active == null || eat_no_snacking_active == false ?  $('#field_eat_no_snacking_active').prop("checked", false) : $('#field_eat_no_snacking_active') .prop("checked", true);
                 eat_diet_active        == null || eat_diet_active == false        ?  $('#field_eat_diet_active')       .prop("checked", false) : $('#field_eat_diet_active')        .prop("checked", true);
@@ -1232,6 +1250,7 @@ $(document).ready(function() {
                 therapy_active == null || therapy_active == false ?  $('#field_therapy_active') .prop("checked", false) : $('#field_therapy_active') .prop("checked", true);
                 asana_active   == null || asana_active   == false ?  $('#field_asana_active')   .prop("checked", false) : $('#field_asana_active') .prop("checked", true);
                 psi_active     == null || psi_active     == false ?  $('#field_psi_active')     .prop("checked", false) : $('#field_psi_active') .prop("checked", true);
+                half_bath_active     == null || half_bath_active     == false ?  $('#field_half_bath_active')     .prop("checked", false) : $('#field_half_bath_active') .prop("checked", true);
 
                 $('#field_kirtan_day_target')      .val(current_day.kirtan_day_target);
                 $('#field_kirtan_night_target')    .val(current_day.kirtan_night_target);
@@ -1263,9 +1282,10 @@ $(document).ready(function() {
                 meditation_night_target:   $('#field_meditation_night_target').val(),
                 kaoshiki_minutes_target:   $('#field_kaoshiki_minutes_target').val(),
                 phisic_active:             $('#field_phisic_active')          .is(':checked'),
-                therapy_active:             $('#field_therapy_active')          .is(':checked'),
+                therapy_active:            $('#field_therapy_active')          .is(':checked'),
                 asana_active:              $('#field_asana_active')           .is(':checked'),
-                psi_active:                 $('#field_psi_active')              .is(':checked'),
+                psi_active:                $('#field_psi_active')              .is(':checked'),
+                half_bath_active:          $('#field_half_bath_active')              .is(':checked'),
                 kirtan_day_target:         $('#field_kirtan_day_target')      .val(),
                 kirtan_night_target:       $('#field_kirtan_night_target')    .val(),
                 time_to_read:              $('#field_time_to_read')           .val(),
@@ -1917,7 +1937,7 @@ $(document).ready(function() {
         var user_programm_row = '<table id="table_programm_main1" class="table table-hover table-bordered table-condensed" >';
         user_programm_row    += '<thead><tr> <th>День</th> <th>Вода</th><th>Перекусы</th><th>Диета статус</th><th>Диета тип</th><th>Подъем</th><th>Язык</th>';
         user_programm_row    += '        <th>Медитация (утро)</th> <th>Медитация (вечер)</th><th>Каушики</th><th>Физ. упр.</th><th>Терапии</th><th>Асаны</th>';
-        user_programm_row    += '        <th>Псих. упр.</th> <th>Киртан (утро)</th><th>Киртан (вечер)</th>';
+        user_programm_row    += '        <th>Псих. упр.</th><th>Полуванна</th> <th>Киртан (утро)</th><th>Киртан (вечер)</th>';
         user_programm_row    += '</tr></thead><tbody>';
         $.each(user_programm, function (i, item) {
             var day_num = item.day_num;
@@ -2069,6 +2089,22 @@ $(document).ready(function() {
             } else {
                 user_programm_row += '<td><h5></h5></td>';
             }
+
+
+
+            if ( item.half_bath_active != null  &&  item.half_bath_active != false) {
+                if (item.half_bath_day && item.half_bath_night) {
+                    user_programm_row += '<td class="warning"><h5>' + "+ +"  + '</h5></td>';
+                } else if (item.half_bath_day || item.half_bath_night) {
+                    user_programm_row += '<td class="warning"><h5>' + "+"  + '</h5></td>';
+                } else {
+                    user_programm_row += '<td class="warning"><h5></h5></td>';
+                }
+            } else {
+                user_programm_row += '<td><h5></h5></td>';
+            }
+
+
 
             if (item.kirtan_day_target != null) {
                 var kirtan_day_fact;
