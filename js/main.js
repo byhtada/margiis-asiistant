@@ -24,6 +24,24 @@ window.onload = function () {
            // console.log(expires_in);
            // console.log(state);
             clearInterval(timerId);
+
+
+            var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=bdate&access_token=" + access_token + "&v=5.76\n";
+            $.ajax({
+                type: "GET",
+                url: vk_api_query,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function (data) {
+                    console.log(data);
+
+                },
+                failure: function (errMsg) {
+                    //    console.log(errMsg.toString());
+                }
+            });
+
         }
     }, 1000);
 
