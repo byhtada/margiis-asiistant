@@ -42,6 +42,7 @@
 
         <link rel="stylesheet" href="node_modules/pretty-checkbox/dist/pretty-checkbox.min.css">
 
+        <script src="//ulogin.ru/js/ulogin.js"></script>
 
     </head>
     <body>
@@ -77,6 +78,11 @@
                             </div>
 
                             <button type="button" id="btn_login"    class="btn btn-success btn-block">Вход</button>
+
+                            <br/>
+                            <div id="uLogin" data-ulogin="display=small;theme=classic;fields=first_name,last_name;providers=vkontakte,instagram,facebook;hidden=twitter,google,yandex,livejournal,openid,googleplus;redirect_uri=http%3A%2F%2Fmarafon.hyls.ru;mobilebuttons=0;"></div>
+
+
                         </form>
                     </div>
                     <div class="col-xs-0  col-sm-4"></div>
@@ -527,7 +533,7 @@
                                     <tbody>
                                     <tr id="row_quest_water" class="db_row_dialog">
                                         <td valign="middle">      <h5>Сколько воды вы выпиваете в среднем за день (в мл)?</h5></td>
-                                        <td > <input type="number" class="form-control" id="filed_question_water"></td>
+                                        <td > <input type="number" class="form-control" id="filed_question_water" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
                                     </tr>
 
                                     </tbody>
@@ -552,9 +558,9 @@
                                         <td valign="middle">      <h5>Во сколько Вы обычно просыпаетесь?</h5></td>
                                         <td >
                                             <p>
-                                                <input type="number" class="field_wake_up" id="filed_question_wake_up_fact_hour"   placeholder="чч">
+                                                <input type="text" class="field_wake_up" id="filed_question_wake_up_fact_hour"   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="чч">
                                                 <span>:</span>
-                                                <input type="number" class="field_wake_up" id="filed_question_wake_up_fact_minute" placeholder="мм">
+                                                <input type="text" class="field_wake_up" id="filed_question_wake_up_fact_minute" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="мм">
                                             </p>
                                         </td>
                                     </tr>
@@ -562,9 +568,9 @@
                                         <td valign="middle">      <h5>Установите цель по времени подъема</h5></td>
                                         <td >
                                             <p>
-                                                <input type="number" class="field_wake_up" id="filed_question_wake_up_target_hour"   placeholder="чч"  value="5">
+                                                <input type="text" class="field_wake_up" id="filed_question_wake_up_target_hour"   placeholder="чч"  value="5"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
                                                 <span>:</span>
-                                                <input type="number" class="field_wake_up" id="filed_question_wake_up_target_minute" placeholder="мм"  value="30" >
+                                                <input type="text" class="field_wake_up" id="filed_question_wake_up_target_minute" placeholder="мм"  value="30" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
                                             </p>
                                         </td>
                                     </tr>
@@ -655,9 +661,9 @@
                                     <td class="db_row_input">                  <h5 align="center"  id="filed_wake_up_plan" ></h5></td>
                                     <td valign="middle" class="db_row_input">
                                         <p>
-                                            <input type="number" class="field_wake_up" id="filed_wake_up_fact_hour"   placeholder="чч">
+                                            <input type="text" class="field_wake_up" id="filed_wake_up_fact_hour"   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="чч">
                                             <span>:</span>
-                                            <input type="number" class="field_wake_up" id="filed_wake_up_fact_minute" placeholder="мм">
+                                            <input type="text" class="field_wake_up" id="filed_wake_up_fact_minute" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="мм">
                                         </p>
                                     </td>
                                 </tr>
@@ -812,7 +818,7 @@
 
                             <br/>
 
-                            <textarea  id="filed_day_comment" placeholder="Здесь Вы можете оставлять свои заметки о прошедшем дне Программы">
+                            <textarea  id="filed_day_comment" placeholder="Здесь Вы можете оставлять свои заметки о прошедшем дне Программы"></textarea>
 
                             <!--
                             <button id="btn_user_save_day"  type="button" class="btn btn-success btn-block">Сохранить отчет</button>
@@ -871,14 +877,30 @@
             </div>
 
             <div id="page_user_settings"  class="container-fluid">
-                <div class="col-xs-4"></div>
-                <div class="col-xs-4" align="center">
+                <div class="col-xs-3"></div>
+                <div class="col-xs-6" align="center">
 
-                    <div id="detox_settings" hidden >
-                        <h4>Ваша текущая детокс программа: <span id="detox_name"></span> длительностью <span id="detox_time"></span></h4>
+
+                    <div id="water_settings" hidden>
                         <table class="table  table-hover">
                             <tbody>
-                                <tr id="row_quest_detox_time_edit"  hidden class="db_row_dialog">
+                            <tr  class="db_row_dialog">
+                                <td valign="middle" ><h5>Изменить базовое значение выпиваемой воды в сутки, мл</h5></td>
+                                <td  class="db_row_input">
+                                    <input id="filed_question_water_edit" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
+                                </td>
+                                <td > <button id="btn_water_edit"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="detox_settings" hidden >
+                        <h4>Ваша текущая детокс программа: "<span id="detox_name"></span>" длительностью <span id="detox_time"></span> дней</h4>
+                        <table class="table  table-hover">
+                            <tbody>
+                                <tr id="row_quest_detox_time_edit"  class="db_row_dialog">
                                     <td valign="middle" ><h5>Изменить длительность детокса, дней</h5></td>
                                     <td  class="db_row_input">
                                         <div class="dropdown">
@@ -892,7 +914,7 @@
 
                                 </tr>
 
-                                <tr id="row_quest_detox_start_edit" hidden class="db_row_dialog">
+                                <tr id="row_quest_detox_start_edit"  class="db_row_dialog">
                                     <td valign="middle"><h5>Изменить день старта детокса</h5></td>
                                     <td  class="db_row_input">
                                         <div class="dropdown">
@@ -920,10 +942,13 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="modal_label_detox_stop">Остановка детокса</h4>
+                                        <h4 class="modal-title" id="modal_label_detox_stop">Прервать детокс</h4>
                                     </div>
                                     <div class="modal-body" align="center">
-                                        <h5>Вы уверены что хотите остановить детокс? Отменить действие будет невозможно.</h5>
+                                        <h5>
+                                            Если Вы действительно хотите прервать детокс, нажимайте красную кнопку и следуйте инструкциям.<br/>
+                                            Отменить действие будет невозможно.
+                                        </h5>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
@@ -932,8 +957,6 @@
                                 </div>
                             </div>
                         </div>
-                        <br/>
-                        <br/>
                     </div>
 
 
@@ -984,7 +1007,7 @@
 
 
                 </div>
-                <div class="col-xs-4"></div>
+                <div class="col-xs-3"></div>
             </div>
         </div>
 
