@@ -21,38 +21,23 @@ window.onload = function () {
         if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
             console.log(params.access_token);
            // console.log(user_id);
+           // console.log(email);
            // console.log(expires_in);
            // console.log(state);
             clearInterval(timerId);
 
 
-            var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,personal,exports";
+            var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,timezone";
             var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
-
-
 
             jsonp(vk_api_query, function(userInfo) {
                 userInfo = userInfo.response[0];
                 console.log(userInfo);
             });
-
-            //$.ajax({
-            //    type: "GET",
-            //    url: vk_api_query,
-            //    headers: {
-            //        'Content-Type': 'application/x-www-form-urlencoded'
-            //    },
-            //    success: function (data) {
-            //        console.log(data);
-//
-            //    },
-            //    failure: function (errMsg) {
-            //        //    console.log(errMsg.toString());
-            //    }
-            //});
-
         }
     }, 1000);
+
+
 
     function jsonp(url, callback) {
         var callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
@@ -66,7 +51,6 @@ window.onload = function () {
         script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + callbackName;
         document.body.appendChild(script);
     }
-
     function parse_query_string(query) {
         var vars = query.split("&");
         var query_string = {};
