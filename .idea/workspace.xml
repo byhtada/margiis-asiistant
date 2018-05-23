@@ -4,7 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/index.html" line="935" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="" />
+    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -26,8 +28,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="47" column="20" lean-forward="true" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+            <state relative-caret-position="345">
+              <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -429,12 +431,12 @@
       <workItem from="1527042129672" duration="4245000" />
       <workItem from="1527061219540" duration="2093000" />
       <workItem from="1527064168241" duration="4087000" />
-      <workItem from="1527081644035" duration="1086000" />
+      <workItem from="1527081644035" duration="1329000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="258031000" />
+    <option name="totallyTimeSpent" value="258274000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="911" y="52" width="1009" height="1028" extended-state="4" />
@@ -1895,8 +1897,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="47" column="20" lean-forward="true" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+        <state relative-caret-position="345">
+          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
         </state>
       </provider>
     </entry>

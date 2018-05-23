@@ -26,7 +26,8 @@ window.onload = function () {
             clearInterval(timerId);
 
 
-            var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=bdate&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
+            var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,personal,exports";
+            var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
 
 
 
