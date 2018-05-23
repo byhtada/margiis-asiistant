@@ -15,17 +15,19 @@ window.onload = function () {
 
         var url = new URL(url_string);
         console.log(url);
+        console.log(url.hash);
+        console.log(url.hash["#access_token"]);
+        console.log(url.hash["access_token"]);
+        console.log(url.hash["email"]);
 
-        var access_token = url.searchParams.get("access_token");
-        var user_id = url.searchParams.get("user_id");
-        var expires_in = url.searchParams.get("expires_in");
-        var state = url.searchParams.get("state");
+        var access_token = url.hash["#access_token"];
+
 
         if (access_token !== null){
             console.log(access_token);
-            console.log(user_id);
-            console.log(expires_in);
-            console.log(state);
+           // console.log(user_id);
+           // console.log(expires_in);
+           // console.log(state);
             clearInterval(timerId);
         }
     }, 1000);

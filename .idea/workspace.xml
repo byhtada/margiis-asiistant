@@ -4,7 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/index.html" line="935" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="" />
+    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -26,8 +28,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+            <state relative-caret-position="198">
+              <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
               <folding>
                 <element signature="e#717#1473#0" />
               </folding>
@@ -242,7 +244,7 @@
       <find>nav-item&quot;</find>
       <find>hide_all_in_user</find>
       <find>detox_name</find>
-      <find />
+      <find>Остановка детокса</find>
       <find>btn_question_detox_save</find>
       <find>day_show_now</find>
       <find>detox_answer_time</find>
@@ -440,15 +442,16 @@
       <workItem from="1526980543720" duration="2576000" />
       <workItem from="1527042129672" duration="4245000" />
       <workItem from="1527061219540" duration="2093000" />
-      <workItem from="1527064168241" duration="2112000" />
+      <workItem from="1527064168241" duration="2445000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="254970000" />
+    <option name="totallyTimeSpent" value="255303000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="752" y="52" width="1168" height="1028" extended-state="4" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48262548" visible="true" weight="0.16681223" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -1941,8 +1944,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+        <state relative-caret-position="198">
+          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
           <folding>
             <element signature="e#717#1473#0" />
           </folding>
