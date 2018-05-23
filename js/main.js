@@ -4,7 +4,8 @@ window.onload = function () {
         {"onAuth": function(data) {
                 alert('user '+data['uid']+' authorized');
                 console.log(data);
-            }});
+            },
+        "authUrl": "/"});
 };
 
 $(document).ready(function() {
