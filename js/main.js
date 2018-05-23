@@ -15,16 +15,11 @@ window.onload = function () {
 
         var url = new URL(url_string);
         console.log(url);
-        console.log(url.hash);
-        console.log(url.hash["#access_token"]);
-        console.log(url.hash["access_token"]);
-        console.log(url.hash["email"]);
+        var params = parse_query_string(url.hash.replace('#', ''));
+        console.log(params);
 
-        var access_token = url.hash["#access_token"];
-
-
-        if (access_token !== null){
-            console.log(access_token);
+        if (typeof params[access_token] !== 'undefined' &&  params[access_token] !== null){
+            console.log(params[access_token]);
            // console.log(user_id);
            // console.log(expires_in);
            // console.log(state);
@@ -32,7 +27,30 @@ window.onload = function () {
         }
     }, 1000);
 
+    function parse_query_string(query) {
+        var vars = query.split("&");
+        var query_string = {};
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            var key = decodeURIComponent(pair[0]);
+            var value = decodeURIComponent(pair[1]);
+            // If first entry with this name
+            if (typeof query_string[key] === "undefined") {
+                query_string[key] = decodeURIComponent(value);
+                // If second entry with this name
+            } else if (typeof query_string[key] === "string") {
+                var arr = [query_string[key], decodeURIComponent(value)];
+                query_string[key] = arr;
+                // If third or later entry with this name
+            } else {
+                query_string[key].push(decodeURIComponent(value));
+            }
+        }
+        return query_string;
+    }
 };
+
+
 
 $(document).ready(function() {
 
