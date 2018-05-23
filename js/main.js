@@ -33,12 +33,7 @@ window.onload = function () {
             var script = document.createElement('SCRIPT');
             script.src = vk_api_query;
             document.getElementsByTagName("head")[0].appendChild(script);
-            function callbackFunc(result) {
 
-                console.log(result);
-                alert(result.response[0].first_name)
-
-            }
 
 
             //$.ajax({
@@ -58,6 +53,13 @@ window.onload = function () {
 
         }
     }, 1000);
+
+    function callbackFunc(result) {
+
+        console.log(result);
+        alert(result.response[0].first_name)
+
+    }
 
     function parse_query_string(query) {
         var vars = query.split("&");
