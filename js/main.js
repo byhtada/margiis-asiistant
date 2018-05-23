@@ -1,12 +1,13 @@
-$(document).ready(function() {
-    VK.init({
-        apiId: 6487614
-    });
+window.onload = function () {
+    VK.init({apiId: 6487614});
     VK.Widgets.Auth("vk_auth",
         {"onAuth": function(data) {
-            alert('user '+data['uid']+' authorized');
-            console.log(data);
-        }});
+                alert('user '+data['uid']+' authorized');
+                console.log(data);
+            }});
+};
+
+$(document).ready(function() {
 
     if (!navigator.cookieEnabled) {
         alert('Включите cookie для комфортной работы');
@@ -2066,3 +2067,4 @@ $(document).ready(function() {
     }
 
 });
+
