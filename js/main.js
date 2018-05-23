@@ -30,11 +30,10 @@ window.onload = function () {
 
 
 
-            var script = document.createElement('SCRIPT');
-            script.src = vk_api_query;
-            document.getElementsByTagName("head")[0].appendChild(script);
-
-
+            jsonp(vk_api_query, function(userInfo) {
+                userInfo = userInfo.response[0];
+                console.log(userInfo);
+            });
 
             //$.ajax({
             //    type: "GET",
@@ -54,11 +53,17 @@ window.onload = function () {
         }
     }, 1000);
 
-    function callbackFunc(result) {
+    function jsonp(url, callback) {
+        var callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
+        window[callbackName] = function(data) {
+            delete window[callbackName];
+            document.body.removeChild(script);
+            callback(data);
+        };
 
-        console.log(result);
-        alert(result.response[0].first_name)
-
+        var script = document.createElement('script');
+        script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + callbackName;
+        document.body.appendChild(script);
     }
 
     function parse_query_string(query) {
