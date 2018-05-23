@@ -18,8 +18,8 @@ window.onload = function () {
         var params = parse_query_string(url.hash.replace('#', ''));
         console.log(params);
 
-        if (typeof params[access_token] !== 'undefined' &&  params[access_token] !== null){
-            console.log(params[access_token]);
+        if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
+            console.log(params.access_token);
            // console.log(user_id);
            // console.log(expires_in);
            // console.log(state);
