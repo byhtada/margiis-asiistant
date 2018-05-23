@@ -26,7 +26,7 @@ window.onload = function () {
             clearInterval(timerId);
 
 
-            var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=bdate&access_token=" + access_token + "&v=5.76\n";
+            var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=bdate&access_token=" + params.access_token + "&v=5.76\n";
             $.ajax({
                 type: "GET",
                 url: vk_api_query,
