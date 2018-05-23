@@ -26,21 +26,35 @@ window.onload = function () {
             clearInterval(timerId);
 
 
-            var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=bdate&access_token=" + params.access_token + "&v=5.76\n";
-            $.ajax({
-                type: "GET",
-                url: vk_api_query,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                success: function (data) {
-                    console.log(data);
+            var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=bdate&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
 
-                },
-                failure: function (errMsg) {
-                    //    console.log(errMsg.toString());
-                }
-            });
+
+
+            var script = document.createElement('SCRIPT');
+            script.src = vk_api_query;
+            document.getElementsByTagName("head")[0].appendChild(script);
+            function callbackFunc(result) {
+
+                console.log(result);
+                alert(result.response[0].first_name)
+
+            }
+
+
+            //$.ajax({
+            //    type: "GET",
+            //    url: vk_api_query,
+            //    headers: {
+            //        'Content-Type': 'application/x-www-form-urlencoded'
+            //    },
+            //    success: function (data) {
+            //        console.log(data);
+//
+            //    },
+            //    failure: function (errMsg) {
+            //        //    console.log(errMsg.toString());
+            //    }
+            //});
 
         }
     }, 1000);
