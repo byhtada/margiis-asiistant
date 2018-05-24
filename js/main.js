@@ -460,8 +460,6 @@ $(document).ready(function() {
     var user_messenger_reg = "";
     $('#btn_user_reg_messenger').click(function (){
         if (user_messenger_reg != "" && $('#field_phone_user').val() != ""){
-            alert('Заполните все поля');
-        } else {
             $.ajax({
                 type: "GET",
                 url:  api_url_full,
@@ -479,6 +477,8 @@ $(document).ready(function() {
                     alert(errMsg.toString());
                 }
             });
+        } else {
+            alert('Заполните все поля');
         }
 
     });
