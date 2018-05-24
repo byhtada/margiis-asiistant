@@ -21,7 +21,7 @@ $(document).ready(function() {
     var button = $ipsp.get("button");
     button.setHost("api.fondy.eu");
     button.setProtocol("https");
-    button.setMerchantId(1409532);
+    button.setMerchantId(1396424);
     button.setAmount("","RUB",false);
     //button.setResponseUrl("https://byhtada.github.io/hyls_client/");
     button.addParam("lang","ru");
