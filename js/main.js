@@ -1,23 +1,14 @@
 window.onload = function () {
-    VK.init({apiId: 6487614});
-    VK.Widgets.Auth("vk_auth",
-        {"onAuth": function(data) {
-                alert('user '+data['uid']+' authorized');
-                console.log(data);
-            },
-        "authUrl": "/"});
+
 
     var timerId = setInterval(function() {
         console.log( "тик" );
-
         var url_string = window.location.href; //window.location.href
         console.log(url_string);
-
         var url = new URL(url_string);
         console.log(url);
         var params = parse_query_string(url.hash.replace('#', ''));
         console.log(params);
-
         if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
             console.log(params.access_token);
            // console.log(user_id);
@@ -25,18 +16,52 @@ window.onload = function () {
            // console.log(expires_in);
            // console.log(state);
             clearInterval(timerId);
-
-
             var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,timezone";
             var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
-
             jsonp(vk_api_query, function(userInfo) {
                 userInfo = userInfo.response[0];
                 console.log(userInfo);
+                reg_user(userInfo, params.email, "vk", params.user_id, params.access_token);
             });
         }
     }, 1000);
 
+
+    function reg_user(userInfo, email, social_name, social_id, access_token){
+
+
+        var person  = {  social_name: social_name,
+            social_id:    social_id,
+            access_token: access_token,
+            email: email,
+            sex: userInfo.sex,
+            bdate: userInfo.bdate,
+            city: userInfo.city,
+            country: userInfo.country,
+            photo: userInfo.photo,
+            phone_home: userInfo.phone_home,
+            followers_count: userInfo.followers_count
+        };
+        console.log(JSON.stringify(person));
+
+        //$.ajax({
+        //    type: "POST",
+        //    url: api_url_full,
+        //    data: JSON.stringify(person),
+        //    contentType: "application/json; charset=utf-8",
+        //    dataType: "json",
+        //    success: function(data){
+        //        console.log("Reg data " + JSON.stringify(data));
+        //        setCookie(cookie_name_token, data.auth_token,     {expires: 36000000000000});
+        //        setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
+        //        api_url_user = "https://petconflict-api.herokuapp.com/users/" + getCookie(cookie_name_id);
+        //        cookie_token = getCookie(cookie_name_token);
+        //    },
+        //    failure: function(errMsg) {
+        //        alert(errMsg);
+        //    }
+        //});
+    }
 
 
     function jsonp(url, callback) {
@@ -605,6 +630,8 @@ $(document).ready(function() {
 
         console.log(current_day);
 
+
+
         if (current_day.water_target_answer) {
             $('#water_alert_no_answer').hide();
             $('#table_question_water').hide();
@@ -647,7 +674,15 @@ $(document).ready(function() {
             }
         }
 
-
+        if (current_day.half_bath_answer ) {
+            $('#table_question_half_bath').hide();
+        } else {
+            if (day_num > 29) {
+                $('#table_question_half_bath').show();
+            } else {
+                $('#table_question_half_bath').hide();
+            }
+        }
 
 
 
@@ -707,6 +742,31 @@ $(document).ready(function() {
         $('#user_diary').empty();
         $('#user_diary').append(diary_row);
     }
+
+
+
+    $('#btn_question_half_bath_save').click(function (){
+        $('#btn_question_half_bath_save').prop('disabled', true);
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_update: "user_save_half_bath_answer",
+                question_half_bath:       $('#filed_question_half_bath')         .is(':checked')
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                $('#btn_question_half_bath_save').prop('disabled', false);
+                day_new = 0;
+                setUserMarafonDay(data.current_day, data.marafon_day);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
 
     $('#btn_question_water_save').click(function (){
         $('#btn_question_water_save').prop('disabled', true);
@@ -1016,7 +1076,7 @@ $(document).ready(function() {
 
 
 
-    $('#filed_no_snacking_fact, #filed_diet, #filed_tongue_day, #filed_tongue_night, #filed_phisic, #filed_therapy, #filed_asana, #filed_psy').change(function() {
+    $('#filed_no_snacking_fact, #filed_diet, #filed_tongue_day, #filed_tongue_night, #filed_phisic, #filed_therapy, #filed_asana, #filed_psy, #filed_half_bath_day, #filed_half_bath_night').change(function() {
         userSaveDay();
     });
 

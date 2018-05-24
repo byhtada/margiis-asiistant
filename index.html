@@ -82,9 +82,8 @@
 
                             <br/>
 
-                            <div id="vk_auth"></div>
-
                             <a href="http://oauth.vk.com/authorize?client_id=6487614&redirect_uri=https://byhtada.github.io/hyls_client/&response_type=token&scope=email,offline&v=5.76&state=123456" title="Зайти через ВКонтакте">Зайти через ВКонтакте</a>
+
                         </form>
                     </div>
                     <div class="col-xs-0  col-sm-4"></div>
@@ -522,6 +521,36 @@
                             <button id="btn_user_material"  type="button" class="btn btn-info btn-block">Открыть материал дня</button>
                             <br/>
 
+                            <div id="table_question_half_bath" hidden>
+                                <div id="half_bath_alert_no_answer"     class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                                <table class="table  table-hover">
+                                    <thead>
+                                    <tr class="db_row_dialog">
+                                        <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
+                                        <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr id="row_quest_half_bath" class="db_row_dialog">
+                                        <td valign="middle">      <h5>Включить полуванну в ежедневные практики?</h5></td>
+                                        <td >
+                                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                                <input type="checkbox"  id="filed_question_half_bath" />
+                                                    <div class="state p-success-o">
+                                                        <label></label>
+                                                    </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                                <button id="btn_question_half_bath_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                                <br/>
+                                <br/>
+
+                            </div>
 
                             <div id="table_question_water" hidden>
                                 <div id="water_alert_no_answer"     class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>

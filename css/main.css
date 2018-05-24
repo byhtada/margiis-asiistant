@@ -24,7 +24,7 @@ html {
     border-radius: 10px;
     background-color: rgba(70, 216, 70, 0.15)
 }
-#water_settings {
+#water_settings, #table_question_half_bath {
     padding: 15px;
     border-radius: 10px;
     background-color: rgba(70, 162, 216, 0.15)
