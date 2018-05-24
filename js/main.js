@@ -83,7 +83,7 @@ $(document).ready(function() {
                 console.log("try find user");
                 console.log(JSON.stringify(data));
 
-                if (data.token.length == 32) {
+                if (data.user !== null) {
                     console.log("user founded");
                     setCookie(cookie_name_token, data.token, {expires: 36000000000000});
                     setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
@@ -96,7 +96,8 @@ $(document).ready(function() {
                 }
             },
             failure: function (errMsg) {
-                //    console.log(errMsg.toString());
+                console.log("fail");
+                console.log(errMsg.toString());
             }
         });
     }
