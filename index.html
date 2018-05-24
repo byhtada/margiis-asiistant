@@ -507,6 +507,38 @@
 
 
             <div id="page_user_programm"  class="container-fluid">
+
+                <div id="user_marafon_reg" hidden>
+                    <br/>
+                    <h1 align="center">Для завершения регистрации заполните поля</h1>
+
+                    <table style="border: 0">
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Удобный способ коммуникации</h5></td>          <td class="db_row_input">
+                            <div class="dropdown">
+                                <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_messenger_user">
+                                    Выберите способ <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" class="messenger_link_user" name="WhatsApp">WhatsApp</a></li>
+                                    <li><a href="#" class="messenger_link_user" name="VK">VK</a></li>
+                                    <li><a href="#" class="messenger_link_user" name="Я не знаю что это">Я не знаю что это</a></li>
+                                </ul>
+                            </div>
+                        </td></tr>
+                        <tr class="db_row_input"><td align="right" valign="middle"><h5>Номер телефона, к которому привязан мессенджер</h5></td>  <td class="db_row_input_admin"><input type="text" class="form-control" id="field_phone_user"        placeholder=""></td></tr>
+                    </table>
+                    <button id="btn_user_reg_messenger"  type="button" class="btn btn-success btn-block">Завершить регистрацию</button>
+
+                </div>
+
+                <div id="user_marafon_pay" hidden>
+                    <br/>
+                    <h1 align="center">Для участия в марафоне оплатите произвольную сумму</h1>
+
+
+                </div>
+
+
                 <div id="user_marafon_start" hidden>
                     <div class="row">
                         <div class="col-xs-0  col-sm-3"></div>
@@ -915,6 +947,7 @@
                     <br/>
                     <h1 id="user_marafon_wait_text" align="center"></h1>
                 </div>
+
 
             </div>
 

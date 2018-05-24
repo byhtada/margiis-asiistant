@@ -92,7 +92,6 @@ $(document).ready(function() {
                 } else {
                     console.log("user not founded");
                     reg_user(userInfo, params.email, social, params.user_id, params.access_token);
-
                 }
             },
             failure: function (errMsg) {
@@ -381,69 +380,73 @@ $(document).ready(function() {
                     //setUserDiary(data.user_diary);
                     day_new = data.marafon_day;
 
-                    if (data.marafon_day < 1) {
-                        $('#user_marafon_start').hide();
+                    $('#user_marafon_reg').hide();
+                    $('#user_marafon_pay').hide();
+                    $('#user_marafon_start').hide();
+                    $('#user_marafon_wait') .hide();
+
+                    if (data.marafon_day > -998 && data.marafon_day < 1) {
                         $('#user_marafon_wait') .show();
                         $('#user_marafon_wait_text').text("Ожидайте старта марафона " + data.marafon_day_start);
-                    } else {
-                        $('#user_marafon_wait') .hide();
+                    } else if (data.marafon_day < -998){
+                        if (data.user.messenger == null) {
+                            $('#user_marafon_reg').show();
+                        } else {
+                            $('#user_marafon_pay').show();
+                        }
+
+                    } else if (data.marafon_day > data.marafon_day > 0)
                         setUserMarafonDay(data.marafon_info_today, data.marafon_day);
-                    }
 
-                    if (data.detox_type !== null ){
-                        $('#detox_settings').show();
-                        $('#detox_name')    .text(data.detox_type);
-                        $('#detox_time')    .text(data.user.detox_time_new);
+                        if (data.detox_type !== null ){
+                            $('#detox_settings').show();
+                            $('#detox_name')    .text(data.detox_type);
+                            $('#detox_time')    .text(data.user.detox_time_new);
 
 
-                        var detox_last_date1;
-                        var detox_time1 = data.user.detox_time_new;
-                        switch (parseInt(data.user.detox_type_new)){
-                            case 1:
-                                detox_days = 30;
-                                detox_last_date1 = 60 - detox_time1 - 2;
-                                break;
-                            case 2:
-                                detox_days = 20;
-                                detox_last_date1 = 60 - detox_time1 - 2 - 5;
-                                break;
-                            case 3:
-                                detox_days = 15;
-                                detox_last_date1 = 60 - detox_time1 - 2 - 2 - 5;
-                                break;
-                            case 4:
-                                detox_days = 5;
-                                detox_last_date1 = 60 - detox_time1 - 2 - 1 - 1 - 2 - 1 - 2 - 5;
-                                break;
+                            var detox_last_date1;
+                            var detox_time1 = data.user.detox_time_new;
+                            switch (parseInt(data.user.detox_type_new)){
+                                case 1:
+                                    detox_days = 30;
+                                    detox_last_date1 = 60 - detox_time1 - 2;
+                                    break;
+                                case 2:
+                                    detox_days = 20;
+                                    detox_last_date1 = 60 - detox_time1 - 2 - 5;
+                                    break;
+                                case 3:
+                                    detox_days = 15;
+                                    detox_last_date1 = 60 - detox_time1 - 2 - 2 - 5;
+                                    break;
+                                case 4:
+                                    detox_days = 5;
+                                    detox_last_date1 = 60 - detox_time1 - 2 - 1 - 1 - 2 - 1 - 2 - 5;
+                                    break;
+                            }
+
+                            var i;
+                            var detox_time_row      = '';
+                            for (i = 1; i < detox_days + 1; i++) {
+                                detox_time_row      += '<li><a href="#" class="link_detox_time_edit" name="'+ i +'">' + i + '</a></li>';
+                            }
+                            $('#detox_answer_time_edit') .empty();
+                            $('#detox_answer_time_edit') .append(detox_time_row);
+
+
+                            var i1;
+                            var detox_start      = '';
+                            for (i1 = 28; i1 < detox_last_date1 + 1; i1++) {
+                                detox_start      += '<li><a href="#" class="link_detox_start_edit" name="'+ i1 +'">' + i1 + " день" + '</a></li>';
+                            }
+                            $('#detox_answer_start_edit') .empty();
+                            $('#detox_answer_start_edit') .append(detox_start);
                         }
+                        if (data.user.detox_stop == true) {
+                            $('#detox_settings').hide();
 
-                        var i;
-                        var detox_time_row      = '';
-                        for (i = 1; i < detox_days + 1; i++) {
-                            detox_time_row      += '<li><a href="#" class="link_detox_time_edit" name="'+ i +'">' + i + '</a></li>';
                         }
-                        $('#detox_answer_time_edit') .empty();
-                        $('#detox_answer_time_edit') .append(detox_time_row);
-
-
-                        var i1;
-                        var detox_start      = '';
-                        for (i1 = 28; i1 < detox_last_date1 + 1; i1++) {
-                            detox_start      += '<li><a href="#" class="link_detox_start_edit" name="'+ i1 +'">' + i1 + " день" + '</a></li>';
-                        }
-                        $('#detox_answer_start_edit') .empty();
-                        $('#detox_answer_start_edit') .append(detox_start);
-                    }
-                    if (data.user.detox_stop == true) {
-                        $('#detox_settings').hide();
-
-                    }
-
-
-
-
-
-                },
+                    },
                 failure: function (errMsg) {
                     alert(errMsg);
                 }
@@ -454,7 +457,36 @@ $(document).ready(function() {
         }
     }
 
+    var user_messenger_reg = "";
+    $('#btn_user_reg_messenger').click(function (){
+        if (user_messenger_reg != "" && $('#field_phone_user').val() != ""){
+            alert('Заполните все поля');
+        } else {
+            $.ajax({
+                type: "GET",
+                url:  api_url_full,
+                data: { query_info: "user_set_messenger",
+                    messenger: user_messenger_reg,
+                    phone:     $('#field_phone_user').val()},
+                headers: {
+                    'Authorization':'Token token=' + cookie_token,
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                success: function(data) {
+                    ifLogin();
+                },
+                failure: function(errMsg) {
+                    alert(errMsg.toString());
+                }
+            });
+        }
 
+    });
+    $(document).on('click', '.messenger_link_user',       function () {
+        //  console.log($(this).attr("name"));
+        $('#btn_dd_messenger_user').text($(this).attr("name"));
+        user_messenger_reg = $(this).attr("name");
+    });
 
 
 
