@@ -44,8 +44,20 @@ $(document).ready(function() {
         this.addCallback(function(data,type){
             console.log(type);
             console.log(data);
-            console.log(data.order_data.signature);
-            console.log(data.order_data.signature);
+            if (typeof data.order_data !== 'undefined'){
+                console.log(data.order_data.signature);
+                console.log(data.order_data.order_status);
+                console.log(data.order_data.currency);
+                console.log(data.order_data.settlement_amount);
+
+            }
+
+            if (typeof data.order_data !== 'undefined') {
+                console.log(data.send_data.signature);
+                console.log(data.send_data.order_status);
+                console.log(data.send_data.currency);
+                console.log(data.send_data.settlement_amount);
+            }
         })
     });
 
