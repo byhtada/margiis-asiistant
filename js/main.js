@@ -1,5 +1,24 @@
 window.onload = function () {
 
+};
+
+
+
+$(document).ready(function() {
+
+    if (!navigator.cookieEnabled) {
+        alert('Включите cookie для комфортной работы');
+    }
+
+    var cookie_name_token = "grand_token";
+    var cookie_name_id = "grand_id";
+    var cookie_token = getCookie(cookie_name_token);
+    var api_url      = "https://зйож.рф/";
+    var api_url_full = "https://зйож.рф/users";
+  // var api_url      = "https://0.0.0.0:3000/";
+  // var api_url_full = "https://0.0.0.0:3000/users";
+
+
 
     var timerId = setInterval(function() {
         console.log( "тик" );
@@ -11,10 +30,10 @@ window.onload = function () {
         console.log(params);
         if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
             console.log(params.access_token);
-           // console.log(user_id);
-           // console.log(email);
-           // console.log(expires_in);
-           // console.log(state);
+            // console.log(user_id);
+            // console.log(email);
+            // console.log(expires_in);
+            // console.log(state);
             clearInterval(timerId);
             var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,timezone";
             var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
@@ -26,8 +45,6 @@ window.onload = function () {
             });
         }
     }, 1000);
-
-
 
 
     function jsonp(url, callback) {
@@ -63,24 +80,6 @@ window.onload = function () {
         }
         return query_string;
     }
-};
-
-
-
-$(document).ready(function() {
-
-    if (!navigator.cookieEnabled) {
-        alert('Включите cookie для комфортной работы');
-    }
-
-    var cookie_name_token = "grand_token";
-    var cookie_name_id = "grand_id";
-    var cookie_token = getCookie(cookie_name_token);
-    var api_url      = "https://зйож.рф/";
-    var api_url_full = "https://зйож.рф/users";
-  // var api_url      = "https://0.0.0.0:3000/";
-  // var api_url_full = "https://0.0.0.0:3000/users";
-
 
     function reg_user(userInfo, email, social_name, social_id, access_token){
 
@@ -98,7 +97,7 @@ $(document).ready(function() {
             photo:      userInfo.photo_200,
             phone_home: userInfo.phone_home,
             followers_count: userInfo.followers_count,
-            hout_tail: userInfo.timezone
+            hour_tail: userInfo.timezone
         };
         console.log(JSON.stringify(person));
 
