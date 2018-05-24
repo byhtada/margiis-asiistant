@@ -9,6 +9,7 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
+@import url("//portal.fondy.eu/mportal/static/saas/fondy/css/style.css");
 
 html {
     color: #222;

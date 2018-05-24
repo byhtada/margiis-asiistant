@@ -1,4 +1,24 @@
 window.onload = function () {
+
+};
+
+
+
+$(document).ready(function() {
+
+    if (!navigator.cookieEnabled) {
+        alert('Включите cookie для комфортной работы');
+    }
+
+    var cookie_name_token = "grand_token";
+    var cookie_name_id = "grand_id";
+    var cookie_token = getCookie(cookie_name_token);
+    var api_url      = "https://зйож.рф/";
+    var api_url_full = "https://зйож.рф/users";
+  // var api_url      = "https://0.0.0.0:3000/";
+  // var api_url_full = "https://0.0.0.0:3000/users";
+
+
     var button = $ipsp.get("button");
     button.setHost("api.fondy.eu");
     button.setProtocol("https");
@@ -23,24 +43,6 @@ window.onload = function () {
         });
         this.loadUrl(url);
     });
-};
-
-
-
-$(document).ready(function() {
-
-    if (!navigator.cookieEnabled) {
-        alert('Включите cookie для комфортной работы');
-    }
-
-    var cookie_name_token = "grand_token";
-    var cookie_name_id = "grand_id";
-    var cookie_token = getCookie(cookie_name_token);
-    var api_url      = "https://зйож.рф/";
-    var api_url_full = "https://зйож.рф/users";
-  // var api_url      = "https://0.0.0.0:3000/";
-  // var api_url_full = "https://0.0.0.0:3000/users";
-
 
 
     var timerId = setInterval(function() {
