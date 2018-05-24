@@ -26,7 +26,6 @@ $(document).ready(function() {
         var url = new URL(url_string);
         var params = parse_query_string(url.hash.replace('#', ''));
         if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
-            clearInterval(timerId);
             var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,timezone";
             var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
             jsonp(vk_api_query, function(userInfo) {
@@ -75,6 +74,7 @@ $(document).ready(function() {
         $.ajax({
             type: "GET",
             url: api_url + "find_user",
+            data: {email: params.email, social_id: params.user_id},
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
