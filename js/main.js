@@ -23,7 +23,7 @@ $(document).ready(function() {
     button.setProtocol("https");
     button.setMerchantId(1396424);
     button.setAmount("","RUB",false);
-    //button.setResponseUrl("https://byhtada.github.io/hyls_client/");
+    button.setResponseUrl("https://byhtada.github.io/hyls_client/fondy_response.js");
     button.addParam("lang","ru");
     button.addParam("order_desc","Участие в марафоне HYLS");
     var url = button.getUrl();
