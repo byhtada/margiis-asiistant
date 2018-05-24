@@ -23,17 +23,9 @@ $(document).ready(function() {
     var timerId = setInterval(function() {
         console.log( "тик" );
         var url_string = window.location.href; //window.location.href
-        console.log(url_string);
         var url = new URL(url_string);
-        console.log(url);
         var params = parse_query_string(url.hash.replace('#', ''));
-        console.log(params);
         if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
-            console.log(params.access_token);
-            // console.log(user_id);
-            // console.log(email);
-            // console.log(expires_in);
-            // console.log(state);
             clearInterval(timerId);
             var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,timezone";
             var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
@@ -82,7 +74,7 @@ $(document).ready(function() {
     function try_find_user(userInfo, params, social){
         $.ajax({
             type: "GET",
-            url: api_url + "token",
+            url: api_url + "find_user",
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
