@@ -84,7 +84,6 @@ $(document).ready(function() {
             type: "GET",
             url: api_url + "token",
             headers: {
-                'Authorization': 'Basic ' + token_web,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             success: function (data) {
