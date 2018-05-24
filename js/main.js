@@ -23,7 +23,7 @@ $(document).ready(function() {
     button.setProtocol("https");
     button.setMerchantId(1409532);
     button.setAmount("","RUB",false);
-    button.setResponseUrl("https://byhtada.github.io/hyls_client/");
+    //button.setResponseUrl("https://byhtada.github.io/hyls_client/");
     button.addParam("lang","ru");
     button.addParam("order_desc","Участие в марафоне HYLS");
     var url = button.getUrl();
@@ -41,6 +41,10 @@ $(document).ready(function() {
             this.setCheckoutHeight(data.height);
         });
         this.loadUrl(url);
+        this.addCallback(function(data,type){
+            console.log(type);
+            console.log(data);
+        })
     });
 
 

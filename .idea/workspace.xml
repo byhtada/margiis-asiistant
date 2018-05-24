@@ -26,8 +26,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="25" column="40" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="40" />
+            <state relative-caret-position="135">
+              <caret line="28" column="23" lean-forward="true" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
               <folding>
                 <element signature="e#103#166#0" />
                 <element signature="e#394#440#0" />
@@ -400,16 +400,15 @@
       <workItem from="1527135568047" duration="1737000" />
       <workItem from="1527139243871" duration="2427000" />
       <workItem from="1527154701316" duration="3327000" />
-      <workItem from="1527158704285" duration="232000" />
+      <workItem from="1527158704285" duration="958000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="278446000" />
+    <option name="totallyTimeSpent" value="279123000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="187" y="52" width="1700" height="1028" extended-state="4" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4795764" visible="true" weight="0.19320215" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -1529,15 +1528,15 @@
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_api.fondy.eu_static_common_v1_checkout_ipsp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="36" selection-start-column="36" selection-end-column="36" />
+        <state relative-caret-position="200">
+          <caret column="12042" selection-start-column="12042" selection-end-column="12042" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="25" column="40" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="40" />
+        <state relative-caret-position="135">
+          <caret line="28" column="23" lean-forward="true" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
           <folding>
             <element signature="e#103#166#0" />
             <element signature="e#394#440#0" />
