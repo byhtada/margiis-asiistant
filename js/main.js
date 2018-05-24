@@ -38,10 +38,8 @@ $(document).ready(function() {
             var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,timezone";
             var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
             jsonp(vk_api_query, function(userInfo) {
-                console.log(userInfo);
                 userInfo = userInfo.response[0];
-                console.log(userInfo);
-                reg_user(userInfo, params.email, "vk", params.user_id, params.access_token);
+                try_find_user(userInfo, params, "vk")
             });
         }
     }, 1000);
@@ -81,8 +79,37 @@ $(document).ready(function() {
         return query_string;
     }
 
-    function reg_user(userInfo, email, social_name, social_id, access_token){
+    function try_find_user(userInfo, params, social){
+        $.ajax({
+            type: "GET",
+            url: api_url + "token",
+            headers: {
+                'Authorization': 'Basic ' + token_web,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            success: function (data) {
+                console.log("try find user");
+                console.log(JSON.stringify(data));
 
+                if (data.token.length == 32) {
+                    console.log("user founded");
+                    setCookie(cookie_name_token, data.token, {expires: 36000000000000});
+                    setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
+                    cookie_token = getCookie(cookie_name_token);
+                    ifLogin();
+                } else {
+                    console.log("user not founded");
+                    reg_user(userInfo, params.email, social, params.user_id, params.access_token);
+
+                }
+            },
+            failure: function (errMsg) {
+                //    console.log(errMsg.toString());
+            }
+        });
+    }
+
+    function reg_user(userInfo, email, social_name, social_id, access_token){
 
         var person  = {  social_name: social_name,
             social_id:    social_id,
@@ -95,7 +122,7 @@ $(document).ready(function() {
             city:       userInfo.city.title,
             country:    userInfo.country.title,
             photo:      userInfo.photo_200,
-            phone_home: userInfo.phone_home,
+            phone_home: userInfo.home_phone,
             followers_count: userInfo.followers_count,
             hour_tail: userInfo.timezone
         };
@@ -109,10 +136,10 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data){
                 console.log("Reg success: " + JSON.stringify(data));
-                // setCookie(cookie_name_token, data.auth_token,     {expires: 36000000000000});
-                // setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
-                // api_url_user = "https://petconflict-api.herokuapp.com/users/" + getCookie(cookie_name_id);
-                // cookie_token = getCookie(cookie_name_token);
+                setCookie(cookie_name_token, data.auth_token,     {expires: 36000000000000});
+                setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
+                cookie_token = getCookie(cookie_name_token);
+                ifLogin();
             },
             failure: function(errMsg) {
                 alert(errMsg);
@@ -144,20 +171,11 @@ $(document).ready(function() {
     });
 
 
-    function get_login_info(){
-       // $s = file_get_contents('http://ulogin.ru/token.php?token=' . $_POST['token'] . '&host=' . $_SERVER['HTTP_HOST']);
-        //$user = json_decode($s, true);
-        //$user['network'] - соц. сеть, через которую авторизовался пользователь
-        //$user['identity'] - уникальная строка определяющая конкретного пользователя соц. сети
-        //$user['first_name'] - имя пользователя
-        //$user['last_name'] - фамилия пользователя
-
-    }
-
     function ifLogin()  {
       //  console.log(cookie_token);
         if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
             start();
+            clearInterval(timerId);
         } else {
          //   console.log(cookie_token);
             $('#page_user_main') .hide();
