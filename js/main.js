@@ -21,9 +21,9 @@ $(document).ready(function() {
     var button = $ipsp.get("button");
     button.setHost("api.fondy.eu");
     button.setProtocol("https");
-    button.setMerchantId(1396424);
+    button.setMerchantId(1409532);
     button.setAmount("","RUB",false);
-    button.setResponseUrl("https://byhtada.github.io/hyls_client/fondy_response.js");
+    button.setResponseUrl("https://byhtada.github.io/hyls_client/");
     button.addParam("lang","ru");
     button.addParam("order_desc","Участие в марафоне HYLS");
     var url = button.getUrl();
@@ -44,6 +44,8 @@ $(document).ready(function() {
         this.addCallback(function(data,type){
             console.log(type);
             console.log(data);
+            console.log(data.order_data.signature);
+            console.log(data.order_data.signature);
         })
     });
 
