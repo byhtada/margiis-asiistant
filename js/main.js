@@ -1607,7 +1607,7 @@ $(document).ready(function() {
         user_register_row    += '<thead><tr>';
         user_register_row    += '<th>Имя</th>';
         user_register_row    += '<th>Почта</th>';
-        user_register_row    += '<th>Телефон(Логин)</th>';
+        user_register_row    += '<th>Телефон</th>';
         user_register_row    += '<th>Пароль</th>';
         user_register_row    += '<th>Ссылка соц.сети</th>';
         user_register_row    += '<th>Мессенджер</th>';
@@ -1620,7 +1620,7 @@ $(document).ready(function() {
             user_register_row += '<td><h5>' + item.user_email              + '</h5></td>';
             user_register_row += '<td><h5>' + item.user_phone              + '</h5></td>';
             user_register_row += '<td><h5>' + item.user_password           + '</h5></td>';
-            user_register_row += '<td><h5>' + item.user_link_vk            + '</h5></td>';
+            user_register_row += '<td><h5>' + item.user_social_link            + '</h5></td>';
             user_register_row += '<td><h5>' + item.user_messenger          + '</h5></td>';
             user_register_row += '<td><h5>' + item.user_comment            + '</h5></td>';
             user_register_row += '<td><h5>' + item.user_payment_size_plan  + '</h5></td>';
@@ -1638,7 +1638,7 @@ $(document).ready(function() {
         user_pay_row    += '<thead><tr>';
         user_pay_row    += '<th>Имя</th>';
         user_pay_row    += '<th>Почта</th>';
-        user_pay_row    += '<th>Телефон(Логин)</th>';
+        user_pay_row    += '<th>Телефон</th>';
         user_pay_row    += '<th>Пароль</th>';
         user_pay_row    += '<th>Ссылка соц.сети</th>';
         user_pay_row    += '<th>Мессенджер</th>';

@@ -46,6 +46,8 @@
 
         <script src="//api.fondy.eu/static_common/v1/checkout/ipsp.js"></script>
 
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/bootstrap-social.css" >
 
     </head>
 
@@ -73,6 +75,13 @@
                         <h3 align="center">Вход в личный кабинет</h3>
                         <br/>
 
+                        <a href="http://oauth.vk.com/authorize?client_id=6487614&redirect_uri=https://byhtada.github.io/hyls_client/&response_type=token&scope=email,offline&v=5.76&state=123456" class="btn btn-block btn-social btn-vk">
+                            <span class="fa fa-vk"></span> Войти используя ВКонтакте
+                        </a>
+                        <br/>
+                        <h4 align="center">или</h4>
+                        <br/>
+
                         <form>
                             <div class="form-group">
                                 <label for="login_login">Логин</label>
@@ -85,10 +94,9 @@
 
                             <button type="button" id="btn_login"    class="btn btn-success btn-block">Вход</button>
 
-                            <br/>
 
-                            <a href="http://oauth.vk.com/authorize?client_id=6487614&redirect_uri=https://byhtada.github.io/hyls_client/&response_type=token&scope=email,offline&v=5.76&state=123456" title="Зайти через ВКонтакте">Зайти через ВКонтакте</a>
-
+                            <!--<a href="http://oauth.vk.com/authorize?client_id=6487614&redirect_uri=https://byhtada.github.io/hyls_client/&response_type=token&scope=email,offline&v=5.76&state=123456" title="Зайти через ВКонтакте">Зайти через ВКонтакте</a>
+-->
                         </form>
                     </div>
                     <div class="col-xs-0  col-sm-4"></div>
