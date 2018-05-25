@@ -71,7 +71,7 @@ $(document).ready(function() {
                 try_find_user(userInfo, params, "vk")
             });
         }
-    }, 1000);
+    }, 100);
 
 
     function jsonp(url, callback) {
@@ -2036,9 +2036,13 @@ $(document).ready(function() {
                 group_users_row    += '<thead><tr> <th>Имя</th> <th>Телефон</th>  <th>Ссылка ВК/ФБ</th> </tr></thead><tbody>';
                 $.each(data.group_users, function (i, item) {
                     group_users_row += '<tr><td><h5>';
-                    group_users_row += item.name    + '</h5></td><td><h5>';
-                    group_users_row += item.phone    + '</h5></td><td><h5>';
-                    item.link_vk == null ? group_users_row += "-"   + '</h5></td>' : group_users_row += item.link_vk   + '</h5></td>';
+                    group_users_row += item.first_name    + '</h5></td><td><h5>';
+                    group_users_row += item.phone    + '</h5></td>';
+                    if (item.social_link == null) {
+                        group_users_row += '<td><h5>' + "-" + '</h5></td>';
+                    } else {
+                        group_users_row +='<td><a href="' + item.social_link + '" target="_blank">' + item.social_link + '</a></td>';
+                    }
 
                     group_users_row += '<td><button type="button" class="btn btn-info btn-sm"   name="btns_group_user_info"   value="'  +  item.id + '"  > <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></td>';
                     group_users_row += '<td><button type="button" class="btn btn-danger btn-sm" name="btns_group_user_delete" value="'  +  item.id + '"  data-toggle="modal" data-target="#modal_group_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';

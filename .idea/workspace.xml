@@ -4,7 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/index.html" line="974" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="" />
+    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -26,13 +28,17 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="212" column="53" selection-start-line="212" selection-start-column="33" selection-end-line="212" selection-end-column="53" />
+            <state relative-caret-position="388">
+              <caret line="2045" lean-forward="true" selection-start-line="2045" selection-end-line="2045" />
               <folding>
                 <element signature="e#103#166#0" />
                 <element signature="e#394#440#0" />
                 <element signature="e#900#1042#0" />
                 <element signature="e#1164#1224#0" />
+                <element signature="e#1298#1732#0" />
+                <element signature="e#1785#2603#0" />
+                <element signature="e#2648#3105#0" />
+                <element signature="e#3145#4011#0" />
               </folding>
             </state>
           </provider>
@@ -172,7 +178,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>detox_time_edit</find>
       <find>btn_detox_stop</find>
       <find>btn_detox_edit_time</find>
       <find>btn_detox_edit_start</find>
@@ -202,6 +207,7 @@
       <find>messenger_link</find>
       <find>Платежная</find>
       <find>reg_user_confirm_payment</find>
+      <find>group_users</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -215,8 +221,8 @@
         <option value="$PROJECT_DIR$/js/fondy.js" />
         <option value="$PROJECT_DIR$/css/main.css" />
         <option value="$PROJECT_DIR$/js/fondy_response.js" />
-        <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/main.js" />
       </list>
     </option>
   </component>
@@ -237,7 +243,7 @@
   <component name="ProjectFrameBounds" extendedState="4">
     <option name="x" value="283" />
     <option name="y" value="52" />
-    <option name="width" value="1098" />
+    <option name="width" value="1096" />
     <option name="height" value="1028" />
   </component>
   <component name="ProjectReloadState">
@@ -400,15 +406,15 @@
       <workItem from="1527158704285" duration="4817000" />
       <workItem from="1527168768140" duration="292000" />
       <workItem from="1527176734956" duration="1701000" />
-      <workItem from="1527229940539" duration="1604000" />
+      <workItem from="1527229940539" duration="2822000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="286579000" />
+    <option name="totallyTimeSpent" value="287797000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="822" y="52" width="1098" height="1028" extended-state="4" />
+    <frame x="283" y="52" width="1096" height="1028" extended-state="4" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47761193" weight="0.20065789" />
@@ -1383,13 +1389,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="212" column="53" selection-start-line="212" selection-start-column="33" selection-end-line="212" selection-end-column="53" />
+        <state relative-caret-position="388">
+          <caret line="2045" lean-forward="true" selection-start-line="2045" selection-end-line="2045" />
           <folding>
             <element signature="e#103#166#0" />
             <element signature="e#394#440#0" />
             <element signature="e#900#1042#0" />
             <element signature="e#1164#1224#0" />
+            <element signature="e#1298#1732#0" />
+            <element signature="e#1785#2603#0" />
+            <element signature="e#2648#3105#0" />
+            <element signature="e#3145#4011#0" />
           </folding>
         </state>
       </provider>
