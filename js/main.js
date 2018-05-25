@@ -44,19 +44,14 @@ $(document).ready(function() {
         this.addCallback(function(data,type){
             console.log(type);
             console.log(data);
-            if (typeof data.order_data !== 'undefined'){
-                console.log(data.order_data.signature);
-                console.log(data.order_data.order_status);
-                console.log(data.order_data.currency);
-                console.log(data.order_data.settlement_amount);
-
-            }
 
             if (typeof data.send_data !== 'undefined') {
                 console.log(data.send_data.signature);
                 console.log(data.send_data.order_status);
                 console.log(data.send_data.currency);
                 console.log(data.send_data.settlement_amount);
+
+                reg_user_confirm_payment(data.send_data);
             }
         })
     });
@@ -180,8 +175,60 @@ $(document).ready(function() {
             }
         });
     }
+    var user_messenger_reg = "";
+    $('#btn_user_reg_messenger').click(function (){
+        if (user_messenger_reg != "" && $('#field_phone_user').val() != ""){
+            $.ajax({
+                type: "GET",
+                url:  api_url_full,
+                data: { query_info: "user_set_messenger",
+                    messenger: user_messenger_reg,
+                    phone:     $('#field_phone_user').val()},
+                headers: {
+                    'Authorization':'Token token=' + cookie_token,
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                success: function(data) {
+                    ifLogin();
+                },
+                failure: function(errMsg) {
+                    alert(errMsg.toString());
+                }
+            });
+        } else {
+            alert('Заполните все поля');
+        }
 
+    });
+    $(document).on('click', '.messenger_link_user',       function () {
+        //  console.log($(this).attr("name"));
+        $('#btn_dd_messenger_user').text($(this).attr("name"));
+        user_messenger_reg = $(this).attr("name");
+    });
 
+    function reg_user_confirm_payment(send_data){
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_info: "user_confirm_payment",
+                payment_currency:   send_data.currency,
+                payment_size:       send_data.amount,
+                payment_card:       send_data.masked_card,
+                payment_requisites: send_data.sender_email,
+                payment_date:       send_data.order_time
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data) {
+                ifLogin();
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    }
 
     $.ajaxSetup({
         error: function (data, textStatus, jqXHR) {
@@ -206,7 +253,7 @@ $(document).ready(function() {
 
 
     function ifLogin()  {
-      //  console.log(cookie_token);
+        console.log(cookie_token);
         if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
             start();
             clearInterval(timerId);
@@ -499,36 +546,7 @@ $(document).ready(function() {
         }
     }
 
-    var user_messenger_reg = "";
-    $('#btn_user_reg_messenger').click(function (){
-        if (user_messenger_reg != "" && $('#field_phone_user').val() != ""){
-            $.ajax({
-                type: "GET",
-                url:  api_url_full,
-                data: { query_info: "user_set_messenger",
-                    messenger: user_messenger_reg,
-                    phone:     $('#field_phone_user').val()},
-                headers: {
-                    'Authorization':'Token token=' + cookie_token,
-                    'Content-Type':'application/x-www-form-urlencoded'
-                },
-                success: function(data) {
-                    ifLogin();
-                },
-                failure: function(errMsg) {
-                    alert(errMsg.toString());
-                }
-            });
-        } else {
-            alert('Заполните все поля');
-        }
 
-    });
-    $(document).on('click', '.messenger_link_user',       function () {
-        //  console.log($(this).attr("name"));
-        $('#btn_dd_messenger_user').text($(this).attr("name"));
-        user_messenger_reg = $(this).attr("name");
-    });
 
 
 
@@ -1918,13 +1936,22 @@ $(document).ready(function() {
         //console.log($(this).find("option:selected").val());
         group_curator_id = $(this).find("option:selected").val();
     });
+
+
+    var group_messenger = "";
+    $(document).on('click', '.messenger_link_group',       function () {
+        //  console.log($(this).attr("name"));
+        $('#btn_dd_messenger_group').text($(this).attr("name"));
+        group_messenger = $(this).attr("name");
+    });
+
     $('#btn_group_add').click(function () {
         $('#btn_group_add').prop('disabled', true);
 
         var group_name   = $('#group_name') .val();
         var group_start  = $('#group_start').val();
 
-        if (group_name == null || group_curator_id == null || group_start == "") {
+        if (group_name == null || group_curator_id == null || group_start === "" || group_messenger === "") {
             alert("Заполните все поля");
         } else {
             $.ajax({
@@ -1933,17 +1960,20 @@ $(document).ready(function() {
                 data: { query_update:     "create_group",
                         group_name        : group_name,
                         group_start       : group_start,
-                        group_curator_id  : group_curator_id
+                        group_curator_id  : group_curator_id,
+                        group_messenger   : group_messenger
                 },
                 headers: {
                     'Authorization':'Token token=' + cookie_token,
                     'Content-Type':'application/x-www-form-urlencoded'
                 },
                 success: function(data){
-                   // console.log(data);
+                    console.log(data);
                     if (data.access == 1) {
                         $('#btn_group_add').prop('disabled', false);
                         $('#modal_add_group').modal('hide');
+                        $('#btn_dd_messenger_group').text("Выберите способ");
+                        group_messenger = "";
                         update_admin_info();
                     } else {no_access();}
                 },
