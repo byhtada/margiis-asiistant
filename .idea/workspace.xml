@@ -4,11 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/index.html" line="974" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
-    </list>
+    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -27,15 +23,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+            <state relative-caret-position="283">
+              <caret line="212" column="53" selection-start-line="212" selection-start-column="33" selection-end-line="212" selection-end-column="53" />
               <folding>
                 <element signature="e#103#166#0" />
                 <element signature="e#394#440#0" />
                 <element signature="e#900#1042#0" />
+                <element signature="e#1164#1224#0" />
               </folding>
             </state>
           </provider>
@@ -50,7 +47,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="375">
@@ -175,8 +172,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>day_show_now</find>
-      <find>detox_answer_time</find>
       <find>detox_time_edit</find>
       <find>btn_detox_stop</find>
       <find>btn_detox_edit_time</find>
@@ -205,6 +200,8 @@
       <find>!=</find>
       <find>user_confirm_payment</find>
       <find>messenger_link</find>
+      <find>Платежная</find>
+      <find>reg_user_confirm_payment</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -238,7 +235,7 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="822" />
+    <option name="x" value="283" />
     <option name="y" value="52" />
     <option name="width" value="1098" />
     <option name="height" value="1028" />
@@ -403,12 +400,12 @@
       <workItem from="1527158704285" duration="4817000" />
       <workItem from="1527168768140" duration="292000" />
       <workItem from="1527176734956" duration="1701000" />
-      <workItem from="1527229940539" duration="934000" />
+      <workItem from="1527229940539" duration="1604000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="285909000" />
+    <option name="totallyTimeSpent" value="286579000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="822" y="52" width="1098" height="1028" extended-state="4" />
@@ -421,7 +418,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32972974" />
       <window_info id="Structure" order="1" sideWeight="0.52238804" side_tool="true" weight="0.19320215" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.12648648" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.21297297" />
       <window_info id="Favorites" order="2" sideWeight="0.50643086" side_tool="true" weight="0.10193452" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1272,18 +1269,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
-          <folding>
-            <element signature="e#103#166#0" />
-            <element signature="e#394#440#0" />
-            <element signature="e#900#1042#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -1392,6 +1377,19 @@
             <element signature="n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#div#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#table#0;n#div#2;n#div#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="212" column="53" selection-start-line="212" selection-start-column="33" selection-end-line="212" selection-end-column="53" />
+          <folding>
+            <element signature="e#103#166#0" />
+            <element signature="e#394#440#0" />
+            <element signature="e#900#1042#0" />
+            <element signature="e#1164#1224#0" />
           </folding>
         </state>
       </provider>

@@ -45,7 +45,7 @@ $(document).ready(function() {
             console.log(type);
             console.log(data);
 
-            if (typeof data.send_data !== 'undefined') {
+            if (typeof data.send_data !== 'undefined' && data.final ) {
                 console.log(data.send_data.signature);
                 console.log(data.send_data.order_status);
                 console.log(data.send_data.currency);
