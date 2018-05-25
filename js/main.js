@@ -18,43 +18,6 @@ $(document).ready(function() {
   // var api_url      = "https://0.0.0.0:3000/";
   // var api_url_full = "https://0.0.0.0:3000/users";
 
-    var button = $ipsp.get("button");
-    button.setHost("api.fondy.eu");
-    button.setProtocol("https");
-    button.setMerchantId(1409532);
-    button.setAmount("","RUB",false);
-    button.setResponseUrl("https://byhtada.github.io/hyls_client/");
-    button.addParam("lang","ru");
-    button.addParam("order_desc","Участие в марафоне HYLS");
-    var url = button.getUrl();
-    $ipsp("checkout").config({
-        "wrapper": "#checkout",
-        "styles": {
-            "body": {
-                "overflow": "hidden"
-            }
-        }
-    }).scope(function () {
-        this.width("100%");
-        this.height(480);
-        this.action("resize", function (data) {
-            this.setCheckoutHeight(data.height);
-        });
-        this.loadUrl(url);
-        this.addCallback(function(data,type){
-            console.log(type);
-            console.log(data);
-
-            if (typeof data.send_data !== 'undefined' && data.final ) {
-                console.log(data.send_data.signature);
-                console.log(data.send_data.order_status);
-                console.log(data.send_data.currency);
-                console.log(data.send_data.settlement_amount);
-
-                reg_user_confirm_payment(data.send_data);
-            }
-        })
-    });
 
 
     var timerId = setInterval(function() {
@@ -206,6 +169,56 @@ $(document).ready(function() {
         user_messenger_reg = $(this).attr("name");
     });
 
+
+    $('#btn_pay_card').click(function (){
+        $('#btn_pay_card')    .hide();
+        $('#btn_pay_currency').show();
+    });
+
+    $('.btn_pay_currency').click(function (){
+        console.log($(this).val());
+        var currency = $(this).val();
+
+        var button = $ipsp.get("button");
+        button.setHost("api.fondy.eu");
+        button.setProtocol("https");
+        button.setMerchantId(1409532);
+        button.setAmount("",currency,false);
+        button.setResponseUrl("https://byhtada.github.io/hyls_client/");
+        button.addParam("lang","ru");
+        button.addParam("order_desc","Участие в марафоне HYLS");
+        var url = button.getUrl();
+        $ipsp("checkout").config({
+            "wrapper": "#checkout",
+            "styles": {
+                "body": {
+                    "overflow": "hidden"
+                }
+            }
+        }).scope(function () {
+            this.width("100%");
+            this.height(480);
+            this.action("resize", function (data) {
+                this.setCheckoutHeight(data.height);
+            });
+            this.loadUrl(url);
+            this.addCallback(function(data,type){
+                console.log(type);
+                console.log(data);
+
+                if (typeof data.send_data !== 'undefined' && data.final ) {
+                    console.log(data.send_data.signature);
+                    console.log(data.send_data.order_status);
+                    console.log(data.send_data.currency);
+                    console.log(data.send_data.settlement_amount);
+
+                    reg_user_confirm_payment(data.send_data);
+                }
+            })
+        });
+        $('#checkout')        .show();
+
+    });
     function reg_user_confirm_payment(send_data){
         $.ajax({
             type: "GET",
@@ -229,6 +242,23 @@ $(document).ready(function() {
             }
         });
     }
+
+
+    $('#btn_pay_other').click(function (){
+        $('#btn_pay_other').hide();
+        $('#div_other_method').show();
+    });
+    $('#btn_pay_other').click(function (){
+        $('#btn_pay_other').hide();
+        $('#div_other_method').show();
+    });
+    $('#btn_pay_complete').click(function (){
+        $('#div_pay_confirm').show();
+    });
+    $('#btn_pay_confirm').click(function (){
+       console.log($('#pay_confirm_input').val());
+    });
+
 
     $.ajaxSetup({
         error: function (data, textStatus, jqXHR) {
@@ -1303,21 +1333,16 @@ $(document).ready(function() {
     function setProgrammMain(programm_main){
         programm_days_main = programm_main;
         var programm_main_row = '<table id="table_programm_main1" class="table table-hover table-bordered table-condensed" >';
-        programm_main_row    += '<thead><tr> <th>День</th> <th>Вода</th><th>Перекусы</th><th>Диета</th><th>Подъем</th><th>Язык</th>';
+        programm_main_row    += '<thead><tr> <th>День</th> <th>Перекусы</th><th>Диета</th><th>Язык</th>';
             programm_main_row    += '        <th>Медитация (утро)</th> <th>Медитация (вечер)</th><th>Каушики</th><th>Физ. упр.</th><th>Терапии</th><th>Асаны</th>';
-            programm_main_row    += '        <th>Псих. упр.</th> <th>Полуванна</th> <th>Киртан (утро)</th><th>Киртан (вечер)</th><th>t чтения</th><th>t практик</th><th></th>';
+            programm_main_row    += '        <th>Псих. упр.</th> <th></th><th></th>';
         programm_main_row    += '</tr></thead><tbody>';
         $.each(programm_main, function (i, item) {
             programm_main_row += '<tr><td><h5>';
             programm_main_row += item.day_num  + '</h5></td><td><h5>';
-            item.water_target != null        ? programm_main_row += item.water_target + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
 
             item.eat_no_snacking_active != null  &&  item.eat_no_snacking_active != false   ? programm_main_row += "+"  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
             item.eat_diet_active        != null  &&  item.eat_diet_activ         != false   ? programm_main_row += item.eat_diet_description  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
-
-            var minutes_str = "";
-            item.wake_up_hours_target != null && item.wake_up_minutes_target < 10 ? minutes_str = ":0" + item.wake_up_minutes_target : minutes_str = ":" + item.wake_up_minutes_target;
-            item.wake_up_hours_target != null        ? programm_main_row += item.wake_up_hours_target + minutes_str  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
 
 
             item.tongue_clean_active != null &&  item.tongue_clean_active != false       ? programm_main_row += "+"  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
@@ -1332,14 +1357,7 @@ $(document).ready(function() {
             item.phisic_active != null && item.phisic_active   !=false       ? programm_main_row += "+"  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
             item.therapy_active != null && item.therapy_active != false      ? programm_main_row += "+"  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
             item.asana_active  != null && item.asana_active    !=false       ? programm_main_row += "+"  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
-            item.psi_active     != null && item.psi_active     != false      ? programm_main_row += "+"  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
-            item.half_bath_active     != null && item.half_bath_active     != false      ? programm_main_row += "+"  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
-
-            item.kirtan_day_target    != null       ? programm_main_row +=  item.kirtan_day_target  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
-            item.kirtan_night_target  != null       ? programm_main_row +=  item.kirtan_night_target  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
-
-            item.time_to_read         != null       ? programm_main_row +=  item.time_to_read  + '</h5></td><td><h5>' : programm_main_row += "" + '</h5></td><td><h5>';
-            item.time_to_practise     != null       ? programm_main_row +=  item.time_to_practise  + '</h5></td>' : programm_main_row += "" + '</h5></td>';
+            item.psi_active     != null && item.psi_active     != false      ? programm_main_row += "+"  + '</h5></td>' : programm_main_row += "" + '</h5></td>';
 
 
             programm_main_row += '<td><button type="button" class="btn btn-default btn-sm" name="btns_edit_programm_main"     value="'  +  item.day_id + '"  data-toggle="modal" data-target="#modal_edit_programm_main"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
@@ -1460,7 +1478,8 @@ $(document).ready(function() {
                 kirtan_night_target:       $('#field_kirtan_night_target')    .val(),
                 time_to_read:              $('#field_time_to_read')           .val(),
                 time_to_practise:          $('#field_time_to_practise')       .val(),
-                day_materials:          $('#field_day_materials')       .val()
+                day_materials:          $('#field_day_materials')       .val(),
+                day_comment:          $('#field_day_comment')       .val()
             },
             headers: {
                 'Authorization':'Token token=' + cookie_token,

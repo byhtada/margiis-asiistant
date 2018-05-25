@@ -49,6 +49,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
         <link rel="stylesheet" href="css/bootstrap-social.css" >
 
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     </head>
 
 
@@ -72,16 +73,17 @@
                         <br/>
                         <br/>
                         <h1 align="center"><span class="yoga_color">Марафон</span> H<span class="yoga_color">Y</span>LS</h1>
-                        <h3 align="center">Вход в личный кабинет</h3>
+                        <h3 align="center">Регистрация/вход в личный кабинет</h3>
                         <br/>
 
+                        <!--
                         <a href="http://oauth.vk.com/authorize?client_id=6487614&redirect_uri=https://byhtada.github.io/hyls_client/&response_type=token&scope=email,offline&v=5.76&state=123456" class="btn btn-block btn-social btn-vk">
-                            <span class="fab fa-vk"></span> Войти используя ВКонтакте
+                            <span class="fab fa-vk"></span>Через ВКонтакте
                         </a>
                         <br/>
                         <h4 align="center">или</h4>
                         <br/>
-
+-->
                         <form>
                             <div class="form-group">
                                 <label for="login_login">Логин</label>
@@ -94,9 +96,6 @@
 
                             <button type="button" id="btn_login"    class="btn btn-success btn-block">Вход</button>
 
-
-                            <!--<a href="http://oauth.vk.com/authorize?client_id=6487614&redirect_uri=https://byhtada.github.io/hyls_client/&response_type=token&scope=email,offline&v=5.76&state=123456" title="Зайти через ВКонтакте">Зайти через ВКонтакте</a>
--->
                         </form>
                     </div>
                     <div class="col-xs-0  col-sm-4"></div>
@@ -442,6 +441,7 @@
                                 <tr class="db_row_dialog"><td align="right" valign="middle"><h5>t на практики</h5></td>        <td class="db_row_input_admin"><input type="number"  id="field_time_to_practise"></td></tr>
 
                                 <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Материалы на день</h5></td>        <td class="db_row_input_admin"><input type="text"  id="field_day_materials"></td></tr>
+                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Описание дня</h5></td>             <td class="db_row_input_admin"><textarea  id="field_day_comment"></textarea></td></tr>
 
                             </table>
                         </div>
@@ -540,10 +540,9 @@
                         <br/>
                         <h3 align="center">Для завершения регистрации заполните поля</h3>
                         <br/>
-                        <br/>
 
                         <table style="border: 0">
-                            <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Удобный способ коммуникации</h5></td>          <td class="db_row_input_admin">
+                            <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Выберите удобный способ общения в чате группы</h5></td>          <td class="db_row_input_admin">
                                 <div class="dropdown">
                                     <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_messenger_user">
                                         Выберите способ <span class="caret"></span>
@@ -551,11 +550,10 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="#" class="messenger_link_user" name="WhatsApp">WhatsApp</a></li>
                                         <li><a href="#" class="messenger_link_user" name="VK">VK</a></li>
-                                        <li><a href="#" class="messenger_link_user" name="Я не знаю что это">Я не знаю что это</a></li>
                                     </ul>
                                 </div>
                             </td></tr>
-                            <tr class="db_row_input"><td align="right" valign="middle"><h5>Номер телефона, к которому привязан мессенджер</h5></td>  <td class="db_row_input_admin"><input type="text" class="form-control" id="field_phone_user"        placeholder=""></td></tr>
+                            <tr class="db_row_input"><td align="right" valign="middle"><h5>Номер телефона</h5></td>  <td class="db_row_input_admin"><input type="text" class="form-control" id="field_phone_user"        placeholder=""></td></tr>
                         </table>
                         <br/>
 
@@ -569,10 +567,124 @@
                     <div class="col-xs-0  col-sm-3"></div>
                     <div class="col-xs-12 col-sm-6" align="center">
                         <br/>
-                        <h3 align="center">Для участия в марафоне оплатите произвольную сумму</h3>
+                        <h3 align="center" class="payment_header">Оплата марафона <span class="black_color">H</span>Y<span class="black_color">LS</span></h3>
                         <br/>
 
-                        <div id="checkout"></div>
+                        <div class="payment_text" align="center">
+                            Вы сами выбираете приемлемую для вас стоимость.
+                            <br/>
+                            <br/>
+                            Цена не должна быть высокой для вас, но также она должна мотивировать вас дойти до конца.
+                            <br/>
+                            Мы одинаково благодарны любой сумме!
+                            <br/>
+                            <br/>
+                            Оплата с карты любой страны! Вы будете перенаправлены на страницу платёжной системы. После оплаты мы свяжемся с вами в течение 1 дня.
+                        </div>
+
+
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <button id="btn_pay_card" type="button" class="btn btn-success btn-block btn-lg">Оплатить с банковской карты онлайн</button>
+                        <br/>
+                        <div id="btn_pay_currency" hidden class="btn-group btn-group-justified" role="group" aria-label="Выберите валюту, которой желаете оплатить">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default pay_currency" value="RUB">RUB</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default pay_currency" value="UAH">UAH</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default pay_currency" value="KZT">KZT</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default pay_currency" value="BYN">BYN</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default pay_currency" value="USD">USD</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default pay_currency" value="EUR">EUR</button>
+                            </div>
+                        </div>
+                        <div id="checkout" hidden></div>
+
+                        <br/>
+                        <br/>
+                        <br/>
+
+
+                        <div class="payment_text">
+                            Если по какой-то причине вам не удалось оплатить с банковской карты, вы можете воспользоваться другими способами оплаты (потребуется подтверждение).
+                        </div>
+                        <br/>
+                        <br/>
+                        <button id="btn_pay_other" type="button" class="btn btn-info btn-block btn-lg">Показать дополнительные способы оплаты</button>
+
+                        <div id="div_other_method" hidden>
+                            <h3 align="center" class="payment_header">Другие способы оплаты</h3>
+                            <br/>
+                            <div class="payment_text" align="center">
+                                После оплаты отправьте подтверждение одним из следующих способов (скриншот или фото):<br/>
+                                1) в ЛС группы
+                                <a class="reg_link" target="_blank" href="https://vk.com/hyls_ru">vk.com/hyls_ru</a>
+                                или
+                                <a class="reg_link" target="_blank" href="https://facebook.com/HYLS.ru">facebook.com/HYLS.ru</a>
+                                <br/>
+                                2) whatsapp +79234166072 или<br/>
+                                3) на почту info@hyls.ru
+
+                                <br/>
+                                <br/>
+                                Оплатите участие:
+                            </div>
+                            <br/>
+                            <br/>
+
+                            <table style="border: 0">
+                                <tr>
+                                    <td class="db_row_pay_img">
+                                        <img class="pay_img db_row_input" src="img/pay_sber.png">
+                                    </td>
+                                    <td>
+                                        <div  class="payment_header" align="right">Перевод на карту Сбербанк<br/><br/></div>
+                                        <div  class="payment_text"   align="right">По номеру телефона <b>+79529221177</b> (Погуляев Максим Александрович)<br/><br/><br/><br/></div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="db_row_pay_img">
+                                        <div align="center">
+                                            <img class="pay_img" src="img/pay_tink.png">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div  class="payment_header" align="right">Перевод на карту Сбербанк<br/><br/></div>
+                                        <div  class="payment_text"   align="right">По номеру телефона <b>+79529221177</b> (Погуляев Максим Александрович)<br/><br/><br/><br/></div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <br/>
+                            <br/>
+
+                            <button id="btn_pay_complete" type="button" class="btn btn-success btn-block btn-lg">Я оплатил</button>
+                            <br/>
+                            <br/>
+                        </div>
+
+                        <div id="div_pay_confirm" hidden>
+                            <h5 align="center">
+                                Подтвердите платеж, прикрепив ссылку на скриншот об оплате или же
+                                впишите в это поле Реквезиты с которых был совершен платеж
+                            </h5>
+                            <br/>
+                            <input class="pay_confirm_input" type="text" placeholder="Ссылка на скриншот или Реквезиты">
+                            <br/>
+                            <button id="btn_pay_confirm" type="button" class="btn btn-success btn-block btn-lg">Подтвердить оплату</button>
+                        </div>
                     </div>
                     <div class="col-xs-0  col-sm-3"></div>
 
