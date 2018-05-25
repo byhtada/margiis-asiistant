@@ -1950,8 +1950,9 @@ $(document).ready(function() {
 
         var group_name   = $('#group_name') .val();
         var group_start  = $('#group_start').val();
+        var group_messenger_link  = $('#group_messenger_link').val();
 
-        if (group_name == null || group_curator_id == null || group_start === "" || group_messenger === "") {
+        if (group_name == null || group_curator_id == null || group_start === "" || group_messenger === "" || group_messenger_link === "") {
             alert("Заполните все поля");
         } else {
             $.ajax({
@@ -1961,7 +1962,8 @@ $(document).ready(function() {
                         group_name        : group_name,
                         group_start       : group_start,
                         group_curator_id  : group_curator_id,
-                        group_messenger   : group_messenger
+                        group_messenger   : group_messenger,
+                        group_messenger_link   : group_messenger_link
                 },
                 headers: {
                     'Authorization':'Token token=' + cookie_token,
