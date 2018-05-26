@@ -590,26 +590,29 @@
 
                 <button id="btn_pay_card" type="button" class="btn btn-success btn-block btn-lg">Оплатить с банковской карты онлайн</button>
                 <br/>
-                <div id="btn_pay_currency" hidden class="btn-group btn-group-justified" role="group" aria-label="Выберите валюту, которой желаете оплатить">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default pay_currency" value="RUB">RUB</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default pay_currency" value="UAH">UAH</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default pay_currency" value="KZT">KZT</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default pay_currency" value="BYN">BYN</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default pay_currency" value="USD">USD</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default pay_currency" value="EUR">EUR</button>
+                <div id="btn_pay_currency" hidden>
+                    <div class="btn-group btn-group-justified" role="group" aria-label="Выберите валюту, которой желаете оплатить">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default pay_currency" value="RUB">RUB</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default pay_currency" value="UAH">UAH</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default pay_currency" value="KZT">KZT</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default pay_currency" value="BYN">BYN</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default pay_currency" value="USD">USD</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default pay_currency" value="EUR">EUR</button>
+                        </div>
                     </div>
                 </div>
+
                 <div id="checkout" hidden></div>
 
                 <br/>
@@ -617,75 +620,78 @@
                 <br/>
 
 
-                <div class="payment_text">
-                    Если по какой-то причине вам не удалось оплатить с банковской карты, вы можете воспользоваться другими способами оплаты (потребуется подтверждение).
-                </div>
-                <br/>
-                <br/>
-                <button id="btn_pay_other" type="button" class="btn btn-info btn-block btn-lg">Показать дополнительные способы оплаты</button>
-
-                <div id="div_other_method" hidden>
-                    <h3 align="center" class="payment_header">Другие способы оплаты</h3>
-                    <br/>
-                    <div class="payment_text" align="center">
-                        После оплаты отправьте подтверждение одним из следующих способов (скриншот или фото):<br/>
-                        1) в ЛС группы
-                        <a class="reg_link" target="_blank" href="https://vk.com/hyls_ru">vk.com/hyls_ru</a>
-                        или
-                        <a class="reg_link" target="_blank" href="https://facebook.com/HYLS.ru">facebook.com/HYLS.ru</a>
-                        <br/>
-                        2) whatsapp +79234166072 или<br/>
-                        3) на почту info@hyls.ru
-
-                        <br/>
-                        <br/>
-                        Оплатите участие:
+                <div id="div_other_payment" hidden>
+                    <div class="payment_text">
+                        Если по какой-то причине вам не удалось оплатить с банковской карты, вы можете воспользоваться другими способами оплаты (потребуется подтверждение).
                     </div>
                     <br/>
                     <br/>
+                    <button id="btn_pay_other" type="button" class="btn btn-info btn-block btn-lg">Показать дополнительные способы оплаты</button>
 
-                    <table style="border: 0">
-                        <tr>
-                            <td class="db_row_pay_img">
-                                <img class="pay_img db_row_input" src="img/pay_sber.png">
-                            </td>
-                            <td>
-                                <div  class="payment_header" align="right">Перевод на карту Сбербанк<br/><br/></div>
-                                <div  class="payment_text"   align="right">По номеру телефона <b>+79529221177</b> (Погуляев Максим Александрович)<br/><br/><br/><br/></div>
-                            </td>
-                        </tr>
+                    <div id="div_other_method" hidden>
+                        <h3 align="center" class="payment_header">Другие способы оплаты</h3>
+                        <br/>
+                        <div class="payment_text" align="center">
+                            После оплаты отправьте подтверждение одним из следующих способов (скриншот или фото):<br/>
+                            1) в ЛС группы
+                            <a class="reg_link" target="_blank" href="https://vk.com/hyls_ru">vk.com/hyls_ru</a>
+                            или
+                            <a class="reg_link" target="_blank" href="https://facebook.com/HYLS.ru">facebook.com/HYLS.ru</a>
+                            <br/>
+                            2) whatsapp +79234166072 или<br/>
+                            3) на почту info@hyls.ru
 
-                        <tr>
-                            <td class="db_row_pay_img">
-                                <div align="center">
-                                    <img class="pay_img" src="img/pay_tink.png">
-                                </div>
-                            </td>
-                            <td>
-                                <div  class="payment_header" align="right">Перевод на карту Сбербанк<br/><br/></div>
-                                <div  class="payment_text"   align="right">По номеру телефона <b>+79529221177</b> (Погуляев Максим Александрович)<br/><br/><br/><br/></div>
-                            </td>
-                        </tr>
-                    </table>
+                            <br/>
+                            <br/>
+                            Оплатите участие:
+                        </div>
+                        <br/>
+                        <br/>
 
-                    <br/>
-                    <br/>
+                        <table style="border: 0">
+                            <tr>
+                                <td class="db_row_pay_img">
+                                    <img class="pay_img db_row_input" src="img/pay_sber.png">
+                                </td>
+                                <td>
+                                    <div  class="payment_header" align="right">Перевод на карту Сбербанк<br/><br/></div>
+                                    <div  class="payment_text"   align="right">По номеру телефона <b>+79529221177</b> (Погуляев Максим Александрович)<br/><br/><br/><br/></div>
+                                </td>
+                            </tr>
 
-                    <button id="btn_pay_complete" type="button" class="btn btn-success btn-block btn-lg">Я оплатил</button>
-                    <br/>
-                    <br/>
+                            <tr>
+                                <td class="db_row_pay_img">
+                                    <div align="center">
+                                        <img class="pay_img" src="img/pay_tink.png">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div  class="payment_header" align="right">Перевод на карту Сбербанк<br/><br/></div>
+                                    <div  class="payment_text"   align="right">По номеру телефона <b>+79529221177</b> (Погуляев Максим Александрович)<br/><br/><br/><br/></div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <br/>
+                        <br/>
+
+                        <button id="btn_pay_complete" type="button" class="btn btn-success btn-block btn-lg">Я оплатил</button>
+                        <br/>
+                        <br/>
+                    </div>
+
+                    <div id="div_pay_confirm" hidden>
+                        <h5 align="center">
+                            Подтвердите платеж, прикрепив ссылку на скриншот об оплате или же
+                            впишите в это поле Реквезиты с которых был совершен платеж
+                        </h5>
+                        <br/>
+                        <input class="pay_confirm_input" type="text" placeholder="Ссылка на скриншот или Реквезиты">
+                        <br/>
+                        <button id="btn_pay_confirm" type="button" class="btn btn-success btn-block btn-lg">Подтвердить оплату</button>
+                    </div>
                 </div>
 
-                <div id="div_pay_confirm" hidden>
-                    <h5 align="center">
-                        Подтвердите платеж, прикрепив ссылку на скриншот об оплате или же
-                        впишите в это поле Реквезиты с которых был совершен платеж
-                    </h5>
-                    <br/>
-                    <input class="pay_confirm_input" type="text" placeholder="Ссылка на скриншот или Реквезиты">
-                    <br/>
-                    <button id="btn_pay_confirm" type="button" class="btn btn-success btn-block btn-lg">Подтвердить оплату</button>
-                </div>
             </div>
             <div class="col-xs-0  col-sm-3"></div>
 
@@ -1083,7 +1089,7 @@
 
     </div>
 
-    <div id="page_user_diary" class="container-fluid">
+    <div id="page_user_diary"     class="container-fluid">
         <div class="row">
             <div class="col-xs-0  col-sm-3"></div>
             <div class="col-xs-0  col-sm-6">

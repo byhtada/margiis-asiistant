@@ -55,7 +55,7 @@ $(document).ready(function() {
         }
     }, 100);
     function ifLogin()  {
-        console.log(cookie_token);
+        //console.log(cookie_token);
         if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
             start();
             clearInterval(timerId);
@@ -83,7 +83,7 @@ $(document).ready(function() {
                     //  console.log(JSON.stringify(data));
 
                     if (data.token.length == 32) {
-                        console.log("success get token");
+                        //console.log("success get token");
                         setCookie(cookie_name_token, data.token, {expires: 36000000000000});
                         setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
                         cookie_token = getCookie(cookie_name_token);
@@ -212,10 +212,13 @@ $(document).ready(function() {
     $('#btn_pay_card').click(function (){
         $('#btn_pay_card')    .hide();
         $('#btn_pay_currency').show();
+        $('#div_other_payment').show();
+
     });
     $('.btn_pay_currency').click(function (){
         console.log($(this).val());
         var currency = $(this).val();
+        $('#checkout')        .show();
 
         var button = $ipsp.get("button");
         button.setHost("api.fondy.eu");
@@ -254,7 +257,6 @@ $(document).ready(function() {
                 }
             })
         });
-        $('#checkout')        .show();
 
     });
     function reg_user_confirm_payment(send_data){
@@ -795,7 +797,7 @@ $(document).ready(function() {
         } else if (current_day.day_num == marafon_day + 1) {
             $('#user_current_day')    .text("День " + day_num + " (завтра)");
         } else {
-            $('#user_current_day')    .text("День " + day_num + " (" + day_date + ")");
+            $('#user_current_day')    .text("День " + day_num + " (" + current_day.day_date + ")");
         }
 
 
@@ -1220,6 +1222,7 @@ $(document).ready(function() {
                 },
                 success: function (data) {
                     $('#btn_wake_up_edit').prop('disabled', false);
+                    day_new = 0;
                     update_user_info();
                     hide_all_in_user();
                     $('#page_user_programm').show();
@@ -1251,7 +1254,7 @@ $(document).ready(function() {
                     'Content-Type':'application/x-www-form-urlencoded'
                 },
                 success: function(data){
-                    setUserMarafonDay(data.current_day, data.marafon_day);
+                    day_new = 0;
                     update_user_info();
                     hide_all_in_user();
                     $('#page_user_programm').show();
@@ -1281,7 +1284,8 @@ $(document).ready(function() {
                     'Content-Type':'application/x-www-form-urlencoded'
                 },
                 success: function(data){
-                    setUserMarafonDay(data.current_day, data.marafon_day);
+
+                    day_new = 0;
                     update_user_info();
                     hide_all_in_user();
                     $('#page_user_programm').show();
@@ -1308,6 +1312,7 @@ $(document).ready(function() {
             success: function(data){
                 $('#modal_detox_stop') .modal('hide');
                 $('#btn_detox_stop').prop('disabled', false);
+                day_new = 0;
                 update_user_info();
                 hide_all_in_user();
                 $('#page_user_programm').show();
