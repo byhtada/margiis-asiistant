@@ -253,7 +253,7 @@ $(document).ready(function() {
             })
         });
     });
-    $(document).on('click', '.btn_pay_currency', function (){
+    $(document).on('click', '.pay_currency', function (){
         console.log($(this).val());
         var currency = $(this).val();
         $('#checkout')        .show();
