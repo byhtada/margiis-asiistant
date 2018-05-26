@@ -26,9 +26,9 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .pay_img        {width: 84px; height: 84px;}
 .db_row_pay_img      {border: 0; width:  130px; }
 .pay_confirm_input   {width:  100%; }
-.reg_link       {color: rgb(255, 127, 76)}
+.reg_link            {color: rgb(255, 127, 76)}
 
-#table_question_detox, #detox_settings {
+#table_question_detox, #detox_settings, #table_question_therapy {
     padding: 15px;
     border-radius: 10px;
     background-color: rgba(70, 216, 70, 0.15)
@@ -39,25 +39,24 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
     background-color: rgba(70, 162, 216, 0.15)
 }
 
-
 #div_change_pass {
     padding: 15px;
     border-radius: 10px;
     background-color: rgba(216, 143, 91, 0.25)
 }
 
-
+.checkbox_div   {align-content: center}
 
 .no-spinners {
     -moz-appearance:textfield;
 }
-
 .no-spinners::-webkit-outer-spin-button,
 .no-spinners::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-#filed_day_comment {width: 100%; height: 100px;}
+
+#filed_day_comment    {width: 100%; height: 100px;}
 
 #table_programm_main  {margin-left: 20px; margin-right: 20px;}
 
@@ -81,17 +80,12 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 
 
 .row_detox           {border: 0; width:  50%;   }
-.db_row_input        {border: 0; width:  100px; }
-
+.db_row_input        {border: 0; padding: 0; width:  100px; }
+.div_row_fact {align-items: center; align-content: center;}
 .db_row_input_admin  {border: 0; width:  200px; padding-left: 10px;}
 
-.table tbody>tr>td.db_row_dialog
-{
-    vertical-align: middle;
-    text-align: center;
-}
 
-td .db_row_input {padding: 0}
+
 
 
 /*
