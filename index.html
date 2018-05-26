@@ -613,7 +613,10 @@
                     </div>
                 </div>
 
-                <div id="checkout"></div>
+                <div id="div_checkout">
+                    <div id="checkout"></div>
+
+                </div>
 
                 <br/>
                 <br/>
@@ -627,6 +630,8 @@
                     <br/>
                     <br/>
                     <button id="btn_pay_other" type="button" class="btn btn-info btn-block btn-lg">Показать дополнительные способы оплаты</button>
+                    <br/>
+                    <br/>
 
                     <div id="div_other_method" hidden>
                         <h3 align="center" class="payment_header">Другие способы оплаты</h3>
@@ -654,8 +659,8 @@
                                     <img class="pay_img db_row_input" src="img/pay_sber.png">
                                 </td>
                                 <td>
-                                    <div  class="payment_header" align="right">Перевод на карту Сбербанк<br/><br/></div>
-                                    <div  class="payment_text"   align="right">По номеру телефона <b>+79529221177</b> (Погуляев Максим Александрович)<br/><br/><br/><br/></div>
+                                    <div  class="payment_header other" align="left">Перевод на карту Сбербанк</div>
+                                    <div  class="payment_text other"   align="left">По номеру телефона <b>+79529221177</b> (Погуляев Максим Александрович)</div>
                                 </td>
                             </tr>
 
@@ -666,10 +671,50 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div  class="payment_header" align="right">Перевод на карту Сбербанк<br/><br/></div>
-                                    <div  class="payment_text"   align="right">По номеру телефона <b>+79529221177</b> (Погуляев Максим Александрович)<br/><br/><br/><br/></div>
+                                    <div  class="payment_header other" align="left">Перевод на карту Тинькофф</div>
+                                    <div  class="payment_text other"   align="left">По номеру телефона <b>+79529221177</b> (Погуляев Максим Александрович)</div>
                                 </td>
                             </tr>
+
+                            <tr>
+                                <td class="db_row_pay_img">
+                                    <div align="center">
+                                        <img class="pay_img" src="img/pay_qiwi.png">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div  class="payment_header other" align="left">QIWI - кошелек</div>
+                                    <div  class="payment_text other"   align="left">На счёт <b>+79529221177</b></div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="db_row_pay_img">
+                                    <div align="center">
+                                        <img class="pay_img" src="img/pay_paypal.png">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div  class="payment_header other" align="left">PayPal</div>
+                                    <div  class="payment_text other"   align="left">В любой валюте из любой страны
+                                        Перевод на счёт Погуляева Максима Александровича:<br/>
+                                        <a href="https://www.paypal.me/pogumax" target="_blank">https://www.paypal.me/pogumax</a></div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="db_row_pay_img">
+                                    <div align="center">
+                                        <img class="pay_img" src="img/pay_yandex.png">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div  class="payment_header other" align="left">Яндекс.Деньги или банковская карта</div>
+                                    <div  class="payment_text other"   align="left">Можно перевести с Яндекс.Кошелька или с банковских карт MasterCard, Maestro, Visa:<br/>
+                                        <a href="https://money.yandex.ru/to/410011969461166" target="_blank">https://money.yandex.ru/to/410011969461166</a></div>
+                                </td>
+                            </tr>
+
                         </table>
 
                         <br/>

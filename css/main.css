@@ -23,6 +23,9 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .black_color {color: #000000}
 .payment_header {font-size: 30px; color: #46d444}
 .payment_text   {font-size: 20px; }
+
+.payment_header .other {margin-top: 10px; margin-bottom: 10px;}
+.payment_text   .other {margin-top: 10px; margin-bottom: 30px;}
 .pay_img        {width: 84px; height: 84px;}
 .db_row_pay_img      {border: 0; width:  130px; }
 .pay_confirm_input   {width:  100%; }

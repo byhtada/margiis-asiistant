@@ -260,7 +260,39 @@ $(document).ready(function() {
         button.setHost("api.fondy.eu");
         button.setProtocol("https");
         button.setMerchantId(1409532);
-        button.setAmount("",currency,false);
+
+        switch (currency) {
+            case "RUB":
+                button.setAmount("","RUB",false);
+
+                break;
+            case "UAH":
+                button.setAmount("","UAH",false);
+
+                break;
+            case "KZT":
+                button.setAmount("","KZT",false);
+
+                break;
+            case "BYN":
+                button.setAmount("","BYN",false);
+
+                break;
+            case "USD":
+                button.setAmount("","USD",false);
+
+                break;
+            case "EUR":
+                button.setAmount("","EUR",false);
+
+                break;
+
+        }
+
+
+
+
+
         button.setResponseUrl("https://byhtada.github.io/hyls_client/");
         button.addParam("lang","ru");
         button.addParam("order_desc","Участие в марафоне HYLS");
