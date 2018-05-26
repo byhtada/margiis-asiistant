@@ -254,7 +254,7 @@ $(document).ready(function() {
         });
     });
     $(document).on('click', '.pay_currency', function (){
-        console.log($(this).val());
+       // console.log($(this).val());
         var currency = $(this).val();
         $('#checkout')        .show();
 
@@ -377,7 +377,7 @@ $(document).ready(function() {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
 
 
                     hide_all_in_admin();
@@ -518,7 +518,7 @@ $(document).ready(function() {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 success: function (data) {
-                    console.log(data);
+      //              console.log(data);
                     //setUserDiary(data.user_diary);
                     day_new = data.marafon_day;
 
