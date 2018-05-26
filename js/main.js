@@ -213,6 +213,8 @@ $(document).ready(function() {
         $('#btn_pay_card')    .hide();
         $('#btn_pay_currency').show();
         $('#div_other_payment').show();
+
+
         var button = $ipsp.get("button");
         button.setHost("api.fondy.eu");
         button.setProtocol("https");
@@ -251,7 +253,7 @@ $(document).ready(function() {
             })
         });
     });
-    $('.btn_pay_currency').click(function (){
+    $(document).on('click', '.btn_pay_currency', function (){
         console.log($(this).val());
         var currency = $(this).val();
         $('#checkout')        .show();

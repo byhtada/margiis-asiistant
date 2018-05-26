@@ -24,8 +24,8 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .payment_header {font-size: 30px; color: #46d444}
 .payment_text   {font-size: 20px; }
 
-.payment_header .other {margin-top: 10px; margin-bottom: 10px;}
-.payment_text   .other {margin-top: 10px; margin-bottom: 30px;}
+.payment_header.other {margin-left: 20px; margin-top: 10px; margin-bottom: 10px;}
+.payment_text.other   {margin-left: 20px; margin-top: 20px; border-bottom: 50px;}
 .pay_img        {width: 84px; height: 84px;}
 .db_row_pay_img      {border: 0; width:  130px; }
 .pay_confirm_input   {width:  100%; }
@@ -175,32 +175,26 @@ textarea {
 /*
  * Fix styles user_marafon_start
  */
-div.user_marafon_start div.pretty {
+div#user_marafon_start div.pretty {
     margin-right: 0;
 }
 
-div.user_marafon_start div.state {
+div#user_marafon_start div.state {
     margin: -10px 0;
     padding: 0;
 }
 
-div.user_marafon_start div.db_row_input div.pretty:nth-child(2) {
+div#user_marafon_start td.db_row_input div.pretty:nth-child(2) {
     margin-left: 20px;
 }
 
-div.user_marafon_start table.table > tbody > tr > td {
+div#user_marafon_start table.table > tbody > tr > td {
     vertical-align: text-top;
 }
 
-div.user_marafon_start td.db_row_input {
+div#user_marafon_start td.db_row_input {
     text-align: center;
 }
-
-
-
-
-
-
 
 
 
