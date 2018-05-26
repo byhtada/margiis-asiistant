@@ -213,7 +213,43 @@ $(document).ready(function() {
         $('#btn_pay_card')    .hide();
         $('#btn_pay_currency').show();
         $('#div_other_payment').show();
+        var button = $ipsp.get("button");
+        button.setHost("api.fondy.eu");
+        button.setProtocol("https");
+        button.setMerchantId(1409532);
+        button.setAmount("","RUB",false);
+        button.setResponseUrl("https://byhtada.github.io/hyls_client/");
+        button.addParam("lang","ru");
+        button.addParam("order_desc","Участие в марафоне HYLS");
+        var url = button.getUrl();
+        $ipsp("checkout").config({
+            "wrapper": "#checkout",
+            "styles": {
+                "body": {
+                    "overflow": "hidden"
+                }
+            }
+        }).scope(function () {
+            this.width("100%");
+            this.height(480);
+            this.action("resize", function (data) {
+                this.setCheckoutHeight(data.height);
+            });
+            this.loadUrl(url);
+            this.addCallback(function(data,type){
+                console.log(type);
+                console.log(data);
 
+                if (typeof data.send_data !== 'undefined' && data.final ) {
+                    console.log(data.send_data.signature);
+                    console.log(data.send_data.order_status);
+                    console.log(data.send_data.currency);
+                    console.log(data.send_data.settlement_amount);
+
+                    reg_user_confirm_payment(data.send_data);
+                }
+            })
+        });
     });
     $('.btn_pay_currency').click(function (){
         console.log($(this).val());
