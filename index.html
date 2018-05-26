@@ -14,14 +14,14 @@
     <!-- Place favicon.ico in the root directory -->
 
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
     <script src="js/jquery.base64.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <link href="js/jquery-ui.css" rel="stylesheet" type="text/css"/>
 
-    <link rel="stylesheet" type="text/css" href="css/main.css">
     <link href="css/animate.min.css" rel="stylesheet">
 
 
@@ -49,6 +49,8 @@
     <link rel="stylesheet" href="css/bootstrap-social.css" >
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+
 </head>
 
 
@@ -846,7 +848,7 @@
                             <tbody>
                             <tr id="row_quest_half_bath" class="db_row_dialog">
                                 <td valign="middle">      <h5>Включить полуванну в ежедневные практики?</h5></td>
-                                <td >
+                                <td class="db_row_input text-center">
                                     <input type="checkbox"  id="filed_question_half_bath" />
                                 </td>
                             </tr>
@@ -927,9 +929,11 @@
                         <tr id="row_tongue" class="db_row_dialog">
                             <td valign="middle"> <h5>Чистка языка (утро и вечер)</h5></td>
                             <td class="db_row_input">          </td>
-                            <td class="db_row_input div_row_fact">
-                                <input type="checkbox" class="user_checkbox" id="filed_tongue_day" />
-                                <input type="checkbox" class="user_checkbox" id="filed_tongue_night" />
+                            <td class="db_row_input text-center div_row_fact">
+                                    <input type="checkbox"  id="filed_tongue_day" />
+
+                                    <input type="checkbox"  id="filed_tongue_night" />
+
                             </td>
                         </tr>
 
@@ -950,7 +954,7 @@
                         <tr id="row_phisic" class="db_row_dialog">
                             <td valign="middle"> <h5>Физические упражнения</h5></td>
                             <td class="db_row_input">          </td>
-                            <td class="db_row_input">
+                            <td class="db_row_input text-center" >
                                 <input type="checkbox"  id="filed_phisic" />
 
                             </td>
@@ -959,7 +963,7 @@
                         <tr id="row_therapy" class="db_row_dialog">
                             <td valign="middle"> <h5>Терапии</h5></td>
                             <td class="db_row_input">          </td>
-                            <td class="db_row_input">
+                            <td class="db_row_input text-center">
                                 <input type="checkbox"  id="filed_therapy" />
                             </td>
                         </tr>
@@ -967,7 +971,7 @@
                         <tr id="row_asana" class="db_row_dialog">
                             <td valign="middle"> <h5>Асаны</h5></td>
                             <td class="db_row_input">          </td>
-                            <td class="db_row_input">
+                            <td class="db_row_input text-center">
                                 <input type="checkbox"  id="filed_asana" />
                             </td>
 
@@ -976,7 +980,7 @@
                         <tr id="row_psy" class="db_row_dialog">
                             <td valign="middle"> <h5>Психологические практики</h5></td>
                             <td class="db_row_input">          </td>
-                            <td class="db_row_input">
+                            <td class="db_row_input text-center">
                                 <input type="checkbox"  id="filed_psy" />
                             </td>
                         </tr>
@@ -984,7 +988,7 @@
                         <tr id="row_half_bath" class="db_row_dialog">
                             <td valign="middle"> <h5>Полуванна</h5></td>
                             <td class="db_row_input">          </td>
-                            <td class="db_row_input">
+                            <td class="db_row_input text-center">
                                 <input type="checkbox"  id="filed_half_bath_day" />
                                 <input type="checkbox"  id="filed_half_bath_night" />
                             </td>
@@ -1020,7 +1024,7 @@
                         <tr id="row_no_snacking" class="db_row_dialog">
                             <td valign="middle"> <h5>День без перекусов и переедания</h5></td>
                             <td class="db_row_input">          </td>
-                            <td class="db_row_input">
+                            <td class="db_row_input text-center">
                                 <input type="checkbox"  id="filed_no_snacking_fact" />
                             </td>
                         </tr>
@@ -1028,7 +1032,7 @@
                         <tr id="row_diet" class="db_row_dialog">
                             <td valign="middle"> <h5 id="text_diet">Диета</h5></td>
                             <td class="db_row_input">          </td>
-                            <td class="db_row_input">
+                            <td class="db_row_input text-center">
                                 <input type="checkbox"  id="filed_diet" />
                             </td>
                         </tr>

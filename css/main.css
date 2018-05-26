@@ -169,6 +169,29 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+/*
+ * Fix styles user_marafon_start
+ */
+div.user_marafon_start div.pretty {
+    margin-right: 0;
+}
+
+div.user_marafon_start div.state {
+    margin: -10px 0;
+    padding: 0;
+}
+
+div.user_marafon_start div.db_row_input div.pretty:nth-child(2) {
+    margin-left: 20px;
+}
+
+div.user_marafon_start table.table > tbody > tr > td {
+    vertical-align: text-top;
+}
+
+div.user_marafon_start td.db_row_input {
+    text-align: center;
+}
 
 
 

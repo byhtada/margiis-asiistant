@@ -696,9 +696,11 @@ $(document).ready(function() {
             water_fact         != null && water_fact !=false         ?  $('#filed_water_fact').val(water_fact)   : $('#filed_water_fact').val();
             if (wake_up_hours_fact != null && wake_up_hours_fact != false) {
 
+                var minutes = "";
+                wake_up_minutes_fact < 10 ? minutes = "0" + wake_up_minutes_fact : minutes = wake_up_minutes_fact
 
                 $('#filed_wake_up_fact_hour').val(wake_up_hours_fact);
-                $('#filed_wake_up_fact_minute').val(wake_up_minutes_fact);
+                $('#filed_wake_up_fact_minute').val(minutes);
             } else {
                 $('#filed_wake_up_fact_hour').val(null);
                 $('#filed_wake_up_fact_minute').val(null);
@@ -793,7 +795,7 @@ $(document).ready(function() {
         } else if (current_day.day_num == marafon_day + 1) {
             $('#user_current_day')    .text("День " + day_num + " (завтра)");
         } else {
-            $('#user_current_day')    .text("День " + day_num);
+            $('#user_current_day')    .text("День " + day_num + " (" + day_date + ")");
         }
 
 
