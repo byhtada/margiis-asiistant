@@ -141,6 +141,7 @@ $(document).ready(function() {
 
 
     function try_find_user(userInfo, params, social){
+        console.log("try find user");
         $.ajax({
             type: "GET",
             url: api_url + "find_user",
@@ -299,13 +300,14 @@ $(document).ready(function() {
         $('#btn_pay_card')    .hide();
         $('#btn_pay_currency').show();
         $('#div_other_payment').show();
+        $('#div_checkout').show();
 
 
     });
     $(document).on('click', '.pay_currency', function (){
        // console.log($(this).val());
         var currency = $(this).val();
-        $('#checkout')        .show();
+        $('#div_checkout')        .show();
 
         var button = $ipsp.get("button");
         button.setHost("api.fondy.eu");
@@ -406,11 +408,10 @@ $(document).ready(function() {
         $('#div_other_method').show();
     });
     $('#btn_pay_complete').click(function (){
-        $('#div_pay_confirm').show();
+        var blank;
+        reg_user_confirm_payment(blank);
     });
-    $('#btn_pay_confirm').click(function (){
-       console.log($('#pay_confirm_input').val());
-    });
+
 
 
 
