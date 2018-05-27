@@ -1,9 +1,3 @@
-window.onload = function () {
-
-};
-
-
-
 $(document).ready(function() {
     $.ajaxSetup({
         error: function (data, textStatus, jqXHR) {
@@ -177,7 +171,63 @@ $(document).ready(function() {
             }
         });
     }
-    var user_messenger_reg = "";
+
+    var user_messenger_reg = "", user_messenger_reg_self = "";
+    $(document).on('click', '.messenger_link_user_reg',       function () {
+        //  console.log($(this).attr("name"));
+        $('#btn_dd_messenger_user_reg').text($(this).attr("name"));
+        user_messenger_reg_self = $(this).attr("name");
+    });
+    $('#btn_register_self').click(function () {
+        $('#btn_register_self').prop('disabled', true);
+
+        var user_name       = $('#field_user_reg_name').val();
+        var user_email      = $('#field_user_reg_email').val();
+        var user_phone      = $('#field_user_reg_phone').val();
+        var user_password   = $('#field_user_reg_password').val();
+        var user_vk         = $('#field_user_reg_vk').val();
+        var user_fb         = $('#field_user_reg_fb').val();
+
+        if (user_phone != null && user_password != null && user_email != null && user_messenger_reg_self !== "") {
+            var person  = {
+                first_name:  user_name,
+                phone:       user_phone,
+                password:    user_password,
+                email:       user_email,
+                user_vk:     user_vk,
+                user_fb:     user_fb,
+                messenger: user_messenger_reg_self};
+
+            $.ajax({
+                type: "POST",
+                url: api_url_full,
+                data: JSON.stringify(person),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data){
+                    $('#btn_register_self').prop('disabled', false);
+                    if (data.error == 0){
+                        console.log("Reg success: " + JSON.stringify(data));
+                        setCookie(cookie_name_token, data.auth_token, {expires: 36000000000000});
+                        setCookie(cookie_name_id,    data.user_id,    {expires: 36000000000000});
+                        cookie_token = getCookie(cookie_name_token);
+                        ifLogin();
+                    } else {
+                        alert("Видимо Вы уже зарегистрированы. Т.к. в нашей базе имеется указанный номер телефона")
+                    }
+
+                },
+                failure: function(errMsg) {
+                    alert(errMsg);
+                }
+            });
+        } else {
+            alert("Заполните обязатльные поля: почта, телефон и пароль");
+            $('#btn_register_self').prop('disabled', false);
+        }
+    });
+
+
     $(document).on('click', '.messenger_link_user',       function () {
         //  console.log($(this).attr("name"));
         $('#btn_dd_messenger_user').text($(this).attr("name"));
@@ -207,8 +257,6 @@ $(document).ready(function() {
         }
 
     });
-
-
     $('#btn_pay_card').click(function (){
         $('#btn_pay_card')    .hide();
         $('#btn_pay_currency').show();
@@ -817,13 +865,16 @@ $(document).ready(function() {
         if (current_day.wake_up_target_answer) {
             $('#wake_up_alert_no_answer').hide();
             $('#table_question_wake_up').hide();
+            $('#wake_up_settings').hide();
         } else {
             if (day_num > 14) {
                 $('#wake_up_alert_no_answer').show();
                 $('#table_question_wake_up').show();
+                $('#wake_up_settings').show();
             } else {
                 $('#wake_up_alert_no_answer').hide();
                 $('#table_question_wake_up').hide();
+                $('#wake_up_settings').hide();
             }
         }
 
@@ -1961,7 +2012,6 @@ $(document).ready(function() {
             user_pay_row += '<td><h5>' + item.user_comment            + '</h5></td>';
             user_pay_row += '<td><h5>' + item.user_payment_size_plan  + '</h5></td>';
             user_pay_row += '<td><h5>' + item.user_payment_size_fact  + '</h5></td>';
-            user_pay_row += '<td><h5>' + item.user_group              + '</h5></td>';
             user_pay_row += '<td><button type="button" class="btn btn-success btn-sm" name="btns_to_group" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_to_group"> <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button></td>';
             user_pay_row += '<td><button type="button" class="btn btn-danger btn-sm"  name="btns_user_delete" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
 
@@ -1978,12 +2028,13 @@ $(document).ready(function() {
         user_in_group_row    += '<th>Почта</th>';
         user_in_group_row    += '<th>Телефон(Логин)</th>';
         user_in_group_row    += '<th>Пароль</th>';
-        user_in_group_row    += '<th>Ссылка соц.сети</th>';
+        user_in_group_row    += '<th>Ссылка ВК</th>';
         user_in_group_row    += '<th>Мессенджер</th>';
         user_in_group_row    += '<th>Комментарий</th>';
         user_in_group_row    += '<th>План оплата</th>';
         user_in_group_row    += '<th>Факт оплата</th>';
         user_in_group_row    += '<th>Группа</th>';
+        user_in_group_row    += '<th></th>';
         user_in_group_row    += '</tr></thead><tbody>';
 
         $.each(users.user_group, function (i, item) {
@@ -1998,7 +2049,8 @@ $(document).ready(function() {
             user_in_group_row += '<td><h5>' + item.user_payment_size_plan  + '</h5></td>';
             user_in_group_row += '<td><h5>' + item.user_payment_size_fact  + '</h5></td>';
             user_in_group_row += '<td><h5>' + item.user_group              + '</h5></td>';
-            user_register_row += '<td><button type="button" class="btn btn-warning btn-sm" name="btns_edit_user" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_edit_user"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
+
+            user_in_group_row += '<td><button type="button" class="btn btn-warning btn-sm" name="btns_edit_user" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_edit_user"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
             user_in_group_row += '</tr>';
         });
         user_in_group_row += '</tbody></table';
@@ -2118,7 +2170,6 @@ $(document).ready(function() {
                 $('#field_user_edit_phone').val(data.user.phone);
                 $('#field_user_edit_vk')   .val(data.user.link_vk);
                 $('#field_user_edit_fb')   .val(data.user.link_fb);
-                $('#modal_confirm_pay')    .modal('hide');
             },
             failure: function(errMsg) {
                 alert(errMsg.toString());
@@ -2150,7 +2201,7 @@ $(document).ready(function() {
             },
             success: function(data){
                 update_admin_info();
-                $('#modal_confirm_pay') .modal('hide');},
+                $('#modal_edit_user') .modal('hide');},
             failure: function(errMsg) {
                 alert(errMsg.toString());
             }
@@ -2337,7 +2388,7 @@ $(document).ready(function() {
         $('#field_half_bath_active')              .prop("checked", false);
 
 
-            $('#field_kirtan_day_target')      .val();
+        $('#field_kirtan_day_target')      .val();
         $('#field_kirtan_night_target')    .val();
         $('#field_time_to_read')           .val();
         $('#field_time_to_practise')       .val();

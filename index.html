@@ -77,14 +77,14 @@
                 <h3 align="center">Регистрация/вход в личный кабинет</h3>
                 <br/>
 
-<!--
+
                 <a href="http://oauth.vk.com/authorize?client_id=6487614&redirect_uri=https://byhtada.github.io/hyls_client/&response_type=token&scope=email,offline&v=5.76&state=123456" class="btn btn-block btn-social btn-vk">
                     <span class="fab fa-vk"></span>Через ВКонтакте
                 </a>
                 <br/>
                 <h4 align="center">или</h4>
                 <br/>
--->
+
                 <form>
                     <div class="form-group">
                         <label for="login_login">Логин</label>
@@ -96,6 +96,44 @@
                     </div>
 
                     <button type="button" id="btn_login"    class="btn btn-success btn-block">Вход</button>
+                    <button id="btn_modal_register_self" type="button" class="btn btn-link btn-block"  data-toggle="modal" data-target="#modal_register_self">Регистрация</button>
+
+                    <div class="modal fade" id="modal_register_self"    tabindex="-1" role="dialog" aria-labelledby="modal_label_register_self">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="modal_label_register_self">Регистрация</h4>
+                                </div>
+                                <div class="modal-body" align="center">
+                                    <table style="border: 0">
+                                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Ваше имя</h5></td>                 <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_reg_name"         placeholder=""></td></tr>
+                                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>E-mail </h5></td>                  <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_reg_email"        placeholder=""></td></tr>
+                                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Телефон (будет логином)</h5></td>  <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_reg_phone"        placeholder=""></td></tr>
+                                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Пароль</h5></td>                   <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_reg_password"     placeholder=""></td></tr>
+                                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Профиль ВК</h5></td>               <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_reg_vk"           placeholder=""></td></tr>
+                                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Профиль ФБ</h5></td>               <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_reg_fb"           placeholder=""></td></tr>
+                                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Выберите удобный способ общения в чате группы</h5></td>          <td class="db_row_input_admin">
+                                            <div class="dropdown">
+                                                <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_messenger_user_reg">
+                                                    Способ общения <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#" class="messenger_link_user_reg" name="WhatsApp">WhatsApp</a></li>
+                                                    <li><a href="#" class="messenger_link_user_reg" name="VK">VK</a></li>
+                                                </ul>
+                                            </div>
+                                        </td></tr>
+
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                    <button id="btn_register_self" type="button" class="btn btn-success">Зарегистрировать</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </form>
             </div>
@@ -452,21 +490,21 @@
                         <tr class="db_row_dialog"><td align="right" valign="middle"></td> <td class="db_row_input_admin"></td></tr>
 
                         <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Физ. активность</h5></td>     <td class="db_row_input_admin"><input type="checkbox"  id="field_phisic_active"></td></tr>
-                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Терапия </h5></td>            <td class="db_row_input_admin"><input type="checkbox"  id="field_therapy_active"></td></tr>
+                        <tr class="db_row_dialog" hidden><td align="right" valign="middle"><h5>Терапия </h5></td>            <td class="db_row_input_admin"><input type="checkbox"  id="field_therapy_active"></td></tr>
                         <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Асаны</h5></td>               <td class="db_row_input_admin"><input type="checkbox"  id="field_asana_active"  ></td></tr>
                         <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Псих. упр.</h5></td>          <td class="db_row_input_admin"><input type="checkbox"  id="field_psi_active"></td></tr>
-                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Полуванна</h5></td>           <td class="db_row_input_admin"><input type="checkbox"  id="field_half_bath_active"></td></tr>
+                        <tr class="db_row_dialog" hidden><td align="right" valign="middle"><h5>Полуванна</h5></td>           <td class="db_row_input_admin"><input type="checkbox"  id="field_half_bath_active"></td></tr>
                         <tr class="db_row_dialog"><td align="right" valign="middle"></td> <td class="db_row_input_admin"></td></tr>
 
-                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Киртан (утро)</h5></td>          <td class="db_row_input_admin"><input type="number"  id="field_kirtan_day_target"></td></tr>
-                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Киртан (вечер)</h5></td>         <td class="db_row_input_admin"><input type="number"  id="field_kirtan_night_target"></td></tr>
-                        <tr class="db_row_dialog"><td align="right" valign="middle"></td> <td class="db_row_input_admin"></td></tr>
+                        <tr class="db_row_dialog" hidden><td align="right" valign="middle"><h5>Киртан (утро)</h5></td>          <td class="db_row_input_admin"><input type="number"  id="field_kirtan_day_target"></td></tr>
+                        <tr class="db_row_dialog" hidden><td align="right" valign="middle"><h5>Киртан (вечер)</h5></td>         <td class="db_row_input_admin"><input type="number"  id="field_kirtan_night_target"></td></tr>
+                        <tr class="db_row_dialog" hidden><td align="right" valign="middle"></td> <td class="db_row_input_admin"></td></tr>
 
-                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>t на теорию</h5></td>          <td class="db_row_input_admin"><input type="number"  id="field_time_to_read"></td></tr>
-                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>t на практики</h5></td>        <td class="db_row_input_admin"><input type="number"  id="field_time_to_practise"></td></tr>
+                        <tr class="db_row_dialog" hidden><td align="right" valign="middle"><h5>t на теорию</h5></td>          <td class="db_row_input_admin"><input type="number"  id="field_time_to_read"></td></tr>
+                        <tr class="db_row_dialog" hidden><td align="right" valign="middle"><h5>t на практики</h5></td>        <td class="db_row_input_admin"><input type="number"  id="field_time_to_practise"></td></tr>
 
-                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Материалы на день</h5></td>        <td class="db_row_input_admin"><input type="text"  id="field_day_materials"></td></tr>
-                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Описание дня</h5></td>             <td class="db_row_input_admin"><textarea  id="field_day_comment"></textarea></td></tr>
+                        <tr class="db_row_dialog" ><td align="right" valign="middle"><h5>Материалы на день</h5></td>        <td class="db_row_input_admin"><input type="text"  id="field_day_materials"></td></tr>
+                        <tr class="db_row_dialog" ><td align="right" valign="middle"><h5>Описание дня</h5></td>             <td class="db_row_input_admin"><textarea  id="field_day_comment"></textarea></td></tr>
 
                     </table>
                 </div>
@@ -1245,7 +1283,7 @@
                         <td > <button id="btn_water_edit"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
                     </tr>
 
-                    <tr  class="db_row_dialog">
+                    <tr id="wake_up_settings" class="db_row_dialog">
                         <td valign="middle" ><h5>Изменить целевое время подъема</h5></td>
                         <td  class="db_row_input">
                             <p>
