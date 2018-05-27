@@ -408,7 +408,14 @@ $(document).ready(function() {
         $('#div_other_method').show();
     });
     $('#btn_pay_complete').click(function (){
-        var blank;
+        var blank = {
+            "currency" : 0 ,
+            "amount" : 0 ,
+            "masked_card" : 0 ,
+            "sender_email" : 0 ,
+            "order_time" : 0
+        };
+
         reg_user_confirm_payment(blank);
     });
 
