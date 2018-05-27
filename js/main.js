@@ -43,6 +43,7 @@ $(document).ready(function() {
             var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,timezone";
             var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
             jsonp(vk_api_query, function(userInfo) {
+                console.log(userInfo.response[0]);
                 userInfo = userInfo.response[0];
                 try_find_user(userInfo, params, "vk")
             });
@@ -52,7 +53,6 @@ $(document).ready(function() {
         //console.log(cookie_token);
         if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
             start();
-            clearInterval(timerId);
         } else {
             //   console.log(cookie_token);
             $('#page_user_main') .hide();
