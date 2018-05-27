@@ -250,7 +250,7 @@ $(document).ready(function() {
                         cookie_token = getCookie(cookie_name_token);
                         ifLogin();
                     } else {
-                        alert("Видимо Вы уже зарегистрированы. Т.к. в нашей базе имеется указанный номер телефона")
+                        alert("Видимо Вы уже зарегистрированы. Т.к. в нашей базе имеется указанный номер телефона|почта")
                     }
                     $('#modal_register_self').modal('hide');
 
