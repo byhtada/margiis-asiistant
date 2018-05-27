@@ -1240,7 +1240,7 @@ $(document).ready(function() {
         $.each(diary, function (i, item) {
             diary_row += '<tr>';
             diary_row += '<td><h5>' + item.day_num + '</h5></td>';
-            diary_row += '<td><h5><a href="'+ item.day_materials +'" class="reg_link" target="_blank">' + item.day_description + '</a></h5></td>';
+            diary_row += '<td><h5><a href="'+ item.day_materials +'" class="reg_link" target="_blank">' + item.day_materials + '</a></h5></td>';
             diary_row += '<td><h5>' + item.day_progress + '</h5></td>';
             diary_row += '<td><h5>' + item.day_comment + '</h5></td>';
             diary_row += '</tr>';
@@ -1998,6 +1998,7 @@ $(document).ready(function() {
             user_in_group_row += '<td><h5>' + item.user_payment_size_plan  + '</h5></td>';
             user_in_group_row += '<td><h5>' + item.user_payment_size_fact  + '</h5></td>';
             user_in_group_row += '<td><h5>' + item.user_group              + '</h5></td>';
+            user_register_row += '<td><button type="button" class="btn btn-warning btn-sm" name="btns_edit_user" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_edit_user"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
             user_in_group_row += '</tr>';
         });
         user_in_group_row += '</tbody></table';
@@ -2022,10 +2023,11 @@ $(document).ready(function() {
         user_messenger = $(this).attr("name");
     });
     $('#btn_register').click(function () {
-        var user_name      = $('#field_user_email').val();
-        var user_email     = $('#field_user_name').val();
+        var user_name      = $('#field_user_name').val();
+        var user_email     = $('#field_user_email').val();
         var user_password  = $('#field_user_password').val();
         var user_vk        = $('#field_user_vk').val();
+        var user_fb        = $('#field_user_fb').val();
 
         var user_phone        = $('#field_user_phone').val();
         var user_payment_plan = $('#field_user_payment_plan').val();
@@ -2073,6 +2075,7 @@ $(document).ready(function() {
                     name:     user_name,
                     password: user_password,
                     link_vk:  user_vk,
+                    link_fb:  user_fb,
                     phone:             user_phone,
                     messenger:         user_messenger,
                     payment_size_plan: user_payment_plan,
@@ -2094,6 +2097,64 @@ $(document).ready(function() {
             });
 
         }
+    });
+
+    $(document).on('click', '[name="btns_edit_user"]' , function() {
+        // console.log($(this).val());
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_update: "get_user_edit_info",
+                user_id:  $(this).val()},
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                update_admin_info();
+                $('#btn_edit_user').val(data.user.id);
+                $('#field_user_edit_email').val(data.user.email);
+                $('#field_user_edit_name') .val(data.user.first_name);
+                $('#field_user_edit_phone').val(data.user.phone);
+                $('#field_user_edit_vk')   .val(data.user.link_vk);
+                $('#field_user_edit_fb')   .val(data.user.link_fb);
+                $('#modal_confirm_pay')    .modal('hide');
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+
+    });
+    $('#btn_edit_user').click(function () {
+        var user_email      = $('#field_user_edit_email').val();
+        var user_name       = $('#field_user_edit_name') .val();
+        var user_phone      = $('#field_user_edit_phone').val();
+        var user_link_vk    = $('#field_user_edit_vk')   .val();
+        var user_link_fb    = $('#field_user_edit_fb')   .val();
+
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_update: "edit_user",
+                user_id: $(this).val(),
+                user_email:  user_email,
+                user_name:   user_name,
+                user_phone:  user_phone,
+                user_link_vk:     user_link_vk,
+                user_link_fb:     user_link_fb
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                update_admin_info();
+                $('#modal_confirm_pay') .modal('hide');},
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
     });
 
     $('#btn_hide_user_register').click(function (){
