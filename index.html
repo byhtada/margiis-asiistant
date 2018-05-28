@@ -682,9 +682,30 @@
                 <br/>
 
                 <button id="btn_pay_card" type="button" class="btn btn-success btn-block btn-lg">Оплатить с банковской карты онлайн</button>
+
+                <div id="payment_text_no_money" align="center">
+                    <h3>Наша миссия - помочь людям обрести их подлинное богатство - Здоровье!</h3>
+                    <br/>
+                    Поэтому если у Вас есть сомнения или нет свободных денег, но Вы очень хотите учавствовать,
+                    Вы можете нажать на кнопку ниже и стать полноправным участником марафона.
+                    <br/>
+                    <br/>
+                    Но Мы все же рекомендуем совершить оплату любой суммы, по следующим причинам:
+                    <br/>1. Это будет мотивировать Вас пройти марафон до конца
+                    <br/>2. Ваша оплата является вкладом в развитие Проекта и реализации его миссии.
+                    <br/>
+                    <br/>
+                    <br/>
+                    <button id="btn_reg_no_money" type="button" class="btn btn-warning btn-block btn-lg">Учавствовать в Марафоне!</button>
+
+                </div>
+
+
                 <br/>
+
                 <div id="btn_pay_currency" hidden>
-                    <div class="btn-group btn-group-justified" role="group" aria-label="Выберите валюту, которой желаете оплатить">
+                    <h3 align="center">Выберите валюту, которой желаете оплатить</h3>
+                    <div class="btn-group btn-group-justified" role="group" aria-label="">
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-default pay_currency" value="RUB">RUB</button>
                         </div>
@@ -738,16 +759,13 @@
                             <br/>
                             2) whatsapp +79234166072 или<br/>
                             3) на почту info@hyls.ru
-
                             <br/>
                             <br/>
-                            Оплатите участие:
                         </div>
-                        <br/>
-                        <br/>
+
 
                         <table style="border: 0">
-                            <tr>
+                            <tr class="pay_other_method_row">
                                 <td class="db_row_pay_img">
                                     <img class="pay_img db_row_input" src="img/pay_sber.png">
                                 </td>
@@ -757,7 +775,7 @@
                                 </td>
                             </tr>
 
-                            <tr>
+                            <tr class="pay_other_method_row">
                                 <td class="db_row_pay_img">
                                     <div align="center">
                                         <img class="pay_img" src="img/pay_tink.png">
@@ -769,7 +787,7 @@
                                 </td>
                             </tr>
 
-                            <tr>
+                            <tr class="pay_other_method_row">
                                 <td class="db_row_pay_img">
                                     <div align="center">
                                         <img class="pay_img" src="img/pay_qiwi.png">
@@ -781,7 +799,7 @@
                                 </td>
                             </tr>
 
-                            <tr>
+                            <tr class="pay_other_method_row">
                                 <td class="db_row_pay_img">
                                     <div align="center">
                                         <img class="pay_img" src="img/pay_paypal.png">
@@ -795,7 +813,7 @@
                                 </td>
                             </tr>
 
-                            <tr>
+                            <tr class="pay_other_method_row">
                                 <td class="db_row_pay_img">
                                     <div align="center">
                                         <img class="pay_img" src="img/pay_yandex.png">
@@ -847,6 +865,9 @@
             <br/>
             <br/>
             <h1 id="user_marafon_wait_text" align="center"></h1>
+            <br/>
+            <br/>
+            <h2 id="user_marafon_wait_messenger" align="center" hidden>Присоединяйтесь к чату группы <a id="wait_messenger_link" class="reg_link" href="#"></a></h2>
         </div>
 
         <div id="user_marafon_start" hidden>
@@ -863,6 +884,7 @@
                     <button id="btn_user_material"  type="button" class="btn btn-info btn-block">Открыть материал дня</button>
                     <br/>
 
+                    <h4 id="programm_messenger_link_text" align="center" hidden>Ссылка на чат группы <a href="#" id="programm_messenger_link" class="reg_link"></a></h4>
 
 
                     <div id="table_question_water" hidden>
@@ -1302,6 +1324,10 @@
         <div class="col-sm-3 col-md-3"></div>
         <div class="col-sm-6 col-md-6 col-xs-12" align="center">
 
+            <h4 align="center">Ссылка на чат группы <a href="#" id="settings_messenger_link"></a></h4>
+
+            <br/>
+            <br/>
 
             <div id="water_settings" hidden>
                 <table class="table  table-hover">

@@ -104,12 +104,6 @@ $(document).ready(function() {
             $("#page_login")     .show();
         }
     }
-
-    function checkLoginState() {
-        FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
-        });
-    }
     ifLogin();
     $('#btn_login').click(function () {
         var token_web = $.base64.encode($('#login_login').val() + ":" + $('#login_password').val());
@@ -147,6 +141,60 @@ $(document).ready(function() {
 
     });
 
+    function start() {
+        try {
+            $.ajax({
+                type: "GET",
+                url:   api_url + "users",
+                data: {query_info: "get_user_status"},
+                headers: {
+                    'Authorization': 'Token token=' + cookie_token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function (data) {
+                    //console.log(data);
+
+
+                    hide_all_in_admin();
+                    hide_all_in_user();
+
+                    if (data.user_status == "admin") {
+                        $("#page_login")     .hide();
+                        $("#page_user_main") .hide();
+                        $('#page_admin_main').show();
+                        $('#page_groups')    .show();
+                        update_admin_info();
+                    } else if (data.user_status == "curator") {
+                        $("#page_login")     .hide();
+                        $("#page_user_main") .hide();
+                        $('#page_admin_main').show();
+                        $('#page_groups')    .show();
+                        update_admin_info();
+                    } else if (data.user_status == "new") {
+                        $("#page_login")     .show();
+                        $("#page_user_main") .hide();
+                        $('#page_admin_main').hide();
+                    } else {
+                        $("#page_login")     .hide();
+                        $('#page_admin_main').hide();
+                        $("#page_user_main") .show();
+                        $("#page_user_programm") .show();
+                        update_user_info();
+                    }
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
+        }
+        catch (err) {
+            console.log(err);
+        }
+
+    }
+    function no_access() {
+        alert("У Вас не достаточно прав, для выполнения этого действия")
+    }
 
     var city = {};
     var couintry = {};
@@ -358,6 +406,7 @@ $(document).ready(function() {
     });
     $('#btn_pay_card').click(function (){
         $('#btn_pay_card')    .hide();
+        $('#payment_text_no_money')    .hide();
         $('#btn_pay_currency').show();
         $('#div_other_payment').show();
         $('#div_checkout').show();
@@ -478,65 +527,20 @@ $(document).ready(function() {
 
         reg_user_confirm_payment(blank);
     });
+    $('#btn_reg_no_money').click(function (){
+        var blank = {
+            "currency" : 0 ,
+            "amount" : -1 ,
+            "masked_card" : 0 ,
+            "sender_email" : 0 ,
+            "order_time" : 0
+        };
+
+        reg_user_confirm_payment(blank);
+    });
 
 
 
-
-
-    function start() {
-        try {
-            $.ajax({
-                type: "GET",
-                url:   api_url + "users",
-                data: {query_info: "get_user_status"},
-                headers: {
-                    'Authorization': 'Token token=' + cookie_token,
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                success: function (data) {
-                    //console.log(data);
-
-
-                    hide_all_in_admin();
-                    hide_all_in_user();
-
-                    if (data.user_status == "admin") {
-                        $("#page_login")     .hide();
-                        $("#page_user_main") .hide();
-                        $('#page_admin_main').show();
-                        $('#page_groups')    .show();
-                        update_admin_info();
-                    } else if (data.user_status == "curator") {
-                        $("#page_login")     .hide();
-                        $("#page_user_main") .hide();
-                        $('#page_admin_main').show();
-                        $('#page_groups')    .show();
-                        update_admin_info();
-                    } else if (data.user_status == "new") {
-                        $("#page_login")     .show();
-                        $("#page_user_main") .hide();
-                        $('#page_admin_main').hide();
-                    } else {
-                        $("#page_login")     .hide();
-                        $('#page_admin_main').hide();
-                        $("#page_user_main") .show();
-                        $("#page_user_programm") .show();
-                        update_user_info();
-                    }
-                },
-                failure: function (errMsg) {
-                    alert(errMsg);
-                }
-            });
-        }
-        catch (err) {
-            console.log(err);
-        }
-
-    }
-    function no_access() {
-        alert("У Вас не достаточно прав, для выполнения этого действия")
-    }
 
 //Navigation
     $(document).on('click', '.nav-link-admin',       function () {
@@ -635,27 +639,35 @@ $(document).ready(function() {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 success: function (data) {
-      //              console.log(data);
+                    //              console.log(data);
                     //setUserDiary(data.user_diary);
                     day_new = data.marafon_day;
 
                     $('#user_marafon_reg').hide();
                     $('#user_marafon_pay').hide();
                     $('#user_marafon_start').hide();
-                    $('#user_marafon_wait') .hide();
+                    $('#user_marafon_wait').hide();
+
+                    $('#wait_messenger_link, #programm_messenger_link, #settings_messenger_link').attr("href", data.messenger_link);
+                    $('#wait_messenger_link, #programm_messenger_link, #settings_messenger_link').text(data.messenger_link);
 
                     if (data.marafon_day > -998 && data.marafon_day < 1) {
-                        $('#user_marafon_wait') .show();
+                        $('#user_marafon_wait').show();
                         $('#user_marafon_wait_text').text("Ожидайте старта марафона " + data.marafon_day_start);
-                    } else if (data.marafon_day < -998){
+                        if (data.marafon_day == 0){
+                            $('#user_marafon_wait_messenger').show();
+                        }
+
+                    } else if (data.marafon_day < -998) {
                         if (data.user.messenger == null) {
                             $('#user_marafon_reg').show();
                         } else {
                             $('#user_marafon_pay').show();
                         }
 
-                    } else if (data.marafon_day > 0)
+                    } else if (data.marafon_day > 0) {
                         setUserMarafonDay(data.marafon_info_today, data.marafon_day);
+                    }
 
                     if (data.detox_type !== null ){
                         $('#detox_settings').show();
@@ -911,6 +923,8 @@ $(document).ready(function() {
 
         console.log(current_day);
 
+
+        day_num == 1 ? $('#programm_messenger_link_text').show() : $('#programm_messenger_link_text').show()
 
 
         if (current_day.water_target_answer) {
@@ -1644,7 +1658,6 @@ $(document).ready(function() {
                 alert(errMsg.toString());
             }
         });
-
     });
     $('#btn_group_edit').click(function () {
         $.ajax({
@@ -1720,7 +1733,7 @@ $(document).ready(function() {
                 $('#group_info_curator').text(" (куратор: " + data.group_curator + ")");
 
                 var group_users_row = '<table id="group_users" class="table table-hover table-bordered table-condensed" >';
-                group_users_row    += '<thead><tr> <th>Имя</th> <th>Телефон</th>  <th>Ссылка ВК/ФБ</th> </tr></thead><tbody>';
+                group_users_row    += '<thead><tr> <th>Имя</th> <th>Телефон</th>  <th>Ссылка ВК</th><th>Почта</th> </tr></thead><tbody>';
                 $.each(data.group_users, function (i, item) {
                     group_users_row += '<tr><td><h5>';
                     group_users_row += item.first_name    + '</h5></td><td><h5>';
@@ -1730,6 +1743,8 @@ $(document).ready(function() {
                     } else {
                         group_users_row +='<td><a href="' + item.social_link + '" target="_blank">' + item.social_link + '</a></td>';
                     }
+                    group_users_row += '<td><h5>' + item.email + '</h5></td>';
+
 
                     group_users_row += '<td><button type="button" class="btn btn-info btn-sm"   name="btns_group_user_info"   value="'  +  item.id + '"  > <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></td>';
                     group_users_row += '<td><button type="button" class="btn btn-danger btn-sm" name="btns_group_user_delete" value="'  +  item.id + '"  data-toggle="modal" data-target="#modal_group_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
@@ -1739,7 +1754,7 @@ $(document).ready(function() {
                 group_users_row += '</tbody></table';
                 $('#table_group_users') .empty();
                 $('#table_group_users').append(group_users_row);
-                $('#table_group_users').bsTable(undefined, false, undefined, undefined, true);
+                $('#table_group_users').bsTable(undefined, true, undefined, undefined, true);
 
             },
             failure: function(errMsg) {
