@@ -132,13 +132,15 @@ $(document).ready(function() {
     });
 
 
+    var city = {};
+    var couintry = {};
     var user_reg_info = {
         first_name:      null,
         last_name:       null,
         sex:             null,
         bdate:           null,
-        city:            null,
-        country:         null,
+        city:            city,
+        country:         couintry,
         photo_200:       null,
         home_phone:      null,
         followers_count: null,
