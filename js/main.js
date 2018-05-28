@@ -90,13 +90,16 @@ $(document).ready(function() {
         }
     }, 100);
 
-    function fbLogIn(){
+    $('#btn_fb_log_in').click(function (){
         FB.login(function (response) {
             console.log(response);
         });
-    }
+    });
 
     function ifLogin()  {
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
         //console.log(cookie_token);
         if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
             start();

@@ -30,8 +30,11 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="542">
-              <caret line="108" column="9" lean-forward="true" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
+            <state relative-caret-position="30">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+              <folding>
+                <element signature="e#2929#3794#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -48,8 +51,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="67" column="31" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
+            <state relative-caret-position="647">
+              <caret line="1476" lean-forward="true" selection-start-line="1476" selection-end-line="1476" />
               <folding>
                 <element signature="n#head#0;n#html#0;n#!!top" />
                 <element signature="e#2744#2965#0" />
@@ -418,8 +421,8 @@
         <option value="$USER_HOME$/Downloads/Telegram Desktop/v1.26.05.2018/index.html" />
         <option value="$USER_HOME$/Downloads/Telegram Desktop/v3.26.05.2018/index.html" />
         <option value="$PROJECT_DIR$/css/main.css" />
-        <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/main.js" />
       </list>
     </option>
   </component>
@@ -622,7 +625,7 @@
       <workItem from="1527419903357" duration="2961000" />
       <workItem from="1527425456301" duration="3471000" />
       <workItem from="1527478587429" duration="3709000" />
-      <workItem from="1527492205552" duration="1503000" />
+      <workItem from="1527492205552" duration="1753000" />
     </task>
     <task id="LOCAL-00001" summary="test 1">
       <created>1527346092981</created>
@@ -677,11 +680,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="337216000" />
+    <option name="totallyTimeSpent" value="337466000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="985" y="52" width="935" height="1028" extended-state="4" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47761193" weight="0.30921054" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -2442,15 +2444,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="108" column="9" lean-forward="true" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#2929#3794#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="67" column="31" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
+        <state relative-caret-position="647">
+          <caret line="1476" lean-forward="true" selection-start-line="1476" selection-end-line="1476" />
           <folding>
             <element signature="n#head#0;n#html#0;n#!!top" />
             <element signature="e#2744#2965#0" />
