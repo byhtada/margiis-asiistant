@@ -102,7 +102,7 @@ $(document).ready(function() {
             }
 
             },
-            {scope: 'public_profile, email, user_link, user_location'});
+            {scope: 'public_profile, email'});
     });
 
     function ifLogin()  {
