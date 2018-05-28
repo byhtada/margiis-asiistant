@@ -4,7 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/index.html" line="1052" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="1" />
+    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="1">
+      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -341,11 +343,10 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="94" selection-start-line="94" selection-end-line="193" />
+            <state relative-caret-position="134">
+              <caret line="1637" column="34" lean-forward="true" selection-start-line="1637" selection-start-column="34" selection-end-line="1637" selection-end-column="34" />
               <folding>
                 <element signature="e#4466#4950#0" />
-                <element signature="e#4994#5975#0" />
               </folding>
             </state>
           </provider>
@@ -362,7 +363,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>day_date</find>
       <find>class=&quot;btn-group&quot;</find>
       <find>btn_pay_card</find>
       <find>payment_header</find>
@@ -372,19 +372,18 @@
       <find>btn_pay_currency</find>
       <find>setUsers</find>
       <find>btn_edit_user</find>
-      <find />
+      <find>.sort {|f, s| f.day_num &lt;=&gt; s.day_num }</find>
       <find>field_kirtan_day_target</find>
       <find>modal_edit_user</find>
-      <find />
+      <find>Ссылка ВК</find>
       <find>user_marafon_reg</find>
       <find>PUT</find>
       <find>messenger_link</find>
       <find>prop</find>
       <find>prop(</find>
       <find>reg_user</find>
-      <find>timerId</find>
       <find>.modal('hide');</find>
-      <find />
+      <find>Я оплатил и отправил</find>
       <find>checkout</find>
       <find>div_checkout</find>
       <find>reg_user_confirm_payment</find>
@@ -392,6 +391,8 @@
       <find>user_age_range</find>
       <find>fb-root</find>
       <find>try_find_user</find>
+      <find>JSON</find>
+      <find>timerId</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -615,7 +616,7 @@
       <workItem from="1527425456301" duration="3471000" />
       <workItem from="1527478587429" duration="3709000" />
       <workItem from="1527492205552" duration="7418000" />
-      <workItem from="1527506501846" duration="2053000" />
+      <workItem from="1527506501846" duration="2310000" />
     </task>
     <task id="LOCAL-00001" summary="test 1">
       <created>1527346092981</created>
@@ -670,7 +671,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="345184000" />
+    <option name="totallyTimeSpent" value="345441000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="935" y="52" width="972" height="1028" extended-state="4" />
@@ -2753,11 +2754,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="94" selection-start-line="94" selection-end-line="193" />
+        <state relative-caret-position="134">
+          <caret line="1637" column="34" lean-forward="true" selection-start-line="1637" selection-start-column="34" selection-end-line="1637" selection-end-column="34" />
           <folding>
             <element signature="e#4466#4950#0" />
-            <element signature="e#4994#5975#0" />
           </folding>
         </state>
       </provider>

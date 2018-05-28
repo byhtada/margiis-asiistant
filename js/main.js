@@ -1636,8 +1636,8 @@ $(document).ready(function() {
             },
             success: function(data){
                 console.log(data);
-                $('#group_name_edit').val(data.group_name);
-                $('#group_messenger_link_edit').val(data.messenger_link);
+                $('#group_name_edit').val(data.group.group_name);
+                $('#group_messenger_link_edit').val(data.group.messenger_link);
 
             },
             failure: function(errMsg) {
