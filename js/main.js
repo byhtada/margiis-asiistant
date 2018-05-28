@@ -73,37 +73,8 @@ $(document).ready(function() {
         })
     });
 
-    var timerId = setInterval(function() {
-        console.log( "тик" );
-        var url_string = window.location.href; //window.location.href
-        var url = new URL(url_string);
-        var params = parse_query_string(url.hash.replace('#', ''));
-        if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
-            clearInterval(timerId);
-            var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,timezone";
-            var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
-            jsonp(vk_api_query, function(userInfo) {
-                console.log(userInfo.response[0]);
-                userInfo = userInfo.response[0];
-                try_find_user(userInfo, params, "vk")
-            });
-        }
-    }, 100);
+    var timerId;
 
-    $('#btn_fb_log_in').click(function (){
-        FB.login(function (response) {
-            console.log(response);
-            if (response.status == "connected"){
-
-                FB.api('/me?fields=id,first_name,last_name,age_range,link,gender,locale,picture,timezone', function (userData){
-                    console.log(userData);
-
-                })
-            }
-
-            },
-            {scope: 'public_profile, email'});
-    });
 
     function ifLogin()  {
 
@@ -159,6 +130,56 @@ $(document).ready(function() {
         }
 
     });
+
+
+    var user_reg_info = {
+        first_name:      null,
+        last_name:       null,
+        sex:             null,
+        bdate:           null,
+        city:            null,
+        country:         null,
+        photo_200:       null,
+        home_phone:      null,
+        followers_count: null,
+        timezone:        null
+    }
+
+
+    $('#btn_fb_log_in').click(function (){
+        FB.login(function (response) {
+                console.log(response);
+                if (response.status == "connected"){
+                    FB.api('/me?fields=id,first_name,last_name,age_range,link,gender,locale,picture,timezone', function (userData){
+                        console.log(userData);
+                        user_reg_info[first_name] = userData.first_name;
+                        user_reg_info[last_name]  = userData.last_name;
+
+                       // try_find_user(userInfo, params, "fb")
+                    });
+                }
+            },
+            {scope: 'public_profile, email'});
+    });
+    $('#btn_vk_log_in').click(function (){
+        timerId = setInterval(function() {
+            console.log( "тик" );
+            var url_string = window.location.href; //window.location.href
+            var url = new URL(url_string);
+            var params = parse_query_string(url.hash.replace('#', ''));
+            if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
+                clearInterval(timerId);
+                var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,timezone";
+                var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
+                jsonp(vk_api_query, function(userInfo) {
+                    console.log(userInfo.response[0]);
+                    userInfo = userInfo.response[0];
+                    try_find_user(userInfo, params, "vk")
+                });
+            }
+        }, 100);
+    });
+
     $('#btn_exit, #btn_user_exit').click(function () {
         setCookie(cookie_name_token);
         cookie_token = getCookie(cookie_name_token);
@@ -166,7 +187,7 @@ $(document).ready(function() {
     });
 
 
-    function try_find_user(userInfo, params, social){
+    function try_find_user(userInfo, params, social_name){
         console.log("try find user");
         $.ajax({
             type: "GET",
@@ -187,7 +208,7 @@ $(document).ready(function() {
                     ifLogin();
                 } else {
                     console.log("user not founded");
-                    reg_user(userInfo, params.email, social, params.user_id, params.access_token);
+                    reg_user(userInfo, params.email, social_name, params.user_id, params.access_token);
                 }
             },
             failure: function (errMsg) {
@@ -203,17 +224,17 @@ $(document).ready(function() {
         var person  = {  social_name: social_name,
             social_id:    social_id,
             access_token: access_token,
-            email:      email,
-            first_name: userInfo.first_name,
-            last_name:  userInfo.last_name,
-            sex:        userInfo.sex,
-            bdate:      userInfo.bdate,
-            city:       userInfo.city.title,
-            country:    userInfo.country.title,
-            photo:      userInfo.photo_200,
-            phone_home: userInfo.home_phone,
+            email:           email,
+            first_name:      userInfo.first_name,
+            last_name:       userInfo.last_name,
+            sex:             userInfo.sex,
+            bdate:           userInfo.bdate,
+            city:            userInfo.city.title,
+            country:         userInfo.country.title,
+            photo:           userInfo.photo_200,
+            phone_home:      userInfo.home_phone,
             followers_count: userInfo.followers_count,
-            hour_tail: userInfo.timezone
+            hour_tail:       userInfo.timezone
         };
         console.log(JSON.stringify(person));
 
