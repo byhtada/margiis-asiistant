@@ -1,4 +1,13 @@
 $(document).ready(function() {
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v3.0&appId=309469549587161&autoLogAppEvents=1';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
     $.ajaxSetup({
         error: function (data, textStatus, jqXHR) {
             // console.log(data);
@@ -87,6 +96,12 @@ $(document).ready(function() {
         }
     }, 100);
     function ifLogin()  {
+
+        FB.getLoginStatus(function(response) {
+            console.log(response);
+            statusChangeCallback(response);
+
+        });
         //console.log(cookie_token);
         if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
             start();
@@ -96,6 +111,12 @@ $(document).ready(function() {
             $('#page_admin_main').hide();
             $("#page_login")     .show();
         }
+    }
+
+    function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
     }
     ifLogin();
     $('#btn_login').click(function () {
@@ -1300,7 +1321,7 @@ $(document).ready(function() {
         $.each(diary, function (i, item) {
             diary_row += '<tr>';
             diary_row += '<td><h5>' + item.day_num + '</h5></td>';
-            diary_row += '<td><h5><a href="'+ item.day_materials +'" class="reg_link" target="_blank">' + item.day_materials + '</a></h5></td>';
+            diary_row += '<td><h5><a href="'+ item.day_materials +'" class="reg_link" target="_blank">' + item.day_description + '</a></h5></td>';
             diary_row += '<td><h5>' + item.day_progress + '</h5></td>';
             diary_row += '<td><h5>' + item.day_comment + '</h5></td>';
             diary_row += '</tr>';
@@ -1496,8 +1517,9 @@ $(document).ready(function() {
             groups_row += item.group_start   + '</h5></td><td><h5>';
             groups_row += item.group_curator + '</h5></td><td><h5>';
             groups_row += item.group_users   + '</h5></td>';
-            groups_row += '<td><button type="button" class="btn btn-info   btn-sm" name="btns_group_info"   value="'  +  item.group_id + '"  > <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></td>';
-            groups_row += '<td><button type="button" class="btn btn-danger btn-sm" name="btns_group_delete" value="'  +  item.group_id + '"  data-toggle="modal" data-target="#modal_group_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
+            groups_row += '<td><button type="button" class="btn btn-info    btn-sm" name="btns_group_info"   value="'  +  item.group_id + '"  > <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></td>';
+            groups_row += '<td><button type="button" class="btn btn-warning btn-sm" name="btns_group_edit"   value="'  +  item.group_id + '"  data-toggle="modal" data-target="#modal_group_edit"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
+            groups_row += '<td><button type="button" class="btn btn-danger  btn-sm" name="btns_group_delete" value="'  +  item.group_id + '"  data-toggle="modal" data-target="#modal_group_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
             groups_row += '</tr>';
 
             groups_selector  += '<option data-tokens="'+ item.group_name +'" name="group_select"      value="' + item.group_id + '">' + item.group_name  + '</option>';
@@ -1562,6 +1584,55 @@ $(document).ready(function() {
             });
         }
     });
+
+    $(document).on('click', '[name="btns_group_edit"]', function() {
+        $('#btn_group_edit').val($(this).val());
+        $.ajax({
+            type: "GET",
+            url: api_url_full,
+            data: { query_info: "group_info", group_id: $(this).val()},
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                console.log(data);
+                $('#group_name_edit').val(data.group_name);
+                $('#group_messenger_link_edit').val(data.messenger_link);
+
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+
+    });
+    $('#btn_group_edit').click(function () {
+        $.ajax({
+            type: "GET",
+            url: api_url_full,
+            data: { query_update:    "group_edit",
+                    group_id:        $(this).val(),
+                    group_name:      $('#group_name_edit').val(),
+                    group_messenger: $('#group_messenger_link_edit').val()
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                //console.log(data);
+                hide_all_in_admin();
+                $('#page_groups')  .show();
+                update_admin_info();
+                $('#modal_group_edit') .modal('hide');
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
     $(document).on('click', '[name="btns_group_delete"]', function() {
         $('#btn_group_delete').val($(this).val());
     });

@@ -59,6 +59,27 @@
 <!--[if lte IE 9]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
 <![endif]-->
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '309469549587161',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v3.0'
+        });
+
+        FB.AppEvents.logPageView();
+
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 
 
 <div id="page_login" hidden>
@@ -85,6 +106,10 @@
                 <h4 align="center">или</h4>
                 <br/>
 
+                <div id="fb-root"></div>
+                <div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+
+
                 <form>
                     <div class="form-group">
                         <label for="login_login">Логин</label>
@@ -96,7 +121,7 @@
                     </div>
 
                     <button type="button" id="btn_login"    class="btn btn-success btn-block">Вход</button>
-                    <button id="btn_modal_register_self" type="button" class="btn btn-link btn-block"  data-toggle="modal" data-target="#modal_register_self">Регистрация</button>
+                  <!--  <button id="btn_modal_register_self" type="button" class="btn btn-link btn-block"  data-toggle="modal" data-target="#modal_register_self">Регистрация</button>-->
 
 
                 </form>
@@ -230,6 +255,26 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
                     <button id="btn_group_add" type="button" class="btn btn-success">Сформировать группу</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal_group_edit" tabindex="-1" role="dialog" aria-labelledby="modal_label_group_edit">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modal_label_group_edit">Редактирование группы</h4>
+                </div>
+                <div class="modal-body">
+                    <table style="border: 0">
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Название группы</h5></td>  <td class="db_row_input_admin"><input type="text" class="form-control" id="group_name_edit"  placeholder=""></td></tr>
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Ссылка на чат</h5></td>    <td class="db_row_input_admin"><input type="text" class="form-control" id="group_messenger_link_edit"  placeholder=""></td></tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"                     class="btn btn-default" data-dismiss="modal">Отмена</button>
+                    <button id="btn_group_edit" type="button" class="btn btn-warning">Сохранить</button>
                 </div>
             </div>
         </div>
