@@ -27,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="64" column="27" lean-forward="true" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
+            <state relative-caret-position="453">
+              <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
               <folding>
                 <element signature="n#head#0;n#html#0;n#!!top" />
                 <element signature="e#2744#2965#0" />
@@ -341,11 +341,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
+            <state relative-caret-position="226">
+              <caret line="104" column="58" selection-start-line="104" selection-start-column="44" selection-end-line="104" selection-end-column="58" />
               <folding>
                 <element signature="e#430#1195#0" />
                 <element signature="e#2030#2172#0" />
@@ -379,10 +379,10 @@
       <find>btn_pay_currency</find>
       <find>setUsers</find>
       <find>btn_edit_user</find>
-      <find>.sort {|f, s| f.day_num &lt;=&gt; s.day_num }</find>
+      <find />
       <find>field_kirtan_day_target</find>
       <find>modal_edit_user</find>
-      <find>Ссылка ВК</find>
+      <find />
       <find>user_marafon_reg</find>
       <find>PUT</find>
       <find>messenger_link</find>
@@ -392,7 +392,7 @@
       <find>timerId</find>
       <find>.modal('hide');</find>
       <find>try_find_user</find>
-      <find>Я оплатил и отправил</find>
+      <find />
       <find>checkout</find>
       <find>div_checkout</find>
       <find>reg_user_confirm_payment</find>
@@ -415,8 +415,8 @@
         <option value="$USER_HOME$/Downloads/Telegram Desktop/v1.26.05.2018/index.html" />
         <option value="$USER_HOME$/Downloads/Telegram Desktop/v3.26.05.2018/index.html" />
         <option value="$PROJECT_DIR$/css/main.css" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/main.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -619,7 +619,7 @@
       <workItem from="1527419903357" duration="2961000" />
       <workItem from="1527425456301" duration="3471000" />
       <workItem from="1527478587429" duration="3709000" />
-      <workItem from="1527492205552" duration="3832000" />
+      <workItem from="1527492205552" duration="4142000" />
     </task>
     <task id="LOCAL-00001" summary="test 1">
       <created>1527346092981</created>
@@ -674,7 +674,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="339545000" />
+    <option name="totallyTimeSpent" value="339855000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="985" y="52" width="935" height="1028" extended-state="4" />
@@ -2437,10 +2437,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="104" column="58" selection-start-line="104" selection-start-column="44" selection-end-line="104" selection-end-column="58" />
+          <folding>
+            <element signature="e#430#1195#0" />
+            <element signature="e#2030#2172#0" />
+            <element signature="e#2929#3794#0" />
+            <element signature="e#4344#4454#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="64" column="27" lean-forward="true" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
+        <state relative-caret-position="453">
+          <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
           <folding>
             <element signature="n#head#0;n#html#0;n#!!top" />
             <element signature="e#2744#2965#0" />
@@ -2745,19 +2758,6 @@
             <element signature="n#tbody#0;n#table#0;n#div#3;n#div#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#3;n#div#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#3;n#div#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
-          <folding>
-            <element signature="e#430#1195#0" />
-            <element signature="e#2030#2172#0" />
-            <element signature="e#2929#3794#0" />
-            <element signature="e#4344#4454#0" />
           </folding>
         </state>
       </provider>
