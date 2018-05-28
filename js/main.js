@@ -91,8 +91,17 @@ $(document).ready(function() {
     }, 100);
 
     $('#btn_fb_log_in').click(function (){
-        FB.login(function (response)
-            {console.log(response);},
+        FB.login(function (response) {
+            console.log(response);
+            if (response.status == "connected"){
+
+                FB.api('/me?fields=id,name,first_name,last_name,age_range,link,gender,locale,picture,timezone', function (userData){
+                    console.log(userData);
+
+                })
+            }
+
+            },
             {scope: 'public_profile, email'});
     });
 
