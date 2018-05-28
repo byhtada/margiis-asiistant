@@ -143,7 +143,7 @@ $(document).ready(function() {
         home_phone:      null,
         followers_count: null,
         timezone:        null
-    }
+    };
 
 
     $('#btn_fb_log_in').click(function (){
@@ -152,8 +152,8 @@ $(document).ready(function() {
                 if (response.status == "connected"){
                     FB.api('/me?fields=id,first_name,last_name,age_range,link,gender,locale,picture,timezone', function (userData){
                         console.log(userData);
-                        user_reg_info[first_name] = userData.first_name;
-                        user_reg_info[last_name]  = userData.last_name;
+                        user_reg_info["first_name"] = userData.first_name;
+                        user_reg_info["last_name"]  = userData.last_name;
 
                        // try_find_user(userInfo, params, "fb")
                     });
