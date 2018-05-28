@@ -102,7 +102,7 @@ $(document).ready(function() {
             }
 
             },
-            {scope: 'public_profile, email, user_age_range'});
+            {scope: 'public_profile, email, user_link, user_location'});
     });
 
     function ifLogin()  {
