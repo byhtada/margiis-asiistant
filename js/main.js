@@ -95,7 +95,7 @@ $(document).ready(function() {
             console.log(response);
             if (response.status == "connected"){
 
-                FB.api('/me?fields=id,name,first_name,last_name,age_range,link,gender,locale,picture,timezone', function (userData){
+                FB.api('/me?fields=id,first_name,last_name,user_age_range,user_link,gender,locale,picture,timezone', function (userData){
                     console.log(userData);
 
                 })
