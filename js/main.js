@@ -145,17 +145,27 @@ $(document).ready(function() {
         timezone:        null
     };
 
+    var user_params = {
+        user_id:  null,
+        access_token:  null,
+        email: null
+    };
 
     $('#btn_fb_log_in').click(function (){
         FB.login(function (response) {
                 console.log(response);
                 if (response.status == "connected"){
-                    FB.api('/me?fields=id,first_name,last_name,age_range,link,gender,locale,picture,timezone', function (userData){
+                    FB.api('/me?fields=id,first_name,last_name,email,age_range,link,gender,locale,picture,timezone', function (userData){
                         console.log(userData);
                         user_reg_info["first_name"] = userData.first_name;
                         user_reg_info["last_name"]  = userData.last_name;
+                        console.log("user_reg_info " + user_reg_info);
+                        user_params["user_id"] = response.authResponse.userID;
+                        user_params["access_token"] = response.authResponse.access_token;
+                        user_params["email"] = userData.email;
+                        console.log("user_params " + user_params);
 
-                       // try_find_user(userInfo, params, "fb")
+                        try_find_user(user_reg_info, user_params, "fb")
                     });
                 }
             },
