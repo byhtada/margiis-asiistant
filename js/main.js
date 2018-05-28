@@ -159,11 +159,11 @@ $(document).ready(function() {
                         console.log(userData);
                         user_reg_info["first_name"] = userData.first_name;
                         user_reg_info["last_name"]  = userData.last_name;
-                        console.log("user_reg_info " + user_reg_info);
+                        console.log("user_reg_info " + JSON.stringify(user_reg_info));
                         user_params["user_id"] = response.authResponse.userID;
                         user_params["access_token"] = response.authResponse.access_token;
                         user_params["email"] = userData.email;
-                        console.log("user_params " + user_params);
+                        console.log("user_params " + JSON.stringify(user_params));
 
                         try_find_user(user_reg_info, user_params, "fb")
                     });
