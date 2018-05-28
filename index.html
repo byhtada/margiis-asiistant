@@ -59,32 +59,7 @@
 <!--[if lte IE 9]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
 <![endif]-->
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '309469549587161',
-            cookie     : true,
-            xfbml      : true,
-            version    : 'v3.0'
-        });
 
-        FB.AppEvents.logPageView();
-
-    };
-
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-    FB.getLoginStatus(function(response) {
-        console.log(response);
-        statusChangeCallback(response);
-    });
-</script>
 
 
 <div id="page_login" hidden>
@@ -114,6 +89,9 @@
                 <div id="fb-root"></div>
                 <div class="fb-login-button"
                      data-max-rows="1" data-size="medium" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+
+
+                <button type="button" onclick="fbLogIn()" class="btn btn-default" data-dismiss="modal">FB login</button>
 
 
                 <form>
@@ -1471,7 +1449,28 @@
 
 <!-- Latest compiled and minified JavaScript -->
 
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '309469549587161',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v2.11'
+        });
 
+        FB.AppEvents.logPageView();
+
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+</script>
 
 </body>
 
