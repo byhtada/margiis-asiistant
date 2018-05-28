@@ -97,9 +97,7 @@ $(document).ready(function() {
     });
 
     function ifLogin()  {
-        FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
-        });
+
         //console.log(cookie_token);
         if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
             start();
