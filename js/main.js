@@ -97,11 +97,7 @@ $(document).ready(function() {
     }, 100);
     function ifLogin()  {
 
-        FB.getLoginStatus(function(response) {
-            console.log(response);
-            statusChangeCallback(response);
 
-        });
         //console.log(cookie_token);
         if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
             start();
