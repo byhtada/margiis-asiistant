@@ -31,7 +31,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .pay_confirm_input   {width:  100%; }
 .reg_link            {color: rgb(255, 127, 76)}
 
-.pay_other_method_row {border-top: 33px;}
+.pay_other_method_row {margin-top: 33px;}
 
 #table_question_detox, #detox_settings, #table_question_therapy {
     padding: 15px;
