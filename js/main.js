@@ -91,9 +91,9 @@ $(document).ready(function() {
     }, 100);
 
     $('#btn_fb_log_in').click(function (){
-        FB.login(function (response) {
-            console.log(response);
-        });
+        FB.login(function (response)
+            {console.log(response);},
+            {scope: 'public_profile, email'});
     });
 
     function ifLogin()  {
