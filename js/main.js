@@ -284,7 +284,7 @@ $(document).ready(function() {
                 console.log(JSON.stringify(data));
                 console.log(JSON.stringify(data.token));
 
-                if (data.token !== null) {
+                if (typeof data.token !== 'undefined') {
                     console.log("user founded");
                     setCookie(cookie_name_token, data.token, {expires: 36000000000000});
                     setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
