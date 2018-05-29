@@ -174,7 +174,7 @@ $(document).ready(function() {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 success: function (data) {
-                    //console.log(data);
+                    console.log(data);
 
 
                     hide_all_in_admin();
