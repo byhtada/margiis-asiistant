@@ -72,7 +72,29 @@ $(document).ready(function() {
             }
         })
     });
+    $ipsp("checkout").config({
+        "wrapper": "#checkout_2",
+        "styles": {
+            "body": {
+                "overflow": "hidden"
+            }
+        }
+    }).scope(function () {
+        this.width("100%");
+        this.height(480);
+        this.action("resize", function (data) {
+            this.setCheckoutHeight(data.height);
+        });
+        this.loadUrl(url);
+        this.addCallback(function(data,type){
+            console.log(type);
+            console.log(data);
 
+            if (typeof data.send_data !== 'undefined' && data.final ) {
+                alert("Платеж успешно завершен. Благодарим за поддержку!")
+            }
+        })
+    });
     var  timerId = setInterval(function() {
         console.log( "тик" );
         var url_string = window.location.href; //window.location.href
@@ -487,6 +509,30 @@ $(document).ready(function() {
                 }
             })
         });
+        $ipsp("checkout").config({
+            "wrapper": "#checkout_2",
+            "styles": {
+                "body": {
+                    "overflow": "hidden"
+                }
+            }
+        }).scope(function () {
+            this.width("100%");
+            this.height(480);
+            this.action("resize", function (data) {
+                this.setCheckoutHeight(data.height);
+            });
+            this.loadUrl(url);
+            this.addCallback(function(data,type){
+                console.log(type);
+                console.log(data);
+
+                if (typeof data.send_data !== 'undefined' && data.final ) {
+                    alert("Платеж успешно завершен. Благодарим за поддержку!")
+                }
+            })
+        });
+
 
     });
     function reg_user_confirm_payment(send_data){
@@ -530,7 +576,7 @@ $(document).ready(function() {
     $('#btn_reg_no_money').click(function (){
         var blank = {
             "currency" : 0 ,
-            "amount" : -1 ,
+            "amount" : -100 ,
             "masked_card" : 0 ,
             "sender_email" : 0 ,
             "order_time" : 0
@@ -621,12 +667,16 @@ $(document).ready(function() {
             case "nav_user_settings":
                 $('#page_user_settings').show();
                 break;
+            case "nav_user_support":
+                $('#page_user_support').show();
+                break;
         }
     });
     function hide_all_in_user() {
         $('#page_user_programm').hide();
         $('#page_user_diary').hide();
         $('#page_user_settings').hide();
+        $('#page_user_support').hide();
     }
     function update_user_info() {
         try {
@@ -650,6 +700,8 @@ $(document).ready(function() {
 
                     $('#wait_messenger_link, #programm_messenger_link, #settings_messenger_link').attr("href", data.messenger_link);
                     $('#wait_messenger_link, #programm_messenger_link, #settings_messenger_link').text(data.messenger_link);
+
+                    $('#filed_7day').prop("checked", data.user.show_practic_7);
 
                     if (data.marafon_day > -998 && data.marafon_day < 1) {
                         $('#user_marafon_wait').show();
@@ -1018,7 +1070,10 @@ $(document).ready(function() {
         $('#user_marafon_start').show();
     }
     $('#btn_user_previus_day, #btn_user_next_day').click(function() {
-        var day_num = $(this).val();
+        getDayInfo($(this).val());
+
+    });
+    function getDayInfo(day_num){
         if (day_num > 0 && day_num < 61) {
             $.ajax({
                 type: "GET",
@@ -1044,7 +1099,7 @@ $(document).ready(function() {
                 }
             });
         }
-    });
+    }
     $('#filed_no_snacking_fact, #filed_diet, #filed_tongue_day, #filed_tongue_night, #filed_phisic, #filed_therapy, #filed_asana, #filed_psy, #filed_half_bath_day, #filed_half_bath_night').change(function() {
         userSaveDay();
     });
@@ -1373,9 +1428,9 @@ $(document).ready(function() {
         diary_row    += '<thead><tr> <th>День</th> <th>Описание</th> <th>Выполнено</th><th>Запись</th></tr></thead><tbody>';
         $.each(diary, function (i, item) {
             diary_row += '<tr>';
-            diary_row += '<td><h5>' + item.day_num + '</h5></td>';
+            diary_row += '<td><h5 align="center"><a href="#" class="diary_day reg_link" name="' + item.day_num +'">' + item.day_num + '</a></h5></td>';
             diary_row += '<td><h5><a href="'+ item.day_materials +'" class="reg_link" target="_blank">' + item.day_description + '</a></h5></td>';
-            diary_row += '<td><h5>' + item.day_progress + '</h5></td>';
+            diary_row += '<td><h5 align="center">' + item.day_progress + '</h5></td>';
             diary_row += '<td><h5>' + item.day_comment + '</h5></td>';
             diary_row += '</tr>';
         });
@@ -1383,6 +1438,13 @@ $(document).ready(function() {
         $('#user_diary').empty();
         $('#user_diary').append(diary_row);
     }
+
+    $(document).on('click', '.diary_day', function () {
+        console.log($(this).attr("name"));
+        hide_all_in_user();
+        $('#page_user_programm').show();
+        getDayInfo($(this).attr("name"));
+    });
 
 //Settings
     $('#btn_water_edit').click(function (){
@@ -1554,6 +1616,26 @@ $(document).ready(function() {
         });
     });
 
+
+    $('#btn_7day_edit').click(function() {
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_update: "user_change_7day_practic",
+                show_practic: $('#filed_7day').is(':checked')
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
 
 /////////////////////////////////////  ADMIN  ////////////////////////////////////////////////////////
 
