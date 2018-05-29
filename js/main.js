@@ -690,7 +690,7 @@ $(document).ready(function() {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 success: function (data) {
-                    //              console.log(data);
+                    console.log(data);
                     //setUserDiary(data.user_diary);
                     day_new = data.marafon_day;
 
@@ -705,6 +705,8 @@ $(document).ready(function() {
                     $('#filed_7day').prop("checked", data.user.show_practic_7);
 
                     if (data.marafon_day > -998 && data.marafon_day < 1) {
+                        console.log("wait");
+
                         $('#user_marafon_wait').show();
                         $('#user_marafon_wait_text').text("Ожидайте старта марафона " + data.marafon_day_start);
                         if (data.marafon_day == 0){
@@ -713,12 +715,15 @@ $(document).ready(function() {
 
                     } else if (data.marafon_day < -998) {
                         if (data.user.messenger == null) {
+                            console.log("reg");
                             $('#user_marafon_reg').show();
                         } else {
+                            console.log("pay");
                             $('#user_marafon_pay').show();
                         }
 
                     } else if (data.marafon_day > 0) {
+                        console.log("go");
                         setUserMarafonDay(data.marafon_info_today, data.marafon_day);
                     }
 

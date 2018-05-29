@@ -281,8 +281,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="284" column="53" selection-start-line="284" selection-start-column="53" selection-end-line="284" selection-end-column="53" />
+            <state relative-caret-position="285">
+              <caret line="708" lean-forward="true" selection-start-line="708" selection-end-line="708" />
               <folding>
                 <element signature="e#50#815#0" />
                 <element signature="e#102#809#0" />
@@ -301,7 +301,6 @@
                 <element signature="e#1914#1974#0" />
                 <element signature="e#2048#2497#0" />
                 <element signature="e#2183#2487#0" />
-                <element signature="e#23791#28327#0" />
               </folding>
             </state>
           </provider>
@@ -574,7 +573,7 @@
       <workItem from="1527506501846" duration="2310000" />
       <workItem from="1527527157059" duration="12573000" />
       <workItem from="1527563136854" duration="2097000" />
-      <workItem from="1527575432176" duration="258000" />
+      <workItem from="1527575432176" duration="544000" />
     </task>
     <task id="LOCAL-00001" summary="test 1">
       <created>1527346092981</created>
@@ -629,20 +628,20 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="360369000" />
+    <option name="totallyTimeSpent" value="360655000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="673" y="52" width="1220" height="1028" extended-state="4" />
+    <frame x="878" y="52" width="1015" height="1028" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47761193" visible="true" weight="0.116959065" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47761193" visible="true" weight="0.14112903" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32868218" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32972974" />
       <window_info id="Structure" order="1" sideWeight="0.52238804" side_tool="true" weight="0.19320215" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.20432432" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.20432432" />
       <window_info id="Favorites" order="2" sideWeight="0.50643086" side_tool="true" weight="0.10193452" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -674,7 +673,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/js/main.js</url>
-          <line>979</line>
+          <line>982</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
       </breakpoints>
@@ -2293,8 +2292,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="284" column="53" selection-start-line="284" selection-start-column="53" selection-end-line="284" selection-end-column="53" />
+        <state relative-caret-position="285">
+          <caret line="708" lean-forward="true" selection-start-line="708" selection-end-line="708" />
           <folding>
             <element signature="e#50#815#0" />
             <element signature="e#102#809#0" />
@@ -2313,7 +2312,6 @@
             <element signature="e#1914#1974#0" />
             <element signature="e#2048#2497#0" />
             <element signature="e#2183#2487#0" />
-            <element signature="e#23791#28327#0" />
           </folding>
         </state>
       </provider>
