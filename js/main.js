@@ -283,7 +283,7 @@ $(document).ready(function() {
                 console.log("try find user");
                 console.log(JSON.stringify(data));
 
-                if (data.user !== null) {
+                if (data.token !== null) {
                     console.log("user founded");
                     setCookie(cookie_name_token, data.token, {expires: 36000000000000});
                     setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
