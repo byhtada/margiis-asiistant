@@ -282,6 +282,7 @@ $(document).ready(function() {
             success: function (data) {
                 console.log("try find user");
                 console.log(JSON.stringify(data));
+                console.log(JSON.stringify(data.token));
 
                 if (data.token !== null) {
                     console.log("user founded");
