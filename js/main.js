@@ -74,38 +74,38 @@ $(document).ready(function() {
     });
 
 
-    var button = $ipsp.get("button");
-    button.setHost("api.fondy.eu");
-    button.setProtocol("https");
-    button.setMerchantId(1409532);
-    button.setAmount("","RUB",false);
-    button.setResponseUrl("https://byhtada.github.io/hyls_client/");
-    button.addParam("lang","ru");
-    button.addParam("order_desc","Участие в марафоне HYLS");
-    var url = button.getUrl();
-    $ipsp("checkout").config({
-        "wrapper": "#checkout_2",
-        "styles": {
-            "body": {
-                "overflow": "hidden"
-            }
-        }
-    }).scope(function () {
-        this.width("100%");
-        this.height(480);
-        this.action("resize", function (data) {
-            this.setCheckoutHeight(data.height);
-        });
-        this.loadUrl(url);
-        this.addCallback(function(data,type){
-            console.log(type);
-            console.log(data);
-
-            if (typeof data.send_data !== 'undefined' && data.final ) {
-                alert("Платеж успешно завершен. Благодарим за поддержку!")
-            }
-        })
-    });
+   // var button = $ipsp.get("button");
+   // button.setHost("api.fondy.eu");
+   // button.setProtocol("https");
+   // button.setMerchantId(1409532);
+   // button.setAmount("","RUB",false);
+   // button.setResponseUrl("https://byhtada.github.io/hyls_client/");
+   // button.addParam("lang","ru");
+   // button.addParam("order_desc","Участие в марафоне HYLS");
+   // var url = button.getUrl();
+   // $ipsp("checkout").config({
+   //     "wrapper": "#checkout_2",
+   //     "styles": {
+   //         "body": {
+   //             "overflow": "hidden"
+   //         }
+   //     }
+   // }).scope(function () {
+   //     this.width("100%");
+   //     this.height(480);
+   //     this.action("resize", function (data) {
+   //         this.setCheckoutHeight(data.height);
+   //     });
+   //     this.loadUrl(url);
+   //     this.addCallback(function(data,type){
+   //         console.log(type);
+   //         console.log(data);
+//
+   //         if (typeof data.send_data !== 'undefined' && data.final ) {
+   //             alert("Платеж успешно завершен. Благодарим за поддержку!")
+   //         }
+   //     })
+   // });
 
 
 
@@ -486,10 +486,6 @@ $(document).ready(function() {
 
         }
 
-
-
-
-
         button.setResponseUrl("https://byhtada.github.io/hyls_client/");
         button.addParam("lang","ru");
         button.addParam("order_desc","Участие в марафоне HYLS");
@@ -522,29 +518,29 @@ $(document).ready(function() {
                 }
             })
         });
-        $ipsp("checkout").config({
-            "wrapper": "#checkout_2",
-            "styles": {
-                "body": {
-                    "overflow": "hidden"
-                }
-            }
-        }).scope(function () {
-            this.width("100%");
-            this.height(480);
-            this.action("resize", function (data) {
-                this.setCheckoutHeight(data.height);
-            });
-            this.loadUrl(url);
-            this.addCallback(function(data,type){
-                console.log(type);
-                console.log(data);
-
-                if (typeof data.send_data !== 'undefined' && data.final ) {
-                    alert("Платеж успешно завершен. Благодарим за поддержку!")
-                }
-            })
-        });
+    //    $ipsp("checkout").config({
+    //        "wrapper": "#checkout_2",
+    //        "styles": {
+    //            "body": {
+    //                "overflow": "hidden"
+    //            }
+    //        }
+    //    }).scope(function () {
+    //        this.width("100%");
+    //        this.height(480);
+    //        this.action("resize", function (data) {
+    //            this.setCheckoutHeight(data.height);
+    //        });
+    //        this.loadUrl(url);
+    //        this.addCallback(function(data,type){
+    //            console.log(type);
+    //            console.log(data);
+//
+    //            if (typeof data.send_data !== 'undefined' && data.final ) {
+    //                alert("Платеж успешно завершен. Благодарим за поддержку!")
+    //            }
+    //        })
+    //    });
 
 
     });
