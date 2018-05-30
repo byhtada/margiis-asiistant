@@ -44,7 +44,7 @@ $(document).ready(function() {
     button_reg.addParam("lang","ru");
     button_reg.addParam("order_desc","Участие в марафоне HYLS");
     var url_reg = button_reg.getUrl();
-    $ipsp("checkout_2").config({
+    $ipsp("checkout").config({
         "wrapper": "#checkout",
         "styles": {
             "body": {
