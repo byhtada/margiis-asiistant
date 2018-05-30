@@ -44,7 +44,7 @@ $(document).ready(function() {
     button_reg.addParam("lang","ru");
     button_reg.addParam("order_desc","Участие в марафоне HYLS");
     var url_reg = button_reg.getUrl();
-    $ipsp("checkout").config({
+    $ipsp("checkout_2").config({
         "wrapper": "#checkout",
         "styles": {
             "body": {
@@ -446,14 +446,12 @@ $(document).ready(function() {
         $('#payment_text_no_money')    .hide();
         $('#btn_pay_currency').show();
         $('#div_other_payment').show();
-        $('#div_checkout').show();
 
 
     });
     $(document).on('click', '.pay_currency', function (){
        // console.log($(this).val());
         var currency = $(this).val();
-        $('#div_checkout')        .show();
 
         var button = $ipsp.get("button");
         button.setHost("api.fondy.eu");
