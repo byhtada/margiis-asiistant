@@ -38,7 +38,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
     border-radius: 10px;
     background-color: rgba(70, 216, 70, 0.15)
 }
-#base_settings, #water_settings, #table_question_half_bath {
+.base_settings, #water_settings, #table_question_half_bath {
     padding: 15px;
     border-radius: 10px;
     background-color: rgba(70, 162, 216, 0.15)

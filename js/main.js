@@ -35,15 +35,15 @@ $(document).ready(function() {
   // var api_url_full = "https://0.0.0.0:3000/users";
 
 
-    var button = $ipsp.get("button");
-    button.setHost("api.fondy.eu");
-    button.setProtocol("https");
-    button.setMerchantId(1409532);
-    button.setAmount("","RUB",false);
-    button.setResponseUrl("https://byhtada.github.io/hyls_client/");
-    button.addParam("lang","ru");
-    button.addParam("order_desc","Участие в марафоне HYLS");
-    var url = button.getUrl();
+    var button_reg = $ipsp.get("button");
+    button_reg.setHost("api.fondy.eu");
+    button_reg.setProtocol("https");
+    button_reg.setMerchantId(1409532);
+    button_reg.setAmount("","RUB",false);
+    button_reg.setResponseUrl("https://byhtada.github.io/hyls_client/");
+    button_reg.addParam("lang","ru");
+    button_reg.addParam("order_desc","Участие в марафоне HYLS");
+    var url_reg = button_reg.getUrl();
     $ipsp("checkout").config({
         "wrapper": "#checkout",
         "styles": {
@@ -57,7 +57,7 @@ $(document).ready(function() {
         this.action("resize", function (data) {
             this.setCheckoutHeight(data.height);
         });
-        this.loadUrl(url);
+        this.loadUrl(url_reg);
         this.addCallback(function(data,type){
             console.log(type);
             console.log(data);
@@ -72,6 +72,17 @@ $(document).ready(function() {
             }
         })
     });
+
+
+    var button = $ipsp.get("button");
+    button.setHost("api.fondy.eu");
+    button.setProtocol("https");
+    button.setMerchantId(1409532);
+    button.setAmount("","RUB",false);
+    button.setResponseUrl("https://byhtada.github.io/hyls_client/");
+    button.addParam("lang","ru");
+    button.addParam("order_desc","Участие в марафоне HYLS");
+    var url = button.getUrl();
     $ipsp("checkout").config({
         "wrapper": "#checkout_2",
         "styles": {
@@ -95,6 +106,9 @@ $(document).ready(function() {
             }
         })
     });
+
+
+
     var  timerId = setInterval(function() {
         console.log( "тик" );
         var url_string = window.location.href; //window.location.href
