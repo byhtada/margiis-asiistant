@@ -35,15 +35,15 @@ $(document).ready(function() {
   // var api_url_full = "https://0.0.0.0:3000/users";
 
 
-    var button_reg = $ipsp.get("button");
-    button_reg.setHost("api.fondy.eu");
-    button_reg.setProtocol("https");
-    button_reg.setMerchantId(1409532);
-    button_reg.setAmount("","RUB",false);
-    button_reg.setResponseUrl("https://byhtada.github.io/hyls_client/");
-    button_reg.addParam("lang","ru");
-    button_reg.addParam("order_desc","Участие в марафоне HYLS");
-    var url_reg = button_reg.getUrl();
+    var button = $ipsp.get("button");
+    button.setHost("api.fondy.eu");
+    button.setProtocol("https");
+    button.setMerchantId(1409532);
+    button.setAmount("","RUB",false);
+    button.setResponseUrl("https://byhtada.github.io/hyls_client/");
+    button.addParam("lang","ru");
+    button.addParam("order_desc","Участие в марафоне HYLS");
+    var url = button.getUrl();
     $ipsp("checkout").config({
         "wrapper": "#checkout",
         "styles": {
@@ -57,7 +57,7 @@ $(document).ready(function() {
         this.action("resize", function (data) {
             this.setCheckoutHeight(data.height);
         });
-        this.loadUrl(url_reg);
+        this.loadUrl(url);
         this.addCallback(function(data,type){
             console.log(type);
             console.log(data);
@@ -74,38 +74,7 @@ $(document).ready(function() {
     });
 
 
-   // var button = $ipsp.get("button");
-   // button.setHost("api.fondy.eu");
-   // button.setProtocol("https");
-   // button.setMerchantId(1409532);
-   // button.setAmount("","RUB",false);
-   // button.setResponseUrl("https://byhtada.github.io/hyls_client/");
-   // button.addParam("lang","ru");
-   // button.addParam("order_desc","Участие в марафоне HYLS");
-   // var url = button.getUrl();
-   // $ipsp("checkout").config({
-   //     "wrapper": "#checkout_2",
-   //     "styles": {
-   //         "body": {
-   //             "overflow": "hidden"
-   //         }
-   //     }
-   // }).scope(function () {
-   //     this.width("100%");
-   //     this.height(480);
-   //     this.action("resize", function (data) {
-   //         this.setCheckoutHeight(data.height);
-   //     });
-   //     this.loadUrl(url);
-   //     this.addCallback(function(data,type){
-   //         console.log(type);
-   //         console.log(data);
-//
-   //         if (typeof data.send_data !== 'undefined' && data.final ) {
-   //             alert("Платеж успешно завершен. Благодарим за поддержку!")
-   //         }
-   //     })
-   // });
+
 
 
 
@@ -449,7 +418,7 @@ $(document).ready(function() {
 
 
     });
-    $(document).on('click', '.pay_currency', function (){
+    $(document).on('click', '.pay_currency_reg', function (){
        // console.log($(this).val());
         var currency = $(this).val();
 
@@ -518,29 +487,71 @@ $(document).ready(function() {
                 }
             })
         });
-    //    $ipsp("checkout").config({
-    //        "wrapper": "#checkout_2",
-    //        "styles": {
-    //            "body": {
-    //                "overflow": "hidden"
-    //            }
-    //        }
-    //    }).scope(function () {
-    //        this.width("100%");
-    //        this.height(480);
-    //        this.action("resize", function (data) {
-    //            this.setCheckoutHeight(data.height);
-    //        });
-    //        this.loadUrl(url);
-    //        this.addCallback(function(data,type){
-    //            console.log(type);
-    //            console.log(data);
-//
-    //            if (typeof data.send_data !== 'undefined' && data.final ) {
-    //                alert("Платеж успешно завершен. Благодарим за поддержку!")
-    //            }
-    //        })
-    //    });
+    });
+    $(document).on('click', '.pay_currency_support', function (){
+       // console.log($(this).val());
+        var currency = $(this).val();
+
+        var button = $ipsp.get("button");
+        button.setHost("api.fondy.eu");
+        button.setProtocol("https");
+        button.setMerchantId(1409532);
+
+        switch (currency) {
+            case "RUB":
+                button.setAmount("","RUB",false);
+
+                break;
+            case "UAH":
+                button.setAmount("","UAH",false);
+
+                break;
+            case "KZT":
+                button.setAmount("","KZT",false);
+
+                break;
+            case "BYN":
+                button.setAmount("","BYN",false);
+
+                break;
+            case "USD":
+                button.setAmount("","USD",false);
+
+                break;
+            case "EUR":
+                button.setAmount("","EUR",false);
+
+                break;
+
+        }
+
+        button.setResponseUrl("https://byhtada.github.io/hyls_client/");
+        button.addParam("lang","ru");
+        button.addParam("order_desc","Участие в марафоне HYLS");
+        var url = button.getUrl();
+        $ipsp("checkout").config({
+            "wrapper": "#checkout_2",
+            "styles": {
+                "body": {
+                    "overflow": "hidden"
+                }
+            }
+        }).scope(function () {
+            this.width("100%");
+            this.height(480);
+            this.action("resize", function (data) {
+                this.setCheckoutHeight(data.height);
+            });
+            this.loadUrl(url);
+            this.addCallback(function(data,type){
+                console.log(type);
+                console.log(data);
+
+                if (typeof data.send_data !== 'undefined' && data.final ) {
+                    alert("Платеж успешно завершен. Благодарим за поддержку!")
+                }
+            })
+        });
 
 
     });
@@ -677,6 +688,29 @@ $(document).ready(function() {
                 $('#page_user_settings').show();
                 break;
             case "nav_user_support":
+                $ipsp("checkout").config({
+                    "wrapper": "#checkout_2",
+                    "styles": {
+                        "body": {
+                            "overflow": "hidden"
+                        }
+                    }
+                }).scope(function () {
+                    this.width("100%");
+                    this.height(480);
+                    this.action("resize", function (data) {
+                        this.setCheckoutHeight(data.height);
+                    });
+                    this.loadUrl(url);
+                    this.addCallback(function(data,type){
+                        console.log(type);
+                        console.log(data);
+
+                        if (typeof data.send_data !== 'undefined' && data.final ) {
+                            alert("Платеж успешно завершен. Благодарим за поддержку!")
+                        }
+                    })
+                });
                 $('#page_user_support').show();
                 break;
         }
