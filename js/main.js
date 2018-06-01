@@ -585,7 +585,7 @@ $(document).ready(function() {
     $('#btn_pay_complete').click(function (){
         var blank = {
             "currency" : 0 ,
-            "amount" : 0 ,
+            "amount" : -100 ,
             "masked_card" : 0 ,
             "sender_email" : 0 ,
             "order_time" : 0
@@ -596,7 +596,7 @@ $(document).ready(function() {
     $('#btn_reg_no_money').click(function (){
         var blank = {
             "currency" : 0 ,
-            "amount" : -100 ,
+            "amount" : 0 ,
             "masked_card" : 0 ,
             "sender_email" : 0 ,
             "order_time" : 0
@@ -2792,9 +2792,12 @@ $(document).ready(function() {
 
     $('#nav_conversion, #report_conversion_show').click(function (){
         setConversion();
+        $('#modal_conversion_date').modal('hide');
     });
 
     function setConversion(){
+        conversion_start  = $('#report_conversion_start').val();
+        conversion_finish = $('#report_conversion_finish').val();
         $.ajax({
             type: "GET",
             url:  api_url_full,
@@ -2808,13 +2811,14 @@ $(document).ready(function() {
             },
             success: function(data){
 
-                $('#conv_vk_regs')      .text(data.report.vk.vk_regs);
-                $('#conv_vk_phones')    .text(data.report.vk.vk_phones);
-                $('#conv_vk_users_all') .text(data.report.vk.vk_users_all);
-                $('#conv_vk_users_pay') .text(data.report.vk.vk_users_pay);
-                $('#conv_vk_users_wait').text(data.report.vk.vk_users_wait);
-                $('#conv_vk_users_free').text(data.report.vk.vk_users_free);
-                $('#conv_vk_users_conv').text(data.report.vk.vk_users_conv);
+                console.log(data);
+                $('#conv_vk_regs')      .text(data.vk.vk_regs);
+                $('#conv_vk_phones')    .text(data.vk.vk_phones);
+                $('#conv_vk_users_all') .text(data.vk.vk_users_all);
+                $('#conv_vk_users_pay') .text(data.vk.vk_users_pay);
+                $('#conv_vk_users_wait').text(data.vk.vk_users_wait);
+                $('#conv_vk_users_free').text(data.vk.vk_users_free);
+                $('#conv_vk_users_conv').text(data.vk.vk_users_conv);
 
 
                 $('#page_conversion').show();
@@ -2871,7 +2875,7 @@ $(document).ready(function() {
         $.ajax({
             type: "GET",
             url:  api_url_full,
-            data: { query_info: "get_lost_phone",
+            data: { query_info: "get_lost_phones",
                 reg_flow: $(this).val(),
                 conversion_start:  conversion_start,
                 conversion_finish: conversion_finish
@@ -2881,6 +2885,7 @@ $(document).ready(function() {
                 'Content-Type':'application/x-www-form-urlencoded'
             },
             success: function(data){
+                console.log(data);
                 var row = '<table class="table table-hover table-bordered"><thead><tr class="db_main_row"> ';
                 row    += '<th>Имя</th>';
                 row    += '<th>Почта</th>';
@@ -2905,7 +2910,7 @@ $(document).ready(function() {
                 $('.lost_phone_users').bsTable(undefined, true, undefined, undefined, true);
 
 
-                $('#modal_lost_reg').modal('show');
+                $('#modal_lost_phone').modal('show');
             },
             failure: function(errMsg) {
                 alert(errMsg.toString());
@@ -2927,6 +2932,7 @@ $(document).ready(function() {
                 'Content-Type':'application/x-www-form-urlencoded'
             },
             success: function(data){
+                console.log(data);
                 var row = '<table class="table table-hover table-bordered"><thead><tr class="db_main_row"> ';
                 row    += '<th>Имя</th>';
                 row    += '<th>Почта</th>';
@@ -2949,9 +2955,9 @@ $(document).ready(function() {
                     row += '</tr>';
                 });
                 row += '</tbody></table>';
-                $('.lost_phone_users').empty();
-                $('.lost_phone_users').append(row);
-                $('.lost_phone_users').bsTable(undefined, true, undefined, undefined, true);
+                $('.wait_confirm_users').empty();
+                $('.wait_confirm_users').append(row);
+                $('.wait_confirm_users').bsTable(undefined, true, undefined, undefined, true);
 
 
                 $('#modal_lost_reg').modal('show');
