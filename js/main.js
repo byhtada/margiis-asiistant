@@ -625,6 +625,9 @@ $(document).ready(function() {
             case "nav_program":
                 $('#page_program').show();
                 break;
+            case "nav_conversion":
+               // $('#page_conversion').show();
+                break;
         }
     });
     function hide_all_in_admin() {
@@ -635,6 +638,7 @@ $(document).ready(function() {
         $('#page_curators').hide();
         $('#page_users')   .hide();
         $('#page_program') .hide();
+        $('#page_conversion') .hide();
     }
     function update_admin_info() {
         try {
@@ -2495,9 +2499,9 @@ $(document).ready(function() {
     });
     $(document).on('click', '[name="btns_confirm_pay"]' , function() {
         // console.log($(this).val());
-        $('#btn_confirm_pay').val($(this).val());
+        $('[name = "btn_confirm_pay"]').val($(this).val());
     });
-    $('#btn_confirm_pay').click(function () {
+    $('[name = "btn_confirm_pay"]').click(function () {
         var payment_date       = $('#payment_date').val();
         var payment_size       = $('#payment_size').val();
         var payment_method     = $('#payment_method').val();
@@ -2782,7 +2786,181 @@ $(document).ready(function() {
     });
 
 
+// conversion
 
+    var conversion_start, conversion_finish;
+
+    $('#nav_conversion, #report_conversion_show').click(function (){
+        setConversion();
+    });
+
+    function setConversion(){
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_info: "get_conversion",
+                conversion_start:  conversion_start,
+                conversion_finish: conversion_finish
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+
+                $('#conv_vk_regs')      .text(data.report.vk.vk_regs);
+                $('#conv_vk_phones')    .text(data.report.vk.vk_phones);
+                $('#conv_vk_users_all') .text(data.report.vk.vk_users_all);
+                $('#conv_vk_users_pay') .text(data.report.vk.vk_users_pay);
+                $('#conv_vk_users_wait').text(data.report.vk.vk_users_wait);
+                $('#conv_vk_users_free').text(data.report.vk.vk_users_free);
+                $('#conv_vk_users_conv').text(data.report.vk.vk_users_conv);
+
+
+                $('#page_conversion').show();
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    }
+
+    $(document).on('click', '.conv_lost_regs',       function () {
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_info: "get_lost_regs",
+                    reg_flow: $(this).val(),
+                    conversion_start:  conversion_start,
+                    conversion_finish: conversion_finish
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                var row = '<table id="db_row_main_table"  class="table table-hover table-bordered"><thead><tr class="db_main_row"> ';
+                row    += '<th>Имя</th>';
+                row    += '<th>Почта</th>';
+                row    += '<th>Способ регистрации</th>';
+                row    += '<th>Ссылка на профиль</th>';
+                row    += '</tr></thead><tbody>';
+                $.each(data.users, function (i, item) {
+                    row += '<tr class="db_main_row">';
+                    row += '<td><h5 class="db_main_row">' + item.user_name               + '</h5></td>';
+                    row += '<td><h5 class="db_main_row">' + item.user_email              + '</h5></td>';
+                    row += '<td><h5 class="db_main_row">' + item.user_reg_flow           + '</h5></td>';
+                    row += '<td><h5 class="db_main_row"><a href="' + item.user_social_link +'" target="_blank">' + item.user_social_link + '</a></h5></td>';
+                    row += '</tr>';
+                });
+                row += '</tbody></table>';
+                $('.lost_reg_users').empty();
+                $('.lost_reg_users').append(row);
+                $('.lost_reg_users').bsTable(undefined, true, undefined, undefined, true);
+
+
+                $('#modal_lost_reg').modal('show');
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+    $(document).on('click', '.conv_lost_phones',       function () {
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_info: "get_lost_phone",
+                reg_flow: $(this).val(),
+                conversion_start:  conversion_start,
+                conversion_finish: conversion_finish
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                var row = '<table class="table table-hover table-bordered"><thead><tr class="db_main_row"> ';
+                row    += '<th>Имя</th>';
+                row    += '<th>Почта</th>';
+                row    += '<th>Способ регистрации</th>';
+                row    += '<th>Ссылка на профиль</th>';
+                row    += '<th>Мессенджер</th>';
+                row    += '<th>Телефон</th>';
+                row    += '</tr></thead><tbody>';
+                $.each(data.users, function (i, item) {
+                    row += '<tr class="db_main_row">';
+                    row += '<td><h5 class="db_main_row">' + item.user_name               + '</h5></td>';
+                    row += '<td><h5 class="db_main_row">' + item.user_email              + '</h5></td>';
+                    row += '<td><h5 class="db_main_row">' + item.user_reg_flow           + '</h5></td>';
+                    row += '<td><h5 class="db_main_row"><a href="' + item.user_social_link +'" target="_blank">' + item.user_social_link + '</a></h5></td>';
+                    row += '<td><h5 class="db_main_row">' + item.user_messenger           + '</h5></td>';
+                    row += '<td><h5 class="db_main_row">' + item.user_phone               + '</h5></td>';
+                    row += '</tr>';
+                });
+                row += '</tbody></table>';
+                $('.lost_phone_users').empty();
+                $('.lost_phone_users').append(row);
+                $('.lost_phone_users').bsTable(undefined, true, undefined, undefined, true);
+
+
+                $('#modal_lost_reg').modal('show');
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+    $(document).on('click', '.conv_users_wait',       function () {
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_info: "get_users_wait",
+                reg_flow: $(this).val(),
+                conversion_start:  conversion_start,
+                conversion_finish: conversion_finish
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                var row = '<table class="table table-hover table-bordered"><thead><tr class="db_main_row"> ';
+                row    += '<th>Имя</th>';
+                row    += '<th>Почта</th>';
+                row    += '<th>Способ регистрации</th>';
+                row    += '<th>Ссылка на профиль</th>';
+                row    += '<th>Мессенджер</th>';
+                row    += '<th>Телефон</th>';
+                row    += '<th>Подтверждение</th>';
+                row    += '</tr></thead><tbody>';
+                $.each(data.users, function (i, item) {
+                    row += '<tr class="db_main_row">';
+                    row += '<td><h5 class="db_main_row">' + item.user_name               + '</h5></td>';
+                    row += '<td><h5 class="db_main_row">' + item.user_email              + '</h5></td>';
+                    row += '<td><h5 class="db_main_row">' + item.user_reg_flow           + '</h5></td>';
+                    row += '<td><h5 class="db_main_row"><a href="' + item.user_social_link +'" target="_blank">' + item.user_social_link + '</a></h5></td>';
+                    row += '<td><h5 class="db_main_row">' + item.user_messenger           + '</h5></td>';
+                    row += '<td><h5 class="db_main_row">' + item.user_phone               + '</h5></td>';
+                    row += '<td><button type="button" class="btn btn-success btn-sm" name="btns_confirm_pay" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_confirm_pay"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button></td>';
+
+                    row += '</tr>';
+                });
+                row += '</tbody></table>';
+                $('.lost_phone_users').empty();
+                $('.lost_phone_users').append(row);
+                $('.lost_phone_users').bsTable(undefined, true, undefined, undefined, true);
+
+
+                $('#modal_lost_reg').modal('show');
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
 
 
 
