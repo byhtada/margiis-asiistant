@@ -166,6 +166,12 @@ function start() {
 
 }
 
+var user_params = {
+    user_id:  null,
+    access_token:  null,
+    email: null
+};
+
 function fb_login(){
     FB.login(function (response) {
             console.log(response);
@@ -1455,11 +1461,6 @@ $( document ).ready(function() {
 
 
 
-    var user_params = {
-        user_id:  null,
-        access_token:  null,
-        email: null
-    };
 
 
     $('#btn_exit, #btn_user_exit').click(function () {
