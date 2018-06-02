@@ -115,12 +115,9 @@ $(document).ready(function() {
             $('#page_admin_main').hide();
 
             var params = parse_query_string();
-            console.log("url " + params.toArray());
             if (typeof params.social_login !== 'undefined'){
 
                 if (params.social_login === "vk") {
-                    console.log("vk " + params);
-
                     $('#btn_vk_log_in')[0].click();
                 }
                 if (params.social_login === "fb") {
