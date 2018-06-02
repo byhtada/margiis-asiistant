@@ -5,6 +5,29 @@ $(window).on('load', function() {
     initFondy();
 
 });
+
+var cookie_name_token = "grand_token";
+var cookie_name_id = "grand_id";
+var cookie_token = getCookie(cookie_name_token);
+var api_url      = "https://зйож.рф/";
+var api_url_full = "https://зйож.рф/users";
+
+
+var programm_days_main;
+var day_num;
+var day_show_now;
+var day_new;
+
+var detox_type, detox_time, detox_time_edit = 0, detox_start, detox_start_edit = 0;
+var detox_days, detox_last_date;
+var therapy_type = "";
+var group_curator_id;
+var group_messenger = "";
+var user_messenger = "";
+var group_id;
+var conversion_start, conversion_finish;
+
+
 var button;
 var url;
 function initFondy(){
@@ -1401,11 +1424,7 @@ $( document ).ready(function() {
         alert('Включите cookie для комфортной работы');
     }
 
-    var cookie_name_token = "grand_token";
-    var cookie_name_id = "grand_id";
-    var cookie_token = getCookie(cookie_name_token);
-    var api_url      = "https://зйож.рф/";
-    var api_url_full = "https://зйож.рф/users";
+
   // var api_url      = "https://0.0.0.0:3000/";
   // var api_url_full = "https://0.0.0.0:3000/users";
 
@@ -1808,10 +1827,7 @@ $( document ).ready(function() {
 
 
 //Program
-    var programm_days_main;
-    var day_num;
-    var day_show_now;
-    var day_new;
+
     $('#btn_user_previus_day, #btn_user_next_day').click(function() {
         getDayInfo($(this).val());
 
@@ -1931,8 +1947,8 @@ $( document ).ready(function() {
         }
     });
 
-    var detox_type, detox_time, detox_time_edit = 0, detox_start, detox_start_edit = 0;
-    var detox_days, detox_last_date;
+
+
     $(document).on('click', '.link_detox_type',  function () {
         console.log($(this).attr("name"));
         console.log($(this).text());
@@ -2043,7 +2059,7 @@ $( document ).ready(function() {
 
     });
 
-    var therapy_type = "";
+
     $(document).on('click', '.link_therapy_type',  function () {
         console.log($(this).attr("name"));
         console.log($(this).text());
@@ -2298,12 +2314,12 @@ $( document ).ready(function() {
 /////////////////////////////////////  ADMIN  ////////////////////////////////////////////////////////
 
 //Groups
-    var group_curator_id;
+
     $('#group_add_curator').on('changed.bs.select', function () {
         //console.log($(this).find("option:selected").val());
         group_curator_id = $(this).find("option:selected").val();
     });
-    var group_messenger = "";
+
     $(document).on('click', '.messenger_link_group',       function () {
         //  console.log($(this).attr("name"));
         $('#btn_dd_messenger_group').text($(this).attr("name"));
@@ -2576,7 +2592,7 @@ $( document ).ready(function() {
 
 //Users
 
-    var user_messenger = "";
+
     $('#btn_modal_register').click(function () {
         var pass = Math.floor(Math.random() * 10000) + 1;
         while (pass < 1000 && pass > 10000) {
@@ -2808,7 +2824,7 @@ $( document ).ready(function() {
         });
     });
 
-    var group_id;
+
     $(document).on('click', '[name="btns_to_group"]' , function() {
         //  console.log($(this).val());
         $('#btn_to_group').val($(this).val());
@@ -2997,7 +3013,7 @@ $( document ).ready(function() {
 
 // conversion
 
-    var conversion_start, conversion_finish;
+
 
     $('#nav_conversion, #report_conversion_show').click(function (){
         setConversion();
