@@ -115,11 +115,15 @@ $(document).ready(function() {
             $('#page_admin_main').hide();
 
             var params = parse_query_string();
+            console.log("url " + params);
             if (typeof params.social_login !== 'undefined'){
-                if (params.social_login == "vk") {
+
+                if (params.social_login === "vk") {
+                    console.log("vk " + params);
+
                     $('#btn_vk_log_in').click();
                 }
-                if (params.social_login == "fb") {
+                if (params.social_login === "fb") {
                     $('#btn_fb_log_in').click();
                 }
             } else {
