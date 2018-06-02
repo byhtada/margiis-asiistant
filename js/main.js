@@ -123,7 +123,7 @@ $(document).ready(function() {
                 if (params.social_login === "fb") {
                     $('#btn_fb_log_in')[0].click();
                 }
-            } else {
+            } else if (typeof params.access_token == 'undefined'){
                 $("#page_login")     .show();
             }
         }
