@@ -39,10 +39,19 @@ $(document).ready(function() {
     button.setHost("api.fondy.eu");
     button.setProtocol("https");
     button.setMerchantId(1409532);
-    button.setAmount("","RUB",false);
+    button.setAmount("","RUB",true);
     button.setResponseUrl("https://byhtada.github.io/hyls_client/");
     button.addParam("lang","ru");
     button.addParam("order_desc","Участие в марафоне HYLS");
+    button.setRecurringState(true);
+    button.addRecurringData({
+        start_time: '2018-06-06',
+        end_time:   '2018-08-06',
+       // amount: ,
+        period: 'day',
+        every: 1
+    });
+
     var url = button.getUrl();
     $ipsp("checkout").config({
         "wrapper": "#checkout",
@@ -324,12 +333,38 @@ $(document).ready(function() {
         });
     }
 
-    var user_messenger_reg = "", user_messenger_reg_self = "";
-    $(document).on('click', '.messenger_link_user_reg',       function () {
-        //  console.log($(this).attr("name"));
-        $('#btn_dd_messenger_user_reg').text($(this).attr("name"));
-        user_messenger_reg_self = $(this).attr("name");
+    $('#btn_reg_step_1').click(function (){
+        $('#reg_step_1').hide();
+        $('#reg_step_2').show();
+        $('#reg_step_text').text("Шаг 2/6");
+        $('#reg_step_progress').css('width', '15%').attr('aria-valuenow', 15);
     });
+    $('#btn_reg_step_2').click(function (){
+        $('#reg_step_2').hide();
+        $('#reg_step_3').show();
+        $('#reg_step_text').text("Шаг 3/6");
+        $('#reg_step_progress').css('width', '30%').attr('aria-valuenow', 15);
+    });
+    $('#btn_reg_step_3').click(function (){
+        $('#reg_step_3').hide();
+        $('#reg_step_4').show();
+        $('#reg_step_text').text("Шаг 4/6");
+        $('#reg_step_progress').css('width', '45%').attr('aria-valuenow', 15);
+    });
+    $('#btn_reg_step_4').click(function (){
+        $('#reg_step_4').hide();
+        $('#reg_step_5').show();
+        $('#reg_step_text').text("Шаг 5/6");
+        $('#reg_step_progress').css('width', '64%').attr('aria-valuenow', 15);
+    });
+    $('#btn_reg_step_5').click(function (){
+        $('#reg_step_5').hide();
+        $('#reg_step_6').show();
+        $('#reg_step_text').text("Шаг 6/6");
+        $('#reg_step_progress').css('width', '85%').attr('aria-valuenow', 15);
+    });
+
+
     $('#btn_register_self').click(function () {
         $('#btn_register_self').prop('disabled', true);
 
@@ -337,18 +372,13 @@ $(document).ready(function() {
         var user_email      = $('#field_user_reg_email').val();
         var user_phone      = $('#field_user_reg_phone').val();
         var user_password   = $('#field_user_reg_password').val();
-        var user_vk         = $('#field_user_reg_vk').val();
-        var user_fb         = $('#field_user_reg_fb').val();
 
-        if (user_phone != null && user_password != null && user_email != null && user_messenger_reg_self !== "") {
+        if (user_phone != null && user_password != null && user_email != null) {
             var person  = {
                 first_name:  user_name,
                 phone:       user_phone,
                 password:    user_password,
-                email:       user_email,
-                user_vk:     user_vk,
-                user_fb:     user_fb,
-                messenger: user_messenger_reg_self};
+                email:       user_email};
 
             $.ajax({
                 type: "POST",
@@ -381,43 +411,7 @@ $(document).ready(function() {
     });
 
 
-    $(document).on('click', '.messenger_link_user',       function () {
-        //  console.log($(this).attr("name"));
-        $('#btn_dd_messenger_user').text($(this).attr("name"));
-        user_messenger_reg = $(this).attr("name");
-    });
-    $('#btn_user_reg_messenger').click(function (){
-        if (user_messenger_reg != "" && $('#field_phone_user').val() != ""){
-            $.ajax({
-                type: "GET",
-                url:  api_url_full,
-                data: { query_info: "user_set_messenger",
-                    messenger: user_messenger_reg,
-                    phone:     $('#field_phone_user').val()},
-                headers: {
-                    'Authorization':'Token token=' + cookie_token,
-                    'Content-Type':'application/x-www-form-urlencoded'
-                },
-                success: function(data) {
-                    ifLogin();
-                },
-                failure: function(errMsg) {
-                    alert(errMsg.toString());
-                }
-            });
-        } else {
-            alert('Заполните все поля');
-        }
 
-    });
-    $('#btn_pay_card').click(function (){
-        $('#btn_pay_card')    .hide();
-        $('#payment_text_no_money')    .hide();
-        $('#btn_pay_currency').show();
-        $('#div_other_payment').show();
-
-
-    });
     $(document).on('click', '.pay_currency_reg', function (){
        // console.log($(this).val());
         var currency = $(this).val();
@@ -528,6 +522,15 @@ $(document).ready(function() {
         button.setResponseUrl("https://byhtada.github.io/hyls_client/");
         button.addParam("lang","ru");
         button.addParam("order_desc","Участие в марафоне HYLS");
+        button.setRecurringState(true);
+        button.addRecurringData({
+            start_time: '2018-06-06',
+            end_time:   '2018-08-06',
+            // amount: ,
+            period: 'day',
+            every: 1
+        });
+
         var url = button.getUrl();
         $ipsp("checkout").config({
             "wrapper": "#checkout_2",
@@ -582,17 +585,8 @@ $(document).ready(function() {
         $('#btn_pay_other').hide();
         $('#div_other_method').show();
     });
-    $('#btn_pay_complete').click(function (){
-        var blank = {
-            "currency" : 0 ,
-            "amount" : -100 ,
-            "masked_card" : 0 ,
-            "sender_email" : 0 ,
-            "order_time" : 0
-        };
 
-        reg_user_confirm_payment(blank);
-    });
+
     $('#btn_reg_no_money').click(function (){
         var blank = {
             "currency" : 0 ,
@@ -741,7 +735,6 @@ $(document).ready(function() {
                     day_new = data.marafon_day;
 
                     $('#user_marafon_reg').hide();
-                    $('#user_marafon_pay').hide();
                     $('#user_marafon_start').hide();
                     $('#user_marafon_wait').hide();
 
@@ -760,13 +753,8 @@ $(document).ready(function() {
                         }
 
                     } else if (data.marafon_day < -998) {
-                        if (data.user.messenger == null) {
-                            console.log("reg");
-                            $('#user_marafon_reg').show();
-                        } else {
-                            console.log("pay");
-                            $('#user_marafon_pay').show();
-                        }
+                        $('#user_marafon_reg').show();
+
 
                     } else if (data.marafon_day > 0) {
                         console.log("go");
@@ -1028,7 +1016,7 @@ $(document).ready(function() {
         console.log(current_day);
 
 
-        day_num == 1 ? $('#programm_messenger_link_text').show() : $('#programm_messenger_link_text').show()
+        day_num == 1 ? $('#programm_messenger_link_text').show() : $('#programm_messenger_link_text').hide();
 
 
         if (current_day.water_target_answer) {
@@ -1880,8 +1868,8 @@ $(document).ready(function() {
                     group_users_row += '<td><h5>' + item.email + '</h5></td>';
 
 
-                    group_users_row += '<td><button type="button" class="btn btn-info btn-sm"   name="btns_group_user_info"   value="'  +  item.id + '"  > <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></td>';
-                    group_users_row += '<td><button type="button" class="btn btn-danger btn-sm" name="btns_group_user_delete" value="'  +  item.id + '"  data-toggle="modal" data-target="#modal_group_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
+                    group_users_row += '<td><button type="button" class="btn btn-info btn-sm"   name="btns_group_user_info"   value="'  +  item.user_id + '"  > <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></td>';
+                    group_users_row += '<td><button type="button" class="btn btn-danger btn-sm" name="btns_group_user_delete" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_group_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
                     group_users_row += '</tr>';
 
                 });
@@ -2523,6 +2511,8 @@ $(document).ready(function() {
                 },
                 success: function(data){
                     update_admin_info();
+                    setConversion();
+                    $('#modal_wait_confirm').modal('hide');
                     $('#modal_confirm_pay') .modal('hide');
                 },
                 failure: function(errMsg) {
@@ -2812,14 +2802,41 @@ $(document).ready(function() {
             success: function(data){
 
                 console.log(data);
-                $('#conv_vk_regs')      .text(data.vk.vk_regs);
-                $('#conv_vk_phones')    .text(data.vk.vk_phones);
-                $('#conv_vk_users_all') .text(data.vk.vk_users_all);
-                $('#conv_vk_users_pay') .text(data.vk.vk_users_pay);
-                $('#conv_vk_users_wait').text(data.vk.vk_users_wait);
-                $('#conv_vk_users_free').text(data.vk.vk_users_free);
-                $('#conv_vk_users_conv').text(data.vk.vk_users_conv);
+                $('#conv_vk_regs')        .text(data.vk.vk_regs);
+                $('#conv_vk_phones')      .text(data.vk.vk_phones);
+                $('#conv_vk_users_all')   .text(data.vk.vk_users_all);
+                $('#conv_vk_users_pay')   .text(data.vk.vk_users_pay);
+                $('#conv_vk_users_wait')  .text(data.vk.vk_users_wait);
+                $('#conv_vk_users_free')  .text(data.vk.vk_users_free);
+                $('#conv_vk_users_conv')  .text(data.vk.vk_users_conv);
+                $('#conv_vk_users_profit')  .text(data.vk.vk_users_profit);
 
+                $('#conv_fb_regs')        .text(data.fb.fb_regs);
+                $('#conv_fb_phones')      .text(data.fb.fb_phones);
+                $('#conv_fb_users_all')   .text(data.fb.fb_users_all);
+                $('#conv_fb_users_pay')   .text(data.fb.fb_users_pay);
+                $('#conv_fb_users_wait')  .text(data.fb.fb_users_wait);
+                $('#conv_fb_users_free')  .text(data.fb.fb_users_free);
+                $('#conv_fb_users_conv')  .text(data.fb.fb_users_conv);
+                $('#conv_fb_users_profit')  .text(data.fb.fb_users_profit);
+
+                $('#conv_hand_regs')      .text(data.hand.hand_regs);
+                $('#conv_hand_phones')    .text(data.hand.hand_phones);
+                $('#conv_hand_users_all') .text(data.hand.hand_users_all);
+                $('#conv_hand_users_pay') .text(data.hand.hand_users_pay);
+                $('#conv_hand_users_wait').text(data.hand.hand_users_wait);
+                $('#conv_hand_users_free').text(data.hand.hand_users_free);
+                $('#conv_hand_users_conv').text(data.hand.hand_users_conv);
+                $('#conv_hand_users_profit').text(data.hand.hand_users_profit);
+
+                $('#conv_all_regs')       .text(data.all.all_regs);
+                $('#conv_all_phones')     .text(data.all.all_phones);
+                $('#conv_all_users_all')  .text(data.all.all_users_all);
+                $('#conv_all_users_pay')  .text(data.all.all_users_pay);
+                $('#conv_all_users_wait') .text(data.all.all_users_wait);
+                $('#conv_all_users_free') .text(data.all.all_users_free);
+                $('#conv_all_users_conv') .text(data.all.all_users_conv);
+                $('#conv_all_users_profit') .text(data.all.all_users_profit);
 
                 $('#page_conversion').show();
             },
@@ -2829,7 +2846,30 @@ $(document).ready(function() {
         });
     }
 
-    $(document).on('click', '.conv_lost_regs',       function () {
+    $(document).on('click', '.conv_regs_all',         function () {
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_info: "get_conv_regs_all",
+                reg_flow: $(this).val(),
+                conversion_start:  conversion_start,
+                conversion_finish: conversion_finish
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                console.log(data);
+                setConvUsersTable(data.users)
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+    $(document).on('click', '.conv_lost_regs',        function () {
         $.ajax({
             type: "GET",
             url:  api_url_full,
@@ -2848,6 +2888,8 @@ $(document).ready(function() {
                 row    += '<th>Почта</th>';
                 row    += '<th>Способ регистрации</th>';
                 row    += '<th>Ссылка на профиль</th>';
+                row    += '<th>Комментарий</th>';
+
                 row    += '</tr></thead><tbody>';
                 $.each(data.users, function (i, item) {
                     row += '<tr class="db_main_row">';
@@ -2855,6 +2897,7 @@ $(document).ready(function() {
                     row += '<td><h5 class="db_main_row">' + item.user_email              + '</h5></td>';
                     row += '<td><h5 class="db_main_row">' + item.user_reg_flow           + '</h5></td>';
                     row += '<td><h5 class="db_main_row"><a href="' + item.user_social_link +'" target="_blank">' + item.user_social_link + '</a></h5></td>';
+                    row += '<td><textarea class="user_comment_admin" name="' + item.user_id + '">' + item.user_comment + '</textarea></td>';
                     row += '</tr>';
                 });
                 row += '</tbody></table>';
@@ -2871,7 +2914,30 @@ $(document).ready(function() {
         });
     });
 
-    $(document).on('click', '.conv_lost_phones',       function () {
+    $(document).on('click', '.conv_phones_all',        function () {
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_info: "get_conv_phone_all",
+                reg_flow: $(this).val(),
+                conversion_start:  conversion_start,
+                conversion_finish: conversion_finish
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                console.log(data);
+                setConvUsersTable(data.users)
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+    $(document).on('click', '.conv_lost_phones',      function () {
         $.ajax({
             type: "GET",
             url:  api_url_full,
@@ -2886,31 +2952,53 @@ $(document).ready(function() {
             },
             success: function(data){
                 console.log(data);
-                var row = '<table class="table table-hover table-bordered"><thead><tr class="db_main_row"> ';
-                row    += '<th>Имя</th>';
-                row    += '<th>Почта</th>';
-                row    += '<th>Способ регистрации</th>';
-                row    += '<th>Ссылка на профиль</th>';
-                row    += '<th>Мессенджер</th>';
-                row    += '<th>Телефон</th>';
-                row    += '</tr></thead><tbody>';
-                $.each(data.users, function (i, item) {
-                    row += '<tr class="db_main_row">';
-                    row += '<td><h5 class="db_main_row">' + item.user_name               + '</h5></td>';
-                    row += '<td><h5 class="db_main_row">' + item.user_email              + '</h5></td>';
-                    row += '<td><h5 class="db_main_row">' + item.user_reg_flow           + '</h5></td>';
-                    row += '<td><h5 class="db_main_row"><a href="' + item.user_social_link +'" target="_blank">' + item.user_social_link + '</a></h5></td>';
-                    row += '<td><h5 class="db_main_row">' + item.user_messenger           + '</h5></td>';
-                    row += '<td><h5 class="db_main_row">' + item.user_phone               + '</h5></td>';
-                    row += '</tr>';
-                });
-                row += '</tbody></table>';
-                $('.lost_phone_users').empty();
-                $('.lost_phone_users').append(row);
-                $('.lost_phone_users').bsTable(undefined, true, undefined, undefined, true);
+                setConvUsersTable(data.users)
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
 
+    $(document).on('click', '.conv_practics_all',     function () {
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_info: "get_conv_practics_all",
+                reg_flow: $(this).val(),
+                conversion_start:  conversion_start,
+                conversion_finish: conversion_finish
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                console.log(data);
+                setConvUsersTable(data.users)
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
 
-                $('#modal_lost_phone').modal('show');
+    $(document).on('click', '.conv_practics_pay',     function () {
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_info: "get_conv_practics_pay",
+                reg_flow: $(this).val(),
+                conversion_start:  conversion_start,
+                conversion_finish: conversion_finish
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                console.log(data);
+                setConvUsersTable(data.users)
             },
             failure: function(errMsg) {
                 alert(errMsg.toString());
@@ -2941,6 +3029,7 @@ $(document).ready(function() {
                 row    += '<th>Мессенджер</th>';
                 row    += '<th>Телефон</th>';
                 row    += '<th>Подтверждение</th>';
+                row    += '<th>Комментарий</th>';
                 row    += '</tr></thead><tbody>';
                 $.each(data.users, function (i, item) {
                     row += '<tr class="db_main_row">';
@@ -2951,6 +3040,7 @@ $(document).ready(function() {
                     row += '<td><h5 class="db_main_row">' + item.user_messenger           + '</h5></td>';
                     row += '<td><h5 class="db_main_row">' + item.user_phone               + '</h5></td>';
                     row += '<td><button type="button" class="btn btn-success btn-sm" name="btns_confirm_pay" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_confirm_pay"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button></td>';
+                    row += '<td><textarea class="user_comment_admin" name="' + item.user_id + '">' + item.user_comment + '</textarea></td>';
 
                     row += '</tr>';
                 });
@@ -2960,13 +3050,91 @@ $(document).ready(function() {
                 $('.wait_confirm_users').bsTable(undefined, true, undefined, undefined, true);
 
 
-                $('#modal_lost_reg').modal('show');
+                $('#modal_wait_confirm').modal('show');
             },
             failure: function(errMsg) {
                 alert(errMsg.toString());
             }
         });
     });
+
+    $(document).on('click', '.conv_practics_free',    function () {
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_info: "get_conv_practics_free",
+                reg_flow: $(this).val(),
+                conversion_start:  conversion_start,
+                conversion_finish: conversion_finish
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                console.log(data);
+                setConvUsersTable(data.users)
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+
+    function setConvUsersTable(users){
+        var row = '<table class="table table-hover table-bordered"><thead><tr class="db_main_row"> ';
+        row    += '<th>Имя</th>';
+        row    += '<th>Почта</th>';
+        row    += '<th>Способ регистрации</th>';
+        row    += '<th>Ссылка на профиль</th>';
+        row    += '<th>Мессенджер</th>';
+        row    += '<th>Телефон</th>';
+        row    += '<th>Комментарий</th>';
+        row    += '</tr></thead><tbody>';
+        $.each(users, function (i, item) {
+            row += '<tr class="db_main_row">';
+            row += '<td><h5 class="db_main_row">' + item.user_name               + '</h5></td>';
+            row += '<td><h5 class="db_main_row">' + item.user_email              + '</h5></td>';
+            row += '<td><h5 class="db_main_row">' + item.user_reg_flow           + '</h5></td>';
+            row += '<td><h5 class="db_main_row"><a href="' + item.user_social_link +'" target="_blank">' + item.user_social_link + '</a></h5></td>';
+            row += '<td><h5 class="db_main_row">' + item.user_messenger           + '</h5></td>';
+            row += '<td><h5 class="db_main_row">' + item.user_phone               + '</h5></td>';
+            row += '<td><textarea class="user_comment_admin" name="' + item.user_id + '">' + item.user_comment + '</textarea></td>';
+            row += '</tr>';
+        });
+        row += '</tbody></table>';
+        $('.conv_users').empty();
+        $('.conv_users').append(row);
+        $('.conv_users').bsTable(undefined, true, undefined, undefined, true);
+
+
+        $('#modal_conv_users').modal('show');
+    }
+
+
+    $(document).on('change keyup paste', '.user_comment_admin', function () {
+        console.log($(this).attr("name"));
+        console.log($(this).val());
+
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_update: "set_comment_to_user",
+                    user_id:      $(this).attr("name"),
+                    comment:      $(this).val()
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){},
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
 
 
 

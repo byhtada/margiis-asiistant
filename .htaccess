@@ -7,6 +7,7 @@
 #
 # https://httpd.apache.org/docs/current/howto/htaccess.html.
 
+
 # ######################################################################
 # # CROSS-ORIGIN                                                       #
 # ######################################################################
@@ -982,3 +983,8 @@ FileETag None
 #     RewriteCond %{REQUEST_FILENAME} !-f
 #     RewriteRule ^(.+)\.(\d+)\.(bmp|css|cur|gif|ico|jpe?g|js|png|svgz?|webp|webmanifest)$ $1.$3 [L]
 # </IfModule>
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301] 
