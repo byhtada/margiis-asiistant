@@ -2,7 +2,13 @@ $(window).on('load', function() {
    console.log("load");
     ifLogin();
 
-    var button = $ipsp.get("button");
+    initFondy();
+
+});
+var button;
+var url;
+function initFondy(){
+    button = $ipsp.get("button");
     button.setHost("api.fondy.eu");
     button.setProtocol("https");
     button.setMerchantId(1409532);
@@ -19,7 +25,7 @@ $(window).on('load', function() {
         every: 1
     });
 
-    var url = button.getUrl();
+    url = button.getUrl();
     $ipsp("checkout").config({
         "wrapper": "#checkout",
         "styles": {
@@ -48,7 +54,7 @@ $(window).on('load', function() {
             }
         })
     });
-});
+}
 
 var city = {};
 var couintry = {};
@@ -479,6 +485,14 @@ function fb_login(){
         button.setResponseUrl("https://byhtada.github.io/hyls_client/");
         button.addParam("lang","ru");
         button.addParam("order_desc","Участие в марафоне HYLS");
+        button.setRecurringState(true);
+        button.addRecurringData({
+            start_time: '2018-06-06',
+            end_time:   '2018-08-06',
+            // amount: ,
+            period: 'day',
+            every: 1
+        });
         var url = button.getUrl();
         $ipsp("checkout").config({
             "wrapper": "#checkout",
