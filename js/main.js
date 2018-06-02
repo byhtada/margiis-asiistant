@@ -1,4 +1,56 @@
+$(window).load(function() {
+   console.log("load");
+    ifLogin();
+});
+function ifLogin()  {
+
+    //console.log(cookie_token);
+    if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
+        start();
+        clearInterval(timerId);
+    } else {
+        //   console.log(cookie_token);
+        $('#page_user_main') .hide();
+        $('#page_admin_main').hide();
+
+        var params = parse_query_string();
+        if (typeof params.social_login !== 'undefined'){
+
+            if (params.social_login === "vk") {
+                $('#btn_vk_log_in')[0].click();
+            }
+            if (params.social_login === "fb") {
+                fb_login();
+            }
+        } else if (typeof params.access_token == 'undefined'){
+            $("#page_login")     .show();
+        }
+    }
+}
+
+
+function fb_login(){
+    FB.login(function (response) {
+            console.log(response);
+            if (response.status == "connected"){
+                FB.api('/me?fields=id,first_name,last_name,email,age_range,link,gender,locale,picture,timezone', function (userData){
+                    console.log(userData);
+                    user_reg_info["first_name"] = userData.first_name;
+                    user_reg_info["last_name"]  = userData.last_name;
+                    console.log("user_reg_info " + JSON.stringify(user_reg_info));
+                    user_params["user_id"] = response.authResponse.userID;
+                    user_params["access_token"] = response.authResponse.access_token;
+                    user_params["email"] = userData.email;
+                    console.log("user_params " + JSON.stringify(user_params));
+
+                    try_find_user(user_reg_info, user_params, "fb")
+                });
+            }
+        },
+        {scope: 'public_profile, email'});
+}
 $(document).ready(function() {
+    console.log("ready");
 
 
 
@@ -103,32 +155,6 @@ $(document).ready(function() {
     }, 100);
 
 
-    function ifLogin()  {
-
-        //console.log(cookie_token);
-        if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
-            start();
-            clearInterval(timerId);
-        } else {
-            //   console.log(cookie_token);
-            $('#page_user_main') .hide();
-            $('#page_admin_main').hide();
-
-            var params = parse_query_string();
-            if (typeof params.social_login !== 'undefined'){
-
-                if (params.social_login === "vk") {
-                    $('#btn_vk_log_in')[0].click();
-                }
-                if (params.social_login === "fb") {
-                    fb_login();
-                }
-            } else if (typeof params.access_token == 'undefined'){
-                $("#page_login")     .show();
-            }
-        }
-    }
-    ifLogin();
     $('#btn_login').click(function () {
         var token_web = $.base64.encode($('#login_login').val() + ":" + $('#login_password').val());
         //  console.log(token_web);
@@ -241,32 +267,6 @@ $(document).ready(function() {
         email: null
     };
 
-    function fb_login(){
-        FB.login(function (response) {
-                console.log(response);
-                if (response.status == "connected"){
-                    FB.api('/me?fields=id,first_name,last_name,email,age_range,link,gender,locale,picture,timezone', function (userData){
-                        console.log(userData);
-                        user_reg_info["first_name"] = userData.first_name;
-                        user_reg_info["last_name"]  = userData.last_name;
-                        console.log("user_reg_info " + JSON.stringify(user_reg_info));
-                        user_params["user_id"] = response.authResponse.userID;
-                        user_params["access_token"] = response.authResponse.access_token;
-                        user_params["email"] = userData.email;
-                        console.log("user_params " + JSON.stringify(user_params));
-
-                        try_find_user(user_reg_info, user_params, "fb")
-                    });
-                }
-            },
-            {scope: 'public_profile, email'});
-    }
-    $('#btn_fb_log_in').click(function (){
-       fb_login();
-    });
-    $('#btn_vk_log_in').click(function (){
-        console.log('click vk')
-    });
 
     $('#btn_exit, #btn_user_exit').click(function () {
         setCookie(cookie_name_token);
@@ -348,6 +348,12 @@ $(document).ready(function() {
         });
     }
 
+    $('#btn_fb_log_in').click(function (){
+        fb_login();
+    });
+    $('#btn_vk_log_in').click(function (){
+        console.log('click vk')
+    });
     $('#btn_reg_other').click(function (){
         $('#div_reg_other').show();
     });
