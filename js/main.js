@@ -114,7 +114,7 @@ $(document).ready(function() {
             $('#page_user_main') .hide();
             $('#page_admin_main').hide();
 
-            var url_params = parse_query_string();
+            var params = parse_query_string();
             if (typeof params.social_login !== 'undefined'){
                 if (params.social_login == "vk") {
                     $('#btn_vk_log_in').click();

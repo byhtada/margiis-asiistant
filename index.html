@@ -606,103 +606,99 @@
                 </tbody>
             </table>
 
-
-            <div class="modal fade" id="modal_conversion_date" tabindex="-1" role="dialog" aria-labelledby="modal_label_conversion_date">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="modal_label_conversion_date">Конверсия</h4>
-                        </div>
-                        <div class="modal-body" align="center">
-                            <h5>Выберите диапазон дат за которые расчитать конверсию</h5>
-                            <table style="border: 0">
-                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Начало диапазона</h5></td>  <td class="db_row_input"><input type="date"   class="form-control" id="report_conversion_start"       placeholder=""></td></tr>
-                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Конец диапазона</h5></td>   <td class="db_row_input"><input type="date"   class="form-control" id="report_conversion_finish"      placeholder=""></td></tr>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                            <button id="report_conversion_show" type="button" class="btn btn-success">Показатать отчет</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="modal_lost_reg" tabindex="-1" role="dialog" aria-labelledby="modal_label_lost_reg">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="modal_label_lost_reg">Потери между регистрацией и вводом телефона</h4>
-                        </div>
-                        <div class="modal-body" align="center">
-                            <div class="lost_reg_users"></div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="modal_conv_users" tabindex="-1" role="dialog" aria-labelledby="modal_label_conv_users">
-                <div class="modal-dialog  modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="modal_label_conv_users">Пользователи</h4>
-                        </div>
-                        <div class="modal-body" align="center">
-                            <div class="conv_users"></div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="modal_wait_confirm" tabindex="-1" role="dialog" aria-labelledby="modal_label_wait_confirm">
-                <div class="modal-dialog  modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="modal_label_wait_confirm">Ожидают подтверждения</h4>
-                        </div>
-                        <div class="modal-body" align="center">
-                            <div class="wait_confirm_users"></div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="modal_confirm_pay" tabindex="-1" role="dialog" aria-labelledby="modal_label_confirm_pay">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="modal_label_confirm_pay">Подтверждение оплаты</h4>
-                        </div>
-                        <div class="modal-body" align="center">
-                            <table style="border: 0">
-                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Дата оплаты</h5></td>       <td class="db_row_input_admin"><input type="date"   class="form-control" id="payment_date"    placeholder=""></td></tr>
-                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Сумма оплаты</h5></td>      <td class="db_row_input_admin"><input type="number" class="form-control" id="payment_size"    placeholder=""></td></tr>
-                                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Метод оплаты</h5></td>      <td class="db_row_input_admin"><input type="text"   class="form-control" id="payment_method"    placeholder=""></td></tr>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                            <button name="btn_confirm_pay" type="button" class="btn btn-success">Подтвердить оплату</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
         <div class="col-xs-2"></div>
+    </div>
 
-
-
+    <div class="modal fade" id="modal_conversion_date" tabindex="-1" role="dialog" aria-labelledby="modal_label_conversion_date">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modal_label_conversion_date">Конверсия</h4>
+                </div>
+                <div class="modal-body" align="center">
+                    <h5>Выберите диапазон дат за которые расчитать конверсию</h5>
+                    <table style="border: 0">
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Начало диапазона</h5></td>  <td class="db_row_input"><input type="date"   class="form-control" id="report_conversion_start"       placeholder=""></td></tr>
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Конец диапазона</h5></td>   <td class="db_row_input"><input type="date"   class="form-control" id="report_conversion_finish"      placeholder=""></td></tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    <button id="report_conversion_show" type="button" class="btn btn-success">Показатать отчет</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal_lost_reg" tabindex="-1" role="dialog" aria-labelledby="modal_label_lost_reg">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modal_label_lost_reg">Потери между регистрацией и вводом телефона</h4>
+                </div>
+                <div class="modal-body" align="center">
+                    <div class="lost_reg_users"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal_conv_users" tabindex="-1" role="dialog" aria-labelledby="modal_label_conv_users">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modal_label_conv_users">Пользователи</h4>
+                </div>
+                <div class="modal-body" align="center">
+                    <div class="conv_users"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal_wait_confirm" tabindex="-1" role="dialog" aria-labelledby="modal_label_wait_confirm">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modal_label_wait_confirm">Ожидают подтверждения</h4>
+                </div>
+                <div class="modal-body" align="center">
+                    <div class="wait_confirm_users"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal_confirm_pay" tabindex="-1" role="dialog" aria-labelledby="modal_label_confirm_pay">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modal_label_confirm_pay">Подтверждение оплаты</h4>
+                </div>
+                <div class="modal-body" align="center">
+                    <table style="border: 0">
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Дата оплаты</h5></td>       <td class="db_row_input_admin"><input type="date"   class="form-control" id="payment_date"    placeholder=""></td></tr>
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Сумма оплаты</h5></td>      <td class="db_row_input_admin"><input type="number" class="form-control" id="payment_size"    placeholder=""></td></tr>
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Метод оплаты</h5></td>      <td class="db_row_input_admin"><input type="text"   class="form-control" id="payment_method"    placeholder=""></td></tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    <button name="btn_confirm_pay" type="button" class="btn btn-success">Подтвердить оплату</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 
