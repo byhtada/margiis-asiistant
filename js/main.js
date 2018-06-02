@@ -121,10 +121,10 @@ $(document).ready(function() {
                 if (params.social_login === "vk") {
                     console.log("vk " + params);
 
-                    $('#btn_vk_log_in').trigger('click');
+                    $('#btn_vk_log_in')[0].click();
                 }
                 if (params.social_login === "fb") {
-                    $('#btn_fb_log_in').trigger('click');
+                    $('#btn_fb_log_in')[0].click();
                 }
             } else {
                 $("#page_login")     .show();
@@ -265,7 +265,7 @@ $(document).ready(function() {
             {scope: 'public_profile, email'});
     });
     $('#btn_vk_log_in').click(function (){
-
+        console.log('click vk')
     });
 
     $('#btn_exit, #btn_user_exit').click(function () {
