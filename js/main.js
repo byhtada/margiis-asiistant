@@ -3,7 +3,34 @@ $(window).on('load', function() {
     ifLogin();
 
     initFondy();
+    timerId = setInterval(function() {
+        console.log( "тик" );
+        var params = parse_query_string();
+        if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
+            clearInterval(timerId);
+            var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,timezone";
+            var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
+            jsonp(vk_api_query, function(userInfo) {
+                console.log(userInfo.response[0]);
+                userInfo = userInfo.response[0];
+                try_find_user(userInfo, params, "vk")
+            });
+        }
+    }, 100);
 
+
+    function jsonp(url, callback) {
+        var callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
+        window[callbackName] = function(data) {
+            delete window[callbackName];
+            document.body.removeChild(script);
+            callback(data);
+        };
+
+        var script = document.createElement('script');
+        script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + callbackName;
+        document.body.appendChild(script);
+    }
 });
 
 var cookie_name_token = "grand_token";
@@ -80,20 +107,7 @@ function initFondy(){
 }
 
 
-var  timerId = setInterval(function() {
-    console.log( "тик" );
-    var params = parse_query_string();
-    if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
-        clearInterval(timerId);
-        var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,timezone";
-        var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
-        jsonp(vk_api_query, function(userInfo) {
-            console.log(userInfo.response[0]);
-            userInfo = userInfo.response[0];
-            try_find_user(userInfo, params, "vk")
-        });
-    }
-}, 100);
+var  timerId;
 
 
 
@@ -110,6 +124,11 @@ var user_reg_info = {
     home_phone:      null,
     followers_count: null,
     timezone:        null
+};
+var user_params = {
+    user_id:  null,
+    access_token:  null,
+    email: null
 };
 
 function ifLogin()  {
@@ -189,11 +208,7 @@ function start() {
 
 }
 
-var user_params = {
-    user_id:  null,
-    access_token:  null,
-    email: null
-};
+
 
 function fb_login(){
     FB.login(function (response) {
@@ -1327,18 +1342,6 @@ function setConvUsersTable(users){
     $('#modal_conv_users').modal('show');
 }
 
-function jsonp(url, callback) {
-    var callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
-    window[callbackName] = function(data) {
-        delete window[callbackName];
-        document.body.removeChild(script);
-        callback(data);
-    };
-
-    var script = document.createElement('script');
-    script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + callbackName;
-    document.body.appendChild(script);
-}
 function parse_query_string() {
     var url_string = window.location.href; //window.location.href
     var url = new URL(url_string);
