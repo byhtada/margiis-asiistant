@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -151,9 +152,11 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="608" column="5" lean-forward="true" selection-start-line="608" selection-start-column="5" selection-end-line="608" selection-end-column="5" />
+            <state relative-caret-position="558">
+              <caret line="269" lean-forward="true" selection-start-line="269" selection-end-line="269" />
               <folding>
+                <element signature="n#!!block;n#ifLogin#0" />
+                <element signature="n#!!block;n#fb_login#0" />
                 <element signature="e#1122#1974#0" />
                 <element signature="e#1260#1954#0" />
                 <element signature="e#50#815#0" />
@@ -166,14 +169,6 @@
                 <element signature="e#733#799#0" />
                 <element signature="e#852#915#0" />
                 <element signature="e#1143#1189#0" />
-                <element signature="e#1653#1788#0" />
-                <element signature="e#1852#1994#0" />
-                <element signature="e#1904#1988#0" />
-                <element signature="e#1926#1978#0" />
-                <element signature="e#2014#2706#0" />
-                <element signature="e#2116#2176#0" />
-                <element signature="e#2250#2699#0" />
-                <element signature="e#2385#2689#0" />
                 <element signature="e#2757#3622#0" />
                 <element signature="e#3054#3616#0" />
                 <element signature="e#3435#3604#0" />
@@ -195,7 +190,6 @@
                 <element signature="e#7200#7254#0" />
                 <element signature="e#7301#7342#0" />
                 <element signature="e#7375#7455#0" />
-                <element signature="e#7523#7843#0" />
                 <element signature="e#7868#7948#0" />
                 <element signature="e#9331#10575#0" />
                 <element signature="e#9386#10567#0" />
@@ -802,7 +796,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>conv_vk_users_wait</find>
       <find>conversion_start</find>
       <find>reg_user_confirm_payment</find>
       <find>btn_confirm_pay</find>
@@ -832,6 +825,7 @@
       <find>btn_fb_log_in</find>
       <find>btn_vk_log_in</find>
       <find>fb_login</find>
+      <find>user_reg_info</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1056,7 +1050,7 @@
       <workItem from="1527933387819" duration="3908000" />
       <workItem from="1527939941570" duration="793000" />
       <workItem from="1527947086612" duration="2718000" />
-      <workItem from="1527954014666" duration="4226000" />
+      <workItem from="1527954014666" duration="4713000" />
     </task>
     <task id="LOCAL-00001" summary="test 1">
       <created>1527346092981</created>
@@ -1170,11 +1164,32 @@
       <option name="project" value="LOCAL" />
       <updated>1527962080893</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="1">
+      <created>1527962677456</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1527962677456</updated>
+    </task>
+    <task id="LOCAL-00018" summary="1">
+      <created>1527962830180</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1527962830180</updated>
+    </task>
+    <task id="LOCAL-00019" summary="1">
+      <created>1527962922262</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1527962922262</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="405516000" />
+    <option name="totallyTimeSpent" value="406003000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="147" y="52" width="1256" height="1028" extended-state="4" />
@@ -1219,7 +1234,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/js/main.js</url>
-          <line>1044</line>
+          <line>1045</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
       </breakpoints>
@@ -2112,9 +2127,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="608" column="5" lean-forward="true" selection-start-line="608" selection-start-column="5" selection-end-line="608" selection-end-column="5" />
+        <state relative-caret-position="558">
+          <caret line="269" lean-forward="true" selection-start-line="269" selection-end-line="269" />
           <folding>
+            <element signature="n#!!block;n#ifLogin#0" />
+            <element signature="n#!!block;n#fb_login#0" />
             <element signature="e#1122#1974#0" />
             <element signature="e#1260#1954#0" />
             <element signature="e#50#815#0" />
@@ -2127,14 +2144,6 @@
             <element signature="e#733#799#0" />
             <element signature="e#852#915#0" />
             <element signature="e#1143#1189#0" />
-            <element signature="e#1653#1788#0" />
-            <element signature="e#1852#1994#0" />
-            <element signature="e#1904#1988#0" />
-            <element signature="e#1926#1978#0" />
-            <element signature="e#2014#2706#0" />
-            <element signature="e#2116#2176#0" />
-            <element signature="e#2250#2699#0" />
-            <element signature="e#2385#2689#0" />
             <element signature="e#2757#3622#0" />
             <element signature="e#3054#3616#0" />
             <element signature="e#3435#3604#0" />
@@ -2156,7 +2165,6 @@
             <element signature="e#7200#7254#0" />
             <element signature="e#7301#7342#0" />
             <element signature="e#7375#7455#0" />
-            <element signature="e#7523#7843#0" />
             <element signature="e#7868#7948#0" />
             <element signature="e#9331#10575#0" />
             <element signature="e#9386#10567#0" />

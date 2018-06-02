@@ -1,7 +1,70 @@
 $(window).on('load', function() {
    console.log("load");
     ifLogin();
+
+    var button = $ipsp.get("button");
+    button.setHost("api.fondy.eu");
+    button.setProtocol("https");
+    button.setMerchantId(1409532);
+    button.setAmount("","RUB",true);
+    button.setResponseUrl("https://byhtada.github.io/hyls_client/");
+    button.addParam("lang","ru");
+    button.addParam("order_desc","Участие в марафоне HYLS");
+    button.setRecurringState(true);
+    button.addRecurringData({
+        start_time: '2018-06-06',
+        end_time:   '2018-08-06',
+        // amount: ,
+        period: 'day',
+        every: 1
+    });
+
+    var url = button.getUrl();
+    $ipsp("checkout").config({
+        "wrapper": "#checkout",
+        "styles": {
+            "body": {
+                "overflow": "hidden"
+            }
+        }
+    }).scope(function () {
+        this.width("100%");
+        this.height(480);
+        this.action("resize", function (data) {
+            this.setCheckoutHeight(data.height);
+        });
+        this.loadUrl(url);
+        this.addCallback(function(data,type){
+            console.log(type);
+            console.log(data);
+
+            if (typeof data.send_data !== 'undefined' && data.final ) {
+                console.log(data.send_data.signature);
+                console.log(data.send_data.order_status);
+                console.log(data.send_data.currency);
+                console.log(data.send_data.settlement_amount);
+
+                reg_user_confirm_payment(data.send_data);
+            }
+        })
+    });
 });
+
+var city = {};
+var couintry = {};
+var user_reg_info = {
+    first_name:      null,
+    last_name:       null,
+    sex:             null,
+    bdate:           null,
+    city:            city,
+    country:         couintry,
+    photo_200:       null,
+    home_phone:      null,
+    followers_count: null,
+    timezone:        null
+};
+
 function ifLogin()  {
 
     //console.log(cookie_token);
@@ -50,10 +113,6 @@ function fb_login(){
 }
 
 
-    console.log("ready");
-
-
-
     $.ajaxSetup({
         error: function (data, textStatus, jqXHR) {
             // console.log(data);
@@ -87,52 +146,7 @@ function fb_login(){
   // var api_url_full = "https://0.0.0.0:3000/users";
 
 
-    var button = $ipsp.get("button");
-    button.setHost("api.fondy.eu");
-    button.setProtocol("https");
-    button.setMerchantId(1409532);
-    button.setAmount("","RUB",true);
-    button.setResponseUrl("https://byhtada.github.io/hyls_client/");
-    button.addParam("lang","ru");
-    button.addParam("order_desc","Участие в марафоне HYLS");
-    button.setRecurringState(true);
-    button.addRecurringData({
-        start_time: '2018-06-06',
-        end_time:   '2018-08-06',
-       // amount: ,
-        period: 'day',
-        every: 1
-    });
 
-    var url = button.getUrl();
-    $ipsp("checkout").config({
-        "wrapper": "#checkout",
-        "styles": {
-            "body": {
-                "overflow": "hidden"
-            }
-        }
-    }).scope(function () {
-        this.width("100%");
-        this.height(480);
-        this.action("resize", function (data) {
-            this.setCheckoutHeight(data.height);
-        });
-        this.loadUrl(url);
-        this.addCallback(function(data,type){
-            console.log(type);
-            console.log(data);
-
-            if (typeof data.send_data !== 'undefined' && data.final ) {
-                console.log(data.send_data.signature);
-                console.log(data.send_data.order_status);
-                console.log(data.send_data.currency);
-                console.log(data.send_data.settlement_amount);
-
-                reg_user_confirm_payment(data.send_data);
-            }
-        })
-    });
 
 
 
@@ -246,20 +260,7 @@ function fb_login(){
         alert("У Вас не достаточно прав, для выполнения этого действия")
     }
 
-    var city = {};
-    var couintry = {};
-    var user_reg_info = {
-        first_name:      null,
-        last_name:       null,
-        sex:             null,
-        bdate:           null,
-        city:            city,
-        country:         couintry,
-        photo_200:       null,
-        home_phone:      null,
-        followers_count: null,
-        timezone:        null
-    };
+
 
     var user_params = {
         user_id:  null,
