@@ -28,7 +28,6 @@ function ifLogin()  {
     }
 }
 
-
 function fb_login(){
     FB.login(function (response) {
             console.log(response);
@@ -49,7 +48,8 @@ function fb_login(){
         },
         {scope: 'public_profile, email'});
 }
-$(document).ready(function() {
+
+
     console.log("ready");
 
 
@@ -3261,5 +3261,4 @@ $(document).ready(function() {
         ));
         return matches ? decodeURIComponent(matches[1]) : undefined;
     }
-});
 
