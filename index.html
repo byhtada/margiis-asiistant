@@ -80,40 +80,36 @@
 
 
 
-                <a id="btn_vk_log_in" href="http://oauth.vk.com/authorize?client_id=6487614&redirect_uri=https://byhtada.github.io/hyls_client/&response_type=token&scope=email,offline&v=5.76&state=123456" class="btn btn-block btn-social btn-vk">
+                <a id="btn_vk_log_in" href="http://oauth.vk.com/authorize?client_id=6487614&redirect_uri=https://byhtada.github.io/hyls_client/&response_type=token&scope=email,offline&v=5.76&state=123456" class="btn btn-block btn-social btn-vk btn-lg">
                     <span class="fab fa-vk"></span>Через ВКонтакте
                 </a>
 
-                <a id="btn_fb_log_in" href="#"  class="btn btn-block btn-social btn-facebook">
+                <a id="btn_fb_log_in" href="#"  class="btn btn-block btn-social btn-facebook btn-lg">
                     <span class="fab fa-facebook-f"></span>Через FaceBook
                 </a>
 
-   <br/>
-                <h4 align="center">или</h4>
+                <br/>
+                <button id="btn_reg_other" type="button" class="btn btn-link btn-block">меня нет в соц. сетях</button>
                 <br/>
 
+                <div id="div_reg_other" hidden>
+                    <form>
+                        <div class="form-group">
+                            <label for="login_login">Логин</label>
+                            <input type="text" class="form-control" id="login_login" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="login_password">Пароль</label>
+                            <input type="password" class="form-control" id="login_password" placeholder="">
+                        </div>
+
+                        <button type="button" id="btn_login"    class="btn btn-success btn-block">Вход</button>
+                        <button id="btn_modal_register_self" type="button" class="btn btn-link btn-block"  data-toggle="modal" data-target="#modal_register_self">Регистрация</button>
+
+                    </form>
+                </div>
 
 
-
-
-
-
-
-                <form>
-                    <div class="form-group">
-                        <label for="login_login">Логин</label>
-                        <input type="text" class="form-control" id="login_login" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="login_password">Пароль</label>
-                        <input type="password" class="form-control" id="login_password" placeholder="">
-                    </div>
-
-                    <button type="button" id="btn_login"    class="btn btn-success btn-block">Вход</button>
-                    <button id="btn_modal_register_self" type="button" class="btn btn-link btn-block"  data-toggle="modal" data-target="#modal_register_self">Регистрация</button>
-
-
-                </form>
 
                 <div class="modal fade" id="modal_register_self"    tabindex="-1" role="dialog" aria-labelledby="modal_label_register_self">
                     <div class="modal-dialog" role="document">

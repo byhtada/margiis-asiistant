@@ -89,9 +89,7 @@ $(document).ready(function() {
 
     var  timerId = setInterval(function() {
         console.log( "тик" );
-        var url_string = window.location.href; //window.location.href
-        var url = new URL(url_string);
-        var params = parse_query_string(url.hash.replace('#', ''));
+        var params = parse_query_string();
         if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
             clearInterval(timerId);
             var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,timezone";
@@ -115,7 +113,18 @@ $(document).ready(function() {
             //   console.log(cookie_token);
             $('#page_user_main') .hide();
             $('#page_admin_main').hide();
-            $("#page_login")     .show();
+
+            var url_params = parse_query_string();
+            if (typeof params.social_login !== 'undefined'){
+                if (params.social_login == "vk") {
+                    $('#btn_vk_log_in').click();
+                }
+                if (params.social_login == "fb") {
+                    $('#btn_fb_log_in').click();
+                }
+            } else {
+                $("#page_login")     .show();
+            }
         }
     }
     ifLogin();
@@ -332,6 +341,11 @@ $(document).ready(function() {
             }
         });
     }
+
+    $('#btn_reg_other').click(function (){
+        $('#div_reg_other').show();
+    });
+
 
     $('#btn_reg_step_1').click(function (){
         $('#reg_step_1').hide();
@@ -3180,7 +3194,10 @@ $(document).ready(function() {
         script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + callbackName;
         document.body.appendChild(script);
     }
-    function parse_query_string(query) {
+    function parse_query_string() {
+        var url_string = window.location.href; //window.location.href
+        var url = new URL(url_string);
+        var query = url.hash.replace('#', '');
         var vars = query.split("&");
         var query_string = {};
         for (var i = 0; i < vars.length; i++) {
