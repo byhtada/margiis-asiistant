@@ -121,7 +121,7 @@ $(document).ready(function() {
                     $('#btn_vk_log_in')[0].click();
                 }
                 if (params.social_login === "fb") {
-                    $('#btn_fb_log_in')[0].click();
+                    fb_login();
                 }
             } else if (typeof params.access_token == 'undefined'){
                 $("#page_login")     .show();
@@ -241,7 +241,7 @@ $(document).ready(function() {
         email: null
     };
 
-    $('#btn_fb_log_in').click(function (){
+    function fb_login(){
         FB.login(function (response) {
                 console.log(response);
                 if (response.status == "connected"){
@@ -260,6 +260,9 @@ $(document).ready(function() {
                 }
             },
             {scope: 'public_profile, email'});
+    }
+    $('#btn_fb_log_in').click(function (){
+       fb_login();
     });
     $('#btn_vk_log_in').click(function (){
         console.log('click vk')
@@ -269,6 +272,8 @@ $(document).ready(function() {
         setCookie(cookie_name_token);
         cookie_token = getCookie(cookie_name_token);
         ifLogin();
+        $("#page_login")     .show();
+
     });
 
 
