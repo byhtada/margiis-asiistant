@@ -37,8 +37,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .conv_vk_users_wait {padding: 0 !important;}
 
 
-
-.reg_img_we {max-width: 100%; height: auto;}
+#reg_step_1 {max-width: 100%;}
 .social_btn {width: 66%}
 
 

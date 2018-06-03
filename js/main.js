@@ -397,6 +397,8 @@ function update_user_info() {
                 $('#user_marafon_start').hide();
                 $('#user_marafon_wait').hide();
 
+
+
                 $('#wait_messenger_link, #programm_messenger_link, #settings_messenger_link').attr("href", data.messenger_link);
                 $('#wait_messenger_link, #programm_messenger_link, #settings_messenger_link').text(data.messenger_link);
 
@@ -418,6 +420,8 @@ function update_user_info() {
                 } else if (data.marafon_day > 0) {
                     console.log("go");
                     setUserMarafonDay(data.marafon_info_today, data.marafon_day);
+
+                    $('#nav_bar').show();
                 }
 
                 if (data.detox_type !== null ){
@@ -1118,7 +1122,6 @@ function setUsers(users){
     user_register_row    += '<th>Ссылка соц.сети</th>';
     user_register_row    += '<th>Мессенджер</th>';
     user_register_row    += '<th>Комментарий</th>';
-    user_register_row    += '<th>План оплата</th>';
     user_register_row    += '</tr></thead><tbody>';
     $.each(users.user_reg, function (i, item) {
         user_register_row += '<tr>';
@@ -1128,8 +1131,7 @@ function setUsers(users){
         user_register_row += '<td><h5>' + item.user_password           + '</h5></td>';
         user_register_row += '<td><h5>' + item.user_social_link            + '</h5></td>';
         user_register_row += '<td><h5>' + item.user_messenger          + '</h5></td>';
-        user_register_row += '<td><h5>' + item.user_comment            + '</h5></td>';
-        user_register_row += '<td><h5>' + item.user_payment_size_plan  + '</h5></td>';
+        user_register_row += '<td><textarea class="user_comment_admin" name="' + item.user_id + '">' + item.user_comment + '</textarea></td>';
         user_register_row += '<td><button type="button" class="btn btn-success btn-sm" name="btns_confirm_pay" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_confirm_pay"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button></td>';
         user_register_row += '</tr>';
     });
@@ -1148,9 +1150,8 @@ function setUsers(users){
     user_pay_row    += '<th>Пароль</th>';
     user_pay_row    += '<th>Ссылка соц.сети</th>';
     user_pay_row    += '<th>Мессенджер</th>';
-    user_pay_row    += '<th>Комментарий</th>';
-    user_pay_row    += '<th>План оплата</th>';
     user_pay_row    += '<th>Факт оплата</th>';
+    user_pay_row    += '<th>Комментарий</th>';
     user_pay_row    += '</tr></thead><tbody>';
     $.each(users.user_pay, function (i, item) {
         user_pay_row += '<tr>';
@@ -1160,9 +1161,8 @@ function setUsers(users){
         user_pay_row += '<td><h5>' + item.user_password           + '</h5></td>';
         user_pay_row += '<td><h5>' + item.user_link_vk            + '</h5></td>';
         user_pay_row += '<td><h5>' + item.user_messenger          + '</h5></td>';
-        user_pay_row += '<td><h5>' + item.user_comment            + '</h5></td>';
-        user_pay_row += '<td><h5>' + item.user_payment_size_plan  + '</h5></td>';
         user_pay_row += '<td><h5>' + item.user_payment_size_fact  + '</h5></td>';
+        user_pay_row += '<td><textarea class="user_comment_admin" name="' + item.user_id + '">' + item.user_comment + '</textarea></td>';
         user_pay_row += '<td><button type="button" class="btn btn-success btn-sm" name="btns_to_group" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_to_group"> <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button></td>';
         user_pay_row += '<td><button type="button" class="btn btn-danger btn-sm"  name="btns_user_delete" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
 
@@ -1181,10 +1181,9 @@ function setUsers(users){
     user_in_group_row    += '<th>Пароль</th>';
     user_in_group_row    += '<th>Ссылка ВК</th>';
     user_in_group_row    += '<th>Мессенджер</th>';
-    user_in_group_row    += '<th>Комментарий</th>';
-    user_in_group_row    += '<th>План оплата</th>';
     user_in_group_row    += '<th>Факт оплата</th>';
     user_in_group_row    += '<th>Группа</th>';
+    user_in_group_row    += '<th>Комментарий</th>';
     user_in_group_row    += '<th></th>';
     user_in_group_row    += '</tr></thead><tbody>';
 
@@ -1196,11 +1195,9 @@ function setUsers(users){
         user_in_group_row += '<td><h5>' + item.user_password           + '</h5></td>';
         user_in_group_row += '<td><h5>' + item.user_link_vk            + '</h5></td>';
         user_in_group_row += '<td><h5>' + item.user_messenger          + '</h5></td>';
-        user_in_group_row += '<td><h5>' + item.user_comment            + '</h5></td>';
-        user_in_group_row += '<td><h5>' + item.user_payment_size_plan  + '</h5></td>';
         user_in_group_row += '<td><h5>' + item.user_payment_size_fact  + '</h5></td>';
         user_in_group_row += '<td><h5>' + item.user_group              + '</h5></td>';
-
+        user_in_group_row += '<td><textarea class="user_comment_admin" name="' + item.user_id + '">' + item.user_comment + '</textarea></td>';
         user_in_group_row += '<td><button type="button" class="btn btn-warning btn-sm" name="btns_edit_user" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_edit_user"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
         user_in_group_row += '</tr>';
     });
@@ -1512,31 +1509,31 @@ $( document ).ready(function() {
         $('#reg_step_1').hide();
         $('#reg_step_2').show();
         $('#reg_step_text').text("Шаг 2/6");
-        $('#reg_step_progress').css('width', '15%').attr('aria-valuenow', 15);
+        $('#reg_step_progress').css('width', '20%').attr('aria-valuenow', 15);
     });
     $('#btn_reg_step_2').click(function (){
         $('#reg_step_2').hide();
         $('#reg_step_3').show();
         $('#reg_step_text').text("Шаг 3/6");
-        $('#reg_step_progress').css('width', '30%').attr('aria-valuenow', 15);
+        $('#reg_step_progress').css('width', '40%').attr('aria-valuenow', 15);
     });
     $('#btn_reg_step_3').click(function (){
         $('#reg_step_3').hide();
         $('#reg_step_4').show();
         $('#reg_step_text').text("Шаг 4/6");
-        $('#reg_step_progress').css('width', '45%').attr('aria-valuenow', 15);
+        $('#reg_step_progress').css('width', '60%').attr('aria-valuenow', 15);
     });
     $('#btn_reg_step_4').click(function (){
         $('#reg_step_4').hide();
         $('#reg_step_5').show();
         $('#reg_step_text').text("Шаг 5/6");
-        $('#reg_step_progress').css('width', '64%').attr('aria-valuenow', 15);
+        $('#reg_step_progress').css('width', '75%').attr('aria-valuenow', 15);
     });
     $('#btn_reg_step_5').click(function (){
         $('#reg_step_5').hide();
         $('#reg_step_6').show();
         $('#reg_step_text').text("Шаг 6/6");
-        $('#reg_step_progress').css('width', '85%').attr('aria-valuenow', 15);
+        $('#reg_step_progress').css('width', '90%').attr('aria-valuenow', 15);
     });
 
 
@@ -2464,7 +2461,7 @@ $( document ).ready(function() {
                 $('#group_info_curator').text(" (куратор: " + data.group_curator + ")");
 
                 var group_users_row = '<table id="group_users" class="table table-hover table-bordered table-condensed" >';
-                group_users_row    += '<thead><tr> <th>Имя</th> <th>Телефон</th>  <th>Ссылка ВК</th><th>Почта</th> </tr></thead><tbody>';
+                group_users_row    += '<thead><tr> <th>Имя</th> <th>Телефон</th>  <th>Ссылка ВК</th><th>Почта</th><th>Комментарий</th> </tr></thead><tbody>';
                 $.each(data.group_users, function (i, item) {
                     group_users_row += '<tr><td><h5>';
                     group_users_row += item.first_name    + '</h5></td><td><h5>';
@@ -2476,9 +2473,11 @@ $( document ).ready(function() {
                     }
                     group_users_row += '<td><h5>' + item.email + '</h5></td>';
 
+                    group_users_row += '<td><textarea class="user_comment_admin" name="' + item.user_id + '">' + item.user_comment + '</textarea></td>';
 
                     group_users_row += '<td><button type="button" class="btn btn-info btn-sm"   name="btns_group_user_info"   value="'  +  item.user_id + '"  > <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></td>';
                     group_users_row += '<td><button type="button" class="btn btn-danger btn-sm" name="btns_group_user_delete" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_group_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
+
                     group_users_row += '</tr>';
 
                 });
