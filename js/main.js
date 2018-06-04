@@ -62,7 +62,7 @@ function initFondy(){
     button.setHost("api.fondy.eu");
     button.setProtocol("https");
     button.setMerchantId(1409532);
-    button.setAmount("","RUB",false);
+    button.setAmount("","RUB",true);
     button.setResponseUrl("https://byhtada.github.io/hyls_client/");
     button.addParam("lang","ru");
     button.addParam("order_desc","Участие в марафоне HYLS");
