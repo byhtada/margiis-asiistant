@@ -1413,9 +1413,9 @@ $( document ).ready(function() {
             type: "GET",
             url: fondy_host,
             data: { query_update: "user_save_detox_answer",
-                order_id:      order_id,
-                merchant_id:      merchant_id,
-                signature:     signature
+                order_id:      "Order_1409532_cVaZ3AqudR_1528098474",
+                merchant_id:      "1409532",
+                signature:     "9b930831f78a4ad7352713b267ac1c6c8c1b38f7"
             },
 
             headers: {
