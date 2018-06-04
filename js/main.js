@@ -57,13 +57,20 @@ var conversion_start, conversion_finish;
 
 var button;
 var url;
+
+
+var merchant_id  = 1409532;
+var response_url = "https://byhtada.github.io/hyls_client/";
+var order_id     = "";
+var signature    = "";
+var fondy_host   = "https://api.fondy.eu/api/status/order_id";
 function initFondy(){
     button = $ipsp.get("button");
     button.setHost("api.fondy.eu");
     button.setProtocol("https");
-    button.setMerchantId(1409532);
-    button.setAmount("","RUB",true);
-    button.setResponseUrl("https://byhtada.github.io/hyls_client/");
+    button.setMerchantId(merchant_id);
+    button.setAmount("10","RUB",true);
+    button.setResponseUrl(response_url);
     button.addParam("lang","ru");
     button.addParam("order_desc","Участие в марафоне HYLS");
     button.setRecurringState(true);
@@ -96,9 +103,13 @@ function initFondy(){
 
             if (typeof data.send_data !== 'undefined' && data.final ) {
                 console.log(data.send_data.signature);
+                console.log(data.send_data.order_id);
                 console.log(data.send_data.order_status);
                 console.log(data.send_data.currency);
                 console.log(data.send_data.settlement_amount);
+
+                signature = data.send_data.signature;
+                order_id = data.send_data.order_id;
 
                 reg_user_confirm_payment(data.send_data);
             }
@@ -411,8 +422,6 @@ function update_user_info() {
                     $('#user_marafon_wait_text').text("Ожидайте старта марафона " + data.marafon_day_start);
                     $('#user_marafon_wait_messenger').show();
 
-                    if (data.marafon_day == 0){
-                    }
 
                 } else if (data.marafon_day < -998) {
                     $('#user_marafon_reg').show();
@@ -1399,6 +1408,28 @@ function getCookie(name) {
 $( document ).ready(function() {
     console.log( "document loaded" );
 
+    $('#btn_check_out_info').click(function (){
+        $.ajax({
+            type: "GET",
+            url: fondy_host,
+            data: { query_update: "user_save_detox_answer",
+                order_id:      order_id,
+                merchant_id:      merchant_id,
+                signature:     signature
+            },
+
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            success: function (data) {
+                console.log(data);
+
+            },
+            failure: function (errMsg) {
+                //    console.log(errMsg.toString());
+            }
+        });
+    });
 
 
     $.ajaxSetup({
