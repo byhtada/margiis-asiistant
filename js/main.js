@@ -409,8 +409,9 @@ function update_user_info() {
 
                     $('#user_marafon_wait').show();
                     $('#user_marafon_wait_text').text("Ожидайте старта марафона " + data.marafon_day_start);
+                    $('#user_marafon_wait_messenger').show();
+
                     if (data.marafon_day == 0){
-                        $('#user_marafon_wait_messenger').show();
                     }
 
                 } else if (data.marafon_day < -998) {
