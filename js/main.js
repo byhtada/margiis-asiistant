@@ -71,7 +71,7 @@ function initFondy(){
     button.setHost("api.fondy.eu");
     button.setProtocol("https");
     button.setMerchantId(merchant_id);
-    button.setAmount("10","RUB",true);
+    button.setAmount("","RUB",false);
     button.setResponseUrl(response_url);
     button.addParam("lang","ru");
     button.addParam("order_desc", order_desc);
