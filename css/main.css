@@ -41,6 +41,10 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .social_btn {width: 66%}
 
 
+
+.db_row_dialog {font-size: 17px;}
+
+
 #table_question_detox, #detox_settings, #table_question_therapy {
     padding: 15px;
     border-radius: 10px;

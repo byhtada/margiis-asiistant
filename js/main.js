@@ -775,6 +775,7 @@ function setUserMarafonDay(current_day, marafon_day){
 
     var progress = current_day.day_progress;
     $('#user_progress_bar').css('width', progress+'%').attr('aria-valuenow', progress);
+    $('#user_progress_bar').text(progress+'%');
     $('#user_marafon_start').show();
 }
 function getDayInfo(day_num){
@@ -1410,9 +1411,9 @@ $( document ).ready(function() {
 
     $('#btn_check_out_info').click(function (){
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: fondy_host,
-            data: { query_update: "user_save_detox_answer",
+            data: {
                 order_id:      "Order_1409532_cVaZ3AqudR_1528098474",
                 merchant_id:      "1409532",
                 signature:     "9b930831f78a4ad7352713b267ac1c6c8c1b38f7"
@@ -3078,73 +3079,8 @@ $( document ).ready(function() {
         });
     });
 
-    $(document).on('click', '.conv_lost_regs',        function () {
-        $.ajax({
-            type: "GET",
-            url:  api_url_full,
-            data: { query_info: "get_lost_regs",
-                    reg_flow: $(this).val(),
-                    conversion_start:  conversion_start,
-                    conversion_finish: conversion_finish
-            },
-            headers: {
-                'Authorization':'Token token=' + cookie_token,
-                'Content-Type':'application/x-www-form-urlencoded'
-            },
-            success: function(data){
-                var row = '<table id="db_row_main_table"  class="table table-hover table-bordered"><thead><tr class="db_main_row"> ';
-                row    += '<th>Имя</th>';
-                row    += '<th>Почта</th>';
-                row    += '<th>Способ регистрации</th>';
-                row    += '<th>Ссылка на профиль</th>';
-                row    += '<th>Комментарий</th>';
-
-                row    += '</tr></thead><tbody>';
-                $.each(data.users, function (i, item) {
-                    row += '<tr class="db_main_row">';
-                    row += '<td><h5 class="db_main_row">' + item.user_name               + '</h5></td>';
-                    row += '<td><h5 class="db_main_row">' + item.user_email              + '</h5></td>';
-                    row += '<td><h5 class="db_main_row">' + item.user_reg_flow           + '</h5></td>';
-                    row += '<td><h5 class="db_main_row"><a href="' + item.user_social_link +'" target="_blank">' + item.user_social_link + '</a></h5></td>';
-                    row += '<td><textarea class="user_comment_admin" name="' + item.user_id + '">' + item.user_comment + '</textarea></td>';
-                    row += '</tr>';
-                });
-                row += '</tbody></table>';
-                $('.lost_reg_users').empty();
-                $('.lost_reg_users').append(row);
-                $('.lost_reg_users').bsTable(undefined, true, undefined, undefined, true);
 
 
-                $('#modal_lost_reg').modal('show');
-            },
-            failure: function(errMsg) {
-                alert(errMsg.toString());
-            }
-        });
-    });
-
-    $(document).on('click', '.conv_phones_all',        function () {
-        $.ajax({
-            type: "GET",
-            url:  api_url_full,
-            data: { query_info: "get_conv_phone_all",
-                reg_flow: $(this).val(),
-                conversion_start:  conversion_start,
-                conversion_finish: conversion_finish
-            },
-            headers: {
-                'Authorization':'Token token=' + cookie_token,
-                'Content-Type':'application/x-www-form-urlencoded'
-            },
-            success: function(data){
-                console.log(data);
-                setConvUsersTable(data.users)
-            },
-            failure: function(errMsg) {
-                alert(errMsg.toString());
-            }
-        });
-    });
 
     $(document).on('click', '.conv_lost_phones',      function () {
         $.ajax({
@@ -3215,57 +3151,6 @@ $( document ).ready(function() {
         });
     });
 
-    $(document).on('click', '.conv_users_wait',       function () {
-        $.ajax({
-            type: "GET",
-            url:  api_url_full,
-            data: { query_info: "get_users_wait",
-                reg_flow: $(this).val(),
-                conversion_start:  conversion_start,
-                conversion_finish: conversion_finish
-            },
-            headers: {
-                'Authorization':'Token token=' + cookie_token,
-                'Content-Type':'application/x-www-form-urlencoded'
-            },
-            success: function(data){
-                console.log(data);
-                var row = '<table class="table table-hover table-bordered"><thead><tr class="db_main_row"> ';
-                row    += '<th>Имя</th>';
-                row    += '<th>Почта</th>';
-                row    += '<th>Способ регистрации</th>';
-                row    += '<th>Ссылка на профиль</th>';
-                row    += '<th>Мессенджер</th>';
-                row    += '<th>Телефон</th>';
-                row    += '<th>Подтверждение</th>';
-                row    += '<th>Комментарий</th>';
-                row    += '</tr></thead><tbody>';
-                $.each(data.users, function (i, item) {
-                    row += '<tr class="db_main_row">';
-                    row += '<td><h5 class="db_main_row">' + item.user_name               + '</h5></td>';
-                    row += '<td><h5 class="db_main_row">' + item.user_email              + '</h5></td>';
-                    row += '<td><h5 class="db_main_row">' + item.user_reg_flow           + '</h5></td>';
-                    row += '<td><h5 class="db_main_row"><a href="' + item.user_social_link +'" target="_blank">' + item.user_social_link + '</a></h5></td>';
-                    row += '<td><h5 class="db_main_row">' + item.user_messenger           + '</h5></td>';
-                    row += '<td><h5 class="db_main_row">' + item.user_phone               + '</h5></td>';
-                    row += '<td><button type="button" class="btn btn-success btn-sm" name="btns_confirm_pay" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_confirm_pay"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button></td>';
-                    row += '<td><textarea class="user_comment_admin" name="' + item.user_id + '">' + item.user_comment + '</textarea></td>';
-
-                    row += '</tr>';
-                });
-                row += '</tbody></table>';
-                $('.wait_confirm_users').empty();
-                $('.wait_confirm_users').append(row);
-                $('.wait_confirm_users').bsTable(undefined, true, undefined, undefined, true);
-
-
-                $('#modal_wait_confirm').modal('show');
-            },
-            failure: function(errMsg) {
-                alert(errMsg.toString());
-            }
-        });
-    });
 
     $(document).on('click', '.conv_practics_free',    function () {
         $.ajax({
