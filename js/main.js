@@ -60,9 +60,11 @@ var url;
 
 
 var merchant_id  = 1409532;
+var order_desc   = "Участие в марафоне HYLS";
 var response_url = "https://byhtada.github.io/hyls_client/";
 var order_id     = "";
 var signature    = "";
+var rectoken    = "";
 var fondy_host   = "https://api.fondy.eu/api/status/order_id";
 function initFondy(){
     button = $ipsp.get("button");
@@ -72,15 +74,15 @@ function initFondy(){
     button.setAmount("10","RUB",true);
     button.setResponseUrl(response_url);
     button.addParam("lang","ru");
-    button.addParam("order_desc","Участие в марафоне HYLS");
-    button.setRecurringState(true);
-    button.addRecurringData({
-        start_time: '2018-06-06',
-        end_time:   '2018-08-06',
-        // amount: ,
-        period: 'day',
-        every: 1
-    });
+    button.addParam("order_desc", order_desc);
+ //  button.setRecurringState(true);
+ //  button.addRecurringData({
+ //      start_time: '2018-06-06',
+ //      end_time:   '2018-08-06',
+ //      // amount: ,
+ //      period: 'day',
+ //      every: 1
+ //  });
 
     url = button.getUrl();
     $ipsp("checkout").config({
@@ -98,20 +100,20 @@ function initFondy(){
         });
         this.loadUrl(url);
         this.addCallback(function(data,type){
-            console.log(type);
-            console.log(data);
+            //console.log(type);
+            //console.log(data);
 
             if (typeof data.send_data !== 'undefined' && data.final ) {
-                console.log(data.send_data.signature);
-                console.log(data.send_data.order_id);
-                console.log(data.send_data.order_status);
-                console.log(data.send_data.currency);
-                console.log(data.send_data.settlement_amount);
+               // console.log(data.send_data.signature);
+               // console.log(data.send_data.order_id);
+               // console.log(data.send_data.order_status);
+               // console.log(data.send_data.currency);
+               // console.log(data.send_data.settlement_amount);
 
                 signature = data.send_data.signature;
                 order_id = data.send_data.order_id;
 
-                reg_user_confirm_payment(data.send_data);
+                reg_user_confirm_payment(data.send_data, "reg");
             }
         })
     });
@@ -312,16 +314,31 @@ function reg_user(userInfo, email, social_name, social_id, access_token){
     });
 }
 
-function reg_user_confirm_payment(send_data){
+function reg_user_confirm_payment(send_data, place){
+    var query;
+    switch (place) {
+        case "reg":
+            query = "user_confirm_payment_reg";
+            break;
+
+        case "support":
+            query = "user_confirm_payment_support";
+            break;
+    }
+
     $.ajax({
         type: "GET",
         url:  api_url_full,
-        data: { query_info: "user_confirm_payment",
+        data: { query_info: query,
+            payment_id:   send_data.order_id,
             payment_currency:   send_data.currency,
             payment_size:       send_data.amount,
             payment_card:       send_data.masked_card,
             payment_requisites: send_data.sender_email,
-            payment_date:       send_data.order_time
+            payment_date:       send_data.order_time,
+            payment_descr:      order_desc,
+            payment_signature:   send_data.signature,
+            payment_token:       send_data.rectoken
         },
         headers: {
             'Authorization':'Token token=' + cookie_token,
@@ -1657,14 +1674,14 @@ $( document ).ready(function() {
         button.setResponseUrl("https://byhtada.github.io/hyls_client/");
         button.addParam("lang","ru");
         button.addParam("order_desc","Участие в марафоне HYLS");
-        button.setRecurringState(true);
-        button.addRecurringData({
-            start_time: '2018-06-06',
-            end_time:   '2018-08-06',
-            // amount: ,
-            period: 'day',
-            every: 1
-        });
+       // button.setRecurringState(true);
+       // button.addRecurringData({
+       //     start_time: '2018-06-06',
+       //     end_time:   '2018-08-06',
+       //     // amount: ,
+       //     period: 'day',
+       //     every: 1
+       // });
         var url = button.getUrl();
         $ipsp("checkout").config({
             "wrapper": "#checkout",
@@ -1681,16 +1698,12 @@ $( document ).ready(function() {
             });
             this.loadUrl(url);
             this.addCallback(function(data,type){
-                console.log(type);
-                console.log(data);
+              //  console.log(type);
+              //  console.log(data);
 
                 if (typeof data.send_data !== 'undefined' && data.final ) {
-                    console.log(data.send_data.signature);
-                    console.log(data.send_data.order_status);
-                    console.log(data.send_data.currency);
-                    console.log(data.send_data.settlement_amount);
 
-                    reg_user_confirm_payment(data.send_data);
+                    reg_user_confirm_payment(data.send_data, "reg");
                 }
             })
         });
@@ -1735,14 +1748,14 @@ $( document ).ready(function() {
         button.setResponseUrl("https://byhtada.github.io/hyls_client/");
         button.addParam("lang","ru");
         button.addParam("order_desc","Участие в марафоне HYLS");
-        button.setRecurringState(true);
-        button.addRecurringData({
-            start_time: '2018-06-06',
-            end_time:   '2018-08-06',
-            // amount: ,
-            period: 'day',
-            every: 1
-        });
+      // button.setRecurringState(true);
+      // button.addRecurringData({
+      //     start_time: '2018-06-06',
+      //     end_time:   '2018-08-06',
+      //     // amount: ,
+      //     period: 'day',
+      //     every: 1
+      // });
 
         var url = button.getUrl();
         $ipsp("checkout").config({
@@ -1760,10 +1773,11 @@ $( document ).ready(function() {
             });
             this.loadUrl(url);
             this.addCallback(function(data,type){
-                console.log(type);
-                console.log(data);
+               // console.log(type);
+                //console.log(data);
 
                 if (typeof data.send_data !== 'undefined' && data.final ) {
+                    reg_user_confirm_payment(data.send_data, "support");
                     alert("Платеж успешно завершен. Благодарим за поддержку!")
                 }
             })
@@ -1786,7 +1800,7 @@ $( document ).ready(function() {
             "order_time" : 0
         };
 
-        reg_user_confirm_payment(blank);
+        reg_user_confirm_payment(blank, "reg");
     });
 
 
@@ -1848,6 +1862,7 @@ $( document ).ready(function() {
                         console.log(data);
 
                         if (typeof data.send_data !== 'undefined' && data.final ) {
+                            reg_user_confirm_payment(data.send_data, "support");
                             alert("Платеж успешно завершен. Благодарим за поддержку!")
                         }
                     })
