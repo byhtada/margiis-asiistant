@@ -1,22 +1,69 @@
 $(window).on('load', function() {
-   console.log("load");
-    ifLogin();
+  // console.log("load");
+  // console.log(navigator.appName);
+  // console.log(navigator.userAgent);
+
+   //if (navigator.appName == 'Microsoft Internet Explorer' || (navigator.appName == "Netscape" && navigator.appVersion.indexOf('Edge') > -1)){
+   if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )){
+       alert("Наше программное обесепечение не поддерживает Internet Explore, пожалуйста, используйте другой браузер.")
+   } else {
+       window.fbAsyncInit = function() {
+           FB.init({
+               appId      : '309469549587161',
+               cookie     : true,
+               xfbml      : true,
+               version    : 'v3.0'
+           });
+
+           FB.AppEvents.logPageView();
+           ifLogin();
+
+           timerId = setInterval(function() {
+             //  console.log( "тик" );
+               if (check_social === false) {
+                   var params = parse_query_string();
+                   console.log(params);
+                   if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
+                       clearInterval(timerId);
+                       check_social = true;
+
+                       var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,timezone";
+                       var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
+                       jsonp(vk_api_query, function(userInfo) {
+                           console.log(userInfo.response[0]);
+                           userInfo = userInfo.response[0];
+                           try_find_user(userInfo, params, "vk")
+                       });
+                   }
+               }
+
+               // else if (typeof params.social_login !== 'undefined' &&  params.social_login === "vk" && check_social == false) {
+               //     check_social = true;
+               //     clearInterval(timerId);
+               //     $('#btn_vk_log_in')[0].click();
+               // } else if (typeof params.social_login !== 'undefined' &&  params.social_login === "fb" && check_social == false) {
+               //     check_social = true;
+               //     clearInterval(timerId);
+               //     fb_login();
+               // }
+           }, 100);
+   }
+   // ifLogin();
+
+
+
+    }
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js#version=v3.0&appId=309469549587161&status=true&cookie=true&xfbml=true";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 
     initFondy();
-    timerId = setInterval(function() {
-        console.log( "тик" );
-        var params = parse_query_string();
-        if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
-            clearInterval(timerId);
-            var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,timezone";
-            var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
-            jsonp(vk_api_query, function(userInfo) {
-                console.log(userInfo.response[0]);
-                userInfo = userInfo.response[0];
-                try_find_user(userInfo, params, "vk")
-            });
-        }
-    }, 100);
+
 
 
     function jsonp(url, callback) {
@@ -61,7 +108,7 @@ var url;
 
 var merchant_id  = 1409532;
 var order_desc   = "Участие в марафоне HYLS";
-var response_url = "https://byhtada.github.io/hyls_client/";
+var response_url = "https://marafon.hyls.ru/";
 var order_id     = "";
 var signature    = "";
 var rectoken    = "";
@@ -121,7 +168,7 @@ function initFondy(){
 
 
 var  timerId;
-
+var check_social = false;
 
 
 var city = {};
@@ -149,6 +196,7 @@ function ifLogin()  {
     //console.log(cookie_token);
     if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
         start();
+
         clearInterval(timerId);
     } else {
         //   console.log(cookie_token);
@@ -158,10 +206,14 @@ function ifLogin()  {
         var params = parse_query_string();
         if (typeof params.social_login !== 'undefined'){
 
-            if (params.social_login === "vk") {
+            if (params.social_login === "vk" && check_social == false) {
+                check_social = true;
+                clearInterval(timerId);
                 $('#btn_vk_log_in')[0].click();
             }
-            if (params.social_login === "fb") {
+            if (params.social_login === "fb" && check_social == false) {
+                check_social = true;
+                clearInterval(timerId);
                 fb_login();
             }
         } else if (typeof params.access_token == 'undefined'){
@@ -236,7 +288,6 @@ function fb_login(){
                     user_params["access_token"] = response.authResponse.access_token;
                     user_params["email"] = userData.email;
                     console.log("user_params " + JSON.stringify(user_params));
-
                     try_find_user(user_reg_info, user_params, "fb")
                 });
             }
@@ -245,7 +296,8 @@ function fb_login(){
 }
 
 function try_find_user(userInfo, params, social_name){
-    console.log("try find user");
+    console.log("try_find_user params ");
+    console.log(params);
     $.ajax({
         type: "GET",
         url: api_url + "find_user",
@@ -254,18 +306,18 @@ function try_find_user(userInfo, params, social_name){
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         success: function (data) {
-            console.log("try find user");
-            console.log(JSON.stringify(data));
-            console.log(JSON.stringify(data.token));
-
+        //    console.log("try find user");
+        //    console.log(JSON.stringify(data));
+       //     console.log(JSON.stringify(data.token));
+//
             if (typeof data.token !== 'undefined') {
-                console.log("user founded");
+         //       console.log("user founded");
                 setCookie(cookie_name_token, data.token, {expires: 36000000000000});
                 setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
                 cookie_token = getCookie(cookie_name_token);
                 ifLogin();
             } else {
-                console.log("user not founded");
+              //  console.log("user not founded");
                 reg_user(userInfo, params.email, social_name, params.user_id, params.access_token);
             }
         },
@@ -277,22 +329,39 @@ function try_find_user(userInfo, params, social_name){
 }
 
 function reg_user(userInfo, email, social_name, social_id, access_token){
+    var person;
+    if (typeof userInfo.city !== 'undefined' && typeof userInfo.country !== 'undefined'){
+         person  = {  social_name: social_name,
+            social_id:    social_id,
+            access_token: access_token,
+            email:           email,
+            first_name:      userInfo.first_name,
+            last_name:       userInfo.last_name,
+            sex:             userInfo.sex,
+            bdate:           userInfo.bdate,
+            city:            userInfo.city.title,
+            country:         userInfo.country.title,
+            photo:           userInfo.photo_200,
+            phone_home:      userInfo.home_phone,
+            followers_count: userInfo.followers_count,
+            hour_tail:       userInfo.timezone
+        };
+    } else {
+        person  = {   social_name: social_name,
+            social_id:    social_id,
+            access_token: access_token,
+            email:           email,
+            first_name:      userInfo.first_name,
+            last_name:       userInfo.last_name,
+            sex:             userInfo.sex,
+            bdate:           userInfo.bdate,
+            photo:           userInfo.photo_200,
+            phone_home:      userInfo.home_phone,
+            followers_count: userInfo.followers_count,
+            hour_tail:       userInfo.timezone};
+    }
 
-    var person  = {  social_name: social_name,
-        social_id:    social_id,
-        access_token: access_token,
-        email:           email,
-        first_name:      userInfo.first_name,
-        last_name:       userInfo.last_name,
-        sex:             userInfo.sex,
-        bdate:           userInfo.bdate,
-        city:            userInfo.city.title,
-        country:         userInfo.country.title,
-        photo:           userInfo.photo_200,
-        phone_home:      userInfo.home_phone,
-        followers_count: userInfo.followers_count,
-        hour_tail:       userInfo.timezone
-    };
+
     console.log(JSON.stringify(person));
 
     $.ajax({
@@ -302,7 +371,7 @@ function reg_user(userInfo, email, social_name, social_id, access_token){
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function(data){
-            console.log("Reg success: " + JSON.stringify(data));
+           // console.log("Reg success: " + JSON.stringify(data));
             setCookie(cookie_name_token, data.auth_token,     {expires: 36000000000000});
             setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
             cookie_token = getCookie(cookie_name_token);
@@ -421,6 +490,7 @@ function update_user_info() {
                 //setUserDiary(data.user_diary);
                 day_new = data.marafon_day;
 
+                $('#user_wait_id').text(data.user.id);
                 $('#user_marafon_reg').hide();
                 $('#user_marafon_start').hide();
                 $('#user_marafon_wait').hide();
@@ -447,6 +517,7 @@ function update_user_info() {
                 } else if (data.marafon_day > 0) {
                     console.log("go");
                     setUserMarafonDay(data.marafon_info_today, data.marafon_day);
+                    $('#user_marafon_start').show();
 
                     $('#nav_bar').show();
                 }
@@ -526,6 +597,12 @@ function setUserMarafonDay(current_day, marafon_day){
     var half_bath_day          = current_day.half_bath_day;
     var half_bath_night        = current_day.half_bath_night;
 
+    var ahimsa        = current_day.ahimsa_fact;
+    var satya         = current_day.satya_fact;
+    var asteya        = current_day.asteya_fact;
+    var brahma        = current_day.brahma_fact;
+    var aparigraha    = current_day.aparigraha_fact;
+
     var water_fact             = current_day.water_fact;
     var wake_up_hours_fact     = current_day.wake_up_hours_fact;
     var wake_up_minutes_fact   = current_day.wake_up_minutes_fact;
@@ -547,6 +624,11 @@ function setUserMarafonDay(current_day, marafon_day){
     var asana_active           = current_day.asana_active;
     var psi_active             = current_day.psi_active;
     var half_bath_active             = current_day.half_bath_active;
+    var ahimsa_active             = current_day.ahimsa_active;
+    var satya_active             = current_day.satya_active;
+    var asteya_active             = current_day.asteya_active;
+    var brahma_active             = current_day.brahma_active;
+    var aparigraha_active             = current_day.aparigraha_active;
 
     var water_target            = current_day.water_target;
     var wake_up_hours_target    = current_day.wake_up_hours_target;
@@ -557,6 +639,8 @@ function setUserMarafonDay(current_day, marafon_day){
     var kirtan_day_target       = current_day.kirtan_day_target;
     var kirtan_night_target     = current_day.kirtan_night_target;
 
+
+    day_num == marafon_day
 
 
     console.log(day_show_now + "  " + day_new);
@@ -588,6 +672,12 @@ function setUserMarafonDay(current_day, marafon_day){
         $('#filed_half_bath_day')          .prop("checked", false);
         $('#filed_half_bath_night')        .prop("checked", false);
 
+        $('#filed_ahimsa')        .prop("checked", false);
+        $('#filed_satya')        .prop("checked", false);
+        $('#filed_asteya')        .prop("checked", false);
+        $('#filed_brahma')        .prop("checked", false);
+        $('#filed_aparigraha')        .prop("checked", false);
+
         $('#filed_water_fact')             .val(null);
         $('#filed_wake_up_fact')           .val(null);
         $('#filed_meditation_day_fact')    .val(null);
@@ -609,7 +699,12 @@ function setUserMarafonDay(current_day, marafon_day){
         if (therapy_active         != null && therapy_active         != false) {$('#row_therapy').show();}
         if (asana_active           != null && asana_active           != false) {$('#row_asana').show();}
         if (psi_active             != null && psi_active             != false) {$('#row_psy').show();}
-        if (half_bath_active       != null && half_bath_active             != false) {$('#row_half_bath').show();}
+        if (half_bath_active       != null && half_bath_active       != false) {$('#row_half_bath').show();}
+        if (ahimsa_active       != null && ahimsa_active       != false) {$('#row_ahimsa').show();}
+        if (satya_active       != null && satya_active       != false) {$('#row_satya').show();}
+        if (asteya_active       != null && asteya_active       != false) {$('#row_asteya').show();}
+        if (brahma_active       != null && brahma_active       != false) {$('#row_brahma').show();}
+        if (aparigraha_active       != null && aparigraha_active       != false) {$('#row_aparigraha').show();}
 
         if (water_target != null) {
             $('#row_water').show();
@@ -667,6 +762,12 @@ function setUserMarafonDay(current_day, marafon_day){
         psi_fact             != null && psi_fact             !=false ?  $('#filed_psy')             .prop("checked", true) : $('#filed_psy')             .prop("checked", false);
         half_bath_day        != null && half_bath_day        !=false ?  $('#filed_half_bath_day')   .prop("checked", true) : $('#filed_half_bath_day')   .prop("checked", false);
         half_bath_night      != null && half_bath_night      !=false ?  $('#filed_half_bath_night') .prop("checked", true) : $('#filed_half_bath_night') .prop("checked", false);
+
+        ahimsa      != null && ahimsa      !=false ?  $('#filed_ahimsa') .prop("checked", true) : $('#filed_ahimsa') .prop("checked", false);
+        satya      != null && satya      !=false ?  $('#filed_satya') .prop("checked", true) : $('#filed_satya') .prop("checked", false);
+        asteya      != null && asteya      !=false ?  $('#filed_asteya') .prop("checked", true) : $('#filed_asteya') .prop("checked", false);
+        brahma      != null && brahma      !=false ?  $('#filed_brahma') .prop("checked", true) : $('#filed_brahma') .prop("checked", false);
+        aparigraha      != null && aparigraha      !=false ?  $('#filed_aparigraha') .prop("checked", true) : $('#filed_aparigraha') .prop("checked", false);
 
 
 
@@ -759,6 +860,60 @@ function setUserMarafonDay(current_day, marafon_day){
         }
     }
 
+    if (current_day.ahimsa_answer ) {
+        $('#table_question_ahimsa').hide();
+    } else {
+        if (day_num > 44) {
+            $('#table_question_ahimsa').show();
+        } else {
+            $('#table_question_ahimsa').hide();
+        }
+    }
+
+    if (current_day.satya_answer ) {
+        $('#table_question_satya').hide();
+    } else {
+        if (day_num > 45) {
+            $('#table_question_satya').show();
+        } else {
+            $('#table_question_satya').hide();
+        }
+    }
+
+    if (current_day.asteya_answer ) {
+        $('#table_question_asteya').hide();
+    } else {
+        if (day_num > 46) {
+            $('#table_question_asteya').show();
+        } else {
+            $('#table_question_asteya').hide();
+        }
+    }
+
+    if (current_day.brahma_answer ) {
+        $('#table_question_brahma').hide();
+    } else {
+        if (day_num > 47) {
+            $('#table_question_brahma').show();
+        } else {
+            $('#table_question_brahma').hide();
+        }
+    }
+
+    if (current_day.aparigraha_answer ) {
+        $('#table_question_aparigraha').hide();
+    } else {
+        if (day_num > 48) {
+            $('#table_question_aparigraha').show();
+        } else {
+            $('#table_question_aparigraha').hide();
+        }
+    }
+
+
+
+
+
     if (current_day.therapy_answer ) {
         $('#table_question_therapy').hide();
     } else {
@@ -773,14 +928,28 @@ function setUserMarafonDay(current_day, marafon_day){
 
     if (current_day.day_num == marafon_day) {
         $('#user_current_day')    .text("День " + day_num + " (сегодня)");
+        $('#btn_user_previus_day') .show();
+        $('#btn_user_next_day')    .hide();
     } else if (current_day.day_num == marafon_day - 1){
         $('#user_current_day')    .text("День " + day_num + " (вчера)");
+        $('#btn_user_next_day')   .show();
+        $('#btn_user_previus_day') .show();
     } else if (current_day.day_num == marafon_day + 1) {
         $('#user_current_day')    .text("День " + day_num + " (завтра)");
     } else {
         $('#user_current_day')    .text("День " + day_num + " (" + current_day.day_date + ")");
+        $('#btn_user_previus_day') .show();
+        $('#btn_user_next_day')    .show();
     }
 
+    if (day_num == 1) {
+        $('#btn_user_previus_day') .hide();
+        if (marafon_day == 1) {
+            $('#btn_user_next_day')   .hide();
+        } else {
+            $('#btn_user_next_day')   .show();
+        }
+    }
 
     $('#btn_user_material')    .val(current_day.day_materials);
     $('#btn_user_previus_day') .val(day_num - 1);
@@ -845,6 +1014,13 @@ function userSaveDay() {
             psy:                   $('#filed_psy')                    .is(':checked'),
             half_bath_day:         $('#filed_half_bath_day')         .is(':checked'),
             half_bath_night:       $('#filed_half_bath_night')         .is(':checked'),
+
+            ahimsa:       $('#filed_ahimsa')         .is(':checked'),
+            satya:       $('#filed_satya')         .is(':checked'),
+            asteya:       $('#filed_asteya')         .is(':checked'),
+            brahma:       $('#filed_brahma')         .is(':checked'),
+            aparigraha:       $('#filed_aparigraha')         .is(':checked'),
+
             kirtan_day_fact:       $('#filed_kirtan_day_fact')        .val(),
             kirtan_night_fact:     $('#filed_kirtan_night_fact')      .val(),
             day_comment:           $('#filed_day_comment')      .val()
@@ -915,7 +1091,7 @@ function setUserProgramm(user_programm) {
     var user_programm_row = '<table id="table_programm_main1" class="table table-hover table-bordered table-condensed" >';
     user_programm_row    += '<thead><tr> <th>День</th> <th>Вода</th><th>Перекусы</th><th>Диета статус</th><th>Диета тип</th><th>Подъем</th><th>Язык</th>';
     user_programm_row    += '        <th>Медитация (утро)</th> <th>Медитация (вечер)</th><th>Каушики</th><th>Физ. упр.</th><th>Терапии</th><th>Асаны</th>';
-    user_programm_row    += '        <th>Псих. упр.</th><th>Полуванна</th> <th>Киртан (утро)</th><th>Киртан (вечер)</th>';
+    user_programm_row    += '        <th>Псих. упр.</th><th>Полуванна</th> <th>Ахимса</th><th>Сатья</th><th>Астея</th><th>Брахмачарья</th><th>Апариграха</th> <th>Киртан (утро)</th><th>Киртан (вечер)</th>';
     user_programm_row    += '</tr></thead><tbody>';
     $.each(user_programm, function (i, item) {
         var day_num = item.day_num;
@@ -1074,6 +1250,56 @@ function setUserProgramm(user_programm) {
             if (item.half_bath_day && item.half_bath_night) {
                 user_programm_row += '<td class="warning"><h5>' + "+ +"  + '</h5></td>';
             } else if (item.half_bath_day || item.half_bath_night) {
+                user_programm_row += '<td class="warning"><h5>' + "+"  + '</h5></td>';
+            } else {
+                user_programm_row += '<td class="warning"><h5></h5></td>';
+            }
+        } else {
+            user_programm_row += '<td><h5></h5></td>';
+        }
+
+        if ( item.ahimsa_active != null  &&  item.ahimsa_active != false) {
+            if (item.ahimsa_fact) {
+                user_programm_row += '<td class="warning"><h5>' + "+"  + '</h5></td>';
+            } else {
+                user_programm_row += '<td class="warning"><h5></h5></td>';
+            }
+        } else {
+            user_programm_row += '<td><h5></h5></td>';
+        }
+
+       if ( item.satya_active != null  &&  item.satya_active != false) {
+            if (item.satya_fact) {
+                user_programm_row += '<td class="warning"><h5>' + "+"  + '</h5></td>';
+            } else {
+                user_programm_row += '<td class="warning"><h5></h5></td>';
+            }
+        } else {
+            user_programm_row += '<td><h5></h5></td>';
+        }
+
+       if ( item.asteya_active != null  &&  item.asteya_active != false) {
+            if (item.asteya_fact) {
+                user_programm_row += '<td class="warning"><h5>' + "+"  + '</h5></td>';
+            } else {
+                user_programm_row += '<td class="warning"><h5></h5></td>';
+            }
+        } else {
+            user_programm_row += '<td><h5></h5></td>';
+        }
+
+       if ( item.brahma_active != null  &&  item.brahma_active != false) {
+            if (item.brahma_fact) {
+                user_programm_row += '<td class="warning"><h5>' + "+"  + '</h5></td>';
+            } else {
+                user_programm_row += '<td class="warning"><h5></h5></td>';
+            }
+        } else {
+            user_programm_row += '<td><h5></h5></td>';
+        }
+
+       if ( item.aparigraha_active != null  &&  item.aparigraha_active != false) {
+            if (item.aparigraha_fact) {
                 user_programm_row += '<td class="warning"><h5>' + "+"  + '</h5></td>';
             } else {
                 user_programm_row += '<td class="warning"><h5></h5></td>';
@@ -1424,7 +1650,37 @@ function getCookie(name) {
 }
 
 $( document ).ready(function() {
+
+
     console.log( "document loaded" );
+    $('.navbar-collapse a').click(function(){
+        $(".navbar-collapse").collapse('hide');
+    });
+
+    $('#btn_get_comments').click(function () {
+        try {
+            $.ajax({
+                type: "GET",
+                url:   api_url + "users",
+                data: {query_info: "get_comments",
+                    day_num: $('#day_num_input').val()},
+                headers: {
+                    'Authorization': 'Token token=' + cookie_token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function (data) {
+                    console.log(data);
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
+        }
+        catch (err) {
+            console.log(err);
+        }
+
+    });
 
     $('#btn_check_out_info').click(function (){
         $.ajax({
@@ -1441,6 +1697,26 @@ $( document ).ready(function() {
             },
             success: function (data) {
                 console.log(data);
+
+            },
+            failure: function (errMsg) {
+                //    console.log(errMsg.toString());
+            }
+        });
+    });
+    $('#btn_send_email').click(function (){
+        $.ajax({
+            type: "GET",
+            url: api_url_full,
+            data: {query_info: "send_mail"
+            },
+
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type' : 'application/x-www-form-urlencoded'
+            },
+            success: function (data) {
+                //console.log(data);
 
             },
             failure: function (errMsg) {
@@ -1532,14 +1808,16 @@ $( document ).ready(function() {
 
 
 
-    $('#btn_exit, #btn_user_exit').click(function () {
+    $('#btn_exit, #btn_user_exit, #btn_login_exit').click(function () {
         setCookie(cookie_name_token);
         cookie_token = getCookie(cookie_name_token);
         ifLogin();
         $("#page_login")     .show();
 
     });
-
+    $('#wait_logo').click(function (){
+        $('#hidden_info_wait').show();
+    });
 
 
 //Registration
@@ -1633,7 +1911,9 @@ $( document ).ready(function() {
     });
 
 
-
+    $('#btn_reg_show_currency').click(function(){
+        $('#reg_currency').show();
+    });
     $(document).on('click', '.pay_currency_reg', function (){
        // console.log($(this).val());
         var currency = $(this).val();
@@ -1671,7 +1951,7 @@ $( document ).ready(function() {
 
         }
 
-        button.setResponseUrl("https://byhtada.github.io/hyls_client/");
+        button.setResponseUrl(response_url);
         button.addParam("lang","ru");
         button.addParam("order_desc","Участие в марафоне HYLS");
        // button.setRecurringState(true);
@@ -1745,7 +2025,7 @@ $( document ).ready(function() {
 
         }
 
-        button.setResponseUrl("https://byhtada.github.io/hyls_client/");
+        button.setResponseUrl(response_url);
         button.addParam("lang","ru");
         button.addParam("order_desc","Участие в марафоне HYLS");
       // button.setRecurringState(true);
@@ -1880,7 +2160,7 @@ $( document ).ready(function() {
         getDayInfo($(this).val());
 
     });
-    $('#filed_no_snacking_fact, #filed_diet, #filed_tongue_day, #filed_tongue_night, #filed_phisic, #filed_therapy, #filed_asana, #filed_psy, #filed_half_bath_day, #filed_half_bath_night').change(function() {
+    $('#filed_no_snacking_fact, #filed_diet, #filed_tongue_day, #filed_tongue_night, #filed_phisic, #filed_therapy, #filed_asana, #filed_psy, #filed_half_bath_day, #filed_half_bath_night, #filed_ahimsa, #filed_satya, #filed_asteya, #filed_brahma, #filed_aparigraha').change(function() {
         userSaveDay();
     });
     $("#filed_water_fact, #filed_meditation_day_fact, #filed_meditation_night_fact, #filed_kaoshiki_fact, #filed_kirtan_day_fact, #filed_kirtan_night_fact, #filed_wake_up_fact_hour, #filed_wake_up_fact_minute, #filed_day_comment").on('change keyup paste', function () {
@@ -2961,7 +3241,6 @@ $( document ).ready(function() {
                 var therapy_active         = current_day.therapy_active;
                 var asana_active           = current_day.asana_active;
                 var psi_active             = current_day.psi_active;
-                var half_bath_active       = current_day.half_bath_active;
 
                 eat_no_snacking_active == null || eat_no_snacking_active == false ?  $('#field_eat_no_snacking_active').prop("checked", false) : $('#field_eat_no_snacking_active') .prop("checked", true);
                 eat_diet_active        == null || eat_diet_active == false        ?  $('#field_eat_diet_active')       .prop("checked", false) : $('#field_eat_diet_active')        .prop("checked", true);
@@ -2978,7 +3257,6 @@ $( document ).ready(function() {
                 therapy_active == null || therapy_active == false ?  $('#field_therapy_active') .prop("checked", false) : $('#field_therapy_active') .prop("checked", true);
                 asana_active   == null || asana_active   == false ?  $('#field_asana_active')   .prop("checked", false) : $('#field_asana_active') .prop("checked", true);
                 psi_active     == null || psi_active     == false ?  $('#field_psi_active')     .prop("checked", false) : $('#field_psi_active') .prop("checked", true);
-                half_bath_active     == null || half_bath_active     == false ?  $('#field_half_bath_active')     .prop("checked", false) : $('#field_half_bath_active') .prop("checked", true);
 
                 $('#field_kirtan_day_target')  .val(current_day.kirtan_day_target);
                 $('#field_kirtan_night_target').val(current_day.kirtan_night_target);
@@ -3014,7 +3292,6 @@ $( document ).ready(function() {
                 therapy_active:            $('#field_therapy_active')          .is(':checked'),
                 asana_active:              $('#field_asana_active')           .is(':checked'),
                 psi_active:                $('#field_psi_active')              .is(':checked'),
-                half_bath_active:          $('#field_half_bath_active')              .is(':checked'),
                 kirtan_day_target:         $('#field_kirtan_day_target')      .val(),
                 kirtan_night_target:       $('#field_kirtan_night_target')    .val(),
                 time_to_read:              $('#field_time_to_read')           .val(),
