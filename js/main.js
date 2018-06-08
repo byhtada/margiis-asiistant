@@ -23,17 +23,19 @@ $(window).on('load', function() {
                    var params = parse_query_string();
                    console.log(params);
                    if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
+                       var new_params = params;
                        clearInterval(timerId);
-
                        var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,timezone";
                        var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
                        jsonp(vk_api_query, function(userInfo) {
-                           console.log(userInfo.response[0]);
+                           console.log("timer response " + userInfo.response[0]);
+                           console.log("timer params " + params);
+                           console.log(params);
                            userInfo = userInfo.response[0];
-                           try_find_user(userInfo, params, "vk")
+                           try_find_user(userInfo, new_params, "vk")
                        });
                    }
-           }, 100);
+           }, 500);
    }
    // ifLogin();
 
@@ -282,7 +284,7 @@ function try_find_user(userInfo, params, social_name){
     $.ajax({
         type: "GET",
         url: api_url + "find_user",
-        data: {email: params.email, social_id: params.user_id},
+        data: {email: params.email, social_id: params.user_id, social_name: social_name},
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
@@ -352,11 +354,16 @@ function reg_user(userInfo, email, social_name, social_id, access_token){
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function(data){
+            if (data.error == 0){
+                setCookie(cookie_name_token, data.auth_token,     {expires: 36000000000000});
+                setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
+                cookie_token = getCookie(cookie_name_token);
+                ifLogin();
+            } else {
+                alert("Аккаунт с таким ИД социальной сети уже зарегистрирован. Обратитесь vk.com/id251622303 что бы решить этот вопрос")
+            }
            // console.log("Reg success: " + JSON.stringify(data));
-            setCookie(cookie_name_token, data.auth_token,     {expires: 36000000000000});
-            setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
-            cookie_token = getCookie(cookie_name_token);
-            ifLogin();
+
         },
         failure: function(errMsg) {
             alert(errMsg);
