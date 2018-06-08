@@ -20,12 +20,10 @@ $(window).on('load', function() {
 
            timerId = setInterval(function() {
              //  console.log( "тик" );
-               if (check_social === false) {
                    var params = parse_query_string();
                    console.log(params);
                    if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
                        clearInterval(timerId);
-                       check_social = true;
 
                        var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,timezone";
                        var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
@@ -35,17 +33,6 @@ $(window).on('load', function() {
                            try_find_user(userInfo, params, "vk")
                        });
                    }
-               }
-
-               // else if (typeof params.social_login !== 'undefined' &&  params.social_login === "vk" && check_social == false) {
-               //     check_social = true;
-               //     clearInterval(timerId);
-               //     $('#btn_vk_log_in')[0].click();
-               // } else if (typeof params.social_login !== 'undefined' &&  params.social_login === "fb" && check_social == false) {
-               //     check_social = true;
-               //     clearInterval(timerId);
-               //     fb_login();
-               // }
            }, 100);
    }
    // ifLogin();
@@ -168,7 +155,6 @@ function initFondy(){
 
 
 var  timerId;
-var check_social = false;
 
 
 var city = {};
@@ -195,9 +181,8 @@ function ifLogin()  {
 
     //console.log(cookie_token);
     if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
-        start();
-
         clearInterval(timerId);
+        start();
     } else {
         //   console.log(cookie_token);
         $('#page_user_main') .hide();
@@ -206,14 +191,10 @@ function ifLogin()  {
         var params = parse_query_string();
         if (typeof params.social_login !== 'undefined'){
 
-            if (params.social_login === "vk" && check_social == false) {
-                check_social = true;
-                clearInterval(timerId);
+            if (params.social_login === "vk") {
                 $('#btn_vk_log_in')[0].click();
             }
-            if (params.social_login === "fb" && check_social == false) {
-                check_social = true;
-                clearInterval(timerId);
+            if (params.social_login === "fb") {
                 fb_login();
             }
         } else if (typeof params.access_token == 'undefined'){
@@ -658,6 +639,11 @@ function setUserMarafonDay(current_day, marafon_day){
         $('#row_asana')           .hide();
         $('#row_psy')             .hide();
         $('#row_half_bath')       .hide();
+        $('#row_ahimsa')       .hide();
+        $('#row_satya')       .hide();
+        $('#row_asteya')       .hide();
+        $('#row_brahma')       .hide();
+        $('#row_aparigraha')       .hide();
         $('#row_kirtan_day')      .hide();
         $('#row_kirtan_night')    .hide();
 
@@ -1835,35 +1821,48 @@ $( document ).ready(function() {
 
     $('#btn_reg_step_1').click(function (){
         $('#reg_step_1').hide();
+        $('#reg_step_3').hide();
         $('#reg_step_2').show();
         $('#reg_step_text').text("Шаг 2/6");
-        $('#reg_step_progress').css('width', '20%').attr('aria-valuenow', 15);
+        $('#reg_step_progress').css('width', '35%').attr('aria-valuenow', 15);
+	    scrollTop();
     });
     $('#btn_reg_step_2').click(function (){
         $('#reg_step_2').hide();
+        $('#reg_step_4').hide();
         $('#reg_step_3').show();
         $('#reg_step_text').text("Шаг 3/6");
-        $('#reg_step_progress').css('width', '40%').attr('aria-valuenow', 15);
+        $('#reg_step_progress').css('width', '50%').attr('aria-valuenow', 15);
+	    scrollTop();
     });
     $('#btn_reg_step_3').click(function (){
         $('#reg_step_3').hide();
+        $('#reg_step_5').hide();
         $('#reg_step_4').show();
         $('#reg_step_text').text("Шаг 4/6");
-        $('#reg_step_progress').css('width', '60%').attr('aria-valuenow', 15);
+        $('#reg_step_progress').css('width', '65%').attr('aria-valuenow', 15);
+	    scrollTop();
     });
     $('#btn_reg_step_4').click(function (){
         $('#reg_step_4').hide();
+        $('#reg_step_6').hide();
         $('#reg_step_5').show();
         $('#reg_step_text').text("Шаг 5/6");
-        $('#reg_step_progress').css('width', '75%').attr('aria-valuenow', 15);
+        $('#reg_step_progress').css('width', '85%').attr('aria-valuenow', 15);
+	    scrollTop();
     });
     $('#btn_reg_step_5').click(function (){
         $('#reg_step_5').hide();
         $('#reg_step_6').show();
         $('#reg_step_text').text("Шаг 6/6");
-        $('#reg_step_progress').css('width', '90%').attr('aria-valuenow', 15);
+        $('#reg_step_progress').css('width', '100%').attr('aria-valuenow', 15);
+	    scrollTop();
     });
 
+    function scrollTop() {
+        console.log('123');
+	    $('html, body').animate({scrollTop: 0},500);
+    }
 
     $('#btn_register_self').click(function () {
         $('#btn_register_self').prop('disabled', true);
@@ -2194,6 +2193,126 @@ $( document ).ready(function() {
             }
         });
     });
+
+    $('#btn_question_ahimsa_save').click(function (){
+        $('#btn_question_ahimsa_save').prop('disabled', true);
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_update: "user_save_ahimsa_answer",
+                djama_answer:       $('#filed_question_ahimsa')         .is(':checked')
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                $('#btn_question_ahimsa_save').prop('disabled', false);
+                day_new = 0;
+                setUserMarafonDay(data.current_day, data.marafon_day);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+    $('#btn_question_satya_save').click(function (){
+        $('#btn_question_satya_save').prop('disabled', true);
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_update: "user_save_satya_answer",
+                djama_answer:       $('#filed_question_satya')         .is(':checked')
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                $('#btn_question_satya_save').prop('disabled', false);
+                day_new = 0;
+                setUserMarafonDay(data.current_day, data.marafon_day);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+    $('#btn_question_asteya_save').click(function (){
+        $('#btn_question_asteya_save').prop('disabled', true);
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_update: "user_save_asteya_answer",
+                djama_answer:       $('#filed_question_asteya')         .is(':checked')
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                $('#btn_question_asteya_save').prop('disabled', false);
+                day_new = 0;
+                setUserMarafonDay(data.current_day, data.marafon_day);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+    $('#btn_question_brahma_save').click(function (){
+        $('#btn_question_brahma_save').prop('disabled', true);
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_update: "user_save_brahma_answer",
+                djama_answer:       $('#filed_question_brahma')         .is(':checked')
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                $('#btn_question_brahma_save').prop('disabled', false);
+                day_new = 0;
+                setUserMarafonDay(data.current_day, data.marafon_day);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+    $('#btn_question_aparigraha_save').click(function (){
+        $('#btn_question_aparigraha_save').prop('disabled', true);
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_update: "user_save_aparigraha_answer",
+                djama_answer:       $('#filed_question_aparigraha')         .is(':checked')
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                $('#btn_question_aparigraha_save').prop('disabled', false);
+                day_new = 0;
+                setUserMarafonDay(data.current_day, data.marafon_day);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+
+
+
+
     $('#btn_question_water_save').click(function (){
         $('#btn_question_water_save').prop('disabled', true);
         $.ajax({

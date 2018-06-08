@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 
 .yoga_color {color: #46d444}
 .black_color {color: #000000}
-.payment_header {font-size: 30px; color: #46d444}
+.payment_header {font-size: 30px; color: #46d444 !important;}
 .payment_text   {font-size: 20px; }
 .currency_text   {font-size: 12px; }
 
@@ -100,6 +100,10 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .db_row_input        {border: 0; padding: 0; width:  100px; }
 .div_row_fact {align-items: center; align-content: center;}
 .db_row_input_admin  {border: 0; width:  200px; padding-left: 10px;}
+
+
+
+
 
 
 
@@ -210,11 +214,111 @@ div#user_marafon_start td.db_row_input {
     text-align: center;
 }
 
+a.reg-link-text {
+    word-wrap: break-word;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.76;
+    margin-bottom: 12px;
+}
 
+div.reg-header {
+    margin-top: 46px;
+    margin-bottom: 0.45em;
+    font-family: inherit;
+    font-weight: 900;
+    line-height: 1.2;
+    color: #363636;
+}
 
+button.btn_reg {
+    max-width: 150px;
+}
 
+/**
+ * Registration steps
+ */
+ul.reg-list {
+    list-style: none;
+    padding-left: 15px;
+    font-size: 16px;
+    line-height: 1.7;
+}
 
+ul.reg-list li {
+    list-style-type: none;
+}
 
+ul.reg-list li:before {
+    content: "";
+    width: 9px;
+    height: 1px;
+    margin-left: -15px;
+    margin-right: 11px;
+    display: inline-block;
+    background-color: #000000;
+    vertical-align: middle;
+}
+
+div.reg-text {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.76;
+    margin-bottom: 24px;
+}
+
+a.reg-link-text {
+    word-wrap: break-word;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.76;
+    margin-bottom: 12px;
+}
+
+div.reg-header {
+    margin-top: 46px;
+    margin-bottom: 0.45em;
+    font-family: inherit;
+    font-weight: 900;
+    line-height: 1.2;
+    color: #363636;
+}
+
+button.btn_reg {
+    max-width: 150px;
+}
+
+/**
+ * Registration steps
+ */
+ul.reg-list {
+    list-style: none;
+    padding-left: 15px;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+ul.reg-list li {
+    list-style-type: none;
+}
+
+ul.reg-list li:before {
+    content: "";
+    width: 9px;
+    height: 1px;
+    margin-left: -15px;
+    margin-right: 11px;
+    display: inline-block;
+    background-color: #000000;
+    vertical-align: middle;
+}
+
+div.reg-text {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.76;
+    margin-bottom: 24px;
+}
 
 
 
