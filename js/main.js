@@ -51,7 +51,7 @@ $(window).on('load', function() {
     }(document, 'script', 'facebook-jssdk'));
 
     initFondy();
-    $('#text_white_page').show(1500);
+   // $('#text_white_page').delay(3000).show(0);
 
 
     function jsonp(url, callback) {
@@ -180,7 +180,7 @@ var user_params = {
 };
 
 function ifLogin()  {
-
+    $('#text_white_page').hide();
     //console.log(cookie_token);
     if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
         clearInterval(timerId);
@@ -197,6 +197,8 @@ function ifLogin()  {
                 $('#btn_vk_log_in')[0].click();
             }
             if (params.social_login === "fb") {
+                $('#text_white_page').delay(3000).show(0);
+
                 fb_login();
             }
         } else if (typeof params.access_token == 'undefined'){
@@ -273,6 +275,8 @@ function fb_login(){
                     console.log("user_params " + JSON.stringify(user_params));
                     try_find_user(user_reg_info, user_params, "fb")
                 });
+            } else {
+                $('#text_white_page').show();
             }
         },
         {scope: 'public_profile, email'});
