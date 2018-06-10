@@ -51,7 +51,7 @@ $(window).on('load', function() {
     }(document, 'script', 'facebook-jssdk'));
 
     initFondy();
-
+    $('#text_white_page').show(1500);
 
 
     function jsonp(url, callback) {
@@ -1874,16 +1874,17 @@ $( document ).ready(function() {
             }
         });
     });
-    $('#btn_send_payment').click(function (){
+    $('#btn_send_payment').click(function () {
         $.ajax({
             type: "GET",
             url: api_url_full,
-            data: {query_info: "send_payment"
+            data: {
+                query_info: "send_payment"
             },
 
             headers: {
-                'Authorization':'Token token=' + cookie_token,
-                'Content-Type' : 'application/x-www-form-urlencoded'
+                'Authorization': 'Token token=' + cookie_token,
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
             success: function (data) {
                 //console.log(data);
@@ -1893,7 +1894,7 @@ $( document ).ready(function() {
                 //    console.log(errMsg.toString());
             }
         });
-
+    });
     $.ajaxSetup({
         error: function (data, textStatus, jqXHR) {
             // console.log(data);8052
