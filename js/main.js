@@ -21,7 +21,6 @@ $(window).on('load', function() {
            timerId = setInterval(function() {
              //  console.log( "тик" );
                    var params = parse_query_string();
-                   console.log(params);
                    if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
                        var new_params = params;
                        clearInterval(timerId);
@@ -111,6 +110,7 @@ function initFondy(){
     button.setResponseUrl(response_url);
     button.addParam("lang","ru");
     button.addParam("order_desc", order_desc);
+    button.addParam("required_rectoken", "Y");
  //  button.setRecurringState(true);
  //  button.addRecurringData({
  //      start_time: '2018-06-06',
@@ -136,8 +136,8 @@ function initFondy(){
         });
         this.loadUrl(url);
         this.addCallback(function(data,type){
-            //console.log(type);
-            //console.log(data);
+            console.log(type);
+            console.log(data);
 
             if (typeof data.send_data !== 'undefined' && data.final ) {
                // console.log(data.send_data.signature);
@@ -360,7 +360,7 @@ function reg_user(userInfo, email, social_name, social_id, access_token){
                 cookie_token = getCookie(cookie_name_token);
                 ifLogin();
             } else {
-                alert("Аккаунт с таким ИД социальной сети уже зарегистрирован. Обратитесь vk.com/id251622303 что бы решить этот вопрос")
+                alert("Аккаунт с таким ИД социальной сети уже зарегистрирован. Обратитесь vk.com/id251622303, чтобы решить этот вопрос")
             }
            // console.log("Reg success: " + JSON.stringify(data));
 
@@ -440,6 +440,7 @@ function update_admin_info() {
                     + currentdate.getMinutes() + ":" + currentdate.getSeconds();
                 //    console.log(datetime);
 
+                $('#dau').text(data.dau);
 
                 setCurators(data.curators);
                 setUsers(data.users);
@@ -485,8 +486,9 @@ function update_user_info() {
 
 
 
-                $('#wait_messenger_link, #programm_messenger_link, #settings_messenger_link').attr("href", data.messenger_link);
-                $('#wait_messenger_link, #programm_messenger_link, #settings_messenger_link').text(data.messenger_link);
+                $('#wait_messenger_link')    .attr("href", data.messenger_link).text("по ссылке");
+                $('#programm_messenger_link').attr("href", data.messenger_link).text("Ссылка");
+                $('#settings_messenger_link').attr("href", data.messenger_link).text("Ссылка");
 
                 $('#filed_7day').prop("checked", data.user.show_practic_7);
 
@@ -591,6 +593,12 @@ function setUserMarafonDay(current_day, marafon_day){
     var brahma        = current_day.brahma_fact;
     var aparigraha    = current_day.aparigraha_fact;
 
+    var shaucha        = current_day.shaucha_fact;
+    var santosha       = current_day.santosha_fact;
+    var tapah          = current_day.tapah_fact;
+    var svadhya        = current_day.svadhya_fact;
+    var ishvara        = current_day.ishvara_fact;
+
     var water_fact             = current_day.water_fact;
     var wake_up_hours_fact     = current_day.wake_up_hours_fact;
     var wake_up_minutes_fact   = current_day.wake_up_minutes_fact;
@@ -612,11 +620,18 @@ function setUserMarafonDay(current_day, marafon_day){
     var asana_active           = current_day.asana_active;
     var psi_active             = current_day.psi_active;
     var half_bath_active             = current_day.half_bath_active;
-    var ahimsa_active             = current_day.ahimsa_active;
+
+    var ahimsa_active            = current_day.ahimsa_active;
     var satya_active             = current_day.satya_active;
-    var asteya_active             = current_day.asteya_active;
-    var brahma_active             = current_day.brahma_active;
-    var aparigraha_active             = current_day.aparigraha_active;
+    var asteya_active            = current_day.asteya_active;
+    var brahma_active            = current_day.brahma_active;
+    var aparigraha_active        = current_day.aparigraha_active;
+
+    var shaucha_active            = current_day.shaucha_active;
+    var santosha_active             = current_day.santosha_active;
+    var tapah_active            = current_day.tapah_active;
+    var svadhya_active            = current_day.svadhya_active;
+    var ishvara_active        = current_day.ishvara_active;
 
     var water_target            = current_day.water_target;
     var wake_up_hours_target    = current_day.wake_up_hours_target;
@@ -646,11 +661,20 @@ function setUserMarafonDay(current_day, marafon_day){
         $('#row_asana')           .hide();
         $('#row_psy')             .hide();
         $('#row_half_bath')       .hide();
-        $('#row_ahimsa')       .hide();
-        $('#row_satya')       .hide();
-        $('#row_asteya')       .hide();
-        $('#row_brahma')       .hide();
+
+        $('#row_ahimsa')           .hide();
+        $('#row_satya')            .hide();
+        $('#row_asteya')           .hide();
+        $('#row_brahma')           .hide();
         $('#row_aparigraha')       .hide();
+        $('#row_shaucha')         .hide();
+        $('#row_santosha')        .hide();
+        $('#row_tapah')           .hide();
+        $('#row_svadhya')         .hide();
+        $('#row_ishvara')         .hide();
+
+
+
         $('#row_kirtan_day')      .hide();
         $('#row_kirtan_night')    .hide();
 
@@ -666,10 +690,16 @@ function setUserMarafonDay(current_day, marafon_day){
         $('#filed_half_bath_night')        .prop("checked", false);
 
         $('#filed_ahimsa')        .prop("checked", false);
-        $('#filed_satya')        .prop("checked", false);
+        $('#filed_satya')         .prop("checked", false);
         $('#filed_asteya')        .prop("checked", false);
         $('#filed_brahma')        .prop("checked", false);
-        $('#filed_aparigraha')        .prop("checked", false);
+        $('#filed_aparigraha')    .prop("checked", false);
+
+        $('#filed_shaucha')       .prop("checked", false);
+        $('#filed_santosha')      .prop("checked", false);
+        $('#filed_tapah')        .prop("checked", false);
+        $('#filed_svadhya')      .prop("checked", false);
+        $('#filed_ishvara')      .prop("checked", false);
 
         $('#filed_water_fact')             .val(null);
         $('#filed_wake_up_fact')           .val(null);
@@ -693,11 +723,18 @@ function setUserMarafonDay(current_day, marafon_day){
         if (asana_active           != null && asana_active           != false) {$('#row_asana').show();}
         if (psi_active             != null && psi_active             != false) {$('#row_psy').show();}
         if (half_bath_active       != null && half_bath_active       != false) {$('#row_half_bath').show();}
-        if (ahimsa_active       != null && ahimsa_active       != false) {$('#row_ahimsa').show();}
-        if (satya_active       != null && satya_active       != false) {$('#row_satya').show();}
-        if (asteya_active       != null && asteya_active       != false) {$('#row_asteya').show();}
-        if (brahma_active       != null && brahma_active       != false) {$('#row_brahma').show();}
-        if (aparigraha_active       != null && aparigraha_active       != false) {$('#row_aparigraha').show();}
+
+        if (ahimsa_active          != null && ahimsa_active       != false) {$('#row_ahimsa').show();}
+        if (satya_active           != null && satya_active        != false) {$('#row_satya').show();}
+        if (asteya_active          != null && asteya_active       != false) {$('#row_asteya').show();}
+        if (brahma_active          != null && brahma_active       != false) {$('#row_brahma').show();}
+        if (aparigraha_active      != null && aparigraha_active   != false) {$('#row_aparigraha').show();}
+
+        if (shaucha_active         != null && shaucha_active     != false) {$('#row_shaucha').show();}
+        if (santosha_active        != null && santosha_active    != false) {$('#row_santosha').show();}
+        if (tapah_active           != null && tapah_active       != false) {$('#row_tapah').show();}
+        if (svadhya_active         != null && svadhya_active     != false) {$('#row_svadhya').show();}
+        if (ishvara_active         != null && ishvara_active     != false) {$('#row_ishvara').show();}
 
         if (water_target != null) {
             $('#row_water').show();
@@ -761,6 +798,12 @@ function setUserMarafonDay(current_day, marafon_day){
         asteya      != null && asteya      !=false ?  $('#filed_asteya') .prop("checked", true) : $('#filed_asteya') .prop("checked", false);
         brahma      != null && brahma      !=false ?  $('#filed_brahma') .prop("checked", true) : $('#filed_brahma') .prop("checked", false);
         aparigraha      != null && aparigraha      !=false ?  $('#filed_aparigraha') .prop("checked", true) : $('#filed_aparigraha') .prop("checked", false);
+
+        shaucha      != null && shaucha      !=false ?  $('#filed_shaucha') .prop("checked", true) : $('#filed_shaucha') .prop("checked", false);
+        santosha      != null && santosha      !=false ?  $('#filed_santosha') .prop("checked", true) : $('#filed_santosha') .prop("checked", false);
+        tapah      != null && tapah      !=false ?  $('#filed_tapah') .prop("checked", true) : $('#filed_tapah') .prop("checked", false);
+        svadhya      != null && svadhya      !=false ?  $('#filed_svadhya') .prop("checked", true) : $('#filed_svadhya') .prop("checked", false);
+        ishvara      != null && ishvara      !=false ?  $('#filed_ishvara') .prop("checked", true) : $('#filed_ishvara') .prop("checked", false);
 
 
 
@@ -904,6 +947,61 @@ function setUserMarafonDay(current_day, marafon_day){
     }
 
 
+    if (current_day.shaucha_answer ) {
+        $('#table_question_shaucha').hide();
+    } else {
+        if (day_num > 49) {
+            $('#table_question_shaucha').show();
+        } else {
+            $('#table_question_shaucha').hide();
+        }
+    }
+
+
+    if (current_day.santosha_answer ) {
+        $('#table_question_santosha').hide();
+    } else {
+        if (day_num > 50) {
+            $('#table_question_santosha').show();
+        } else {
+            $('#table_question_santosha').hide();
+        }
+    }
+
+
+    if (current_day.tapah_answer ) {
+        $('#table_question_tapah').hide();
+    } else {
+        if (day_num > 51) {
+            $('#table_question_tapah').show();
+        } else {
+            $('#table_question_tapah').hide();
+        }
+    }
+
+
+    if (current_day.svadhya_answer ) {
+        $('#table_question_svadhya').hide();
+    } else {
+        if (day_num > 52) {
+            $('#table_question_svadhya').show();
+        } else {
+            $('#table_question_svadhya').hide();
+        }
+    }
+
+
+    if (current_day.ishvara_answer ) {
+        $('#table_question_ishvara').hide();
+    } else {
+        if (day_num > 53) {
+            $('#table_question_ishvara').show();
+        } else {
+            $('#table_question_ishvara').hide();
+        }
+    }
+
+
 
 
 
@@ -1014,6 +1112,12 @@ function userSaveDay() {
             brahma:       $('#filed_brahma')         .is(':checked'),
             aparigraha:       $('#filed_aparigraha')         .is(':checked'),
 
+            shaucha:       $('#filed_shaucha')         .is(':checked'),
+            santosha:       $('#filed_santosha')         .is(':checked'),
+            tapah:       $('#filed_tapah')         .is(':checked'),
+            svadhya:       $('#filed_svadhya')         .is(':checked'),
+            ishvara:       $('#filed_ishvara')         .is(':checked'),
+
             kirtan_day_fact:       $('#filed_kirtan_day_fact')        .val(),
             kirtan_night_fact:     $('#filed_kirtan_night_fact')      .val(),
             day_comment:           $('#filed_day_comment')      .val()
@@ -1084,7 +1188,10 @@ function setUserProgramm(user_programm) {
     var user_programm_row = '<table id="table_programm_main1" class="table table-hover table-bordered table-condensed" >';
     user_programm_row    += '<thead><tr> <th>День</th> <th>Вода</th><th>Перекусы</th><th>Диета статус</th><th>Диета тип</th><th>Подъем</th><th>Язык</th>';
     user_programm_row    += '        <th>Медитация (утро)</th> <th>Медитация (вечер)</th><th>Каушики</th><th>Физ. упр.</th><th>Терапии</th><th>Асаны</th>';
-    user_programm_row    += '        <th>Псих. упр.</th><th>Полуванна</th> <th>Ахимса</th><th>Сатья</th><th>Астея</th><th>Брахмачарья</th><th>Апариграха</th> <th>Киртан (утро)</th><th>Киртан (вечер)</th>';
+    user_programm_row    += '        <th>Псих. упр.</th><th>Полуванна</th> ';
+    user_programm_row    += '        <th>Ахимса</th><th>Сатья</th><th>Астея</th><th>Брахмачарья</th><th>Апариграха</th> ';
+    user_programm_row    += '        <th>Шауча</th><th>Сантоша</th><th>Тапах</th><th>Свадхья</th><th>Ишвара пранидхана</th> ';
+    user_programm_row    += '        <th>Киртан (утро)</th><th>Киртан (вечер)</th>';
     user_programm_row    += '</tr></thead><tbody>';
     $.each(user_programm, function (i, item) {
         var day_num = item.day_num;
@@ -1293,6 +1400,56 @@ function setUserProgramm(user_programm) {
 
        if ( item.aparigraha_active != null  &&  item.aparigraha_active != false) {
             if (item.aparigraha_fact) {
+                user_programm_row += '<td class="warning"><h5>' + "+"  + '</h5></td>';
+            } else {
+                user_programm_row += '<td class="warning"><h5></h5></td>';
+            }
+        } else {
+            user_programm_row += '<td><h5></h5></td>';
+        }
+
+        if ( item.shaucha_active != null  &&  item.shaucha_active != false) {
+            if (item.shaucha_fact) {
+                user_programm_row += '<td class="warning"><h5>' + "+"  + '</h5></td>';
+            } else {
+                user_programm_row += '<td class="warning"><h5></h5></td>';
+            }
+        } else {
+            user_programm_row += '<td><h5></h5></td>';
+        }
+
+        if ( item.santosha_active != null  &&  item.santosha_active != false) {
+            if (item.santosha_fact) {
+                user_programm_row += '<td class="warning"><h5>' + "+"  + '</h5></td>';
+            } else {
+                user_programm_row += '<td class="warning"><h5></h5></td>';
+            }
+        } else {
+            user_programm_row += '<td><h5></h5></td>';
+        }
+
+        if ( item.tapah_active != null  &&  item.tapah_active != false) {
+            if (item.tapah_fact) {
+                user_programm_row += '<td class="warning"><h5>' + "+"  + '</h5></td>';
+            } else {
+                user_programm_row += '<td class="warning"><h5></h5></td>';
+            }
+        } else {
+            user_programm_row += '<td><h5></h5></td>';
+        }
+
+        if ( item.svadhya_active != null  &&  item.svadhya_active != false) {
+            if (item.svadhya_fact) {
+                user_programm_row += '<td class="warning"><h5>' + "+"  + '</h5></td>';
+            } else {
+                user_programm_row += '<td class="warning"><h5></h5></td>';
+            }
+        } else {
+            user_programm_row += '<td><h5></h5></td>';
+        }
+
+        if ( item.ishvara_active != null  &&  item.ishvara_active != false) {
+            if (item.ishvara_fact) {
                 user_programm_row += '<td class="warning"><h5>' + "+"  + '</h5></td>';
             } else {
                 user_programm_row += '<td class="warning"><h5></h5></td>';
@@ -1717,11 +1874,29 @@ $( document ).ready(function() {
             }
         });
     });
+    $('#btn_send_payment').click(function (){
+        $.ajax({
+            type: "GET",
+            url: api_url_full,
+            data: {query_info: "send_payment"
+            },
 
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type' : 'application/x-www-form-urlencoded'
+            },
+            success: function (data) {
+                //console.log(data);
+
+            },
+            failure: function (errMsg) {
+                //    console.log(errMsg.toString());
+            }
+        });
 
     $.ajaxSetup({
         error: function (data, textStatus, jqXHR) {
-            // console.log(data);
+            // console.log(data);8052
             //  console.log("fail get token -> show initial reg (ajaxSetup)");
 
             if (data.status == 401) {
@@ -1879,7 +2054,10 @@ $( document ).ready(function() {
         var user_phone      = $('#field_user_reg_phone').val();
         var user_password   = $('#field_user_reg_password').val();
 
-        if (user_phone != null && user_password != null && user_email != null) {
+        console.log(isValidEmailAddress(1));
+        console.log(isValidEmailAddress(444));
+        console.log(isValidEmailAddress("byh@gm.co"));
+        if (user_phone != "" && user_password != "" && user_email != "" && user_password.length >= 4 && isValidEmailAddress(user_email)) {
             var person  = {
                 first_name:  user_name,
                 phone:       user_phone,
@@ -1911,11 +2089,15 @@ $( document ).ready(function() {
                 }
             });
         } else {
-            alert("Заполните обязательные поля: почта, телефон, способ общения и пароль");
+            $('#reg_alert').show();
             $('#btn_register_self').prop('disabled', false);
+
         }
     });
-
+    function isValidEmailAddress(emailAddress) {
+        var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+        return pattern.test(emailAddress);
+    }
 
     $('#btn_reg_show_currency').click(function(){
         $('#reg_currency').show();
@@ -2166,7 +2348,7 @@ $( document ).ready(function() {
         getDayInfo($(this).val());
 
     });
-    $('#filed_no_snacking_fact, #filed_diet, #filed_tongue_day, #filed_tongue_night, #filed_phisic, #filed_therapy, #filed_asana, #filed_psy, #filed_half_bath_day, #filed_half_bath_night, #filed_ahimsa, #filed_satya, #filed_asteya, #filed_brahma, #filed_aparigraha').change(function() {
+    $('#filed_no_snacking_fact, #filed_diet, #filed_tongue_day, #filed_tongue_night, #filed_phisic, #filed_therapy, #filed_asana, #filed_psy, #filed_half_bath_day, #filed_half_bath_night, #filed_ahimsa, #filed_satya, #filed_asteya, #filed_brahma, #filed_aparigraha, #filed_shaucha, #filed_santosha, #filed_tapah, #filed_svadhya, #filed_ishvara').change(function() {
         userSaveDay();
     });
     $("#filed_water_fact, #filed_meditation_day_fact, #filed_meditation_night_fact, #filed_kaoshiki_fact, #filed_kirtan_day_fact, #filed_kirtan_night_fact, #filed_wake_up_fact_hour, #filed_wake_up_fact_minute, #filed_day_comment").on('change keyup paste', function () {
@@ -2307,6 +2489,126 @@ $( document ).ready(function() {
             },
             success: function(data){
                 $('#btn_question_aparigraha_save').prop('disabled', false);
+                day_new = 0;
+                setUserMarafonDay(data.current_day, data.marafon_day);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+
+    $('#btn_question_shaucha_save').click(function (){
+        $('#btn_question_shaucha_save').prop('disabled', true);
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_update: "user_save_shaucha_answer",
+                djama_answer:       $('#filed_question_shaucha')         .is(':checked')
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                $('#btn_question_shaucha_save').prop('disabled', false);
+                day_new = 0;
+                setUserMarafonDay(data.current_day, data.marafon_day);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+
+    $('#btn_question_santosha_save').click(function (){
+        $('#btn_question_santosha_save').prop('disabled', true);
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_update: "user_save_santosha_answer",
+                djama_answer:       $('#filed_question_santosha')         .is(':checked')
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                $('#btn_question_santosha_save').prop('disabled', false);
+                day_new = 0;
+                setUserMarafonDay(data.current_day, data.marafon_day);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+
+    $('#btn_question_tapah_save').click(function (){
+        $('#btn_question_tapah_save').prop('disabled', true);
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_update: "user_save_tapah_answer",
+                djama_answer:       $('#filed_question_tapah')         .is(':checked')
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                $('#btn_question_tapah_save').prop('disabled', false);
+                day_new = 0;
+                setUserMarafonDay(data.current_day, data.marafon_day);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+
+    $('#btn_question_svadhya_save').click(function (){
+        $('#btn_question_svadhya_save').prop('disabled', true);
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_update: "user_save_svadhya_answer",
+                djama_answer:       $('#filed_question_svadhya')         .is(':checked')
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                $('#btn_question_svadhya_save').prop('disabled', false);
+                day_new = 0;
+                setUserMarafonDay(data.current_day, data.marafon_day);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+
+    $('#btn_question_ishvara_save').click(function (){
+        $('#btn_question_ishvara_save').prop('disabled', true);
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_update: "user_save_ishvara_answer",
+                djama_answer:       $('#filed_question_ishvara')         .is(':checked')
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                $('#btn_question_ishvara_save').prop('disabled', false);
                 day_new = 0;
                 setUserMarafonDay(data.current_day, data.marafon_day);
             },

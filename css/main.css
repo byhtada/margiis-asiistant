@@ -25,6 +25,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .payment_text   {font-size: 20px; }
 .currency_text   {font-size: 12px; }
 
+#div_reg_other {border-bottom: 25px solid transparent;}
 .payment_header.other {margin-left: 20px; margin-top: 10px; margin-bottom: 10px;}
 .payment_text.other   {margin-left: 20px; margin-top: 20px; border-bottom: 50px;}
 .pay_img        {width: 84px; height: 84px;}
@@ -106,6 +107,18 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 
 
 
+div.reg-header {
+    margin-top: 46px;
+    margin-bottom: 0.45em;
+    font-family: inherit;
+    font-weight: 900;
+    line-height: 1.2;
+    color: #363636;
+}
+
+button.btn_reg {
+    max-width: 150px;
+}
 
 
 
@@ -320,6 +333,13 @@ div.reg-text {
     margin-bottom: 24px;
 }
 
+a.reg-link-text {
+    word-wrap: break-word;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.76;
+    margin-bottom: 12px;
+}
 
 
 

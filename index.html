@@ -75,10 +75,7 @@
                 <br/>
                 <br/>
                 <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
+
                 <h1 align="center"><span class="yoga_color">Марафон</span> H<span class="yoga_color">Y</span>LS</h1>
                 <h3 align="center">Регистрация/вход в личный кабинет</h3>
                 <br/>
@@ -124,11 +121,18 @@
                                 <h4 class="modal-title" id="modal_label_register_self">Регистрация</h4>
                             </div>
                             <div class="modal-body" align="center">
+                                <div id="reg_alert" hidden class="alert alert-danger e" role="alert">
+                                    <strong>Внимание!</strong> Заполните обязательный поля:<br/>
+                                    - Поле телефон должно быть заполнено<br/>
+                                    - В поле E-mail должен быть Ваш почтовый адрес<br/>
+                                    - Поле пароль должно содержать более 4х символов
+                                </div>
+
                                 <table style="border: 0">
-                                    <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Ваше имя</h5></td>                 <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_reg_name"         placeholder=""></td></tr>
-                                    <tr class="db_row_dialog"><td align="right" valign="middle"><h5>E-mail </h5></td>                  <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_reg_email"        placeholder=""></td></tr>
-                                    <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Телефон (будет логином)</h5></td>  <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_reg_phone"        placeholder=""></td></tr>
-                                    <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Пароль</h5></td>                   <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_reg_password"     placeholder=""></td></tr>
+                                    <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Ваше имя</h5></td>                 <td class="db_row_input_admin"><input type="text"   class="form-control" id="field_user_reg_name"         placeholder=""></td></tr>
+                                    <tr class="db_row_dialog"><td align="right" valign="middle"><h5>E-mail </h5></td>                  <td class="db_row_input_admin"><input type="text"   class="form-control" id="field_user_reg_email"        placeholder=""></td></tr>
+                                    <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Телефон (будет логином)</h5></td>  <td class="db_row_input_admin"><input type="number" class="form-control" id="field_user_reg_phone"        placeholder=""></td></tr>
+                                    <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Пароль</h5></td>                   <td class="db_row_input_admin"><input type="text"   class="form-control" id="field_user_reg_password"     placeholder=""></td></tr>
 
                                 </table>
                             </div>
@@ -190,15 +194,13 @@
     </nav>
 
     <div id="page_groups"  class="container-fluid" hidden>
-        <h2 align="center">
+        <h2 align="center">Активных пользователей: <b><span id="dau" class="reg_link"></span></b></h2>
+        <br/>
+        <h3 align="center">
             Перечень всех групп
             <button id="btn_modal_add_group" type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#modal_add_group">       <span class="glyphicon glyphicon-plus"       aria-hidden="true"></span></button>
-            <button id="btn_get_comments" type="button" class="btn btn-success btn-sm"  >     +++</button>
-                <input type="number" id="Х">
-             <button id="btn_send_email" type="button" class="btn btn-link btn-block">Отправить письмо</button>
-
-</h2>
-<div class="row">
+        </h3>
+        <div class="row">
    <div class="col-xs-2"></div>
    <div class="col-xs-8">
        <div id="groups_table"></div>
@@ -816,7 +818,7 @@
                 <div id="reg_step_2" class="row" hidden>
                     <div align="center" class="h2">Почему стоит пройти HYLS?</div>
 
-                    <div class="col-xs-12 col-md-12 col-sm-12">
+                        <div class="col-xs-12 col-md-12 col-sm-12">
                         <img src="img/reg_foto_2.jpg" class="img-responsive img_reg" />
                     </div>
 
@@ -968,14 +970,16 @@
                 </div>
 
                 <div id="user_marafon_wait_text" class="reg-header h1" align="center"></div>
-                <div id="user_marafon_wait_messenger" class="reg-header h3" align="center" hidden>Присоединяйтесь к чату группы</div>
-                <a id="wait_messenger_link" class="reg-link-text reg_link" href="#"></a>
+                <div id="user_marafon_wait_messenger" class="reg-header h3" align="center" hidden>Присоединяйтесь к чату группы <a id="wait_messenger_link" class="reg_link" href="#"></a></div>
+
                 <img id="wait_logo" src="img/reg_foto_logo2.png" class="img-responsive img_reg" />
 
                 <div id="hidden_info_wait" hidden>
                     <button id="btn_login_exit" type="button" class="btn btn-link">Выход
                         <span id="user_wait_id"></span>
                     </button>
+
+                    <button id="btn_send_payment" type="button" class="btn btn-link">send_payment</button>
                 </div>
             </div>
 
@@ -995,7 +999,7 @@
                     <button id="btn_user_material"  type="button" class="btn btn-info btn-block">Открыть материал дня</button>
                     <br/>
 
-                    <h4 id="programm_messenger_link_text" align="center" hidden>Ссылка на чат группы <a href="#" id="programm_messenger_link" class="reg_link"></a></h4>
+                    <h4 id="programm_messenger_link_text" align="center" hidden><a href="#" id="programm_messenger_link" class="reg_link"> на чат группы </a></h4>
 
 
                     <div id="table_question_water" hidden>
@@ -1317,6 +1321,151 @@
                         <br/>
                     </div>
 
+
+
+                    <div id="table_question_shaucha" hidden>
+                        <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                        <table class="table  table-hover">
+                            <thead>
+                            <tr class="db_row_dialog">
+                                <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
+                                <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="db_row_dialog">
+                                <td valign="middle">      <h5>Включить ли шаучу в список ежедневных практик?</h5></td>
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_question_shaucha" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button id="btn_question_shaucha_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                        <br/>
+                        <br/>
+                    </div>
+
+                    <div id="table_question_santosha" hidden>
+                        <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                        <table class="table  table-hover">
+                            <thead>
+                            <tr class="db_row_dialog">
+                                <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
+                                <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="db_row_dialog">
+                                <td valign="middle">      <h5>Включить ли сантошу в список ежедневных практик?</h5></td>
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_question_santosha" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button id="btn_question_santosha_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                        <br/>
+                        <br/>
+                    </div>
+
+                    <div id="table_question_tapah" hidden>
+                        <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                        <table class="table  table-hover">
+                            <thead>
+                            <tr class="db_row_dialog">
+                                <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
+                                <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="db_row_dialog">
+                                <td valign="middle">      <h5>Включить ли тапах в список ежедневных практик?</h5></td>
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_question_tapah" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button id="btn_question_tapah_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                        <br/>
+                        <br/>
+                    </div>
+
+                    <div id="table_question_svadhya" hidden>
+                        <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                        <table class="table  table-hover">
+                            <thead>
+                            <tr class="db_row_dialog">
+                                <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
+                                <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="db_row_dialog">
+                                <td valign="middle">      <h5>Включить ли свадхью в список ежедневных практик?</h5></td>
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_question_svadhya" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button id="btn_question_svadhya_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                        <br/>
+                        <br/>
+                    </div>
+
+                    <div id="table_question_ishvara" hidden>
+                        <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                        <table class="table  table-hover">
+                            <thead>
+                            <tr class="db_row_dialog">
+                                <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
+                                <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="db_row_dialog">
+                                <td valign="middle">      <h5>Включить ли ишвара пранидхану в список ежедневных практик?</h5></td>
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_question_ishvara" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button id="btn_question_ishvara_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                        <br/>
+                        <br/>
+                    </div>
+
+
+
+
                     <br/>
 
 
@@ -1525,6 +1674,72 @@
                         </tr>
 
 
+                        <tr id="row_shaucha" class="db_row_dialog">
+                            <td valign="middle">Шауча</td>
+                            <td class="db_row_input">          </td>
+                            <td class="db_row_input text-center">
+                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox"  id="filed_shaucha" />
+                                    <div class="state p-success-o">
+                                        <label></label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr id="row_santosha" class="db_row_dialog">
+                            <td valign="middle">Сантоша</td>
+                            <td class="db_row_input">          </td>
+                            <td class="db_row_input text-center">
+                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox"  id="filed_santosha" />
+                                    <div class="state p-success-o">
+                                        <label></label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr id="row_tapah" class="db_row_dialog">
+                            <td valign="middle">Тапах</td>
+                            <td class="db_row_input">          </td>
+                            <td class="db_row_input text-center">
+                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox"  id="filed_tapah" />
+                                    <div class="state p-success-o">
+                                        <label></label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr id="row_svadhya" class="db_row_dialog">
+                            <td valign="middle">Свадхья</td>
+                            <td class="db_row_input">          </td>
+                            <td class="db_row_input text-center">
+                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox"  id="filed_svadhya" />
+                                    <div class="state p-success-o">
+                                        <label></label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+
+
+                        <tr id="row_ishvara" class="db_row_dialog">
+                            <td valign="middle">Ишвара пранидхана</td>
+                            <td class="db_row_input">          </td>
+                            <td class="db_row_input text-center">
+                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox"  id="filed_ishvara" />
+                                    <div class="state p-success-o">
+                                        <label></label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
 
 
 
@@ -1677,7 +1892,7 @@
         <div class="col-sm-3 col-md-3"></div>
         <div class="col-sm-6 col-md-6 col-xs-12" align="center">
 
-            <h4 align="center">Ссылка на чат группы <a href="#" id="settings_messenger_link" class="reg_link"></a></h4>
+            <h4 align="center"><a href="#" id="settings_messenger_link" class="reg_link"></a> на чат группы </h4>
 
             <br/>
             <br/>
