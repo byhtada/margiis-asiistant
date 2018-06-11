@@ -51,7 +51,6 @@ $(window).on('load', function() {
     }(document, 'script', 'facebook-jssdk'));
 
     initFondy();
-   // $('#text_white_page').delay(3000).show(0);
 
 
     function jsonp(url, callback) {
@@ -227,13 +226,13 @@ function start() {
                     $("#page_login")     .hide();
                     $("#page_user_main") .hide();
                     $('#page_admin_main').show();
-                    $('#page_groups')    .show();
+                    $('#page_users')    .show();
                     update_admin_info();
                 } else if (data.user_status == "curator") {
                     $("#page_login")     .hide();
                     $("#page_user_main") .hide();
                     $('#page_admin_main').show();
-                    $('#page_groups')    .show();
+                    $('#page_users')    .show();
                     update_admin_info();
                 } else if (data.user_status == "new") {
                     $("#page_login")     .show();
@@ -265,6 +264,7 @@ function fb_login(){
             console.log(response);
             if (response.status == "connected"){
                 FB.api('/me?fields=id,first_name,last_name,email,age_range,link,gender,locale,picture,timezone', function (userData){
+                    $('#text_white_page').hide();
                     console.log(userData);
                     user_reg_info["first_name"] = userData.first_name;
                     user_reg_info["last_name"]  = userData.last_name;
@@ -295,10 +295,10 @@ function try_find_user(userInfo, params, social_name){
         success: function (data) {
         //    console.log("try find user");
         //    console.log(JSON.stringify(data));
-       //     console.log(JSON.stringify(data.token));
+        //     console.log(JSON.stringify(data.token));
 //
             if (typeof data.token !== 'undefined') {
-         //       console.log("user founded");
+         //     console.log("user founded");
                 setCookie(cookie_name_token, data.token, {expires: 36000000000000});
                 setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
                 cookie_token = getCookie(cookie_name_token);
@@ -423,6 +423,7 @@ function hide_all_in_admin() {
     $('#page_users')   .hide();
     $('#page_program') .hide();
     $('#page_conversion') .hide();
+    $('#table_users_in_group').empty();
 }
 function update_admin_info() {
     try {
@@ -447,7 +448,7 @@ function update_admin_info() {
                 $('#dau').text(data.dau);
 
                 setCurators(data.curators);
-                setUsers(data.users);
+                setUsersRegPay(data.users_reg_pay);
                 setGroups(data.groups);
                 setProgrammMain(data.programm_main);
 
@@ -483,7 +484,7 @@ function update_user_info() {
                 //setUserDiary(data.user_diary);
                 day_new = data.marafon_day;
 
-                $('#user_wait_id').text(data.user.id);
+                $('#user_wait_id, #user_wait_id_2').text(data.user.id);
                 $('#user_marafon_reg').hide();
                 $('#user_marafon_start').hide();
                 $('#user_marafon_wait').hide();
@@ -1520,7 +1521,7 @@ function setCurators(curators){
     $('#group_add_curator').selectpicker("refresh");
 }
 
-function setUsers(users){
+function setUsersRegPay(users){
     var user_register_row = '<table id="table_users_register1" class="table table-hover table-bordered table-condensed" >';
     user_register_row    += '<thead><tr>';
     user_register_row    += '<th>Имя</th>';
@@ -1532,7 +1533,7 @@ function setUsers(users){
     user_register_row    += '<th>Комментарий</th>';
     user_register_row    += '</tr></thead><tbody>';
     $.each(users.user_reg, function (i, item) {
-        user_register_row += '<tr>';
+        user_register_row += '<tr id="user_reg_' + item.user_id + '">';
         user_register_row += '<td><h5>' + item.user_name               + '</h5></td>';
         user_register_row += '<td><h5>' + item.user_email              + '</h5></td>';
         user_register_row += '<td><h5>' + item.user_phone              + '</h5></td>';
@@ -1562,7 +1563,7 @@ function setUsers(users){
     user_pay_row    += '<th>Комментарий</th>';
     user_pay_row    += '</tr></thead><tbody>';
     $.each(users.user_pay, function (i, item) {
-        user_pay_row += '<tr>';
+        user_pay_row += '<tr id="user_pay_' + item.user_id + '">';
         user_pay_row += '<td><h5>' + item.user_name               + '</h5></td>';
         user_pay_row += '<td><h5>' + item.user_email              + '</h5></td>';
         user_pay_row += '<td><h5>' + item.user_phone              + '</h5></td>';
@@ -1580,6 +1581,10 @@ function setUsers(users){
     $('#table_users_pay').empty();
     $('#table_users_pay').append(user_pay_row);
     $('#table_users_pay').bsTable(undefined, false, undefined, undefined, true);
+}
+
+
+function setUsersInGroups(users){
 
     var user_in_group_row = '<table id="table_users_pay1" class="table table-hover table-bordered table-condensed" >';
     user_in_group_row    += '<thead><tr>';
@@ -1595,7 +1600,7 @@ function setUsers(users){
     user_in_group_row    += '<th></th>';
     user_in_group_row    += '</tr></thead><tbody>';
 
-    $.each(users.user_group, function (i, item) {
+    $.each(users, function (i, item) {
         user_in_group_row += '<tr>';
         user_in_group_row += '<td><h5>' + item.user_name               + '</h5></td>';
         user_in_group_row += '<td><h5>' + item.user_email              + '</h5></td>';
@@ -1614,6 +1619,8 @@ function setUsers(users){
     $('#table_users_in_group').append(user_in_group_row);
     $('#table_users_in_group').bsTable(undefined, false, undefined, undefined, true);
 }
+
+
 function setProgrammMain(programm_main){
     programm_days_main = programm_main;
     var programm_main_row = '<table id="table_programm_main1" class="table table-hover table-bordered table-condensed" >';
@@ -1804,7 +1811,28 @@ function getCookie(name) {
 }
 
 $( document ).ready(function() {
+    $('#btn_hide_user_group').click(function (){
 
+
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_info: "get_users_in_groups"},
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                $('#div_table_users_in_group').show();
+                setUsersInGroups(data.users_in_group);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+
+
+    });
 
     console.log( "document loaded" );
     $('.navbar-collapse a').click(function(){
@@ -1981,7 +2009,7 @@ $( document ).ready(function() {
 
 
 
-    $('#btn_exit, #btn_user_exit, #btn_login_exit').click(function () {
+    $('#btn_exit, #btn_user_exit, #btn_login_exit, #btn_reg_exit').click(function () {
         setCookie(cookie_name_token);
         cookie_token = getCookie(cookie_name_token);
         ifLogin();
@@ -1992,6 +2020,9 @@ $( document ).ready(function() {
         $('#hidden_info_wait').show();
     });
 
+    $('#logo_marafon_wait').click(function (){
+        $('#hidden_info_reg').show();
+    });
 
 //Registration
 
@@ -3381,9 +3412,10 @@ $( document ).ready(function() {
         var user_payment_plan = $('#field_user_payment_plan').val();
         var user_comment      = $('#field_user_comment').val();
 
-
+        $('#btn_register').prop('disabled', true);
         if (user_name == null || user_email == null || user_password == null ){
             alert("Заполните все поля");
+            $('#btn_register').prop('disabled', false);
         } else {
             var person  = {
                 email:    user_email,
@@ -3395,26 +3427,7 @@ $( document ).ready(function() {
                 messenger:         user_messenger,
                 payment_size_plan: user_payment_plan,
                 comment:           user_comment};
-            /*
-                        $.ajax({
-                            type: "POST",
-                            url:   api_url_full,
-                            data: JSON.stringify(person),
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            success: function(data){
-                              //  console.log("Reg data " + JSON.stringify(data));
-                                // getToken(input_address, input_password);
-                                alert("Зарегистрирован");
-                                update_admin_info();
-                                $('#modal_register') .modal('hide');
 
-                            },
-                            failure: function(errMsg) {
-                                alert(errMsg);
-                            }
-                        });
-            */
             $.ajax({
                 type: "GET",
                 url: api_url_full,
@@ -3435,7 +3448,8 @@ $( document ).ready(function() {
                 success: function(data){
                     console.log(data);
                     if (data.error == 0) {
-                        update_admin_info();
+                        $('#btn_register').prop('disabled', false);
+                        setUsersRegPay(data.users_reg_pay);
                         $('#modal_register') .modal('hide');
                     }
                 },
@@ -3459,7 +3473,6 @@ $( document ).ready(function() {
                 'Content-Type':'application/x-www-form-urlencoded'
             },
             success: function(data){
-                update_admin_info();
                 $('#btn_edit_user').val(data.user.id);
                 $('#field_user_edit_email').val(data.user.email);
                 $('#field_user_edit_name') .val(data.user.first_name);
@@ -3496,6 +3509,9 @@ $( document ).ready(function() {
                 'Content-Type':'application/x-www-form-urlencoded'
             },
             success: function(data){
+                setUsersRegPay(data.users_reg_pay);
+                setUsersInGroups(data.users_in_groups);
+
                 update_admin_info();
                 $('#modal_edit_user') .modal('hide');},
             failure: function(errMsg) {
@@ -3518,25 +3534,25 @@ $( document ).ready(function() {
             $('#div_table_users_pay').show();
         }
     });
-    $('#btn_hide_user_group')   .click(function (){
-        if ($('#div_table_users_in_group').is(":visible")){
-            $('#div_table_users_in_group').hide();
-        } else {
-            $('#div_table_users_in_group').show();
-        }
-    });
+
     $(document).on('click', '[name="btns_confirm_pay"]' , function() {
         // console.log($(this).val());
-        $('[name = "btn_confirm_pay"]').val($(this).val());
+        $("#btn_confirm_pay").val($(this).val());
     });
-    $('[name = "btn_confirm_pay"]').click(function () {
+    $('#btn_confirm_pay').click(function () {
         var payment_date       = $('#payment_date').val();
         var payment_size       = $('#payment_size').val();
         var payment_method     = $('#payment_method').val();
+        $('#btn_confirm_pay').prop('disabled', true);
 
         if (payment_date == "" || payment_size == null || payment_method == null ) {
             alert("Заполните все поля");
+            $('#btn_confirm_pay').prop('disabled', false);
+
         } else {
+            var row_reg_id = "user_reg_" + $(this).val();
+            $("#" + row_reg_id).hide();
+
             $.ajax({
                 type: "GET",
                 url:  api_url_full,
@@ -3550,8 +3566,9 @@ $( document ).ready(function() {
                     'Content-Type':'application/x-www-form-urlencoded'
                 },
                 success: function(data){
-                    update_admin_info();
-                    setConversion();
+                    $('#btn_confirm_pay').prop('disabled', false);
+                    setUsersRegPay(data.users_reg_pay);
+                    setUsersInGroups(data.users_in_groups);
                     $('#modal_wait_confirm').modal('hide');
                     $('#modal_confirm_pay') .modal('hide');
                 },
@@ -3597,8 +3614,15 @@ $( document ).ready(function() {
         group_id = $(this).find("option:selected").val();
     });
     $('#btn_to_group').click(function () {
+        var row_pay_id = "user_pay_" + $(this).val();
+        $("#" + row_pay_id).hide();
+
+        $('#btn_to_group').prop('disabled', true);
+
         if (group_id == null) {
             alert("Выберите группу");
+            $('#btn_to_group').prop('disabled', false);
+
         } else {
             $.ajax({
                 type: "GET",
@@ -3612,6 +3636,7 @@ $( document ).ready(function() {
                 },
                 success: function(data){
                     update_admin_info();
+                    $('#btn_to_group').prop('disabled', false);
                     $('#modal_to_group') .modal('hide');
                 },
                 failure: function(errMsg) {
