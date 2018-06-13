@@ -25,6 +25,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .payment_text   {font-size: 20px; }
 .currency_text   {font-size: 12px; }
 
+.btn_reg_next {width: 150px !important;}
 #div_reg_other {border-bottom: 25px solid transparent;}
 .payment_header.other {margin-left: 20px; margin-top: 10px; margin-bottom: 10px;}
 .payment_text.other   {margin-left: 20px; margin-top: 20px; border-bottom: 50px;}

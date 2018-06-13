@@ -121,7 +121,7 @@ function initFondy(){
 
     url = button.getUrl();
     $ipsp("checkout").config({
-        "wrapper": "#checkout",
+        "wrapper": "#checkout_reg_daily",
         "styles": {
             "body": {
                 "overflow": "hidden"
@@ -385,6 +385,9 @@ function reg_user_confirm_payment(send_data, place){
         case "support":
             query = "user_confirm_payment_support";
             break;
+        case "settings":
+            query = "user_start_daily_payment_again";
+            break;
     }
 
     $.ajax({
@@ -393,19 +396,21 @@ function reg_user_confirm_payment(send_data, place){
         data: { query_info: query,
             payment_id:   send_data.order_id,
             payment_currency:   send_data.currency,
-            payment_size:       send_data.amount,
+            payment_amount:       send_data.amount,
             payment_card:       send_data.masked_card,
             payment_requisites: send_data.sender_email,
+            payment_approval_code: send_data.approval_code,
             payment_date:       send_data.order_time,
             payment_descr:      order_desc,
             payment_signature:   send_data.signature,
-            payment_token:       send_data.rectoken
+            payment_rectoken:       send_data.rectoken
         },
         headers: {
             'Authorization':'Token token=' + cookie_token,
             'Content-Type':'application/x-www-form-urlencoded'
         },
         success: function(data) {
+            alert("Платеж успешно завершен. Благодарим Вас за поддержку!");
             ifLogin();
         },
         failure: function(errMsg) {
@@ -470,6 +475,7 @@ function hide_all_in_user() {
     $('#page_user_support').hide();
 }
 function update_user_info() {
+   //console.log("update_user_info");
     try {
         $.ajax({
             type: "GET",
@@ -489,6 +495,56 @@ function update_user_info() {
                 $('#user_marafon_start').hide();
                 $('#user_marafon_wait').hide();
 
+
+                if (data.daily_payment == true){
+                    $('#div_settings_payment_change').show();
+                    $('#div_settings_payment_start').hide();
+                    $('#filed_payment_size_edit').val(data.daily_payment_amount);
+                    $('#daily_payment_currency').text(data.daily_payment_currency);
+
+                } else {
+                    $('#div_settings_payment_change').hide();
+                    $('#div_settings_payment_start').show();
+
+                    var button = $ipsp.get("button");
+                    button.setHost("api.fondy.eu");
+                    button.setProtocol("https");
+                    button.setMerchantId(1409532);
+
+                    button.setAmount("","RUB",false);
+
+                    button.setResponseUrl(response_url);
+                    button.addParam("lang","ru");
+                    button.addParam("order_desc","Участие в марафоне HYLS");
+                    button.addParam("required_rectoken", "Y");
+
+                    var url = button.getUrl();
+                    $ipsp("checkout").config({
+                        "wrapper": "#checkout_settings",
+                        "styles": {
+                            "body": {
+                                "overflow": "hidden"
+                            }
+                        }
+                    }).scope(function () {
+                        this.width("100%");
+                        this.height(480);
+                        this.action("resize", function (data) {
+                            this.setCheckoutHeight(data.height);
+                        });
+                        this.loadUrl(url);
+                        this.addCallback(function(data,type){
+                            //  console.log(type);
+                            //  console.log(data);
+
+                            if (typeof data.send_data !== 'undefined' && data.final ) {
+
+                                reg_user_confirm_payment(data.send_data, "settings");
+                            }
+                        })
+                    });
+
+                }
 
 
                 $('#wait_messenger_link')    .attr("href", data.messenger_link).text("по ссылке");
@@ -2020,7 +2076,7 @@ $( document ).ready(function() {
         $('#hidden_info_wait').show();
     });
 
-    $('#logo_marafon_wait').click(function (){
+    $('#reg_foto_logo').click(function (){
         $('#hidden_info_reg').show();
     });
 
@@ -2041,39 +2097,29 @@ $( document ).ready(function() {
         $('#reg_step_1').hide();
         $('#reg_step_3').hide();
         $('#reg_step_2').show();
-        $('#reg_step_text').text("Шаг 2/6");
-        $('#reg_step_progress').css('width', '35%').attr('aria-valuenow', 15);
 	    scrollTop();
     });
     $('#btn_reg_step_2').click(function (){
         $('#reg_step_2').hide();
         $('#reg_step_4').hide();
         $('#reg_step_3').show();
-        $('#reg_step_text').text("Шаг 3/6");
-        $('#reg_step_progress').css('width', '50%').attr('aria-valuenow', 15);
 	    scrollTop();
     });
     $('#btn_reg_step_3').click(function (){
         $('#reg_step_3').hide();
         $('#reg_step_5').hide();
         $('#reg_step_4').show();
-        $('#reg_step_text').text("Шаг 4/6");
-        $('#reg_step_progress').css('width', '65%').attr('aria-valuenow', 15);
 	    scrollTop();
     });
     $('#btn_reg_step_4').click(function (){
         $('#reg_step_4').hide();
         $('#reg_step_6').hide();
         $('#reg_step_5').show();
-        $('#reg_step_text').text("Шаг 5/6");
-        $('#reg_step_progress').css('width', '85%').attr('aria-valuenow', 15);
 	    scrollTop();
     });
     $('#btn_reg_step_5').click(function (){
         $('#reg_step_5').hide();
         $('#reg_step_6').show();
-        $('#reg_step_text').text("Шаг 6/6");
-        $('#reg_step_progress').css('width', '100%').attr('aria-valuenow', 15);
 	    scrollTop();
     });
 
@@ -2147,6 +2193,7 @@ $( document ).ready(function() {
         button.setProtocol("https");
         button.setMerchantId(1409532);
 
+
         switch (currency) {
             case "RUB":
                 button.setAmount("","RUB",false);
@@ -2178,17 +2225,11 @@ $( document ).ready(function() {
         button.setResponseUrl(response_url);
         button.addParam("lang","ru");
         button.addParam("order_desc","Участие в марафоне HYLS");
-       // button.setRecurringState(true);
-       // button.addRecurringData({
-       //     start_time: '2018-06-06',
-       //     end_time:   '2018-08-06',
-       //     // amount: ,
-       //     period: 'day',
-       //     every: 1
-       // });
+        button.addParam("required_rectoken", "Y");
+
         var url = button.getUrl();
         $ipsp("checkout").config({
-            "wrapper": "#checkout",
+            "wrapper": "#checkout_reg_daily",
             "styles": {
                 "body": {
                     "overflow": "hidden"
@@ -2252,18 +2293,11 @@ $( document ).ready(function() {
         button.setResponseUrl(response_url);
         button.addParam("lang","ru");
         button.addParam("order_desc","Участие в марафоне HYLS");
-      // button.setRecurringState(true);
-      // button.addRecurringData({
-      //     start_time: '2018-06-06',
-      //     end_time:   '2018-08-06',
-      //     // amount: ,
-      //     period: 'day',
-      //     every: 1
-      // });
+
 
         var url = button.getUrl();
         $ipsp("checkout").config({
-            "wrapper": "#checkout_2",
+            "wrapper": "#checkout_support",
             "styles": {
                 "body": {
                     "overflow": "hidden"
@@ -2283,6 +2317,76 @@ $( document ).ready(function() {
                 if (typeof data.send_data !== 'undefined' && data.final ) {
                     reg_user_confirm_payment(data.send_data, "support");
                     alert("Платеж успешно завершен. Благодарим за поддержку!")
+                }
+            })
+        });
+
+
+    });
+    $(document).on('click', '.pay_currency_settings', function (){
+       // console.log($(this).val());
+        var currency = $(this).val();
+
+        var button = $ipsp.get("button");
+        button.setHost("api.fondy.eu");
+        button.setProtocol("https");
+        button.setMerchantId(1409532);
+
+        switch (currency) {
+            case "RUB":
+                button.setAmount("","RUB",false);
+
+                break;
+            case "UAH":
+                button.setAmount("","UAH",false);
+
+                break;
+            case "KZT":
+                button.setAmount("","KZT",false);
+
+                break;
+            case "BYN":
+                button.setAmount("","BYN",false);
+
+                break;
+            case "USD":
+                button.setAmount("","USD",false);
+
+                break;
+            case "EUR":
+                button.setAmount("","EUR",false);
+
+                break;
+
+        }
+
+        button.setResponseUrl(response_url);
+        button.addParam("lang","ru");
+        button.addParam("order_desc","Участие в марафоне HYLS");
+        button.addParam("required_rectoken", "Y");
+
+
+        var url = button.getUrl();
+        $ipsp("checkout").config({
+            "wrapper": "#checkout_settings",
+            "styles": {
+                "body": {
+                    "overflow": "hidden"
+                }
+            }
+        }).scope(function () {
+            this.width("100%");
+            this.height(480);
+            this.action("resize", function (data) {
+                this.setCheckoutHeight(data.height);
+            });
+            this.loadUrl(url);
+            this.addCallback(function(data,type){
+               // console.log(type);
+                //console.log(data);
+
+                if (typeof data.send_data !== 'undefined' && data.final ) {
+                    reg_user_confirm_payment(data.send_data, "settings");
                 }
             })
         });
@@ -2348,7 +2452,7 @@ $( document ).ready(function() {
                 break;
             case "nav_user_support":
                 $ipsp("checkout").config({
-                    "wrapper": "#checkout_2",
+                    "wrapper": "#checkout_support",
                     "styles": {
                         "body": {
                             "overflow": "hidden"
@@ -3082,7 +3186,6 @@ $( document ).ready(function() {
         });
     });
 
-
     $('#btn_7day_edit').click(function() {
         $.ajax({
             type: "GET",
@@ -3096,6 +3199,52 @@ $( document ).ready(function() {
             },
             success: function(data){
 
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+
+
+    $('#btn_payment_edit').click(function (){
+        if ( parseInt($('#filed_payment_size_edit').val()) > 0) {
+            $.ajax({
+                type: "GET",
+                url:  api_url_full,
+                data: { query_update: "daily_payment_change_size",
+                    new_amount:  $('#filed_payment_size_edit').val()
+                },
+                headers: {
+                    'Authorization':'Token token=' + cookie_token,
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                success: function(data){
+                    update_user_info();
+                    alert("Сумма успешно изменена")
+                },
+                failure: function(errMsg) {
+                    alert(errMsg.toString());
+                }
+            });
+        } else {
+            alert("Ежедневная сумма должна быть больше 0")
+        }
+
+    });
+    $('#btn_payment_stop').click(function (){
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_update: "daily_payment_stop",
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                update_user_info();
             },
             failure: function(errMsg) {
                 alert(errMsg.toString());
@@ -3451,6 +3600,8 @@ $( document ).ready(function() {
                         $('#btn_register').prop('disabled', false);
                         setUsersRegPay(data.users_reg_pay);
                         $('#modal_register') .modal('hide');
+                    } else {
+                        alert("Пользователь с таким телефоном/почтой уже имеется в базе")
                     }
                 },
                 failure: function(errMsg) {
