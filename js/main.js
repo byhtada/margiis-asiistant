@@ -4,9 +4,35 @@ $(window).on('load', function() {
   // console.log(navigator.userAgent);
 
    //if (navigator.appName == 'Microsoft Internet Explorer' || (navigator.appName == "Netscape" && navigator.appVersion.indexOf('Edge') > -1)){
-   if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )){
-       alert("Наше программное обесепечение не поддерживает Internet Explore, пожалуйста, используйте другой браузер.")
+
+    initFondy();
+
+    if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )){
+       //alert("Наше программное обесепечение не поддерживает Internet Explore, пожалуйста, используйте другой браузер.");
+       ifLogin();
+       $('#btn_fb_log_in').hide();
+       timerId = setInterval(function() {
+           //  console.log( "тик" );
+           var params = parse_query_string();
+           if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
+
+               var new_params = params;
+               clearInterval(timerId);
+               var vk_info = "photo_200";
+               var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
+               jsonp(vk_api_query, function(userInfo) {
+                   console.log("timer response " + userInfo.response[0]);
+                   console.log("timer params " + params);
+                   console.log(params);
+                   userInfo = userInfo.response[0];
+                   try_find_user(userInfo, new_params, "vk")
+               });
+           }
+       }, 500);
    } else {
+
+   // ifLogin();
+
        window.fbAsyncInit = function() {
            FB.init({
                appId      : '309469549587161',
@@ -16,41 +42,45 @@ $(window).on('load', function() {
            });
 
            FB.AppEvents.logPageView();
+
            ifLogin();
 
            timerId = setInterval(function() {
-             //  console.log( "тик" );
-                   var params = parse_query_string();
-                   if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
-                       var new_params = params;
-                       clearInterval(timerId);
-                       var vk_info = "sex,bdate,city,country,photo_200,contacts,followers_count,timezone";
-                       var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
-                       jsonp(vk_api_query, function(userInfo) {
-                           console.log("timer response " + userInfo.response[0]);
-                           console.log("timer params " + params);
-                           console.log(params);
-                           userInfo = userInfo.response[0];
-                           try_find_user(userInfo, new_params, "vk")
-                       });
-                   }
+               //  console.log( "тик" );
+               var params = parse_query_string();
+               console.log(params);
+               if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
+
+                   var new_params = params;
+                   clearInterval(timerId);
+                   var vk_info = "photo_200";
+                   var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
+                   jsonp(vk_api_query, function(userInfo) {
+                       console.log("timer response " + userInfo.response[0]);
+                       console.log("timer params " + params);
+                       console.log(params);
+                       userInfo = userInfo.response[0];
+                       try_find_user(userInfo, new_params, "vk")
+                   });
+               }
            }, 500);
+       };
+
+       (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "https://connect.facebook.net/en_US/sdk.js#version=v3.0&appId=309469549587161&status=true&cookie=true&xfbml=true";
+           fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
+
+
+
    }
-   // ifLogin();
 
 
 
-    }
-
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js#version=v3.0&appId=309469549587161&status=true&cookie=true&xfbml=true";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-    initFondy();
 
 
     function jsonp(url, callback) {
@@ -74,6 +104,7 @@ var api_url      = "https://зйож.рф/";
 var api_url_full = "https://зйож.рф/users";
 
 
+
 var programm_days_main;
 var day_num;
 var day_show_now;
@@ -88,6 +119,7 @@ var user_messenger = "";
 var group_id;
 var conversion_start, conversion_finish;
 
+var chat_url;
 
 var button;
 var url;
@@ -100,7 +132,11 @@ var order_id     = "";
 var signature    = "";
 var rectoken    = "";
 var fondy_host   = "https://api.fondy.eu/api/status/order_id";
+
+var payment_flow = "";
 function initFondy(){
+
+    payment_flow = "reg";
     button = $ipsp.get("button");
     button.setHost("api.fondy.eu");
     button.setProtocol("https");
@@ -120,6 +156,7 @@ function initFondy(){
  //  });
 
     url = button.getUrl();
+    $ipsp("checkout").config();
     $ipsp("checkout").config({
         "wrapper": "#checkout_reg_daily",
         "styles": {
@@ -135,20 +172,14 @@ function initFondy(){
         });
         this.loadUrl(url);
         this.addCallback(function(data,type){
-            console.log(type);
+            console.log("reg");
             console.log(data);
 
             if (typeof data.send_data !== 'undefined' && data.final ) {
-               // console.log(data.send_data.signature);
-               // console.log(data.send_data.order_id);
-               // console.log(data.send_data.order_status);
-               // console.log(data.send_data.currency);
-               // console.log(data.send_data.settlement_amount);
-
                 signature = data.send_data.signature;
                 order_id = data.send_data.order_id;
 
-                reg_user_confirm_payment(data.send_data, "reg");
+                reg_user_confirm_payment(data.send_data, payment_flow);
             }
         })
     });
@@ -156,7 +187,13 @@ function initFondy(){
 
 
 var  timerId;
-
+//var white_page_timer = setInterval(function() {
+//    if ($('#page_login').is(':visible') || $('#page_user_main').is(':visible')){
+//        $('#text_white_page').hide();
+//    } else {
+//        $('#text_white_page').delay(2000).show();
+//    }
+//    },G
 
 var city = {};
 var couintry = {};
@@ -179,38 +216,79 @@ var user_params = {
 };
 
 function ifLogin()  {
-    $('#text_white_page').hide();
     //console.log(cookie_token);
+
+    var params = parse_query_string();
+    if (typeof params.social_login !== 'undefined'){
+
+        if (params.social_login === "vk") {
+            sendMove("reg_hyls", "vk_click_link");
+            $('#btn_vk_log_in')[0].click();
+        }
+        if (params.social_login === "fb") {
+            if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )){
+                $("#page_login")     .show();
+                $("#btn_fb_log_in")  .hide();
+                $("#div_reg_other")     .show();
+
+            } else {
+                sendMove("reg_hyls", "fb_click_link");
+                fb_login();
+            }
+
+        }
+
+        if (params.social_login === "none") {
+            sendMove("reg_hyls", "hand_click_link");
+            $("#page_login")     .show();
+            $("#div_reg_other")     .show();
+            $("#modal_register_self").modal('show');
+        }
+    } else if (typeof params.access_token == 'undefined'){
+        $("#page_login")     .show();
+    }
+
+
+
     if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
         clearInterval(timerId);
+        clearTimeout(timer_white_page);
+        $('#text_white_page').hide();
         start();
     } else {
         //   console.log(cookie_token);
         $('#page_user_main') .hide();
         $('#page_admin_main').hide();
 
-        var params = parse_query_string();
-        if (typeof params.social_login !== 'undefined'){
 
-            if (params.social_login === "vk") {
-                $('#btn_vk_log_in')[0].click();
-            }
-            if (params.social_login === "fb") {
-                $('#text_white_page').delay(3000).show(0);
-
-                fb_login();
-            }
-        } else if (typeof params.access_token == 'undefined'){
-            $("#page_login")     .show();
-        }
     }
 }
+function sendMove(move_category, move_desc) {
+    $.ajax({
+        type: "POST",
+        url: api_url + "send_move",
+        data: {move_category: move_category, move_desc: move_desc},
+        headers: {
+
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        success: function (data) {
+            console.log(data);
+        },
+        failure: function (errMsg) {
+            console.log("fail");
+            console.log(errMsg.toString());
+        }
+    });
+}
+
+
 function start() {
     try {
         $.ajax({
             type: "GET",
-            url:   api_url + "users",
-            data: {query_info: "get_user_status"},
+            url:   api_url + "get_user_status",
+            data: {token: cookie_token},
             headers: {
                 'Authorization': 'Token token=' + cookie_token,
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -218,6 +296,8 @@ function start() {
             success: function (data) {
                 console.log(data);
 
+                clearTimeout(timer_white_page);
+                $('#text_white_page').hide();
 
                 hide_all_in_admin();
                 hide_all_in_user();
@@ -247,6 +327,7 @@ function start() {
                 }
             },
             failure: function (errMsg) {
+                console.log("error" + errMsg);
                 alert(errMsg);
             }
         });
@@ -258,12 +339,21 @@ function start() {
 }
 
 
-
+var timer_white_page = setTimeout(function (){
+    if ($('#page_login').is(':visible') || $('#page_login').is(':visible') || $('#page_login').is(':visible') ){
+        $('#text_white_page').hide();
+    } else {
+        $('#text_white_page').show();
+    }
+}, 6000);
 function fb_login(){
+
+
     FB.login(function (response) {
             console.log(response);
             if (response.status == "connected"){
                 FB.api('/me?fields=id,first_name,last_name,email,age_range,link,gender,locale,picture,timezone', function (userData){
+                    clearTimeout(timer_white_page);
                     $('#text_white_page').hide();
                     console.log(userData);
                     user_reg_info["first_name"] = userData.first_name;
@@ -275,8 +365,6 @@ function fb_login(){
                     console.log("user_params " + JSON.stringify(user_params));
                     try_find_user(user_reg_info, user_params, "fb")
                 });
-            } else {
-                $('#text_white_page').show();
             }
         },
         {scope: 'public_profile, email'});
@@ -306,6 +394,8 @@ function try_find_user(userInfo, params, social_name){
             } else {
               //  console.log("user not founded");
                 reg_user(userInfo, params.email, social_name, params.user_id, params.access_token);
+
+
             }
         },
         failure: function (errMsg) {
@@ -390,6 +480,7 @@ function reg_user_confirm_payment(send_data, place){
             break;
     }
 
+    console.log("query " + query);
     $.ajax({
         type: "GET",
         url:  api_url_full,
@@ -400,18 +491,21 @@ function reg_user_confirm_payment(send_data, place){
             payment_card:       send_data.masked_card,
             payment_requisites: send_data.sender_email,
             payment_approval_code: send_data.approval_code,
-            payment_date:       send_data.order_time,
-            payment_descr:      order_desc,
-            payment_signature:   send_data.signature,
-            payment_rectoken:       send_data.rectoken
+            payment_date:          send_data.order_time,
+            payment_descr:         order_desc,
+            payment_signature:     send_data.signature,
+            payment_rectoken:      send_data.rectoken
         },
         headers: {
             'Authorization':'Token token=' + cookie_token,
             'Content-Type':'application/x-www-form-urlencoded'
         },
         success: function(data) {
-            alert("Платеж успешно завершен. Благодарим Вас за поддержку!");
-            ifLogin();
+            console.log(data);
+                if (send_data.amount > 0) {
+                    alert("Платеж успешно завершен. Благодарим Вас за поддержку!");
+                }
+                update_user_info();
         },
         failure: function(errMsg) {
             alert(errMsg.toString());
@@ -506,49 +600,11 @@ function update_user_info() {
                     $('#div_settings_payment_change').hide();
                     $('#div_settings_payment_start').show();
 
-                    var button = $ipsp.get("button");
-                    button.setHost("api.fondy.eu");
-                    button.setProtocol("https");
-                    button.setMerchantId(1409532);
-
-                    button.setAmount("","RUB",false);
-
-                    button.setResponseUrl(response_url);
-                    button.addParam("lang","ru");
-                    button.addParam("order_desc","Участие в марафоне HYLS");
-                    button.addParam("required_rectoken", "Y");
-
-                    var url = button.getUrl();
-                    $ipsp("checkout").config({
-                        "wrapper": "#checkout_settings",
-                        "styles": {
-                            "body": {
-                                "overflow": "hidden"
-                            }
-                        }
-                    }).scope(function () {
-                        this.width("100%");
-                        this.height(480);
-                        this.action("resize", function (data) {
-                            this.setCheckoutHeight(data.height);
-                        });
-                        this.loadUrl(url);
-                        this.addCallback(function(data,type){
-                            //  console.log(type);
-                            //  console.log(data);
-
-                            if (typeof data.send_data !== 'undefined' && data.final ) {
-
-                                reg_user_confirm_payment(data.send_data, "settings");
-                            }
-                        })
-                    });
-
                 }
 
 
+                chat_url = data.messenger_link;
                 $('#wait_messenger_link')    .attr("href", data.messenger_link).text("по ссылке");
-                $('#programm_messenger_link').attr("href", data.messenger_link).text("Ссылка");
                 $('#settings_messenger_link').attr("href", data.messenger_link).text("Ссылка");
 
                 $('#filed_7day').prop("checked", data.user.show_practic_7);
@@ -573,6 +629,7 @@ function update_user_info() {
                     $('#nav_bar').show();
                 }
 
+                var detox_days_for_settings = 0;
                 if (data.detox_type !== null ){
                     $('#detox_settings').show();
                     $('#detox_name')    .text(data.detox_type);
@@ -581,6 +638,8 @@ function update_user_info() {
 
                     var detox_last_date1;
                     var detox_time1 = data.user.detox_time_new;
+                    detox_days_for_settings = detox_time1;
+
                     switch (parseInt(data.user.detox_type_new)){
                         case 1:
                             detox_days = 30;
@@ -595,6 +654,7 @@ function update_user_info() {
                             detox_last_date1 = 60 - detox_time1 - 2 - 2 - 5;
                             break;
                         case 4:
+                            detox_days_for_settings = detox_time1 + 2;
                             detox_days = 5;
                             detox_last_date1 = 60 - detox_time1 - 2 - 1 - 1 - 2 - 1 - 2 - 5;
                             break;
@@ -619,8 +679,13 @@ function update_user_info() {
                 }
                 if (data.user.detox_stop == true) {
                     $('#detox_settings').hide();
-
                 }
+
+                if (data.user.detox_start_new + detox_days_for_settings <= data.marafon_info_today.day_num) {
+                    $('#detox_settings').hide();
+                }
+
+
             },
             failure: function (errMsg) {
                 alert(errMsg);
@@ -899,7 +964,6 @@ function setUserMarafonDay(current_day, marafon_day){
     console.log(current_day);
 
 
-    day_num == 1 ? $('#programm_messenger_link_text').show() : $('#programm_messenger_link_text').hide();
 
 
     if (current_day.water_target_answer) {
@@ -923,7 +987,7 @@ function setUserMarafonDay(current_day, marafon_day){
     if (current_day.wake_up_target_answer) {
         $('#wake_up_alert_no_answer').hide();
         $('#table_question_wake_up').hide();
-        $('#wake_up_settings').hide();
+        $('#wake_up_settings').show();
     } else {
         if (day_num > 14) {
             $('#wake_up_alert_no_answer').show();
@@ -1598,6 +1662,10 @@ function setUsersRegPay(users){
         user_register_row += '<td><h5>' + item.user_messenger          + '</h5></td>';
         user_register_row += '<td><textarea class="user_comment_admin" name="' + item.user_id + '">' + item.user_comment + '</textarea></td>';
         user_register_row += '<td><button type="button" class="btn btn-success btn-sm" name="btns_confirm_pay" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_confirm_pay"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button></td>';
+        user_register_row += '<td><button type="button" class="btn btn-warning btn-sm" name="btns_edit_user" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_edit_user"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
+        user_register_row += '<td><button type="button" class="btn btn-danger btn-sm"  name="btns_user_delete" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
+
+
         user_register_row += '</tr>';
     });
     user_register_row += '</tbody></table';
@@ -1629,6 +1697,7 @@ function setUsersRegPay(users){
         user_pay_row += '<td><h5>' + item.user_payment_size_fact  + '</h5></td>';
         user_pay_row += '<td><textarea class="user_comment_admin" name="' + item.user_id + '">' + item.user_comment + '</textarea></td>';
         user_pay_row += '<td><button type="button" class="btn btn-success btn-sm" name="btns_to_group" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_to_group"> <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button></td>';
+        user_pay_row += '<td><button type="button" class="btn btn-warning btn-sm" name="btns_edit_user" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_edit_user"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
         user_pay_row += '<td><button type="button" class="btn btn-danger btn-sm"  name="btns_user_delete" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
 
         user_pay_row += '</tr>';
@@ -1725,8 +1794,8 @@ function setConversion(){
     conversion_finish = $('#report_conversion_finish').val();
     $.ajax({
         type: "GET",
-        url:  api_url_full,
-        data: { query_info: "get_conversion",
+        url:  api_url + "get_conversion",
+        data: {
             conversion_start:  conversion_start,
             conversion_finish: conversion_finish
         },
@@ -1736,7 +1805,11 @@ function setConversion(){
         },
         success: function(data){
 
+
+
+
             console.log(data);
+            $('#conv_vk_clicks')        .text(data.vk.vk_clicks);
             $('#conv_vk_regs')        .text(data.vk.vk_regs);
             $('#conv_vk_phones')      .text(data.vk.vk_phones);
             $('#conv_vk_users_all')   .text(data.vk.vk_users_all);
@@ -1746,6 +1819,7 @@ function setConversion(){
             $('#conv_vk_users_conv')  .text(data.vk.vk_users_conv);
             $('#conv_vk_users_profit')  .text(data.vk.vk_users_profit);
 
+            $('#conv_fb_clicks')        .text(data.fb.fb_clicks);
             $('#conv_fb_regs')        .text(data.fb.fb_regs);
             $('#conv_fb_phones')      .text(data.fb.fb_phones);
             $('#conv_fb_users_all')   .text(data.fb.fb_users_all);
@@ -1755,6 +1829,7 @@ function setConversion(){
             $('#conv_fb_users_conv')  .text(data.fb.fb_users_conv);
             $('#conv_fb_users_profit')  .text(data.fb.fb_users_profit);
 
+            $('#conv_hand_clicks')      .text(data.hand.hand_clicks);
             $('#conv_hand_regs')      .text(data.hand.hand_regs);
             $('#conv_hand_phones')    .text(data.hand.hand_phones);
             $('#conv_hand_users_all') .text(data.hand.hand_users_all);
@@ -1764,6 +1839,7 @@ function setConversion(){
             $('#conv_hand_users_conv').text(data.hand.hand_users_conv);
             $('#conv_hand_users_profit').text(data.hand.hand_users_profit);
 
+            $('#conv_all_clicks')       .text(data.all.all_clicks);
             $('#conv_all_regs')       .text(data.all.all_regs);
             $('#conv_all_phones')     .text(data.all.all_phones);
             $('#conv_all_users_all')  .text(data.all.all_users_all);
@@ -1811,28 +1887,66 @@ function setConvUsersTable(users){
 }
 
 function parse_query_string() {
-    var url_string = window.location.href; //window.location.href
-    var url = new URL(url_string);
-    var query = url.hash.replace('#', '');
-    var vars = query.split("&");
-    var query_string = {};
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split("=");
-        var key = decodeURIComponent(pair[0]);
-        var value = decodeURIComponent(pair[1]);
-        // If first entry with this name
-        if (typeof query_string[key] === "undefined") {
-            query_string[key] = decodeURIComponent(value);
-            // If second entry with this name
-        } else if (typeof query_string[key] === "string") {
-            var arr = [query_string[key], decodeURIComponent(value)];
-            query_string[key] = arr;
-            // If third or later entry with this name
-        } else {
-            query_string[key].push(decodeURIComponent(value));
-        }
-    }
-    return query_string;
+    var hashParams = {};
+    var e,
+        a = /\+/g,  // Regex for replacing addition symbol with a space
+        r = /([^&;=]+)=?([^&;]*)/g,
+        d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
+        q = window.location.hash.substring(1);
+
+    while (e = r.exec(q))
+        hashParams[d(e[1])] = d(e[2]);
+
+    return hashParams;
+
+   // if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )){
+//
+   //     var key = false, res = {}, itm = null;
+   //     // get the query string without the ?
+   //     var qs = location.search.substring(1);
+   //     // check for the key as an argument
+   //     if (arguments.length > 0 && arguments[0].length > 1)
+   //         key = arguments[0];
+   //     // make a regex pattern to grab key/value
+   //     var pattern = /([^&=]+)=([^&]*)/g;
+   //     // loop the items in the query string, either
+   //     // find a match to the argument, or build an object
+   //     // with key/value pairs
+   //     while (itm = pattern.exec(qs)) {
+   //         if (key !== false && decodeURIComponent(itm[1]) === key)
+   //             return decodeURIComponent(itm[2]);
+   //         else if (key === false)
+   //             res[decodeURIComponent(itm[1])] = decodeURIComponent(itm[2]);
+   //     }
+//
+   //     return key === false ? res : null;
+   // } else {
+//
+   //     var url_string = window.location.href; //window.location.href
+   //     var url = new URL(url_string);
+   //     var query = url.hash.replace('#', '');
+   //     var vars = query.split("&");
+   //     var query_string = {};
+   //     for (var i = 0; i < vars.length; i++) {
+   //         var pair = vars[i].split("=");
+   //         var key = decodeURIComponent(pair[0]);
+   //         var value = decodeURIComponent(pair[1]);
+   //         // If first entry with this name
+   //         if (typeof query_string[key] === "undefined") {
+   //             query_string[key] = decodeURIComponent(value);
+   //             // If second entry with this name
+   //         } else if (typeof query_string[key] === "string") {
+   //             var arr = [query_string[key], decodeURIComponent(value)];
+   //             query_string[key] = arr;
+   //             // If third or later entry with this name
+   //         } else {
+   //             query_string[key].push(decodeURIComponent(value));
+   //         }
+   //     }
+   //     return query_string;
+   // }
+
+
 }
 
 function setCookie(name, value, options) {
@@ -1867,6 +1981,10 @@ function getCookie(name) {
 }
 
 $( document ).ready(function() {
+
+
+
+
     $('#btn_hide_user_group').click(function (){
 
 
@@ -1944,9 +2062,9 @@ $( document ).ready(function() {
     });
     $('#btn_send_email').click(function (){
         $.ajax({
-            type: "GET",
-            url: api_url_full,
-            data: {query_info: "send_mail"
+            type: "POST",
+            url: api_url + "/send_mail",
+            data: {
             },
 
             headers: {
@@ -1989,7 +2107,10 @@ $( document ).ready(function() {
             //  console.log("fail get token -> show initial reg (ajaxSetup)");
 
             if (data.status == 401) {
-                // console.log("Error 401");
+                 console.log("Error 401");
+                $('#page_login').show();
+                $("#page_user_main") .hide();
+                $('#page_admin_main').hide();
                 //  console.log(data.responseText.includes("Incorrect credentials"));
 
                 if (data.responseText.includes("Incorrect credentials")) {
@@ -2086,10 +2207,15 @@ $( document ).ready(function() {
         fb_login();
     });
     $('#btn_vk_log_in').click(function (){
-        console.log('click vk')
+        console.log('click vk');
+
     });
     $('#btn_reg_other').click(function (){
         $('#div_reg_other').show();
+    });
+    $('#btn_modal_register_self').click(function (){
+
+        sendMove("reg_hyls", "hand_click_link");
     });
 
 
@@ -2129,6 +2255,7 @@ $( document ).ready(function() {
     }
 
     $('#btn_register_self').click(function () {
+
         $('#btn_register_self').prop('disabled', true);
 
         var user_name       = $('#field_user_reg_name').val();
@@ -2136,9 +2263,7 @@ $( document ).ready(function() {
         var user_phone      = $('#field_user_reg_phone').val();
         var user_password   = $('#field_user_reg_password').val();
 
-        console.log(isValidEmailAddress(1));
-        console.log(isValidEmailAddress(444));
-        console.log(isValidEmailAddress("byh@gm.co"));
+
         if (user_phone != "" && user_password != "" && user_email != "" && user_password.length >= 4 && isValidEmailAddress(user_email)) {
             var person  = {
                 first_name:  user_name,
@@ -2160,6 +2285,7 @@ $( document ).ready(function() {
                         setCookie(cookie_name_id,    data.user_id,    {expires: 36000000000000});
                         cookie_token = getCookie(cookie_name_token);
                         ifLogin();
+
                     } else {
                         alert("Видимо Вы уже зарегистрированы. Т.к. в нашей базе имеется указанный номер телефона|почта")
                     }
@@ -2182,9 +2308,13 @@ $( document ).ready(function() {
     }
 
     $('#btn_reg_show_currency').click(function(){
-        $('#reg_currency').show();
+        if ($('#reg_currency').is(":visible")) {
+            $('#reg_currency').hide();
+        } else {
+            $('#reg_currency').show();
+        }
     });
-    $(document).on('click', '.pay_currency_reg', function (){
+    $(document).on('click', '.pay_currency_reg_daily', function (){
        // console.log($(this).val());
         var currency = $(this).val();
 
@@ -2242,15 +2372,6 @@ $( document ).ready(function() {
                 this.setCheckoutHeight(data.height);
             });
             this.loadUrl(url);
-            this.addCallback(function(data,type){
-              //  console.log(type);
-              //  console.log(data);
-
-                if (typeof data.send_data !== 'undefined' && data.final ) {
-
-                    reg_user_confirm_payment(data.send_data, "reg");
-                }
-            })
         });
     });
     $(document).on('click', '.pay_currency_support', function (){
@@ -2294,7 +2415,7 @@ $( document ).ready(function() {
         button.addParam("lang","ru");
         button.addParam("order_desc","Участие в марафоне HYLS");
 
-
+        payment_flow = "support";
         var url = button.getUrl();
         $ipsp("checkout").config({
             "wrapper": "#checkout_support",
@@ -2309,19 +2430,7 @@ $( document ).ready(function() {
             this.action("resize", function (data) {
                 this.setCheckoutHeight(data.height);
             });
-            this.loadUrl(url);
-            this.addCallback(function(data,type){
-               // console.log(type);
-                //console.log(data);
-
-                if (typeof data.send_data !== 'undefined' && data.final ) {
-                    reg_user_confirm_payment(data.send_data, "support");
-                    alert("Платеж успешно завершен. Благодарим за поддержку!")
-                }
-            })
-        });
-
-
+            this.loadUrl(url);});
     });
     $(document).on('click', '.pay_currency_settings', function (){
        // console.log($(this).val());
@@ -2365,8 +2474,7 @@ $( document ).ready(function() {
         button.addParam("order_desc","Участие в марафоне HYLS");
         button.addParam("required_rectoken", "Y");
 
-
-        var url = button.getUrl();
+        var url_settings = button.getUrl();
         $ipsp("checkout").config({
             "wrapper": "#checkout_settings",
             "styles": {
@@ -2380,16 +2488,7 @@ $( document ).ready(function() {
             this.action("resize", function (data) {
                 this.setCheckoutHeight(data.height);
             });
-            this.loadUrl(url);
-            this.addCallback(function(data,type){
-               // console.log(type);
-                //console.log(data);
-
-                if (typeof data.send_data !== 'undefined' && data.final ) {
-                    reg_user_confirm_payment(data.send_data, "settings");
-                }
-            })
-        });
+            this.loadUrl(url);});
 
 
     });
@@ -2434,23 +2533,114 @@ $( document ).ready(function() {
             case "nav_conversion":
                // $('#page_conversion').show();
                 break;
+            case "nav_leaved":
+                $.ajax({
+                    type: "GET",
+                    url:  api_url + "get_leaved",
+                    data: {
+
+                    },
+                    headers: {
+                        'Authorization':'Token token=' + cookie_token,
+                        'Content-Type':'application/x-www-form-urlencoded'
+                    },
+                    success: function(data){
+                        console.log(data);
+
+
+                        var user_row = '<table id="table_users_leaved1" class="table table-hover table-bordered table-condensed" >';
+                        user_row    += '<thead><tr>';
+                        user_row    += '<th>Имя</th>';
+                        user_row    += '<th>Почта</th>';
+                        user_row    += '<th>Телефон</th>';
+                        user_row    += '<th>Ссылка соц.сети</th>';
+                        user_row    += '<th>Группа</th>';
+                        user_row    += '<th>Последняя активность</th>';
+                        user_row    += '<th>Комментарий</th>';
+                        user_row    += '</tr></thead><tbody>';
+                        $.each(data.users_leaved, function (i, item) {
+                            user_row += '<tr id="user_reg_' + item.user_id + '">';
+                            user_row += '<td><h5>' + item.user_name               + '</h5></td>';
+                            user_row += '<td><h5>' + item.user_email              + '</h5></td>';
+                            user_row += '<td><h5>' + item.user_phone              + '</h5></td>';
+                            user_row += '<td><h5>' + item.user_social_link            + '</h5></td>';
+                            user_row += '<td><h5>' + item.user_group          + '</h5></td>';
+                            user_row += '<td><h5>' + item.user_last_activity          + '</h5></td>';
+                            user_row += '<td><textarea class="user_comment_admin" name="' + item.user_id + '">' + item.user_comment + '</textarea></td>';
+
+                            user_row += '</tr>';
+                        });
+                        user_row += '</tbody></table';
+                        $('#table_users_leaved').empty();
+                        $('#table_users_leaved').append(user_row);
+                        $('#table_users_leaved').bsTable(undefined, false, undefined, undefined, true);
+
+
+                        $('#page_conversion').show();
+                    },
+                    failure: function(errMsg) {
+                        alert(errMsg.toString());
+                    }
+                });
+                break;
+
         }
     });
+
+    $('#nav_conversion, #report_conversion_show').click(function (){
+        setConversion();
+        $('#modal_conversion_date').modal('hide');
+    });
+
+
+
 
     $(document).on('click', '.nav-link-user',       function () {
         hide_all_in_user();
 
-        switch ($(this).attr("id")){
+        switch ($(this).attr("name")){
             case "nav_user_programm":
                 $('#page_user_programm').show();
                 break;
             case "nav_user_diary":
                 $('#page_user_diary').show();
+                $.ajax({
+                    type: "GET",
+                    url:  api_url_full,
+                    data: { query_info: "get_user_diary"},
+                    headers: {
+                        'Authorization':'Token token=' + cookie_token,
+                        'Content-Type':'application/x-www-form-urlencoded'
+                    },
+                    success: function(data) {
+                        setUserDiary(data.user_diary);
+                    },
+                    failure: function(errMsg) {
+                        alert(errMsg.toString());
+                    }
+                });
                 break;
             case "nav_user_settings":
+                payment_flow = "settings";
+                $ipsp("checkout").config({
+                    "wrapper": "#checkout_settings",
+                    "styles": {
+                        "body": {
+                            "overflow": "hidden"
+                        }
+                    }
+                }).scope(function () {
+                    this.width("100%");
+                    this.height(480);
+                    this.action("resize", function (data) {
+                        this.setCheckoutHeight(data.height);
+                    });
+                    this.loadUrl(url);});
                 $('#page_user_settings').show();
                 break;
             case "nav_user_support":
+
+                payment_flow = "support";
                 $ipsp("checkout").config({
                     "wrapper": "#checkout_support",
                     "styles": {
@@ -2464,23 +2654,28 @@ $( document ).ready(function() {
                     this.action("resize", function (data) {
                         this.setCheckoutHeight(data.height);
                     });
-                    this.loadUrl(url);
-                    this.addCallback(function(data,type){
-                        console.log(type);
-                        console.log(data);
-
-                        if (typeof data.send_data !== 'undefined' && data.final ) {
-                            reg_user_confirm_payment(data.send_data, "support");
-                            alert("Платеж успешно завершен. Благодарим за поддержку!")
-                        }
-                    })
-                });
+                    this.loadUrl(url);});
                 $('#page_user_support').show();
                 break;
         }
     });
 
+    $('#btn_footer_chat').click(function() {
+        var win = window.open(chat_url, '_blank');
+        win.focus();
+    });
+    $('#btn_footer_diary').click(function() {
+        hide_all_in_user();
+        $('#page_user_diary').show();
+    });
+    $('#btn_footer_support').click(function() {
+        hide_all_in_user();
 
+    });
+    $('#btn_footer_settings').click(function() {
+        hide_all_in_user();
+
+    });
 
 //Program
 
@@ -2992,21 +3187,7 @@ $( document ).ready(function() {
 
 //Diary
     $('#nav_user_diary').click(function (){
-        $.ajax({
-            type: "GET",
-            url:  api_url_full,
-            data: { query_info: "get_user_diary"},
-            headers: {
-                'Authorization':'Token token=' + cookie_token,
-                'Content-Type':'application/x-www-form-urlencoded'
-            },
-            success: function(data) {
-                setUserDiary(data.user_diary);
-            },
-            failure: function(errMsg) {
-                alert(errMsg.toString());
-            }
-        });
+
     });
 
     $(document).on('click', '.diary_day', function () {
@@ -3221,8 +3402,8 @@ $( document ).ready(function() {
                     'Content-Type':'application/x-www-form-urlencoded'
                 },
                 success: function(data){
+                    alert("Сумма успешно изменена");
                     update_user_info();
-                    alert("Сумма успешно изменена")
                 },
                 failure: function(errMsg) {
                     alert(errMsg.toString());
@@ -3237,13 +3418,14 @@ $( document ).ready(function() {
         $.ajax({
             type: "GET",
             url:  api_url_full,
-            data: { query_update: "daily_payment_stop",
+            data: { query_update: "daily_payment_stop"
             },
             headers: {
                 'Authorization':'Token token=' + cookie_token,
                 'Content-Type':'application/x-www-form-urlencoded'
             },
             success: function(data){
+                alert("Ежедневное списание Остановлено");
                 update_user_info();
             },
             failure: function(errMsg) {
@@ -3275,6 +3457,7 @@ $( document ).ready(function() {
 
         if (group_name == null || group_curator_id == null || group_start === "" || group_messenger === "" || group_messenger_link === "") {
             alert("Заполните все поля");
+            $('#btn_group_add').prop('disabled', false);
         } else {
             $.ajax({
                 type: "GET",
@@ -3321,6 +3504,7 @@ $( document ).ready(function() {
                 console.log(data);
                 $('#group_name_edit').val(data.group.group_name);
                 $('#group_messenger_link_edit').val(data.group.messenger_link);
+                $('#group_start_edit').val(data.group.group_start);
 
             },
             failure: function(errMsg) {
@@ -3335,7 +3519,8 @@ $( document ).ready(function() {
             data: { query_update:    "group_edit",
                     group_id:        $(this).val(),
                     group_name:      $('#group_name_edit').val(),
-                    group_messenger: $('#group_messenger_link_edit').val()
+                    group_messenger: $('#group_messenger_link_edit').val(),
+                    group_start:     $('#group_start_edit').val()
             },
             headers: {
                 'Authorization':'Token token=' + cookie_token,
@@ -3415,8 +3600,10 @@ $( document ).ready(function() {
                     group_users_row += '<td><h5>' + item.email + '</h5></td>';
 
                     group_users_row += '<td><textarea class="user_comment_admin" name="' + item.user_id + '">' + item.user_comment + '</textarea></td>';
-
                     group_users_row += '<td><button type="button" class="btn btn-info btn-sm"   name="btns_group_user_info"   value="'  +  item.user_id + '"  > <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></td>';
+
+                    group_users_row += '<td><button type="button" class="btn btn-warning btn-sm" name="btns_edit_user" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_edit_user"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
+
                     group_users_row += '<td><button type="button" class="btn btn-danger btn-sm" name="btns_group_user_delete" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_group_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
 
                     group_users_row += '</tr>';
@@ -3951,43 +4138,13 @@ $( document ).ready(function() {
 
 
 
-    $('#nav_conversion, #report_conversion_show').click(function (){
-        setConversion();
-        $('#modal_conversion_date').modal('hide');
-    });
 
 
     $(document).on('click', '.conv_regs_all',         function () {
         $.ajax({
             type: "GET",
-            url:  api_url_full,
-            data: { query_info: "get_conv_regs_all",
-                reg_flow: $(this).val(),
-                conversion_start:  conversion_start,
-                conversion_finish: conversion_finish
-            },
-            headers: {
-                'Authorization':'Token token=' + cookie_token,
-                'Content-Type':'application/x-www-form-urlencoded'
-            },
-            success: function(data){
-                console.log(data);
-                setConvUsersTable(data.users)
-            },
-            failure: function(errMsg) {
-                alert(errMsg.toString());
-            }
-        });
-    });
-
-
-
-
-    $(document).on('click', '.conv_lost_phones',      function () {
-        $.ajax({
-            type: "GET",
-            url:  api_url_full,
-            data: { query_info: "get_lost_phones",
+            url:  api_url + "get_conv_regs_all",
+            data: {
                 reg_flow: $(this).val(),
                 conversion_start:  conversion_start,
                 conversion_finish: conversion_finish
@@ -4009,8 +4166,31 @@ $( document ).ready(function() {
     $(document).on('click', '.conv_practics_all',     function () {
         $.ajax({
             type: "GET",
-            url:  api_url_full,
-            data: { query_info: "get_conv_practics_all",
+            url:  api_url + "get_conv_practics_all",
+            data: {
+                reg_flow: $(this).val(),
+                conversion_start:  conversion_start,
+                conversion_finish: conversion_finish
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                console.log(data);
+                setConvUsersTable(data.users)
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+   $(document).on('click', '.conv_lost_reg',     function () {
+        $.ajax({
+            type: "GET",
+            url:  api_url + "get_conv_lost_reg",
+            data: {
                 reg_flow: $(this).val(),
                 conversion_start:  conversion_start,
                 conversion_finish: conversion_finish
@@ -4032,8 +4212,8 @@ $( document ).ready(function() {
     $(document).on('click', '.conv_practics_pay',     function () {
         $.ajax({
             type: "GET",
-            url:  api_url_full,
-            data: { query_info: "get_conv_practics_pay",
+            url:  api_url + "get_conv_practics_pay",
+            data: {
                 reg_flow: $(this).val(),
                 conversion_start:  conversion_start,
                 conversion_finish: conversion_finish
@@ -4052,12 +4232,11 @@ $( document ).ready(function() {
         });
     });
 
-
     $(document).on('click', '.conv_practics_free',    function () {
         $.ajax({
             type: "GET",
-            url:  api_url_full,
-            data: { query_info: "get_conv_practics_free",
+            url:  api_url + "get_conv_practics_free",
+            data: {
                 reg_flow: $(this).val(),
                 conversion_start:  conversion_start,
                 conversion_finish: conversion_finish

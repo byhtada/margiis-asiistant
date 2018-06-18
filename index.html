@@ -15,8 +15,8 @@
 
     <link rel="stylesheet" href="css/normalize.css">
     <script src="js/jquery-3.2.1.js"></script>
-    <script                                 src="js/main.js?v1528631556"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css?v1528631556">
+    <script                                 src="js/main.js?v1528632222"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css?v1528632222">
 
     <script src="js/jquery.base64.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -60,13 +60,16 @@
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
 <![endif]-->
 <div id="fb-root"></div>
+
+
+
 <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter47972495 = new Ya.Metrika2({ id:47972495, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/tag.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks2"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47972495" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
 
 <div id="text_white_page" hidden>
     <h2 align="center" >Если Вы видите эту надпись, то скорее всего у Вас возникла проблема с загрузкой сайта HYLS. Попробуйте сделать следующее: <br/>
         1. Отключите в браузере блокировку всплывающих окон на нашем сайте<br/>
         2. Если п.1 не помог, попробуйте использовать другой браузер<br/>
-        3. Если сайт все равно не грузиться пишите https://vk.com/stloveangel
+        3. Если сайт все равно не грузится пишите <a href="https://vk.com/stloveangel" class="reg_link">https://vk.com/stloveangel</a>
     </h2>
 </div>
 
@@ -128,7 +131,7 @@
                             </div>
                             <div class="modal-body" align="center">
                                 <div id="reg_alert" hidden class="alert alert-danger e" role="alert">
-                                    <strong>Внимание!</strong> Заполните обязательный поля:<br/>
+                                    <strong>Внимание!</strong> Заполните обязательные поля:<br/>
                                     - Поле телефон должно быть заполнено<br/>
                                     - В поле E-mail должен быть Ваш почтовый адрес<br/>
                                     - Поле пароль должно содержать более 4х символов
@@ -144,7 +147,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                                <button id="btn_register_self" type="button" class="btn btn-success">Зарегистрировать</button>
+                                <button id="btn_register_self" type="button" class="btn btn-success">Зарегистрироваться</button>
                             </div>
                         </div>
                     </div>
@@ -189,6 +192,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link-admin" id="nav_conversion"   href="#">Конверсия</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link-admin" id="nav_leaved"   href="#">Забившие</a>
                     </li>
                 </ul>
 
@@ -261,6 +267,7 @@
                     <table style="border: 0">
                         <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Название группы</h5></td>  <td class="db_row_input_admin"><input type="text" class="form-control" id="group_name_edit"  placeholder=""></td></tr>
                         <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Ссылка на чат</h5></td>    <td class="db_row_input_admin"><input type="text" class="form-control" id="group_messenger_link_edit"  placeholder=""></td></tr>
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Старт групп</h5></td>    <td class="db_row_input_admin"><input type="date" class="form-control" id="group_start_edit"  placeholder=""></td></tr>
                     </table>
                 </div>
                 <div class="modal-footer">
@@ -312,6 +319,8 @@
             <div class="col-xs-8">
                 <h2 align="center">
                     Перечень кураторов
+
+                    <button id="btn_send_email" type="button" class="btn btn-success btn-sm">+</button>
                     <button id="btn_modal_add_curator" type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#modal_add_curator">       <span class="glyphicon glyphicon-plus"       aria-hidden="true"></span></button>
                 </h2>
 
@@ -545,21 +554,23 @@
                 <thead>
                 <tr class="db_row_dialog">
                     <td><h5 align="center"><b>Способ регистрации</b></h5></td>
+                    <td><h5 align="center"><b>Кликов</b></h5></td>
                     <td><h5 align="center"><b>Регистраций</b></h5></td>
                     <td><h5 align="center"><b>Потери</b></h5></td>
                     <td><h5 align="center"><b>Участников, всего</b></h5></td>
                     <td><h6 align="center">оплативших</h6></td>
                     <td><h6 align="center">безоплаты</h6></td>
                     <td><h5 align="center"><b>Конверсия</b></h5></td>
-                    <td><h5 align="center"><b>Доход, руб</b></h5></td>
+                    <td><h5 align="center"><b>Ср. ежедневный платеж, руб</b></h5></td>
                 </tr>
                 </thead>
 
                 <tbody>
                 <tr class="db_row_dialog">
                     <td valign="middle"><h5>ВКонтакте</h5></td>
+                    <td valign="middle"><h5 align="center" id="conv_vk_clicks"></h5></td>
                     <td valign="middle"><h5 align="center"><button id="conv_vk_regs"       value="vk" type="button" class="btn btn-link conv_regs_all">  </button></h5></td>
-                    <td valign="middle"><h5 align="center"><button                         value="vk" type="button" class="btn btn-sm   conv_lost_phones">   <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></h5></td>
+                    <td valign="middle"><h5 align="center"><button                         value="vk" type="button" class="btn btn-sm   conv_lost_reg">   <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></h5></td>
                     <td valign="middle"><h5 align="center"><button id="conv_vk_users_all"  value="vk" type="button" class="btn btn-link conv_practics_all">  </button></h5></td>
                     <td valign="middle"><h5 align="center"><button id="conv_vk_users_pay"  value="vk" type="button" class="btn btn-link conv_practics_pay">  </button></h5></td>
                     <td valign="middle"><h5 align="center"><button id="conv_vk_users_free" value="vk" type="button" class="btn btn-link conv_practics_free">  </button></h5></td>
@@ -569,8 +580,9 @@
 
                 <tr class="db_row_dialog">
                     <td valign="middle"><h5>FaceBook</h5></td>
+                    <td valign="middle"><h5 align="center" id="conv_fb_clicks"></h5></td>
                     <td valign="middle"><h5 align="center"><button id="conv_fb_regs"       value="fb" type="button" class="btn btn-link conv_regs_all">  </button></h5></td>
-                    <td valign="middle"><h5 align="center"><button                         value="fb" type="button" class="btn btn-sm   conv_lost_phones">   <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></h5></td>
+                    <td valign="middle"><h5 align="center"><button                         value="fb" type="button" class="btn btn-sm   conv_lost_reg">   <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></h5></td>
                     <td valign="middle"><h5 align="center"><button id="conv_fb_users_all"  value="fb" type="button" class="btn btn-link conv_practics_all">  </button></h5></td>
                     <td valign="middle"><h5 align="center"><button id="conv_fb_users_pay"  value="fb" type="button" class="btn btn-link conv_practics_pay">  </button></h5></td>
                     <td valign="middle"><h5 align="center"><button id="conv_fb_users_free" value="fb" type="button" class="btn btn-link conv_practics_free">  </button></h5></td>
@@ -581,8 +593,9 @@
 
                 <tr class="db_row_dialog">
                     <td valign="middle"><h5>Ручная рег.</h5></td>
+                    <td valign="middle"><h5 align="center" id="conv_hand_clicks"></h5></td>
                     <td valign="middle"><h5 align="center"><button id="conv_hand_regs"       value="hand" type="button" class="btn btn-link conv_regs_all">  </button></h5></td>
-                    <td valign="middle"><h5 align="center"><button                           value="hand" type="button" class="btn btn-sm   conv_lost_phones">   <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></h5></td>
+                    <td valign="middle"><h5 align="center"><button                           value="hand" type="button" class="btn btn-sm   conv_lost_reg">   <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></h5></td>
                     <td valign="middle"><h5 align="center"><button id="conv_hand_users_all"  value="hand" type="button" class="btn btn-link conv_practics_all">  </button></h5></td>
                     <td valign="middle"><h5 align="center"><button id="conv_hand_users_pay"  value="hand" type="button" class="btn btn-link conv_practics_pay">  </button></h5></td>
                     <td valign="middle"><h5 align="center"><button id="conv_hand_users_free" value="hand" type="button" class="btn btn-link conv_practics_free">  </button></h5></td>
@@ -592,11 +605,12 @@
 
                 <tr class="db_row_dialog">
                     <td valign="middle"><h5><b>Всего</b></h5></td>
-                    <td valign="middle"><h5 align="center"><button id="conv_all_regs"       value="all" type="button" class="btn btn-link conv_regs_all">  </button></h5></td>
-                    <td valign="middle"><h5 align="center"><button                          value="all" type="button" class="btn btn-sm   conv_lost_phones">   <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></h5></td>
-                    <td valign="middle"><h5 align="center"><button id="conv_all_users_all"  value="all" type="button" class="btn btn-link conv_practics_all">  </button></h5></td>
-                    <td valign="middle"><h5 align="center"><button id="conv_all_users_pay"  value="all" type="button" class="btn btn-link conv_practics_pay">  </button></h5></td>
-                    <td valign="middle"><h5 align="center"><button id="conv_all_users_free" value="all" type="button" class="btn btn-link conv_practics_free">  </button></h5></td>
+                    <td valign="middle"><h5 align="center" id="conv_all_clicks"></h5></td>
+                    <td valign="middle"><h5 align="center" id="conv_all_regs"></h5></td>
+                    <td valign="middle"><h5 align="center" ></h5></td>
+                    <td valign="middle"><h5 align="center" id="conv_all_users_all"></h5></td>
+                    <td valign="middle"><h5 align="center" id="conv_all_users_pay"></h5></td>
+                    <td valign="middle"><h5 align="center" id="conv_all_users_free"></h5></td>
                     <td valign="middle"><h5 align="center" id="conv_all_users_conv"></h5></td>
                     <td valign="middle"><h5 align="center" id="conv_all_users_profit"></h5></td>
 
@@ -700,6 +714,23 @@
     </div>
 
 
+    <div id="page_leaved"  class="container-fluid" hidden>
+        <h2 align="center">Неактивные пользователи</h2>
+        <br/>
+
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                <div id="table_users_leaved"></div>
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+    </div>
+
+
+
+
+
 
     <div id="page_group_info"  class="container-fluid" hidden>
         <div class="row">
@@ -761,20 +792,20 @@
             <div class="collapse navbar-collapse" id="navigation_bar_user">
                 <ul class="nav navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link-user" id="nav_user_programm"   href="#">Дневник</a>
+                        <a class="nav-link-user" name="nav_user_programm"   href="#">Дневник</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link-user" id="nav_user_diary"   href="#">Пройденные материалы</a>
+                        <a class="nav-link-user" name="nav_user_diary"   href="#">Пройденные материалы</a>
                     </li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
 
                     <li class="nav-item">
-                        <a class="nav-link-user" id="nav_user_support"   href="#">Поддержать HYLS</a>
+                        <a class="nav-link-user" name="nav_user_support"   href="#">Поддержать HYLS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link-user" id="nav_user_settings"   href="#">Настройки</a>
+                        <a class="nav-link-user" name="nav_user_settings"   href="#">Настройки</a>
                     </li>
 
                     <li><a id="btn_user_exit" href="#" hidden>Выход</a></li>
@@ -790,7 +821,7 @@
 
         <div id="user_marafon_reg" hidden>
             <div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3" align="center">
-                <div id="reg_step_1" class="row">
+                <div id="reg_step_1" class="row" hidden>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="h3 pull-left" align="center">Шаг 1/6</div>
                         <button id="btn_reg_step_1" type="button" class="btn_reg btn btn-success pull-right btn_reg_next">Далее</button>
@@ -954,99 +985,116 @@
                     </div>
                 </div>
 
-                <div id="reg_step_6" class="row" hidden>
+                <div id="reg_step_6" class="row" >
+                    <!--
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="h3 pull-left" align="center">Шаг 6/6</div>
-                    </div>
+                    </div> -->
                     <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="progress">
+                        <!-- <div class="progress">
                             <div class="progress-bar progress-bar-success progress-bar-striped active"
                                  role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"
                                  style="width: 90%">
                                 <span class="sr-only"></span>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div align="center" class="h2 payment_header">Старт марафона: 20.06.2018</div>
+                        <br/>
+                        <div align="center" class="payment_header"><b>Оплата марафона <span class="black_color">H</span>Y<span class="black_color">LS</span></b></div>
 
                         <div class="col-xs-12 col-md-12 col-sm-12 text-left">
-                            <div class="reg-text">Эти 60 дней трансформации жизни бесценны, поэтому было бы несправедливо
-                                оценить их в какой-то цифре. Мы предлагаем каждому выбрать уровень оплаты по возможностям.</div>
-                            <div class="reg-text">Маркетологи и бизнесмены убеждают нас, что все любят халяву и эффективнее будет установить рыночные цены, но мы верим в осознанность людей и всё же хотим дать возможность участвовать всем. Поэтому, оплачивая участие, вы поддерживаете проект, команду и даёте возможность участвовать людям с низким доходом.</div>
-                        </div>
-
-                        <div class="h4 reg-header" align="center">Выберите валюту, которой желаете оплатить</div>
-                        <div class="btn-group btn-group-justified" role="group" aria-label="">
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default pay_currency_reg" value="RUB">RUB</button>
-                            </div>
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default pay_currency_reg" value="UAH">UAH</button>
-                            </div>
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default pay_currency_reg" value="KZT">KZT</button>
-                            </div>
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default pay_currency_reg" value="BYN">BYN</button>
-                            </div>
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default pay_currency_reg" value="USD">USD</button>
-                            </div>
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default pay_currency_reg" value="EUR">EUR</button>
+                            <div class="reg-text">Вы сами выбираете приемлемую для вас стоимость.</div>
+                            <div class="reg-text">Мы хотим, что любой мог участвовать в марафоне, поэтому оплачивая марафон, вы обеспечиваете существование проекта и возможность участия людей с низкими финансовыми возможностями.</div>
+                            <div class="reg-text">Для вашего удобства, мы предлагаем вариант ежедневной оплаты - вы привязываете свою карту и сами назначаете сумму, которая будет списываться ежедневно в течение марафона.
+                                В любой момент вы можете поменять сумму, либо отвязать карту.</div>
+                            <div class="reg-text">
+                                <ul>
+                                    <li><b>75-100 р.</b> — средняя рекомендуемая сумма оплаты в день. </li>
+                                    <li><b>150-200 р.</b> — для людей с высоким уровнем дохода. Спасибо за поддержку!
+                                        Вы даёте возможность участвовать людям с финансовыми трудностями. <a href="https://hyls.ru/bonus" target="_blank" class="reg_link">Бонус</a></li>
+                                </ul>
                             </div>
                         </div>
 
-                        <div hidden>
-                            <div id="checkout_reg_daily"></div>
+                        <div class="reg-text" align="center">Оплата с карты любой страны! Если хотите Вы можете <a href="#" class="reg_link" id="btn_reg_show_currency">выбрать другую валюту</a> </div>
+                        <div id="reg_currency" hidden>
+                            <div class="btn-group btn-group-justified" role="group" aria-label="">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-default pay_currency_reg_daily" value="RUB">RUB</button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-default pay_currency_reg" value="UAH">UAH</button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-default pay_currency_reg" value="KZT">KZT</button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-default pay_currency_reg" value="BYN">BYN</button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-default pay_currency_reg" value="USD">USD</button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-default pay_currency_reg" value="EUR">EUR</button>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="reg-header h4">Если вы сильно сомневаетесь в проекте или у вас нет денег для участия, вы
+
+                        <div id="checkout_reg_daily"></div>
+
+<!--
+                        <div class="reg-text">Если вы сильно сомневаетесь в проекте или у вас нет денег для участия, вы
                             можете</div>
                         <button id="btn_reg_no_money" type="button" class="btn btn-warning btn-lg">Начать участие без оплаты</button>
-
-                        <div class="reg-header h4">
-                            Если у вас возникла проблема с оплатой, свяжитесь с нами: <a href="mailto:info@hyls.ru" class="reg_link" target="_blank">info@hyls.ru</a> или через соц. сети:
+-->
+                        <br/>
+                        <br/>
+                        <div class="reg-text">
+                            Если у вас возникла проблема с оплатой, свяжитесь с нами: <a href="mailto:info@hyls.ru" class="reg_link" target="_blank">info@hyls.ru</a>,
+                            <a href="https://vk.com/hyls_ru" target="_blank" class="reg_link">ВКонтакте</a>, <a href="https://www.facebook.com/HYLS.ru" target="_blank" class="reg_link">Facebook</a> или WhatsApp +7(923)416-60-72
                         </div>
-                        <div align="center">
-                            <div class="col-xs-3"><a href="https://vk.com/hyls_ru" target="_blank"><img class="social_btn" src="img/social_vk.png">     </a></div>
-                            <div class="col-xs-3"><a href="https://www.facebook.com/HYLS.ru" target="_blank"><img class="social_btn" src="img/social_fb.png">     </a></div>
-                            <div class="col-xs-3"><a href="https://www.instagram.com/hyls.ru/" target="_blank"><img class="social_btn" src="img/social_insta.png">  </a></div>
-                            <div class="col-xs-3"><a href="https://www.youtube.com/HYLS_ru" target="_blank"><img class="social_btn" src="img/social_youtube.png"></a></div>
-                        </div>
-                    </div>
-                </div>
-                <br/>
-                <br/>
-                <br/>
-            </div>
-        </div>
+                        <!--
+                          <div align="center">
+                              <div class="col-xs-3"><a href="https://vk.com/hyls_ru" target="_blank"><img class="social_btn" src="img/social_vk.png">     </a></div>
+                              <div class="col-xs-3"><a href="https://www.facebook.com/HYLS.ru" target="_blank"><img class="social_btn" src="img/social_fb.png">     </a></div>
+                              <div class="col-xs-3"><a href="https://www.instagram.com/hyls.ru/" target="_blank"><img class="social_btn" src="img/social_insta.png">  </a></div>
+                              <div class="col-xs-3"><a href="https://www.youtube.com/HYLS_ru" target="_blank"><img class="social_btn" src="img/social_youtube.png"></a></div>
+                          </div>
+                          -->
+                      </div>
+                  </div>
+                  <br/>
+                  <br/>
+                  <br/>
+              </div>
+          </div>
 
 
-        <div id="user_marafon_wait" class="row" hidden>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3" align="center">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success progress-bar-striped active"
-                         role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                        <span class="sr-only"></span>
-                    </div>
-                </div>
+          <div id="user_marafon_wait" class="row" hidden>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3" align="center">
+                  <div class="progress">
+                      <div class="progress-bar progress-bar-success progress-bar-striped active"
+                           role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                          <span class="sr-only"></span>
+                      </div>
+                  </div>
 
-                <div id="user_marafon_wait_text" class="reg-header h1" align="center"></div>
-                <div id="user_marafon_wait_messenger" class="reg-header h3" align="center" hidden>Присоединяйтесь к чату группы <a id="wait_messenger_link" class="reg_link" href="#"></a></div>
+                  <div id="user_marafon_wait_text" class="reg-header h1" align="center"></div>
+                  <div id="user_marafon_wait_messenger" class="reg-header h3" align="center" hidden>Присоединяйтесь к чату группы <a id="wait_messenger_link" class="reg_link" href="#"></a></div>
 
-                <img id="wait_logo" src="img/reg_foto_logo2.png" class="img-responsive img_reg" />
+                  <img id="wait_logo" src="img/reg_foto_logo2.png" class="img-responsive img_reg" />
 
-                <div id="hidden_info_wait" hidden>
-                    <button id="btn_login_exit" type="button" class="btn btn-link">Выход
-                        <span id="user_wait_id_2"></span>
-                    </button>
+                  <div id="hidden_info_wait" hidden>
+                      <button id="btn_login_exit" type="button" class="btn btn-link">Выход
+                          <span id="user_wait_id_2"></span>
+                      </button>
 
-                 <!--   <button id="btn_send_payment" type="button" class="btn btn-link">send_payment</button> -->
+                   <!--   <button id="btn_send_payment" type="button" class="btn btn-link">send_payment</button> -->
                 </div>
             </div>
 
@@ -1066,7 +1114,6 @@
                     <button id="btn_user_material"  type="button" class="btn btn-info btn-block">Открыть материал дня</button>
                     <br/>
 
-                    <h4 id="programm_messenger_link_text" align="center" hidden><a href="#" id="programm_messenger_link" class="reg_link"> на чат группы </a></h4>
 
 
                     <div id="table_question_water" hidden>
@@ -1876,15 +1923,21 @@
 
                     <textarea  id="filed_day_comment" class="form-control" placeholder="Здесь Вы можете оставлять свои заметки о прошедшем дне Программы"></textarea>
 
+                    <br/>
+                    <br/>
                     <!--
                     <button id="btn_user_save_day"  type="button" class="btn btn-success btn-block">Сохранить отчет</button>
 -->
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#"   id="btn_footer_chat" >                 Перейти в чат</a></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="nav-link-user" name="nav_user_diary"   >Пройденные материалы</a></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="nav-link-user" name="nav_user_support" >Поддержать HYLS</a></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="nav-link-user" name="nav_user_settings">Настройки</a></div>
+                    </div>
 
 
 
 
-                    <br/>
-                    <br/>
                     <br/>
 
 
@@ -2086,7 +2139,7 @@
 
             <br/>
             <br/>
-            <div>
+            <div id="div_settings_payment">
                 <div id="div_settings_payment_change">
                     <h3>Изменения параметров оплаты</h3>
                     <table class="table  table-hover">

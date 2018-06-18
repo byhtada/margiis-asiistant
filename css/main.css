@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 
 .yoga_color {color: #46d444}
 .black_color {color: #000000}
-.payment_header {font-size: 30px; color: #46d444 !important;}
+.payment_header {font-size: 38px; color: #46d444 !important; margin-bottom: 24px;}
 .payment_text   {font-size: 20px; }
 .currency_text   {font-size: 12px; }
 
@@ -36,6 +36,8 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 
 .pay_other_method_row {height: 180px !important;}
 
+
+#text_white_page {border: 20px solid transparent}
 
 .conv_vk_users_wait {padding: 0 !important;}
 
@@ -52,13 +54,13 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
     border-radius: 10px;
     background-color: rgba(70, 216, 70, 0.15)
 }
-.base_settings, #water_settings, #table_question_half_bath {
+.base_settings, #table_question_half_bath {
     padding: 15px;
     border-radius: 10px;
     background-color: rgba(70, 162, 216, 0.15)
 }
 
-#div_change_pass {
+#div_change_pass, #div_settings_payment {
     padding: 15px;
     border-radius: 10px;
     background-color: rgba(216, 143, 91, 0.25)
@@ -276,7 +278,7 @@ ul.reg-list li:before {
 }
 
 div.reg-text {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 300;
     line-height: 1.76;
     margin-bottom: 24px;
@@ -328,12 +330,7 @@ ul.reg-list li:before {
     vertical-align: middle;
 }
 
-div.reg-text {
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 1.76;
-    margin-bottom: 24px;
-}
+
 
 a.reg-link-text {
     word-wrap: break-word;
