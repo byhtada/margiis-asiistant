@@ -26,25 +26,7 @@ $(window).on('load', function() {
 
            ifLogin();
 
-           timerId = setInterval(function() {
-               //  console.log( "тик" );
-               var params = parse_query_string();
-               console.log(params);
-               if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
 
-                   var new_params = params;
-                   clearInterval(timerId);
-                   var vk_info = "photo_200";
-                   var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
-                   jsonp(vk_api_query, function(userInfo) {
-                       console.log("timer response " + userInfo.response[0]);
-                       console.log("timer params " + params);
-                       console.log(params);
-                       userInfo = userInfo.response[0];
-                       try_find_user(userInfo, new_params, "vk")
-                   });
-               }
-           }, 500);
        };
 
        (function(d, s, id){
@@ -182,70 +164,41 @@ var user_params = {
     email: null
 };
 
+
+
+
+
+
+
+
+
 function ifLogin()  {
     //console.log(cookie_token);
+    if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
+        clearInterval(timerId);
+        clearTimeout(timer_white_page);
+        $('#text_white_page').hide();
+        start();
+    } else {
+        timerId = setInterval(function() {
+            //  console.log( "тик" );
+            var params = parse_query_string();
+            console.log(params);
+            if (typeof params.access_token !== 'undefined' &&  params.access_token !== null){
 
-    var params = parse_query_string();
-    if (typeof params.social_login !== 'undefined'){
-
-        if (params.social_login === "vk") {
-            sendMove("reg_hyls", "vk_click_link");
-            $('#btn_vk_log_in')[0].click();
-        }
-        if (params.social_login === "fb") {
-            if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )){
-                $("#page_login")     .show();
-                $("#btn_fb_log_in")  .hide();
-                $("#div_reg_other")  .show();
-                alert("Извините, но Internet Explorer не поддерживает вход/регистрацию через Facebook, пожалуйста используйте ВКонтакте или альтернативный способ");
-            } else {
-                sendMove("reg_hyls", "fb_click_link");
-                fb_login();
+                var new_params = params;
+                clearInterval(timerId);
+                var vk_info = "photo_200";
+                var vk_api_query = "https://api.vk.com/method/users.get?user_ids= " + params.user_id + "&fields=" + vk_info + "&access_token=" + params.access_token + "&v=5.76&callback=callbackFunc";
+                jsonp(vk_api_query, function(userInfo) {
+                    console.log("timer response " + userInfo.response[0]);
+                    console.log("timer params " + params);
+                    console.log(params);
+                    userInfo = userInfo.response[0];
+                    try_find_user(userInfo, new_params, "vk")
+                });
             }
-
-        }
-
-        if (params.social_login === "none") {
-            sendMove("reg_hyls", "hand_click_link");
-            $("#page_login")     .show();
-            $("#div_reg_other")     .show();
-            $("#modal_register_self").modal('show');
-        }
-    } else if (typeof params.access_token == 'undefined'){
-        $("#page_login")     .show();
-    }
-
-
-
-    if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
-        clearInterval(timerId);
-        clearTimeout(timer_white_page);
-        $('#text_white_page').hide();
-        start();
-    } else {
-        //   console.log(cookie_token);
-        $('#page_user_main') .hide();
-        $('#page_admin_main').hide();
-
-
-    }
-}
-
-
-
-
-
-
-
-function ifLogin()  {
-    //console.log(cookie_token);
-    if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
-        clearInterval(timerId);
-        clearTimeout(timer_white_page);
-        $('#text_white_page').hide();
-        start();
-    } else {
-
+        }, 500);
 
         var params = parse_query_string();
         if (typeof params.social_login !== 'undefined') {
