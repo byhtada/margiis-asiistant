@@ -2309,6 +2309,10 @@ $( document ).ready(function() {
 
         $('#btn_register_self').prop('disabled', true);
 
+        $('#reg_hand_error_phone').hide();
+        $('#reg_hand_error_email').hide();
+        $('#reg_hand_error_password').hide();
+
         var user_name       = $('#field_user_reg_name').val();
         var user_email      = $('#field_user_reg_email').val();
         var user_phone      = $('#field_user_reg_phone').val();
