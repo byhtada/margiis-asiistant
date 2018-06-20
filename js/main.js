@@ -166,6 +166,7 @@ function ifLogin()  {
         clearInterval(timerId);
         start();
     } else {
+        hide_all_in_user();
         timerId = setInterval(function() {
             //  console.log( "тик" );
             var params = parse_query_string();
@@ -517,6 +518,7 @@ function update_admin_info() {
                 //    console.log(datetime);
 
                 $('#dau').text(data.dau);
+                $('#nav_bar').show();
 
                 setCurators(data.curators);
                 setUsersRegPay(data.users_reg_pay);
@@ -2231,9 +2233,13 @@ $( document ).ready(function() {
 
 
     $('#btn_exit, #btn_user_exit, #btn_login_exit, #btn_reg_exit').click(function () {
+
         setCookie(cookie_name_token);
         cookie_token = getCookie(cookie_name_token);
         ifLogin();
+        hide_all_in_user();
+        hide_all_in_admin();
+        $("#nav_bar")     .hide();
         $("#page_login")     .show();
 
     });
