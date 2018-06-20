@@ -33,7 +33,14 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .db_row_pay_img      {border: 0; width:  130px; }
 .pay_confirm_input   {width:  100%; }
 .reg_link            {color: rgb(255, 127, 76)}
+#btn_rating_link            {font-size: 24px; color: rgb(121, 178, 63)}
 
+.progress {margin-top: 8px; margin-bottom: 0 !important;}
+.column_rating_place {max-width: 50px; width: 50px}
+.column_rating_name  {max-width: 180px; width: 180px}
+.column_rating_link  {max-width: 190px; width: 190px}
+
+.btn_footer {margin-bottom: 10px !important;}
 .pay_other_method_row {height: 180px !important;}
 
 
@@ -60,10 +67,17 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
     background-color: rgba(70, 162, 216, 0.15)
 }
 
-#div_change_pass, #div_settings_payment {
+#div_settings_payment {
     padding: 15px;
     border-radius: 10px;
     background-color: rgba(216, 143, 91, 0.25)
+}
+
+#div_change_pass{
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(216, 143, 91, 0.25);
+    margin-bottom: 25px !important;
 }
 
 .checkbox_div   {align-content: center}
@@ -82,10 +96,10 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 #table_programm_main  {margin-left: 20px; margin-right: 20px;}
 
 #group_modal_body    {height: 400px;}
-#modal_to_group_body {height: 300px;}
+#modal_to_group_body, #modal_to_group_body_all {height: 300px;}
 
 .wake_up_string {font-size: 14px;}
-.field_wake_up {width: 36px}
+.field_wake_up {width: 30px}
 
 .modal-body {
     max-height: calc(100vh - 212px);
