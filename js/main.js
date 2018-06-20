@@ -2327,7 +2327,7 @@ $( document ).ready(function() {
             user_phone_check = true;
             $('#reg_hand_error_phone').show();
         }
-        if (user_password == "" || user_password.length <= 4 ) {
+        if (user_password == "" || user_password.length < 4 ) {
             user_password_check = true;
             $('#reg_hand_error_password').show();
         }
@@ -2336,7 +2336,14 @@ $( document ).ready(function() {
             $('#reg_hand_error_email').show();
         }
 
-        if (user_phone_check && user_password_check && user_email_check) {
+        if (user_phone_check || user_password_check || user_email_check) {
+
+            $('#reg_alert').show();
+            $('#btn_register_self').prop('disabled', false);
+
+
+        } else {
+
             var person  = {
                 first_name:  user_name,
                 phone:       user_phone,
@@ -2368,9 +2375,6 @@ $( document ).ready(function() {
                     alert(errMsg);
                 }
             });
-        } else {
-            $('#reg_alert').show();
-            $('#btn_register_self').prop('disabled', false);
 
         }
     });
