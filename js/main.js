@@ -176,8 +176,6 @@ function ifLogin()  {
     //console.log(cookie_token);
     if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
         clearInterval(timerId);
-        clearTimeout(timer_white_page);
-        $('#text_white_page').hide();
         start();
     } else {
         timerId = setInterval(function() {
@@ -272,9 +270,6 @@ function start() {
             success: function (data) {
                 console.log(data);
 
-                clearTimeout(timer_white_page);
-                $('#text_white_page').hide();
-
                 hide_all_in_admin();
                 hide_all_in_user();
 
@@ -314,14 +309,16 @@ function start() {
 
 }
 
-
+var interval_white_page;
 var timer_white_page = setTimeout(function (){
-    if ($('#page_login').is(':visible') || $('#page_login').is(':visible') || $('#page_login').is(':visible') ){
-        $('#text_white_page').hide();
-    } else {
-        $('#text_white_page').show();
-    }
-}, 6000);
+    interval_white_page = setInterval(function (){
+        if ($('#page_login').is(':visible') || $('#page_admin_main').is(':visible') || $('#page_user_main').is(':visible') ){
+            $('#text_white_page').hide();
+        } else {
+            $('#text_white_page').show();
+        }
+    }, 1000);
+}, 5000);
 function fb_login(){
 
 
@@ -329,7 +326,6 @@ function fb_login(){
             console.log(response);
             if (response.status == "connected"){
                 FB.api('/me?fields=id,first_name,last_name,email,age_range,link,gender,locale,picture,timezone', function (userData){
-                    clearTimeout(timer_white_page);
                     $('#text_white_page').hide();
                     console.log(userData);
                     user_reg_info["first_name"] = userData.first_name;
