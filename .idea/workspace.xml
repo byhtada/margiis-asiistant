@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/index.html" line="1633" />
+    <bookmark url="file://$PROJECT_DIR$/index.html" line="1637" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="">
@@ -29,16 +29,16 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="78" column="19" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="19" />
+            <state relative-caret-position="408">
+              <caret line="167" column="24" selection-start-line="167" selection-start-column="9" selection-end-line="167" selection-end-column="24" />
+              <caret line="2292" lean-forward="true" selection-start-line="2292" selection-end-line="2292" />
+              <caret line="806" column="23" selection-start-line="806" selection-start-column="9" selection-end-line="806" selection-end-column="23" />
               <folding>
                 <element signature="n#head#0;n#html#0;n#!!top" />
                 <element signature="e#2801#3022#0" />
                 <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#h2#0;n#div#1;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#a#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#a#1;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -650,8 +650,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="169" lean-forward="true" selection-start-line="169" selection-end-line="169" />
+            <state relative-caret-position="162">
+              <caret line="180" column="42" lean-forward="true" selection-start-line="180" selection-start-column="42" selection-end-line="180" selection-end-column="42" />
               <folding>
                 <element signature="e#32#3779#0" />
                 <element signature="e#36#59#0" />
@@ -681,9 +681,6 @@
                 <element signature="e#8880#9027#0" />
                 <element signature="e#10411#10504#0" />
                 <element signature="e#10539#10572#0" />
-                <element signature="e#10623#10834#0" />
-                <element signature="e#10736#10781#0" />
-                <element signature="e#10787#10832#0" />
                 <element signature="e#10862#11944#0" />
                 <element signature="e#10899#11898#0" />
                 <element signature="e#10983#11888#0" />
@@ -1499,9 +1496,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Рейтинг</find>
-      <find>setGroups</find>
-      <find>get_user_info</find>
       <find>btn_unlock_diary</find>
       <find>field_wake_up</find>
       <find>hide_all_in_user</find>
@@ -1527,8 +1521,11 @@
       <find>$('#page_login').show();</find>
       <find>page_login</find>
       <find>timerId</find>
-      <find>ifLogin</find>
       <find>timerID</find>
+      <find>clearTimeout(timer_white_page);</find>
+      <find>btn_vk_log_in</find>
+      <find>timer_white_page</find>
+      <find>ifLogin</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1869,7 +1866,7 @@
       <workItem from="1529299811123" duration="1171000" />
       <workItem from="1529319424936" duration="3069000" />
       <workItem from="1529336326966" duration="872000" />
-      <workItem from="1529376603307" duration="33653000" />
+      <workItem from="1529376603307" duration="34132000" />
     </task>
     <task id="LOCAL-00001" summary="test 1">
       <created>1527346092981</created>
@@ -2151,11 +2148,25 @@
       <option name="project" value="LOCAL" />
       <updated>1529505477980</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="1">
+      <created>1529505892451</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1529505892451</updated>
+    </task>
+    <task id="LOCAL-00042" summary="1">
+      <created>1529506009134</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1529506009134</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="608972000" />
+    <option name="totallyTimeSpent" value="609451000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
@@ -2210,9 +2221,7 @@
             <element signature="e#2801#3022#0" />
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
             <element signature="n#h2#0;n#div#1;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#a#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#a#1;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -2837,9 +2846,7 @@
             <element signature="e#2801#3022#0" />
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
             <element signature="n#h2#0;n#div#1;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#a#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#a#1;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -3463,9 +3470,7 @@
             <element signature="e#2801#3022#0" />
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
             <element signature="n#h2#0;n#div#1;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#a#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#a#1;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -4149,18 +4154,25 @@
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_api.fondy.eu_static_common_v1_checkout_ipsp.js" />
+    <entry file="file://$PROJECT_DIR$/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="34" column="37" lean-forward="true" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="78" column="19" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="19" />
+        <state relative-caret-position="408">
+          <caret line="167" column="24" selection-start-line="167" selection-start-column="9" selection-end-line="167" selection-end-column="24" />
+          <caret line="2292" lean-forward="true" selection-start-line="2292" selection-end-line="2292" />
+          <caret line="806" column="23" selection-start-line="806" selection-start-column="9" selection-end-line="806" selection-end-column="23" />
           <folding>
             <element signature="n#head#0;n#html#0;n#!!top" />
             <element signature="e#2801#3022#0" />
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
             <element signature="n#h2#0;n#div#1;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#a#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#a#1;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -4759,17 +4771,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="34" column="37" lean-forward="true" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="169" lean-forward="true" selection-start-line="169" selection-end-line="169" />
+        <state relative-caret-position="162">
+          <caret line="180" column="42" lean-forward="true" selection-start-line="180" selection-start-column="42" selection-end-line="180" selection-end-column="42" />
           <folding>
             <element signature="e#32#3779#0" />
             <element signature="e#36#59#0" />
@@ -4799,9 +4804,6 @@
             <element signature="e#8880#9027#0" />
             <element signature="e#10411#10504#0" />
             <element signature="e#10539#10572#0" />
-            <element signature="e#10623#10834#0" />
-            <element signature="e#10736#10781#0" />
-            <element signature="e#10787#10832#0" />
             <element signature="e#10862#11944#0" />
             <element signature="e#10899#11898#0" />
             <element signature="e#10983#11888#0" />
