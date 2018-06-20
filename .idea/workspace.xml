@@ -4,13 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/index.html" line="1633" />
   </component>
   <component name="ChangeListManager">
-    <list id="72cc56a1-c8c6-463d-98e1-855a34d7d87f" name="registration" comment="" />
-    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
     </list>
+    <list id="72cc56a1-c8c6-463d-98e1-855a34d7d87f" name="registration" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -653,8 +650,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="247" lean-forward="true" selection-start-line="247" selection-end-line="247" />
+            <state relative-caret-position="204">
+              <caret line="169" lean-forward="true" selection-start-line="169" selection-end-line="169" />
               <folding>
                 <element signature="e#32#3779#0" />
                 <element signature="e#36#59#0" />
@@ -662,9 +659,6 @@
                 <element signature="e#1506#3280#0" />
                 <element signature="e#1566#2858#0" />
                 <element signature="e#1587#1751#0" />
-                <element signature="e#1862#2842#0" />
-                <element signature="e#2086#2829#0" />
-                <element signature="e#2483#2810#0" />
                 <element signature="e#2887#3231#0" />
                 <element signature="e#3320#3777#0" />
                 <element signature="e#3451#3578#0" />
@@ -678,6 +672,7 @@
                 <element signature="e#5884#6078#0" />
                 <element signature="e#6429#6705#0" />
                 <element signature="e#6725#6789#0" />
+                <element signature="e#6891#7218#0" />
                 <element signature="e#8250#8696#0" />
                 <element signature="e#8263#8692#0" />
                 <element signature="e#8408#8484#0" />
@@ -1504,7 +1499,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>page_groups</find>
       <find>Рейтинг</find>
       <find>setGroups</find>
       <find>get_user_info</find>
@@ -1534,6 +1528,7 @@
       <find>page_login</find>
       <find>timerId</find>
       <find>ifLogin</find>
+      <find>timerID</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1874,7 +1869,7 @@
       <workItem from="1529299811123" duration="1171000" />
       <workItem from="1529319424936" duration="3069000" />
       <workItem from="1529336326966" duration="872000" />
-      <workItem from="1529376603307" duration="33238000" />
+      <workItem from="1529376603307" duration="33653000" />
     </task>
     <task id="LOCAL-00001" summary="test 1">
       <created>1527346092981</created>
@@ -2149,11 +2144,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528863432107</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="1">
+      <created>1529505477980</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1529505477980</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="608557000" />
+    <option name="totallyTimeSpent" value="608972000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
@@ -4766,8 +4768,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="247" lean-forward="true" selection-start-line="247" selection-end-line="247" />
+        <state relative-caret-position="204">
+          <caret line="169" lean-forward="true" selection-start-line="169" selection-end-line="169" />
           <folding>
             <element signature="e#32#3779#0" />
             <element signature="e#36#59#0" />
@@ -4775,9 +4777,6 @@
             <element signature="e#1506#3280#0" />
             <element signature="e#1566#2858#0" />
             <element signature="e#1587#1751#0" />
-            <element signature="e#1862#2842#0" />
-            <element signature="e#2086#2829#0" />
-            <element signature="e#2483#2810#0" />
             <element signature="e#2887#3231#0" />
             <element signature="e#3320#3777#0" />
             <element signature="e#3451#3578#0" />
@@ -4791,6 +4790,7 @@
             <element signature="e#5884#6078#0" />
             <element signature="e#6429#6705#0" />
             <element signature="e#6725#6789#0" />
+            <element signature="e#6891#7218#0" />
             <element signature="e#8250#8696#0" />
             <element signature="e#8263#8692#0" />
             <element signature="e#8408#8484#0" />
