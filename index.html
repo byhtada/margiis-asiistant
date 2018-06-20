@@ -137,9 +137,9 @@
                             <div class="modal-body" align="center">
                                 <div id="reg_alert" hidden class="alert alert-danger e" role="alert">
                                     <strong>Внимание!</strong> Заполните обязательные поля:<br/>
-                                    - Поле телефон должно быть заполнено<br/>
-                                    - В поле E-mail должен быть Ваш почтовый адрес<br/>
-                                    - Поле пароль должно содержать более 4х символов
+                                    <span id="reg_hand_error_phone">- Поле телефон должно быть заполнено<br/></span>
+                                    <span id="reg_hand_error_email">- В поле E-mail должен быть Ваш почтовый адрес<br/></span>
+                                    <span id="reg_hand_error_password">- Поле пароль должно содержать более 4х символов</span>
                                 </div>
 
                                 <table style="border: 0">
@@ -167,7 +167,7 @@
 
 <div id="page_admin_main" hidden>
 
-    <nav class="navbar navbar-default" >
+    <nav class="navbar navbar-default" id="nav_bar_admin" >
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -815,7 +815,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">HYLS</a>
+                <a class="navbar-brand nav-link-user" name="nav_user_programm"   href="#" id>HYLS</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -2046,31 +2046,36 @@
         <div class="col-sm-6 col-md-6 col-xs-12" align="center">
 
 
-            <h3 class="reg_link">Вы можете поддержать проект с помощью формы, расположенной ниже, используя банковскую карту</h3>
+            <h3 class="reg_link">Вы можете поддержать проект с помощью формы, расположенной ниже, используя банковскую карту любой страны и   <a href="#" class="reg_link" id="btn_support_show_currency">используя удобную валюту</a> </h3>
             <br/>
 
-            <p class="payment_text" align="center">Выберите валюту, которой желаете поддержать</p>
-            <div class="btn-group btn-group-justified" role="group" aria-label="">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default pay_currency_support" value="RUB">RUB</button>
+
+            <div id="support_currency" hidden>
+                <p class="payment_text" align="center">Выберите валюту, которой желаете поддержать</p>
+                <div class="btn-group btn-group-justified" role="group" aria-label="">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default pay_currency_support" value="RUB">RUB</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default pay_currency_support" value="UAH">UAH</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default pay_currency_support" value="KZT">KZT</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default pay_currency_support" value="BYN">BYN</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default pay_currency_support" value="USD">USD</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default pay_currency_support" value="EUR">EUR</button>
+                    </div>
                 </div>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default pay_currency_support" value="UAH">UAH</button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default pay_currency_support" value="KZT">KZT</button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default pay_currency_support" value="BYN">BYN</button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default pay_currency_support" value="USD">USD</button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default pay_currency_support" value="EUR">EUR</button>
-                </div>
+
+                <br/>
             </div>
-            <br/>
+
             <div id="checkout_support"></div>
             <br/>
             <br/>
