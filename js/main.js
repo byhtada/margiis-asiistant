@@ -595,7 +595,7 @@ function update_user_info() {
                 } else if (data.marafon_day > 0) {
 
                     setUserMarafonDay(data.marafon_info_today, data.marafon_day);
-                    setGroupRating(data.group_rating_info, data.user);
+                    //setGroupRating(data.group_rating_info, data.user);
                     if (data.block_programm) {
                         $('#user_marafon_block').show();
                     } else {
@@ -603,7 +603,6 @@ function update_user_info() {
                         $('#user_marafon_start').show();
                         $('#nav_bar').show();
                     }
-
                 }
 
                 var detox_days_for_settings = 0;
@@ -1817,6 +1816,7 @@ function setProgrammMain(programm_main){
 }
 
 function setConversion(){
+
     conversion_start  = $('#report_conversion_start').val();
     conversion_finish = $('#report_conversion_finish').val();
     $.ajax({
@@ -1883,6 +1883,7 @@ function setConversion(){
         }
     });
 }
+
 function setConvUsersTable(users){
     var row = '<table class="table table-hover table-bordered"><thead><tr class="db_main_row"> ';
     row    += '<th>Имя</th>';
@@ -2674,6 +2675,72 @@ $( document ).ready(function() {
     $('#nav_conversion, #report_conversion_show').click(function (){
         setConversion();
         $('#modal_conversion_date').modal('hide');
+    });
+
+
+    $('#get_chart_leave_users').click(function (){
+        Chart.defaults.global.defaultFontColor   = '#000000';
+        Chart.defaults.global.defaultFontFamily  = "'Copse', serif";
+        Chart.defaults.global.defaultFontSize    = 35;
+        Chart.defaults.global.legend.display     = false;
+        Chart.defaults.global.animation.duration = 2000;
+        Chart.defaults.doughnut.cutoutPercentage = 75;
+        Chart.defaults.global.elements.arc.borderWidth = 5;
+
+        conversion_start  = $('#report_conversion_start').val();
+        conversion_finish = $('#report_conversion_finish').val();
+        $.ajax({
+            type: "GET",
+            url:  api_url + "get_chart_leave_users",
+            data: {
+                conversion_start:  conversion_start,
+                conversion_finish: conversion_finish
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                chart_game_market = new Chart($("#chart_leave_users"), {
+                    type: 'bar',
+                    data: {
+                        labels: data.chart_leave_days,
+                        datasets: [{
+                            label:           'Пользователи ушедшие после этого дня',
+                            data:            data.chart_leave_users,
+                            backgroundColor: data.chart_leave_color
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Ушедших после этого дня'
+                                }
+                            }],
+                            xAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'День'
+                                }
+                            }]
+                        }
+                    }
+                });
+
+                $('#div_chart_leave_users').show();
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
     });
 
 

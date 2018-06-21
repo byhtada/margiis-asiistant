@@ -35,6 +35,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .reg_link            {color: rgb(255, 127, 76)}
 #btn_rating_link            {font-size: 24px; color: rgb(121, 178, 63)}
 
+
 .progress {margin-top: 8px; margin-bottom: 0 !important;}
 .column_rating_place {max-width: 50px; width: 50px}
 .column_rating_name  {max-width: 180px; width: 180px}

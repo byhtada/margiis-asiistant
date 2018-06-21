@@ -15,8 +15,8 @@
 
     <link rel="stylesheet" href="css/normalize.css">
     <script src="js/jquery-3.2.1.js"></script>
-    <script                                   src="js/main.js?v1.12"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css?v1.12">
+    <script                                   src="js/main.js?v1.15"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css?v1.15">
 
     <script src="js/jquery.base64.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -51,6 +51,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
 </head>
 
@@ -92,13 +93,13 @@
 
 
 
-                <a id="btn_vk_log_in" href="http://oauth.vk.com/authorize?client_id=6487614&redirect_uri=https://byhtada.github.io/hyls_client/&response_type=token&scope=email,offline&v=5.76&state=123456" class="btn btn-block btn-social btn-vk btn-lg">
-                    <span class="fab fa-vk"></span>Через ВКонтакте
-                </a>
-
-               <!-- <a id="btn_vk_log_in" href="http://oauth.vk.com/authorize?client_id=6487614&redirect_uri=https://marafon.hyls.ru/&response_type=token&scope=email,offline&v=5.76&state=123456" class="btn btn-block btn-social btn-vk btn-lg">
-                    <span class="fab fa-vk"></span>Через ВКонтакте
-                </a> -->
+                <!--    <a id="btn_vk_log_in" href="http://oauth.vk.com/authorize?client_id=6487614&redirect_uri=https://byhtada.github.io/hyls_client/&response_type=token&scope=email,offline&v=5.76&state=123456" class="btn btn-block btn-social btn-vk btn-lg">
+                      <span class="fab fa-vk"></span>Через ВКонтакте
+                  </a>
+  -->
+                <a id="btn_vk_log_in" href="http://oauth.vk.com/authorize?client_id=6487614&redirect_uri=https://marafon.hyls.ru/&response_type=token&scope=email,offline&v=5.76&state=123456" class="btn btn-block btn-social btn-vk btn-lg">
+                      <span class="fab fa-vk"></span>Через ВКонтакте
+                  </a>
 
                 <a id="btn_fb_log_in" href="#"  class="btn btn-block btn-social btn-facebook btn-lg">
                     <span class="fab fa-facebook-f"></span>Через Facebook
@@ -648,6 +649,18 @@
                 </tbody>
             </table>
 
+            <br/>
+            <br/>
+            <br/>
+
+
+            <h2 align="center">
+                График ухода пользователей после дня Х
+                <button id="get_chart_leave_users" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
+            </h2>
+            <div id="div_chart_leave_users">
+                <canvas id="chart_leave_users"       ></canvas>
+            </div>
         </div>
         <div class="col-xs-2"></div>
     </div>
@@ -1036,10 +1049,18 @@
                         <div align="center" class="payment_header"><b>Оплата марафона <span class="black_color">H</span>Y<span class="black_color">LS</span></b></div>
 
                         <div class="col-xs-12 col-md-12 col-sm-12 text-left">
-                            <div class="reg-text">Вы сами выбираете приемлемую для вас стоимость.</div>
-                            <div class="reg-text">Мы хотим, чтобы любой мог участвовать в марафоне, поэтому оплачивая марафон, вы обеспечиваете существование проекта и возможность участия людей с низкими финансовыми возможностями.</div>
-                            <div class="reg-text">Для вашего удобства, мы предлагаем вариант ежедневной оплаты - вы привязываете свою карту и сами назначаете сумму, которая будет списываться ежедневно в течение марафона.
-                                В любой момент вы можете поменять сумму, либо отвязать карту.</div>
+
+
+
+                            <div class="reg-text">Мы хотим, чтобы любой человек мог участвовать в марафоне, поэтому
+                                оплата марафона свободная - вы сами выбираете приемлемую для вас стоимость,
+                                в зависимости от финансовых возможностей.</div>
+                            <div class="reg-text">
+                                Для вашего удобства, мы предлагаем вариант ежедневной оплаты - вы привязываете свою
+                                карту и сами назначаете сумму, которая будет списываться ежедневно в течение марафона
+                                и будет вас мотивировать на прохождение марафона.</div>
+                            <div class="reg-text">Если вы затрудняетесь, сколько же платить за марафон,
+                                можете ориентироваться на средние суммы оплаты от участников:</div>
                             <div class="reg-text">
                                 <ul>
                                     <li><b>75-100 р.</b> — средняя рекомендуемая сумма оплаты в день. </li>
@@ -1089,7 +1110,7 @@
                         <br/>
                         <br/>
                         <div class="reg-text">
-                            Если у вас возникла проблема с оплатой, свяжитесь с нами: <a href="mailto:info@hyls.ru" class="reg_link" target="_blank">info@hyls.ru</a>,
+                            Если у вас возникли вопросы или сложности с оплатой, свяжитесь с нами: <a href="mailto:info@hyls.ru" class="reg_link" target="_blank">info@hyls.ru</a>,
                             <a href="https://vk.com/hyls_ru" target="_blank" class="reg_link">ВКонтакте</a>, <a href="https://www.facebook.com/HYLS.ru" target="_blank" class="reg_link">Facebook</a> или WhatsApp +7(923)416-60-72
                         </div>
                         <!--
@@ -1976,7 +1997,7 @@
                     <div class="row">
                         <div class="col-xs-6 col-sm-3" align="center"><button class="btn btn-default btn-block btn-sm btn_footer"                      id="btn_footer_chat" >                 Чат</button></div>
                         <div class="col-xs-6 col-sm-3" align="center"><button class="btn btn-default btn-block btn-sm btn_footer nav-link-user" name="nav_user_diary"   >Материалы</button></div>
-                        <div class="col-xs-6 col-sm-3" align="center"><button class="btn btn-default btn-block btn-sm btn_footer nav-link-user" name="nav_user_support" >Поддержать HYLS</button></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><button class="btn btn-default btn-block btn-sm btn_footer nav-link-user" name="nav_user_support" >Поддержать</button></div>
                         <div class="col-xs-6 col-sm-3" align="center"><button class="btn btn-default btn-block btn-sm btn_footer nav-link-user" name="nav_user_settings">Настройки</button></div>
                     </div>
 
@@ -2213,7 +2234,7 @@
 
             <br/>
             <br/>
-            <div id="div_settings_payment">
+            <div hidden id="div_settings_payment">
                 <div id="div_settings_payment_change">
                     <h3>Изменения параметров оплаты</h3>
                     <table class="table  table-hover">
