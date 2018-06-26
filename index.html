@@ -15,8 +15,8 @@
 
     <link rel="stylesheet" href="css/normalize.css">
     <script src="js/jquery-3.2.1.js"></script>
-    <script                                   src="js/main.js?v1.15"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css?v1.15">
+    <script                                   src="js/main.js?v1.22"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css?v1.22">
 
     <script src="js/jquery.base64.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -75,7 +75,20 @@
     </h2>
 </div>
 
+<div id="page_load">
+    <br/>
+    <br/>
+    <br/>
+    <div align="center">
+        <h1 align="center">Подождите, идет загрузка...</h1>
+        <br/>
+        <br/>
+        <img id="load_logo" src="img/reg_foto_logo2.png" class="img-responsive animated infinite rubberBand">
+    </div>
 
+    <br/>
+
+</div>
 
 <div id="page_login" hidden >
     <div class="container-fluid">
@@ -325,8 +338,6 @@
             <div class="col-xs-8">
                 <h2 align="center">
                     Перечень кураторов
-
-                    <button id="btn_send_email" type="button" class="btn btn-success btn-sm">+</button>
                     <button id="btn_modal_add_curator" type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#modal_add_curator">       <span class="glyphicon glyphicon-plus"       aria-hidden="true"></span></button>
                 </h2>
 
@@ -342,7 +353,6 @@
                             <div class="modal-body" align="center">
                                 <table style="border: 0">
                                     <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Имя куратора</h5></td>  <td class="db_row_input_admin"><input type="text" class="form-control" id="curator_add_name"  placeholder=""></td></tr>
-                                    <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Профиль ВК</h5></td>    <td class="db_row_input_admin"><input type="text" class="form-control" id="curator_add_vk"    placeholder=""></td></tr>
                                     <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Телефон</h5></td>       <td class="db_row_input_admin"><input type="text" class="form-control" id="curator_add_phone" placeholder=""></td></tr>
                                     <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Пароль</h5></td>        <td class="db_row_input_admin"><input type="text" class="form-control" id="curator_add_pass"  placeholder=""></td></tr>
                                 </table>
@@ -364,31 +374,32 @@
         <h2 align="center">Активных пользователей: <b><span id="dau" class="reg_link"></span></b></h2>
         <br/>
         <h3 align="center">
+            Поиск пользователя
+            <input  id="field_find_user" type="text" placeholder="Поиск по email, телефону или ВК ID">
+            <button id="btn_find_user" type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+        </h3>
+        <div id="table_users_find"></div>
+
+        <br/>
+        <br/>
+
+        <h3 align="center">
             Зарегистрированные
             <button id="btn_modal_register" type="button" class="btn btn-success"  data-toggle="modal" data-target="#modal_register"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
             <button id="btn_hide_user_register" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
         </h3>
-        <div id="div_table_users_register" class="row">
-            <div class="col-xs-1"></div>
-            <div class="col-xs-10">
-                <div id="table_users_register"></div>
-            </div>
-            <div class="col-xs-1"></div>
-        </div>
+        <div id="table_users_register"></div>
+
 
         <h3 align="center">Оплатившие
             <button id="btn_modal_to_group_all" type="button" class="btn btn-success"  data-toggle="modal" data-target="#modal_to_group_all"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
             <button id="btn_hide_user_paid"     type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
 
         </h3>
-        <div id="div_table_users_pay" class="row">
-            <div class="col-xs-1"></div>
-            <div class="col-xs-10">
-                <div id="table_users_pay"></div>
-            </div>
-            <div class="col-xs-1"></div>
-        </div>
+        <div id="table_users_pay"></div>
 
+
+        <!--
         <h3 align="center">В группах <button id="btn_hide_user_group"    type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button></h3>
         <div id="div_table_users_in_group" class="row">
             <div class="col-xs-1"></div>
@@ -397,8 +408,9 @@
             </div>
             <div class="col-xs-1"></div>
         </div>
+        -->
     </div>
-    <div class="modal fade" id="modal_register"    tabindex="-1" role="dialog" aria-labelledby="modal_label_register">
+    <div class="modal fade" id="modal_register"     tabindex="-1" role="dialog" aria-labelledby="modal_label_register">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -459,7 +471,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="modal_to_group"    tabindex="-1" role="dialog" aria-labelledby="modal_label_to_group">
+    <div class="modal fade" id="modal_to_group"     tabindex="-1" role="dialog" aria-labelledby="modal_label_to_group">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -655,8 +667,11 @@
 
 
             <h2 align="center">
-                График ухода пользователей после дня Х
                 <button id="get_chart_leave_users" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
+                График ухода пользователей после дня Х
+                <select id="leave_flows"   class="selectpicker"></select>
+                <button id="get_chart_leave_flow" type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+
             </h2>
             <div id="div_chart_leave_users">
                 <canvas id="chart_leave_users"       ></canvas>
@@ -787,7 +802,18 @@
                 <h2 align="center">
                     <span id="group_info_name"></span>
                     <span  id="group_info_curator"></span>
+                    <span  id="group_day_today"></span>
                 </h2>
+
+                <!--
+                <h2 align="center">
+                    <span id="revenu_reccurent"></span>
+                    <span id="revenu_support"></span>
+                </h2>
+                <h4 align="center">Прибыль с рекурентных платежей по дням</h4>
+                <div id="table_group_reccurent_payments"></div>
+-->
+
                 <div id="table_group_users"></div>
             </div>
 
@@ -840,9 +866,9 @@
                     <li class="nav-item">
                         <a class="nav-link-user" name="nav_user_diary"   href="#">Материалы</a>
                     </li>
-                 <!--   <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link-user" name="nav_user_rating"   href="#">Рейтинг</a>
-                    </li> -->
+                    </li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -1046,37 +1072,46 @@
                         </div> -->
 
                         <br/>
-                        <div align="center" class="payment_header"><b>Оплата марафона <span class="black_color">H</span>Y<span class="black_color">LS</span></b></div>
+                        <div align="center" class="payment_header"><b>Оплата марафона <span class="black_color">H</span>Y<span class="black_color">LS</span></b>
+                            <br>
+                            <span class="black_color"><b>Старт 27.06.2018</b></span>
+                        </div>
 
                         <div class="col-xs-12 col-md-12 col-sm-12 text-left">
 
 
 
                             <div class="reg-text">Мы хотим, чтобы любой человек мог участвовать в марафоне, поэтому
-                                оплата марафона свободная - вы сами выбираете приемлемую для вас стоимость,
-                                в зависимости от финансовых возможностей.</div>
+                                оплата марафона <b>свободная</b> - вы сами выбираете приемлемую для вас стоимость. </div>
                             <div class="reg-text">
-                                Для вашего удобства, мы предлагаем вариант ежедневной оплаты - вы привязываете свою
-                                карту и сами назначаете сумму, которая будет списываться ежедневно в течение марафона
-                                и будет вас мотивировать на прохождение марафона.</div>
-                            <div class="reg-text">Если вы затрудняетесь, сколько же платить за марафон,
-                                можете ориентироваться на средние суммы оплаты от участников:</div>
+                                Рекомендации (цены указаны с учётом вашего бонуса 700 р.). Если у вас нет бонуса, прибавляйте к цифрам +700 р.</div>
+
                             <div class="reg-text">
                                 <ul>
-                                    <li><b>75-100 р.</b> — средняя рекомендуемая сумма оплаты в день. </li>
-                                    <li><b>150-200 р.</b> — для людей с высоким уровнем дохода. Спасибо за поддержку!
-                                        Вы даёте возможность участвовать людям с финансовыми трудностями. <a href="https://hyls.ru/bonus" target="_blank" class="reg_link">Бонус</a></li>
+                                    <li><b>До 3300 р.</b> — любая сумма, для людей с финансовыми трудностями
+                                        (если ваш доход меньше 15 т.р. в месяц). Вы получаете полный доступ к
+                                        марафону 60 дней, личному кабинету, практикам и чату с поддержкой кураторов</li>
+                                    <li><b>От 3300 р. и выше</b> — полный доступ + возможность пользоваться материалами
+                                        после окончания марафона, а также возможность продолжать пользоваться личным
+                                        дневником с практиками</li>
+                                    <li><b>От 4500 р. и выше</b> — спасибо, вы даёте возможность участвовать людям с
+                                        низкими финансовыми возможностями. Для вас дополнительный бонус помимо всего
+                                        перечисленного выше: 4 аудиозаписи для полного расслабления тела и психики,
+                                        йога-нидра (практики нет в марафоне)</li>
+                                    <li><b>От 8300 р. и выше</b> —  вы настоящие меценаты проекта. Спасибо за поддержку!
+                                        Для вас помимо всего выше Бонус — консультация высококвалифицированного специалиста,
+                                        врача-натуропата Александра Лесничева.
+                                        Подробнее <a href="https://hyls.ru/bonus" target="_blank" class="reg_link">по ссылке</a></li>
                                 </ul>
                             </div>
 
                             <div class="reg-text">
-                                Пожалуйста, введите сумму оплаты за первый день марафона. Оплата за последующие дни начнет списываться с вашей карты со 2-го дня марафона.
+                                Оплата с карты любой страны!
                             </div>
 
                         </div>
 
-                        <div class="reg-text" align="center">Оплата с карты любой страны! Вы можете <a href="#" class="reg_link" id="btn_reg_show_currency">выбрать другую валюту</a> </div>
-                        <div id="reg_currency" hidden>
+                      <!--  <div id="reg_currency" hidden>
                             <div class="btn-group btn-group-justified" role="group" aria-label="">
                                 <div class="btn-group" role="group">
                                     <button type="button" class="btn btn-default pay_currency_reg_daily" value="RUB">RUB</button>
@@ -1098,7 +1133,7 @@
                                 </div>
                             </div>
                         </div>
-
+                       -->
 
                         <div id="checkout_reg_daily"></div>
 
@@ -1129,8 +1164,7 @@
               </div>
           </div>
 
-
-          <div id="user_marafon_wait" class="row" hidden>
+        <div id="user_marafon_wait" class="row" hidden>
               <br/>
               <br/>
               <br/>
@@ -2067,7 +2101,7 @@
         <div class="col-sm-6 col-md-6 col-xs-12" align="center">
 
 
-            <h3 >Вы можете поддержать проект с помощью формы, расположенной ниже, используя банковскую карту любой страны и   <a href="#" class="reg_link" id="btn_support_show_currency">используя удобную валюту</a> </h3>
+            <h3 >Вы можете поддержать проект с помощью формы, расположенной ниже, используя банковскую карту любой страны </h3>
             <br/>
 
 
@@ -2120,7 +2154,7 @@
                 <table class="table  table-hover">
                     <tbody>
 
-                    <tr  class="db_row_dialog">
+                    <tr hidden class="db_row_dialog">
                         <td valign="middle" ><h5>Отображать ли в Программе практики после 7дневного их выполнения (перекусы, питье воды, чистка языка)</h5></td>
                         <td class="db_row_input text-center div_row_fact">
                             <input type="checkbox"  id="filed_7day" />
@@ -2128,8 +2162,20 @@
                         </td>
                         <td > <button id="btn_7day_edit"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
                     </tr>
+                    <tr class="db_row_dialog">
+                        <td valign="middle" ><h5>Показывать рейтинг на странице дневника?</h5></td>
+                        <td class="db_row_input text-center div_row_fact">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="filed_rating_show" />
+                                <div class="state p-success-o">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td > <button id="btn_rating_show_save"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
+                    </tr>
 
-                    <tr  id="water_settings" hidden class="db_row_dialog">
+                    <tr id="water_settings" hidden class="db_row_dialog">
                         <td valign="middle" ><h5>Изменить базовое значение выпиваемой воды в сутки, мл</h5></td>
                         <td  class="db_row_input">
                             <input id="filed_question_water_edit" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
@@ -2152,6 +2198,225 @@
                 </table>
             </div>
 
+            <div id="practise_continue_settings">
+                <h4 align="center">Зачтенные практики</h4>
+                <h5 align="center">Вы можете отключить практику и она не будет заноситься в Ваш дневник</h5>
+                <table class="table  table-hover">
+                    <tbody>
+
+                    <tr id="div_setting_no_snacking" hidden class="db_row_dialog">
+                        <td valign="middle" ><h5>Практика без перекусов и перееданий</h5></td>
+                        <td class="db_row_input text-center div_row_fact">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="setting_practiс_no_snacking" />
+                                <div class="state p-success-o">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td> <button name="no_snacking"  type="button" class="btn_settings_practise btn btn-warning btn-block">Сохранить</button></td>
+                    </tr>
+
+                    <tr id="div_setting_tongue" hidden class="db_row_dialog">
+                        <td valign="middle" ><h5>Практика чистки языка</h5></td>
+                        <td class="db_row_input text-center div_row_fact">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="setting_practiс_tongue" />
+                                <div class="state p-success-o">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td> <button name="tongue"  type="button" class="btn_settings_practise btn btn-warning btn-block">Сохранить</button></td>
+                    </tr>
+
+                    <tr id="div_setting_water" hidden class="db_row_dialog">
+                        <td valign="middle" ><h5>Практика питья воды</h5></td>
+                        <td class="db_row_input text-center div_row_fact">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="setting_practiс_water" />
+                                <div class="state p-success-o">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td> <button name="water"  type="button" class="btn_settings_practise btn btn-warning btn-block">Сохранить</button></td>
+                    </tr>
+
+                    <tr id="div_setting_half_bath" hidden class="db_row_dialog">
+                        <td valign="middle" ><h5>Практика полуванн</h5></td>
+                        <td class="db_row_input text-center div_row_fact">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="setting_practiс_half_bath" />
+                                <div class="state p-success-o">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td> <button name="half_bath"  type="button" class="btn_settings_practise btn btn-warning btn-block">Сохранить</button></td>
+                    </tr>
+
+                    <tr id="div_setting_asana" hidden class="db_row_dialog">
+                        <td valign="middle" ><h5>Практика выполнения асан</h5></td>
+                        <td class="db_row_input text-center div_row_fact">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="setting_practiс_asana" />
+                                <div class="state p-success-o">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td> <button name="asana"  type="button" class="btn_settings_practise btn btn-warning btn-block">Сохранить</button></td>
+                    </tr>
+
+                    <tr id="div_setting_phisic" hidden class="db_row_dialog">
+                        <td valign="middle" ><h5>Практика выполнения физических упражнений</h5></td>
+                        <td class="db_row_input text-center div_row_fact">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="setting_practiс_phisic" />
+                                <div class="state p-success-o">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td> <button name="phisic"  type="button" class="btn_settings_practise btn btn-warning btn-block">Сохранить</button></td>
+                    </tr>
+
+                    <tr id="div_setting_ahimsa" hidden class="db_row_dialog">
+                        <td valign="middle" ><h5>Практика ахимсы</h5></td>
+                        <td class="db_row_input text-center div_row_fact">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="setting_practiс_ahimsa" />
+                                <div class="state p-success-o">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td> <button name="ahimsa"  type="button" class="btn_settings_practise btn btn-warning btn-block">Сохранить</button></td>
+                    </tr>
+
+                    <tr id="div_setting_satya" hidden class="db_row_dialog">
+                        <td valign="middle" ><h5>Практика сатьи</h5></td>
+                        <td class="db_row_input text-center div_row_fact">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="setting_practiс_satya" />
+                                <div class="state p-success-o">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td> <button name="satya"  type="button" class="btn_settings_practise btn btn-warning btn-block">Сохранить</button></td>
+                    </tr>
+
+                    <tr id="div_setting_asteya" hidden class="db_row_dialog">
+                        <td valign="middle" ><h5>Практика астеи</h5></td>
+                        <td class="db_row_input text-center div_row_fact">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="setting_practiс_asteya" />
+                                <div class="state p-success-o">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td> <button name="asteya"  type="button" class="btn_settings_practise btn btn-warning btn-block">Сохранить</button></td>
+                    </tr>
+
+                    <tr id="div_setting_brahma" hidden class="db_row_dialog">
+                        <td valign="middle" ><h5>Практика брахмачарьи</h5></td>
+                        <td class="db_row_input text-center div_row_fact">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="setting_practiс_brahma" />
+                                <div class="state p-success-o">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td> <button name="brahma"  type="button" class="btn_settings_practise btn btn-warning btn-block">Сохранить</button></td>
+                    </tr>
+
+                    <tr id="div_setting_aparigraha" hidden class="db_row_dialog">
+                        <td valign="middle" ><h5>Практика апариграхи</h5></td>
+                        <td class="db_row_input text-center div_row_fact">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="setting_practiс_aparigraha" />
+                                <div class="state p-success-o">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td> <button name="aparigraha"  type="button" class="btn_settings_practise btn btn-warning btn-block">Сохранить</button></td>
+                    </tr>
+
+                    <tr id="div_setting_shaucha" hidden class="db_row_dialog">
+                        <td valign="middle" ><h5>Практика шаучи</h5></td>
+                        <td class="db_row_input text-center div_row_fact">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="setting_practiс_shaucha" />
+                                <div class="state p-success-o">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td> <button name="shaucha"  type="button" class="btn_settings_practise btn btn-warning btn-block">Сохранить</button></td>
+                    </tr>
+
+                    <tr id="div_setting_santosha" hidden class="db_row_dialog">
+                        <td valign="middle" ><h5>Практика сантоши</h5></td>
+                        <td class="db_row_input text-center div_row_fact">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="setting_practiс_santosha" />
+                                <div class="state p-success-o">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td> <button name="santosha"  type="button" class="btn_settings_practise btn btn-warning btn-block">Сохранить</button></td>
+                    </tr>
+
+                    <tr id="div_setting_tapah" hidden class="db_row_dialog">
+                        <td valign="middle" ><h5>Практика тапах</h5></td>
+                        <td class="db_row_input text-center div_row_fact">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="setting_practiс_tapah" />
+                                <div class="state p-success-o">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td> <button name="tapah"  type="button" class="btn_settings_practise btn btn-warning btn-block">Сохранить</button></td>
+                    </tr>
+
+                    <tr id="div_setting_svadhya" hidden class="db_row_dialog">
+                        <td valign="middle" ><h5>Практика свадхья</h5></td>
+                        <td class="db_row_input text-center div_row_fact">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="setting_practiс_svadhya" />
+                                <div class="state p-success-o">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td> <button name="svadhya"  type="button" class="btn_settings_practise btn btn-warning btn-block">Сохранить</button></td>
+                    </tr>
+
+                    <tr id="div_setting_ishvara" hidden class="db_row_dialog">
+                        <td valign="middle" ><h5>Практика ишвара пранидханы</h5></td>
+                        <td class="db_row_input text-center div_row_fact">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="setting_practiс_ishvara" />
+                                <div class="state p-success-o">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td> <button name="ishvara"  type="button" class="btn_settings_practise btn btn-warning btn-block">Сохранить</button></td>
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
             <br/>
             <br/>
 
@@ -2234,7 +2499,7 @@
 
             <br/>
             <br/>
-            <div hidden id="div_settings_payment">
+            <div id="div_settings_payment" hidden>
                 <div id="div_settings_payment_change">
                     <h3>Изменения параметров оплаты</h3>
                     <table class="table  table-hover">
@@ -2255,7 +2520,7 @@
 
                 <div id="div_settings_payment_start">
                     <h3>Включить ежедневные платежи</h3>
-                    <div class="h4 reg-header" align="center">Выберите валюту, которой желаете оплатить</div>
+               <!--     <div class="h4 reg-header" align="center">Выберите валюту, которой желаете оплатить</div>
                     <div class="btn-group btn-group-justified" role="group" aria-label="">
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-default pay_currency_settings" value="RUB">RUB</button>
@@ -2276,7 +2541,7 @@
                             <button type="button" class="btn btn-default pay_currency_settings" value="EUR">EUR</button>
                         </div>
                     </div>
-
+-->
                     <div id="checkout_settings"></div>
                 </div>
 
