@@ -1789,7 +1789,7 @@ function setUsersRegPay(users){
     user_register_row += '</tbody></table';
     $('#table_users_register').empty();
     $('#table_users_register').append(user_register_row);
-    $('#table_users_register').bsTable(undefined, false, undefined, undefined, true);
+    $('#table_users_register').bsTable(undefined, true, undefined, undefined, true);
 
 
 
@@ -4348,7 +4348,7 @@ $( document ).ready(function() {
 
     });
     function setUsersFind(users){
-        var user_register_row = '<table id="table_users_register1" class="table table-hover table-bordered table-condensed" >';
+        var user_register_row = '<table class="table table-hover table-bordered table-condensed" >';
         user_register_row    += '<thead><tr>';
         user_register_row    += '<th>Имя</th>';
         user_register_row    += '<th>Почта</th>';
@@ -4389,7 +4389,7 @@ $( document ).ready(function() {
         user_register_row += '</tbody></table';
         $('#table_users_find').empty();
         $('#table_users_find').append(user_register_row);
-        $('#table_users_find').bsTable(undefined, true, undefined, undefined, true);
+        $('#table_users_find').bsTable(undefined, false, undefined, undefined, true);
 
     }
 
