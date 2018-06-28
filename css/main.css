@@ -60,18 +60,24 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 
 
 .social_btn {width: 66%}
+#btn_social_practic {padding-left: 0 !important;  font-size: 17px;}
 
 
 .img_reg {padding-bottom: 10px; padding-top: 10px;}
 .db_row_dialog {font-size: 17px;}
 
 
-#table_question_detox, #detox_settings, #table_question_therapy {
+
+#btn_meditation_edit, #btn_kaoshiki_edit {height: 66px !important;}
+
+#table_question_detox, #detox_settings, #table_question_therapy, #practise_continue_settings {
+    margin-top: 15px;
     padding: 15px;
     border-radius: 10px;
     background-color: rgba(70, 216, 70, 0.15)
 }
 .base_settings, #table_question_half_bath {
+    margin-top: 15px;
     padding: 15px;
     border-radius: 10px;
     background-color: rgba(70, 162, 216, 0.15)
@@ -84,6 +90,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 }
 
 #div_change_pass{
+    margin-top: 15px;
     padding: 15px;
     border-radius: 10px;
     background-color: rgba(216, 143, 91, 0.25);

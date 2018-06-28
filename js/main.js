@@ -67,6 +67,7 @@ var detox_days, detox_last_date;
 var therapy_type = "";
 var group_curator_id;
 var group_messenger = "";
+var group_program_id = "";
 var user_messenger = "";
 var group_id, group_all_id;
 var conversion_start, conversion_finish;
@@ -505,12 +506,16 @@ function hide_all_in_admin() {
     $('#page_group_info').hide();
     $('#page_user_info') .hide();
 
+
     $('#page_groups')  .hide();
     $('#page_curators').hide();
     $('#page_users')   .hide();
     $('#page_program') .hide();
     $('#page_conversion') .hide();
     $('#page_leaved') .hide();
+    $('#page_test')  .hide();
+
+
     $('#table_users_in_group').empty();
 }
 function update_admin_info() {
@@ -539,7 +544,7 @@ function update_admin_info() {
                 setCurators(data.curators);
                 setUsersRegPay(data.users_reg_pay);
                 setGroups(data.groups);
-                setProgrammMain(data.programm_main);
+                setPrograms(data.programs);
 
             },
             failure: function (errMsg) {
@@ -574,7 +579,7 @@ function update_user_info() {
             success: function (data) {
                 //console.log(data);
                 //setUserDiary(data.user_diary);
-                day_new = data.marafon_day;
+                day_new = 0;
 
 
                 $('#user_wait_id, #user_wait_id_2').text(data.user.id);
@@ -610,6 +615,11 @@ function update_user_info() {
                 } else if (data.marafon_day < -998) {
                     $('#user_marafon_reg').show();
                 } else if (data.marafon_day > 0) {
+
+                    $('#filed_meditation_base_edit')  .val(data.medi_kao_target.meditation_base);
+                    $('#filed_meditation_target_edit').val(data.medi_kao_target.meditation_target);
+                    $('#filed_kaoshiki_base_edit')    .val(data.medi_kao_target.kaoshiki_base);
+                    $('#filed_kaoshiki_target_edit')  .val(data.medi_kao_target.kaoshiki_target);
 
                     setUserPractise(data.practise_complete);
 
@@ -818,6 +828,7 @@ function setUserMarafonDay(current_day, marafon_day){
     var tapah          = current_day.tapah_fact;
     var svadhya        = current_day.svadhya_fact;
     var ishvara        = current_day.ishvara_fact;
+    var social_practic = current_day.social_practic_fact;
 
     var water_fact             = current_day.water_fact;
     var wake_up_hours_fact     = current_day.wake_up_hours_fact;
@@ -853,6 +864,8 @@ function setUserMarafonDay(current_day, marafon_day){
     var svadhya_active            = current_day.svadhya_active;
     var ishvara_active        = current_day.ishvara_active;
 
+    var social_practic_active   = current_day.social_practic_active;
+
     var water_target            = current_day.water_target;
     var wake_up_hours_target    = current_day.wake_up_hours_target;
     var wake_up_minutes_target  = current_day.wake_up_minutes_target;
@@ -882,16 +895,17 @@ function setUserMarafonDay(current_day, marafon_day){
         $('#row_psy')             .hide();
         $('#row_half_bath')       .hide();
 
-        $('#row_ahimsa')           .hide();
-        $('#row_satya')            .hide();
-        $('#row_asteya')           .hide();
-        $('#row_brahma')           .hide();
-        $('#row_aparigraha')       .hide();
+        $('#row_ahimsa')          .hide();
+        $('#row_satya')           .hide();
+        $('#row_asteya')          .hide();
+        $('#row_brahma')          .hide();
+        $('#row_aparigraha')      .hide();
         $('#row_shaucha')         .hide();
         $('#row_santosha')        .hide();
         $('#row_tapah')           .hide();
         $('#row_svadhya')         .hide();
         $('#row_ishvara')         .hide();
+        $('#row_social_practic')         .hide();
 
 
 
@@ -920,6 +934,7 @@ function setUserMarafonDay(current_day, marafon_day){
         $('#filed_tapah')        .prop("checked", false);
         $('#filed_svadhya')      .prop("checked", false);
         $('#filed_ishvara')      .prop("checked", false);
+        $('#filed_social_practic').prop("checked", false);
 
         $('#filed_water_fact')             .val(null);
         $('#filed_wake_up_fact')           .val(null);
@@ -955,6 +970,10 @@ function setUserMarafonDay(current_day, marafon_day){
         if (tapah_active           != null && tapah_active       != false) {$('#row_tapah').show();}
         if (svadhya_active         != null && svadhya_active     != false) {$('#row_svadhya').show();}
         if (ishvara_active         != null && ishvara_active     != false) {$('#row_ishvara').show();}
+        if (social_practic_active  != null && social_practic_active     != false) {
+            $('#row_social_practic').show();
+            $('#social_practic_description') .text(current_day.social_practic_description);
+        }
 
         if (water_target != null) {
             $('#row_water').show();
@@ -1013,17 +1032,20 @@ function setUserMarafonDay(current_day, marafon_day){
         half_bath_day        != null && half_bath_day        !=false ?  $('#filed_half_bath_day')   .prop("checked", true) : $('#filed_half_bath_day')   .prop("checked", false);
         half_bath_night      != null && half_bath_night      !=false ?  $('#filed_half_bath_night') .prop("checked", true) : $('#filed_half_bath_night') .prop("checked", false);
 
-        ahimsa      != null && ahimsa      !=false ?  $('#filed_ahimsa') .prop("checked", true) : $('#filed_ahimsa') .prop("checked", false);
-        satya      != null && satya      !=false ?  $('#filed_satya') .prop("checked", true) : $('#filed_satya') .prop("checked", false);
-        asteya      != null && asteya      !=false ?  $('#filed_asteya') .prop("checked", true) : $('#filed_asteya') .prop("checked", false);
-        brahma      != null && brahma      !=false ?  $('#filed_brahma') .prop("checked", true) : $('#filed_brahma') .prop("checked", false);
-        aparigraha      != null && aparigraha      !=false ?  $('#filed_aparigraha') .prop("checked", true) : $('#filed_aparigraha') .prop("checked", false);
+        ahimsa     != null && ahimsa     !=false ?  $('#filed_ahimsa')    .prop("checked", true) : $('#filed_ahimsa')    .prop("checked", false);
+        satya      != null && satya      !=false ?  $('#filed_satya')     .prop("checked", true) : $('#filed_satya')     .prop("checked", false);
+        asteya     != null && asteya     !=false ?  $('#filed_asteya')    .prop("checked", true) : $('#filed_asteya')    .prop("checked", false);
+        brahma     != null && brahma     !=false ?  $('#filed_brahma')    .prop("checked", true) : $('#filed_brahma')    .prop("checked", false);
+        aparigraha != null && aparigraha !=false ?  $('#filed_aparigraha').prop("checked", true) : $('#filed_aparigraha').prop("checked", false);
 
-        shaucha      != null && shaucha      !=false ?  $('#filed_shaucha') .prop("checked", true) : $('#filed_shaucha') .prop("checked", false);
-        santosha      != null && santosha      !=false ?  $('#filed_santosha') .prop("checked", true) : $('#filed_santosha') .prop("checked", false);
-        tapah      != null && tapah      !=false ?  $('#filed_tapah') .prop("checked", true) : $('#filed_tapah') .prop("checked", false);
-        svadhya      != null && svadhya      !=false ?  $('#filed_svadhya') .prop("checked", true) : $('#filed_svadhya') .prop("checked", false);
-        ishvara      != null && ishvara      !=false ?  $('#filed_ishvara') .prop("checked", true) : $('#filed_ishvara') .prop("checked", false);
+        shaucha  != null && shaucha  !=false ?  $('#filed_shaucha') .prop("checked", true) : $('#filed_shaucha') .prop("checked", false);
+        santosha != null && santosha !=false ?  $('#filed_santosha').prop("checked", true) : $('#filed_santosha').prop("checked", false);
+        tapah    != null && tapah    !=false ?  $('#filed_tapah')   .prop("checked", true) : $('#filed_tapah')   .prop("checked", false);
+        svadhya  != null && svadhya  !=false ?  $('#filed_svadhya') .prop("checked", true) : $('#filed_svadhya') .prop("checked", false);
+        ishvara  != null && ishvara  !=false ?  $('#filed_ishvara') .prop("checked", true) : $('#filed_ishvara') .prop("checked", false);
+
+        social_practic != null && social_practic != false ? $('#filed_social_practic') .prop("checked", true) : $('#filed_social_practic') .prop("checked", false);
+
 
 
 
@@ -1055,6 +1077,10 @@ function setUserMarafonDay(current_day, marafon_day){
     }
     day_show_now = day_num;
 
+    if (day_new == 0) {
+        day_new = day_show_now;
+    }
+
    // console.log(current_day);
 
 
@@ -1071,6 +1097,10 @@ function setUserMarafonDay(current_day, marafon_day){
             $('#water_alert_no_answer').hide();
             $('#table_question_water').hide();
         }
+    }
+
+    if (day_num > 4) {
+        $('#kaoshiki_settings').show();
     }
 
     if (current_day.water_target_answer && day_num > 5) {
@@ -1330,20 +1360,23 @@ function userSaveDay() {
             half_bath_day:         $('#filed_half_bath_day')         .is(':checked'),
             half_bath_night:       $('#filed_half_bath_night')         .is(':checked'),
 
-            ahimsa:       $('#filed_ahimsa')         .is(':checked'),
-            satya:       $('#filed_satya')         .is(':checked'),
-            asteya:       $('#filed_asteya')         .is(':checked'),
-            brahma:       $('#filed_brahma')         .is(':checked'),
-            aparigraha:       $('#filed_aparigraha')         .is(':checked'),
+            ahimsa:           $('#filed_ahimsa')    .is(':checked'),
+            satya:            $('#filed_satya')     .is(':checked'),
+            asteya:           $('#filed_asteya')    .is(':checked'),
+            brahma:           $('#filed_brahma')    .is(':checked'),
+            aparigraha:       $('#filed_aparigraha').is(':checked'),
 
-            shaucha:       $('#filed_shaucha')         .is(':checked'),
-            santosha:       $('#filed_santosha')         .is(':checked'),
-            tapah:       $('#filed_tapah')         .is(':checked'),
-            svadhya:       $('#filed_svadhya')         .is(':checked'),
-            ishvara:       $('#filed_ishvara')         .is(':checked'),
+            shaucha:       $('#filed_shaucha') .is(':checked'),
+            santosha:      $('#filed_santosha').is(':checked'),
+            tapah:         $('#filed_tapah')   .is(':checked'),
+            svadhya:       $('#filed_svadhya') .is(':checked'),
+            ishvara:       $('#filed_ishvara') .is(':checked'),
 
             kirtan_day_fact:       $('#filed_kirtan_day_fact')        .val(),
             kirtan_night_fact:     $('#filed_kirtan_night_fact')      .val(),
+
+            social_practic_fact:   $('#filed_social_practic').is(':checked'),
+
             day_comment:           $('#filed_day_comment')      .val()
 
             //    question_wake_up_fact: $('#filed_question_wake_up_fact').mTimePicker('getTime'),
@@ -1382,9 +1415,10 @@ function setGroups(groups){
     var groups_selector  = '<option>Выберите группу</option>';
 
     var groups_row = '<table id="groups" class="table table-hover table-bordered table-condensed" >';
-    groups_row    += '<thead><tr> <th>Название</th> <th>Дата старта</th> <th>Куратор</th>  <th>Участников</th> </tr></thead><tbody>';
+    groups_row    += '<thead><tr> <th>Программа</th> <th>Название</th> <th>Дата старта</th> <th>Куратор</th>  <th>Участников</th> </tr></thead><tbody>';
     $.each(groups, function (i, item) {
         groups_row += '<tr><td><h5>';
+        groups_row += item.group_program + '</h5></td><td><h5>';
         groups_row += item.group_name    + '</h5></td><td><h5>';
         groups_row += item.group_start   + '</h5></td><td><h5>';
         groups_row += item.group_curator + '</h5></td><td><h5>';
@@ -1864,7 +1898,28 @@ function setUsersInGroups(users){
 }
 
 
-function setProgrammMain(programm_main){
+function setPrograms(programs){
+    var program_list_for_groups = '';
+    var programm_main_row = '<table class="table table-hover table-bordered table-condensed" >';
+    programm_main_row    += '<thead><tr> <th>Название программы</th><th>Состав программы</th>';
+    programm_main_row    += '</tr></thead><tbody>';
+    $.each(programs, function (i, item) {
+        programm_main_row += '<tr>';
+        programm_main_row += '<td><h5>' + item.program_name         + '</h5></td>';
+        programm_main_row += '<td><button type="button" class="btn btn-info btn-sm" name="btns_program_detail" value="'  +  item.program_id + '"  > <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></button></td>';
+        programm_main_row += '</tr>';
+        program_list_for_groups += '<li><a href="#" class="program_link_group" name="' + item.program_id + '">' + item.program_name + '</a></li>';
+    });
+    programm_main_row += '</tbody></table';
+    $('#program_list_for_group').empty();
+    $('#program_list_for_group').append(program_list_for_groups);
+
+    $('#table_programs').empty();
+    $('#table_programs').append(programm_main_row);
+    $('#table_programs').bsTable(undefined, false, undefined, undefined, true);
+}
+
+function setProgramDetox(programm_main){
     programm_days_main = programm_main;
     var programm_main_row = '<table id="table_programm_main1" class="table table-hover table-bordered table-condensed" >';
     programm_main_row    += '<thead><tr> <th>День</th> <th>Перекусы</th><th>Диета</th><th>Язык</th>';
@@ -1896,15 +1951,14 @@ function setProgrammMain(programm_main){
 
         programm_main_row += '<td><button type="button" class="btn btn-default btn-sm" name="btns_edit_programm_main"     value="'  +  item.day_id + '"  data-toggle="modal" data-target="#modal_edit_programm_main"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
 
-        if (item.day_num != 60) {
-            programm_main_row += '<td><button type="button" class="btn btn-default btn-sm" name="btns_copy_day_programm_main" value="'  +  item.day_num + '"  > <span class="glyphicon glyphicon-copy" aria-hidden="true"></span></button></td>';
-        }
         programm_main_row += '</tr>';
     });
     programm_main_row += '</tbody></table';
-    $('#table_programm_main').empty();
-    $('#table_programm_main').append(programm_main_row);
-    $('#table_programm_main').bsTable(undefined, false, undefined, undefined, true);
+
+    $('#table_programm_detox').show();
+    $('#table_programm_detox').empty();
+    $('#table_programm_detox').append(programm_main_row);
+    $('#table_programm_detox').bsTable(undefined, false, undefined, undefined, true);
 }
 
 function setConversion(){
@@ -2763,6 +2817,9 @@ $( document ).ready(function() {
                     }
                 });
                 break;
+            case "nav_test":
+                $('#page_test')  .show();
+                break;
 
         }
     });
@@ -3042,11 +3099,20 @@ $( document ).ready(function() {
         getDayInfo($(this).val());
 
     });
-    $('#filed_no_snacking_fact, #filed_diet, #filed_tongue_day, #filed_tongue_night, #filed_phisic, #filed_therapy, #filed_asana, #filed_psy, #filed_half_bath_day, #filed_half_bath_night, #filed_ahimsa, #filed_satya, #filed_asteya, #filed_brahma, #filed_aparigraha, #filed_shaucha, #filed_santosha, #filed_tapah, #filed_svadhya, #filed_ishvara').change(function() {
+    $('#filed_no_snacking_fact, #filed_diet, #filed_tongue_day, #filed_tongue_night, #filed_phisic, #filed_therapy, #filed_asana, #filed_psy, #filed_half_bath_day, #filed_half_bath_night, #filed_ahimsa, #filed_satya, #filed_asteya, #filed_brahma, #filed_aparigraha, #filed_shaucha, #filed_santosha, #filed_tapah, #filed_svadhya, #filed_ishvara, #filed_social_practic').change(function() {
         userSaveDay();
     });
-    $("#filed_water_fact, #filed_meditation_day_fact, #filed_meditation_night_fact, #filed_kaoshiki_fact, #filed_kirtan_day_fact, #filed_kirtan_night_fact, #filed_wake_up_fact_hour, #filed_wake_up_fact_minute, #filed_day_comment").on('change keyup paste', function () {
+    $("#filed_water_fact, #filed_meditation_day_fact, #filed_meditation_night_fact, #filed_kaoshiki_fact, #filed_kirtan_day_fact, #filed_kirtan_night_fact, #filed_wake_up_fact_hour, #filed_wake_up_fact_minute").on('change keyup paste', function () {
         userSaveDay();
+    });
+
+    var send_comment_timer;
+    $('#filed_day_comment').on('change keyup paste', function () {
+        clearTimeout(send_comment_timer);
+        send_comment_timer = setTimeout(function (){
+            console.log("send comment");
+            userSaveDay();
+        }, 1500);
     });
 
     $('#btn_user_material').click(function (){
@@ -3562,6 +3628,77 @@ $( document ).ready(function() {
 
 //Settings
 
+    $('#btn_meditation_edit').click(function (){
+        $('#btn_meditation_edit').prop('disabled', true);
+        var meditation_base  = $('#filed_meditation_base_edit').val();
+        var meditation_target = $('#filed_meditation_target_edit').val();
+
+        if (meditation_base === "" || meditation_target === ""){
+            alert("Поля базовое и целевое значение должны быть заполнены");
+            $('#btn_meditation_edit').prop('disabled', false);
+        } else {
+            if (parseInt(meditation_base) >= parseInt(meditation_target)) {
+                alert("Базовое значение не может быть больше целевого");
+                $('#btn_meditation_edit').prop('disabled', false);
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url:  api_url + "set_meditation_new",
+                    data: { meditation_base:  meditation_base,
+                            meditation_target: meditation_target},
+                    headers: {
+                        'Authorization':'Token token=' + cookie_token,
+                        'Content-Type':'application/x-www-form-urlencoded'
+                    },
+                    success: function(data){
+                        $('#btn_meditation_edit').prop('disabled', false);
+                        update_user_info();
+                        alert("Изменения приняты");
+                    },
+                    failure: function(errMsg) {
+                        alert(errMsg.toString());
+                    }
+                });
+            }
+        }
+    });
+
+    $('#btn_kaoshiki_edit').click(function (){
+        $('#btn_kaoshiki_edit').prop('disabled', true);
+        var kaoshiki_base  = $('#filed_kaoshiki_base_edit').val();
+        var kaoshiki_target = $('#filed_kaoshiki_target_edit').val();
+
+        if (kaoshiki_base === "" || kaoshiki_target === ""){
+            alert("Поля базовое и целевое значение должны быть заполнены");
+            $('#btn_kaoshiki_edit').prop('disabled', false);
+        } else {
+            if (parseInt(kaoshiki_base) >= parseInt(kaoshiki_target)) {
+                alert("Базовое значение не может быть больше целевого");
+                $('#btn_kaoshiki_edit').prop('disabled', false);
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url:  api_url + "set_kaoshiki_new",
+                    data: { kaoshiki_base:  kaoshiki_base,
+                            kaoshiki_target: kaoshiki_target},
+                    headers: {
+                        'Authorization':'Token token=' + cookie_token,
+                        'Content-Type':'application/x-www-form-urlencoded'
+                    },
+                    success: function(data){
+                        $('#btn_kaoshiki_edit').prop('disabled', false);
+                        update_user_info();
+                        alert("Изменения приняты");
+                    },
+                    failure: function(errMsg) {
+                        alert(errMsg.toString());
+                    }
+                });
+            }
+        }
+    });
+
+
 
 
     $('#btn_rating_show_save').click(function (){
@@ -3803,25 +3940,6 @@ $( document ).ready(function() {
         });
     });
 
-    $('#btn_7day_edit').click(function() {
-        $.ajax({
-            type: "GET",
-            url:  api_url_full,
-            data: { query_update: "user_change_7day_practic",
-                show_practic: $('#filed_7day').is(':checked')
-            },
-            headers: {
-                'Authorization':'Token token=' + cookie_token,
-                'Content-Type':'application/x-www-form-urlencoded'
-            },
-            success: function(data){
-
-            },
-            failure: function(errMsg) {
-                alert(errMsg.toString());
-            }
-        });
-    });
 
 
 
@@ -3879,6 +3997,12 @@ $( document ).ready(function() {
         group_curator_id = $(this).find("option:selected").val();
     });
 
+    $(document).on('click', '.program_link_group', function () {
+        console.log($(this).attr("name"));
+        $('#btn_dd_group_program').text($(this).text());
+        group_program_id = $(this).attr("name");
+    });
+
     $(document).on('click', '.messenger_link_group',       function () {
         //  console.log($(this).attr("name"));
         $('#btn_dd_messenger_group').text($(this).attr("name"));
@@ -3891,7 +4015,7 @@ $( document ).ready(function() {
         var group_start  = $('#group_start').val();
         var group_messenger_link  = $('#group_messenger_link').val();
 
-        if (group_name == null || group_curator_id == null || group_start === "" || group_messenger === "" || group_messenger_link === "") {
+        if (group_name == null || group_curator_id == null || group_start === "" || group_messenger === "" || group_messenger_link === "" ||  group_program_id === "") {
             alert("Заполните все поля");
             $('#btn_group_add').prop('disabled', false);
         } else {
@@ -3903,6 +4027,7 @@ $( document ).ready(function() {
                     group_start       : group_start,
                     group_curator_id  : group_curator_id,
                     group_messenger   : group_messenger,
+                    group_program_id   : group_program_id,
                     group_messenger_link   : group_messenger_link
                 },
                 headers: {
@@ -3916,6 +4041,7 @@ $( document ).ready(function() {
                         $('#modal_add_group').modal('hide');
                         $('#btn_dd_messenger_group').text("Выберите способ");
                         group_messenger = "";
+                        group_program_id = "";
                         update_admin_info();
                     } else {no_access();}
                 },
@@ -4215,7 +4341,6 @@ $( document ).ready(function() {
             alert("Заполните все поля");
             $('#btn_register').prop('disabled', false);
         } else {
-            $('#modal_register') .modal('hide');
 
             var person  = {
                 email:    user_email,
@@ -4252,7 +4377,8 @@ $( document ).ready(function() {
                         setUsersRegPay(data.users_reg_pay);
                         $('#modal_register') .modal('hide');
                     } else {
-                        alert("Пользователь с таким телефоном/почтой уже имеется в базе")
+                        alert("Пользователь с таким телефоном/почтой уже имеется в базе");
+                        $('#btn_register').prop('disabled', false);
                     }
                 },
                 failure: function(errMsg) {
@@ -4355,9 +4481,10 @@ $( document ).ready(function() {
         user_register_row    += '<th>Телефон</th>';
         user_register_row    += '<th>Пароль</th>';
         user_register_row    += '<th>Ссылка соц.сети</th>';
-        user_register_row    += '<th>Последнее действие</th>';
-        user_register_row    += '<th>Дата следующего</th>';
         user_register_row    += '<th>Статус</th>';
+      //  user_register_row    += '<th>Последнее действие</th>';
+      //  user_register_row    += '<th>Дата следующего</th>';
+      //  user_register_row    += '<th>Статус</th>';
         user_register_row    += '<th>Комментарий</th>';
         user_register_row    += '</tr></thead><tbody>';
         $.each(users, function (i, item) {
@@ -4367,19 +4494,19 @@ $( document ).ready(function() {
             user_register_row += '<td><h5>' + item.user_phone              + '</h5></td>';
             user_register_row += '<td><h5>' + item.user_password           + '</h5></td>';
             user_register_row += '<td><h5>' + item.user_social_link            + '</h5></td>';
-            user_register_row += '<td><textarea          class="curator_last_action" name="' + item.user_id + '">' + item.curator_last_action + '</textarea></td>';
-            user_register_row += '<td><input type="date" class="curator_next_action" name="' + item.user_id + '" value="' + item.curator_next_action +'"></td>';
-            user_register_row += '<td><div class="dropdown">';
-            user_register_row += '<button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_status_' + item.user_id + '">';
-            user_register_row += item.user_status +'<span class="caret"></span></button>';
-            user_register_row += '<ul class="dropdown-menu">';
-            user_register_row += ' <li><a href="#" class="link_curator_status" data-user-id="' + item.user_id + '" name="0 - заявка">0 - заявка</a></li>';
-            user_register_row += ' <li><a href="#" class="link_curator_status" data-user-id="' + item.user_id + '" name="1 - уведомлен">1 - уведомлен</a></li>';
-            user_register_row += ' <li><a href="#" class="link_curator_status" data-user-id="' + item.user_id + '" name="2 - отказ">отказ</a></li>';
-            user_register_row += '</ul></div></td>';
+            user_register_row += '<td><h5>' + item.user_step          + '</h5></td>';
+           // user_register_row += '<td><textarea          class="curator_last_action" name="' + item.user_id + '">' + item.curator_last_action + '</textarea></td>';
+           // user_register_row += '<td><input type="date" class="curator_next_action" name="' + item.user_id + '" value="' + item.curator_next_action +'"></td>';
+           // user_register_row += '<td><div class="dropdown">';
+           // user_register_row += '<button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_status_' + item.user_id + '">';
+           // user_register_row += item.user_status +'<span class="caret"></span></button>';
+           // user_register_row += '<ul class="dropdown-menu">';
+           // user_register_row += ' <li><a href="#" class="link_curator_status" data-user-id="' + item.user_id + '" name="0 - заявка">0 - заявка</a></li>';
+           // user_register_row += ' <li><a href="#" class="link_curator_status" data-user-id="' + item.user_id + '" name="1 - уведомлен">1 - уведомлен</a></li>';
+           // user_register_row += ' <li><a href="#" class="link_curator_status" data-user-id="' + item.user_id + '" name="2 - отказ">отказ</a></li>';
+           // user_register_row += '</ul></div></td>';
 
             user_register_row += '<td><textarea class="user_comment_admin" name="' + item.user_id + '">' + item.user_comment + '</textarea></td>';
-            user_register_row += '<td><button type="button" class="btn btn-success btn-sm" name="btns_confirm_pay" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_confirm_pay"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button></td>';
             user_register_row += '<td><button type="button" class="btn btn-warning btn-sm" name="btns_edit_user" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_edit_user"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
             user_register_row += '<td><button type="button" class="btn btn-danger btn-sm"  name="btns_user_delete" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
 
@@ -4566,6 +4693,37 @@ $( document ).ready(function() {
 
 //Program main
 
+    $(document).on('click', '[name="btns_program_detail"]' , function() {
+       // console.log($(this).val());
+
+        $.ajax({
+            type: "GET",
+            url:  api_url + "program_detail",
+            data: { program_id: $(this).val()},
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                $('#page_program').hide();
+                $('#current_program').show();
+
+                setProgramDetox(data.program_detox);
+
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+    $('#btn_program_back').click(function () {
+        $('#page_program').show();
+        $('#current_program').hide();
+    });
+
+
+
+
     $(document).on('click', '[name="btns_edit_programm_main"]' , function() {
        // console.log($(this).val());
         $('#btn_edit_programm_main').val($(this).val());
@@ -4578,11 +4736,11 @@ $( document ).ready(function() {
         $('#field_meditation_night_target').val();
         $('#field_kaoshiki_minutes_target').val();
         $('#field_phisic_active')          .prop("checked", false);
-        $('#field_therapy_active')          .prop("checked", false);
+        $('#field_therapy_active')         .prop("checked", false);
         $('#field_therapy_decription')     .val();
         $('#field_asana_active')           .prop("checked", false);
-        $('#field_psi_active')              .prop("checked", false);
-        $('#field_half_bath_active')              .prop("checked", false);
+        $('#field_psi_active')             .prop("checked", false);
+        $('#field_half_bath_active')       .prop("checked", false);
 
 
         $('#field_kirtan_day_target')      .val();
@@ -4590,7 +4748,7 @@ $( document ).ready(function() {
         $('#field_time_to_read')           .val();
         $('#field_time_to_practise')       .val();
         $('#field_day_materials')          .val();
-        $('#field_day_comment')          .val();
+        $('#field_day_comment')            .val();
 
 
         $.ajax({
@@ -4663,27 +4821,19 @@ $( document ).ready(function() {
                 meditation_night_target:   $('#field_meditation_night_target').val(),
                 kaoshiki_minutes_target:   $('#field_kaoshiki_minutes_target').val(),
                 phisic_active:             $('#field_phisic_active')          .is(':checked'),
-                therapy_active:            $('#field_therapy_active')          .is(':checked'),
+                therapy_active:            $('#field_therapy_active')         .is(':checked'),
                 asana_active:              $('#field_asana_active')           .is(':checked'),
-                psi_active:                $('#field_psi_active')              .is(':checked'),
-                kirtan_day_target:         $('#field_kirtan_day_target')      .val(),
-                kirtan_night_target:       $('#field_kirtan_night_target')    .val(),
-                time_to_read:              $('#field_time_to_read')           .val(),
-                time_to_practise:          $('#field_time_to_practise')       .val(),
-                day_materials:          $('#field_day_materials')       .val(),
-                day_comment:          $('#field_day_comment')       .val()
+                psi_active:                $('#field_psi_active')             .is(':checked'),
+                day_materials:             $('#field_day_materials')          .val(),
+                day_comment:               $('#field_day_comment')            .val()
             },
             headers: {
                 'Authorization':'Token token=' + cookie_token,
                 'Content-Type':'application/x-www-form-urlencoded'
             },
             success: function(data){
-                update_admin_info();
+                setProgramDetox(data.detox_program);
                 $('#modal_edit_programm_main') .modal('hide');
-
-                if (typeof data.user_program !== 'undefined'){
-                    setUserProgramm(data.user_programm);
-                }
             },
             failure: function(errMsg) {
                 alert(errMsg.toString());
@@ -4696,7 +4846,7 @@ $( document ).ready(function() {
             type: "GET",
             url:  api_url_full,
             data: { query_update: "copy_day_programm_main",
-                day_num: $(this).val()
+                day_id: $(this).val()
             },
             headers: {
                 'Authorization':'Token token=' + cookie_token,
@@ -4923,6 +5073,44 @@ $( document ).ready(function() {
     });
 
 
+    //TEST
+    $('#btn_set_soc_practic').click(function () {
+        //console.log("chekbox" + $('#field_eat_no_snacking_active').is(':checked'));
+
+        $.ajax({
+            type: "POST",
+            url:  api_url + "set_social_practic_for_groups",
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){  },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+    $('#btn_create_program_2').click(function () {
+        //console.log("chekbox" + $('#field_eat_no_snacking_active').is(':checked'));
+
+        $.ajax({
+            type: "POST",
+            url:  api_url + "create_second_program",
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){  },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+
+
+
 //Other
 
     $("#modal_register").on("hidden.bs.modal", function(){
@@ -4948,9 +5136,4 @@ $( document ).ready(function() {
         $("#group_add_user_all option:first").prop("selected", "selected");
         $('#group_add_user_all').selectpicker("refresh");
     });
-
-
-
-
-
 });
