@@ -122,7 +122,7 @@ function initFondy(){
 
             if (typeof data.send_data !== 'undefined' && data.final ) {
                 signature = data.send_data.signature;
-                order_id = data.send_data.order_id;
+                order_id  = data.send_data.order_id;
 
                 reg_user_confirm_payment(data.send_data, payment_flow);
             } else {
@@ -167,6 +167,8 @@ var if_social_vk   = false;
 var if_social_fb   = false;
 var if_social_none = false;
 function ifLogin()  {
+
+
     //console.log(cookie_token);
     if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
         clearInterval(timerId);
@@ -194,15 +196,14 @@ function ifLogin()  {
         }, 500);
         var params = parse_query_string();
         if (typeof params.social_login !== 'undefined') {
-
-            if (params.social_login === "vk") {
+            if (params.social_login === "vk")   {
                 setCookie(cookie_name_vk, true);
               //  if_social_vk = true;
                 sendMove("reg_hyls", "vk_click_link");
                 $('#page_load').show();
                 $('#btn_vk_log_in')[0].click();
             }
-            if (params.social_login === "fb") {
+            if (params.social_login === "fb")   {
                 if ((navigator.userAgent.indexOf("MSIE") != -1) || (!!document.documentMode == true)) {
                     $("#page_login").show();
                     $("#btn_fb_log_in").hide();
@@ -215,7 +216,6 @@ function ifLogin()  {
                     fb_login();
                 }
             }
-
             if (params.social_login === "none") {
                // if_social_none = true;
                 sendMove("reg_hyls", "hand_click_link");
@@ -458,13 +458,16 @@ function reg_user_confirm_payment(send_data, place){
     var query;
     switch (place) {
         case "reg":
-            query = "user_confirm_payment_reg";
+            query = "user_confirm_payment_detox";
             break;
         case "support":
             query = "user_confirm_payment_support";
             break;
         case "settings":
             query = "user_start_daily_payment_again";
+            break;
+        case "reg_mini_marafon":
+            query = "user_confirm_payment_mini_marafon";
             break;
     }
 
@@ -511,12 +514,10 @@ function hide_all_in_admin() {
     $('#page_curators').hide();
     $('#page_users')   .hide();
     $('#page_program') .hide();
+    $('#current_program') .hide();
     $('#page_conversion') .hide();
     $('#page_leaved') .hide();
     $('#page_test')  .hide();
-
-
-    $('#table_users_in_group').empty();
 }
 function update_admin_info() {
     try {
@@ -559,6 +560,7 @@ function update_admin_info() {
 
 function hide_all_in_user() {
     $('#page_load').hide();
+    $('#page_marafon_reg').hide();
     $('#page_user_programm').hide();
     $('#page_user_diary').hide();
     $('#page_user_rating').hide();
@@ -583,7 +585,7 @@ function update_user_info() {
 
 
                 $('#user_wait_id, #user_wait_id_2').text(data.user.id);
-                $('#user_marafon_reg').hide();
+                $('#page_marafon_reg').hide();
                 $('#user_marafon_start').hide();
                 $('#user_marafon_block').hide();
                 $('#user_marafon_wait').hide();
@@ -613,7 +615,7 @@ function update_user_info() {
                     $('#user_marafon_wait_text').text("Ожидайте старта марафона " + data.marafon_day_start);
                     $('#user_marafon_wait_messenger').show();
                 } else if (data.marafon_day < -998) {
-                    $('#user_marafon_reg').show();
+                    $('#page_marafon_reg').show();
                 } else if (data.marafon_day > 0) {
 
                     $('#filed_meditation_base_edit')  .val(data.medi_kao_target.meditation_base);
@@ -2155,6 +2157,7 @@ function getCookie(name) {
 }
 
 $( document ).ready(function() {
+    $('body').tooltip({ selector: '[data-toggle="tooltip"]' });
 
 
 
@@ -2415,6 +2418,126 @@ $( document ).ready(function() {
 
         sendMove("reg_hyls", "hand_click_link");
     });
+
+
+    var reg_practic_counter = 0;
+    var cost = 0;
+    var reg_mini_water      = false;
+    var reg_mini_detox      = false;
+    var reg_mini_wake_up    = false;
+    var reg_mini_snacking   = false;
+    var reg_mini_thanks     = false;
+    var reg_mini_family     = false;
+    var reg_mini_vegan      = false;
+    var reg_mini_kaoshiki   = false;
+    var reg_mini_asana      = false;
+    var reg_mini_meditation = false;
+    $('.reg_mini').click(function(){
+        $('#div_checkout_reg_mini').hide();
+        if ($(this).is(":checked")){
+            reg_practic_counter += 1;
+        } else {
+            reg_practic_counter -= 1;
+        }
+
+        switch ($(this).id){
+            case "reg_checkbox_water":
+                reg_mini_water = $(this).is(":checked");
+                break;
+            case "reg_checkbox_detox":
+                reg_mini_detox = $(this).is(":checked");
+                break;
+            case "reg_checkbox_wareup":
+                reg_mini_wake_up = $(this).is(":checked");
+                break;
+            case "reg_checkbox_snacking":
+                reg_mini_snacking = $(this).is(":checked");
+                break;
+            case "reg_checkbox_thanks":
+                reg_mini_thanks = $(this).is(":checked");
+                break;
+            case "reg_checkbox_family":
+                reg_mini_family = $(this).is(":checked");
+                break;
+            case "reg_checkbox_vegan":
+                reg_mini_vegan = $(this).is(":checked");
+                break;
+            case "reg_checkbox_kaoshiki":
+                reg_mini_kaoshiki = $(this).is(":checked");
+                break;
+            case "reg_checkbox_asana":
+                reg_mini_asana = $(this).is(":checked");
+                break;
+            case "reg_checkbox_meditation":
+                reg_mini_meditation = $(this).is(":checked");
+                break;
+        }
+
+
+
+
+        console.log(reg_practic_counter);
+        cost = 0;
+        switch (reg_practic_counter) {
+            case 1:
+                cost = 600;
+                break;
+
+            case 2:
+                cost = 900;
+                break;
+
+            default:
+                cost = 900 + 200 * (reg_practic_counter - 2);
+                break;
+        }
+
+        $('#reg_mini_cost').text("Стоимость марафона: " + cost + " руб.");
+
+        if (reg_practic_counter > 0){
+            $('#reg_mini_cost').show();
+            $('#div_btn_pay_mini').show();
+        } else {
+            $('#reg_mini_cost').hide();
+            $('#div_btn_pay_mini').hide();
+        }
+    });
+
+    $('#btn_pay_mini').click(function (){
+        $('#div_btn_pay_mini').hide();
+        $('#div_checkout_reg_mini').show();
+        $(window).animate({scrollTop: $(document).height() + $(window).height()});
+
+        var button = $ipsp.get("button");
+        button.setHost("api.fondy.eu");
+        button.setProtocol("https");
+        button.setMerchantId(merchant_id);
+        button.setAmount(cost,"RUB",true);
+        button.setResponseUrl(response_url);
+        button.addParam("lang","ru");
+        button.addParam("order_desc", "Участие в мини-марафоне HYLS");
+        //button.addParam("required_rectoken", "Y");
+        payment_flow = "reg_mini_marafon";
+        var url = button.getUrl();
+        $ipsp("checkout").config();
+        $ipsp("checkout").config({
+            "wrapper": "#checkout_reg_mini",
+            "styles": {
+                "body": {
+                    "overflow": "hidden"
+                }
+            }
+        }).scope(function () {
+            this.width("100%");
+            this.height(480);
+            this.action("resize", function (data) {
+                this.setCheckoutHeight(data.height);
+            });
+            this.loadUrl(url)
+        });
+
+    });
+
 
 
     $('#btn_reg_step_1').click(function (){
@@ -2732,17 +2855,17 @@ $( document ).ready(function() {
     });
 
 
-    $('#btn_reg_no_money').click(function (){
-        var blank = {
-            "currency" : 0 ,
-            "amount" : 0 ,
-            "masked_card" : 0 ,
-            "sender_email" : 0 ,
-            "order_time" : 0
-        };
-
-        reg_user_confirm_payment(blank, "reg");
-    });
+   // $('#btn_reg_no_money').click(function (){
+   //     var blank = {
+   //         "currency" : 0 ,
+   //         "amount" : 0 ,
+   //         "masked_card" : 0 ,
+   //         "sender_email" : 0 ,
+   //         "order_time" : 0
+   //     };
+//
+   //     reg_user_confirm_payment(blank, "reg");
+   // });
 
 
 

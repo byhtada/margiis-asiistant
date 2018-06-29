@@ -15,8 +15,8 @@
 
     <link rel="stylesheet" href="css/normalize.css">
     <script src="js/jquery-3.2.1.js"></script>
-    <script                                   src="js/main.js?v1.25"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css?v1.25">
+    <script                                   src="js/main.js?v1.26"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css?v1.26">
 
     <script src="js/jquery.base64.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -233,7 +233,7 @@
 
       </div>
 
-      <div id="page_groups"  class="container-fluid" hidden>
+    <div id="page_groups"  class="container-fluid" hidden>
 
           <h3 align="center">
               Перечень всех групп
@@ -248,7 +248,7 @@
               <div class="col-xs-2"></div>
           </div>
       </div>
-      <div class="modal fade" id="modal_add_group" tabindex="-1" role="dialog" aria-labelledby="modal_label_group">
+    <div class="modal fade" id="modal_add_group" tabindex="-1" role="dialog" aria-labelledby="modal_label_group">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
@@ -292,7 +292,7 @@
               </div>
           </div>
       </div>
-      <div class="modal fade" id="modal_group_edit" tabindex="-1" role="dialog" aria-labelledby="modal_label_group_edit">
+    <div class="modal fade" id="modal_group_edit" tabindex="-1" role="dialog" aria-labelledby="modal_label_group_edit">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
@@ -313,7 +313,7 @@
               </div>
           </div>
       </div>
-      <div class="modal fade" id="modal_group_delete" tabindex="-1" role="dialog" aria-labelledby="modal_label_group_delete">
+    <div class="modal fade" id="modal_group_delete" tabindex="-1" role="dialog" aria-labelledby="modal_label_group_delete">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
@@ -330,7 +330,7 @@
               </div>
           </div>
       </div>
-      <div class="modal fade" id="modal_group_user_delete" tabindex="-1" role="dialog" aria-labelledby="modal_label_group_user_delete">
+    <div class="modal fade" id="modal_group_user_delete" tabindex="-1" role="dialog" aria-labelledby="modal_label_group_user_delete">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
@@ -349,7 +349,7 @@
       </div>
 
 
-      <div id="page_curators"  class="container-fluid" hidden>
+    <div id="page_curators"  class="container-fluid" hidden>
           <div class="row">
               <div class="col-xs-2"></div>
               <div class="col-xs-8">
@@ -387,7 +387,7 @@
           </div>
       </div>
 
-      <div id="page_users"  class="container-fluid" hidden>
+    <div id="page_users"  class="container-fluid" hidden>
           <h2 align="center">Активных пользователей: <b><span id="dau" class="reg_link"></span></b></h2>
           <br/>
           <h3 align="center">
@@ -914,282 +914,398 @@
         </div><!-- /.container-fluid -->
     </nav>
 
+    <div id="page_marafon_reg" class="container-fluid">
+        <div id="marafon_detox" hidden class="col-xs-12 col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3" align="center">
+            <div id="reg_step_1" class="row" hidden>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="h3 pull-left" align="center">Шаг 1/6</div>
+                    <button id="btn_reg_step_1" type="button" class="btn_reg btn btn-success pull-right btn_reg_next">Далее</button>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped active"
+                             role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div>
 
+                    <div align="center" class="h2">Марафон йоги и здоровья H<span class="yoga_color">Y</span>LS, 60 дней:</div>
+
+                    <img id="reg_foto_logo" src="img/reg_foto_logo2.png" class="img-responsive img_reg" />
+                    <div id="hidden_info_reg" hidden>
+                        <button id="btn_reg_exit" type="button" class="btn btn-link">Выход
+                            <span id="user_wait_id"></span>
+                        </button>
+
+                        <!--   <button id="btn_send_payment" type="button" class="btn btn-link">send_payment</button> -->
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-sm-12">
+                        <ul class="reg-list text-left">
+                            <li>Улучшает здоровье натуральными способами;</li>
+                            <li>Дисциплинирует и прививает привычки ЗОЖ;</li>
+                            <li>Обучает йоге и медитации;</li>
+                            <li>Вдохновляет на изменения в жизни.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reg_step_2" class="row" hidden>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="h3 pull-left" align="center">Шаг 2/6</div>
+                    <button id="btn_reg_step_2" type="button" class="btn_reg btn btn-success pull-right btn_reg_next">Далее
+                    </button>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped active"
+                             role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"
+                             style="width: 30%">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div>
+                    <div align="center" class="h2">Почему стоит пройти HYLS?</div>
+
+                    <div class="col-xs-12 col-md-12 col-sm-12">
+                        <img src="img/reg_foto_2.jpg" class="img-responsive img_reg" />
+                    </div>
+
+                    <div class="col-xs-12 col-md-12 col-sm-12">
+                        <ul class="reg-list text-left">
+                            <li>Уже после 2 недель более 50% участников отмечают позитивные изменения в здоровье и психике;</li>
+                            <li>Личный дневник практик индивидуально подстраивается под участника, реально мотивирует и дисциплинирует;</li>
+                            <li>Вдохновляет и не знакомых с йогой людей, и опытных практикующих.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reg_step_3" class="row" hidden>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="h3 pull-left" align="center">Шаг 3/6</div>
+                    <button id="btn_reg_step_3" type="button" class="btn_reg btn btn-success pull-right btn_reg_next">Далее
+                    </button>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped active"
+                             role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"
+                             style="width: 45%">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div>
+
+                    <div align="center" class="h2">Как проходит марафон?</div>
+
+                    <div class="col-xs-12 col-md-12 col-sm-12">
+                        <ul class="reg-list text-left">
+                            <li>Ежедневно получаете и изучаете материалы в удобное вам время;</li>
+                            <li>Общаетесь в чате группы, задаёте вопросы и делитесь опытом;</li>
+                            <li>Ведёте личный дневник практик, который подстраивается под вас.</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-12 col-md-12 col-sm-12">
+                        <img src="img/reg_foto_4.png" class="img-responsive img_reg" />
+                    </div>
+                </div>
+            </div>
+
+            <div id="reg_step_4" class="row" hidden>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="h3 pull-left" align="center">Шаг 4/6</div>
+                    <button id="btn_reg_step_4" type="button" class="btn_reg btn btn-success pull-right btn_reg_next">Далее
+                    </button>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped active"
+                             role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"
+                             style="width: 60%">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div>
+
+                    <div align="center" class="h2">Программа марафона:</div>
+
+                    <div class="col-xs-12 col-md-12 col-sm-12">
+                        <ul class="reg-list text-left">
+                            <li>привычки здорового образа жизни: питьё воды, правильное питание без перекусов и переедания, чистка языка, физические упражнения, режим сна и подъёмов;</li>
+                            <li>вкусные полезные рецепты;</li>
+                            <li>асаны;</li>
+                            <li>медитация;</li>
+                            <li>йога-танец каушики;</li>
+                            <li>дополнительные техники йоги;</li>
+                            <li>психологические практики;</li>
+                            <li>натуральные терапии для здоровья;</li>
+                            <li>по желанию детокс-программа (4 варианта прохождения).</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-12 col-md-12 col-sm-12">
+                        <img src="img/reg_foto_practice.jpg" class="img-responsive img_reg" />
+                    </div>
+                </div>
+            </div>
+
+            <div id="reg_step_5" class="row" hidden>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="h3 pull-left" align="center">Шаг 5/6</div>
+                    <button id="btn_reg_step_5" type="button" class="btn_reg btn btn-success pull-right btn_reg_next">Участвовать
+                    </button>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped active"
+                             role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"
+                             style="width: 75%">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div>
+
+                    <div align="center" class="h2">Кто мы?</div>
+
+                    <div class="col-xs-12 col-md-12 col-sm-12">
+                        <ul class="reg-list text-left">
+                            <li>Максим и Анастасия Погуляевы, занимаемся йогой и медитацией с 2015 года;</li>
+                            <li>В начале 2018 мы прошли обучение йога-натуропатии на Филиппинах в йога-центре AMYWC, куда приезжают люди со всего мира, чтобы стать здоровыми;</li>
+                            <li>После обучения вместе с единомышленниками запустили проект, в общей сложности над проектом работает более 10 человек;</li>
+                            <li>Чтобы как можно больше людей могли получить пользу от проекта, оплата свободная по возможностям.</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-12 col-md-12 col-sm-12">
+                        <img src="img/reg_foto_we.jpg" class="img-responsive img_reg" />
+                    </div>
+                </div>
+            </div>
+
+            <div id="reg_step_6" class="row" >
+                <!--
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="h3 pull-left" align="center">Шаг 6/6</div>
+                </div> -->
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <!-- <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped active"
+                             role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"
+                             style="width: 90%">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div> -->
+
+                    <br/>
+                    <div align="center" class="payment_header"><b>Оплата марафона <span class="black_color">H</span>Y<span class="black_color">LS</span></b>
+                        <br>
+                        <span class="black_color"><b>Старт 04.07.2018</b></span>
+                    </div>
+
+                    <div class="col-xs-12 col-md-12 col-sm-12 text-left">
+                        <div class="reg-text">Мы хотим, чтобы любой человек мог участвовать в марафоне, поэтому
+                            оплата марафона <b>свободная</b> - вы сами выбираете приемлемую для вас стоимость. </div>
+                        <div class="reg-text">
+                            Рекомендации (цены указаны с учётом вашего бонуса 700 р.). Если у вас нет бонуса, прибавляйте к цифрам +700 р.</div>
+
+                        <div class="reg-text">
+                            <ul>
+                                <li><b>До 3300 р.</b> — любая сумма, для людей с финансовыми трудностями
+                                    (если ваш доход меньше 15 т.р. в месяц). Вы получаете полный доступ к
+                                    марафону 60 дней, личному кабинету, практикам и чату с поддержкой кураторов</li>
+                                <li><b>От 3300 р. и выше</b> — полный доступ + возможность пользоваться материалами
+                                    после окончания марафона, а также возможность продолжать пользоваться личным
+                                    дневником с практиками</li>
+                                <li><b>От 4500 р. и выше</b> — спасибо, вы даёте возможность участвовать людям с
+                                    низкими финансовыми возможностями. Для вас дополнительный бонус помимо всего
+                                    перечисленного выше: 4 аудиозаписи для полного расслабления тела и психики,
+                                    йога-нидра (практики нет в марафоне)</li>
+                                <li><b>От 8300 р. и выше</b> —  вы настоящие меценаты проекта. Спасибо за поддержку!
+                                    Для вас помимо всего выше Бонус — консультация высококвалифицированного специалиста,
+                                    врача-натуропата Александра Лесничева.
+                                    Подробнее <a href="https://hyls.ru/bonus" target="_blank" class="reg_link">по ссылке</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="reg-text">
+                            Оплата с карты любой страны!
+                        </div>
+
+                    </div>
+
+                    <!--  <div id="reg_currency" hidden>
+                          <div class="btn-group btn-group-justified" role="group" aria-label="">
+                              <div class="btn-group" role="group">
+                                  <button type="button" class="btn btn-default pay_currency_reg_daily" value="RUB">RUB</button>
+                              </div>
+                              <div class="btn-group" role="group">
+                                  <button type="button" class="btn btn-default pay_currency_reg" value="UAH">UAH</button>
+                              </div>
+                              <div class="btn-group" role="group">
+                                  <button type="button" class="btn btn-default pay_currency_reg" value="KZT">KZT</button>
+                              </div>
+                              <div class="btn-group" role="group">
+                                  <button type="button" class="btn btn-default pay_currency_reg" value="BYN">BYN</button>
+                              </div>
+                              <div class="btn-group" role="group">
+                                  <button type="button" class="btn btn-default pay_currency_reg" value="USD">USD</button>
+                              </div>
+                              <div class="btn-group" role="group">
+                                  <button type="button" class="btn btn-default pay_currency_reg" value="EUR">EUR</button>
+                              </div>
+                          </div>
+                      </div>
+                     -->
+
+                    <div id="checkout_reg_daily"></div>
+
+                    <!--
+                                            <div class="reg-text">Если вы сильно сомневаетесь в проекте или у вас нет денег для участия, вы
+                                                можете</div>
+                                            <button id="btn_reg_no_money" type="button" class="btn btn-warning btn-lg">Начать участие без оплаты</button>
+                    -->
+                    <br/>
+                    <br/>
+                    <div class="reg-text">
+                        Если у вас возникли вопросы или сложности с оплатой, свяжитесь с нами: <a href="mailto:info@hyls.ru" class="reg_link" target="_blank">info@hyls.ru</a>,
+                        <a href="https://vk.com/hyls_ru" target="_blank" class="reg_link">ВКонтакте</a>, <a href="https://www.facebook.com/HYLS.ru" target="_blank" class="reg_link">Facebook</a> или WhatsApp +7(923)416-60-72
+                    </div>
+                    <!--
+                      <div align="center">
+                          <div class="col-xs-3"><a href="https://vk.com/hyls_ru" target="_blank"><img class="social_btn" src="img/social_vk.png">     </a></div>
+                          <div class="col-xs-3"><a href="https://www.facebook.com/HYLS.ru" target="_blank"><img class="social_btn" src="img/social_fb.png">     </a></div>
+                          <div class="col-xs-3"><a href="https://www.instagram.com/hyls.ru/" target="_blank"><img class="social_btn" src="img/social_insta.png">  </a></div>
+                          <div class="col-xs-3"><a href="https://www.youtube.com/HYLS_ru" target="_blank"><img class="social_btn" src="img/social_youtube.png"></a></div>
+                      </div>
+                      -->
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+        <div id="marafon_mini"         class="col-xs-12 col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3" align="center">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <br/>
+                <div align="center" class="payment_header"><b>Оплата мини-марафона <span class="black_color">H</span>Y<span class="black_color">LS</span></b>
+                    <br>
+                    <span class="black_color"><b>Старт 02.07.2018</b></span>
+                </div>
+
+                <div class="text-left">
+                    <div class="reg-text">Текст текст текст. Текст текст текст. Текст текст текст. Текст текст текст.
+                                          Текст текст текст. Текст текст текст. Текст текст текст. Текст текст текст.
+                                          Текст текст текст. Текст текст текст. Текст текст текст. Текст текст текст. </div>
+                    <div class="reg-text">
+                        Текст текст текст. Текст текст текст. Текст текст текст. Текст текст текст. Выберите практики</div>
+                </div>
+
+                <div align="left" class="reg_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="reg_checkbox_water" class="reg_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="reg_mini_practic_text">Практика питья воды<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png"  data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
+                </div>
+
+                <div align="left" class="reg_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="reg_checkbox_detox" class="reg_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="reg_mini_practic_text">Детокс программа<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png"  data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
+                </div>
+
+                <div align="left" class="reg_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="reg_checkbox_wareup" class="reg_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="reg_mini_practic_text">Ранние подъемы<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png"></a> </span>
+                </div>
+
+                <div align="left" class="reg_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="reg_checkbox_snacking" class="reg_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="reg_mini_practic_text">Без перекусов переедания и сахара<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
+                </div>
+
+                <div align="left" class="reg_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="reg_checkbox_thanks" class="reg_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="reg_mini_practic_text">Благодарности<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
+                </div>
+
+                <div align="left" class="reg_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="reg_checkbox_family" class="reg_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="reg_mini_practic_text">Без ссор в семье<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
+                </div>
+
+                <div align="left" class="reg_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="reg_checkbox_vegan" class="reg_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="reg_mini_practic_text">Вегетарианская диета<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
+                </div>
+
+                <div align="left" class="reg_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="reg_checkbox_kaoshiki" class="reg_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="reg_mini_practic_text">Каушики<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
+                </div>
+
+                <div align="left" class="reg_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="reg_checkbox_asana" class="reg_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="reg_mini_practic_text">Базовые асаны + самомассаж<a href="https://hyls.ru" target="_blank" ><img class="icon_question" src="img/icon_question.png"  data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
+                </div>
+
+                <div align="left" class="reg_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="reg_checkbox_meditation" class="reg_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="reg_mini_practic_text">Медитация<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
+                </div>
+
+
+                <br/>
+
+                <div id="reg_mini_cost"></div>
+                <br/>
+
+                <div id="div_btn_pay_mini" hidden>
+                    <button id="btn_pay_mini" type="button" class="btn btn-success btn-lg btn-block">Оплатить</button>
+                </div>
+
+                <div id="div_checkout_reg_mini" hidden>
+                    <div id="checkout_reg_mini"></div>
+
+                    <br/>
+                    <br/>
+                    <div class="reg-text">
+                        Если у вас возникли вопросы или сложности с оплатой, свяжитесь с нами: <a href="mailto:info@hyls.ru" class="reg_link" target="_blank">info@hyls.ru</a>,
+                        <a href="https://vk.com/hyls_ru" target="_blank" class="reg_link">ВКонтакте</a>, <a href="https://www.facebook.com/HYLS.ru" target="_blank" class="reg_link">Facebook</a> или WhatsApp +7(923)416-60-72
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
 
     <div id="page_user_programm"  class="container-fluid">
-        <div id="user_marafon_reg" hidden>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3" align="center">
-                <div id="reg_step_1" class="row" hidden>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="h3 pull-left" align="center">Шаг 1/6</div>
-                        <button id="btn_reg_step_1" type="button" class="btn_reg btn btn-success pull-right btn_reg_next">Далее</button>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success progress-bar-striped active"
-                                 role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
-                                <span class="sr-only"></span>
-                            </div>
-                        </div>
-
-                        <div align="center" class="h2">Марафон йоги и здоровья H<span class="yoga_color">Y</span>LS, 60 дней:</div>
-
-                        <img id="reg_foto_logo" src="img/reg_foto_logo2.png" class="img-responsive img_reg" />
-                        <div id="hidden_info_reg" hidden>
-                            <button id="btn_reg_exit" type="button" class="btn btn-link">Выход
-                                <span id="user_wait_id"></span>
-                            </button>
-
-                            <!--   <button id="btn_send_payment" type="button" class="btn btn-link">send_payment</button> -->
-                        </div>
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                            <ul class="reg-list text-left">
-                                <li>Улучшает здоровье натуральными способами;</li>
-                                <li>Дисциплинирует и прививает привычки ЗОЖ;</li>
-                                <li>Обучает йоге и медитации;</li>
-                                <li>Вдохновляет на изменения в жизни.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="reg_step_2" class="row" hidden>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="h3 pull-left" align="center">Шаг 2/6</div>
-                        <button id="btn_reg_step_2" type="button" class="btn_reg btn btn-success pull-right btn_reg_next">Далее
-                        </button>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success progress-bar-striped active"
-                                 role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"
-                                 style="width: 30%">
-                                <span class="sr-only"></span>
-                            </div>
-                        </div>
-                        <div align="center" class="h2">Почему стоит пройти HYLS?</div>
-
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                            <img src="img/reg_foto_2.jpg" class="img-responsive img_reg" />
-                        </div>
-
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                            <ul class="reg-list text-left">
-                                <li>Уже после 2 недель более 50% участников отмечают позитивные изменения в здоровье и психике;</li>
-                                <li>Личный дневник практик индивидуально подстраивается под участника, реально мотивирует и дисциплинирует;</li>
-                                <li>Вдохновляет и не знакомых с йогой людей, и опытных практикующих.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="reg_step_3" class="row" hidden>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="h3 pull-left" align="center">Шаг 3/6</div>
-                        <button id="btn_reg_step_3" type="button" class="btn_reg btn btn-success pull-right btn_reg_next">Далее
-                        </button>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success progress-bar-striped active"
-                                 role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"
-                                 style="width: 45%">
-                                <span class="sr-only"></span>
-                            </div>
-                        </div>
-
-                        <div align="center" class="h2">Как проходит марафон?</div>
-
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                            <ul class="reg-list text-left">
-                                <li>Ежедневно получаете и изучаете материалы в удобное вам время;</li>
-                                <li>Общаетесь в чате группы, задаёте вопросы и делитесь опытом;</li>
-                                <li>Ведёте личный дневник практик, который подстраивается под вас.</li>
-                            </ul>
-                        </div>
-
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                            <img src="img/reg_foto_4.png" class="img-responsive img_reg" />
-                        </div>
-                    </div>
-                </div>
-
-                <div id="reg_step_4" class="row" hidden>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="h3 pull-left" align="center">Шаг 4/6</div>
-                        <button id="btn_reg_step_4" type="button" class="btn_reg btn btn-success pull-right btn_reg_next">Далее
-                        </button>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success progress-bar-striped active"
-                                 role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"
-                                 style="width: 60%">
-                                <span class="sr-only"></span>
-                            </div>
-                        </div>
-
-                        <div align="center" class="h2">Программа марафона:</div>
-
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                            <ul class="reg-list text-left">
-                                <li>привычки здорового образа жизни: питьё воды, правильное питание без перекусов и переедания, чистка языка, физические упражнения, режим сна и подъёмов;</li>
-                                <li>вкусные полезные рецепты;</li>
-                                <li>асаны;</li>
-                                <li>медитация;</li>
-                                <li>йога-танец каушики;</li>
-                                <li>дополнительные техники йоги;</li>
-                                <li>психологические практики;</li>
-                                <li>натуральные терапии для здоровья;</li>
-                                <li>по желанию детокс-программа (4 варианта прохождения).</li>
-                            </ul>
-                        </div>
-
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                            <img src="img/reg_foto_practice.jpg" class="img-responsive img_reg" />
-                        </div>
-                    </div>
-                </div>
-
-                <div id="reg_step_5" class="row" hidden>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="h3 pull-left" align="center">Шаг 5/6</div>
-                        <button id="btn_reg_step_5" type="button" class="btn_reg btn btn-success pull-right btn_reg_next">Участвовать
-                        </button>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success progress-bar-striped active"
-                                 role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"
-                                 style="width: 75%">
-                                <span class="sr-only"></span>
-                            </div>
-                        </div>
-
-                        <div align="center" class="h2">Кто мы?</div>
-
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                            <ul class="reg-list text-left">
-                                <li>Максим и Анастасия Погуляевы, занимаемся йогой и медитацией с 2015 года;</li>
-                                <li>В начале 2018 мы прошли обучение йога-натуропатии на Филиппинах в йога-центре AMYWC, куда приезжают люди со всего мира, чтобы стать здоровыми;</li>
-                                <li>После обучения вместе с единомышленниками запустили проект, в общей сложности над проектом работает более 10 человек;</li>
-                                <li>Чтобы как можно больше людей могли получить пользу от проекта, оплата свободная по возможностям.</li>
-                            </ul>
-                        </div>
-
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                            <img src="img/reg_foto_we.jpg" class="img-responsive img_reg" />
-                        </div>
-                    </div>
-                </div>
-
-                <div id="reg_step_6" class="row" >
-                    <!--
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="h3 pull-left" align="center">Шаг 6/6</div>
-                    </div> -->
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <!-- <div class="progress">
-                            <div class="progress-bar progress-bar-success progress-bar-striped active"
-                                 role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"
-                                 style="width: 90%">
-                                <span class="sr-only"></span>
-                            </div>
-                        </div> -->
-
-                        <br/>
-                        <div align="center" class="payment_header"><b>Оплата марафона <span class="black_color">H</span>Y<span class="black_color">LS</span></b>
-                            <br>
-                            <span class="black_color"><b>Старт 27.06.2018</b></span>
-                        </div>
-
-                        <div class="col-xs-12 col-md-12 col-sm-12 text-left">
-
-
-
-                            <div class="reg-text">Мы хотим, чтобы любой человек мог участвовать в марафоне, поэтому
-                                оплата марафона <b>свободная</b> - вы сами выбираете приемлемую для вас стоимость. </div>
-                            <div class="reg-text">
-                                Рекомендации (цены указаны с учётом вашего бонуса 700 р.). Если у вас нет бонуса, прибавляйте к цифрам +700 р.</div>
-
-                            <div class="reg-text">
-                                <ul>
-                                    <li><b>До 3300 р.</b> — любая сумма, для людей с финансовыми трудностями
-                                        (если ваш доход меньше 15 т.р. в месяц). Вы получаете полный доступ к
-                                        марафону 60 дней, личному кабинету, практикам и чату с поддержкой кураторов</li>
-                                    <li><b>От 3300 р. и выше</b> — полный доступ + возможность пользоваться материалами
-                                        после окончания марафона, а также возможность продолжать пользоваться личным
-                                        дневником с практиками</li>
-                                    <li><b>От 4500 р. и выше</b> — спасибо, вы даёте возможность участвовать людям с
-                                        низкими финансовыми возможностями. Для вас дополнительный бонус помимо всего
-                                        перечисленного выше: 4 аудиозаписи для полного расслабления тела и психики,
-                                        йога-нидра (практики нет в марафоне)</li>
-                                    <li><b>От 8300 р. и выше</b> —  вы настоящие меценаты проекта. Спасибо за поддержку!
-                                        Для вас помимо всего выше Бонус — консультация высококвалифицированного специалиста,
-                                        врача-натуропата Александра Лесничева.
-                                        Подробнее <a href="https://hyls.ru/bonus" target="_blank" class="reg_link">по ссылке</a></li>
-                                </ul>
-                            </div>
-
-                            <div class="reg-text">
-                                Оплата с карты любой страны!
-                            </div>
-
-                        </div>
-
-                      <!--  <div id="reg_currency" hidden>
-                            <div class="btn-group btn-group-justified" role="group" aria-label="">
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default pay_currency_reg_daily" value="RUB">RUB</button>
-                                </div>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default pay_currency_reg" value="UAH">UAH</button>
-                                </div>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default pay_currency_reg" value="KZT">KZT</button>
-                                </div>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default pay_currency_reg" value="BYN">BYN</button>
-                                </div>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default pay_currency_reg" value="USD">USD</button>
-                                </div>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default pay_currency_reg" value="EUR">EUR</button>
-                                </div>
-                            </div>
-                        </div>
-                       -->
-
-                        <div id="checkout_reg_daily"></div>
-
-<!--
-                        <div class="reg-text">Если вы сильно сомневаетесь в проекте или у вас нет денег для участия, вы
-                            можете</div>
-                        <button id="btn_reg_no_money" type="button" class="btn btn-warning btn-lg">Начать участие без оплаты</button>
--->
-                        <br/>
-                        <br/>
-                        <div class="reg-text">
-                            Если у вас возникли вопросы или сложности с оплатой, свяжитесь с нами: <a href="mailto:info@hyls.ru" class="reg_link" target="_blank">info@hyls.ru</a>,
-                            <a href="https://vk.com/hyls_ru" target="_blank" class="reg_link">ВКонтакте</a>, <a href="https://www.facebook.com/HYLS.ru" target="_blank" class="reg_link">Facebook</a> или WhatsApp +7(923)416-60-72
-                        </div>
-                        <!--
-                          <div align="center">
-                              <div class="col-xs-3"><a href="https://vk.com/hyls_ru" target="_blank"><img class="social_btn" src="img/social_vk.png">     </a></div>
-                              <div class="col-xs-3"><a href="https://www.facebook.com/HYLS.ru" target="_blank"><img class="social_btn" src="img/social_fb.png">     </a></div>
-                              <div class="col-xs-3"><a href="https://www.instagram.com/hyls.ru/" target="_blank"><img class="social_btn" src="img/social_insta.png">  </a></div>
-                              <div class="col-xs-3"><a href="https://www.youtube.com/HYLS_ru" target="_blank"><img class="social_btn" src="img/social_youtube.png"></a></div>
-                          </div>
-                          -->
-                      </div>
-                  </div>
-                  <br/>
-                  <br/>
-                  <br/>
-              </div>
-        </div>
-
         <div id="user_marafon_wait" class="row" hidden>
               <br/>
               <br/>
@@ -2122,8 +2238,6 @@
             </div>
         </div>
     </div>
-
-
 
     <div id="page_user_diary"     class="container-fluid">
         <div class="row">
