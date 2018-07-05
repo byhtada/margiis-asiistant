@@ -584,8 +584,9 @@ $( document ).ready(function() {
             reg_practic_counter -= 1;
         }
 
-        switch ($(this).id){
+        switch ($(this).attr("id")){
             case "reg_checkbox_water":
+                console.log("check_water");
                 reg_mini_water = $(this).is(":checked");
                 break;
             case "reg_checkbox_detox":
@@ -613,20 +614,6 @@ $( document ).ready(function() {
                 reg_mini_asana = $(this).is(":checked");
                 break;
         }
-
-        mini_marafon_all = {
-            reg_mini_water: reg_mini_water,
-            reg_mini_detox: reg_mini_detox,
-            reg_mini_wake_up: reg_mini_wake_up,
-            reg_mini_snacking: reg_mini_snacking,
-            reg_mini_thanks: reg_mini_thanks,
-            reg_mini_family: reg_mini_family,
-            reg_mini_vegan: reg_mini_vegan,
-            reg_mini_kaoshiki: reg_mini_kaoshiki,
-            reg_mini_asana: reg_mini_asana
-        };
-        console.log(mini_marafon_all);
-
 
 
         console.log(reg_practic_counter);
