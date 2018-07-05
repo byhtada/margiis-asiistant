@@ -1552,7 +1552,7 @@ $( document ).ready(function() {
 
 
                     if (data.marafon_day < -998) {
-                        $('#marafon_create_password').hide();
+                        $('#reg_marafon_create_password').hide();
                         $('#page_marafon_reg').show();
                         data.user.program_type.includes("21day") ? $('#reg_marafon_mini').show() : $('#reg_marafon_detox').show()
 
