@@ -39,8 +39,6 @@ $( document ).ready(function() {
         ifLogin();
         $('#btn_fb_log_in').hide();
     } else {
-
-
         window.fbAsyncInit = function() {
             FB.init({
                 appId      : '309469549587161',
@@ -55,7 +53,6 @@ $( document ).ready(function() {
 
 
         };
-
         (function(d, s, id){
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) {return;}
@@ -63,10 +60,6 @@ $( document ).ready(function() {
             js.src = "https://connect.facebook.net/en_US/sdk.js#version=v3.0&appId=309469549587161&status=true&cookie=true&xfbml=true";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
-
-
-
-
     }
 
     var programm_days_main;
@@ -217,11 +210,15 @@ $( document ).ready(function() {
                     $("#modal_register_self").modal('show');
                 }
             } else if (typeof params.access_token == 'undefined') {
-
+                console.log("access_token == 'undefined'");
                 if (params.hyls_program === "21days") {
+                    console.log("21 da");
+
+
                     $('#page_user_main').show();
                     $('#page_marafon_reg').show();
                 } else {
+                    console.log("no 21 da");
                     $("#page_login").show();
                 }
             }
