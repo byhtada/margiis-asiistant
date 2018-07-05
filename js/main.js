@@ -213,8 +213,6 @@ $( document ).ready(function() {
                 console.log("access_token == 'undefined'");
                 if (params.hyls_program === "21days") {
                     console.log("21 da");
-
-
                     $('#page_user_main').show();
                     $('#page_marafon_reg').show();
                     $('#reg_marafon_create_password').show();
