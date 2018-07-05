@@ -244,7 +244,7 @@ $( document ).ready(function() {
                 $('#reg_marafon_btn').prop("disabled", false);
                 if (data.error === 0){
                     console.log("error == 0");
-                    setCookie(cookie_name_token, data.token, {expires: 36000000000000});
+                    setCookie(cookie_name_token, data.auth_token, {expires: 36000000000000});
                     setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
                     cookie_token = getCookie(cookie_name_token);
                     ifLogin();
