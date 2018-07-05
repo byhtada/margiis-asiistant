@@ -217,6 +217,7 @@ $( document ).ready(function() {
 
                     $('#page_user_main').show();
                     $('#page_marafon_reg').show();
+                    $('#reg_marafon_create_password').show();
                 } else {
                     console.log("no 21 da");
                     $("#page_login").show();
