@@ -19,6 +19,25 @@ html {
 
 h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 
+
+#div_btn_hyls_store {margin-bottom: 5px;}
+.material_new {display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 18px;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    background-color: #79b23f;
+    color: #ffffff;
+}
+
+.div_material_unread {background-color: rgba(59, 155, 0, 0.1)
+}
+
+
+
 #load_logo     {
     width: 414px;
     height: 164px;
@@ -60,7 +79,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 
 
 .social_btn {width: 66%}
-#btn_social_practic {padding-left: 0 !important;  font-size: 17px;}
+#btn_social_practic, #btn_social_practic_mini {padding-left: 0 !important;  font-size: 17px;}
 
 
 .img_reg {padding-bottom: 10px; padding-top: 10px;}
@@ -69,6 +88,13 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 
 
 #btn_meditation_edit, #btn_kaoshiki_edit {height: 66px !important;}
+
+.question_mini {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(70, 216, 70, 0.15)
+}
 
 #table_question_detox, #detox_settings, #table_question_therapy, #practise_continue_settings {
     margin-top: 15px;
