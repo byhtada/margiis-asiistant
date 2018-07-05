@@ -161,11 +161,12 @@ $( document ).ready(function() {
         });
     }
     function ifLogin()  {
-        //console.log(cookie_token);
+        console.log("ifLogin");
         if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
             clearInterval(timerId);
             start();
         } else {
+            console.log("no cookie");
             hide_all_in_user();
             timerId = setInterval(function() {
                 //  console.log( "тик" );
