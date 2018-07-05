@@ -617,6 +617,18 @@ $( document ).ready(function() {
                 break;
         }
 
+        mini_marafon_all = {
+            reg_mini_water: reg_mini_water,
+            reg_mini_detox: reg_mini_detox,
+            reg_mini_wake_up: reg_mini_wake_up,
+            reg_mini_snacking: reg_mini_snacking,
+            reg_mini_thanks: reg_mini_thanks,
+            reg_mini_family: reg_mini_family,
+            reg_mini_vegan: reg_mini_vegan,
+            reg_mini_kaoshiki: reg_mini_kaoshiki,
+            reg_mini_asana: reg_mini_asana
+        };
+        console.log(mini_marafon_all);
 
 
 
@@ -1558,6 +1570,8 @@ $( document ).ready(function() {
                             $('#reg_marafon_mini').show();
                             console.log("mini");
                         } else {
+
+
                             $('#reg_marafon_detox').show();
                             console.log("detox");
                         }
