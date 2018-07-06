@@ -3192,8 +3192,7 @@ $( document ).ready(function() {
                 $('#social_practic_description_mini').text(social_practic_description);
             }
             if (water_active)          {
-                console.log(" water_active");
-                console.log(water_read_material);
+
                 if (water_read_material){
                     console.log(" water_read_material");
                     if (water_ask_question){
@@ -3244,6 +3243,8 @@ $( document ).ready(function() {
             }
             if (thanks_active)     {
                 if (thanks_read_material){
+                    console.log("thanks");
+                    console.log(thanks_fact);
                     $('#row_thanks_mini').show();
                     $('#filed_thanks_plan_mini').val(thanks_target);
                     $('#filed_thanks_fact_mini').val(thanks_fact);
@@ -3323,7 +3324,7 @@ $( document ).ready(function() {
             snacking_over_fact  != null && snacking_over_fact != false  ?  $('#filed_overeat_mini') .prop("checked", true) : $('#filed_overeat_mini') .prop("checked", false);
             snacking_sugar_fact != null && snacking_sugar_fact != false ?  $('#filed_sugar_mini')   .prop("checked", true) : $('#filed_sugar_mini')   .prop("checked", false);
 
-            thanks_fact != null && thanks_fact !=false   ?  $('#filed_thanks_fact_mini').val(meditation_day_fact)   : $('#filed_thanks_fact_mini').val();
+            thanks_fact != null && thanks_fact !=false   ?  $('#filed_thanks_fact_mini').val(thanks_fact)   : $('#filed_thanks_fact_mini').val();
 
             family_no_critic_fact    != null && family_no_critic_fact    != false ?  $('#filed_family_no_critic_mini')   .prop("checked", true) : $('#filed_family_no_critic_mini')   .prop("checked", false);
             family_benevolence_fact  != null && family_benevolence_fact  != false ?  $('#filed_family_benevolence_mini') .prop("checked", true) : $('#filed_family_benevolence_mini') .prop("checked", false);

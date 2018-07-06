@@ -172,7 +172,6 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .db_row_input        {border: 0; padding: 0; width:  100px; }
 .div_row_fact {align-items: center; align-content: center;}
 .db_row_input_admin  {border: 0; width:  200px; padding-left: 10px;}
-.db_row_reg  {border: 0; width:  100; padding-left: 10px;}
 
 
 
@@ -435,25 +434,26 @@ a.reg-link-text {
 .reg_practiv_div {margin-left: 45px;}
 #reg_mini_cost{font-size: 35px; color:  #46d444}
 
-div#marafon_mini div.pretty {
+
+.reg_practiv_div div.pretty {
     margin-right: 0;
 }
 
-div#marafon_mini div.state {
+.reg_practiv_div div.state {
     margin: -10px 0;
     padding: 0;
     padding-bottom: 10px;
 }
 
-div#marafon_mini td.db_row_input div.pretty:nth-child(2) {
+.reg_practiv_div td.db_row_input div.pretty:nth-child(2) {
     margin-left: 20px;
 }
 
-div#marafon_mini table.table > tbody > tr > td {
+.reg_practiv_div table.table > tbody > tr > td {
     vertical-align: text-top;
 }
 
-div#marafon_mini td.db_row_input {
+.reg_practiv_div td.db_row_input {
     text-align: center;
 }
 
