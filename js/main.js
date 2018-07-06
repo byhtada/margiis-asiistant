@@ -3138,7 +3138,7 @@ $( document ).ready(function() {
                     case "water":
                         console.log(material_num);
                         console.log(item.material_read);
-                        material_num === 1 && item.material_read === true ? water_read_material = true :  water_read_material = false;
+                        material_num === 1 && item.material_read === true ? water_read_material = true :  "";
                         break;
                     case "detox":
                         material_num === 1 && item.material_read === true ? detox_read_material = true    :  "";
