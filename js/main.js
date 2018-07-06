@@ -3241,8 +3241,6 @@ $( document ).ready(function() {
             }
             if (thanks_active)     {
                 if (thanks_read_material){
-                    console.log("thanks");
-                    console.log(thanks_fact);
                     $('#row_thanks_mini').show();
                     $('#filed_thanks_plan_mini').val(thanks_target);
                     $('#filed_thanks_fact_mini').val(thanks_fact);

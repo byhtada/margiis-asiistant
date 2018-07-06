@@ -174,8 +174,8 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .db_row_input_admin  {border: 0; width:  200px; padding-left: 10px;}
 
 
-.diary_mini_day       {max-width: 40px;}
-.diary_mini_procent   {max-width: 90px;}
+.diary_mini_day       {width: 40px; max-width: 40px !important;}
+.diary_mini_procent   {width: 90px; max-width: 90px !important;}
 
 
 div.reg-header {
