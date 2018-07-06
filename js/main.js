@@ -3761,7 +3761,7 @@ $( document ).ready(function() {
 
     function setUserDiaryMini(diary){
         var diary_row = '<table class="table table-hover table-bordered table-condensed" >';
-        diary_row    += '<thead><tr> <th>День</th> <th>Выполнено</th><th>Заметки</th></tr></thead><tbody>';
+        diary_row    += '<thead><tr> <th class="diary_mini_day">День</th> <th class="diary_mini_procent">Выполнено</th><th>Заметки</th></tr></thead><tbody>';
         $.each(diary, function (i, item) {
             diary_row += '<tr>';
             diary_row += '<td><h5 align="center"><a href="#" class="diary_day_mini reg_link" name="' + item.day_num +'">' + item.day_num + '</a></h5></td>';
