@@ -3136,21 +3136,19 @@ $( document ).ready(function() {
                 var material_num = parseInt(item.material_num);
                 switch (item.material_for_practic){
                     case "water":
+                        console.log(material_num);
+                        console.log(item.material_read);
                         material_num === 1 && item.material_read === true ? water_read_material = true :  water_read_material = false;
                         break;
-
                     case "detox":
                         material_num === 1 && item.material_read === true ? detox_read_material = true :  detox_read_material = false;
                         break;
-
                     case "wake_up":
                         material_num === 1 && item.material_read === true ? wake_up_read_material = true :  wake_up_read_material = false;
                         break;
-
                     case "snacking":
                         material_num === 1 && item.material_read === true ? snacking_read_material = true :  snacking_read_material = false;
                         break;
-
                     case "thanks":
                         material_num === 1 && item.material_read === true ? thanks_read_material = true :  thanks_read_material = false;
                         break;
@@ -3183,7 +3181,7 @@ $( document ).ready(function() {
             detox_description       == null  ? detox_ask_question      = false : detox_ask_question = true;
             wake_up_hours_target    == null  ? wake_up_ask_question    = false : wake_up_ask_question = true;
             kaoshiki_minutes_target == null  ? kaoshiki_ask_question   = false : kaoshiki_ask_question = true;
-            asana_active_1          == null ? asana_ask_question      = false : asana_ask_question = true;
+            asana_active_1          == null  ? asana_ask_question      = false : asana_ask_question = true;
             meditation_day_target   == null  ? meditation_ask_question = false : meditation_ask_question = true;
 
 
@@ -3195,12 +3193,14 @@ $( document ).ready(function() {
             }
             if (water_active)          {
                 console.log(" water_active");
+                console.log(water_read_material);
                 if (water_read_material){
                     console.log(" water_read_material");
                     if (water_ask_question){
                         console.log("show row_water_mini");
                         $('#row_water_mini').show();
                         $('#filed_water_plan_mini').val(water_target);
+                        $('#filed_water_fact_mini').val(water_fact);
                     } else {
                         console.log("show question_water_mini");
                         $('#question_water_mini').show();
@@ -3246,6 +3246,7 @@ $( document ).ready(function() {
                 if (thanks_read_material){
                     $('#row_thanks_mini').show();
                     $('#filed_thanks_plan_mini').val(thanks_target);
+                    $('#filed_thanks_fact_mini').val(thanks_fact);
                 }
             }
             if (family_active)     {
@@ -3892,7 +3893,7 @@ $( document ).ready(function() {
                     update_user_info();
                     alert("Оплачено! Теперь Вы можете изучить материал в своей закладке 'Материал'");
                 } else if (data.error === 1){
-                    alert("Недостаточно баллов для покупки");
+                    alert("Недостаточно монет для покупки");
                 } else if (data.error === 2) {
                     alert("Сначала Вы должны пройти предыдущий материал по практике");
                 }
