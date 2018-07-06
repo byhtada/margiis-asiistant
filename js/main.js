@@ -3141,31 +3141,31 @@ $( document ).ready(function() {
                         material_num === 1 && item.material_read === true ? water_read_material = true :  water_read_material = false;
                         break;
                     case "detox":
-                        material_num === 1 && item.material_read === true ? detox_read_material = true :  detox_read_material = false;
+                        material_num === 1 && item.material_read === true ? detox_read_material = true    :  "";
                         break;
                     case "wake_up":
-                        material_num === 1 && item.material_read === true ? wake_up_read_material = true :  wake_up_read_material = false;
+                        material_num === 1 && item.material_read === true ? wake_up_read_material = true  :  "";
                         break;
                     case "snacking":
-                        material_num === 1 && item.material_read === true ? snacking_read_material = true :  snacking_read_material = false;
+                        material_num === 1 && item.material_read === true ? snacking_read_material = true :  "";
                         break;
                     case "thanks":
-                        material_num === 1 && item.material_read === true ? thanks_read_material = true :  thanks_read_material = false;
+                        material_num === 1 && item.material_read === true ? thanks_read_material = true :  "";
                         break;
                     case "family":
-                        material_num === 1 && item.material_read === true ? family_read_material = true :  family_read_material = false;
+                        material_num === 1 && item.material_read === true ? family_read_material = true :  "";
                         break;
                     case "vegan":
-                        material_num === 1 && item.material_read === true ? vegan_read_material = true :  vegan_read_material = false;
+                        material_num === 1 && item.material_read === true ? vegan_read_material = true :  "";
                         break;
                     case "kaoshiki":
-                        material_num === 1 && item.material_read === true ? kaoshiki_read_material = true :  kaoshiki_read_material = false;
+                        material_num === 1 && item.material_read === true ? kaoshiki_read_material = true :  "";
                         break;
                     case "asana":
-                        material_num === 1 && item.material_read === true ? asana_read_material = true :  asana_read_material = false;
+                        material_num === 1 && item.material_read === true ? asana_read_material = true :  "";
                         break;
                     case "meditation":
-                        material_num === 1 && item.material_read === true ? meditation_read_material = true :  meditation_read_material = false;
+                        material_num === 1 && item.material_read === true ? meditation_read_material = true : "";
                         break;
                 }
             });
