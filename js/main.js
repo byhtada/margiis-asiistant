@@ -3098,7 +3098,7 @@ $( document ).ready(function() {
 
             $('#filed_social_practic_mini')      .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_social_practic_mini')      .prop("checked", false).attr("data-day-num", day_num);
-            $('#filed_detox_mini')               .prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_detox_fact_mini')          .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_snacking_mini')            .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_overeat_mini')             .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_sugar_mini')               .prop("checked", false).attr("data-day-num", day_num);
@@ -3131,8 +3131,6 @@ $( document ).ready(function() {
             var asana_read_material    = false;
             var meditation_read_material    = false;
             $.each(materials, function (i, item) {
-
-
                 var material_num = parseInt(item.material_num);
                 switch (item.material_for_practic){
                     case "water":
@@ -3313,11 +3311,11 @@ $( document ).ready(function() {
                 var minutes = "";
                 wake_up_minutes_fact < 10 ? minutes = "0" + wake_up_minutes_fact : minutes = wake_up_minutes_fact;
 
-                $('#filed_wake_up_fact_hour').val(wake_up_hours_fact);
-                $('#filed_wake_up_fact_minute').val(minutes);
+                $('#filed_wake_up_fact_hour_mini').val(wake_up_hours_fact);
+                $('#filed_wake_up_fact_minute_mini').val(minutes);
             } else {
-                $('#filed_wake_up_fact_hour').val(null);
-                $('#filed_wake_up_fact_minute').val(null);
+                $('#filed_wake_up_fact_hour_mini').val(null);
+                $('#filed_wake_up_fact_minute_mini').val(null);
             }
 
             snacking_snack_fact != null && snacking_snack_fact != false ?  $('#filed_snacking_mini').prop("checked", true) : $('#filed_snacking_mini').prop("checked", false);
@@ -3394,7 +3392,7 @@ $( document ).ready(function() {
 
     var save_day_mini_timer;
 
-    $('#filed_social_practic_mini, #filed_detox_mini, #filed_snacking_mini, #filed_overeat_mini, #filed_sugar_mini, #filed_family_no_critic_mini, #filed_family_benevolence_mini, #filed_family_no_agression_mini, #filed_family_enjoy_mini, #filed_vegan_mini, #filed_asana_mini_1, #filed_asana_mini_2').change(function() {
+    $('#filed_social_practic_mini, #filed_detox_fact_mini, #filed_snacking_mini, #filed_overeat_mini, #filed_sugar_mini, #filed_family_no_critic_mini, #filed_family_benevolence_mini, #filed_family_no_agression_mini, #filed_family_enjoy_mini, #filed_vegan_mini, #filed_asana_mini_1, #filed_asana_mini_2').change(function() {
         console.log($(this).attr("data-day-num"));
         userSaveDayMini($(this).attr("data-day-num"));
     });
@@ -3414,7 +3412,7 @@ $( document ).ready(function() {
 
                 social_practic_fact:    $('#filed_social_practic_mini').is(':checked'),
                 water_fact:             $('#filed_water_fact_mini')        .val(),
-                detox_fact:             $('#filed_detox_mini')                   .is(':checked'),
+                detox_fact:             $('#filed_detox_fact_mini')        .is(':checked'),
                 wake_up_hours_fact:     $('#filed_wake_up_fact_hour_mini')      .val(),
                 wake_up_minutes_fact:   $('#filed_wake_up_fact_minute_mini')    .val(),
 
