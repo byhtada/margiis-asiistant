@@ -3771,9 +3771,9 @@ $( document ).ready(function() {
     $('#btn_question_meditation_save_mini').click(function (){
         $('#btn_question_meditation_save_mini').prop('disabled', true);
 
-        var meditation_start  = $('#question_meditation_start_mini').val();
-        var meditation_target = $('#question_meditation_target_mini').val();
-        var meditation_step   = $('#question_meditation_step_mini').val();
+        var meditation_start  = parseInt($('#question_meditation_start_mini').val());
+        var meditation_target = parseInt($('#question_meditation_target_mini').val());
+        var meditation_step   = parseInt($('#question_meditation_step_mini').val());
 
         if (meditation_start != "" && meditation_target != "" && meditation_step != ""){
             if (meditation_start < meditation_target) {
