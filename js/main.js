@@ -3325,6 +3325,7 @@ $( document ).ready(function() {
                 }
             }
             if (meditation_active) {
+                $('#div_buy_meditation').hide();
                 if (meditation_read_material) {
                     if (meditation_ask_question){
                         $('#row_meditation_day_mini').show();
