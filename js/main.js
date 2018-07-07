@@ -585,6 +585,7 @@ $( document ).ready(function() {
             reg_practic_counter -= 1;
         }
 
+        var alert_text = "К сожалению, вы не можете одновременно проходить марафоны вегетарианства и очищения организма, потому что их программы не сочетаются друг с другом. Выберете, пожалуйста, другие сочетания программ. ";
         switch ($(this).attr("id")){
             case "reg_checkbox_water":
                 console.log("check_water");
@@ -592,7 +593,7 @@ $( document ).ready(function() {
                 break;
             case "reg_checkbox_detox":
                 if ($(this).is(":checked") && reg_mini_vegan){
-                    alert("Можно выбрать только 1 практику или детокс или вегетарианство");
+                    alert(alert_text);
                     $(this).prop("checked", false);
                     reg_practic_counter -= 1;
                 } else { reg_mini_detox = $(this).is(":checked"); }
@@ -612,7 +613,7 @@ $( document ).ready(function() {
                 break;
             case "reg_checkbox_vegan":
                 if ($(this).is(":checked") && reg_mini_detox){
-                    alert("Можно выбрать только 1 практику или детокс или вегетарианство");
+                    alert(alert_text);
                     $(this).prop("checked", false);
                     reg_practic_counter -= 1;
                 } else { reg_mini_vegan = $(this).is(":checked"); }
