@@ -3479,9 +3479,9 @@ $( document ).ready(function() {
                 asana_fact_1:                 $('#filed_asana_mini_1').is(':checked'),
                 asana_fact_2:                 $('#filed_asana_mini_2').is(':checked'),
 
-                therapy_practic_fact:     $('#filed_tongue_day_mini')  .is(':checked'),
-                therapy_tongue_day:       $('#filed_tongue_night_mini').is(':checked'),
-                therapy_tongue_night:     $('#filed_therapy_mini')     .is(':checked'),
+                therapy_practic_fact:     $('#filed_therapy_mini')  .is(':checked'),
+                therapy_tongue_day:       $('#filed_tongue_day_mini').is(':checked'),
+                therapy_tongue_night:     $('#filed_tongue_night_mini')     .is(':checked'),
 
                 kaoshiki_minutes_fact:         $('#filed_kaoshiki_fact_mini')          .val(),
 
