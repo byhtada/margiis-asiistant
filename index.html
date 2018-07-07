@@ -653,6 +653,14 @@
                     <button value="thanks" type="button" class="btn btn-success btn_modal_create_material"  data-toggle="modal" data-target="#modal_create_material"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                 </h4>
                 <div id="table_materials_thanks"></div>
+
+                <br/>
+                <br/>
+                <h4 align="center">
+                    Материалы по натуральным терпиям
+                    <button value="therapy" type="button" class="btn btn-success btn_modal_create_material"  data-toggle="modal" data-target="#modal_create_material"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                </h4>
+                <div id="table_materials_therapy"></div>
             </div>
             <div class="col-xs-6">
 
@@ -1372,7 +1380,7 @@
                     <span class="reg_mini_practic_text">Детокс программа<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png"  data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
                 </div>
 
-                <div align="left" class="reg_practiv_div">
+                <div hidden align="left" class="reg_practiv_div">
                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                         <input type="checkbox"  id="reg_checkbox_wareup" class="reg_mini" />
                         <div class="state p-success-o"><label></label></div>
@@ -1380,7 +1388,7 @@
                     <span class="reg_mini_practic_text">Ранние подъемы<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png"></a> </span>
                 </div>
 
-                <div align="left" class="reg_practiv_div">
+                <div hidden align="left" class="reg_practiv_div">
                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                         <input type="checkbox"  id="reg_checkbox_snacking" class="reg_mini" />
                         <div class="state p-success-o"><label></label></div>
@@ -1396,7 +1404,7 @@
                     <span class="reg_mini_practic_text">Благодарности<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
                 </div>
 
-                <div align="left" class="reg_practiv_div">
+                <div hidden align="left" class="reg_practiv_div">
                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                         <input type="checkbox"  id="reg_checkbox_family" class="reg_mini" />
                         <div class="state p-success-o"><label></label></div>
@@ -1426,6 +1434,14 @@
                         <div class="state p-success-o"><label></label></div>
                     </div>
                     <span class="reg_mini_practic_text">Базовые асаны + самомассаж<a href="https://hyls.ru" target="_blank" ><img class="icon_question" src="img/icon_question.png"  data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
+                </div>
+
+                <div align="left" class="reg_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="reg_checkbox_therapy" class="reg_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="reg_mini_practic_text">Натуральные терапии<a href="https://hyls.ru" target="_blank" ><img class="icon_question" src="img/icon_question.png"  data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
                 </div>
 
 
@@ -1523,7 +1539,6 @@
                         <br/>
                         <br/>
                     </div>
-
                     <div id="table_question_wake_up" hidden>
                         <div id="wake_up_alert_no_answer"   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
                         <table class="table  table-hover">
@@ -2400,14 +2415,12 @@
                             </tr>
 
                             <tr class="db_row_dialog">
-                                <td valign="middle">      <h5>На сколько увеличивать кол-во воды каждый день?</h5></td>
+                                <td valign="middle">      <h5>На сколько увеличивать кол-во воды по сравнению с прошлым днем в мл?</h5></td>
                                 <td > <input type="text" class="form-control" id="question_water_step_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
                             </tr>
                             </tbody>
                         </table>
                         <button id="btn_question_water_save_mini"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                        <br/>
-                        <br/>
                     </div>
 
                     <div id="question_detox_mini" class="question_mini" hidden>
@@ -2536,8 +2549,6 @@
                             </tbody>
                         </table>
                         <button id="btn_question_kaoshiki_save_mini"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                        <br/>
-                        <br/>
                     </div>
 
                     <div id="question_asana_mini" class="question_mini" hidden>
@@ -2569,9 +2580,42 @@
                             </tbody>
                         </table>
                         <button id="btn_question_asana_save_mini"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                        <br/>
-                        <br/>
                     </div>
+
+                    <div id="question_therapy_mini" hidden>
+                        <div class="alert alert-danger"  role="alert">Пожалуйста, ответьте на вопросы ниже. От этого зависит дальнейшая программа</div>
+                        <table class="table  table-hover">
+                            <thead>
+                            <tr class="db_row_dialog">
+                                <td><h6 align="center"><b>Вопросы (отвечайте после прочтения материала)</b></h6></td>
+                                <td><h6 align="center"><b>Ваш ответ</b></h6></td>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr class="db_row_dialog">
+                                <td class="row_detox" valign="middle"><h5>Как часто вы планируете выполнять терапии?</h5></td>
+                                <td class="row_detox">
+                                    <div class="dropdown">
+                                        <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_therapy_type_mini">
+                                            Выберите вариант <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#" class="link_therapy_type_mini" name="1">Каждый день</a></li>
+                                            <li><a href="#" class="link_therapy_type_mini" name="2">1 раз в 2 дня</a></li>
+                                            <li><a href="#" class="link_therapy_type_mini" name="3">1 раз в 3 дня</a></li>
+                                            <li><a href="#" class="link_therapy_type_mini" name="4">1 раз в 4 дня</a></li>
+                                            <li><a href="#" class="link_therapy_type_mini" name="5">1 раз в 5 дней</a></li>
+                                            <li><a href="#" class="link_therapy_type_mini" name="7">1 раз в неделю</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button id="btn_question_therapy_save_mini" hidden type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                    </div>
+
 
                     <div id="question_meditation_mini" class="question_mini" hidden>
                         <div class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
@@ -2601,8 +2645,6 @@
                             </tbody>
                         </table>
                         <button id="btn_question_meditation_save_mini"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                        <br/>
-                        <br/>
                     </div>
 
 
@@ -2816,6 +2858,42 @@
                                 </div>
                             </td>
                         </tr>
+
+
+                        <tr id="row_tongue_mini" class="db_row_dialog">
+                            <td valign="middle">Чистка языка (утро и вечер)</td>
+                            <td class="db_row_input">          </td>
+                            <td class="db_row_input text-center div_row_fact">
+                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox"  id="filed_tongue_day_mini" />
+                                    <div class="state p-success-o">
+                                        <label></label>
+                                    </div>
+                                </div>
+
+                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox"  id="filed_tongue_night_mini" />
+
+                                    <div class="state p-success-o">
+                                        <label></label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr id="row_therapy_mini" class="db_row_dialog">
+                            <td valign="middle">Натуральные терапии</td>
+                            <td class="db_row_input">          </td>
+                            <td class="db_row_input text-center">
+                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox"  id="filed_therapy_mini" />
+                                    <div class="state p-success-o">
+                                        <label></label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
 
                         <tr id="row_meditation_day_mini" class="db_row_dialog">
                             <td valign="middle"> Медитация утро, минут</td>

@@ -105,6 +105,7 @@ $( document ).ready(function() {
     var reg_mini_vegan      = false;
     var reg_mini_kaoshiki   = false;
     var reg_mini_asana      = false;
+    var reg_mini_therapy      = false;
     var mini_marafon_all = {};
 
 
@@ -590,7 +591,12 @@ $( document ).ready(function() {
                 reg_mini_water = $(this).is(":checked");
                 break;
             case "reg_checkbox_detox":
-                reg_mini_detox = $(this).is(":checked");
+                if ($(this).is(":checked") && reg_mini_vegan){
+                    alert("Можно выбрать только 1 практику или детокс или вегетарианство");
+                    $(this).prop("checked", false);
+                    reg_practic_counter -= 1;
+                } else { reg_mini_detox = $(this).is(":checked"); }
+
                 break;
             case "reg_checkbox_wareup":
                 reg_mini_wake_up = $(this).is(":checked");
@@ -605,7 +611,11 @@ $( document ).ready(function() {
                 reg_mini_family = $(this).is(":checked");
                 break;
             case "reg_checkbox_vegan":
-                reg_mini_vegan = $(this).is(":checked");
+                if ($(this).is(":checked") && reg_mini_detox){
+                    alert("Можно выбрать только 1 практику или детокс или вегетарианство");
+                    $(this).prop("checked", false);
+                    reg_practic_counter -= 1;
+                } else { reg_mini_vegan = $(this).is(":checked"); }
                 break;
             case "reg_checkbox_kaoshiki":
                 reg_mini_kaoshiki = $(this).is(":checked");
@@ -613,6 +623,10 @@ $( document ).ready(function() {
             case "reg_checkbox_asana":
                 reg_mini_asana = $(this).is(":checked");
                 break;
+            case "reg_checkbox_therapy":
+                reg_mini_therapy = $(this).is(":checked");
+                break;
+
         }
 
 
@@ -1115,7 +1129,8 @@ $( document ).ready(function() {
                     reg_mini_family: reg_mini_family,
                     reg_mini_vegan: reg_mini_vegan,
                     reg_mini_kaoshiki: reg_mini_kaoshiki,
-                    reg_mini_asana: reg_mini_asana
+                    reg_mini_asana: reg_mini_asana,
+                    reg_mini_therapy: reg_mini_therapy
                 };
                 break;
         }
@@ -1550,7 +1565,7 @@ $( document ).ready(function() {
                     if (data.marafon_day < -998) {
                         $('#reg_marafon_create_password').hide();
                         $('#page_marafon_reg').show();
-                        if (data.user.program_type.includes("21day")) {
+                        if (data.user.program_type != null && data.user.program_type.includes("21day")) {
                             $('#reg_marafon_mini').show();
                             console.log("mini");
                         } else {
@@ -3053,8 +3068,16 @@ $( document ).ready(function() {
         var asana_active                 = current_day.asana_active;
         var asana_active_1               = current_day.asana_active_1;
         var asana_active_2               = current_day.asana_active_2;
+        var therapy_active               = current_day.therapy_active;
+        var therapy_ask_question         = current_day.therapy_ask_question;
+        var therapy_practic_active       = current_day.therapy_practic_active;
+        var therapy_practic_fact         = current_day.therapy_practic_fact;
+        var therapy_tongue_day           = current_day.therapy_tongue_day;
+        var therapy_tongue_night         = current_day.therapy_tongue_night;
         var asana_fact_1                 = current_day.asana_fact_1;
         var asana_fact_2                 = current_day.asana_fact_2;
+
+
         var meditation_active            = current_day.meditation_active;
         var meditation_day_target        = current_day.meditation_day_target;
         var meditation_day_fact          = current_day.meditation_day_fact;
@@ -3085,6 +3108,8 @@ $( document ).ready(function() {
             $('#row_asana_mini')              .hide();
             $('#div_filed_asana_mini_1')      .hide();
             $('#div_filed_asana_mini_2')      .hide();
+            $('#row_tongue_mini')       .hide();
+            $('#row_therapy_mini')      .hide();
             $('#row_meditation_day_mini')     .hide();
             $('#row_meditation_night_mini')   .hide();
 
@@ -3093,6 +3118,7 @@ $( document ).ready(function() {
             $('#question_wake_up_mini')       .hide();
             $('#question_kaoshiki_mini')      .hide();
             $('#question_asana_mini')         .hide();
+            $('#question_therapy_mini')       .hide();
             $('#question_meditation_mini')    .hide();
 
 
@@ -3109,6 +3135,9 @@ $( document ).ready(function() {
             $('#filed_vegan_mini')               .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_asana_mini_1')             .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_asana_mini_2')             .prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_tongue_day_mini')          .prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_tongue_night_mini')        .prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_therapy_mini')             .prop("checked", false).attr("data-day-num", day_num);
 
             $('#filed_water_fact_mini')             .val(null).attr("data-day-num", day_num);
             $('#filed_wake_up_fact_hour_mini')      .val(null).attr("data-day-num", day_num);
@@ -3129,6 +3158,7 @@ $( document ).ready(function() {
             var vegan_read_material    = false;
             var kaoshiki_read_material = false;
             var asana_read_material    = false;
+            var therapy_read_material  = false;
             var meditation_read_material    = false;
             $.each(materials, function (i, item) {
                 var material_num = parseInt(item.material_num);
@@ -3161,6 +3191,9 @@ $( document ).ready(function() {
                         break;
                     case "asana":
                         material_num === 1 && item.material_read === true ? asana_read_material = true :  "";
+                        break;
+                    case "therapy":
+                        material_num === 1 && item.material_read === true ? therapy_read_material = true :  "";
                         break;
                     case "meditation":
                         material_num === 1 && item.material_read === true ? meditation_read_material = true : "";
@@ -3284,8 +3317,20 @@ $( document ).ready(function() {
                         $('#question_asana_mini').show();
                     }
                 }
-
             }
+
+            if (therapy_active) {
+                if (therapy_read_material) {
+                    if (therapy_ask_question) {
+                        $('#row_tongue_mini') .show();
+                        if (therapy_practic_active) {$('#row_therapy_mini').show();}
+                    } else {
+                        $('#question_therapy_mini').show();
+                    }
+                }
+            }
+
+
             if (meditation_active) {
                 if (meditation_read_material) {
                     if (meditation_ask_question){
@@ -3332,8 +3377,12 @@ $( document ).ready(function() {
 
             kaoshiki_minutes_fact     != null && kaoshiki_minutes_fact !=false ?  $('#filed_kaoshiki_fact_mini').val(kaoshiki_minutes_fact)   : $('#filed_kaoshiki_fact_mini').val();
 
-            asana_fact_1        != null && asana_fact_1        != false ?  $('#filed_asana_mini_1')       .prop("checked", true) : $('#filed_asana_mini_1')       .prop("checked", false);
-            asana_fact_2        != null && asana_fact_2        != false ?  $('#filed_asana_mini_2')       .prop("checked", true) : $('#filed_asana_mini_2')       .prop("checked", false);
+            asana_fact_1 != null && asana_fact_1 != false ?  $('#filed_asana_mini_1').prop("checked", true) : $('#filed_asana_mini_1').prop("checked", false);
+            asana_fact_2 != null && asana_fact_2 != false ?  $('#filed_asana_mini_2').prop("checked", true) : $('#filed_asana_mini_2').prop("checked", false);
+
+            therapy_tongue_day   != null && therapy_tongue_day   != false ?  $('#filed_tongue_day_mini').prop("checked", true)   : $('#filed_tongue_day_mini').prop("checked", false);
+            therapy_tongue_night != null && therapy_tongue_night != false ?  $('#filed_tongue_night_mini').prop("checked", true) : $('#filed_tongue_night_mini').prop("checked", false);
+            therapy_practic_fact != null && therapy_practic_fact != false ?  $('#filed_therapy_mini').prop("checked", true)      : $('#filed_therapy_mini').prop("checked", false);
 
 
             meditation_day_fact   != null && meditation_day_fact !=false   ?  $('#filed_meditation_day_fact_mini')  .val(meditation_day_fact)   : $('#filed_meditation_night_fact_mini').val();
@@ -3389,8 +3438,7 @@ $( document ).ready(function() {
     });
 
     var save_day_mini_timer;
-
-    $('#filed_social_practic_mini, #filed_detox_fact_mini, #filed_snacking_mini, #filed_overeat_mini, #filed_sugar_mini, #filed_family_no_critic_mini, #filed_family_benevolence_mini, #filed_family_no_agression_mini, #filed_family_enjoy_mini, #filed_vegan_mini, #filed_asana_mini_1, #filed_asana_mini_2').change(function() {
+    $('#filed_social_practic_mini, #filed_detox_fact_mini, #filed_snacking_mini, #filed_overeat_mini, #filed_sugar_mini, #filed_family_no_critic_mini, #filed_family_benevolence_mini, #filed_family_no_agression_mini, #filed_family_enjoy_mini, #filed_vegan_mini, #filed_asana_mini_1, #filed_asana_mini_2, #filed_tongue_day_mini, #filed_tongue_night_mini, #filed_therapy_mini').change(function() {
         console.log($(this).attr("data-day-num"));
         userSaveDayMini($(this).attr("data-day-num"));
     });
@@ -3429,6 +3477,10 @@ $( document ).ready(function() {
 
                 asana_fact_1:                 $('#filed_asana_mini_1').is(':checked'),
                 asana_fact_2:                 $('#filed_asana_mini_2').is(':checked'),
+
+                therapy_practic_fact:     $('#filed_tongue_day_mini')  .is(':checked'),
+                therapy_tongue_day:       $('#filed_tongue_night_mini').is(':checked'),
+                therapy_tongue_night:     $('#filed_therapy_mini')     .is(':checked'),
 
                 kaoshiki_minutes_fact:         $('#filed_kaoshiki_fact_mini')          .val(),
 
@@ -3691,6 +3743,39 @@ $( document ).ready(function() {
             $('#btn_question_asana_save_mini').prop('disabled', false);
         }
     });
+
+    var therapy_type_mini;
+    $(document).on('click', '.link_therapy_type_mini',  function () {
+        console.log($(this).attr("name"));
+        console.log($(this).text());
+
+        $('#btn_dd_therapy_type_mini').text($(this).text());
+        therapy_type_mini = $(this).attr("name");
+    });
+    $('#btn_question_therapy_save_mini').click(function (){
+        if (therapy_type_mini !== ""){
+            $('#btn_question_therapy_save_mini').prop('disabled', true);
+            $.ajax({
+                type: "POST",
+                url:  api_url + "save_therapy_answer_mini",
+                data: {therapy_type: therapy_type_mini},
+                headers: {
+                    'Authorization':'Token token=' + cookie_token,
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                success: function(data){
+                    $('#btn_question_therapy_save_mini').prop('disabled', false);
+                    update_user_info();
+                },
+                failure: function(errMsg) {
+                    alert(errMsg.toString());
+                }
+            });
+        } else {
+            alert("Сначала ответьте на все вопросы")
+        }
+    });
+
     $('#btn_question_meditation_save_mini').click(function (){
         $('#btn_question_meditation_save_mini').prop('disabled', true);
 
@@ -3837,6 +3922,7 @@ $( document ).ready(function() {
             case "vegan":      material_for_practic = "Переход на вегетарианство"; break;
             case "kaoshiki":   material_for_practic = "Практика каушики"; break;
             case "asana":      material_for_practic = "Практика асан"; break;
+            case "therapy":      material_for_practic = "Натуральные терапии"; break;
             case "meditation": material_for_practic = "Практика медитации"; break;
         }
         return material_for_practic;
@@ -5685,6 +5771,10 @@ $( document ).ready(function() {
         $('#table_materials_asana').empty();
         $('#table_materials_asana').append(createMaterialTable(materials.asana));
         $('#table_materials_asana').bsTable(undefined, false, undefined, undefined, false);
+
+        $('#table_materials_therapy').empty();
+        $('#table_materials_therapy').append(createMaterialTable(materials.therapy));
+        $('#table_materials_therapy').bsTable(undefined, false, undefined, undefined, false);
 
         $('#table_materials_meditation').empty();
         $('#table_materials_meditation').append(createMaterialTable(materials.meditation));
