@@ -3030,8 +3030,9 @@ $( document ).ready(function() {
     }
 
     function setDayMini(current_day, marafon_day, materials){
+        console.log(current_day);
         day_num = current_day.day_num;
-        day_id = current_day.day_id;
+        day_id  = current_day.day_id;
 
 
         var water_active                 = current_day.water_active;
@@ -3078,7 +3079,6 @@ $( document ).ready(function() {
         var asana_fact_1                 = current_day.asana_fact_1;
         var asana_fact_2                 = current_day.asana_fact_2;
 
-
         var meditation_active            = current_day.meditation_active;
         var meditation_day_target        = current_day.meditation_day_target;
         var meditation_day_fact          = current_day.meditation_day_fact;
@@ -3089,7 +3089,6 @@ $( document ).ready(function() {
         var social_practic_description   = current_day.social_practic_description;
         var day_comment                  = current_day.day_comment;
         var day_progress                 = current_day.day_progress;
-
 
         if (day_show_now !== day_new) {
             $('#row_social_practic_mini')     .hide();
@@ -3224,16 +3223,12 @@ $( document ).ready(function() {
                 $('#social_practic_description_mini').text(social_practic_description);
             }
             if (water_active)          {
-
                 if (water_read_material){
-                    console.log(" water_read_material");
                     if (water_ask_question){
-                        console.log("show row_water_mini");
                         $('#row_water_mini').show();
                         $('#filed_water_plan_mini').val(water_target);
                         $('#filed_water_fact_mini').val(water_fact);
                     } else {
-                        console.log("show question_water_mini");
                         $('#question_water_mini').show();
                     }
                 }
