@@ -3108,8 +3108,8 @@ $( document ).ready(function() {
             $('#row_asana_mini')              .hide();
             $('#div_filed_asana_mini_1')      .hide();
             $('#div_filed_asana_mini_2')      .hide();
-            $('#row_tongue_mini')       .hide();
-            $('#row_therapy_mini')      .hide();
+            $('#row_tongue_mini')             .hide();
+            $('#row_therapy_mini')            .hide();
             $('#row_meditation_day_mini')     .hide();
             $('#row_meditation_night_mini')   .hide();
 
@@ -3314,8 +3314,7 @@ $( document ).ready(function() {
                     }
                 }
             }
-
-            if (therapy_active) {
+            if (therapy_active)    {
                 if (therapy_read_material) {
                     if (therapy_ask_question) {
                         $('#row_tongue_mini') .show();
@@ -3325,8 +3324,6 @@ $( document ).ready(function() {
                     }
                 }
             }
-
-
             if (meditation_active) {
                 if (meditation_read_material) {
                     if (meditation_ask_question){
@@ -3368,8 +3365,7 @@ $( document ).ready(function() {
             family_no_agression_fact != null && family_no_agression_fact != false ?  $('#filed_family_no_agression_mini').prop("checked", true) : $('#filed_family_no_agression_mini').prop("checked", false);
             family_enjoy_fact        != null && family_enjoy_fact        != false ?  $('#filed_family_enjoy_mini')       .prop("checked", true) : $('#filed_family_enjoy_mini')       .prop("checked", false);
 
-            vegan_fact        != null && vegan_fact        != false ?  $('#filed_vegan_mini')       .prop("checked", true) : $('#filed_vegan_mini')       .prop("checked", false);
-
+            vegan_fact != null && vegan_fact        != false ?  $('#filed_vegan_mini')       .prop("checked", true) : $('#filed_vegan_mini')       .prop("checked", false);
 
             kaoshiki_minutes_fact     != null && kaoshiki_minutes_fact !=false ?  $('#filed_kaoshiki_fact_mini').val(kaoshiki_minutes_fact)   : $('#filed_kaoshiki_fact_mini').val();
 
@@ -3379,7 +3375,6 @@ $( document ).ready(function() {
             therapy_tongue_day   != null && therapy_tongue_day   != false ?  $('#filed_tongue_day_mini').prop("checked", true)   : $('#filed_tongue_day_mini').prop("checked", false);
             therapy_tongue_night != null && therapy_tongue_night != false ?  $('#filed_tongue_night_mini').prop("checked", true) : $('#filed_tongue_night_mini').prop("checked", false);
             therapy_practic_fact != null && therapy_practic_fact != false ?  $('#filed_therapy_mini').prop("checked", true)      : $('#filed_therapy_mini').prop("checked", false);
-
 
             meditation_day_fact   != null && meditation_day_fact !=false   ?  $('#filed_meditation_day_fact_mini')  .val(meditation_day_fact)   : $('#filed_meditation_night_fact_mini').val();
             meditation_night_fact != null && meditation_night_fact !=false ?  $('#filed_meditation_night_fact_mini').val(meditation_night_fact) : $('#filed_meditation_night_fact_mini').val();
@@ -3984,7 +3979,26 @@ $( document ).ready(function() {
         });
     });
 
-
+    $('#btn_buy_meditation').click(function (){
+        $('#btn_buy_meditation').prop('disabled', true);
+        $.ajax({
+            type: "POST",
+            url:  api_url + "buy_meditation_mini",
+            data: { },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                $('#btn_buy_meditation').prop('disabled', false);
+                update_user_info();
+                alert("Программа куплена! Изучите материал, ответьте на вопрос и можно приступать к Практике ;)");
+                },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
 
     //Rating
 
