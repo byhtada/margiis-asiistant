@@ -3948,11 +3948,12 @@ $( document ).ready(function() {
             case "snacking":   material_for_practic = "Практика без перекусов, передания и сахара"; break;
             case "thanks":     material_for_practic = "Практика благодарности"; break;
             case "family":     material_for_practic = "Практика семейных отношений"; break;
-            case "vegan":      material_for_practic = "Переход на вегетарианство"; break;
             case "kaoshiki":   material_for_practic = "Практика каушики"; break;
             case "asana":      material_for_practic = "Практика асан"; break;
             case "therapy":      material_for_practic = "Натуральные терапии"; break;
             case "meditation": material_for_practic = "Практика медитации"; break;
+            case "vegan":      material_for_practic = "Переход на вегетарианство"; break;
+            case "recipes": material_for_practic = "Полезные рецепты"; break;
         }
         return material_for_practic;
     }
@@ -5936,10 +5937,6 @@ $( document ).ready(function() {
         $('#table_materials_family').append(createMaterialTable(materials.family));
         $('#table_materials_family').bsTable(undefined, false, undefined, undefined, false);
 
-        $('#table_materials_vegan').empty();
-        $('#table_materials_vegan').append(createMaterialTable(materials.vegan));
-        $('#table_materials_vegan').bsTable(undefined, false, undefined, undefined, false);
-
         $('#table_materials_kaoshiki').empty();
         $('#table_materials_kaoshiki').append(createMaterialTable(materials.kaoshiki));
         $('#table_materials_kaoshiki').bsTable(undefined, false, undefined, undefined, false);
@@ -5955,6 +5952,17 @@ $( document ).ready(function() {
         $('#table_materials_meditation').empty();
         $('#table_materials_meditation').append(createMaterialTable(materials.meditation));
         $('#table_materials_meditation').bsTable(undefined, false, undefined, undefined, false);
+
+        $('#table_materials_vegan').empty();
+        $('#table_materials_vegan').append(createMaterialTable(materials.vegan));
+        $('#table_materials_vegan').bsTable(undefined, false, undefined, undefined, false);
+
+
+        $('#table_materials_recipes').empty();
+        $('#table_materials_recipes').append(createMaterialTable(materials.recipes));
+        $('#table_materials_recipes').bsTable(undefined, false, undefined, undefined, false);
+
+
 
     }
 
