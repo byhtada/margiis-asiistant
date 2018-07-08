@@ -108,6 +108,8 @@ $( document ).ready(function() {
     var reg_mini_therapy      = false;
     var mini_marafon_all = {};
 
+    var detox_stop_mini = false;
+
 
 
     function initFondy(){
@@ -212,17 +214,48 @@ $( document ).ready(function() {
                 }
             } else if (typeof params.access_token == 'undefined') {
                 console.log("access_token == 'undefined'");
-                if (params.hyls_program === "21days") {
-                    console.log("21 da");
+                //if (params.hyls_program === "21days") {
+                //    console.log("21 da");
+                //    $('#page_user_main').show();
+                //    $('#page_marafon_reg').show();
+                //    $('#reg_marafon_create_password').show();
+                if (typeof params.login_from !== 'undefined' && params.login_from === "email") {
                     $('#page_user_main').show();
                     $('#page_marafon_reg').show();
-                    $('#reg_marafon_create_password').show();
+                    login_user(params.phone, params.pass);
                 } else {
                     console.log("no 21 da");
                     $("#page_login").show();
                 }
             }
         }
+    }
+
+    function login_user(phone, pass){
+        var token_web = $.base64.encode(phone + ":" + pass);
+
+        $.ajax({
+            type: "GET",
+            url: api_url + "token",
+            headers: {
+                'Authorization': 'Basic ' + token_web,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            success: function (data) {
+                // console.log("try get token");
+                //  console.log(JSON.stringify(data));
+                if (data.token.length == 32) {
+                    //console.log("success get token");
+                    setCookie(cookie_name_token, data.token, {expires: 36000000000000});
+                    setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
+                    cookie_token = getCookie(cookie_name_token);
+                    ifLogin();}
+                else {
+                    //   console.log("fail get token");
+                }},
+            failure: function (errMsg) {
+                //    console.log(errMsg.toString());
+            }});
     }
 
 
@@ -1692,7 +1725,7 @@ $( document ).ready(function() {
                             setUserDiaryMini(data.user_diary_mini);
                             setUserMaterialsMini(data.materials_mini);
 
-
+                            detox_stop_mini = data.user.detox_stop_mini;
 
 
                            // $('#btn_material_mini') .text("Материалы (" + data.materials_mini.unread_materialsв + " новых)");
@@ -3225,6 +3258,7 @@ $( document ).ready(function() {
             if (water_active)          {
                 if (water_read_material){
                     if (water_ask_question){
+                        $('#water_settings_mini').show();
                         $('#row_water_mini').show();
                         $('#filed_water_plan_mini').val(water_target);
                         $('#filed_water_fact_mini').val(water_fact);
@@ -3238,6 +3272,7 @@ $( document ).ready(function() {
                     if (detox_ask_question) {
                         $('#row_detox_mini').show();
                         $('#text_diet_mini').text("Диета" + " - " + detox_description);
+                        detox_stop_mini ? $('#detox_settings_mini').hide() : $('#detox_settings_mini').show()
                     } else {
                         $('#question_detox_mini').show();
                     }
@@ -3262,7 +3297,7 @@ $( document ).ready(function() {
 
             }
             if (snacking_active)       {
-                if (snacking_read_material){
+                if (snacking_read_material || detox_stop_mini){
                     $('#row_snacking_mini').show();
                     $('#row_overeat_mini') .show();
                     $('#row_sugar_mini')   .show();
@@ -3292,6 +3327,7 @@ $( document ).ready(function() {
             if (kaoshiki_active)   {
                 if (kaoshiki_read_material) {
                     if (kaoshiki_ask_question) {
+                        $('#kaoshiki_settings_mini').show();
                         $('#row_kaoshiki_mini').show();
                         $('#filed_kaoshiki_plan_mini').val(kaoshiki_minutes_target);
                     } else {
@@ -3328,6 +3364,7 @@ $( document ).ready(function() {
                 $('#div_buy_meditation').hide();
                 if (meditation_read_material) {
                     if (meditation_ask_question){
+                        $('#meditation_settings_mini').show();
                         $('#row_meditation_day_mini').show();
                         $('#row_meditation_night_mini').show();
 
@@ -4006,6 +4043,7 @@ $( document ).ready(function() {
 
 //Settings
 
+    //detox
     $('#btn_meditation_edit').click(function (){
         $('#btn_meditation_edit').prop('disabled', true);
         var meditation_base  = $('#filed_meditation_base_edit').val();
@@ -4040,7 +4078,6 @@ $( document ).ready(function() {
             }
         }
     });
-
     $('#btn_kaoshiki_edit').click(function (){
         $('#btn_kaoshiki_edit').prop('disabled', true);
         var kaoshiki_base  = $('#filed_kaoshiki_base_edit').val();
@@ -4075,22 +4112,19 @@ $( document ).ready(function() {
             }
         }
     });
-
-
-
-
-    $('#btn_rating_show_save').click(function (){
-        $('#btn_rating_show_save').prop('disabled', true);
+    $('#btn_rating_show_save, #filed_rating_show_mini').click(function (){
+        $('#btn_rating_show_save, #filed_rating_show_mini').prop('disabled', true);
+        var show_rating = $('#filed_rating_show').is(':checked') || $('#filed_rating_show_mini').is(':checked');
         $.ajax({
             type: "POST",
             url:  api_url + "set_rating_show",
-            data: { rating_show_status:  $('#filed_rating_show').is(':checked')},
+            data: { rating_show_status: show_rating},
             headers: {
                 'Authorization':'Token token=' + cookie_token,
                 'Content-Type':'application/x-www-form-urlencoded'
             },
             success: function(data){
-                $('#btn_rating_show_save').prop('disabled', false);
+                $('#btn_rating_show_save, #filed_rating_show_mini').prop('disabled', false);
                 update_user_info();
             },
             failure: function(errMsg) {
@@ -4098,8 +4132,6 @@ $( document ).ready(function() {
             }
         });
     });
-
-
     $('.btn_settings_practise').click(function (){
 
 
@@ -4148,7 +4180,6 @@ $( document ).ready(function() {
         });
 
     });
-
     $('#btn_water_edit').click(function (){
         $('#btn_water_edit').prop('disabled', true);
         $.ajax({
@@ -4318,9 +4349,6 @@ $( document ).ready(function() {
         });
     });
 
-
-
-
     $('#btn_payment_edit').click(function (){
         if ( parseInt($('#filed_payment_size_edit').val()) > 0) {
             $.ajax({
@@ -4365,6 +4393,143 @@ $( document ).ready(function() {
             }
         });
     });
+
+
+    //mini marafon
+    $('#btn_water_edit_mini').click(function (){
+        $('#btn_water_edit_mini').prop('disabled', true);
+        var water_base   = $('#filed_water_base_edit_mini').val();
+        var water_target = $('#filed_water_target_edit_mini').val();
+        var water_step   = $('#filed_water_step_edit_mini').val();
+
+        if (water_base === "" || water_target === "" || water_step === ""){
+
+            alert("Поля базовое и целевое значение должны быть заполнены");
+            $('#btn_water_edit_mini').prop('disabled', false);
+        } else {
+            if (parseInt(water_base) >= parseInt(water_target)) {
+                alert("Базовое значение не может быть больше целевого");
+                $('#btn_water_edit_mini').prop('disabled', false);
+            } else {
+
+                $.ajax({
+                    type: "POST",
+                    url: api_url + "edit_water_mini",
+                    data: {
+                        water_base:   water_base,
+                        water_target: water_target,
+                        water_step:   water_step
+                    },
+                    headers: {
+                        'Authorization': 'Token token=' + cookie_token,
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function (data) {
+                        $('#btn_water_edit_mini').prop('disabled', false);
+                        update_user_info();
+                        alert("Изменения приняты")
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg.toString());
+                    }
+                });
+            }
+        }
+    });
+    $('#btn_kaoshiki_edit_mini').click(function (){
+        $('#btn_kaoshiki_edit_mini').prop('disabled', true);
+        var kaoshiki_base   = $('#filed_kaoshiki_base_edit_mini').val();
+        var kaoshiki_target = $('#filed_kaoshiki_target_edit_mini').val();
+        var kaoshiki_step   = $('#filed_kaoshiki_step_edit_mini').val();
+
+        if (kaoshiki_base === "" || kaoshiki_target === "" || kaoshiki_step === ""){
+
+            alert("Поля базовое и целевое значение должны быть заполнены");
+            $('#btn_kaoshiki_edit_mini').prop('disabled', false);
+        } else {
+            if (parseInt(kaoshiki_base) >= parseInt(kaoshiki_target)) {
+                alert("Базовое значение не может быть больше целевого");
+                $('#btn_kaoshiki_edit_mini').prop('disabled', false);
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url:  api_url + "edit_kaoshiki_mini",
+                    data: { kaoshiki_base:  kaoshiki_base,
+                            kaoshiki_target: kaoshiki_target,
+                            kaoshiki_step: kaoshiki_step},
+                    headers: {
+                        'Authorization':'Token token=' + cookie_token,
+                        'Content-Type':'application/x-www-form-urlencoded'
+                    },
+                    success: function(data){
+                        $('#btn_kaoshiki_edit_mini').prop('disabled', false);
+                        update_user_info();
+                        alert("Изменения приняты");
+                    },
+                    failure: function(errMsg) {
+                        alert(errMsg.toString());
+                    }
+                });
+            }
+        }
+    });
+    $('#btn_meditation_edit_mini').click(function (){
+        $('#btn_meditation_edit_mini').prop('disabled', true);
+        var meditation_base   = $('#filed_meditation_base_edit_mini').val();
+        var meditation_target = $('#filed_meditation_target_edit_mini').val();
+        var meditation_step   = $('#filed_meditation_step_edit_mini').val();
+
+        if (meditation_base === "" || meditation_target === "" || meditation_step === ""){
+            alert("Поля базовое и целевое значение должны быть заполнены");
+            $('#btn_meditation_edit_mini').prop('disabled', false);
+        } else {
+            if (parseInt(meditation_base) >= parseInt(meditation_target)) {
+                alert("Базовое значение не может быть больше целевого");
+                $('#btn_meditation_edit_mini').prop('disabled', false);
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url:  api_url + "edit_meditation_mini",
+                    data: { meditation_base:   meditation_base,
+                            meditation_target: meditation_target,
+                            meditation_step:   meditation_step},
+                    headers: {
+                        'Authorization':'Token token=' + cookie_token,
+                        'Content-Type':'application/x-www-form-urlencoded'
+                    },
+                    success: function(data){
+                        $('#btn_meditation_edit_mini').prop('disabled', false);
+                        update_user_info();
+                        alert("Изменения приняты");
+                    },
+                    failure: function(errMsg) {
+                        alert(errMsg.toString());
+                    }
+                });
+            }
+        }
+    });
+    $('#btn_detox_stop_mini').click(function (){
+        $('#btn_detox_stop_mini').prop('disabled', true);
+
+        $.ajax({
+            type: "POST",
+            url:  api_url + "stop_detox_mini",
+            data: {},
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'},
+            success: function(data){
+                $('#btn_detox_stop_mini').prop('disabled', false);
+                update_user_info();
+                alert("Изменения приняты");},
+            failure: function(errMsg) {
+                alert(errMsg.toString());}
+        });
+
+    });
+
+
 
 /////////////////////////////////////  ADMIN  ////////////////////////////////////////////////////////
 
