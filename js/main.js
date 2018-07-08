@@ -1535,20 +1535,20 @@ $( document ).ready(function() {
                 break;
             case "nav_user_settings":
                 payment_flow = "settings";
-                $ipsp("checkout").config({
-                    "wrapper": "#checkout_settings",
-                    "styles": {
-                        "body": {
-                            "overflow": "hidden"
-                        }
-                    }
-                }).scope(function () {
-                    this.width("100%");
-                    this.height(480);
-                    this.action("resize", function (data) {
-                        this.setCheckoutHeight(data.height);
-                    });
-                    this.loadUrl(url);});
+                //$ipsp("checkout").config({
+                //    "wrapper": "#checkout_settings",
+                //    "styles": {
+                //        "body": {
+                //            "overflow": "hidden"
+                //        }
+                //    }
+                //}).scope(function () {
+                //    this.width("100%");
+                //    this.height(480);
+                //    this.action("resize", function (data) {
+                //        this.setCheckoutHeight(data.height);
+                //    });
+                //    this.loadUrl(url);});
                 $('#page_user_settings').show();
                 break;
             case "nav_user_support":
@@ -3952,7 +3952,7 @@ $( document ).ready(function() {
             case "asana":      material_for_practic = "Практика асан"; break;
             case "therapy":      material_for_practic = "Натуральные терапии"; break;
             case "meditation": material_for_practic = "Практика медитации"; break;
-            case "vegan":      material_for_practic = "Переход на вегетарианство"; break;
+            case "vegan":   material_for_practic = "Переход на вегетарианство"; break;
             case "recipes": material_for_practic = "Полезные рецепты"; break;
         }
         return material_for_practic;
