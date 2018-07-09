@@ -1625,6 +1625,9 @@ $( document ).ready(function() {
                                 $('#nav_bar').show();
                             }
 
+                            $('#settings_detox').show();
+                            $('#settings_mini') .hide();
+
                             chat_url = data.messenger_link;
 
                             $('#settings_messenger_link').attr("href", data.messenger_link).text("Ссылка");
@@ -1714,7 +1717,14 @@ $( document ).ready(function() {
                                 $('#nav_bar').show();
                             }
 
+
+
+
                             $('#settings_messenger_link').attr("href", data.messenger_link).text("Ссылка");
+
+                            $('#btn_question_detox_save_mini').hide();
+                            $('#settings_detox').hide();
+                            $('#settings_mini') .show();
 
                             $('#materials_detox').hide();
                             $('#materials_mini') .show();
@@ -1844,12 +1854,12 @@ $( document ).ready(function() {
     function setGroupRatingMini(group_rating_info, user){
         if (user.rating_show_status) {
             $('#filed_rating_show_mini').prop("checked", true);
-            $('#btn_rating_link_mini').show();
+            $('#div_btn_rating_link_mini').show();
             $('#btn_rating_link_mini').text("Выполняя ежедневные практики, вы улучшаете свои позиции в рейтинге марафонцев вашего потока." +
                 "Сейчас Вы на " + group_rating_info.rating_user + " месте из " + group_rating_info.rating_all + " участников");
         } else {
             $('#filed_rating_show_mini').prop("checked", false);
-            $('#btn_rating_link_mini').hide();
+            $('#div_btn_rating_link_mini').hide();
         }
 
 
@@ -3707,6 +3717,12 @@ $( document ).ready(function() {
         var kaoshiki_target = parseInt($('#question_kaoshiki_target_mini').val());
         var kaoshiki_step   = parseInt($('#question_kaoshiki_step_mini').val());
 
+        if (kaoshiki_start < 3){
+            alert("Начальное время практики - минимум 3 минуты");
+            $('#btn_question_kaoshiki_save_mini').prop('disabled', false);
+            return;
+        }
+
         if (kaoshiki_start != "" && kaoshiki_target != "" && kaoshiki_step != ""){
             if (kaoshiki_start < kaoshiki_target) {
                 $.ajax({
@@ -4442,6 +4458,12 @@ $( document ).ready(function() {
         var kaoshiki_base   = $('#filed_kaoshiki_base_edit_mini').val();
         var kaoshiki_target = $('#filed_kaoshiki_target_edit_mini').val();
         var kaoshiki_step   = $('#filed_kaoshiki_step_edit_mini').val();
+
+        if (kaoshiki_base < 3){
+            alert("Базовое время должно быть больше 3 минут");
+            $('#btn_kaoshiki_edit_mini').prop('disabled', false);
+            return;
+        }
 
         if (kaoshiki_base === "" || kaoshiki_target === "" || kaoshiki_step === ""){
 

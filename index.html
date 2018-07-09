@@ -2976,11 +2976,14 @@
 
                     <textarea  id="filed_day_comment_mini" class="form-control" placeholder="Здесь Вы можете оставлять свои заметки о прошедшем дне"></textarea>
 
-                    <br/>
-                    <br/>
-                    <a id="btn_rating_link_mini" href="#" class="rating_link"></a>
+                    <div id="div_btn_rating_link_mini">
+                        <br/>
+                        <a id="btn_rating_link_mini" href="#" class="rating_link"></a>
 
-                    <br/>
+                        <br/>
+                    </div>
+
+
                     <br/>
                     <!--
                                        <button id="btn_user_save_day"  type="button" class="btn btn-success btn-block">Сохранить отчет</button>
@@ -3507,74 +3510,78 @@
             </div>
 
             <div id="settings_mini">
-                <h4>Базовые настройки</h4>
-                <table class="table  table-hover">
-                    <tbody>
-                    <tr class="db_row_dialog">
-                        <td valign="middle" ><h5>Показывать рейтинг на странице дневника?</h5></td>
-                        <td class="db_row_input text-center">
-                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                <input type="checkbox"  id="filed_rating_show_mini" />
-                                <div class="state p-success-o">
-                                    <label></label>
+                <div class="base_settings">
+                    <h4>Базовые настройки</h4>
+                    <table class="table  table-hover">
+                        <tbody>
+                        <tr class="db_row_dialog">
+                            <td valign="middle" ><h5>Показывать рейтинг на странице дневника?</h5></td>
+                            <td class="db_row_input text-center">
+                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox"  id="filed_rating_show_mini" />
+                                    <div class="state p-success-o">
+                                        <label></label>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td > <button id="btn_rating_show_save_mini"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
-                    </tr>
+                            </td>
+                            <td > <button id="btn_rating_show_save_mini"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
+                        </tr>
 
 
 
-                    <tr id="water_settings_mini" hidden class="db_row_dialog">
-                        <td valign="middle" ><h5>Изменить целевое значение выпиваемой воды в сутки, мл</h5></td>
-                        <td  class="db_row_input">
-                            <input id="filed_water_base_edit_mini"    placeholder="База" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
-                            <input id="filed_water_target_edit_mini"  placeholder="Цель" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
-                            <input id="filed_water_step_edit_mini"    placeholder="Шаг"  type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
-                        </td>
-                        <td > <button id="btn_water_edit_mini"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
-                    </tr>
+                        <tr id="water_settings_mini" hidden class="db_row_dialog">
+                            <td valign="middle" ><h5>Изменить целевое значение выпиваемой воды в сутки, мл</h5></td>
+                            <td  class="db_row_input">
+                                <input id="filed_water_base_edit_mini"    placeholder="База" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
+                                <input id="filed_water_target_edit_mini"  placeholder="Цель" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
+                                <input id="filed_water_step_edit_mini"    placeholder="Шаг"  type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
+                            </td>
+                            <td > <button id="btn_water_edit_mini"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
+                        </tr>
 
-                    <tr id="kaoshiki_settings_mini" hidden class="db_row_dialog">
-                        <td valign="middle" ><h5>Изменить базовое и целевое время каошики</h5></td>
-                        <td  class="db_row_input">
-                            <input id="filed_kaoshiki_base_edit_mini"   type="text" class="form-control" placeholder="База" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="5">
-                            <input id="filed_kaoshiki_target_edit_mini" type="text" class="form-control" placeholder="Цель" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="10">
-                        </td>
-                        <td><button id="btn_kaoshiki_edit_mini"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
-                    </tr>
+                        <tr id="kaoshiki_settings_mini" hidden class="db_row_dialog">
+                            <td valign="middle" ><h5>Изменить базовое и целевое время каошики</h5></td>
+                            <td  class="db_row_input">
+                                <input id="filed_kaoshiki_base_edit_mini"   type="text" class="form-control" placeholder="База" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
+                                <input id="filed_kaoshiki_target_edit_mini" type="text" class="form-control" placeholder="Цель" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
+                                <input id="filed_kaoshiki_step_edit_mini"   type="text" class="form-control" placeholder="Шаг"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
+                            </td>
+                            <td><button id="btn_kaoshiki_edit_mini"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
+                        </tr>
 
-                    <tr id="meditation_settings_mini" hidden class="db_row_dialog">
-                        <td valign="middle" ><h5>Изменить базовое и целевое время медитации</h5></td>
-                        <td  class="db_row_input">
-                            <input id="filed_meditation_base_edit_mini"   type="text" class="form-control" placeholder="База" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="10">
-                            <input id="filed_meditation_target_edit_mini" type="text" class="form-control" placeholder="Цель" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="15">
-                            <input id="filed_meditation_step_edit_mini"   type="text" class="form-control" placeholder="Шаг" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="15">
-                        </td>
-                        <td><button id="btn_meditation_edit_mini"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
-                    </tr>
+                        <tr id="meditation_settings_mini" hidden class="db_row_dialog">
+                            <td valign="middle" ><h5>Изменить базовое и целевое время медитации</h5></td>
+                            <td  class="db_row_input">
+                                <input id="filed_meditation_base_edit_mini"   type="text" class="form-control" placeholder="База" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
+                                <input id="filed_meditation_target_edit_mini" type="text" class="form-control" placeholder="Цель" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
+                                <input id="filed_meditation_step_edit_mini"   type="text" class="form-control" placeholder="Шаг" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
+                            </td>
+                            <td><button id="btn_meditation_edit_mini"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
+                        </tr>
 
 
-                    <tr id="wake_up_settings_mini" hidden class="db_row_dialog">
-                        <td valign="middle" ><h5>Изменить целевое время подъема</h5></td>
-                        <td  class="db_row_input">
-                            <p>
-                                <input type="text" class="field_wake_up" id="filed_question_wake_up_hour_edit_mini"   placeholder="чч"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
-                                <span>:</span>
-                                <input type="text" class="field_wake_up" id="filed_question_wake_up_minute_edit_mini" placeholder="мм"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
-                            </p>
-                        </td>
-                        <td > <button id="btn_wake_up_edit_mini"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
-                    </tr>
+                        <tr id="wake_up_settings_mini" hidden class="db_row_dialog">
+                            <td valign="middle" ><h5>Изменить целевое время подъема</h5></td>
+                            <td  class="db_row_input">
+                                <p>
+                                    <input type="text" class="field_wake_up" id="filed_question_wake_up_hour_edit_mini"   placeholder="чч"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
+                                    <span>:</span>
+                                    <input type="text" class="field_wake_up" id="filed_question_wake_up_minute_edit_mini" placeholder="мм"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
+                                </p>
+                            </td>
+                            <td > <button id="btn_wake_up_edit_mini"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
+                        </tr>
 
-                    <tr id="detox_settings_mini" hidden class="db_row_dialog">
-                        <td valign="middle" ><h5>Выйти из детокса</h5></td>
-                        <td  class="db_row_input"></td>
-                        <td > <button id="btn_detox_stop_mini"  type="button" class="btn btn-danger btn-block">Выход</button></td>
-                    </tr>
+                        <tr id="detox_settings_mini" hidden class="db_row_dialog">
+                            <td valign="middle" ><h5>Выйти из детокса</h5></td>
+                            <td  class="db_row_input"></td>
+                            <td > <button id="btn_detox_stop_mini"  type="button" class="btn btn-danger btn-block">Выход</button></td>
+                        </tr>
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
 
 
