@@ -20,6 +20,10 @@ html {
 h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 
 
+.bs_table_header {background-color: rgba(255, 126, 42, 0.85);}
+
+
+
 #div_btn_hyls_store {margin-bottom: 5px;}
 .material_new {display: inline-block;
     text-align: center;

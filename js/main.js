@@ -689,6 +689,9 @@ $( document ).ready(function() {
             $('#reg_mini_cost').hide();
             $('#div_btn_pay_mini').hide();
         }
+
+        $(window).animate({scrollTop: $(document).height() + $(window).height()});
+
     });
 
     $('#btn_pay_mini').click(function (){
@@ -1717,7 +1720,7 @@ $( document ).ready(function() {
                                 $('#nav_bar').show();
                             }
 
-
+                            data.user.read_intro_mini ? $('#alert_mini_read_intro').hide() : $('#alert_mini_read_intro').show();
 
 
                             $('#settings_messenger_link').attr("href", data.messenger_link).text("Ссылка");
