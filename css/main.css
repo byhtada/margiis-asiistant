@@ -119,7 +119,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
     background-color: rgba(216, 143, 91, 0.25)
 }
 
-#div_change_pass{
+.div_change_pass{
     margin-top: 15px;
     padding: 15px;
     border-radius: 10px;
@@ -470,7 +470,7 @@ a.reg-link-text {
 #settings_mini div.state {
     margin: -10px 0;
     padding: 0;
-    padding-bottom: 10px;
+
 }
 
 #settings_mini td.db_row_input div.pretty:nth-child(2) {

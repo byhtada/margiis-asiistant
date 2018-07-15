@@ -15,8 +15,11 @@
 
     <link rel="stylesheet" href="css/normalize.css">
     <script src="js/jquery-3.2.1.js"></script>
-    <script                                   src="js/main.js?v1.31"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css?v1.31">
+
+
+    <script                                   src="js/btns-question.js"></script>
+    <script                                   src="js/main.js?v1.35"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css?v1.35">
 
     <script src="js/jquery.base64.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -52,6 +55,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
 
 </head>
 
@@ -104,38 +108,42 @@
                 <h3 align="center">Регистрация/вход в личный кабинет</h3>
                 <br/>
 
-
-
-
-                <a id="btn_vk_log_in" href="http://oauth.vk.com/authorize?client_id=6487614&redirect_uri=https://marafon.hyls.ru/&response_type=token&scope=email,offline&v=5.76&state=123456" class="btn btn-block btn-social btn-vk btn-lg">
-                    <span class="fab fa-vk"></span>Через ВКонтакте
-                </a>
-
-
-                <a id="btn_fb_log_in" href="#"  class="btn btn-block btn-social btn-facebook btn-lg">
-                    <span class="fab fa-facebook-f"></span>Через Facebook
-                </a>
-
-                <br/>
-                <button id="btn_reg_other" type="button" class="btn btn-link btn-block">альтернативный вариант</button>
-                <br/>
-
                 <div id="div_reg_other" hidden>
-                    <form>
-                        <div class="form-group">
-                            <label for="login_login">Логин</label>
-                            <input type="text" class="form-control" id="login_login" placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label for="login_password">Пароль</label>
-                            <input type="password" class="form-control" id="login_password" placeholder="">
-                        </div>
+                    <a id="btn_vk_log_in" href="http://oauth.vk.com/authorize?client_id=6487614&redirect_uri=https://marafon.hyls.ru/&response_type=token&scope=email,offline&v=5.76&state=123456" class="btn btn-block btn-social btn-vk btn-lg">
+                        <span class="fab fa-vk"></span>Через ВКонтакте
+                    </a>
+                    <a id="btn_fb_log_in" href="#"  class="btn btn-block btn-social btn-facebook btn-lg">
+                        <span class="fab fa-facebook-f"></span>Через Facebook
+                    </a>
 
-                        <button type="button" id="btn_login"    class="btn btn-success btn-block">Вход</button>
-                        <button id="btn_modal_register_self" type="button" class="btn btn-link btn-block"  data-toggle="modal" data-target="#modal_register_self">Регистрация</button>
-
-                    </form>
+                    <br>
+                    <h5 align="center">или</h5>
                 </div>
+
+
+                <form>
+                    <div class="form-group">
+                        <label for="login_login">Логин</label>
+                        <input type="text" class="form-control" id="login_login" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="login_password">Пароль</label>
+                        <input type="password" class="form-control" id="login_password" placeholder="">
+                    </div>
+
+                    <button type="button" id="btn_login"    class="btn btn-success btn-block">Вход</button>
+
+                    <!--
+                    <button id="btn_modal_register_self" type="button" class="btn btn-link btn-block"  data-toggle="modal" data-target="#modal_register_self">Регистрация</button>
+                    -->
+                </form>
+
+                <br/>
+
+                <br/>
+                <button id="btn_reg_other" type="button" class="btn btn-link btn-block "><p class="reg_link">альтернативный вариант</p> </button>
+
+
 
 
 
@@ -231,6 +239,7 @@
 
         -->
           <button type="button" class="btn btn-warning" id="btn_create_program_2">Создать программу 2</button>
+          <button type="button" class="btn btn-warning" id="btn_double_diary">DOUBLE</button>
 
       </div>
 
@@ -617,7 +626,7 @@
         <div class="row">
             <div class="col-xs-6">
                 <h4 align="center">
-                    Материалы по воде
+                    Материалы по питью воды
                     <button value="water" type="button" class="btn btn-success btn_modal_create_material"  data-toggle="modal" data-target="#modal_create_material"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                 </h4>
                 <div id="table_materials_water"></div>
@@ -625,7 +634,7 @@
                 <br/>
                 <br/>
                 <h4 align="center">
-                    Материалы по детокс
+                    Материалы по очищению организма
                     <button value="detox" type="button" class="btn btn-success btn_modal_create_material"  data-toggle="modal" data-target="#modal_create_material"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                 </h4>
                 <div id="table_materials_detox"></div>
@@ -641,7 +650,7 @@
                 <br/>
                 <br/>
                 <h4 align="center">
-                    Материалы по перекусам, перееданиям, сахар
+                    Материалы по отказу от перекусов, перееданий и сладкого
                     <button value="snacking" type="button" class="btn btn-success btn_modal_create_material"  data-toggle="modal" data-target="#modal_create_material"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                 </h4>
                 <div id="table_materials_snacking"></div>
@@ -673,7 +682,7 @@
                 <br/>
                 <br/>
                 <h4 align="center">
-                    Материалы по каушики
+                    Материалы по йоговскому танцу
                     <button value="kaoshiki" type="button" class="btn btn-success btn_modal_create_material"  data-toggle="modal" data-target="#modal_create_material"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                 </h4>
                 <div id="table_materials_kaoshiki"></div>
@@ -681,7 +690,7 @@
                 <br/>
                 <br/>
                 <h4 align="center">
-                    Материалы по асанам
+                    Материалы по базовым асанам
                     <button value="asana" type="button" class="btn btn-success btn_modal_create_material"  data-toggle="modal" data-target="#modal_create_material"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                 </h4>
                 <div id="table_materials_asana"></div>
@@ -698,7 +707,7 @@
                 <br/>
                 <br/>
                 <h4 align="center">
-                    Материалы по вегетарианской диете
+                    Материалы по вегетарианству
                     <button value="vegan" type="button" class="btn btn-success btn_modal_create_material"  data-toggle="modal" data-target="#modal_create_material"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                 </h4>
                 <div id="table_materials_vegan"></div>
@@ -1057,6 +1066,9 @@
                     <li class="nav-item">
                         <a class="nav-link-user" name="nav_user_support"   href="#">Поддержать HYLS</a>
                     </li>
+                    <li id="nav_faq_mini" class="nav-item">
+                        <a href="https://hyls.ru/help" target="_blank">FAQ</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link-user" name="nav_user_settings"   href="#">Настройки</a>
                     </li>
@@ -1274,28 +1286,26 @@
                     <br/>
                     <div align="center" class="payment_header"><b>Оплата марафона <span class="black_color">H</span>Y<span class="black_color">LS</span></b>
                         <br>
-                        <span class="black_color"><b>Старт 04.07.2018</b></span>
+                        <span class="black_color"><b>Старт 18.07.2018</b></span>
                     </div>
 
                     <div class="col-xs-12 col-md-12 col-sm-12 text-left">
                         <div class="reg-text">Мы хотим, чтобы любой человек мог участвовать в марафоне, поэтому
-                            оплата марафона <b>свободная</b> - вы сами выбираете приемлемую для вас стоимость. </div>
+                            оплата марафона <b>свободная</b> - вы сами выбираете ту стоимость, которая будет вас мотивировать пройти марафон. </div>
                         <div class="reg-text">
-                            Рекомендации (цены указаны с учётом вашего бонуса 700 р.). Если у вас нет бонуса, прибавляйте к цифрам +700 р.</div>
+                            <b>Рекомендации:</b></div>
 
                         <div class="reg-text">
                             <ul>
-                                <li><b>До 3300 р.</b> — любая сумма, для людей с финансовыми трудностями
-                                    (если ваш доход меньше 15 т.р. в месяц). Вы получаете полный доступ к
-                                    марафону 60 дней, личному кабинету, практикам и чату с поддержкой кураторов</li>
-                                <li><b>От 3300 р. и выше</b> — полный доступ + возможность пользоваться материалами
-                                    после окончания марафона, а также возможность продолжать пользоваться личным
-                                    дневником с практиками</li>
-                                <li><b>От 4500 р. и выше</b> — спасибо, вы даёте возможность участвовать людям с
-                                    низкими финансовыми возможностями. Для вас дополнительный бонус помимо всего
-                                    перечисленного выше: 4 аудиозаписи для полного расслабления тела и психики,
-                                    йога-нидра (практики нет в марафоне)</li>
-                                <li><b>От 8300 р. и выше</b> —  вы настоящие меценаты проекта. Спасибо за поддержку!
+                                <li><b>до 2000 р.</b> — для людей с финансовыми трудностями
+                                    (если ваш доход меньше 15 т.р. в месяц). Вы получаете полный доступ к марафону 60 дней,
+                                    личному кабинету, практикам и чату с поддержкой кураторов</li>
+                                <li><b>3000-5000 р.</b> и выше — полный доступ + возможность пользоваться материалами
+                                    после окончания марафона, а также возможность продолжать пользоваться личным дневником с практиками</li>
+                                <li><b>От 5000 р.</b> и выше — спасибо, вы даёте возможность участвовать людям с низкими
+                                    финансовыми возможностями. Для вас дополнительный бонус помимо всего перечисленного
+                                    выше: 4 аудиозаписи для полного расслабления тела и психики, йога-нидра (практики нет в марафоне</li>
+                                <li><b>От 9000 р.</b> и выше —  вы настоящие меценаты проекта. Спасибо за поддержку!
                                     Для вас помимо всего выше Бонус — консультация высококвалифицированного специалиста,
                                     врача-натуропата Александра Лесничева.
                                     Подробнее <a href="https://hyls.ru/bonus" target="_blank" class="reg_link">по ссылке</a></li>
@@ -1332,7 +1342,7 @@
                       </div>
                      -->
 
-                    <div id="checkout_reg_daily"></div>
+                    <div id="checkout_reg_detox"></div>
 
                     <!--
                                             <div class="reg-text">Если вы сильно сомневаетесь в проекте или у вас нет денег для участия, вы
@@ -1362,7 +1372,7 @@
         <div id="reg_marafon_mini"            hidden  class="col-xs-12 col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3" align="center">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <br/>
-                <div align="center" class="payment_header"><b>Оплата мини-марафона <span class="black_color">H</span>Y<span class="black_color">LS</span></b>
+                <div align="center" class="payment_header"><b>Оплата марафона 21 день <span class="black_color">H</span>Y<span class="black_color">LS</span></b>
                     <br>
                     <span class="black_color"><b>Старт 16.07.2018</b></span>
                 </div>
@@ -1418,8 +1428,7 @@
                     <span class="reg_mini_practic_text">Ранние подъемы<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png"></a> </span>
                 </div>
 
-
-                <div hidden align="left" class="reg_practiv_div">
+                <div align="left" class="reg_practiv_div">
                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                         <input type="checkbox"  id="reg_checkbox_snacking" class="reg_mini" />
                         <div class="state p-success-o"><label></label></div>
@@ -2043,7 +2052,7 @@
                         </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody id="tbody">
 
 
                         <tr id="row_social_practic" class="db_row_dialog">
@@ -2081,7 +2090,7 @@
                                 Время для отхода ко сну <span id="wake_up_text"></span><br/>
                                 Время подъема на завтра <span id="wake_up_tomorrow"></span>
                             </td>
-                            <td class="db_row_input">                  <h5 align="center"  id="filed_wake_up_plan" ></h5></td>
+                            <td class="db_row_input"><h5 align="center"  id="filed_wake_up_plan" ></h5></td>
                             <td valign="middle" class="db_row_input">
                                 <p>
                                     <input type="text" class="field_wake_up" id="filed_wake_up_fact_hour"   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="чч">
@@ -2121,7 +2130,7 @@
                         <tr id="row_meditation_day" class="db_row_dialog">
                             <td valign="middle"> Медитация утро, минут</td>
                             <td class="db_row_input">                   <input type="text"   class="form-control" id="filed_meditation_day_plan" disabled></td>
-                            <td valign="middle" class="db_row_input">   <input type="text"   class="form-control" id="filed_meditation_day_fact" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                            <td class="db_row_input">   <input type="text"   class="form-control" id="filed_meditation_day_fact" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
                         </tr>
 
                         <tr id="row_phisic" class="db_row_dialog">
@@ -2272,7 +2281,7 @@
                             <td class="db_row_input">          </td>
                             <td class="db_row_input text-center">
                                 <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_shaucha" />
+                                    <input type="checkbox"  id="filed_shaucha_fact" />
                                     <div class="state p-success-o">
                                         <label></label>
                                     </div>
@@ -2445,7 +2454,7 @@
                 <div class="col-xs-12 col-sm-6" align="center">
                     <div id="alert_mini_read_intro" class="alert alert-warning alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <strong>Приветствуем!</strong> Что бы понять, что здесь происходит пожалуйста ознакомтесь с этой <a href="https://hyls.ru" target="_blank">инструкцией</a> .
+                        <strong>Приветствуем!</strong> Чтобы понять, что здесь происходит пожалуйста ознакомтесь с этой <a id="link_intro_mini" href="https://hyls.ru/help" target="_blank">инструкцией</a>.
                     </div>
 
                     <h3 id="user_programm_day_mini" align="center">
@@ -3487,7 +3496,7 @@
                     </div>
                 </div>
 
-                <div id="div_change_pass">
+                <div class="div_change_pass">
                     <h3>Смена пароля</h3>
                     <table  class="table  table-hover">
                         <thead>
@@ -3586,6 +3595,32 @@
 
                         </tbody>
                     </table>
+                </div>
+
+                <div class="div_change_pass">
+                    <h3>Смена пароля</h3>
+                    <table  class="table  table-hover">
+                        <thead>
+                        <tr class="db_row_dialog">
+                            <td><h4 align="center"><b>Параметр</b></h4></td>
+                            <td><h4 align="center"><b>Значение</b></h4></td>
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td ><h5>Старый пароль</h5></td>
+                            <td ><input type="text" class="form-control password_old" ></td>
+                        </tr>
+
+                        <tr>
+                            <td ><h5>Новый пароль</h5></td>
+                            <td ><input type="text" class="form-control password_new" ></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button   type="button" class="btn btn-warning btn-block btn_password_save">Сохранить пароль</button>
                 </div>
 
             </div>
