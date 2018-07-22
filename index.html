@@ -5,9 +5,12 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>HYLS</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
     <link rel="manifest" href="site.webmanifest">
     <link rel="apple-touch-icon" href="icon.png">
@@ -18,8 +21,8 @@
 
 
     <script                                   src="js/btns-question.js"></script>
-    <script                                   src="js/main.js?v1.46"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css?v1.46">
+    <script                                   src="js/main.js?v1.48"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css?v1.48">
 
     <script src="js/jquery.base64.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -27,10 +30,6 @@
 
     <link href="css/animate.min.css" rel="stylesheet">
 
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
     <link href="css/bootstrap-dropdownhover.min.css" rel="stylesheet">
@@ -56,12 +55,15 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <script type="text/javascript" src="js/materialize.js"></script>
 
 </head>
 
 
 
 <body>
+<div class="container">
 <!--[if lte IE 9]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
 <![endif]-->
@@ -97,15 +99,13 @@
 <div id="page_login" hidden >
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-0  col-sm-4"></div>
-            <div class="col-xs-12 col-sm-4">
+            <div class="col m6 push-m3 s12">
 
                 <br/>
                 <br/>
-                <br/>
 
-                <h1 align="center"><span class="yoga_color">Марафон</span> H<span class="yoga_color">Y</span>LS</h1>
-                <h3 align="center">Регистрация/вход в личный кабинет</h3>
+                <h2 align="center"><span class="yoga_color">Марафон</span> H<span class="yoga_color">Y</span>LS</h2>
+                <h4 align="center">Регистрация/вход в личный кабинет</h4>
                 <br/>
 
                 <div id="div_reg_other" hidden>
@@ -120,32 +120,30 @@
                     <h5 align="center">или</h5>
                 </div>
 
+                <div class="input-field">
+                    <input placeholder="" id="login_login" type="text" class="validate">
+                    <label for="login_login">Логин</label>
+                </div>
 
-                <form>
-                    <div class="form-group">
-                        <label for="login_login">Логин</label>
-                        <input type="text" class="form-control" id="login_login" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="login_password">Пароль</label>
-                        <input type="password" class="form-control" id="login_password" placeholder="">
-                    </div>
+                <div class="input-field">
+                    <input placeholder="" id="login_password" type="text" class="validate">
+                    <label for="login_password">Пароль</label>
+                </div>
 
-                    <button type="button" id="btn_login"    class="btn btn-success btn-block">Вход</button>
+
+
+                <a  id="btn_login" class="waves-effect waves-light btn-small orange darken-3 btn-block"><i class="material-icons right">beenhere</i>Вход</a>
+
 
                     <!--
                     <button id="btn_modal_register_self" type="button" class="btn btn-link btn-block"  data-toggle="modal" data-target="#modal_register_self">Регистрация</button>
-                    -->
-                </form>
+
+
 
                 <br/>
 
                 <br/>
-                <button id="btn_reg_other" type="button" class="btn btn-link btn-block "><p class="reg_link">альтернативный вариант</p> </button>
-
-
-
-
+                <a  id="btn_reg_other" class="waves-effect waves-orange btn-flat btn-block center-block">альтернативный вариант</a>
 
                 <div class="modal fade" id="modal_register_self"    tabindex="-1" role="dialog" aria-labelledby="modal_label_register_self">
                     <div class="modal-dialog" role="document">
@@ -177,9 +175,8 @@
                         </div>
                     </div>
                 </div>
-
+                -->
             </div>
-            <div class="col-xs-0  col-sm-4"></div>
         </div>
     </div>
 </div>
@@ -1067,7 +1064,34 @@
 
 
 <div id="page_user_main" hidden>
-    <nav class="navbar navbar-default" id="nav_bar" hidden>
+    <nav class="nav-extended nav_bar" >
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo nav-link-user" name="nav_user_header"><b>H<span class="yoga_color">Y</span>LS</b></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="sass.html">Sass</a></li>
+                <li><a href="badges.html">Components</a></li>
+                <li><a href="collapsible.html">JavaScript</a></li>
+            </ul>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+                <li><a class=" tab nav-link-user" name="nav_user_marafon" data-value="detox"   href="#">Марафон 60 дней</a></li>
+                <li><a class=" tab nav-link-user" name="nav_user_marafon" data-value="mini"    href="#">Полезные привычки</a></li>
+                <li><a class=" tab nav-link-user" name="nav_user_marafon" data-value="family"  href="#">Семейные отношения</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+    </ul>
+
+
+    <nav class="navbar navbar-default" id="" hidden>
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -3981,6 +4005,8 @@
 
 
 
+
+</div>
 </body>
 
 

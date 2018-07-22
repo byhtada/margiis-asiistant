@@ -429,7 +429,7 @@ $( document ).ready(function() {
 
     console.log( "document loaded" );
     $('.navbar-collapse a').click(function(){
-        $(".navbar-collapse").collapse('hide');
+   //     $(".navbar-collapse").collapse('hide');
     });
 
     $('#btn_get_comments').click(function () {
@@ -1888,7 +1888,7 @@ $( document ).ready(function() {
 
 
         var row = '<table class="table table-hover table-bordered table-condensed" >';
-        row    += '<thead><tr> <th>Место</th> <th>Прогресс</th> <th>Имя</th>   </tr></thead><tbody>';
+        row    += '<thead><tr> <th>Место</th> <th>Прогресс</th>    </tr></thead><tbody>';
         $.each(group_rating_info.rating_table, function (i, item) {
             if (item.user_place <= 25) {
                 row += '<tr>';
@@ -1908,7 +1908,7 @@ $( document ).ready(function() {
                 row += progress_percent;
                 row += '</div></div></td>';
 
-                row += '<td class="column_rating_link"><h5><a href="' + item.user_link  + '" target="_blank">' + item.user_link + '</a></h5></td>';
+              //  row += '<td class="column_rating_link"><h5><a href="' + item.user_link  + '" target="_blank">' + item.user_link + '</a></h5></td>';
                 row += '</tr>';
             }
         });
@@ -5325,6 +5325,7 @@ $( document ).ready(function() {
 
                     group_users_row += '<td><button type="button" class="btn btn-warning btn-sm" name="btns_edit_user" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_edit_user"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
 
+                    group_users_row += '<td><button type="button" class="btn btn-warning btn-sm" name="btns_group_user_move" value="'  +  item.user_id + '" data-group-id="' + data.group_id + '"> <span class="glyphicon glyphicon-retweet" aria-hidden="true"></span></button></td>';
                     group_users_row += '<td><button type="button" class="btn btn-danger btn-sm" name="btns_group_user_delete" value="'  +  item.user_id + '" data-group-id="' + data.group_id + '"  data-toggle="modal" data-target="#modal_group_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
 
                     group_users_row += '</tr>';
@@ -5377,6 +5378,38 @@ $( document ).ready(function() {
             }
         });
     });
+
+    $(document).on('click', '[name="btns_group_user_move"]', function() {
+        $(this).prop("disabled", true);
+        $.ajax({
+            type: "GET",
+            url: api_url_full,
+            data: { query_update: "group_user_move",
+                user_id:   $(this).val(),
+                group_id:  $(this).attr("data-group-id")
+            },
+
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                //  console.log(data);
+                if (data.error == 0) {
+                    //hide_all_in_admin();
+                    //$('#page_groups')  .show();
+                    update_admin_info();
+                }
+
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+
+    });
+
+
     $(document).on('click', '[name="btns_group_user_info"]' , function() {
         $.ajax({
             type: "GET",
@@ -5749,6 +5782,7 @@ $( document ).ready(function() {
 
             user_register_row += '<td><textarea class="user_comment_admin" name="' + item.user_id + '">' + item.user_comment + '</textarea></td>';
             user_register_row += '<td><button type="button" class="btn btn-warning btn-sm" name="btns_edit_user" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_edit_user"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
+            user_register_row += '<td><button type="button" class="btn btn-info btn-sm" name="btns_user_create_family" value="'  +  item.user_id + '" > <span class="glyphicon glyphicon-add" aria-hidden="true"></span></button></td>';
             user_register_row += '<td><button type="button" class="btn btn-danger btn-sm"  name="btns_user_delete" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
 
 
@@ -5760,7 +5794,26 @@ $( document ).ready(function() {
         $('#table_users_find').bsTable(undefined, false, undefined, undefined, true);
 
     }
+    $(document).on('click', '[name="btns_user_create_family"]' , function(){
+        $(this).prop('disabled', true);
+        $.ajax({
+            type: "POST",
+            url:  api_url + "create_family_program_for_hyls",
+            data: {
+                user_id:            $(this).val()
+                    },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
 
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
 
     $('#btn_hide_user_register').click(function (){
         if ($('#table_users_register').is(":visible")){
