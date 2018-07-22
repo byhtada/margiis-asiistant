@@ -1086,7 +1086,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Мои марафоны<span class="caret"></span></a>
                         <ul id="my_marafon_dropdown" class="dropdown-menu">
-                            <li><a class="nav-link-user" name="nav_user_marafon" data-value="detox"   href="#">Детокс</a></li>
+                            <li><a class="nav-link-user" name="nav_user_marafon" data-value="detox"   href="#">Марафон 60 дней</a></li>
                             <li><a class="nav-link-user" name="nav_user_marafon" data-value="mini"    href="#">Полезные привычки</a></li>
                             <li><a class="nav-link-user" name="nav_user_marafon" data-value="family"  href="#">Семейные отношения</a></li>
                         </ul>
@@ -1664,9 +1664,10 @@
         </div>
 
         <div id="user_marafon_start" hidden>
-            <div id="diary_marafon_detox" hidden class="row">
+            <div id="diary_marafon_detox"  hidden class="row">
                 <div class="col-xs-0  col-sm-3"></div>
                 <div class="col-xs-12 col-sm-6" align="center">
+                    <h2 class="marafon_name"></h2>
                     <h3 id="user_programm_day" align="center">
                         <button id="btn_user_previus_day" type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
                         <span id="user_current_day">День Х (сегодня)</span>
@@ -2546,9 +2547,10 @@
                 <div class="col-xs-0  col-sm-3"></div>
             </div>
 
-            <div id="diary_marafon_mini" hidden class="row">
+            <div id="diary_marafon_mini"   hidden class="row">
                 <div class="col-xs-0  col-sm-3"></div>
                 <div class="col-xs-12 col-sm-6" align="center">
+                    <h2 class="marafon_name"></h2>
                     <div id="alert_mini_read_intro" class="alert alert-warning alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <strong>Приветствуем!</strong> Чтобы понять, что здесь происходит пожалуйста ознакомтесь с этой <a id="link_intro_mini" href="https://hyls.ru/help" target="_blank">инструкцией</a>.
@@ -3118,6 +3120,7 @@
             <div id="diary_marafon_family" hidden class="row">
                 <div class="col-xs-0  col-sm-3"></div>
                 <div class="col-xs-12 col-sm-6" align="center">
+                    <h2 class="marafon_name"></h2>
                     <h3 id="user_programm_day_family" align="center">
                         <button id="btn_user_previus_day_family" type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
                         <span id="user_current_day_family">День Х (сегодня)</span>
@@ -3287,7 +3290,6 @@
                 </div>
                 <div class="col-xs-0  col-sm-3"></div>
             </div>
-
         </div>
 
         <div id="user_marafon_block" hidden>

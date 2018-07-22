@@ -1640,6 +1640,8 @@ $( document ).ready(function() {
                             $('#nav_bar').show();
                         }
                     } else if (data.marafon_day > 0) {
+
+
                         if (data.program_num == 1 || data.program_num == 2) {
                             if (data.block_programm) {
                                 $('#page_user_programm').show();
@@ -1651,6 +1653,7 @@ $( document ).ready(function() {
                                 $('#nav_bar').show();
                             }
 
+                            $('.marafon_name').text("Марафон 60 дней");
                             document.getElementById("nav_faq_mini").children[0].style.display = "none";
 
                             $('#settings_detox').show();
@@ -1740,6 +1743,7 @@ $( document ).ready(function() {
                             $('#materials_mini') .hide();
 
                         } else if (data.program_num == 3) {
+                            $('.marafon_name').text("Полезные привычки");
                             $('#page_user_programm').show();
 
                             if (data.block_programm) {
@@ -1774,6 +1778,7 @@ $( document ).ready(function() {
                            // $('#btn_material_mini') .text("Материалы (" + data.materials_mini.unread_materialsв + " новых)");
                             setHylsStoreMini(data.hyls_store_mini, data.user);
                         } else if (data.program_num == 4) {
+                            $('.marafon_name').text("Семейные отношения");
                             $('#page_user_programm').show();
 
                             if (data.block_programm) {
@@ -5320,7 +5325,7 @@ $( document ).ready(function() {
 
                     group_users_row += '<td><button type="button" class="btn btn-warning btn-sm" name="btns_edit_user" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_edit_user"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
 
-                    //group_users_row += '<td><button type="button" class="btn btn-danger btn-sm" name="btns_group_user_delete" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_group_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
+                    group_users_row += '<td><button type="button" class="btn btn-danger btn-sm" name="btns_group_user_delete" value="'  +  item.user_id + '" data-group-id="' + data.group_id + '"  data-toggle="modal" data-target="#modal_group_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
 
                     group_users_row += '</tr>';
 
@@ -5342,12 +5347,17 @@ $( document ).ready(function() {
     });
     $(document).on('click', '[name="btns_group_user_delete"]', function() {
         $('#btn_group_user_delete').val($(this).val());
+        $('#btn_group_user_delete').attr("data-group-id", $(this).attr("data-group-id"));
     });
     $('#btn_group_user_delete').click(function () {
         $.ajax({
             type: "GET",
             url: api_url_full,
-            data: { query_update: "group_user_delete", user_id: $(this).val()},
+            data: { query_update: "group_user_delete",
+                    user_id: $(this).val(),
+                    group_id: $(this).attr("data-group-id")
+            },
+
             headers: {
                 'Authorization':'Token token=' + cookie_token,
                 'Content-Type':'application/x-www-form-urlencoded'
