@@ -1399,7 +1399,7 @@ $( document ).ready(function() {
         $('[name=nav_user_rating]')  .hide();
         $('[name=nav_user_settings]').hide();
         $('[name=nav_user_support]') .hide();
-        $('[name=nav_faq]')          .hide();
+        $('[name=nav_faq_mini]')          .hide();
     }
 
     function show_user_action_bar(){
@@ -1408,7 +1408,6 @@ $( document ).ready(function() {
         $('[name=nav_user_rating]')  .show();
         $('[name=nav_user_settings]').show();
         $('[name=nav_user_support]') .show();
-        $('[name=nav_faq]')          .show();
     }
 
     function show_marafon_element(marafon_name){
