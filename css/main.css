@@ -53,6 +53,8 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 #page_user_main {margin-bottom: 15px;}
 .yoga_color {color: #46d444}
 .black_color {color: #000000}
+.family_color {color: #000000}
+.payment_header_family {font-size: 38px; color: #f980d9 !important; margin-bottom: 24px;}
 .payment_header {font-size: 38px; color: #46d444 !important; margin-bottom: 24px;}
 .payment_text   {font-size: 20px; }
 .currency_text   {font-size: 12px; }
@@ -100,7 +102,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
     background-color: rgba(70, 216, 70, 0.15)
 }
 
-#table_question_detox, #detox_settings, #table_question_therapy, #practise_continue_settings {
+#table_question_detox, #detox_settings, #table_question_therapy, #practise_continue_settings, #table_question_water, #table_question_wake_up {
     margin-top: 15px;
     padding: 15px;
     border-radius: 10px;
@@ -127,6 +129,36 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
     margin-bottom: 25px !important;
 }
 
+#table_family_cb{
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(90, 216, 81, 0.27);
+    margin-bottom: 25px !important;
+}
+
+#family_practise{
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    border: 3px solid rgba(0, 0, 0, 0.69);
+    margin-bottom: 25px !important;
+}
+
+.row_family_nonviolence{
+    padding: 15px;
+    border-radius: 7px;
+    border: 1px solid rgba(0, 0, 0, 0.69);}
+
+.row_family_generosity{margin-top: 15px !important;
+    padding: 15px;
+    border-radius: 7px;
+    border: 1px solid rgba(0, 0, 0, 0.69);}
+.family_practic_name{margin-top: 0px !important;}
+.family_practise_divider{width: 100%; height: 1px; border: 1px solid rgba(0, 0, 0, 0.69);}
+#field_family_nonviolence_action, #field_family_generosity_action { margin-top: 15px;}
+
+
 .checkbox_div   {align-content: center}
 
 .no-spinners {
@@ -138,7 +170,17 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
     margin: 0;
 }
 
-#filed_day_comment    {width: 100%; height: 100px;}
+textarea {  resize: none;
+    overflow: hidden;
+    min-height: 50px;}
+
+
+#filed_day_comment, #filed_day_comment_mini    {width: 100%; height: 100px;}
+.family_practise_input    {width: 150px; max-width: 100%; min-height: 50px; max-height: 150px;}
+.db_row_input_family_name    {height: 100% !important; vertical-align: baseline}
+
+
+
 
 #table_programm_main  {margin-left: 20px; margin-right: 20px;}
 
@@ -466,24 +508,39 @@ a.reg-link-text {
 #settings_mini div.pretty {
     margin-right: 0;
 }
-
 #settings_mini div.state {
     margin: -10px 0;
     padding: 0;
 
 }
-
 #settings_mini td.db_row_input div.pretty:nth-child(2) {
     margin-left: 20px;
 }
-
 #settings_mini table.table > tbody > tr > td {
     vertical-align: text-top;
 }
-
 #settings_mini td.db_row_input {
     text-align: center;
 }
+
+.db_row_dialog div.pretty {
+    margin-right: 0;
+}
+.db_row_dialog div.state {
+    margin: -10px 0;
+    padding: 0;
+
+}
+.db_row_dialog td.db_row_input div.pretty:nth-child(2) {
+    margin-left: 20px;
+}
+.db_row_dialog table.table > tbody > tr > td {
+    vertical-align: text-top;
+}
+.db_row_dialog td.db_row_input {
+    text-align: center;
+}
+
 
 
 

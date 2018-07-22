@@ -34,7 +34,7 @@ $( document ).ready(function() {
     var signature    = "";
     var rectoken     = "";
     var fondy_host   = "https://api.fondy.eu/api/status/order_id";
-
+    var query;
 
     if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )){
         //alert("Наше программное обесепечение не поддерживает Internet Explore, пожалуйста, используйте другой браузер.");
@@ -112,7 +112,8 @@ $( document ).ready(function() {
 
     var detox_stop_mini = false;
 
-
+    var marafon_name = "";
+    var marafon_name_main = "";
 
     function initFondy0(){
         $ipsp("checkout").scope(function () {
@@ -120,6 +121,8 @@ $( document ).ready(function() {
                 // console.log("reg");
                 console.log(data);
 
+                clearInterval(interval_white_page);
+                $('#text_white_page').hide();
                 $('#page_load').show();
                 $('#page_user_main').hide();
                 if (typeof data.send_data !== 'undefined' && data.final ) {
@@ -154,6 +157,10 @@ $( document ).ready(function() {
             case "reg_mini":
                 wrapper = "#checkout_reg_mini";
                 break;
+
+            case "reg_family":
+                wrapper = "#checkout_reg_family";
+                break;
         }
 
         url = button.getUrl();
@@ -172,7 +179,20 @@ $( document ).ready(function() {
             });
             this.loadUrl(url);
         });
+
     }
+    $('#btn_checkout_detox').click(function(){
+
+        $('#btn_checkout_detox').hide();
+        $('#div_checkout_reg_detox').show();
+        $('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
+    });
+    $('#btn_checkout_family').click(function(){
+        $('#btn_checkout_family').hide();
+        $('#div_checkout_reg_family').show();
+        $('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
+    });
+
     function ifLogin()  {
         console.log("ifLogin");
         if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
@@ -230,12 +250,8 @@ $( document ).ready(function() {
                     $("#modal_register_self").modal('show');
                 }
             } else if (typeof params.access_token == 'undefined') {
-                console.log("access_token == 'undefined'");
-                //if (params.hyls_program === "21days") {
-                //    console.log("21 da");
-                //    $('#page_user_main').show();
-                //    $('#page_marafon_reg').show();
-                //    $('#reg_marafon_create_password').show();
+
+
                 if (typeof params.login_from !== 'undefined' && params.login_from === "email") {
                     $('#page_user_main').show();
                     $('#page_marafon_reg').show();
@@ -654,25 +670,39 @@ $( document ).ready(function() {
             reg_practic_counter -= 1;
         }
 
-        var alert_text = "К сожалению, вы не можете одновременно проходить марафоны вегетарианства и очищения организма, потому что их программы не сочетаются друг с другом. Выберете, пожалуйста, другие сочетания программ. ";
+        var alert_text_vegan    = "К сожалению, вы не можете одновременно проходить марафоны вегетарианства и очищения организма, потому что их программы не сочетаются друг с другом. Выберете, пожалуйста, другие сочетания программ. ";
+        var alert_text_snacking = "К сожалению, вы не можете одновременно проходить марафоны 'Без перекусов переедания и сахара' и очищения организма, потому что их программы не сочетаются друг с другом. Выберете, пожалуйста, другие сочетания программ. ";
+
+
         switch ($(this).attr("id")){
             case "reg_checkbox_water":
                 console.log("check_water");
                 reg_mini_water = $(this).is(":checked");
                 break;
             case "reg_checkbox_detox":
-                if ($(this).is(":checked") && reg_mini_vegan){
-                    alert(alert_text);
-                    $(this).prop("checked", false);
-                    reg_practic_counter -= 1;
-                } else { reg_mini_detox = $(this).is(":checked"); }
+                reg_mini_detox = $(this).is(":checked");
 
+                if ($(this).is(":checked") ){
+                    if (reg_mini_vegan)    {alert(alert_text_vegan);}
+                    if (reg_mini_snacking) {alert(alert_text_snacking);}
+
+                    if (reg_mini_vegan || reg_mini_snacking) {
+                        $(this).prop("checked", false);
+                        reg_mini_detox = false;
+                        reg_practic_counter -= 1;
+                    }
+                }
                 break;
-            case "reg_checkbox_wareup":
+            case "reg_checkbox_wakeup":
                 reg_mini_wake_up = $(this).is(":checked");
                 break;
             case "reg_checkbox_snacking":
-                reg_mini_snacking = $(this).is(":checked");
+                console.log("reg_checkbox_snacking  " + $(this).is(":checked") + reg_mini_detox);
+                if ($(this).is(":checked") && reg_mini_detox){
+                    alert(alert_text_vegan);
+                    $(this).prop("checked", false);
+                    reg_practic_counter -= 1;
+                } else { reg_mini_snacking = $(this).is(":checked"); }
                 break;
             case "reg_checkbox_thanks":
                 reg_mini_thanks = $(this).is(":checked");
@@ -682,7 +712,8 @@ $( document ).ready(function() {
                 break;
             case "reg_checkbox_vegan":
                 if ($(this).is(":checked") && reg_mini_detox){
-                    alert(alert_text);
+
+                    alert(alert_text_vegan);
                     $(this).prop("checked", false);
                     reg_practic_counter -= 1;
                 } else { reg_mini_vegan = $(this).is(":checked"); }
@@ -704,15 +735,18 @@ $( document ).ready(function() {
         marafon_mini_cost = 0;
         switch (reg_practic_counter) {
             case 1:
-                marafon_mini_cost = 2;
+                marafon_mini_cost = 3;
+                //marafon_mini_cost = 600;
                 break;
 
             case 2:
-                marafon_mini_cost = 3;
+                marafon_mini_cost = 5;
+                //marafon_mini_cost = 900;
                 break;
 
             default:
-                marafon_mini_cost = 5 + 1 * (reg_practic_counter - 2);
+                marafon_mini_cost = 8 + 1 * (reg_practic_counter - 2);
+                //marafon_mini_cost = 900 + 200 * (reg_practic_counter - 2);
                 break;
         }
 
@@ -721,7 +755,7 @@ $( document ).ready(function() {
         if (reg_practic_counter > 0){
             $('#reg_mini_cost').show();
             $('#div_btn_pay_mini').show();
-            $('html,body').animate({scrollTop: document.body.scrollHeight},"fast");
+            $('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
         } else {
             $('#reg_mini_cost').hide();
             $('#div_btn_pay_mini').hide();
@@ -744,7 +778,7 @@ $( document ).ready(function() {
         button.addParam("lang","ru");
         button.addParam("order_desc", "HYLS 21_days_mini");
         //button.addParam("required_rectoken", "Y");
-        payment_flow = "reg_mini_marafon";
+        payment_flow = "reg_marafon_mini";
         var url = button.getUrl();
         $ipsp("checkout").config();
         $ipsp("checkout").config({
@@ -762,6 +796,7 @@ $( document ).ready(function() {
             });
             this.loadUrl(url)
         });
+        $('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
 
     });
 
@@ -797,10 +832,7 @@ $( document ).ready(function() {
 	    scrollTop();
     });
 
-    function scrollTop() {
-        console.log('123');
-	    $('html, body').animate({scrollTop: 0},500);
-    }
+
 
     $('#btn_register_self').click(function () {
 
@@ -988,9 +1020,9 @@ $( document ).ready(function() {
         });
     }
     function reg_user_confirm_payment(send_data){
-        var query;
+
         switch (payment_flow) {
-            case "reg_detox_marafon":
+            case "reg_marafon_detox":
                 query = "user_confirm_payment_detox";
                 break;
             case "support":
@@ -999,7 +1031,7 @@ $( document ).ready(function() {
             case "settings":
                 query = "user_start_daily_payment_again";
                 break;
-            case "reg_mini_marafon":
+            case "reg_marafon_mini":
                 query = "user_confirm_payment_mini_marafon";
                 mini_marafon_all = {
                     reg_mini_water: reg_mini_water,
@@ -1013,6 +1045,9 @@ $( document ).ready(function() {
                     reg_mini_asana: reg_mini_asana,
                     reg_mini_therapy: reg_mini_therapy
                 };
+                break;
+            case "reg_marafon_family":
+                query = "user_confirm_payment_family";
                 break;
         }
 
@@ -1343,58 +1378,168 @@ $( document ).ready(function() {
     function hide_all_in_user() {
         $('#page_load').hide();
         $('#page_marafon_reg').hide();
+        $('#reg_marafon_detox').hide();
+        $('#reg_marafon_mini').hide();
+        $('#reg_marafon_family').hide();
+
         $('#page_user_programm').hide();
+        $('#diary_marafon_detox').hide();
+        $('#diary_marafon_mini').hide();
+        $('#diary_marafon_family').hide();
+
         $('#page_user_materials').hide();
         $('#page_user_hyls_store').hide();
         $('#page_user_rating').hide();
         $('#page_user_settings').hide();
         $('#page_user_support').hide();
     }
+    function  hide_user_action_bar(){
+        $('[name=nav_user_programm]').hide();
+        $('[name=nav_user_diary]')   .hide();
+        $('[name=nav_user_rating]')  .hide();
+        $('[name=nav_user_settings]').hide();
+        $('[name=nav_user_support]') .hide();
+        $('[name=nav_faq]')          .hide();
+    }
+
+    function show_user_action_bar(){
+        $('[name=nav_user_programm]').show();
+        $('[name=nav_user_diary]')   .show();
+        $('[name=nav_user_rating]')  .show();
+        $('[name=nav_user_settings]').show();
+        $('[name=nav_user_support]') .show();
+        $('[name=nav_faq]')          .show();
+    }
+
+    function show_marafon_element(marafon_name){
+        $('#reg_marafon_detox')  .hide();
+        $('#diary_marafon_detox').hide();
+        $('#materials_detox')    .hide();
+        $('#reg_marafon_mini')   .hide();
+        $('#diary_marafon_mini') .hide();
+        $('#materials_mini')     .hide();
+        $('#reg_marafon_family') .hide();
+        $('#diary_marafon_family').hide();
+        $('#materials_family')    .hide();
+
+        console.log(marafon_name);
+        $('[name=nav_user_diary]')   .attr("data-value", marafon_name);
+        switch (marafon_name) {
+                case "detox":
+                    $('#reg_marafon_detox').show();
+                    $('#diary_marafon_detox').show();
+                    $('#materials_detox').show();
+
+                break;
+
+                case "mini":
+                    $('#reg_marafon_mini').show();
+                    $('#diary_marafon_mini').show();
+                    $('#materials_mini').show();
+                break;
+                case "family":
+                    $('#reg_marafon_family').show();
+                    $('#diary_marafon_family').show();
+                    $('#materials_family').show();
+                break;
+        }
+    }
+
     $(document).on('click', '.nav-link-user',       function () {
+        marafon_name = $(this).attr("data-value");
+
         hide_all_in_user();
 
-        switch ($(this).attr("name")){
-            case "nav_user_programm":
-                $('#page_user_programm').show();
-                break;
-            case "nav_user_diary":
 
+        switch ($(this).attr("name")){
+            case "nav_user_header":
+                //show_user_action_bar();
+                //show_marafon_element(marafon_name_main);
+                //$('#page_user_main').show();
+                //$('#page_user_programm').show();
+                //$('#user_marafon_start').show();
+                update_user_info();
+                break;
+            case "nav_user_marafon":
                 $.ajax({
                     type: "GET",
-                    url:  api_url_full,
-                    data: { query_info: "get_user_diary_detox"},
+                    url:  api_url + "get_user_marafon",
+                    data: {
+                        marafon_name:  $(this).attr("data-value")
+                    },
                     headers: {
                         'Authorization':'Token token=' + cookie_token,
                         'Content-Type':'application/x-www-form-urlencoded'
                     },
-                    success: function(data) {
-                        setUserDiaryDetox(data.user_diary_detox);
-                        $('#page_user_materials').show();
-                        },
+                    success: function(data){
+                        console.log(data);
+
+                        hide_all_in_user();
+                        console.log(marafon_name);
+                        if (marafon_name === "detox") {
+                            if (data.error == 0){
+                               //$('#page_user_programm').show();
+                              // $('#diary_marafon_detox').show();
+                            } else {
+                                query = "user_confirm_payment_detox";
+                                initFondy("HYLS 60_days", "reg_detox");
+                                $('#page_marafon_reg').show();
+                                $('#reg_marafon_detox').show();
+                            }
+                        } else if (marafon_name === "mini") {
+                            if (data.error == 0){
+                               // $('#page_user_programm').show();
+                               // $('#diary_marafon_mini').show();
+                            } else {
+                                query = "user_confirm_payment_mini_marafon";
+                                initFondy("HYLS 21_days", "reg_mini");
+                                $('#page_marafon_reg').show();
+                                $('#reg_marafon_mini').show();
+                            }
+                        } else if (marafon_name === "family") {
+                            if (data.error == 0){
+                               // $('#page_user_programm').show();
+                               // $('#diary_marafon_family').show();
+                            } else {
+                                query = "user_confirm_payment_family";
+                                initFondy("HYLS family", "reg_family");
+
+
+                                $('#page_marafon_reg').show();
+                                $('#reg_marafon_family').show();
+                            }
+                        }
+
+                        if (data.error == 0){
+                            update_user_info();
+                            show_marafon_element(marafon_name);
+                            show_user_action_bar();
+                        } else {
+                            hide_user_action_bar();
+                        }
+
+                    },
                     failure: function(errMsg) {
                         alert(errMsg.toString());
                     }
                 });
+                break;
+            case "nav_user_programm":
+                show_marafon_element(marafon_name_main);
+                $('#page_user_main').show();
+                $('#page_user_programm').show();
+                $('#user_marafon_start').show();
+                break;
+            case "nav_user_diary":
+                show_marafon_element(marafon_name_main);
+                $('#page_user_materials').show();
+
                 break;
 
             case "nav_user_rating":
                 $('#page_user_rating').show();
                 break;
             case "nav_user_settings":
-                //$ipsp("checkout").config({
-                //    "wrapper": "#checkout_settings",
-                //    "styles": {
-                //        "body": {
-                //            "overflow": "hidden"
-                //        }
-                //    }
-                //}).scope(function () {
-                //    this.width("100%");
-                //    this.height(480);
-                //    this.action("resize", function (data) {
-                //        this.setCheckoutHeight(data.height);
-                //    });
-                //    this.loadUrl(url);});
                 $('#page_user_settings').show();
                 break;
             case "nav_user_support":
@@ -1434,6 +1579,7 @@ $( document ).ready(function() {
                 break;
         }
     });
+
     function update_user_info() {
         //console.log("update_user_info");
         try {
@@ -1455,34 +1601,52 @@ $( document ).ready(function() {
                     $('#user_marafon_block').hide();
                     $('#user_marafon_wait').hide();
 
+                    marafon_name = data.marafon_name;
+                    marafon_name_main = data.marafon_name;
+                    $('[name=nav_user_programm]').attr("data-value", marafon_name);
+                    $('[name=nav_user_diary]')   .attr("data-value", marafon_name);
+
 
 
                     if (data.marafon_day < -998) {
-                        $('#reg_marafon_create_password').hide();
                         $('#page_marafon_reg').show();
                         if (data.user.program_type != null && data.user.program_type.includes("21day")) {
-                            payment_flow = "reg_mini_marafon";
+                            payment_flow = "reg_marafon_mini";
                             initFondy("HYLS 21_days_mini", "reg_mini");
                             $('#reg_marafon_mini').show();
                             console.log("mini");
-                        } else {
-                            payment_flow = "reg_detox_marafon";
-                            initFondy("HYLS 60_days_detox", "reg_detox");
+                        } else if (data.user.program_type != null && data.user.program_type.includes("60day")) {
+                            payment_flow = "reg_marafon_detox";
+                            initFondy("HYLS 60_days", "reg_detox");
                             $('#reg_marafon_detox').show();
                             console.log("detox");
+                        } else if (data.user.program_type != null && data.user.program_type.includes("family")) {
+                            payment_flow = "reg_marafon_family";
+                            initFondy("HYLS family", "reg_family");
+                            $('#reg_marafon_family').show();
+                            console.log("family");
                         }
 
                     } else if  (data.marafon_day > -998 && data.marafon_day < 1){
                         console.log("wait");
+                        $('#page_user_programm').show();
                         $('#user_marafon_wait').show();
                         $('#user_marafon_wait_text').text("Ожидайте старта марафона " + data.marafon_day_start);
                         $('#wait_messenger_link')    .attr("href", data.messenger_link).text("по ссылке");
                         $('#user_marafon_wait_messenger').show();
+
+                        if (data.marafon_count > 1){
+                            hide_user_action_bar();
+                            document.getElementById("nav_faq_mini").children[0].style.display = "none";
+                            $('#nav_bar').show();
+                        }
                     } else if (data.marafon_day > 0) {
                         if (data.program_num == 1 || data.program_num == 2) {
                             if (data.block_programm) {
+                                $('#page_user_programm').show();
                                 $('#user_marafon_block').show();
                             } else {
+                                $('#page_user_programm').show();
                                 $('#user_marafon_start').show();
                                 $('#diary_marafon_detox').show();
                                 $('#nav_bar').show();
@@ -1505,6 +1669,9 @@ $( document ).ready(function() {
                             setPractiseDetox(data.practise_complete);
                             setDayDetox(data.marafon_info_today, data.marafon_day);
                             setGroupRatingDetox(data.group_rating_info, data.user);
+
+                            setUserDiaryDetox(data.user_diary_detox);
+
 
                             if (data.daily_payment == true){
                                 $('#div_settings_payment_change').show();
@@ -1574,7 +1741,10 @@ $( document ).ready(function() {
                             $('#materials_mini') .hide();
 
                         } else if (data.program_num == 3) {
+                            $('#page_user_programm').show();
+
                             if (data.block_programm) {
+
                                 $('#user_marafon_block').show();
                             } else {
                                 $('#user_marafon_start').show();
@@ -1604,8 +1774,32 @@ $( document ).ready(function() {
 
                            // $('#btn_material_mini') .text("Материалы (" + data.materials_mini.unread_materialsв + " новых)");
                             setHylsStoreMini(data.hyls_store_mini, data.user);
+                        } else if (data.program_num == 4) {
+                            $('#page_user_programm').show();
+
+                            if (data.block_programm) {
+                                $('#user_marafon_block').show();
+                            } else {
+                                $('#user_marafon_start').show();
+                                $('#diary_marafon_family').show();
+                                $('#nav_bar').show();
+                            }
+
+                            $('#settings_messenger_link').attr("href", data.messenger_link).text("Ссылка");
+                            $('#settings_detox').show();
+                            $('#settings_mini') .hide();
+
+                            $('#materials_detox').hide();
+                            $('#materials_family') .show();
 
 
+                            document.getElementById("nav_faq_mini").children[0].style.display = "none";
+
+
+                            setDayFamily(data.marafon_info_today, data.marafon_day);
+                            setGroupRatingDetox(data.group_rating_info, data.user);
+
+                            setUserDiaryFamily(data.user_diary_family);
                         }
                     }
 
@@ -1624,6 +1818,9 @@ $( document ).ready(function() {
             //console.log(err);
         }
     }
+
+
+
     function setPractiseDetox(practise){
 
         if (practise.practise_setting_show) {
@@ -1687,7 +1884,7 @@ $( document ).ready(function() {
 
 
         var row = '<table class="table table-hover table-bordered table-condensed" >';
-        row    += '<thead><tr> <th>Место</th> <th>Прогресс</th> <th>Имя</th>  <th>Профиль</th> </tr></thead><tbody>';
+        row    += '<thead><tr> <th>Место</th> <th>Прогресс</th> <th>Имя</th>   </tr></thead><tbody>';
         $.each(group_rating_info.rating_table, function (i, item) {
             if (item.user_place <= 25) {
                 row += '<tr>';
@@ -1707,10 +1904,6 @@ $( document ).ready(function() {
                 row += progress_percent;
                 row += '</div></div></td>';
 
-
-
-
-                row += '<td class="column_rating_name"><h5>' + item.user_name     + '</h5></td>';
                 row += '<td class="column_rating_link"><h5><a href="' + item.user_link  + '" target="_blank">' + item.user_link + '</a></h5></td>';
                 row += '</tr>';
             }
@@ -1735,7 +1928,7 @@ $( document ).ready(function() {
 
 
         var row = '<table class="table table-hover table-bordered table-condensed" >';
-        row    += '<thead><tr> <th>Место</th> <th>Прогресс</th> <th>Имя</th>  <th>Профиль</th> </tr></thead><tbody>';
+        row    += '<thead><tr> <th>Место</th> <th>Прогресс</th> <th>Имя</th> </tr></thead><tbody>';
         $.each(group_rating_info.rating_table, function (i, item) {
             if (item.user_place <= 25) {
                 row += '<tr>';
@@ -1755,11 +1948,7 @@ $( document ).ready(function() {
                 row += progress_percent;
                 row += '</div></div></td>';
 
-
-
-
                 row += '<td class="column_rating_name"><h5>' + item.user_name     + '</h5></td>';
-                row += '<td class="column_rating_link"><h5><a href="' + item.user_link  + '" target="_blank">' + item.user_link + '</a></h5></td>';
                 row += '</tr>';
             }
         });
@@ -2235,7 +2424,7 @@ $( document ).ready(function() {
             $('#table_question_wake_up').hide();
             $('#wake_up_settings').show();
         } else {
-            if (day_num > 14) {
+            if (day_num > 11) {
                 $('#table_question_wake_up').show();
                 $('#wake_up_settings').show();
             } else {
@@ -2514,7 +2703,7 @@ $( document ).ready(function() {
         }, 1500);
     });
 
-    $('#btn_user_material').click(function (){
+    $('#btn_user_material, #btn_user_material_family').click(function (){
         var win = window.open($(this).val(), '_blank');
         win.focus();
     });
@@ -3614,10 +3803,266 @@ $( document ).ready(function() {
         }
     });
 
+
+
+    /////////////////FAMILY/////////////////////////////
+    function getDayInfoFamily(day_num){
+        if (day_num > 0) {
+            $.ajax({
+                type: "GET",
+                url:  api_url + "get_day_info_family",
+                data: {
+                    day_num: day_num
+                },
+                headers: {
+                    'Authorization':'Token token=' + cookie_token,
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                success: function(data){
+                     console.log(data);
+                    day_new = data.current_day.day_num;
+                    setDayFamily(data.current_day, data.marafon_day);
+
+                },
+                failure: function(errMsg) {
+                    alert(errMsg.toString());
+                }
+            });
+        }
+    }
+
+    function setDayFamily(current_day, marafon_day){
+        console.log(current_day);
+        day_num = current_day.day_num;
+        day_id  = current_day.day_id;
+
+
+
+        var family_meditation_active           = current_day.family_meditation_active ;
+        var family_film_active                 = current_day.family_film_active       ;
+        var family_thinking_active             = current_day.family_thinking_active   ;
+        var family_bracelet_active             = current_day.family_bracelet_active   ;
+        var family_pages_active                = current_day.family_pages_active      ;
+        var family_nonviolence_active          = current_day.family_nonviolence_active;
+        var family_generosity_active           = current_day.family_generosity_active ;
+
+        var family_meditation_fact           = current_day.family_meditation_fact ;
+        var family_film_fact                 = current_day.family_film_fact;
+        var family_film_name                 = current_day.family_film_name;
+        var family_thinking_fact             = current_day.family_thinking_fact;
+        var family_bracelet_fact             = current_day.family_bracelet_fact;
+        var family_bracelet_day              = current_day.family_bracelet_day;
+        var family_pages_fact                = current_day.family_pages_fact;
+
+        var family_nonviolence_plus          = current_day.family_nonviolence_plus;
+        var family_nonviolence_minus         = current_day.family_nonviolence_minus;
+        var family_nonviolence_action        = current_day.family_nonviolence_action;
+
+        var family_generosity_plus          = current_day.family_generosity_plus;
+        var family_generosity_minus         = current_day.family_generosity_minus;
+        var family_generosity_action        = current_day.family_generosity_action;
+
+        var day_comment_family                  = current_day.day_comment_family;
+        var day_progress                 = current_day.day_progress;
+
+        if (day_show_now !== day_new) {
+            $('#row_family_meditation')     .hide();
+            $('#row_family_film')           .hide();
+            $('#row_family_thinking')       .hide();
+            $('#row_family_bracelet')       .hide();
+            $('#row_family_pages')          .hide();
+
+            $('#family_practise')       .hide();
+            $('.row_family_nonviolence').hide();
+            $('.row_family_generosity') .hide();
+
+
+
+            $('#filed_family_meditation').prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_family_film')      .prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_family_thinking')  .prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_family_bracelet')  .prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_family_pages')             .prop("checked", false).attr("data-day-num", day_num);
+
+
+            $('#field_family_nonviolence_plus')       .val(null).attr("data-day-num", day_num);
+            $('#field_family_nonviolence_minus')      .val(null).attr("data-day-num", day_num);
+            $('#field_family_nonviolence_action')     .val(null).attr("data-day-num", day_num);
+            $('#field_family_generosity_plus')        .val(null).attr("data-day-num", day_num);
+            $('#field_family_generosity_minus')       .val(null).attr("data-day-num", day_num);
+            $('#field_family_generosity_action')      .val(null).attr("data-day-num", day_num);
+            $('#field_day_comment_family')            .val(null).attr("data-day-num", day_num);
+
+
+
+
+
+
+            if (family_meditation_active) {
+                $('#row_family_meditation').show();
+                $('#filed_family_meditation').prop("checked", family_meditation_fact);
+            }
+            if (family_film_active)          {
+                $('#row_family_film').show();
+                $('#filed_family_film').prop("checked", family_film_fact);
+                $('#film_family_name').text(family_film_name);
+
+            }
+            if (family_thinking_active)          {
+                $('#row_family_thinking').show();
+                $('#filed_family_thinking').prop("checked", family_thinking_fact);
+            }
+            if (family_bracelet_active)        {
+                $('#row_family_bracelet').show();
+                $('#filed_family_bracelet').prop("checked", family_bracelet_fact);
+            }
+            if (family_pages_active)       {
+                $('#row_family_pages').show();
+                $('#filed_family_pages').prop("checked", family_pages_fact);
+            }
+            if (family_nonviolence_active)     {
+                $('.row_family_nonviolence').show();
+                $('#field_family_nonviolence_plus')  .val(family_nonviolence_plus);
+                $('#field_family_nonviolence_minus') .val(family_nonviolence_minus);
+                $('#field_family_nonviolence_action').val(family_nonviolence_action);
+            }
+            if (family_generosity_active)     {
+                $('.row_family_generosity').show();
+                $('#field_family_generosity_plus')  .val(family_generosity_plus);
+                $('#field_family_generosity_minus') .val(family_generosity_minus);
+                $('#field_family_generosity_action').val(family_generosity_action);
+            }
+
+            if (family_nonviolence_active || family_generosity_active) {
+                $('#family_practise').show();
+            }
+
+            day_comment_family != ""  ?  $('#field_day_comment_family').val(day_comment_family)   : $('#field_day_comment_family').val();
+
+            $('#field_family_nonviolence_plus')[0]    .style.height = ($('#field_family_nonviolence_plus')[0].scrollHeight) + "px";
+            $('#field_family_nonviolence_minus')[0]   .style.height = ($('#field_family_nonviolence_minus')[0].scrollHeight) + "px";
+            $('#field_family_nonviolence_action')[0]  .style.height = ($('#field_family_nonviolence_action')[0].scrollHeight) + "px";
+            $('#field_family_generosity_plus')[0]     .style.height = ($('#field_family_generosity_plus')[0].scrollHeight) + "px";
+            $('#field_family_generosity_minus')[0]    .style.height = ($('#field_family_generosity_minus')[0].scrollHeight) + "px";
+            $('#field_family_generosity_action')[0]   .style.height = ($('#field_family_generosity_action')[0].scrollHeight) + "px";
+            $('#field_day_comment_family')[0]         .style.height = ($('#field_day_comment_family')[0].scrollHeight) + "px";
+
+            $('#btn_user_material_family')    .val(current_day.program_family_material);
+
+        }
+
+        $('#family_bracelet_day').text(family_bracelet_day);
+        day_show_now = day_num;
+
+        if (day_new == 0) {
+            day_new = day_show_now;
+        }
+
+
+
+        $('#btn_user_next_day_family')    .val(day_num + 1);
+        $('#btn_user_previus_day_family') .val(day_num - 1);
+        if (current_day.day_num == marafon_day) {
+            $('#user_current_day_family')    .text("День " + day_num + " (сегодня)");
+            $('#btn_user_previus_day_family') .show();
+            $('#btn_user_next_day_family')    .hide();
+        } else if (current_day.day_num == marafon_day - 1){
+            $('#user_current_day_family')     .text("День " + day_num + " (вчера)");
+            $('#btn_user_next_day_family')    .show();
+            $('#btn_user_previus_day_family') .show();
+        } else if (current_day.day_num == marafon_day + 1) {
+            $('#user_current_day_family')    .text("День " + day_num + " (завтра)");
+        } else {
+            $('#user_current_day_family')    .text("День " + day_num + " (" + current_day.day_date + ")");
+            $('#btn_user_previus_day_family') .show();
+            $('#btn_user_next_day_family')    .show();
+        }
+
+
+
+        if (day_num == 1) {
+            $('#table_family_cb') .hide();
+            $('#div_user_progress_bar_family') .hide();
+            $('#btn_user_previus_day_family') .hide();
+            if (marafon_day == 1) {
+                $('#btn_user_next_day_family')   .hide();
+            } else {
+                $('#btn_user_next_day_family')   .show();
+            }
+        } else {
+            $('#table_family_cb') .show();
+            $('#div_user_progress_bar_family') .show();
+        }
+
+
+        var progress = day_progress;
+        $('#user_progress_bar_family').css('width', progress+'%').attr('aria-valuenow', progress);
+        $('#user_progress_bar_family').text(progress+'%');
+    }
+
+    $('#btn_user_previus_day_family, #btn_user_next_day_family').click(function() {
+        getDayInfoFamily($(this).val());
+    });
+
+    var save_day_family_timer;
+    $('#filed_family_meditation, #filed_family_film, #filed_family_thinking, #filed_family_bracelet, #filed_family_pages').change(function() {
+        console.log($(this).attr("data-day-num"));
+        userSaveDayFamily($(this).attr("data-day-num"));
+    });
+    $("#field_family_nonviolence_plus, #field_family_nonviolence_minus, #field_family_nonviolence_action, #field_family_generosity_plus, #field_family_generosity_minus, #field_family_generosity_action, #field_day_comment_family").on('change keyup paste', function () {
+        console.log($(this));
+
+        $(this)[0].style.height = "50px";
+        $(this)[0].style.height = ( $(this)[0].scrollHeight)+"px";
+
+        var day_family_timer = $(this).attr("data-day-num");
+        clearTimeout(save_day_family_timer);
+        save_day_family_timer = setTimeout(function (){
+            userSaveDayFamily(day_family_timer);
+        }, 1000);
+    });
+    function userSaveDayFamily(day_num) {
+        //console.log("save day");
+        $.ajax({
+            type: "POST",
+            url:  api_url + "save_day_status_family",
+            data: {
+
+                family_meditation_fact:    $('#filed_family_meditation').is(':checked'),
+                family_film_fact:          $('#filed_family_film')      .is(':checked'),
+                family_thinking_fact:      $('#filed_family_thinking')  .is(':checked'),
+                family_bracelet_fact:      $('#filed_family_bracelet')  .is(':checked'),
+                family_pages_fact:         $('#filed_family_pages')     .is(':checked'),
+
+                family_nonviolence_plus:     $('#field_family_nonviolence_plus')   .val(),
+                family_nonviolence_minus:    $('#field_family_nonviolence_minus')  .val(),
+                family_nonviolence_action:   $('#field_family_nonviolence_action') .val(),
+                family_generosity_plus:      $('#field_family_generosity_plus')    .val(),
+                family_generosity_minus:     $('#field_family_generosity_minus')   .val(),
+                family_generosity_action:    $('#field_family_generosity_action')  .val(),
+                day_comment_family:          $('#field_day_comment_family')        .val(),
+                day_num:    day_num
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                setDayFamily(data.current_day, data.marafon_day);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    }
+
+
+
 //Diary
 
     function setUserDiaryDetox(diary){
-        var diary_row = '<table id="table_diary" class="table table-hover table-bordered table-condensed" >';
+        console.log(diary);
+        var diary_row = '<table class="table table-hover table-bordered table-condensed" >';
         diary_row    += '<thead><tr> <th>День</th> <th>Описание</th> <th>Выполнено</th><th>Запись</th></tr></thead><tbody>';
         $.each(diary, function (i, item) {
             diary_row += '<tr>';
@@ -3631,6 +4076,7 @@ $( document ).ready(function() {
         $('#user_diary_detox').empty();
         $('#user_diary_detox').append(diary_row);
     }
+
     $(document).on('click', '.diary_day_detox', function () {
         console.log($(this).attr("name"));
         hide_all_in_user();
@@ -3659,6 +4105,31 @@ $( document ).ready(function() {
         $('#page_user_programm').show();
         getDayInfoMini($(this).attr("name"));
     });
+
+    function setUserDiaryFamily(diary){
+        console.log(diary);
+        var diary_row = '<table class="table table-hover table-bordered table-condensed" >';
+        diary_row    += '<thead><tr> <th>День</th> <th>Описание</th> <th>Выполнено</th><th>Запись</th></tr></thead><tbody>';
+        $.each(diary, function (i, item) {
+            diary_row += '<tr>';
+            diary_row += '<td><h5 align="center"><a href="#" class="diary_day_family reg_link" name="' + item.day_num +'">' + item.day_num + '</a></h5></td>';
+            diary_row += '<td><h5><a href="'+ item.day_materials +'" class="reg_link" target="_blank">' + item.day_description + '</a></h5></td>';
+            diary_row += '<td><h5 align="center">' + item.day_progress + '</h5></td>';
+            diary_row += '<td><h5>' + item.day_comment + '</h5></td>';
+            diary_row += '</tr>';
+        });
+        diary_row += '</tbody></table';
+        $('#user_diary_family').empty();
+        $('#user_diary_family').append(diary_row);
+    }
+
+    $(document).on('click', '.diary_day_family', function () {
+        console.log($(this).attr("name"));
+        hide_all_in_user();
+        $('#page_user_programm').show();
+        getDayInfoFamily($(this).attr("name"));
+    });
+
 
     function setUserMaterialsMini(materials_mini){
         $('#btn_material_mini').empty();
@@ -4811,25 +5282,25 @@ $( document ).ready(function() {
                 $('#group_day_today').text(data.marafon_day_today + " день");
 
 
-                $('#revenu_reccurent').text("Реккурентных платежей на: " + data.transaction_reccurent_sum + " руб. ::: ");
-                $('#revenu_support')  .text("Поддержки на: "             + data.transaction_support_sum + " руб. ");
-
-
-                var reccurent_row = '<table id="group_users" class="table table-hover table-bordered table-condensed" >';
-                reccurent_row    += '<thead><tr> <th>День</th> <th>Кол-во платежей</th>  <th>Сумма платежей</th></tr></thead><tbody>';
-                $.each(data.transaction_reccurent_amount, function (i, item) {
-                    var day_num = i + 1;
-                    reccurent_row += '<tr>';
-                    reccurent_row += '<td><h5>' + day_num + '</h5></td>';
-                    reccurent_row += '<td><h5>' + data.transaction_reccurent_count[i]  + '</h5></td>';
-                    reccurent_row += '<td><h5>' + data.transaction_reccurent_amount[i] + '</h5></td>';
-                    reccurent_row += '</tr>';
-
-                });
-                reccurent_row += '</tbody></table';
-                $('#table_group_reccurent_payments').empty();
-                $('#table_group_reccurent_payments').append(reccurent_row);
-                $('#table_group_reccurent_payments').bsTable(undefined, true, undefined, undefined, true);
+              //  $('#revenu_reccurent').text("Реккурентных платежей на: " + data.transaction_reccurent_sum + " руб. ::: ");
+              //  $('#revenu_support')  .text("Поддержки на: "             + data.transaction_support_sum + " руб. ");
+//
+//
+              //  var reccurent_row = '<table id="group_users" class="table table-hover table-bordered table-condensed" >';
+              //  reccurent_row    += '<thead><tr> <th>День</th> <th>Кол-во платежей</th>  <th>Сумма платежей</th></tr></thead><tbody>';
+              //  $.each(data.transaction_reccurent_amount, function (i, item) {
+              //      var day_num = i + 1;
+              //      reccurent_row += '<tr>';
+              //      reccurent_row += '<td><h5>' + day_num + '</h5></td>';
+              //      reccurent_row += '<td><h5>' + data.transaction_reccurent_count[i]  + '</h5></td>';
+              //      reccurent_row += '<td><h5>' + data.transaction_reccurent_amount[i] + '</h5></td>';
+              //      reccurent_row += '</tr>';
+//
+              //  });
+              //  reccurent_row += '</tbody></table';
+              //  $('#table_group_reccurent_payments').empty();
+              //  $('#table_group_reccurent_payments').append(reccurent_row);
+              //  $('#table_group_reccurent_payments').bsTable(undefined, true, undefined, undefined, true);
 
 
                 var group_users_row = '<table id="group_users" class="table table-hover table-bordered table-condensed" >';
@@ -4850,7 +5321,7 @@ $( document ).ready(function() {
 
                     group_users_row += '<td><button type="button" class="btn btn-warning btn-sm" name="btns_edit_user" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_edit_user"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
 
-                    group_users_row += '<td><button type="button" class="btn btn-danger btn-sm" name="btns_group_user_delete" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_group_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
+                    //group_users_row += '<td><button type="button" class="btn btn-danger btn-sm" name="btns_group_user_delete" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_group_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
 
                     group_users_row += '</tr>';
 
@@ -5505,6 +5976,7 @@ $( document ).ready(function() {
 
 
             programm_main_row += '<td><button type="button" class="btn btn-default btn-sm" name="btns_edit_programm_main"     value="'  +  item.day_id + '"  data-toggle="modal" data-target="#modal_edit_programm_main"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
+            programm_main_row += '<td><button type="button" class="btn btn-default btn-sm" name="btns_copy_day_programm_main"     value="'  +  item.day_id + '" > <span class="glyphicon glyphicon-copy" aria-hidden="true"></span></button></td>';
 
             programm_main_row += '</tr>';
         });
@@ -5736,6 +6208,21 @@ $( document ).ready(function() {
         $('#table_materials_recipes').bsTable(undefined, false, undefined, undefined, false);
 
 
+        var row = '<table class="table table-hover table-bordered table-condensed" >';
+        row    += '<thead><tr> <th>День</th> <th>Название</th><th>Ссылка</th></tr></thead><tbody>';
+        $.each(materials.family_50, function (i, item) {
+            row += '<tr>';
+            row += '<td><h5>' + item.day_num  + '</h5></td>';
+            row += '<td><h5>' + item.day_description + '</h5></td>';
+            row += '<td><a href="' + item.day_materials + '" target="_blank">Ссылка</a></td>';
+            row += '<td><button type="button" class="btn btn-default btn-sm" name="btns_edit_material_family" value="'  +  item.day_num + '"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button> </td>';
+            row += '</tr>';
+        });
+        row += '</tbody></table';
+        $('#table_materials_family_50').empty();
+        $('#table_materials_family_50').append(row);
+        $('#table_materials_family_50').bsTable(undefined, false, undefined, undefined, false);
+
 
     }
 
@@ -5828,6 +6315,51 @@ $( document ).ready(function() {
             success: function(data){
                 update_admin_info();
                 $('#modal_edit_material').modal('hide');
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
+    $(document).on('click', '[name="btns_edit_material_family"]' , function() {
+        $.ajax({
+            type: "GET",
+            url:  api_url + "get_material_info_family",
+            data: {day_num: $(this).val()},
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                console.log(data);
+                $('#field_material_family_name_edit').val(data.material.material_name);
+                $('#field_material_family_link_edit').val(data.material.material_link);
+                $('#btn_edit_material_family').val(data.material.day_num);
+                $('#modal_edit_material_family').modal('show');
+
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+    $('#btn_edit_material_family').click(function (){
+        $.ajax({
+            type: "POST",
+            url:  api_url + "material_edit_family",
+            data: {
+                day_num: $(this).val(),
+                material_name:        $('#field_material_family_name_edit').val(),
+                material_link:        $('#field_material_family_link_edit').val(),
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                update_admin_info();
+                $('#modal_edit_material_family').modal('hide');
             },
             failure: function(errMsg) {
                 alert(errMsg.toString());
@@ -6172,6 +6704,22 @@ $( document ).ready(function() {
         $.ajax({
             type: "POST",
             url:  api_url + "check_for_double_diary",
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){  },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+    $('#btn_create_user_groups').click(function () {
+        //console.log("chekbox" + $('#field_eat_no_snacking_active').is(':checked'));
+
+        $.ajax({
+            type: "POST",
+            url:  api_url + "create_user_groups",
             headers: {
                 'Authorization':'Token token=' + cookie_token,
                 'Content-Type':'application/x-www-form-urlencoded'

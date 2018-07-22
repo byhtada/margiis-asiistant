@@ -18,8 +18,8 @@
 
 
     <script                                   src="js/btns-question.js"></script>
-    <script                                   src="js/main.js?v1.35"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css?v1.35">
+    <script                                   src="js/main.js?v1.45"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css?v1.45">
 
     <script src="js/jquery.base64.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -238,8 +238,8 @@
         <!--   <button type="button" class="btn btn-warning" id="btn_set_soc_practic">Назначить социальный практики</button>
 
         -->
-          <button type="button" class="btn btn-warning" id="btn_create_program_2">Создать программу 2</button>
           <button type="button" class="btn btn-warning" id="btn_double_diary">DOUBLE</button>
+          <button type="button" class="btn btn-warning" id="btn_create_user_groups"></button>
 
       </div>
 
@@ -419,7 +419,8 @@
 
 
           <h3 align="center">Оплатившие
-              <button id="btn_modal_to_group_all" type="button" class="btn btn-success"  data-toggle="modal" data-target="#modal_to_group_all"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
+             <!-- <button id="btn_modal_to_group_all" type="button" class="btn btn-success"  data-toggle="modal" data-target="#modal_to_group_all"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
+             -->
               <button id="btn_hide_user_paid"     type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
 
           </h3>
@@ -724,6 +725,18 @@
             </div>
         </div>
 
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-6">
+                <h2 align="center">Материалы по семье</h2>
+                <div id="table_materials_family_50"></div>
+            </div>
+            <div class="col-xs-3"></div>
+        </div>
+
 
         <div class="modal fade" id="modal_create_material"     tabindex="-1" role="dialog" aria-labelledby="modal_label_create_material">
             <div class="modal-dialog" role="document">
@@ -747,7 +760,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="modal_edit_material"     tabindex="-1" role="dialog" aria-labelledby="modal_label_edit_material">
+        <div class="modal fade" id="modal_edit_material"            tabindex="-1" role="dialog" aria-labelledby="modal_label_edit_material">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -764,6 +777,26 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
                         <button id="btn_edit_material" type="button" class="btn btn-success">Редактировать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal_edit_material_family"     tabindex="-1" role="dialog" aria-labelledby="modal_label_edit_material_family">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="modal_label_edit_material_family">Изменение материала</h4>
+                    </div>
+                    <div class="modal-body" align="center">
+                        <table style="border: 0">
+                            <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Название материала</h5></td>   <td class="db_row_input_admin"><input type="text" class="form-control" id="field_material_family_name_edit"    ></td></tr>
+                            <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Ссылка на материал</h5></td>   <td class="db_row_input_admin"><input type="text" class="form-control" id="field_material_family_link_edit"    ></td></tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        <button id="btn_edit_material_family" type="button" class="btn btn-success">Редактировать</button>
                     </div>
                 </div>
             </div>
@@ -1044,12 +1077,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand black_color nav-link-user" name="nav_user_programm"  href="#"><b>H<span class="yoga_color">Y</span>LS</b></a>
+                <a class="navbar-brand black_color nav-link-user" name="nav_user_header"  href="#"><b>H<span class="yoga_color">Y</span>LS</b></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navigation_bar_user">
                 <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Мои марафоны<span class="caret"></span></a>
+                        <ul id="my_marafon_dropdown" class="dropdown-menu">
+                            <li><a class="nav-link-user" name="nav_user_marafon" data-value="detox"   href="#">Детокс</a></li>
+                            <li><a class="nav-link-user" name="nav_user_marafon" data-value="mini"    href="#">Полезные привычки</a></li>
+                            <li><a class="nav-link-user" name="nav_user_marafon" data-value="family"  href="#">Семейные отношения</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link-user" name="nav_user_programm"   href="#">Дневник</a>
                     </li>
@@ -1080,7 +1121,7 @@
     </nav>
 
     <div id="page_marafon_reg"      class="container-fluid">
-        <div id="reg_marafon_create_password" hidden class="col-xs-12 col-sm-4 col-md-4 col-md-offset-4 col-sm-offset-4" align="center">
+        <div id="reg_marafon_create_password" hidden  class="col-xs-12 col-sm-4 col-md-4 col-md-offset-4 col-sm-offset-4" align="center">
             <br/>
             <br/>
             <br/>
@@ -1286,7 +1327,7 @@
                     <br/>
                     <div align="center" class="payment_header"><b>Оплата марафона <span class="black_color">H</span>Y<span class="black_color">LS</span></b>
                         <br>
-                        <span class="black_color"><b>Старт 18.07.2018</b></span>
+                        <span class="black_color"><b>Старт 25.07.2018</b></span>
                     </div>
 
                     <div class="col-xs-12 col-md-12 col-sm-12 text-left">
@@ -1342,19 +1383,22 @@
                       </div>
                      -->
 
-                    <div id="checkout_reg_detox"></div>
+                    <button id="btn_checkout_detox" type="button" class="btn btn-success btn-block btn-lg">Оплатить</button>
+                    <div id="div_checkout_reg_detox" hidden>
+                        <div id="checkout_reg_detox"></div>
+
+                        <div class="reg-text">
+                            Если у вас возникли вопросы или сложности с оплатой, свяжитесь с нами: <a href="mailto:info@hyls.ru" class="reg_link" target="_blank">info@hyls.ru</a>,
+                            <a href="https://vk.com/hyls_ru" target="_blank" class="reg_link">ВКонтакте</a>, <a href="https://www.facebook.com/HYLS.ru" target="_blank" class="reg_link">Facebook</a> или WhatsApp +7(923)416-60-72
+                        </div>
+                    </div>
 
                     <!--
                                             <div class="reg-text">Если вы сильно сомневаетесь в проекте или у вас нет денег для участия, вы
                                                 можете</div>
                                             <button id="btn_reg_no_money" type="button" class="btn btn-warning btn-lg">Начать участие без оплаты</button>
                     -->
-                    <br/>
-                    <br/>
-                    <div class="reg-text">
-                        Если у вас возникли вопросы или сложности с оплатой, свяжитесь с нами: <a href="mailto:info@hyls.ru" class="reg_link" target="_blank">info@hyls.ru</a>,
-                        <a href="https://vk.com/hyls_ru" target="_blank" class="reg_link">ВКонтакте</a>, <a href="https://www.facebook.com/HYLS.ru" target="_blank" class="reg_link">Facebook</a> или WhatsApp +7(923)416-60-72
-                    </div>
+
                     <!--
                       <div align="center">
                           <div class="col-xs-3"><a href="https://vk.com/hyls_ru" target="_blank"><img class="social_btn" src="img/social_vk.png">     </a></div>
@@ -1374,7 +1418,7 @@
                 <br/>
                 <div align="center" class="payment_header"><b>Оплата марафона 21 день <span class="black_color">H</span>Y<span class="black_color">LS</span></b>
                     <br>
-                    <span class="black_color"><b>Старт 16.07.2018</b></span>
+                    <span class="black_color"><b>Старт 23.07.2018</b></span>
                 </div>
 
                 <div class="text-left">
@@ -1420,9 +1464,9 @@
                     </span>
                 </div>
 
-                <div hidden align="left" class="reg_practiv_div">
+                <div align="left" class="reg_practiv_div">
                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                        <input type="checkbox"  id="reg_checkbox_wareup" class="reg_mini" />
+                        <input type="checkbox"  id="reg_checkbox_wakeup" class="reg_mini" />
                         <div class="state p-success-o"><label></label></div>
                     </div>
                     <span class="reg_mini_practic_text">Ранние подъемы<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png"></a> </span>
@@ -1532,6 +1576,59 @@
 
 
 
+            </div>
+        </div>
+        <div id="reg_marafon_family"          hidden  class="col-xs-12 col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3" align="center">
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <br/>
+                <div align="center" class="payment_header_family"><b>Оплата марафона <span class="black_color">H</span>Y<span class="black_color">LS</span>_family</b>
+                    <br>
+                    <span class="black_color"><b>Старт 20.07.2018</b></span>
+                </div>
+
+                <div class="col-xs-12 col-md-12 col-sm-12 text-left">
+                    <div class="reg-text">
+                        Мы хотим, чтобы любой человек мог участвовать в марафоне, поэтому оплата марафона <b>свободная</b> - вы сами выбираете ту стоимость, которая будет вас мотивировать пройти марафон.
+                    </div>
+
+                    <div class="reg-text">
+                        <b>Рекомендации:</b></div>
+
+                    <div class="reg-text">
+                        <ul>
+                            <li><b>до 2000 р.</b> — для людей с финансовыми трудностями (если ваш доход меньше 15 т.р.
+                                в месяц). Вы получаете полный доступ к марафону 60 дней, личному кабинету,
+                                практикам и чату с поддержкой кураторов</li>
+                            <li><b>2000-5000 р.</b> и выше — полный доступ + возможность пользоваться материалами
+                                после окончания марафона, а также возможность продолжать пользоваться личным дневником
+                                с практиками</li>
+                            <li><b>От 5000 р.</b> и выше — спасибо, вы даёте возможность участвовать людям с
+                                низкими финансовыми возможностями. Для вас дополнительный бонус помимо всего
+                                перечисленного выше: Вебинар с Александром Тимофеевым
+                                (ведущий эксперт проекта, коуч, психолог)</li>
+                            <li><b>От 9000 р.</b> и выше —  вы настоящие меценаты проекта. Спасибо за поддержку!
+                                Для вас помимо всего выше Бонус — индивидуальная консультация высококвалифицированного
+                                специалиста Александра Тимофеева, психолога, коуча, специалиста в области семейных
+                                отношений. Подробнее <a href="https://hyls.ru/bonusfamily" target="_blank" class="reg_link">по ссылке</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="reg-text">
+                        Оплата с карты любой страны!
+                    </div>
+                </div>
+
+
+                <button id="btn_checkout_family" type="button" class="btn btn-success btn-block btn-lg">Оплатить</button>
+                <div id="div_checkout_reg_family" hidden>
+                    <div id="checkout_reg_family"></div>
+
+                    <div class="reg-text">
+                        Если у вас возникли вопросы или сложности с оплатой, свяжитесь с нами: <a href="mailto:info@hyls.ru" class="reg_link" target="_blank">info@hyls.ru</a>,
+                        <a href="https://vk.com/hyls_ru" target="_blank" class="reg_link">ВКонтакте</a>, <a href="https://www.facebook.com/HYLS.ru" target="_blank" class="reg_link">Facebook</a> или WhatsApp +7(923)416-60-72
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -3017,6 +3114,180 @@
                 </div>
                 <div class="col-xs-0  col-sm-3"></div>
             </div>
+
+            <div id="diary_marafon_family" hidden class="row">
+                <div class="col-xs-0  col-sm-3"></div>
+                <div class="col-xs-12 col-sm-6" align="center">
+                    <h3 id="user_programm_day_family" align="center">
+                        <button id="btn_user_previus_day_family" type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+                        <span id="user_current_day_family">День Х (сегодня)</span>
+                        <button id="btn_user_next_day_family"    type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+                    </h3>
+
+                    <div id="div_btn_user_material_family">
+                        <br/>
+                        <button id="btn_user_material_family"  type="button" class="btn btn-info btn-block">Открыть материал дня</button>
+                        <br/>
+                    </div>
+
+
+                    <div id="family_practise">
+                        <h3  class="family_practic_name">Дневник этических принципов</h3>
+
+
+                        <div class="row_family_nonviolence">
+                            <h4 class="family_practic_name" align="center">Ненасилие</h4>
+                            <div class="row">
+                                <div class="col-xs-6"> <textarea type="text" class="form-control family_practise_input" id="field_family_nonviolence_plus"   placeholder="Плюсы"></textarea></div>
+                                <div class="col-xs-6"> <textarea type="text" class="form-control family_practise_input" id="field_family_nonviolence_minus"  placeholder="Минусы"></textarea></div>
+                            </div>
+                            <textarea type="text" class="form-control family_practise_input" id="field_family_nonviolence_action" placeholder="Что делать?"></textarea>
+                        </div>
+
+                        <div class="row_family_generosity">
+                            <h4 class="family_practic_name" align="center">Щедрость</h4>
+                            <div class="row">
+                                <div class="col-xs-6"> <textarea type="text" class="form-control family_practise_input" id="field_family_generosity_plus"   placeholder="Плюсы"></textarea></div>
+                                <div class="col-xs-6"> <textarea type="text" class="form-control family_practise_input" id="field_family_generosity_minus"  placeholder="Минусы"></textarea></div>
+                            </div>
+                            <textarea type="text" class="form-control family_practise_input" id="field_family_generosity_action" placeholder="Что делать?"></textarea>
+                        </div>
+
+                    </div>
+
+
+                    <table id="table_family_cb" class="table  table-hover">
+                        <thead>
+                        <tr class="db_row_dialog">
+                            <td><h4 align="center"><b>Практика</b></h4></td>
+                            <td><h4 align="center"><b></b></h4></td>
+                            <td><h4 align="center"><b>Сделал</b></h4></td>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+
+                        <tr id="row_family_meditation" class="db_row_dialog">
+                            <td valign="middle">Медитация</td>
+                            <td class="db_row_input">          </td>
+                            <td class="db_row_input text-center div_row_fact">
+                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox"  id="filed_family_meditation" />
+                                    <div class="state p-success-o">
+                                        <label></label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr id="row_family_film" class="db_row_dialog">
+                            <td valign="middle">Просмотр фильма "<span id="film_family_name"></span>"</td>
+                            <td class="db_row_input">          </td>
+                            <td class="db_row_input text-center div_row_fact">
+                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox"  id="filed_family_film" />
+                                    <div class="state p-success-o">
+                                        <label></label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr id="row_family_thinking" class="db_row_dialog">
+                            <td valign="middle">Противоположное мышление</td>
+                            <td class="db_row_input">          </td>
+                            <td class="db_row_input text-center div_row_fact">
+                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox"  id="filed_family_thinking" />
+                                    <div class="state p-success-o">
+                                        <label></label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr id="row_family_bracelet" class="db_row_dialog">
+                            <td valign="middle">Фиолетовый браслет. Кол-во дней: <span id="family_bracelet_day"></span> </td>
+                            <td class="db_row_input">          </td>
+                            <td class="db_row_input text-center div_row_fact">
+                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox"  id="filed_family_bracelet" />
+                                    <div class="state p-success-o">
+                                        <label></label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr id="row_family_pages" class="db_row_dialog">
+                            <td valign="middle">Утренние страницы</td>
+                            <td class="db_row_input">          </td>
+                            <td class="db_row_input text-center div_row_fact">
+                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox"  id="filed_family_pages" />
+                                    <div class="state p-success-o">
+                                        <label></label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+
+
+
+                    <div id="div_user_progress_bar_family">
+                        <div class="progress">
+                            <div id="user_progress_bar_family" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%; min-width: 2em;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <br/>
+                    <textarea  id="field_day_comment_family" class="form-control" placeholder="Здесь Вы можете оставлять свои заметки о прошедшем дне Программы"></textarea>
+
+                    <div id="div_btn_rating_link_family">
+                        <br/>
+                        <a id="btn_rating_link_family" href="#" class="rating_link"></a>
+
+                        <br/>
+                    </div>
+
+                                      <!--
+                                                         <button id="btn_user_save_day"  type="button" class="btn btn-success btn-block">Сохранить отчет</button>
+                                     -->
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-3" align="center"><button class="btn btn-default btn-block btn-sm btn_footer btn_footer_chat" >                 Чат</button></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><button class="btn btn-default btn-block btn-sm btn_footer nav-link-user" name="nav_user_diary"   >Материалы</button></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><button class="btn btn-default btn-block btn-sm btn_footer nav-link-user" name="nav_user_support" >Поддержать</button></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><button class="btn btn-default btn-block btn-sm btn_footer nav-link-user" name="nav_user_settings">Настройки</button></div>
+                    </div>
+
+
+
+
+                    <br/>
+
+
+
+                    <!--
+                     <br/>
+                     <br/>
+                     <br/>
+                     <br/>
+                     <br/>
+                     <br/>
+                     <br/>
+                     <br/>
+                     <h1 align="center">Ожидайте старта марафона 25 апреля 2018.</h1> -->
+
+                </div>
+                <div class="col-xs-0  col-sm-3"></div>
+            </div>
+
         </div>
 
         <div id="user_marafon_block" hidden>
@@ -3056,6 +3327,15 @@
                 <div id="user_diary_mini"></div>
             </div>
             <div class="col-xs-0  col-sm-1"></div>
+        </div>
+
+        <div id="materials_family" hidden class="row">
+            <div class="col-xs-0  col-sm-3"></div>
+            <div class="col-xs-12  col-sm-6">
+                <h3 align="center">Пройденные материалы</h3>
+                <div id="user_diary_family"></div>
+            </div>
+            <div class="col-xs-0  col-sm-3"></div>
         </div>
     </div>
 
@@ -3143,7 +3423,7 @@
     <div id="page_user_settings"   class="container-fluid">
         <div class="col-sm-3 col-md-3"></div>
         <div class="col-sm-6 col-md-6 col-xs-12" align="center">
-            <h4 align="center"><a href="#" id="settings_messenger_link" class="reg_link"></a> на чат группы </h4>
+            <h4 align="center"><a href="#" id="settings_messenger_link" class="reg_link" target="_blank"></a> на чат группы </h4>
 
             <br/>
 
@@ -3171,7 +3451,7 @@
                         </tr>
 
 
-                        <tr id="meditation_settings" class="db_row_dialog">
+                        <tr id="meditation_settings" hidden class="db_row_dialog">
                             <td valign="middle" ><h5>Изменить базовое и целевое время медитации</h5></td>
                             <td  class="db_row_input">
                                 <input id="filed_meditation_base_edit"   type="text" class="form-control" placeholder="База" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="10">
@@ -3198,7 +3478,7 @@
                             <td > <button id="btn_water_edit"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
                         </tr>
 
-                        <tr id="wake_up_settings" class="db_row_dialog">
+                        <tr id="wake_up_settings" hidden class="db_row_dialog">
                             <td valign="middle" ><h5>Изменить целевое время подъема</h5></td>
                             <td  class="db_row_input">
                                 <p>
@@ -3213,7 +3493,7 @@
                     </table>
                 </div>
 
-                <div id="practise_continue_settings">
+                <div id="practise_continue_settings" hidden>
                     <h4 align="center">Зачтенные практики</h4>
                     <h5 align="center">Вы можете отключить практику и она не будет заноситься в Ваш дневник</h5>
                     <table class="table  table-hover">
