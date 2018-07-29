@@ -25,6 +25,11 @@ const btns_question_djama = [
         field: "#filed_question_aparigraha",
         question: "#table_question_aparigraha"
     },  {
+        btn:   "#btn_question_shaucha_save",
+        query: "user_save_shaucha_answer",
+        field: "#filed_question_shaucha",
+        question: "#table_question_shaucha"
+    },  {
         btn:   "#btn_question_santosha_save",
         query: "user_save_santosha_answer",
         field: "#filed_question_santosha",

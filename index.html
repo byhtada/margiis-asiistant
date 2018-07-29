@@ -9,9 +9,6 @@
 
     <!--   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
     <link rel="manifest" href="site.webmanifest">
     <link rel="apple-touch-icon" href="icon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -21,8 +18,8 @@
 
 
     <script                                   src="js/btns-question.js"></script>
-    <script                                   src="js/main.js?v1.48"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css?v1.48">
+    <script                                   src="js/main.js?v1.50"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css?v1.50">
 
     <script src="js/jquery.base64.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -30,6 +27,10 @@
 
     <link href="css/animate.min.css" rel="stylesheet">
 
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
     <link href="css/bootstrap-dropdownhover.min.css" rel="stylesheet">
@@ -55,15 +56,12 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
-    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
-    <script type="text/javascript" src="js/materialize.js"></script>
 
 </head>
 
 
 
 <body>
-<div class="container">
 <!--[if lte IE 9]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
 <![endif]-->
@@ -99,13 +97,15 @@
 <div id="page_login" hidden >
     <div class="container-fluid">
         <div class="row">
-            <div class="col m6 push-m3 s12">
+            <div class="col-xs-0  col-sm-4"></div>
+            <div class="col-xs-12 col-sm-4">
 
                 <br/>
                 <br/>
+                <br/>
 
-                <h2 align="center"><span class="yoga_color">Марафон</span> H<span class="yoga_color">Y</span>LS</h2>
-                <h4 align="center">Регистрация/вход в личный кабинет</h4>
+                <h1 align="center"><span class="yoga_color">Марафон</span> H<span class="yoga_color">Y</span>LS</h1>
+                <h3 align="center">Регистрация/вход в личный кабинет</h3>
                 <br/>
 
                 <div id="div_reg_other" hidden>
@@ -120,30 +120,32 @@
                     <h5 align="center">или</h5>
                 </div>
 
-                <div class="input-field">
-                    <input placeholder="" id="login_login" type="text" class="validate">
-                    <label for="login_login">Логин</label>
-                </div>
 
-                <div class="input-field">
-                    <input placeholder="" id="login_password" type="text" class="validate">
-                    <label for="login_password">Пароль</label>
-                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="login_login">Логин</label>
+                        <input type="text" class="form-control" id="login_login" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="login_password">Пароль</label>
+                        <input type="password" class="form-control" id="login_password" placeholder="">
+                    </div>
 
-
-
-                <a  id="btn_login" class="waves-effect waves-light btn-small orange darken-3 btn-block"><i class="material-icons right">beenhere</i>Вход</a>
-
+                    <button type="button" id="btn_login"    class="btn btn-success btn-block">Вход</button>
 
                     <!--
                     <button id="btn_modal_register_self" type="button" class="btn btn-link btn-block"  data-toggle="modal" data-target="#modal_register_self">Регистрация</button>
-
-
-
-                <br/>
+                    -->
+                </form>
 
                 <br/>
-                <a  id="btn_reg_other" class="waves-effect waves-orange btn-flat btn-block center-block">альтернативный вариант</a>
+
+                <br/>
+                <button id="btn_reg_other" type="button" class="btn btn-link btn-block "><p class="reg_link">альтернативный вариант</p> </button>
+
+
+
+
 
                 <div class="modal fade" id="modal_register_self"    tabindex="-1" role="dialog" aria-labelledby="modal_label_register_self">
                     <div class="modal-dialog" role="document">
@@ -175,8 +177,10 @@
                         </div>
                     </div>
                 </div>
-                -->
+
             </div>
+            <div class="col-xs-0  col-sm-4"></div>
+
         </div>
     </div>
 </div>
@@ -1064,34 +1068,7 @@
 
 
 <div id="page_user_main" hidden>
-    <nav class="nav-extended nav_bar" >
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo nav-link-user" name="nav_user_header"><b>H<span class="yoga_color">Y</span>LS</b></a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a href="collapsible.html">JavaScript</a></li>
-            </ul>
-        </div>
-        <div class="nav-content">
-            <ul class="tabs tabs-transparent">
-                <li><a class=" tab nav-link-user" name="nav_user_marafon" data-value="detox"   href="#">Марафон 60 дней</a></li>
-                <li><a class=" tab nav-link-user" name="nav_user_marafon" data-value="mini"    href="#">Полезные привычки</a></li>
-                <li><a class=" tab nav-link-user" name="nav_user_marafon" data-value="family"  href="#">Семейные отношения</a></li>
-
-            </ul>
-        </div>
-    </nav>
-
-    <ul class="sidenav" id="mobile-demo">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
-    </ul>
-
-
-    <nav class="navbar navbar-default" id="" hidden>
+    <nav class="navbar navbar-default" id="nav_bar" hidden>
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -1442,7 +1419,7 @@
                 <br/>
                 <div align="center" class="payment_header"><b>Оплата марафона 21 день <span class="black_color">H</span>Y<span class="black_color">LS</span></b>
                     <br>
-                    <span class="black_color"><b>Старт 23.07.2018</b></span>
+                    <span class="black_color"><b>Старт 30.07.2018</b></span>
                 </div>
 
                 <div class="text-left">
@@ -2531,7 +2508,13 @@
 
                     <br/>
 
-                    <textarea  id="filed_day_comment" class="form-control" placeholder="Здесь Вы можете оставлять свои заметки о прошедшем дне Программы"></textarea>
+                    <div class="comment_field">
+                        <textarea  id="filed_day_comment" class="form-control" placeholder="Здесь Вы можете оставлять свои заметки о прошедшем дне Программы"></textarea>
+
+                        <img class="comment_loader_ball_detox loader_ball"    hidden src="img/load_comment.gif">
+                        <img class="comment_loader_tick_detox loader_tick"    hidden src="img/load_success.png">
+
+                    </div>
 
                     <br/>
                     <br/>
@@ -3111,7 +3094,15 @@
 
                     <br/>
 
-                    <textarea  id="filed_day_comment_mini" class="form-control" placeholder="Здесь Вы можете оставлять свои заметки о прошедшем дне"></textarea>
+
+                    <div class="comment_field">
+                        <textarea  id="filed_day_comment_mini" class="form-control" placeholder="Здесь Вы можете оставлять свои заметки о прошедшем дне Программы"></textarea>
+
+                        <img class="comment_loader_ball_mini loader_ball"    hidden src="img/load_comment.gif">
+                        <img class="comment_loader_tick_mini loader_tick"    hidden src="img/load_success.png">
+
+                    </div>
+
 
                     <div id="div_btn_rating_link_mini">
                         <br/>
@@ -3157,6 +3148,47 @@
                         <br/>
                     </div>
 
+                    <div id="question_wake_up_family" class="question_mini" hidden>
+                        <div class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                        <table class="table  table-hover">
+                            <thead>
+                            <tr class="db_row_dialog">
+                                <td><h4 align="center"><b>Вопросы (отвечайте после прочтения материала)</b></h4></td>
+                                <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr class="db_row_dialog">
+                                <td valign="middle">      <h5>Во сколько Вы обычно просыпаетесь?</h5></td>
+                                <td >
+                                    <p>
+                                        <input type="text" class="field_wake_up" id="question_wake_up_fact_hour_family"   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="чч">
+                                        <span>:</span>
+                                        <input type="text" class="field_wake_up" id="question_wake_up_fact_minute_family" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="мм">
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="db_row_dialog">
+                                <td valign="middle">      <h5>Установите цель по времени подъема</h5></td>
+                                <td >
+                                    <p>
+                                        <input type="text" class="field_wake_up" id="question_wake_up_target_hour_family"   placeholder="чч"  value="5"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
+                                        <span>:</span>
+                                        <input type="text" class="field_wake_up" id="question_wake_up_target_minute_family" placeholder="мм"  value="30" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
+                                    </p>
+                                </td>
+                            </tr>
+
+                            <tr class="db_row_dialog">
+                                <td valign="middle">      <h5>На сколько приближаться к цели каждый день (шаг), минут</h5></td>
+                                <td><input type="text" class="field_wake_up" id="question_wake_up_step_family"   placeholder="минут"  value="10"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button id="btn_question_wake_up_save_family"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                    </div>
+
 
                     <div id="family_practise">
                         <h3  class="family_practic_name">Дневник этических принципов</h3>
@@ -3165,19 +3197,67 @@
                         <div class="row_family_nonviolence">
                             <h4 class="family_practic_name" align="center">Ненасилие</h4>
                             <div class="row">
-                                <div class="col-xs-6"> <textarea type="text" class="form-control family_practise_input" id="field_family_nonviolence_plus"   placeholder="Плюсы"></textarea></div>
-                                <div class="col-xs-6"> <textarea type="text" class="form-control family_practise_input" id="field_family_nonviolence_minus"  placeholder="Минусы"></textarea></div>
+                                <div class="comment_field  col-xs-6">
+                                    <textarea type="text" class="form-control family_practise_input"      data-practic-name="nonviolence" data-practic-comment="plus" id="field_family_nonviolence_plus"   placeholder="Плюсы"></textarea>
+                                    <img class="nonviolence_plus_loader_ball_family loader_ball"    hidden src="img/load_comment.gif">
+                                    <img class="nonviolence_plus_loader_tick_family loader_tick"    hidden src="img/load_success.png">
+                                </div>
+                                <div class="comment_field  col-xs-6">
+                                    <textarea type="text" class="form-control family_practise_input"       data-practic-name="nonviolence" data-practic-comment="minus" id="field_family_nonviolence_minus"  placeholder="Минусы"></textarea>
+                                    <img class="nonviolence_minus_loader_ball_family loader_ball" hidden src="img/load_comment.gif">
+                                    <img class="nonviolence_minus_loader_tick_family loader_tick" hidden src="img/load_success.png">
+                                </div>
                             </div>
-                            <textarea type="text" class="form-control family_practise_input" id="field_family_nonviolence_action" placeholder="Что делать?"></textarea>
+
+                            <div class="comment_field">
+                                <textarea type="text" class="comment_field form-control family_practise_input" data-practic-name="nonviolence" data-practic-comment="action" id="field_family_nonviolence_action" placeholder="Что делать?"></textarea>
+                                <img class="nonviolence_action_loader_ball_family loader_ball"    hidden src="img/load_comment.gif">
+                                <img class="nonviolence_action_loader_tick_family loader_tick"    hidden src="img/load_success.png">
+                            </div>
                         </div>
 
                         <div class="row_family_generosity">
                             <h4 class="family_practic_name" align="center">Щедрость</h4>
                             <div class="row">
-                                <div class="col-xs-6"> <textarea type="text" class="form-control family_practise_input" id="field_family_generosity_plus"   placeholder="Плюсы"></textarea></div>
-                                <div class="col-xs-6"> <textarea type="text" class="form-control family_practise_input" id="field_family_generosity_minus"  placeholder="Минусы"></textarea></div>
+                                <div class="col-xs-6 comment_field">
+                                    <textarea type="text" class="form-control family_practise_input"   data-practic-name="generosity" data-practic-comment="plus" id="field_family_generosity_plus"   placeholder="Плюсы"></textarea>
+                                    <img class="generosity_plus_loader_ball_family loader_ball"    hidden src="img/load_comment.gif">
+                                    <img class="generosity_plus_loader_tick_family loader_tick"    hidden src="img/load_success.png">
+                                </div>
+                                <div class="col-xs-6 comment_field">
+                                    <textarea type="text" class="form-control family_practise_input"   data-practic-name="generosity" data-practic-comment="minus" id="field_family_generosity_minus"  placeholder="Минусы"></textarea>
+                                    <img class="generosity_minus_loader_ball_family loader_ball"    hidden src="img/load_comment.gif">
+                                    <img class="generosity_minus_loader_tick_family loader_tick"    hidden src="img/load_success.png">
+                                </div>
                             </div>
-                            <textarea type="text" class="form-control family_practise_input" id="field_family_generosity_action" placeholder="Что делать?"></textarea>
+                            <div class="comment_field">
+                                <textarea type="text" class="form-control family_practise_input"   data-practic-name="generosity" data-practic-comment="action" id="field_family_generosity_action" placeholder="Что делать?"></textarea>
+                                <img class="generosity_action_loader_ball_family loader_ball"    hidden src="img/load_comment.gif">
+                                <img class="generosity_action_loader_tick_family loader_tick"    hidden src="img/load_success.png">
+
+                            </div>
+
+                        </div>
+
+                        <div class="row_family_purity">
+                            <h4 class="family_practic_name" align="center">Сексуальная чистота</h4>
+                            <div class="row">
+                                <div class="col-xs-6 comment_field">
+                                    <textarea type="text" class="form-control family_practise_input" id="field_family_purity_plus" data-practic-name="purity" data-practic-comment="plus"    placeholder="Плюсы"></textarea>
+                                    <img class="purity_plus_loader_ball_family loader_ball"    hidden src="img/load_comment.gif">
+                                    <img class="purity_plus_loader_tick_family loader_tick"    hidden src="img/load_success.png">
+                                </div>
+                                <div class="col-xs-6 comment_field">
+                                    <textarea type="text" class="form-control family_practise_input" id="field_family_purity_minus" data-practic-name="purity" data-practic-comment="minus"   placeholder="Минусы"></textarea>
+                                    <img class="purity_minus_loader_ball_family loader_ball"    hidden src="img/load_comment.gif">
+                                    <img class="purity_minus_loader_tick_family loader_tick"    hidden src="img/load_success.png">
+                                </div>
+                            </div>
+                            <div class="comment_field">
+                                <textarea type="text" class="form-control family_practise_input" id="field_family_purity_action" data-practic-name="purity" data-practic-comment="action"  placeholder="Что делать?"></textarea>
+                                <img class="purity_action_loader_ball_family loader_ball"    hidden src="img/load_comment.gif">
+                                <img class="purity_action_loader_tick_family loader_tick"    hidden src="img/load_success.png">
+                            </div>
                         </div>
 
                     </div>
@@ -3194,6 +3274,21 @@
 
                         <tbody>
 
+                        <tr id="row_wake_up_family" class="db_row_dialog">
+                            <td valign="middle">
+                                Подъем (время) <br/>
+                                Время для отхода ко сну <span id="wake_up_text_family"></span><br/>
+                                Время подъема на завтра <span id="wake_up_tomorrow_family"></span>
+                            </td>
+                            <td class="db_row_input">                  <h5 align="center"  id="filed_wake_up_plan_family" ></h5></td>
+                            <td valign="middle" class="db_row_input">
+                                <p>
+                                    <input type="text" class="field_wake_up" id="filed_wake_up_fact_hour_family"   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="чч">
+                                    <span>:</span>
+                                    <input type="text" class="field_wake_up" id="filed_wake_up_fact_minute_family" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="мм">
+                                </p>
+                            </td>
+                        </tr>
 
                         <tr id="row_family_meditation" class="db_row_dialog">
                             <td valign="middle">Медитация</td>
@@ -3260,6 +3355,19 @@
                             </td>
                         </tr>
 
+                        <tr id="row_family_nice" class="db_row_dialog">
+                            <td valign="middle">Приятное партнеру: <span id="family_nice_name"></span> </td>
+                            <td class="db_row_input">          </td>
+                            <td class="db_row_input text-center div_row_fact">
+                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox"  id="filed_family_nice" />
+                                    <div class="state p-success-o">
+                                        <label></label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
                         </tbody>
                     </table>
 
@@ -3274,7 +3382,13 @@
                     </div>
 
                     <br/>
-                    <textarea  id="field_day_comment_family" class="form-control" placeholder="Здесь Вы можете оставлять свои заметки о прошедшем дне Программы"></textarea>
+
+                    <div class="comment_field" >
+                        <textarea  id="field_day_comment_family" class="family_practise_input form-control"   data-practic-name="comment" data-practic-comment="comment"  placeholder="Здесь Вы можете оставлять свои заметки о прошедшем дне Программы"></textarea>
+
+                        <img class="comment_comment_loader_ball_family loader_ball" hidden src="img/load_comment.gif">
+                        <img class="comment_comment_loader_tick_family loader_tick" hidden src="img/load_success.png">
+                    </div>
 
                     <div id="div_btn_rating_link_family">
                         <br/>
@@ -3293,24 +3407,7 @@
                         <div class="col-xs-6 col-sm-3" align="center"><button class="btn btn-default btn-block btn-sm btn_footer nav-link-user" name="nav_user_settings">Настройки</button></div>
                     </div>
 
-
-
-
                     <br/>
-
-
-
-                    <!--
-                     <br/>
-                     <br/>
-                     <br/>
-                     <br/>
-                     <br/>
-                     <br/>
-                     <br/>
-                     <br/>
-                     <h1 align="center">Ожидайте старта марафона 25 апреля 2018.</h1> -->
-
                 </div>
                 <div class="col-xs-0  col-sm-3"></div>
             </div>
@@ -4005,8 +4102,6 @@
 
 
 
-
-</div>
 </body>
 
 
