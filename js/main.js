@@ -1577,6 +1577,43 @@ $( document ).ready(function() {
         }
     });
 
+
+    $('#btn_ava_set').click(function(){
+        $.ajax({
+            type: "POST",
+            url: api_url + "set_ava",
+            data: {ava_link: $('#ava_link').val()},
+            headers: {
+                'Authorization': 'Token token=' + cookie_token,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            success: function (data) {
+                update_user_info();
+                $('#modal_set_ava').modal('hide');
+            }
+        });
+    });
+
+    var target_timer_detox;
+
+    $('#user_detox_target').on('change keyup paste', function () {
+        clearTimeout(target_timer_detox);
+        target_timer_detox = setTimeout(function (){
+            $.ajax({
+                type: "POST",
+                url: api_url + "set_target_detox",
+                data: {target_detox: $('#user_detox_target').val()},
+                headers: {
+                    'Authorization': 'Token token=' + cookie_token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function (data) {}
+            });
+        }, 2000);
+    });
+
+
+
     function update_user_info() {
         //console.log("update_user_info");
         try {
@@ -1589,6 +1626,14 @@ $( document ).ready(function() {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 success: function (data) {
+                    if (data.user.photo != null && data.user.photo != "") {
+                        $('#user_ava').attr("src", data.user.photo);
+                    }
+
+                    if (data.user.target_detox != null && data.user.target_detox != ""){
+                        $('#user_detox_target').val(data.user.target_detox);
+                    }
+
                     console.log(data);
                     day_new = 0;
                     $('#user_wait_id, #user_wait_id_2').text(data.user.id);
@@ -1879,8 +1924,9 @@ $( document ).ready(function() {
         if (user.rating_show_status) {
             $('#filed_rating_show').prop("checked", true);
             $('#btn_rating_link').show();
+           // $('#btn_rating_link').text("Рейтинг " + group_rating_info.rating_user + " из " + group_rating_info.rating_all);
             $('#btn_rating_link').text("Выполняя ежедневные практики, вы улучшаете свои позиции в рейтинге марафонцев вашего потока. " +
-                "Сейчас Вы на " + group_rating_info.rating_user + " месте из " + group_rating_info.rating_all + " участников");
+                    "Сейчас Вы на " + group_rating_info.rating_user + " месте из " + group_rating_info.rating_all + " участников");
         } else {
             $('#filed_rating_show').prop("checked", false);
             $('#btn_rating_link').hide();
@@ -2591,17 +2637,20 @@ $( document ).ready(function() {
         }
 
         if (current_day.day_num == marafon_day) {
-            $('#user_current_day')    .text("День " + day_num + " (сегодня)");
+            $('#user_current_day')    .text("День " + day_num);
+       //     $('#user_current_day')    .text("День " + day_num + " (сегодня)");
             $('#btn_user_previus_day') .show();
             $('#btn_user_next_day')    .hide();
         } else if (current_day.day_num == marafon_day - 1){
-            $('#user_current_day')    .text("День " + day_num + " (вчера)");
+            $('#user_current_day')    .text("День " + day_num);
+       //     $('#user_current_day')    .text("День " + day_num + " (вчера)");
             $('#btn_user_next_day')   .show();
             $('#btn_user_previus_day') .show();
         } else if (current_day.day_num == marafon_day + 1) {
             $('#user_current_day')    .text("День " + day_num + " (завтра)");
         } else {
-            $('#user_current_day')    .text("День " + day_num + " (" + current_day.day_date + ")");
+            $('#user_current_day')    .text("День " + day_num);
+         //   $('#user_current_day')    .text("День " + day_num + " (" + current_day.day_date + ")");
             $('#btn_user_previus_day') .show();
             $('#btn_user_next_day')    .show();
         }
