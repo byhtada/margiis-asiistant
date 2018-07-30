@@ -1923,12 +1923,15 @@ $( document ).ready(function() {
     function setGroupRatingDetox(group_rating_info, user){
         if (user.rating_show_status) {
             $('#filed_rating_show').prop("checked", true);
+            $('#div_rating_link').show();
             $('#btn_rating_link').show();
            // $('#btn_rating_link').text("Рейтинг " + group_rating_info.rating_user + " из " + group_rating_info.rating_all);
             $('#btn_rating_link').text("Выполняя ежедневные практики, вы улучшаете свои позиции в рейтинге марафонцев вашего потока. " +
                     "Сейчас Вы на " + group_rating_info.rating_user + " месте из " + group_rating_info.rating_all + " участников");
         } else {
             $('#filed_rating_show').prop("checked", false);
+
+            $('#div_rating_link').hide();
             $('#btn_rating_link').hide();
         }
 
@@ -2257,6 +2260,9 @@ $( document ).ready(function() {
 
             $('#filed_water_fact')             .val(null).attr("data-day-num", day_num);
             $('#filed_wake_up_fact')           .val(null).attr("data-day-num", day_num);
+            $('#filed_wake_up_fact_hour')      .val(null).attr("data-day-num", day_num);
+            $('#filed_wake_up_fact_minute')    .val(null).attr("data-day-num", day_num);
+
             $('#filed_meditation_day_fact')    .val(null).attr("data-day-num", day_num);
             $('#filed_meditation_night_fact')  .val(null).attr("data-day-num", day_num);
             $('#filed_kaoshiki_fact')          .val(null).attr("data-day-num", day_num);
@@ -3930,8 +3936,10 @@ $( document ).ready(function() {
         var family_thinking_active    = current_day.family_thinking_active   ;
         var family_bracelet_active    = current_day.family_bracelet_active   ;
         var family_pages_active       = current_day.family_pages_active      ;
-        var family_nice_active        = current_day.family_nice_active      ;
-        var family_nice_name        = current_day.family_nice_name      ;
+        var family_nice_active        = current_day.family_nice_active       ;
+        var family_nice_name          = current_day.family_nice_name         ;
+        var family_phisic_active      = current_day.family_phisic_active     ;
+
         var family_nonviolence_active = current_day.family_nonviolence_active;
         var family_generosity_active  = current_day.family_generosity_active ;
         var family_purity_active      = current_day.family_purity_active ;
@@ -3944,6 +3952,7 @@ $( document ).ready(function() {
         var family_bracelet_day              = current_day.family_bracelet_day;
         var family_pages_fact                = current_day.family_pages_fact;
         var family_nice_fact                 = current_day.family_nice_fact;
+        var family_phisic_fact               = current_day.family_phisic_fact;
 
 
         var family_wake_up_active               = current_day.family_wake_up_active;
@@ -3978,6 +3987,7 @@ $( document ).ready(function() {
             $('#row_family_bracelet')       .hide();
             $('#row_family_pages')          .hide();
             $('#row_family_nice')           .hide();
+            $('#row_family_phisic')         .hide();
             $('#row_wake_up_family')        .hide();
 
             $('#family_practise')       .hide();
@@ -3993,6 +4003,7 @@ $( document ).ready(function() {
             $('#filed_family_bracelet')  .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_family_pages')     .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_family_nice')      .prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_family_phisic')      .prop("checked", false).attr("data-day-num", day_num);
 
 
             $('#filed_wake_up_fact_hour_family')      .val(null).attr("data-day-num", day_num);
@@ -4041,6 +4052,11 @@ $( document ).ready(function() {
                 $('#row_family_nice').show();
                 $('#family_nice_name').text(family_nice_name);
                 $('#filed_family_nice').prop("checked", family_nice_fact);
+            }
+
+            if (family_phisic_active)       {
+                $('#row_family_phisic').show();
+                $('#filed_family_phisic').prop("checked", family_phisic_fact);
             }
 
 
@@ -4170,7 +4186,7 @@ $( document ).ready(function() {
         getDayInfoFamily($(this).val());
     });
 
-    $('#filed_family_meditation, #filed_family_film, #filed_family_thinking, #filed_family_bracelet, #filed_family_pages, #filed_family_nice, #filed_wake_up_fact_hour_family, #filed_wake_up_fact_minute_family').change(function() {
+    $('#filed_family_meditation, #filed_family_film, #filed_family_thinking, #filed_family_bracelet, #filed_family_pages, #filed_family_nice, #filed_family_phisic, #filed_wake_up_fact_hour_family, #filed_wake_up_fact_minute_family').change(function() {
         console.log($(this).attr("data-day-num"));
         userSaveDayFamily($(this).attr("data-day-num"));
     });
@@ -4214,6 +4230,8 @@ $( document ).ready(function() {
                 family_bracelet_fact:      $('#filed_family_bracelet')  .is(':checked'),
                 family_pages_fact:         $('#filed_family_pages')     .is(':checked'),
                 family_nice_fact:          $('#filed_family_nice')      .is(':checked'),
+                family_phisic_fact:        $('#filed_family_phisic')    .is(':checked'),
+
                 family_wake_up_hours_fact:      $('#filed_wake_up_fact_hour_family')  .val(),
                 family_wake_up_minutes_fact:    $('#filed_wake_up_fact_minute_family').val(),
 
@@ -4505,6 +4523,26 @@ $( document ).ready(function() {
 //Settings
 
     //detox
+
+
+
+    $('#btn_half_bath_edit').click(function (){
+        $('#btn_half_bath_edit').prop('disabled', true);
+
+        $.ajax({
+            type: "POST",
+            url:  api_url + "set_half_bath_active",
+            data: { half_bath_active:  $('#filed_half_bath').is(':checked')},
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'},
+            success: function(data){
+                $('#btn_half_bath_edit').prop('disabled', false);
+                update_user_info();
+                alert("Изменения приняты");},
+            failure: function(errMsg) {alert(errMsg.toString());}
+        });
+    });
     $('#btn_meditation_edit').click(function (){
         $('#btn_meditation_edit').prop('disabled', true);
         var meditation_base  = $('#filed_meditation_base_edit').val();
