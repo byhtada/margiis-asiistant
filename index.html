@@ -58,8 +58,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/unicorn-btns.css" >
 
-    <script                                   src="js/main.js?v1.53"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css?v1.53">
+    <script                                   src="js/main.js?v1.63"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css?v1.63">
 </head>
 
 
@@ -75,11 +75,19 @@
 
 <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter47972495 = new Ya.Metrika2({ id:47972495, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/tag.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks2"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47972495" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
 
+<div id="error_500" hidden>
+    <br>
+    <div class="diary_body error_background">
+        <img src="img/reg_foto_logo2.png" class="img-responsive logo_error">
+        <p class="error_text">Просим прощение за неудобство. Это окно показывается когда у нашего пользователя возникла ошибка.</p>
+        <p class="error_text"> Что бы оперативно устранить проблему дайте нам знать в Телеграм или Viber +380973143889</p>
+    </div>
+</div>
+
 <div id="text_white_page" hidden>
-    <h2 align="center" >Если Вы видите эту надпись, то скорее всего у Вас возникла проблема с загрузкой сайта HYLS. Попробуйте сделать следующее: <br/>
-        1. Отключите в браузере блокировку всплывающих окон на нашем сайте<br/>
-        2. Если п.1 не помог, попробуйте использовать другой браузер<br/>
-        3. Если сайт все равно не грузится пишите <a href="https://vk.com/stloveangel" class="reg_link">https://vk.com/stloveangel</a>
+    <h2 align="center">Просим прощение за неудобство. Это окно показывается когда у нашего пользователя возникла ошибка.<br/>
+        Что бы оперативно устранить проблему дайте нам знать в Телеграм или Viber +380973143889. В своем сообщении сразу указывайте Ваш логин<br/>
+       <img src="img/reg_foto_logo2.png" class="img-responsive">
     </h2>
 </div>
 
@@ -517,6 +525,119 @@
                         <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Выберите группу</h5></td>       <td class="db_row_input_admin"><select id="group_add_user"   class="selectpicker"></select></td></tr>
 
                     </table>
+
+                    <div id="admin_mini_practics" hidden>
+                        <div align="left" class="buy_practiv_div">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="admin_checkbox_water" class="admin_mini" />
+                                <div class="state p-success-o"><label></label></div>
+                            </div>
+                            <span class="buy_mini_practic_text">
+                        Практика питья воды
+                    </span>
+                        </div>
+
+                        <div align="left" class="buy_practiv_div">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="admin_checkbox_detox" class="admin_mini" />
+                                <div class="state p-success-o"><label></label></div>
+                            </div>
+                            <span class="buy_mini_practic_text">
+                        Детокс программа
+                    </span>
+                        </div>
+
+                        <div align="left" class="buy_practiv_div">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="admin_checkbox_wakeup" class="admin_mini" />
+                                <div class="state p-success-o"><label></label></div>
+                            </div>
+                            <span class="buy_mini_practic_text">Ранние подъемы<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png"></a> </span>
+                        </div>
+
+                        <div align="left" class="buy_practiv_div">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="admin_checkbox_snacking" class="admin_mini" />
+                                <div class="state p-success-o"><label></label></div>
+                            </div>
+                            <span class="buy_mini_practic_text">Без перекусов переедания и сахара<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
+                        </div>
+
+                        <div align="left" class="buy_practiv_div">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="admin_checkbox_thanks" class="admin_mini" />
+                                <div class="state p-success-o"><label></label></div>
+                            </div>
+                            <span class="buy_mini_practic_text">
+                        Благодарности
+                        <a href="https://hyls.ru/thanks" target="_blank">
+                            <img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="Как часто вы радуетесь всему, что у вас есть каждый день? Обращаете ли вы внимание на всё то, что составляет вашу жизнь? Давайте вместе научимся благодарить себя, других людей и весь мир за всё то, что имеем. Для получения подробностей кликните">
+                        </a>
+                    </span>
+                        </div>
+
+                        <div hidden align="left" class="buy_practiv_div">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="admin_checkbox_family" class="admin_mini" />
+                                <div class="state p-success-o"><label></label></div>
+                            </div>
+                            <span class="buy_mini_practic_text">Без ссор в семье<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
+                        </div>
+
+                        <div align="left" class="buy_practiv_div">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="admin_checkbox_vegan" class="admin_mini" />
+                                <div class="state p-success-o"><label></label></div>
+                            </div>
+                            <span class="buy_mini_practic_text">
+                        Вегетарианская диета
+                        <a href="https://hyls.ru/vega" target="_blank">
+                            <img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="Узнайте больше о разных аспектах вегетарианства и постепенно измените свой рацион питания вместе с нами. Мы докажем вам, что вегетарианство – это удивительно вкусно и полезно! Для получения подробностей кликните">
+                        </a>
+                    </span>
+                        </div>
+
+                        <div align="left" class="buy_practiv_div">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="admin_checkbox_kaoshiki" class="admin_mini" />
+                                <div class="state p-success-o"><label></label></div>
+                            </div>
+                            <span class="buy_mini_practic_text">
+                        Каушики
+                        <a href="https://hyls.ru/kaoshiki" target="_blank">
+                            <img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="Йоговский танец каушики – удивительная практика, пробуждающая ваше тело и позволяющая уже после нескольких занятий чувствовать себя гораздо лучше. Узнайте о технике и значении танца и начните практиковать его ежедневно. Для получения подробностей кликните">
+                        </a>
+                    </span>
+                        </div>
+
+                        <div align="left" class="buy_practiv_div">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="admin_checkbox_asana" class="admin_mini" />
+                                <div class="state p-success-o"><label></label></div>
+                            </div>
+                            <span class="buy_mini_practic_text">
+                        Базовые асаны + самомассаж
+                        <a href="https://hyls.ru/asana" target="_blank" >
+                            <img class="icon_question" src="img/icon_question.png"  data-toggle="tooltip" data-placement="top" title="Мы убеждены, что каждый может практиковать йогу дома, причём регулярно. Познакомим вас с базовыми асанами йоги, расскажем о том, как правильно их выполнять и благоприятно влиять на своё тело и разум. Для получения подробностей кликните">
+                        </a>
+                    </span>
+                        </div>
+
+                        <div align="left" class="buy_practiv_div">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="admin_checkbox_therapy" class="admin_mini" />
+                                <div class="state p-success-o"><label></label></div>
+                            </div>
+                            <span class="buy_mini_practic_text">
+                        Натуральные терапии
+                        <a href="https://hyls.ru/therapy" target="_blank" >
+                            <img class="icon_question" src="img/icon_question.png"  data-toggle="tooltip" data-placement="top" title="Что такое натуральные терапии и как можно получить настоящую пользу от простой ванны, если правильно её принять? Узнайте о некоторых натуральных терапиях и применяйте их в своей жизни. Для получения подробностей кликните">
+                        </a>
+                    </span>
+                        </div>
+
+
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
@@ -1089,7 +1210,7 @@
             <div class="collapse navbar-collapse" id="navigation_bar_user">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Мои марафоны<span class="caret"></span></a>
+                        <a href="#" name="select_marafon" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Мои марафоны<span class="caret"></span></a>
                         <ul id="my_marafon_dropdown" class="dropdown-menu">
                             <li><a class="nav-link-user" name="nav_user_marafon" data-value="detox"   href="#">Марафон 60 дней</a></li>
                             <li><a class="nav-link-user" name="nav_user_marafon" data-value="mini"    href="#">Полезные привычки</a></li>
@@ -1332,7 +1453,7 @@
                     <br/>
                     <div align="center" class="payment_header"><b>Оплата марафона <span class="black_color">H</span>Y<span class="black_color">LS</span></b>
                         <br>
-                        <span class="black_color"><b>Старт 25.07.2018</b></span>
+                        <span class="black_color"><b>Старт 15.08.2018</b></span>
                     </div>
 
                     <div class="col-xs-12 col-md-12 col-sm-12 text-left">
@@ -1396,6 +1517,7 @@
                             Если у вас возникли вопросы или сложности с оплатой, свяжитесь с нами: <a href="mailto:info@hyls.ru" class="reg_link" target="_blank">info@hyls.ru</a>,
                             <a href="https://vk.com/hyls_ru" target="_blank" class="reg_link">ВКонтакте</a>, <a href="https://www.facebook.com/HYLS.ru" target="_blank" class="reg_link">Facebook</a> или WhatsApp +7(923)416-60-72
                         </div>
+
                     </div>
 
                     <!--
@@ -1423,7 +1545,7 @@
                 <br/>
                 <div align="center" class="payment_header"><b>Оплата марафона 21 день <span class="black_color">H</span>Y<span class="black_color">LS</span></b>
                     <br>
-                    <span class="black_color"><b>Старт 30.07.2018</b></span>
+                    <span class="black_color"><b>Старт 06.08.2018</b></span>
                 </div>
 
                 <div class="text-left">
@@ -1474,7 +1596,9 @@
                         <input type="checkbox"  id="reg_checkbox_wakeup" class="reg_mini" />
                         <div class="state p-success-o"><label></label></div>
                     </div>
-                    <span class="reg_mini_practic_text">Ранние подъемы<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png"></a> </span>
+                    <span class="reg_mini_practic_text">Ранние подъемы<a href="https://hyls.ru/sleep" target="_blank">
+                        <img class="icon_question" src="img/icon_question.png"  data-toggle="tooltip" data-placement="top"
+                             title="Узнайте о пользе ранних пробуждений и научитесь становиться активным раньше всего за 21 день"></a></span>
                 </div>
 
                 <div align="left" class="reg_practiv_div">
@@ -1482,7 +1606,8 @@
                         <input type="checkbox"  id="reg_checkbox_snacking" class="reg_mini" />
                         <div class="state p-success-o"><label></label></div>
                     </div>
-                    <span class="reg_mini_practic_text">Без перекусов переедания и сахара<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
+                    <span class="reg_mini_practic_text">Без перекусов переедания и сахара<a href="https://hyls.ru/nosugar" target="_blank"><img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="Узнайте о влиянии постоянных перекусов
+и сладостей на организм и уменьшите их количество в своей жизни"></a> </span>
                 </div>
 
                 <div align="left" class="reg_practiv_div">
@@ -1589,7 +1714,7 @@
                 <br/>
                 <div align="center" class="payment_header_family"><b>Оплата марафона <span class="black_color">H</span>Y<span class="black_color">LS</span>_family</b>
                     <br>
-                    <span class="black_color"><b>Старт 03.08.2018</b></span>
+                    <span class="black_color"><b>Старт 16.08.2018</b></span>
                 </div>
 
                 <div class="col-xs-12 col-md-12 col-sm-12 text-left">
@@ -1691,37 +1816,18 @@
                                 <div id="div_btn_user_material">
                                     <br/>
                                     <!--   <button id="btn_user_material"  type="button" class="btn btn-info btn-block">Открыть материал дня</button>   -->
-                                    <a  id="btn_user_material"  href="#" class="button button-glow button-border button-rounded button-highlight button-block">Материал дня</a>
+                                    <a  id="btn_user_material"  href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block">Материал дня</a>
 
                                 </div>
 
                             </div>
                             <div class="hidden-xs col-sm-4">
-                                <a id="user_ava_set" href="#"  data-toggle="modal" data-target="#modal_set_ava"><img id="user_ava" src="img/ava.png" class="img-circle"></a>
+                                <a id="user_ava_set" href="#"  data-toggle="modal" data-target="#modal_set_ava"><img src="img/ava.png" class="user_ava img-circle"></a>
 
-                                <div class="modal fade" id="modal_set_ava"     tabindex="-1" role="dialog" aria-labelledby="modal_label_set_ava">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="modal_label_set_ava">Установка аватарки</h4>
-                                            </div>
-                                            <div class="modal-body" align="center">
-                                                <table style="border: 0">
-                                                    <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Ссылка на фото</h5></td> <td class="db_row_input_admin"><input type="text"   сlass="form-control" id="ava_link"    placeholder="Вставьте ссылку на аватарку"></td></tr>
-                                                </table>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                                                <button id="btn_ava_set" type="button" class="btn btn-success">Сохранить аватарку</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="col-xs-6 col-sm-4">
                                 <h4>Моя цель:</h4>
-                                <textarea id="user_detox_target" type="text" class="form-control" placeholder="Место, что бы записать цель"></textarea>
+                                <textarea id="user_detox_target" type="text" class="field_target form-control" placeholder="Поле для записи цели"></textarea>
                             </div>
 
                         </div>
@@ -1823,7 +1929,7 @@
                                             <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_detox_time">
                                                 Кол-во дней <span class="caret"></span>
                                             </button>
-                                            <ul id="detox_answer_time" class="dropdown-menu">             </ul>
+                                            <ul id="detox_answer_time" class="dropdown-menu"></ul>
                                         </div>
                                     </td>
                                 </tr>
@@ -2576,9 +2682,7 @@
                             <div class="col-xs-10">
                                 <a id="btn_rating_link" href="#" class="rating_link"></a>
                             </div>
-
                         </div>
-
                     </div>
 
                        <br/>
@@ -2587,10 +2691,10 @@
                        <button id="btn_user_save_day"  type="button" class="btn btn-success btn-block">Сохранить отчет</button>
    -->
                     <div class="row footer">
-                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-border button-highlight btn_footer btn_footer_chat" >                 Чат</a></div>
-                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-border button-highlight btn_footer nav-link-user" name="nav_user_diary"   >Материалы</a></div>
-                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-border button-highlight btn_footer nav-link-user" name="nav_user_support" >Поддержать</a></div>
-                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-border button-highlight btn_footer nav-link-user" name="nav_user_settings">Настройки</a></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer btn_footer_chat" >                 Чат</a></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_diary"   >Материалы</a></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_support" >Поддержать</a></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_settings">Настройки</a></div>
                     </div>
 
 
@@ -2618,576 +2722,586 @@
             <div id="diary_marafon_mini"   hidden class="row">
                 <div class="col-xs-0  col-sm-3"></div>
                 <div class="col-xs-12 col-sm-6" align="center">
-                    <h2 class="marafon_name"></h2>
+
                     <div id="alert_mini_read_intro" class="alert alert-warning alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <strong>Приветствуем!</strong> Чтобы понять, что здесь происходит пожалуйста ознакомтесь с этой <a id="link_intro_mini" href="https://hyls.ru/help" target="_blank">инструкцией</a>.
                     </div>
 
-                    <h3 id="user_programm_day_mini" align="center">
-                        <button id="btn_user_previus_day_mini" type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
-                        <span id="user_current_day_mini">День Х (сегодня)</span>
-                        <button id="btn_user_next_day_mini"    type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
-                    </h3>
-
-                    <div id="question_water_mini" class="question_mini" hidden>
-                        <div class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
-                        <table class="table  table-hover">
-                            <thead>
-                            <tr class="db_row_dialog">
-                                <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
-                                <td><h4 align="center"><b>Ваш ответ</b></h4></td>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr class="db_row_dialog">
-                                <td valign="middle">      <h5>Сколько воды вы выпиваете в среднем воды за день (в мл)?</h5></td>
-                                <td > <input type="text" class="form-control" id="question_water_start_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
-                            </tr>
-
-                            <tr class="db_row_dialog">
-                                <td valign="middle">      <h5>Сколько вы планируете выпивать воды в день (в мл)?</h5></td>
-                                <td > <input type="text" class="form-control" id="question_water_target_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
-                            </tr>
-
-                            <tr class="db_row_dialog">
-                                <td valign="middle">      <h5>На сколько увеличивать кол-во воды по сравнению с прошлым днем в мл?</h5></td>
-                                <td > <input type="text" class="form-control" id="question_water_step_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <button id="btn_question_water_save_mini"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                    </div>
-
-                    <div id="question_detox_mini" class="question_mini" hidden>
-                        <div class="alert alert-danger"  role="alert">Пожалуйста, ответьте на вопросы ниже. От этого зависит дальнейшая программа</div>
-                        <table class="table  table-hover">
-                            <thead>
-                            <tr class="db_row_dialog">
-                                <td><h6 align="center"><b>Вопросы (отвечайте после прочтения материала)</b></h6></td>
-                                <td><h6 align="center"><b>Ваш ответ</b></h6></td>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr id="row_quest_detox_type_mini"  class="db_row_dialog">
-                                <td class="row_detox" valign="middle"><h5>Выберите вариант детокса</h5></td>
-                                <td class="row_detox">
-                                    <div class="dropdown">
-                                        <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_detox_type_mini">
-                                            Выберите вариант <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#" class="link_detox_type_mini" name="1">Полезная йоговская (оставите без изменений)</a></li>
-                                            <li><a href="#" class="link_detox_type_mini" name="2">Фрукты, сырые и приготовленные овощи</a></li>
-                                            <li><a href="#" class="link_detox_type_mini" name="3">Фрукты</a></li>
-                                            <li><a href="#" class="link_detox_type_mini" name="4">Соки и овощные бульоны</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr id="row_quest_detox_time_mini"  hidden class="db_row_dialog">
-                                <td class="row_detox" valign="middle" ><h5>Выберите длительность детокса, дней</h5></td>
-                                <td class="row_detox">
-                                    <div class="dropdown">
-                                        <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_detox_time_mini">
-                                            Кол-во дней <span class="caret"></span>
-                                        </button>
-                                        <ul id="detox_answer_time_mini" class="dropdown-menu">             </ul>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr id="row_quest_detox_start_mini" hidden class="db_row_dialog">
-                                <td class="row_detox"><h5>Выберите день старта детокса</h5></td>
-                                <td class="row_detox">
-                                    <div class="dropdown">
-                                        <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_detox_start_mini">
-                                            День старта <span class="caret"></span>
-                                        </button>
-                                        <ul id="detox_answer_start_mini" class="dropdown-menu">                                                    </ul>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            </tbody>
-                        </table>
-                        <button id="btn_question_detox_save_mini" hidden type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                    </div>
-
-                    <div id="question_wake_up_mini" class="question_mini" hidden>
-                        <div class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
-                        <table class="table  table-hover">
-                            <thead>
-                            <tr class="db_row_dialog">
-                                <td><h4 align="center"><b>Вопросы (отвечайте после прочтения материала)</b></h4></td>
-                                <td><h4 align="center"><b>Ваш ответ</b></h4></td>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr class="db_row_dialog">
-                                <td valign="middle">      <h5>Во сколько Вы обычно просыпаетесь?</h5></td>
-                                <td >
-                                    <p>
-                                        <input type="text" class="field_wake_up" id="question_wake_up_fact_hour_mini"   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="чч">
-                                        <span>:</span>
-                                        <input type="text" class="field_wake_up" id="question_wake_up_fact_minute_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="мм">
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr class="db_row_dialog">
-                                <td valign="middle">      <h5>Установите цель по времени подъема</h5></td>
-                                <td >
-                                    <p>
-                                        <input type="text" class="field_wake_up" id="question_wake_up_target_hour_mini"   placeholder="чч"  value="5"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
-                                        <span>:</span>
-                                        <input type="text" class="field_wake_up" id="question_wake_up_target_minute_mini" placeholder="мм"  value="30" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
-                                    </p>
-                                </td>
-                            </tr>
-
-                            <tr class="db_row_dialog">
-                                <td valign="middle">      <h5>На сколько приближаться к цели каждый день (шаг), минут</h5></td>
-                                <td><input type="text" class="field_wake_up" id="question_wake_up_step_mini"   placeholder="минут"  value="10"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <button id="btn_question_wake_up_save_mini"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                    </div>
-
-                    <div id="question_kaoshiki_mini" class="question_mini" hidden>
-                        <div class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
-                        <table class="table  table-hover">
-                            <thead>
-                            <tr class="db_row_dialog">
-                                <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
-                                <td><h4 align="center"><b>Ваш ответ</b></h4></td>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr class="db_row_dialog">
-                                <td valign="middle">      <h5>Стартовое время для практики каушики(минимум 3 минуты)</h5></td>
-                                <td > <input type="text" class="form-control" id="question_kaoshiki_start_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
-                            </tr>
-
-                            <tr class="db_row_dialog">
-                                <td valign="middle">      <h5>Планируемое время на практику каушики?</h5></td>
-                                <td > <input type="text" class="form-control" id="question_kaoshiki_target_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
-                            </tr>
-
-                            <tr class="db_row_dialog">
-                                <td valign="middle">      <h5>На сколько минут увеличивать длительность практики каждый день?</h5></td>
-                                <td > <input type="text" class="form-control" id="question_kaoshiki_step_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <button id="btn_question_kaoshiki_save_mini"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                    </div>
-
-                    <div id="question_asana_mini" class="question_mini" hidden>
-                        <div class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
-                        <table class="table  table-hover">
-                            <thead>
-                            <tr class="db_row_dialog">
-                                <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
-                                <td><h4 align="center"><b>Ваш ответ</b></h4></td>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr class="db_row_dialog">
-                                <td valign="middle">      <h5>Сколько раз в день Вы планируете делать асаны?</h5></td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_asana_mini">
-                                            Выберите вариант <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#" class="link_asana_mini" name="1">1 раз в день</a></li>
-                                            <li><a href="#" class="link_asana_mini" name="2">2 раза в день</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            </tbody>
-                        </table>
-                        <button id="btn_question_asana_save_mini"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                    </div>
-
-                    <div id="question_therapy_mini" class="question_mini" hidden>
-                        <div class="alert alert-danger"  role="alert">Пожалуйста, ответьте на вопросы ниже. От этого зависит дальнейшая программа</div>
-                        <table class="table  table-hover">
-                            <thead>
-                            <tr class="db_row_dialog">
-                                <td><h6 align="center"><b>Вопросы (отвечайте после прочтения материала)</b></h6></td>
-                                <td><h6 align="center"><b>Ваш ответ</b></h6></td>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr class="db_row_dialog">
-                                <td class="row_detox" valign="middle"><h5>Как часто вы планируете выполнять терапии?</h5></td>
-                                <td class="row_detox">
-                                    <div class="dropdown">
-                                        <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_therapy_type_mini">
-                                            Выберите вариант <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#" class="link_therapy_type_mini" name="1">Каждый день</a></li>
-                                            <li><a href="#" class="link_therapy_type_mini" name="2">1 раз в 2 дня</a></li>
-                                            <li><a href="#" class="link_therapy_type_mini" name="3">1 раз в 3 дня</a></li>
-                                            <li><a href="#" class="link_therapy_type_mini" name="4">1 раз в 4 дня</a></li>
-                                            <li><a href="#" class="link_therapy_type_mini" name="5">1 раз в 5 дней</a></li>
-                                            <li><a href="#" class="link_therapy_type_mini" name="7">1 раз в неделю</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <button id="btn_question_therapy_save_mini" hidden type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                    </div>
-
-
-                    <div id="question_meditation_mini" class="question_mini" hidden>
-                        <div class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
-                        <table class="table  table-hover">
-                            <thead>
-                            <tr class="db_row_dialog">
-                                <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
-                                <td><h4 align="center"><b>Ваш ответ</b></h4></td>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr class="db_row_dialog">
-                                <td valign="middle">      <h5>Стартовое время для практики медитации (минимум 5 минут)</h5></td>
-                                <td > <input type="text" class="form-control" id="question_meditation_start_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
-                            </tr>
-
-                            <tr class="db_row_dialog">
-                                <td valign="middle">      <h5>Планируемое время на практику медитации?</h5></td>
-                                <td > <input type="text" class="form-control" id="question_meditation_target_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
-                            </tr>
-
-                            <tr class="db_row_dialog">
-                                <td valign="middle">      <h5>На сколько минут увеличивать длительность практики каждый день?</h5></td>
-                                <td > <input type="text" class="form-control" id="question_meditation_step_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <button id="btn_question_meditation_save_mini"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                    </div>
-
-
-                    <br/>
-
-
-                    <table class="table  table-hover">
-                        <thead>
-                        <tr class="db_row_dialog">
-                            <td><h4 align="center"><b>Практика</b></h4></td>
-                            <td><h4 align="center"><b>План</b></h4></td>
-                            <td><h4 align="center"><b>Сделал</b></h4></td>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        <tr id="row_social_practic_mini" class="db_row_dialog">
-                            <td valign="middle"><button id="btn_social_practic_mini" type="button" class="btn btn-link"  data-toggle="modal" data-target="#modal_social_practic_mini">#hylsзадание</button> </td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center" >
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_social_practic_mini" />
-                                    <div class="state p-success-o">
-                                        <label></label>
-                                    </div>
+                    <div class="diary_header">
+                        <h2 class="marafon_name"></h2>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-4">
+                                <div id="user_programm_day_mini">
+                                    <button id="btn_user_previus_day_mini"  class="button button-box button-small button-highlight "><i class="fa fa-chevron-left"></i></button>
+                                    <span id="user_current_day_mini">День Х (сегодня)</span>
+                                    <button id="btn_user_next_day_mini"  class="button button-box button-small button-highlight "><i class="fa fa-chevron-right"></i></button>
                                 </div>
-                            </td>
-                        </tr>
-                        <div class="modal fade" id="modal_social_practic_mini"    tabindex="-1" role="dialog" aria-labelledby="modal_label_social_practic_mini">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="modal_label_social_practic_mini">Подробности задания</h4>
-                                </div>
-                                <div class="modal-body" align="left">
-                                    <p id="social_practic_description_mini"></p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">ОК</button>
+                                <div>
+                                    <div id="div_btn_hyls_store"></div>
                                 </div>
                             </div>
-                        </div>
-                </div>
-
-                        <tr id="row_water_mini" class="db_row_dialog">
-                            <td valign="middle"> Питьё воды, мл</td>
-                            <td class="db_row_input">          <input type="text" class="form-control" id="filed_water_plan_mini" disabled></td>
-                            <td class="db_row_input">          <input type="text" class="form-control" id="filed_water_fact_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
-                        </tr>
-
-                        <tr id="row_detox_mini" class="db_row_dialog">
-                            <td valign="middle"> <div id="text_diet_mini">Детокс, тип питания</div></td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_detox_fact_mini" />
-                                    <div class="state p-success-o">
-                                        <label></label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr id="row_wake_up_mini" class="db_row_dialog">
-                            <td valign="middle">
-                                Подъем (время) <br/>
-                                Время для отхода ко сну <span id="wake_up_text_mini"></span><br/>
-                                Время подъема на завтра <span id="wake_up_tomorrow_mini"></span>
-                            </td>
-                            <td class="db_row_input">                  <h5 align="center"  id="filed_wake_up_plan_mini" ></h5></td>
-                            <td valign="middle" class="db_row_input">
-                                <p>
-                                    <input type="text" class="field_wake_up" id="filed_wake_up_fact_hour_mini"   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="чч">
-                                    <span>:</span>
-                                    <input type="text" class="field_wake_up" id="filed_wake_up_fact_minute_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="мм">
-                                </p>
-                            </td>
-                        </tr>
-
-
-                        <tr id="row_snacking_mini" class="db_row_dialog">
-                            <td valign="middle"> <div id="text_snacking_mini">Без перекусов</div></td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_snacking_mini" />
-                                    <div class="state p-success-o">
-                                        <label></label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id="row_overeat_mini" class="db_row_dialog">
-                            <td valign="middle"> <div id="text_overeat_mini">Без переедания</div></td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_overeat_mini" />
-                                    <div class="state p-success-o">
-                                        <label></label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id="row_sugar_mini" class="db_row_dialog">
-                            <td valign="middle"> <div id="text_сахара_mini">Без сахара</div></td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_sugar_mini" />
-                                    <div class="state p-success-o">
-                                        <label></label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr id="row_thanks_mini" class="db_row_dialog">
-                            <td valign="middle">Практика Благодарности</td>
-                            <td class="db_row_input">                   <input type="text"   class="form-control" id="filed_thanks_plan_mini" disabled></td>
-                            <td valign="middle" class="db_row_input">   <input type="text"   class="form-control" id="filed_thanks_fact_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
-                        </tr>
-
-                        <tr id="row_family_no_critic_mini" class="db_row_dialog">
-                            <td valign="middle"> <div id="text_family_no_critic_mini">Не критиковал(а)</div></td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_family_no_critic_mini" />
-                                    <div class="state p-success-o">
-                                        <label></label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id="row_family_benevolence_mini" class="db_row_dialog">
-                            <td valign="middle"> <div id="text_family_benevolence_mini">Был доброжелательным(ой)</div></td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_family_benevolence_mini" />
-                                    <div class="state p-success-o">
-                                        <label></label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id="row_family_no_agression_mini" class="db_row_dialog">
-                            <td valign="middle"> <div id="text_family_no_agression_mini">Если была агрессия в мою сторону, то я сохранил равновесие и не ответил злостью</div></td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_family_no_agression_mini" />
-                                    <div class="state p-success-o">
-                                        <label></label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id="row_family_enjoy_mini" class="db_row_dialog">
-                            <td valign="middle"> <div id="text_family_enjoy_mini">Сделал(а) приятно своей второй половинке</div></td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_family_enjoy_mini" />
-                                    <div class="state p-success-o">
-                                        <label></label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-
-                        <tr id="row_vegan_mini" class="db_row_dialog">
-                            <td valign="middle"><div id="vegan_description">Вегетарианская диета</div> </td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_vegan_mini" />
-                                    <div class="state p-success-o">
-                                        <label></label>
-                                    </div>
-                                </div>
-
-                            </td>
-                        </tr>
-
-                        <tr id="row_kaoshiki_mini" class="db_row_dialog">
-                            <td valign="middle"> Каушики, минут</td>
-                            <td class="db_row_input">                    <input type="text" class="form-control" id="filed_kaoshiki_plan_mini" disabled></td>
-                            <td valign="middle" class="db_row_input">    <input type="text" class="form-control" id="filed_kaoshiki_fact_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
-                        </tr>
-
-                        <tr id="row_asana_mini" class="db_row_dialog">
-                            <td valign="middle"> Асаны</td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center">
-                                <div id="div_filed_asana_mini_1" hidden class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_asana_mini_1" />
-                                    <div class="state p-success-o">
-                                        <label></label>
-                                    </div>
-                                </div>
-
-                                <div id="div_filed_asana_mini_2" hidden class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_asana_mini_2" />
-                                    <div class="state p-success-o">
-                                        <label></label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-
-                        <tr id="row_tongue_mini" class="db_row_dialog">
-                            <td valign="middle">Чистка языка (утро и вечер)</td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center div_row_fact">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_tongue_day_mini" />
-                                    <div class="state p-success-o">
-                                        <label></label>
-                                    </div>
-                                </div>
-
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_tongue_night_mini" />
-
-                                    <div class="state p-success-o">
-                                        <label></label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr id="row_therapy_mini" class="db_row_dialog">
-                            <td valign="middle">Натуральные терапии</td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_therapy_mini" />
-                                    <div class="state p-success-o">
-                                        <label></label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-
-                        <tr id="row_meditation_day_mini" class="db_row_dialog">
-                            <td valign="middle"> Медитация утро, минут</td>
-                            <td class="db_row_input">                   <input type="text"   class="form-control" id="filed_meditation_day_plan_mini" disabled></td>
-                            <td valign="middle" class="db_row_input">   <input type="text"   class="form-control" id="filed_meditation_day_fact_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
-                        </tr>
-
-                        <tr id="row_meditation_night_mini" class="db_row_dialog">
-                            <td valign="middle"> Медитация вечер, минут</td>
-                            <td class="db_row_input">                  <input type="text" class="form-control" id="filed_meditation_night_plan_mini" disabled></td>
-                            <td valign="middle" class="db_row_input">  <input type="text" class="form-control" id="filed_meditation_night_fact_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-
-
-                    <div class="progress">
-                        <div id="user_progress_bar_mini" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%; min-width: 2em;">
+                            <div class="hidden-xs col-sm-4">
+                                <a href="#"  data-toggle="modal" data-target="#modal_set_ava"><img src="img/ava.png" class="img-circle user_ava"></a>
+                            </div>
+                            <div class="col-xs-6 col-sm-4">
+                                <h4>Моя цель:</h4>
+                                <textarea id="user_mini_target" type="text" class="field_target form-control" placeholder="Поле для записи цели"></textarea>
+                            </div>
                         </div>
                     </div>
 
-                    <br/>
+                    <div class="diary_body">
+                        <h2 class="diary_body_name">Дневник</h2>
+
+                        <div id="question_water_mini" class="question_mini" hidden>
+                            <div class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                            <table class="table  table-hover">
+                                <thead>
+                                <tr class="db_row_dialog">
+                                    <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
+                                    <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr class="db_row_dialog">
+                                    <td valign="middle">      <h5>Сколько воды вы выпиваете в среднем воды за день (в мл)?</h5></td>
+                                    <td > <input type="text" class="form-control" id="question_water_start_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                                </tr>
+
+                                <tr class="db_row_dialog">
+                                    <td valign="middle">      <h5>Сколько вы планируете выпивать воды в день (в мл)?</h5></td>
+                                    <td > <input type="text" class="form-control" id="question_water_target_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                                </tr>
+
+                                <tr class="db_row_dialog">
+                                    <td valign="middle">      <h5>На сколько увеличивать кол-во воды по сравнению с прошлым днем в мл?</h5></td>
+                                    <td > <input type="text" class="form-control" id="question_water_step_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <button id="btn_question_water_save_mini"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                        </div>
+
+                        <div id="question_detox_mini" class="question_mini" hidden>
+                            <div class="alert alert-danger"  role="alert">Пожалуйста, ответьте на вопросы ниже. От этого зависит дальнейшая программа</div>
+                            <table class="table  table-hover">
+                                <thead>
+                                <tr class="db_row_dialog">
+                                    <td><h6 align="center"><b>Вопросы (отвечайте после прочтения материала)</b></h6></td>
+                                    <td><h6 align="center"><b>Ваш ответ</b></h6></td>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr id="row_quest_detox_type_mini"  class="db_row_dialog">
+                                    <td class="row_detox" valign="middle"><h5>Выберите вариант детокса</h5></td>
+                                    <td class="row_detox">
+                                        <div class="dropdown">
+                                            <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_detox_type_mini">
+                                                Выберите вариант <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" class="link_detox_type_mini" name="1">Полезная йоговская (оставите без изменений)</a></li>
+                                                <li><a href="#" class="link_detox_type_mini" name="2">Фрукты, сырые и приготовленные овощи</a></li>
+                                                <li><a href="#" class="link_detox_type_mini" name="3">Фрукты</a></li>
+                                                <li><a href="#" class="link_detox_type_mini" name="4">Соки и овощные бульоны</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr id="row_quest_detox_time_mini"  hidden class="db_row_dialog">
+                                    <td class="row_detox" valign="middle" ><h5>Выберите длительность детокса, дней</h5></td>
+                                    <td class="row_detox">
+                                        <div class="dropdown">
+                                            <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_detox_time_mini">
+                                                Кол-во дней <span class="caret"></span>
+                                            </button>
+                                            <ul id="detox_answer_time_mini" class="dropdown-menu">             </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr id="row_quest_detox_start_mini" hidden class="db_row_dialog">
+                                    <td class="row_detox"><h5>Выберите день старта детокса</h5></td>
+                                    <td class="row_detox">
+                                        <div class="dropdown">
+                                            <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_detox_start_mini">
+                                                День старта <span class="caret"></span>
+                                            </button>
+                                            <ul id="detox_answer_start_mini" class="dropdown-menu">                                                    </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <button id="btn_question_detox_save_mini" hidden type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                        </div>
+
+                        <div id="question_wake_up_mini" class="question_mini" hidden>
+                            <div class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                            <table class="table  table-hover">
+                                <thead>
+                                <tr class="db_row_dialog">
+                                    <td><h4 align="center"><b>Вопросы (отвечайте после прочтения материала)</b></h4></td>
+                                    <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr class="db_row_dialog">
+                                    <td valign="middle">      <h5>Во сколько Вы обычно просыпаетесь?</h5></td>
+                                    <td >
+                                        <p>
+                                            <input type="text" class="field_wake_up" id="question_wake_up_fact_hour_mini"   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="чч">
+                                            <span>:</span>
+                                            <input type="text" class="field_wake_up" id="question_wake_up_fact_minute_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="мм">
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr class="db_row_dialog">
+                                    <td valign="middle">      <h5>Установите цель по времени подъема</h5></td>
+                                    <td >
+                                        <p>
+                                            <input type="text" class="field_wake_up" id="question_wake_up_target_hour_mini"   placeholder="чч"  value="5"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
+                                            <span>:</span>
+                                            <input type="text" class="field_wake_up" id="question_wake_up_target_minute_mini" placeholder="мм"  value="30" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr class="db_row_dialog">
+                                    <td valign="middle">      <h5>На сколько приближаться к цели каждый день (шаг), минут</h5></td>
+                                    <td><input type="text" class="field_wake_up" id="question_wake_up_step_mini"   placeholder="минут"  value="10"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <button id="btn_question_wake_up_save_mini"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                        </div>
+
+                        <div id="question_kaoshiki_mini" class="question_mini" hidden>
+                            <div class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                            <table class="table  table-hover">
+                                <thead>
+                                <tr class="db_row_dialog">
+                                    <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
+                                    <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr class="db_row_dialog">
+                                    <td valign="middle">      <h5>Стартовое время для практики каушики(минимум 3 минуты)</h5></td>
+                                    <td > <input type="text" class="form-control" id="question_kaoshiki_start_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                                </tr>
+
+                                <tr class="db_row_dialog">
+                                    <td valign="middle">      <h5>Планируемое время на практику каушики?</h5></td>
+                                    <td > <input type="text" class="form-control" id="question_kaoshiki_target_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                                </tr>
+
+                                <tr class="db_row_dialog">
+                                    <td valign="middle">      <h5>На сколько минут увеличивать длительность практики каждый день?</h5></td>
+                                    <td > <input type="text" class="form-control" id="question_kaoshiki_step_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <button id="btn_question_kaoshiki_save_mini"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                        </div>
+
+                        <div id="question_asana_mini" class="question_mini" hidden>
+                            <div class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                            <table class="table  table-hover">
+                                <thead>
+                                <tr class="db_row_dialog">
+                                    <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
+                                    <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr class="db_row_dialog">
+                                    <td valign="middle">      <h5>Сколько раз в день Вы планируете делать асаны?</h5></td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_asana_mini">
+                                                Выберите вариант <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" class="link_asana_mini" name="1">1 раз в день</a></li>
+                                                <li><a href="#" class="link_asana_mini" name="2">2 раза в день</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <button id="btn_question_asana_save_mini"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                        </div>
+
+                        <div id="question_therapy_mini" class="question_mini" hidden>
+                            <div class="alert alert-danger"  role="alert">Пожалуйста, ответьте на вопросы ниже. От этого зависит дальнейшая программа</div>
+                            <table class="table  table-hover">
+                                <thead>
+                                <tr class="db_row_dialog">
+                                    <td><h6 align="center"><b>Вопросы (отвечайте после прочтения материала)</b></h6></td>
+                                    <td><h6 align="center"><b>Ваш ответ</b></h6></td>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr class="db_row_dialog">
+                                    <td class="row_detox" valign="middle"><h5>Как часто вы планируете выполнять терапии?</h5></td>
+                                    <td class="row_detox">
+                                        <div class="dropdown">
+                                            <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_therapy_type_mini">
+                                                Выберите вариант <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" class="link_therapy_type_mini" name="1">Каждый день</a></li>
+                                                <li><a href="#" class="link_therapy_type_mini" name="2">1 раз в 2 дня</a></li>
+                                                <li><a href="#" class="link_therapy_type_mini" name="3">1 раз в 3 дня</a></li>
+                                                <li><a href="#" class="link_therapy_type_mini" name="4">1 раз в 4 дня</a></li>
+                                                <li><a href="#" class="link_therapy_type_mini" name="5">1 раз в 5 дней</a></li>
+                                                <li><a href="#" class="link_therapy_type_mini" name="7">1 раз в неделю</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <button id="btn_question_therapy_save_mini" hidden type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                        </div>
 
 
-                    <div class="comment_field">
-                        <textarea  id="filed_day_comment_mini" class="form-control" placeholder="Здесь Вы можете оставлять свои заметки о прошедшем дне Программы"></textarea>
+                        <div id="question_meditation_mini" class="question_mini" hidden>
+                            <div class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                            <table class="table  table-hover">
+                                <thead>
+                                <tr class="db_row_dialog">
+                                    <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
+                                    <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                                </tr>
+                                </thead>
 
-                        <img class="comment_loader_ball_mini loader_ball"    hidden src="img/load_comment.gif">
-                        <img class="comment_loader_tick_mini loader_tick"    hidden src="img/load_success.png">
+                                <tbody>
+                                <tr class="db_row_dialog">
+                                    <td valign="middle">      <h5>Стартовое время для практики медитации (минимум 5 минут)</h5></td>
+                                    <td > <input type="text" class="form-control" id="question_meditation_start_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                                </tr>
 
+                                <tr class="db_row_dialog">
+                                    <td valign="middle">      <h5>Планируемое время на практику медитации?</h5></td>
+                                    <td > <input type="text" class="form-control" id="question_meditation_target_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                                </tr>
+
+                                <tr class="db_row_dialog">
+                                    <td valign="middle">      <h5>На сколько минут увеличивать длительность практики каждый день?</h5></td>
+                                    <td > <input type="text" class="form-control" id="question_meditation_step_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <button id="btn_question_meditation_save_mini"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                        </div>
+
+                        <br/>
+
+                        <table class="table  table-hover">
+                            <thead>
+                            <tr class="db_row_dialog">
+                                <td><h4 align="center"><b>Практика</b></h4></td>
+                                <td><h4 align="center"><b>План</b></h4></td>
+                                <td><h4 align="center"><b>Сделал</b></h4></td>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr id="row_social_practic_mini" class="db_row_dialog">
+                                <td valign="middle"><button id="btn_social_practic_mini" type="button" class="btn btn-link"  data-toggle="modal" data-target="#modal_social_practic_mini">#hylsзадание</button> </td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center" >
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_social_practic_mini" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <div class="modal fade" id="modal_social_practic_mini"    tabindex="-1" role="dialog" aria-labelledby="modal_label_social_practic_mini">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="modal_label_social_practic_mini">Подробности задания</h4>
+                                        </div>
+                                        <div class="modal-body" align="left">
+                                            <p id="social_practic_description_mini"></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">ОК</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <tr id="row_water_mini" class="db_row_dialog">
+                                <td valign="middle"> Питьё воды, мл</td>
+                                <td class="db_row_input">          <input type="text" class="form-control" id="filed_water_plan_mini" disabled></td>
+                                <td class="db_row_input">          <input type="text" class="form-control" id="filed_water_fact_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                            </tr>
+
+                            <tr id="row_detox_mini" class="db_row_dialog">
+                                <td valign="middle"> <div id="text_diet_mini">Детокс, тип питания</div></td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_detox_fact_mini" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr id="row_wake_up_mini" class="db_row_dialog">
+                                <td valign="middle">
+                                    Подъем (время) <br/>
+                                    Время для отхода ко сну <span id="wake_up_text_mini"></span><br/>
+                                    Время подъема на завтра <span id="wake_up_tomorrow_mini"></span>
+                                </td>
+                                <td class="db_row_input">                  <h5 align="center"  id="filed_wake_up_plan_mini" ></h5></td>
+                                <td valign="middle" class="db_row_input">
+                                    <p>
+                                        <input type="text" class="field_wake_up" id="filed_wake_up_fact_hour_mini"   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="чч">
+                                        <span>:</span>
+                                        <input type="text" class="field_wake_up" id="filed_wake_up_fact_minute_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="мм">
+                                    </p>
+                                </td>
+                            </tr>
+
+
+                            <tr id="row_snacking_mini" class="db_row_dialog">
+                                <td valign="middle"> <div id="text_snacking_mini">Без перекусов</div></td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_snacking_mini" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr id="row_overeat_mini" class="db_row_dialog">
+                                <td valign="middle"> <div id="text_overeat_mini">Без переедания</div></td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_overeat_mini" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr id="row_sugar_mini" class="db_row_dialog">
+                                <td valign="middle"> <div id="text_сахара_mini">Без сахара</div></td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_sugar_mini" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr id="row_thanks_mini" class="db_row_dialog">
+                                <td valign="middle">Практика Благодарности</td>
+                                <td class="db_row_input">                   <input type="text"   class="form-control" id="filed_thanks_plan_mini" disabled></td>
+                                <td valign="middle" class="db_row_input">   <input type="text"   class="form-control" id="filed_thanks_fact_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                            </tr>
+
+                            <tr id="row_family_no_critic_mini" class="db_row_dialog">
+                                <td valign="middle"> <div id="text_family_no_critic_mini">Не критиковал(а)</div></td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_family_no_critic_mini" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr id="row_family_benevolence_mini" class="db_row_dialog">
+                                <td valign="middle"> <div id="text_family_benevolence_mini">Был доброжелательным(ой)</div></td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_family_benevolence_mini" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr id="row_family_no_agression_mini" class="db_row_dialog">
+                                <td valign="middle"> <div id="text_family_no_agression_mini">Если была агрессия в мою сторону, то я сохранил равновесие и не ответил злостью</div></td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_family_no_agression_mini" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr id="row_family_enjoy_mini" class="db_row_dialog">
+                                <td valign="middle"> <div id="text_family_enjoy_mini">Сделал(а) приятно своей второй половинке</div></td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_family_enjoy_mini" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                            <tr id="row_vegan_mini" class="db_row_dialog">
+                                <td valign="middle"><div id="vegan_description">Вегетарианская диета</div> </td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_vegan_mini" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+
+                            <tr id="row_kaoshiki_mini" class="db_row_dialog">
+                                <td valign="middle"> Каушики, минут</td>
+                                <td class="db_row_input">                    <input type="text" class="form-control" id="filed_kaoshiki_plan_mini" disabled></td>
+                                <td valign="middle" class="db_row_input">    <input type="text" class="form-control" id="filed_kaoshiki_fact_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                            </tr>
+
+                            <tr id="row_asana_mini" class="db_row_dialog">
+                                <td valign="middle"> Асаны</td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center div_row_fact">
+                                    <div   class="div_filed_asana_mini_1 pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_asana_mini_1" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+
+                                    <div   class="div_filed_asana_mini_1 pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_asana_mini_2" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                            <tr id="row_tongue_mini" class="db_row_dialog">
+                                <td valign="middle">Чистка языка (утро и вечер)</td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center div_row_fact">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_tongue_day_mini" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_tongue_night_mini" />
+
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr id="row_therapy_mini" class="db_row_dialog">
+                                <td valign="middle">Натуральные терапии</td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_therapy_mini" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                            <tr id="row_meditation_day_mini" class="db_row_dialog">
+                                <td valign="middle"> Медитация утро, минут</td>
+                                <td class="db_row_input">                   <input type="text"   class="form-control" id="filed_meditation_day_plan_mini" disabled></td>
+                                <td valign="middle" class="db_row_input">   <input type="text"   class="form-control" id="filed_meditation_day_fact_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                            </tr>
+
+                            <tr id="row_meditation_night_mini" class="db_row_dialog">
+                                <td valign="middle"> Медитация вечер, минут</td>
+                                <td class="db_row_input">                  <input type="text" class="form-control" id="filed_meditation_night_plan_mini" disabled></td>
+                                <td valign="middle" class="db_row_input">  <input type="text" class="form-control" id="filed_meditation_night_fact_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                        <div class="progress">
+                            <div id="user_progress_bar_mini" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%; min-width: 2em;">
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="comment_field">
+                            <textarea  id="filed_day_comment_mini" class="form-control" placeholder="Здесь Вы можете оставлять свои заметки о прошедшем дне Программы"></textarea>
+
+                            <img class="comment_loader_ball_mini loader_ball"    hidden src="img/load_comment.gif">
+                            <img class="comment_loader_tick_mini loader_tick"    hidden src="img/load_success.png">
+
+                        </div>
                     </div>
 
 
-                    <div id="div_btn_rating_link_mini">
-                        <br/>
-                        <a id="btn_rating_link_mini" href="#" class="rating_link"></a>
-
-                        <br/>
+                    <div id="div_btn_rating_link_mini" class="diary_body">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <img src="img/rating_cup.png" class="rating_cup">
+                            </div>
+                            <div class="col-xs-10">
+                                <a id="btn_rating_link_mini" href="#" class="rating_link"></a>
+                            </div>
+                        </div>
                     </div>
-
-
                     <br/>
-                    <!--
-                                       <button id="btn_user_save_day"  type="button" class="btn btn-success btn-block">Сохранить отчет</button>
-                   -->
-
-                    <div id="div_btn_hyls_store"></div>
-
                     <div class="row">
-                        <div class="col-xs-6 col-sm-3" align="center"><button class="btn btn-default btn-block btn-sm btn_footer btn_footer_chat"                       >Чат</button></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer btn_footer_chat"                       >Чат</a></div>
                         <div class="col-xs-6 col-sm-3" align="center">
                             <div  id="btn_material_mini"></div>
-
                         </div>
-                        <div class="col-xs-6 col-sm-3" align="center"><button class="btn btn-default btn-block btn-sm btn_footer nav-link-user" name="nav_user_support" >Поддержать</button></div>
-                        <div class="col-xs-6 col-sm-3" align="center"><button class="btn btn-default btn-block btn-sm btn_footer nav-link-user" name="nav_user_settings">Настройки</button></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_support" >Поддержать</a></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_settings">Настройки</a></div>
                     </div>
                 </div>
                 <div class="col-xs-0  col-sm-3"></div>
@@ -3196,18 +3310,42 @@
             <div id="diary_marafon_family" hidden class="row">
                 <div class="col-xs-0  col-sm-3"></div>
                 <div class="col-xs-12 col-sm-6" align="center">
-                    <h2 class="marafon_name"></h2>
-                    <h3 id="user_programm_day_family" align="center">
-                        <button id="btn_user_previus_day_family" type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
-                        <span id="user_current_day_family">День Х (сегодня)</span>
-                        <button id="btn_user_next_day_family"    type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
-                    </h3>
+                    <div class="diary_header">
+                        <h2 class="marafon_name"></h2>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-4">
+                                <div id="user_programm_day_family">
 
-                    <div id="div_btn_user_material_family">
-                        <br/>
-                        <button id="btn_user_material_family"  type="button" class="btn btn-info btn-block">Открыть материал дня</button>
-                        <br/>
+                                    <button id="btn_user_previus_day_family"  class="button button-box button-small button-highlight "><i class="fa fa-chevron-left"></i></button>
+                                    <!--  <button id="btn_user_previus_day" type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+                                                                    <button id="btn_user_next_day"    type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+
+                                    -->
+                                    <span id="user_current_day_family">День Х (сегодня)</span>
+                                    <button id="btn_user_next_day_family"  class="button button-box button-small button-highlight "><i class="fa fa-chevron-right"></i></button>
+
+                                </div>
+
+                                <div id="div_btn_user_material_family">
+                                    <br/>
+                                    <!--   <button id="btn_user_material"  type="button" class="btn btn-info btn-block">Открыть материал дня</button>   -->
+                                    <a  id="btn_user_material_family"  href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block">Материал дня</a>
+
+                                </div>
+
+                            </div>
+                            <div class="hidden-xs col-sm-4">
+                                <a href="#"  data-toggle="modal" data-target="#modal_set_ava"><img src="img/ava.png" class="user_ava img-circle"></a>
+
+                            </div>
+                            <div class="col-xs-6 col-sm-4">
+                                <h4>Моя цель:</h4>
+                                <textarea id="user_family_target" type="text" class="field_target form-control" placeholder="Поле для записи цели"></textarea>
+                            </div>
+                        </div>
                     </div>
+
+
 
                     <div id="question_wake_up_family" class="question_mini" hidden>
                         <div class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
@@ -3250,12 +3388,43 @@
                         <button id="btn_question_wake_up_save_family"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
                     </div>
 
+                    <div id="question_water_family" class="question_mini" hidden>
+                        <div class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                        <table class="table  table-hover">
+                            <thead>
+                            <tr class="db_row_dialog">
+                                <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
+                                <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                            </tr>
+                            </thead>
 
-                    <div id="family_practise">
+                            <tbody>
+                            <tr class="db_row_dialog">
+                                <td valign="middle">      <h5>Сколько воды вы выпиваете в среднем воды за день (в мл)?</h5></td>
+                                <td > <input type="text" class="form-control" id="question_water_start_family" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                            </tr>
+
+                            <tr class="db_row_dialog">
+                                <td valign="middle">      <h5>Сколько вы планируете выпивать воды в день (в мл)?</h5></td>
+                                <td > <input type="text" class="form-control" id="question_water_target_family" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                            </tr>
+
+                            <tr class="db_row_dialog">
+                                <td valign="middle">      <h5>На сколько увеличивать кол-во воды по сравнению с прошлым днем в мл?</h5></td>
+                                <td > <input type="text" class="form-control" id="question_water_step_family" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button id="btn_question_water_save_family"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                    </div>
+
+
+
+                    <div id="family_practise" class="diary_body">
                         <h3  class="family_practic_name">Дневник этических принципов</h3>
 
 
-                        <div class="row_family_nonviolence">
+                        <div class="row_family_nonviolence diary_body" >
                             <h4 class="family_practic_name" align="center">Ненасилие</h4>
                             <div class="row">
                                 <div class="comment_field  col-xs-6">
@@ -3277,7 +3446,7 @@
                             </div>
                         </div>
 
-                        <div class="row_family_generosity">
+                        <div class="row_family_generosity  diary_body">
                             <h4 class="family_practic_name" align="center">Щедрость</h4>
                             <div class="row">
                                 <div class="col-xs-6 comment_field">
@@ -3300,7 +3469,7 @@
 
                         </div>
 
-                        <div class="row_family_purity">
+                        <div class="row_family_purity      diary_body">
                             <h4 class="family_practic_name" align="center">Сексуальная чистота</h4>
                             <div class="row">
                                 <div class="col-xs-6 comment_field">
@@ -3321,165 +3490,221 @@
                             </div>
                         </div>
 
+                        <div class="row_family_convergence    diary_body">
+                            <h4 class="family_practic_name" align="center">Сближение людей</h4>
+                            <div class="row">
+                                <div class="col-xs-6 comment_field">
+                                    <textarea type="text" class="form-control family_practise_input" id="field_family_convergence_plus" data-practic-name="convergence" data-practic-comment="plus"    placeholder="Плюсы"></textarea>
+                                    <img class="convergence_plus_loader_ball_family loader_ball"    hidden src="img/load_comment.gif">
+                                    <img class="convergence_plus_loader_tick_family loader_tick"    hidden src="img/load_success.png">
+                                </div>
+                                <div class="col-xs-6 comment_field">
+                                    <textarea type="text" class="form-control family_practise_input" id="field_family_convergence_minus" data-practic-name="convergence" data-practic-comment="minus"   placeholder="Минусы"></textarea>
+                                    <img class="convergence_minus_loader_ball_family loader_ball"    hidden src="img/load_comment.gif">
+                                    <img class="convergence_minus_loader_tick_family loader_tick"    hidden src="img/load_success.png">
+                                </div>
+                            </div>
+                            <div class="comment_field">
+                                <textarea type="text" class="form-control family_practise_input" id="field_family_convergence_action" data-practic-name="convergence" data-practic-comment="action"  placeholder="Что делать?"></textarea>
+                                <img class="convergence_action_loader_ball_family loader_ball"    hidden src="img/load_comment.gif">
+                                <img class="convergence_action_loader_tick_family loader_tick"    hidden src="img/load_success.png">
+                            </div>
+                        </div>
+                        <div class="row_family_speech    diary_body">
+                            <h4 class="family_practic_name" align="center">Мягкая речь</h4>
+                            <div class="row">
+                                <div class="col-xs-6 comment_field">
+                                    <textarea type="text" class="form-control family_practise_input" id="field_family_speech_plus" data-practic-name="speech" data-practic-comment="plus"    placeholder="Плюсы"></textarea>
+                                    <img class="speech_plus_loader_ball_family loader_ball"    hidden src="img/load_comment.gif">
+                                    <img class="speech_plus_loader_tick_family loader_tick"    hidden src="img/load_success.png">
+                                </div>
+                                <div class="col-xs-6 comment_field">
+                                    <textarea type="text" class="form-control family_practise_input" id="field_family_speech_minus" data-practic-name="speech" data-practic-comment="minus"   placeholder="Минусы"></textarea>
+                                    <img class="speech_minus_loader_ball_family loader_ball"    hidden src="img/load_comment.gif">
+                                    <img class="speech_minus_loader_tick_family loader_tick"    hidden src="img/load_success.png">
+                                </div>
+                            </div>
+                            <div class="comment_field">
+                                <textarea type="text" class="form-control family_practise_input" id="field_family_speech_action" data-practic-name="speech" data-practic-comment="action"  placeholder="Что делать?"></textarea>
+                                <img class="speech_action_loader_ball_family loader_ball"    hidden src="img/load_comment.gif">
+                                <img class="speech_action_loader_tick_family loader_tick"    hidden src="img/load_success.png">
+                            </div>
+                        </div>
                     </div>
 
 
-                    <table id="table_family_cb" class="table  table-hover">
-                        <thead>
-                        <tr class="db_row_dialog">
-                            <td><h4 align="center"><b>Практика</b></h4></td>
-                            <td><h4 align="center"><b></b></h4></td>
-                            <td><h4 align="center"><b>Сделал</b></h4></td>
-                        </tr>
-                        </thead>
+                    <div class="diary_body">
+                        <h3>Дневник практик</h3>
+                        <table id="table_family_cb" class="table  table-hover">
+                            <thead>
+                            <tr class="db_row_dialog">
+                                <td><h4 align="center"><b>Практика</b></h4></td>
+                                <td><h4 align="center"><b></b></h4></td>
+                                <td><h4 align="center"><b>Сделал</b></h4></td>
+                            </tr>
+                            </thead>
 
-                        <tbody>
+                            <tbody>
 
-                        <tr id="row_wake_up_family" class="db_row_dialog">
-                            <td valign="middle">
-                                Подъем (время) <br/>
-                                Время для отхода ко сну <span id="wake_up_text_family"></span><br/>
-                                Время подъема на завтра <span id="wake_up_tomorrow_family"></span>
-                            </td>
-                            <td class="db_row_input">                  <h5 align="center"  id="filed_wake_up_plan_family" ></h5></td>
-                            <td valign="middle" class="db_row_input">
-                                <p>
-                                    <input type="text" class="field_wake_up" id="filed_wake_up_fact_hour_family"   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="чч">
-                                    <span>:</span>
-                                    <input type="text" class="field_wake_up" id="filed_wake_up_fact_minute_family" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="мм">
-                                </p>
-                            </td>
-                        </tr>
+                            <tr id="row_wake_up_family" class="db_row_dialog">
+                                <td valign="middle">
+                                    Подъем (время) <br/>
+                                    Время для отхода ко сну <span id="wake_up_text_family"></span><br/>
+                                    Время подъема на завтра <span id="wake_up_tomorrow_family"></span>
+                                </td>
+                                <td class="db_row_input">                  <h5 align="center"  id="filed_wake_up_plan_family" ></h5></td>
+                                <td valign="middle" class="db_row_input">
+                                    <p>
+                                        <input type="text" class="field_wake_up" id="filed_wake_up_fact_hour_family"   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="чч">
+                                        <span>:</span>
+                                        <input type="text" class="field_wake_up" id="filed_wake_up_fact_minute_family" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="мм">
+                                    </p>
+                                </td>
+                            </tr>
 
-                        <tr id="row_family_meditation" class="db_row_dialog">
-                            <td valign="middle">Медитация</td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center div_row_fact">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_family_meditation" />
-                                    <div class="state p-success-o">
-                                        <label></label>
+                            <tr id="row_family_meditation" class="db_row_dialog">
+                                <td valign="middle">Медитация</td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center div_row_fact">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_family_meditation" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
 
-                        <tr id="row_family_film" class="db_row_dialog">
-                            <td valign="middle">Просмотр фильма "<span id="film_family_name"></span>"</td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center div_row_fact">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_family_film" />
-                                    <div class="state p-success-o">
-                                        <label></label>
+                            <tr id="row_family_film" class="db_row_dialog">
+                                <td valign="middle">Просмотр фильма "<span id="film_family_name"></span>"</td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center div_row_fact">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_family_film" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
 
-                        <tr id="row_family_thinking" class="db_row_dialog">
-                            <td valign="middle">Противоположное мышление</td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center div_row_fact">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_family_thinking" />
-                                    <div class="state p-success-o">
-                                        <label></label>
+                            <tr id="row_family_thinking" class="db_row_dialog">
+                                <td valign="middle">Противоположное мышление</td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center div_row_fact">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_family_thinking" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
 
-                        <tr id="row_family_bracelet" class="db_row_dialog">
-                            <td valign="middle">Фиолетовый браслет. Кол-во дней: <span id="family_bracelet_day"></span> </td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center div_row_fact">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_family_bracelet" />
-                                    <div class="state p-success-o">
-                                        <label></label>
+                            <tr id="row_family_bracelet" class="db_row_dialog">
+                                <td valign="middle">Фиолетовый браслет. Кол-во дней: <span id="family_bracelet_day"></span> </td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center div_row_fact">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_family_bracelet" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
 
-                        <tr id="row_family_pages" class="db_row_dialog">
-                            <td valign="middle">Утренние страницы</td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center div_row_fact">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_family_pages" />
-                                    <div class="state p-success-o">
-                                        <label></label>
+                            <tr id="row_family_pages" class="db_row_dialog">
+                                <td valign="middle">Утренние страницы</td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center div_row_fact">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_family_pages" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
 
-                        <tr id="row_family_nice" class="db_row_dialog">
-                            <td valign="middle">Приятное партнеру: <span id="family_nice_name"></span> </td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center div_row_fact">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_family_nice" />
-                                    <div class="state p-success-o">
-                                        <label></label>
+                            <tr id="row_family_nice" class="db_row_dialog">
+                                <td valign="middle">Приятное партнеру: <span id="family_nice_name"></span> </td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center div_row_fact">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_family_nice" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
 
-                        <tr id="row_family_phisic" class="db_row_dialog">
-                            <td valign="middle">Физические упражнения</td>
-                            <td class="db_row_input">          </td>
-                            <td class="db_row_input text-center div_row_fact">
-                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="filed_family_phisic" />
-                                    <div class="state p-success-o">
-                                        <label></label>
+                            <tr id="row_family_phisic" class="db_row_dialog">
+                                <td valign="middle">Физические упражнения</td>
+                                <td class="db_row_input">          </td>
+                                <td class="db_row_input text-center div_row_fact">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_family_phisic" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
                                     </div>
+                                </td>
+                            </tr>
+
+                            <tr id="row_family_water" class="db_row_dialog">
+                                <td valign="middle"> Питьё воды, мл</td>
+                                <td class="db_row_input">          <input type="text" class="form-control" id="filed_water_plan_family" disabled></td>
+                                <td class="db_row_input">          <input type="text" class="form-control" id="filed_water_fact_family" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+
+                        <div id="div_user_progress_bar_family">
+                            <div class="progress">
+                                <div id="user_progress_bar_family" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%; min-width: 2em;">
                                 </div>
-                            </td>
-                        </tr>
+                            </div>
+                        </div>
 
-                        </tbody>
-                    </table>
+                        <br/>
+
+                        <div class="comment_field" >
+                            <textarea  id="field_day_comment_family" class="family_practise_input form-control"   data-practic-name="comment" data-practic-comment="comment"  placeholder="Здесь Вы можете оставлять свои заметки о прошедшем дне Программы"></textarea>
+
+                            <img class="comment_comment_loader_ball_family loader_ball" hidden src="img/load_comment.gif">
+                            <img class="comment_comment_loader_tick_family loader_tick" hidden src="img/load_success.png">
+                        </div>
+                    </div>
 
 
 
 
-                    <div id="div_user_progress_bar_family">
-                        <div class="progress">
-                            <div id="user_progress_bar_family" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%; min-width: 2em;">
+
+                    <div id="div_btn_rating_link_family" class="diary_body">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <img src="img/rating_cup.png" class="rating_cup">
+                            </div>
+                            <div class="col-xs-10">
+                                <a id="btn_rating_link_family" href="#" class="rating_link"></a>
                             </div>
                         </div>
                     </div>
 
                     <br/>
+                    <br/>
 
-                    <div class="comment_field" >
-                        <textarea  id="field_day_comment_family" class="family_practise_input form-control"   data-practic-name="comment" data-practic-comment="comment"  placeholder="Здесь Вы можете оставлять свои заметки о прошедшем дне Программы"></textarea>
-
-                        <img class="comment_comment_loader_ball_family loader_ball" hidden src="img/load_comment.gif">
-                        <img class="comment_comment_loader_tick_family loader_tick" hidden src="img/load_success.png">
+                    <div class="row footer">
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer btn_footer_chat" >                 Чат</a></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_diary"   >Материалы</a></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_support" >Поддержать</a></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_settings">Настройки</a></div>
                     </div>
 
-                    <div id="div_btn_rating_link_family">
-                        <br/>
-                        <a id="btn_rating_link_family" href="#" class="rating_link"></a>
-
-                        <br/>
-                    </div>
-
-                                      <!--
-                                                         <button id="btn_user_save_day"  type="button" class="btn btn-success btn-block">Сохранить отчет</button>
-                                     -->
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-3" align="center"><button class="btn btn-default btn-block btn-sm btn_footer btn_footer_chat" >                 Чат</button></div>
-                        <div class="col-xs-6 col-sm-3" align="center"><button class="btn btn-default btn-block btn-sm btn_footer nav-link-user" name="nav_user_diary"   >Материалы</button></div>
-                        <div class="col-xs-6 col-sm-3" align="center"><button class="btn btn-default btn-block btn-sm btn_footer nav-link-user" name="nav_user_support" >Поддержать</button></div>
-                        <div class="col-xs-6 col-sm-3" align="center"><button class="btn btn-default btn-block btn-sm btn_footer nav-link-user" name="nav_user_settings">Настройки</button></div>
-                    </div>
 
                     <br/>
                 </div>
@@ -3519,12 +3744,16 @@
         <div id="materials_mini" hidden class="row">
             <div class="col-xs-0   col-sm-1"></div>
             <div class="col-xs-12  col-sm-5">
-                <h3 align="center">Купленные материалы</h3>
-                <div id="user_materials_mini"></div>
+                <div class="diary_body">
+                    <h3 align="center">Купленные материалы</h3>
+                    <div id="user_materials_mini"></div>
+                </div>
             </div>
             <div class="col-xs-12  col-sm-5">
-                <h3 align="center">Мой дневник</h3>
-                <div id="user_diary_mini"></div>
+                <div class="diary_body">
+                    <h3 align="center">Мой дневник</h3>
+                    <div id="user_diary_mini"></div>
+                </div>
             </div>
             <div class="col-xs-0  col-sm-1"></div>
         </div>
@@ -3532,8 +3761,10 @@
         <div id="materials_family" hidden class="row">
             <div class="col-xs-0  col-sm-3"></div>
             <div class="col-xs-12  col-sm-6">
-                <h3 align="center">Пройденные материалы</h3>
-                <div id="user_diary_family"></div>
+                <div class="diary_body">
+                    <h3 align="center">Пройденные материалы</h3>
+                    <div id="user_diary_family"></div>
+                </div>
             </div>
             <div class="col-xs-0  col-sm-3"></div>
         </div>
@@ -3541,26 +3772,175 @@
 
     <div id="page_user_hyls_store"  class="container-fluid">
 
-        <h3 align="center">HYLSstore</h3>
-        <h5 align="center">Купить новые материалы Вы можете за HYLScoins, которые вы получаете за выполнение практик. 100% выполнение = 10 монет. <br/>
-            Сейчас на вашем счету: <span id="hyls_store_coin"></span> HYLScoins</h5>
-        <br/>
-        <h3 align="center">Материалы</h3>
-        <div id="table_hyls_store_materials"></div>
-        <br/>
-        <div id="div_buy_meditation">
-            <h3 align="center">Марафоны</h3>
-            <table class="table table-hover table-bordered table-condensed" >
-                <thead><tr> <th>Материал для практики</th><th>Стоимость</th></tr></thead>
-                <tbody>
-                <tr>
-                    <td><h5 align="left">Практика медитации</h5></td>
-                    <td><h5 align="center">500</h5></td>
-                    <td><button type="button" class="btn btn-success btn-sm" id="btn_buy_meditation"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button></td>';
-                </tr>
-                </tbody>
-            </table>
+        <div  class="col-xs-12 col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <div id="practics_mini_fiat" class="diary_body" >
+                <h3 align="center">Практики за рубли</h3>
+                <div align="left" class="buy_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="buy_checkbox_water" class="buy_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="buy_mini_practic_text">
+                        Практика питья воды
+                        <a href="https://hyls.ru/water" target="_blank">
+                            <img class="icon_question" src="img/icon_question.png"  data-toggle="tooltip" data-placement="top" title="Сформируем привычку пить достаточное лично для вас количество воды, улучшим общее самочувствие, настроение и состояние пищеварительной системы. Для получения подробностей кликните">
+                        </a>
+                    </span>
+                </div>
+
+                <div align="left" class="buy_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="buy_checkbox_detox" class="buy_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="buy_mini_practic_text">
+                        Детокс программа
+                        <a href="https://hyls.ru/marafon_detox" target="_blank">
+                            <img class="icon_question" src="img/icon_question.png"  data-toggle="tooltip" data-placement="top" title="В этом марафоне вы узнаете о том, как правильно и безопасно заниматься очищением своего организма и как часто это нужно делать. Для получения подробностей кликните">
+                        </a>
+                    </span>
+                </div>
+
+                <div align="left" class="buy_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="buy_checkbox_wakeup" class="buy_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="buy_mini_practic_text">Ранние подъемы<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png"></a> </span>
+                </div>
+
+                <div align="left" class="buy_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="buy_checkbox_snacking" class="buy_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="buy_mini_practic_text">Без перекусов переедания и сахара<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
+                </div>
+
+                <div align="left" class="buy_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="buy_checkbox_thanks" class="buy_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="buy_mini_practic_text">
+                        Благодарности
+                        <a href="https://hyls.ru/thanks" target="_blank">
+                            <img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="Как часто вы радуетесь всему, что у вас есть каждый день? Обращаете ли вы внимание на всё то, что составляет вашу жизнь? Давайте вместе научимся благодарить себя, других людей и весь мир за всё то, что имеем. Для получения подробностей кликните">
+                        </a>
+                    </span>
+                </div>
+
+                <div hidden align="left" class="buy_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="buy_checkbox_family" class="buy_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="buy_mini_practic_text">Без ссор в семье<a href="https://hyls.ru" target="_blank"><img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="2 предложения о практике. Для получения подробностей кликните"></a> </span>
+                </div>
+
+                <div align="left" class="buy_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="buy_checkbox_vegan" class="buy_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="buy_mini_practic_text">
+                        Вегетарианская диета
+                        <a href="https://hyls.ru/vega" target="_blank">
+                            <img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="Узнайте больше о разных аспектах вегетарианства и постепенно измените свой рацион питания вместе с нами. Мы докажем вам, что вегетарианство – это удивительно вкусно и полезно! Для получения подробностей кликните">
+                        </a>
+                    </span>
+                </div>
+
+                <div align="left" class="buy_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="buy_checkbox_kaoshiki" class="buy_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="buy_mini_practic_text">
+                        Каушики
+                        <a href="https://hyls.ru/kaoshiki" target="_blank">
+                            <img class="icon_question" src="img/icon_question.png" data-toggle="tooltip" data-placement="top" title="Йоговский танец каушики – удивительная практика, пробуждающая ваше тело и позволяющая уже после нескольких занятий чувствовать себя гораздо лучше. Узнайте о технике и значении танца и начните практиковать его ежедневно. Для получения подробностей кликните">
+                        </a>
+                    </span>
+                </div>
+
+                <div align="left" class="buy_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="buy_checkbox_asana" class="buy_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="buy_mini_practic_text">
+                        Базовые асаны + самомассаж
+                        <a href="https://hyls.ru/asana" target="_blank" >
+                            <img class="icon_question" src="img/icon_question.png"  data-toggle="tooltip" data-placement="top" title="Мы убеждены, что каждый может практиковать йогу дома, причём регулярно. Познакомим вас с базовыми асанами йоги, расскажем о том, как правильно их выполнять и благоприятно влиять на своё тело и разум. Для получения подробностей кликните">
+                        </a>
+                    </span>
+                </div>
+
+                <div align="left" class="buy_practiv_div">
+                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                        <input type="checkbox"  id="buy_checkbox_therapy" class="buy_mini" />
+                        <div class="state p-success-o"><label></label></div>
+                    </div>
+                    <span class="buy_mini_practic_text">
+                        Натуральные терапии
+                        <a href="https://hyls.ru/therapy" target="_blank" >
+                            <img class="icon_question" src="img/icon_question.png"  data-toggle="tooltip" data-placement="top" title="Что такое натуральные терапии и как можно получить настоящую пользу от простой ванны, если правильно её принять? Узнайте о некоторых натуральных терапиях и применяйте их в своей жизни. Для получения подробностей кликните">
+                        </a>
+                    </span>
+                </div>
+
+
+                <br/>
+
+                <h3 align="center" id="buy_mini_cost"></h3>
+                <br/>
+
+                <div id="div_btn_buy_mini" hidden>
+                    <button id="btn_buy_mini" type="button" class="btn btn-success btn-lg btn-block">Оплатить</button>
+                </div>
+
+                <div id="div_checkout_buy_mini" hidden>
+                    <div id="checkout_buy_mini"></div>
+                </div>
+
+            </div>
+
+            <div class="diary_body">
+                <h3 align="center">HYLSstore</h3>
+                <h5 align="center">Купить новые материалы Вы можете за HYLScoins, которые вы получаете за выполнение практик. 100% выполнение = 10 монет. </h5>
+                <h3>Сейчас на вашем счету: <span id="hyls_store_coin"></span> HYLScoins</h3>
+            </div>
+
+            <div class="diary_body">
+                <h3 align="center">Материалы</h3>
+                <div id="table_hyls_store_materials"></div>
+            </div>
+
+            <div class="diary_body">
+                <div id="div_buy_meditation">
+                    <h3 align="center">Практики за HYLScoins</h3>
+                    <table class="table table-hover table-bordered table-condensed" >
+                        <thead><tr> <th>Материал для практики</th><th>Стоимость, HYLScoins</th></tr></thead>
+                        <tbody>
+                        <tr >
+                            <td><h5 align="left">Практика медитации</h5></td>
+                            <td><h5 align="center">500</h5></td>
+                            <td><button type="button" class="btn btn-success btn-sm" id="btn_buy_meditation"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
         </div>
+
+
+
+
 
     </div>
 
@@ -3581,41 +3961,43 @@
     <div id="page_user_support"    class="container-fluid">
         <div class="col-sm-3 col-md-3"></div>
         <div class="col-sm-6 col-md-6 col-xs-12" align="center">
+            <div class="diary_body">
+                <h3 >Вы можете поддержать проект с помощью формы, расположенной ниже, используя банковскую карту любой страны </h3>
+                <br/>
 
 
-            <h3 >Вы можете поддержать проект с помощью формы, расположенной ниже, используя банковскую карту любой страны </h3>
-            <br/>
+                <div id="support_currency" hidden>
+                    <p class="payment_text" align="center">Выберите валюту, которой желаете поддержать</p>
+                    <div class="btn-group btn-group-justified" role="group" aria-label="">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default pay_currency_support" value="RUB">RUB</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default pay_currency_support" value="UAH">UAH</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default pay_currency_support" value="KZT">KZT</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default pay_currency_support" value="BYN">BYN</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default pay_currency_support" value="USD">USD</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default pay_currency_support" value="EUR">EUR</button>
+                        </div>
+                    </div>
 
-
-            <div id="support_currency" hidden>
-                <p class="payment_text" align="center">Выберите валюту, которой желаете поддержать</p>
-                <div class="btn-group btn-group-justified" role="group" aria-label="">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default pay_currency_support" value="RUB">RUB</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default pay_currency_support" value="UAH">UAH</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default pay_currency_support" value="KZT">KZT</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default pay_currency_support" value="BYN">BYN</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default pay_currency_support" value="USD">USD</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default pay_currency_support" value="EUR">EUR</button>
-                    </div>
+                    <br/>
                 </div>
 
+                <div id="checkout_support"></div>
+                <br/>
                 <br/>
             </div>
 
-            <div id="checkout_support"></div>
-            <br/>
-            <br/>
+
         </div>
         <div class="col-sm-3 col-md-3">
           <!--  <button id="btn_get_rating" type="button" class="btn btn-default pay_currency_support" value="RUB">RUB</button> -->
@@ -3631,7 +4013,7 @@
             <br/>
 
             <div id="settings_detox">
-                <div class="base_settings" >
+                <div class="settings_div" >
                     <h4>Базовые настройки</h4>
                     <table class="table  table-hover">
                         <tbody>
@@ -3712,7 +4094,7 @@
                     </table>
                 </div>
 
-                <div id="practise_continue_settings" hidden>
+                <div class="settings_div" id="practise_continue_settings" hidden>
                     <h4 align="center">Зачтенные практики</h4>
                     <h5 align="center">Вы можете отключить практику и она не будет заноситься в Ваш дневник</h5>
                     <table class="table  table-hover">
@@ -3932,7 +4314,7 @@
 
                 </div>
 
-                <div id="detox_settings" hidden >
+                <div class="settings_div" id="detox_settings" hidden >
                     <h4>Ваша текущая детокс программа: "<span id="detox_name"></span>" длительностью <span id="detox_time"></span> дней</h4>
                     <table class="table  table-hover">
                         <tbody>
@@ -3995,7 +4377,7 @@
                     </div>
                 </div>
 
-                <div class="div_change_pass">
+                <div class="div_change_pass settings_div">
                     <h3>Смена пароля</h3>
                     <table  class="table  table-hover">
                         <thead>
@@ -4024,7 +4406,7 @@
             </div>
 
             <div id="settings_mini">
-                <div class="base_settings">
+                <div class="settings_div">
                     <h4>Базовые настройки</h4>
                     <table class="table  table-hover">
                         <tbody>
@@ -4096,7 +4478,7 @@
                     </table>
                 </div>
 
-                <div class="div_change_pass">
+                <div class="settings_div div_change_pass">
                     <h3>Смена пароля</h3>
                     <table  class="table  table-hover">
                         <thead>
@@ -4192,6 +4574,28 @@
         </div>
         <div class="col-sm-3 col-md-3"></div>
     </div>
+
+
+    <div class="modal fade" id="modal_set_ava"     tabindex="-1" role="dialog" aria-labelledby="modal_label_set_ava">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modal_label_set_ava">Установка аватарки</h4>
+                </div>
+                <div class="modal-body" align="center">
+                    <table style="border: 0">
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Ссылка на фото</h5></td> <td class="db_row_input_admin"><input type="text"   сlass="form-control" id="ava_link"    placeholder="Вставьте ссылку на аватарку"></td></tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    <button id="btn_ava_set" type="button" class="btn btn-success">Сохранить аватарку</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- Latest compiled and minified JavaScript -->

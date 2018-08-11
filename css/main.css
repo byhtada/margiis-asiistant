@@ -23,25 +23,29 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .bs_table_header {background-color: rgba(255, 126, 42, 0.85);}
 
 
-.diary_header, .diary_body {
+.diary_header, .diary_body, .settings_div {
     padding: 15px;
     border-radius: 10px;
     background-color: rgba(232, 229, 225, 0.19);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
+.error_background {margin: 20px;  background-color: white;}
 .diary_body {margin-top: 20px ;}
 .diary_body_name {margin-top: 0px !important;}
 .marafon_name {margin-bottom: 15px;}
-#user_programm_day { font-size: 24px;  margin-top: 15px; margin-bottom: 10px;
+#user_programm_day, #user_programm_day_mini, #user_programm_day_family { font-size: 24px;  margin-top: 15px; margin-bottom: 10px;
     display:flex; flex-direction: row; justify-content: center; align-items: center;}
-#user_current_day {margin-left: 5px; margin-right: 5px}
-#btn_user_material {
+#user_current_day, #user_current_day_mini, #user_current_day_family {margin-left: 5px; margin-right: 5px}
+.btns_unicorn_padding {
     padding-left:  5px;
     padding-right: 5px;
 }
-#user_ava {width: 130px; height: 130px;}
-#user_detox_target {margin-top: 10px; height: 80px;}
+#div_btn_hyls_store {margin-top: 30px;}
+#btn_hyls_store {border: 0;}
+
+.user_ava {width: 130px; height: 130px;}
+.field_target  {margin-top: 10px; height: 80px !important; overflow: auto}
 
 .rating_cup {width: 50px; height: auto;}
 #btn_rating_link {font-size: 12px !important;}
@@ -49,7 +53,6 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 
 
 
-#div_btn_hyls_store {margin-bottom: 5px;}
 .material_new {display: inline-block;
     text-align: center;
     vertical-align: middle;
@@ -103,7 +106,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .column_rating_name  {max-width: 180px; width: 180px}
 .column_rating_link  {max-width: 190px; width: 190px}
 
-.btn_footer {margin-bottom: 10px !important; font-size: 14px;}
+.btn_footer {margin-bottom: 10px !important; font-size: 16px; padding-left: 5px; padding-right: 5px;}
 .pay_other_method_row {height: 180px !important;}
 
 
@@ -134,7 +137,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
     margin-top: 15px;
     padding: 15px;
     border-radius: 10px;
-    background-color: rgba(70, 216, 70, 0.15)
+    background-color: rgba(70, 216, 70, 0.04)
 }
 .base_settings, #table_question_half_bath {
     margin-top: 15px;
@@ -153,38 +156,24 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
     margin-top: 15px;
     padding: 15px;
     border-radius: 10px;
-    background-color: rgba(216, 143, 91, 0.25);
+    background-color: rgba(246, 161, 105, 0.17);
     margin-bottom: 25px !important;
 }
 
-#table_family_cb{
-    margin-top: 15px;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: rgba(90, 216, 81, 0.27);
-    margin-bottom: 25px !important;
-}
 
-#family_practise{
-    margin-top: 15px;
-    padding: 15px;
-    border-radius: 10px;
-    border: 3px solid rgba(0, 0, 0, 0.69);
-    margin-bottom: 25px !important;
-}
+
+
 
 .row_family_nonviolence{
     padding: 15px;
-    border-radius: 7px;
-    border: 1px solid rgba(0, 0, 0, 0.69);}
+ }
 
 .row_family_generosity, .row_family_purity{margin-top: 15px !important;
     padding: 15px;
-    border-radius: 7px;
-    border: 1px solid rgba(0, 0, 0, 0.69);}
+    }
 .family_practic_name{margin-top: 0px !important;}
 .family_practise_divider{width: 100%; height: 1px; border: 1px solid rgba(0, 0, 0, 0.69);}
-#field_family_nonviolence_action, #field_family_generosity_action, #field_family_purity_action { margin-top: 15px;}
+#field_family_nonviolence_action, #field_family_generosity_action, #field_family_purity_action, #field_family_convergence_action, #field_family_speech_action { margin-top: 15px;}
 
 
 .checkbox_div   {align-content: center}
@@ -505,9 +494,9 @@ a.reg-link-text {
 
 .icon_question {margin-left: 5px; width: 20px; height: 20px;}
 
-.reg_mini_practic_text {padding-top: 15px; margin-left: 5px;font-size: 25px;}
-.reg_practiv_div {margin-left: 45px;}
-#reg_mini_cost{font-size: 35px; color:  #46d444}
+.reg_mini_practic_text, .buy_mini_practic_text  {padding-top: 15px; margin-left: 5px;font-size: 25px;}
+.reg_practiv_div, .buy_practiv_div  {margin-left: 45px;}
+#reg_mini_cost, #buy_mini_cost{font-size: 35px; color:  #46d444}
 
 
 .reg_practiv_div div.pretty {
@@ -531,6 +520,33 @@ a.reg-link-text {
 .reg_practiv_div td.db_row_input {
     text-align: center;
 }
+
+
+
+.buy_practiv_div div.pretty {
+    margin-right: 0;
+}
+
+.buy_practiv_div div.state {
+    margin: -10px 0;
+    padding: 0;
+    padding-bottom: 10px;
+}
+
+.buy_practiv_div td.db_row_input div.pretty:nth-child(2) {
+    margin-left: 20px;
+}
+
+.buy_practiv_div table.table > tbody > tr > td {
+    vertical-align: text-top;
+}
+
+.buy_practiv_div td.db_row_input {
+    text-align: center;
+}
+
+
+
 
 
 #settings_mini div.pretty {
@@ -598,6 +614,23 @@ a.reg-link-text {
 .comment_field {position: relative;}
 .loader_ball    {position: absolute; right: 5px; top: 5px; height: 45px; width: 45px;}
 .loader_tick    {position: absolute; right: 15px; top: 5px; height: 20px; width: 20px;}
+
+
+.error_text{padding-right: 10px; padding-left: 10px; font-size: 14px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
