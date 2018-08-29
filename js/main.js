@@ -470,21 +470,6 @@ $( document ).ready(function() {
     $(document).on('click', '.before_detox',       function () {
 
         var practise = $(this).attr("name");
-        var link = "";
-        switch (practise){
-            case "asana":
-                link = "";
-                break;
-            case "kaoshiki":
-                link = "";
-                break;
-            case "meditation":
-                link = "";
-                break;
-            case "wake_up":
-                link = "";
-                break;
-        }
 
         $.ajax({
             type: "POST",
@@ -1630,6 +1615,7 @@ $( document ).ready(function() {
         $('#page_user_programm').hide();
         $('#diary_marafon_detox').hide();
         $('#diary_marafon_mini').hide();
+        $('#diary_marafon_mini_end').hide();
         $('#diary_marafon_family').hide();
 
         $('#page_user_materials').hide();
@@ -1665,6 +1651,7 @@ $( document ).ready(function() {
         $('#materials_detox')    .hide();
         $('#reg_marafon_mini')   .hide();
         $('#diary_marafon_mini') .hide();
+        $('#diary_marafon_mini_end') .hide();
         $('#materials_mini')     .hide();
         $('#reg_marafon_family') .hide();
         $('#diary_marafon_family').hide();
@@ -2101,41 +2088,46 @@ $( document ).ready(function() {
                             $('#materials_mini') .hide();
 
                         } else if (data.program_num == 3) {
-                            $('.marafon_name').text("Полезные привычки");
-                            $('#page_user_programm').show();
-
-                            if (data.block_programm) {
-
-                                $('#user_marafon_block').show();
+                            if (marafon_day > 21) {
+                                $('#diary_marafon_mini_end').show();
                             } else {
-                                $('#user_marafon_start').show();
-                                $('#diary_marafon_mini').show();
-                                $('#nav_bar').show();
+                                $('.marafon_name').text("Полезные привычки");
+                                $('#page_user_programm').show();
+
+
+                                if (data.block_programm) {
+
+                                    $('#user_marafon_block').show();
+                                } else {
+                                    $('#user_marafon_start').show();
+                                    $('#diary_marafon_mini').show();
+                                    $('#nav_bar').show();
+                                }
+
+                                data.user.read_intro_mini ? $('#alert_mini_read_intro').hide() : $('#alert_mini_read_intro').show();
+
+                                $('#settings_messenger_link').attr("href", data.messenger_link).text("Ссылка");
+                                chat_url = data.messenger_link;
+                                $('.btn_footer_chat').attr("href", data.messenger_link);
+                                $('#btn_question_detox_save_mini').hide();
+                                $('#settings_detox').hide();
+                                $('#settings_mini').show();
+
+                                $('#materials_detox').hide();
+                                $('#materials_mini').show();
+
+
+                                setDayMini(data.marafon_info_today, data.marafon_day, data.materials_mini.materials);
+                                setGroupRatingMini(data.group_rating_info, data.user);
+                                setUserDiaryMini(data.user_diary_mini);
+                                setUserMaterialsMini(data.materials_mini);
+
+                                detox_stop_mini = data.user.detox_stop_mini;
+
+
+                                // $('#btn_material_mini') .text("Материалы (" + data.materials_mini.unread_materialsв + " новых)");
+                                setHylsStoreMini(data.hyls_store_mini, data.user);
                             }
-
-                            data.user.read_intro_mini ? $('#alert_mini_read_intro').hide() : $('#alert_mini_read_intro').show();
-
-                            $('#settings_messenger_link').attr("href", data.messenger_link).text("Ссылка");
-                            chat_url = data.messenger_link;
-                            $('.btn_footer_chat').attr("href", data.messenger_link);
-                            $('#btn_question_detox_save_mini').hide();
-                            $('#settings_detox').hide();
-                            $('#settings_mini') .show();
-
-                            $('#materials_detox').hide();
-                            $('#materials_mini') .show();
-
-
-                            setDayMini(data.marafon_info_today, data.marafon_day, data.materials_mini.materials);
-                            setGroupRatingMini(data.group_rating_info, data.user);
-                            setUserDiaryMini(data.user_diary_mini);
-                            setUserMaterialsMini(data.materials_mini);
-
-                            detox_stop_mini = data.user.detox_stop_mini;
-
-
-                           // $('#btn_material_mini') .text("Материалы (" + data.materials_mini.unread_materialsв + " новых)");
-                            setHylsStoreMini(data.hyls_store_mini, data.user);
                         } else if (data.program_num == 4) {
                             $('.marafon_name').text("Семейные отношения");
                             $('#page_user_programm').show();
@@ -3515,6 +3507,11 @@ $( document ).ready(function() {
     }
 
     function setDayMini(current_day, marafon_day, materials){
+        if (current_day.day_id != 0){
+
+        } else {
+
+        }
         console.log(current_day);
         day_num = current_day.day_num;
         day_id  = current_day.day_id;
@@ -7654,12 +7651,13 @@ $( document ).ready(function() {
     });
 
     $('#btn_create_material').click(function (){
+        var material_for_practic = $(this).val();
         $('#btn_create_material').prop("disabled", true);
         $.ajax({
             type: "POST",
             url:  api_url + "material_create",
             data: {
-                material_for_practic: $(this).val(),
+                material_for_practic: material_for_practic,
                 material_name:        $('#field_material_name').val(),
                 material_link:        $('#field_material_link').val(),
                 material_cost:        $('#field_material_cost').val()
