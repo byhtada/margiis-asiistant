@@ -2089,6 +2089,7 @@ $( document ).ready(function() {
 
                         } else if (data.program_num == 3) {
                             if (data.marafon_day > 21) {
+                                $('#page_user_programm').show();
                                 $('#diary_marafon_mini_end').show();
                             } else {
                                 $('.marafon_name').text("Полезные привычки");
