@@ -2088,7 +2088,7 @@ $( document ).ready(function() {
                             $('#materials_mini') .hide();
 
                         } else if (data.program_num == 3) {
-                            if (marafon_day > 21) {
+                            if (data.marafon_day > 21) {
                                 $('#diary_marafon_mini_end').show();
                             } else {
                                 $('.marafon_name').text("Полезные привычки");
