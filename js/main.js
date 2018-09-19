@@ -837,7 +837,7 @@ $( document ).ready(function() {
 
             default:
                 marafon_mini_cost = 500 + 200 * (reg_practic_counter - 2);
-                //marafon_mini_cost = 2 + 1 * (reg_practic_counter - 2);
+               // marafon_mini_cost = 2 + 1 * (reg_practic_counter - 2);
                 break;
         }
 
@@ -965,18 +965,19 @@ $( document ).ready(function() {
         marafon_mini_cost = 0;
         switch (buy_practic_counter) {
             case 1:
-                //marafon_mini_cost = 1;
-                marafon_mini_cost = 200;
+                marafon_mini_cost = 300;
+                marafon_mini_cost = 1;
+
                 break;
 
             case 2:
                // marafon_mini_cost = 2;
-                marafon_mini_cost = 400;
+                marafon_mini_cost = 500;
                 break;
 
             default:
               //  marafon_mini_cost = 2 + 1 * (reg_practic_counter - 2);
-                marafon_mini_cost = 400 + 200 * (buy_practic_counter - 2);
+                marafon_mini_cost = 500 + 200 * (buy_practic_counter - 2);
                 break;
         }
 
@@ -1303,9 +1304,16 @@ $( document ).ready(function() {
                 'Content-Type':'application/x-www-form-urlencoded'
             },
             success: function(data) {
-                //2962397  console.log(data);
+                console.log(data);
                 if (send_data.amount > 0) {
                     alert("Платеж успешно завершен. Благодарим Вас за поддержку!");
+                    $('#div_mini_reg').hide();
+                }
+
+
+                if (typeof data != 'undefined' && typeof data.support != 'undefined' && data.support == 1) {
+                    var win = window.open('https://hyls.ru/support_marafon1', '_blank');
+                    win.focus();
                 }
                 update_user_info();
             },
@@ -1611,12 +1619,14 @@ $( document ).ready(function() {
         $('#reg_marafon_detox').hide();
         $('#reg_marafon_mini').hide();
         $('#reg_marafon_family').hide();
+        $('#reg_marafon_time').hide();
 
         $('#page_user_programm').hide();
         $('#diary_marafon_detox').hide();
         $('#diary_marafon_mini').hide();
-        $('#diary_marafon_mini_end').hide();
+        $('#diary_marafon_end').hide();
         $('#diary_marafon_family').hide();
+        $('#diary_marafon_time').hide();
 
         $('#page_user_materials').hide();
         $('#page_user_hyls_store').hide();
@@ -1632,7 +1642,8 @@ $( document ).ready(function() {
         $('[name=nav_user_settings]').hide();
         $('[name=nav_user_support]') .hide();
         $('[name=nav_faq_mini]')     .hide();
-        $('[name=nav_bonus_mini]')     .hide();
+        $('[name=nav_user_bonus]')   .hide();
+
     }
 
     function show_user_action_bar(){
@@ -1649,13 +1660,18 @@ $( document ).ready(function() {
         $('#reg_marafon_detox')  .hide();
         $('#diary_marafon_detox').hide();
         $('#materials_detox')    .hide();
+
         $('#reg_marafon_mini')   .hide();
         $('#diary_marafon_mini') .hide();
-        $('#diary_marafon_mini_end') .hide();
+        $('#diary_marafon_end') .hide();
         $('#materials_mini')     .hide();
         $('#reg_marafon_family') .hide();
         $('#diary_marafon_family').hide();
         $('#materials_family')    .hide();
+
+        $('#reg_marafon_time')  .hide();
+        $('#diary_marafon_time').hide();
+        $('#materials_time')    .hide();
 
         console.log(marafon_name);
         $('[name=nav_user_diary]')   .attr("data-value", marafon_name);
@@ -1676,6 +1692,11 @@ $( document ).ready(function() {
                     $('#reg_marafon_family').show();
                     $('#diary_marafon_family').show();
                     $('#materials_family').show();
+                break;
+                case "time":
+                $('#reg_marafon_time').show();
+                $('#diary_marafon_time').show();
+                $('#materials_time').show();
                 break;
         }
     }
@@ -1723,6 +1744,8 @@ $( document ).ready(function() {
                                 query = "user_confirm_payment_mini_marafon";
                                 $('#page_marafon_reg').show();
                                 $('#reg_marafon_mini').show();
+                                $('#div_mini_reg').show();
+
                             }
                         } else if (marafon_name === "family") {
                             if (data.error == 0){
@@ -1732,6 +1755,15 @@ $( document ).ready(function() {
                                 query = "user_confirm_payment_family";
                                 $('#page_marafon_reg').show();
                                 $('#reg_marafon_family').show();
+                            }
+                        } else if (marafon_name === "time") {
+                            if (data.error == 0){
+                                // $('#page_user_programm').show();
+                                // $('#diary_marafon_family').show();
+                            } else {
+                                query = "user_confirm_payment_time";
+                                $('#page_marafon_reg').show();
+                                $('#reg_marafon_time').show();
                             }
                         }
 
@@ -1833,7 +1865,7 @@ $( document ).ready(function() {
         });
     });
 
-    var target_timer_detox, target_timer_mini, target_timer_family;
+    var target_timer_detox, target_timer_mini, target_timer_family, target_timer_time;
 
     $('#user_detox_target').on('change keyup paste', function () {
         clearTimeout(target_timer_detox);
@@ -1883,6 +1915,22 @@ $( document ).ready(function() {
         }, 2000);
     });
 
+    $('#user_time_target').on('change keyup paste', function () {
+        clearTimeout(target_timer_time);
+        target_timer_time = setTimeout(function (){
+            $.ajax({
+                type: "POST",
+                url: api_url + "set_target_time",
+                data: {target_time: $('#user_time_target').val()},
+                headers: {
+                    'Authorization': 'Token token=' + cookie_token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function (data) {}
+            });
+        }, 2000);
+    });
+
 
 
     function update_user_info() {
@@ -1914,6 +1962,9 @@ $( document ).ready(function() {
                     if (data.user.target_family != null && data.user.target_family != ""){
                         $('#user_family_target').val(data.user.target_family);
                     }
+                    if (data.user.target_time != null && data.user.target_time != ""){
+                        $('#user_time_target').val(data.user.target_time);
+                    }
 
                     console.log(data);
                     day_new = 0;
@@ -1930,53 +1981,73 @@ $( document ).ready(function() {
                     $('[name=nav_user_diary]')   .attr("data-value", marafon_name);
 
 
+                    if (data.marafon_day > 5000){
+                        $('#page_marafon_reg').show();
+                        $('#reg_marafon_mini').show();
+                        $('#div_mini_start_date').show();
+                        hide_user_action_bar();
+                        $('#nav_bar').show();
+                    }
 
-                    if (data.marafon_day < -998) {
+                    if (data.marafon_day == -999) {
                         $('#page_marafon_reg').show();
                         if (data.user.program_type != null && data.user.program_type.includes("21day")) {
                             payment_flow = "reg_marafon_mini";
                             initFondy("reg_mini", 0);
                             $('#reg_marafon_mini').show();
-                            console.log("mini");
                         } else if (data.user.program_type != null && data.user.program_type.includes("60day")) {
                             payment_flow = "reg_marafon_detox";
                             initFondy("reg_detox", 0);
                             $('#reg_marafon_detox').show();
-                            console.log("detox");
                         } else if (data.user.program_type != null && data.user.program_type.includes("family")) {
                             payment_flow = "reg_marafon_family";
                             initFondy("reg_family", 0);
                             $('#reg_marafon_family').show();
-                            console.log("family");
+                        } else if (data.user.program_type != null && data.user.program_type.includes("time")) {
+                           // payment_flow = "reg_marafon_time";
+                           // initFondy("reg_time", 0);
+                            $('#reg_marafon_time').show();
                         }
 
                     } else if  (data.marafon_day > -998 && data.marafon_day < 1){
                         console.log("wait");
                         $('.before_detox').hide();
                         $('#before_detox_wait_text').hide();
+                        $('#before_detox_wait_practise').hide();
                         $('#page_user_programm').show();
-                        $('#user_marafon_wait').show();
-                        $('#user_marafon_wait_text').text("Ожидайте старта марафона " + data.marafon_day_start);
+                        $('#user_marafon_wait') .show();
+                        $('#user_marafon_wait_text').text("Cтарт марафона " + data.marafon_day_start);
                         $('#wait_messenger_link')    .attr("href", data.messenger_link).text("по ссылке");
-                        $('#user_marafon_wait_messenger').show();
+                        document.getElementById("nav_settings").children[0].style.display = "display";
+
 
                         if (data.program_num == 1 || data.program_num == 2) {
+                            showBonusesDetox(data.bonus_info);
                             $('#before_detox_wait_text').show();
                             if (data.user.before_detox_practise != null) {
                                 var btn_id = "before_detox_" + data.user.before_detox_practise;
                                 $('#' + btn_id).show();
+                                $('#before_detox_wait_practise').show();
+                                $('#before_detox_practise_text').hide();
                             } else {
                                 $('.before_detox').show();
+                                $('#before_detox_wait_practise').show();
+                                $('#before_detox_practise_text').show();
                             }
+                        }
+
+                        if (data.program_num == 5) {
+                            //showBonusesTime(data.bonus_info);
+                           // div_reg_before_practise
                         }
 
 
                         if (data.marafon_count > 1){
                             hide_user_action_bar();
-                            document.getElementById("nav_faq_mini").children[0].style.display = "none";
+                            $('[name=nav_faq_mini]').hide();
                             $('#nav_bar').show();
                         }
-                    } else if (data.marafon_day > 0) {
+                    } else if (data.marafon_day > 0 && data.marafon_day < 5000) {
 
 
                         if (data.program_num == 1 || data.program_num == 2) {
@@ -1990,16 +2061,16 @@ $( document ).ready(function() {
                                 $('#nav_bar').show();
                             }
 
-                            if (data.group_over_2000) {
+                            if (data.bonus_info.has_bonuses) {
                                 $('[name=nav_bonus_mini]').show();
+                                showBonusesDetox(data.bonus_info);
                             } else {
                                 document.getElementById("nav_bonus_mini").children[0].style.display = "none";
                             }
 
-
+                            $('[name=nav_faq_mini]').hide();
 
                             $('.marafon_name').text("Марафон 60 дней");
-                            document.getElementById("nav_faq_mini").children[0].style.display = "none";
 
                             $('#settings_detox').show();
                             $('#settings_mini') .hide();
@@ -2088,12 +2159,22 @@ $( document ).ready(function() {
                             $('#materials_mini') .hide();
 
                         } else if (data.program_num == 3) {
-                            if (data.marafon_day > 21) {
+                            document.getElementById("nav_bonus_mini").children[0].style.display = "none";
+                            document.getElementById("nav_rating").children[0].style.display = "none";
+
+                            if (data.marafon_day > 21  && !data.user.continue_mini) {
+                                $('#diary_marafon_end').show();
+                                $('#end_header_mini').show();
+                                $('#user_marafon_start').show();
+                                $('#nav_bar').show();
                                 $('#page_user_programm').show();
-                                $('#diary_marafon_mini_end').show();
+                                hide_user_action_bar();
                             } else {
                                 $('.marafon_name').text("Полезные привычки");
                                 $('#page_user_programm').show();
+
+                                $('#div_btn_rating_link_mini').hide();
+                                $('[name=nav_user_rating]').hide();
 
 
                                 if (data.block_programm) {
@@ -2130,35 +2211,79 @@ $( document ).ready(function() {
                                 setHylsStoreMini(data.hyls_store_mini, data.user);
                             }
                         } else if (data.program_num == 4) {
-                            $('.marafon_name').text("Семейные отношения");
+                            if (data.marafon_day > 50 && !data.user.continue_family) {
+                                $('#diary_marafon_end').show();
+                                $('#end_header_family').show();
+                                $('#user_marafon_start').show();
+                                $('#nav_bar').show();
+                                $('#page_user_programm').show();
+                                hide_user_action_bar();
+                            } else {
+
+                                $('.marafon_name').text("Семейные отношения");
+                                $('#page_user_programm').show();
+                                document.getElementById("nav_bonus_mini").children[0].style.display = "none";
+                                document.getElementById("nav_faq").children[0].style.display = "none";
+
+                                if (data.block_programm) {
+                                    $('#user_marafon_block').show();
+                                } else {
+                                    $('#user_marafon_start').show();
+                                    $('#diary_marafon_family').show();
+                                    $('#nav_bar').show();
+                                }
+
+                                $('#settings_messenger_link').attr("href", data.messenger_link).text("Ссылка");
+                                $('.btn_footer_chat').attr("href", data.messenger_link);
+                                chat_url = data.messenger_link;
+
+                                $('#settings_detox').show();
+                                $('#settings_mini').hide();
+
+                                $('#materials_detox').hide();
+                                $('#materials_family').show();
+
+                                setDayFamily(data.marafon_info_today, data.marafon_day);
+                                setGroupRatingFamily(data.group_rating_info, data.user);
+
+                                setUserDiaryFamily(data.user_diary_family);
+                            }
+                        } else if (data.program_num == 5) {
+                            document.getElementById("nav_bonus_mini").children[0].style.display = "none";
+
+                            $('.marafon_name').text("Управление временем");
                             $('#page_user_programm').show();
+                            document.getElementById("nav_bonus_mini").children[0].style.display = "display";
+                            document.getElementById("nav_settings").children[0].style.display = "none";
+                            document.getElementById("nav_faq").children[0].style.display = "none";
 
                             if (data.block_programm) {
                                 $('#user_marafon_block').show();
                             } else {
                                 $('#user_marafon_start').show();
-                                $('#diary_marafon_family').show();
+                                $('#diary_marafon_time').show();
                                 $('#nav_bar').show();
                             }
 
-                            $('#settings_messenger_link').attr("href", data.messenger_link).text("Ссылка");
                             $('.btn_footer_chat').attr("href", data.messenger_link);
                             chat_url = data.messenger_link;
 
-                            $('#settings_detox').show();
-                            $('#settings_mini') .hide();
+                            $('#settings_detox').hide();
+                            $('#settings_mini').hide();
 
                             $('#materials_detox').hide();
-                            $('#materials_family') .show();
+                            $('#materials_family').hide();
+                            $('#materials_time').show();
+
+                            setDayTime(data.marafon_info_today, data.marafon_day);
+                            setGroupRatingTime(data.group_rating_info, data.user);
+
+                            setUserDiaryTime(data.user_diary_time);
 
 
-                            document.getElementById("nav_faq_mini").children[0].style.display = "none";
+                            if (data.marafon_day > 21  && !data.user.continue_time) {
 
-
-                            setDayFamily(data.marafon_info_today, data.marafon_day);
-                            setGroupRatingFamily(data.group_rating_info, data.user);
-
-                            setUserDiaryFamily(data.user_diary_family);
+                            }
                         }
                     }
 
@@ -2177,6 +2302,112 @@ $( document ).ready(function() {
             //console.log(err);
         }
     }
+
+    function showBonusesDetox(bonus_info){
+        $('#play_bonuses_div, #wait_bonuses_div').hide();
+        $('#play_bonus_yoga, #wait_bonus_yoga').hide();
+        $('#play_bonus_yoganidra, #wait_bonus_yoganidra').hide();
+        $('#play_bonus_3mini, #wait_bonus_3mini').hide();
+        $('#play_bonus_savematerial, #wait_bonus_savematerial').hide();
+        $('#play_bonus_individual,   #wait_bonus_individual').hide();
+
+        console.log("start");
+        if (bonus_info.has_bonuses) {
+            $('#wait_bonuses_div').show();
+            $('#play_bonuses_div').show();
+
+            if (bonus_info.bonus_available) {
+                $('#play_bonus_yoga, #wait_bonus_yoga').show();
+                $('#play_bonus_yoganidra, #wait_bonus_yoganidra').show();
+                $('#play_bonus_3mini, #wait_bonus_3mini').show();
+                $('#play_bonus_savematerial, #wait_bonus_savematerial').show();
+                $('#play_bonus_individual, #wait_bonus_individual').show();
+                $('#reg_join_chat').hide();
+            } else {
+                $('#reg_join_chat').show();
+            }
+
+            $.each(bonus_info.active_bonuses, function (i, item) {
+                console.log(item);
+                console.log(item.bonus_name);
+                switch (item.bonus_name){
+                    case "yoga":
+                        $('#wait_bonus_yoga').show();
+                        $('#play_bonus_yoga').show();
+                        $("[data-bonus-name='yoga']").attr('href', 'https://vk.me/join/AJQ1d8g9swc87z_NIhFY8ieV');
+                        $("[data-bonus-name='yoga']").text("Открыть").show();
+                        break;
+                    case "yoganidra":
+                        $('#wait_bonus_yoganidra').show();
+                        $('#play_bonus_yoganidra').show();
+                        $("[data-bonus-name='yoganidra']").attr('href', 'https://hyls.ru/yoga_nidra');
+                        $("[data-bonus-name='yoganidra']").text("Открыть").show();
+                        break;
+                    case "3mini":
+                        $('#wait_bonus_3mini').show();
+                        $('#play_bonus_3mini').show();
+                        $("[data-bonus-name='3mini']").hide();
+                        break;
+                    case "savematerial":
+                        $('#wait_bonus_savematerial').show();
+                        $('#play_bonus_savematerial').show();
+                        $("[data-bonus-name='savematerial']").hide();
+                        break;
+
+                    case "individual":
+                        $('#wait_bonus_individual').show();
+                        $('#play_bonus_individual').show();
+                        $('#reg_join_chat').hide();
+                        $("[data-bonus-name='individual']").attr('href', 'https://vk.me/join/AJQ1d6b8mAe6oDP8d6efa8eu');
+                        $("[data-bonus-name='individual']").text("Открыть").show();
+                        break;
+                }
+            });
+        }
+    }
+
+    $('.user_bonus').click(function() {
+        var bonus_name = $(this).attr("data-bonus-name");
+        $('.user_bonus').prop("disabled", true);
+        $.ajax({
+            type: "POST",
+            url:  api_url + "bonus_activate",
+            data: {bonus_name: bonus_name},
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data) {
+                console.log(data);
+                $('.user_bonus').prop("disabled", false);
+                showBonusesDetox(data.bonus_info);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());}
+        });
+    });
+
+
+    $('#btn_mini_start').click(function() {
+        $.ajax({
+            type: "POST",
+            url:  api_url + "mini_start",
+            data: {mini_start: $("#mini_start").val()},
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data) {
+                if (data.error == 0){
+                    update_user_info();
+                } else {alert("Дата старта не может быть раньше, чем сегодня")
+                }
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());}
+        });
+    });
+
 
 
 
@@ -2280,12 +2511,12 @@ $( document ).ready(function() {
     function setGroupRatingMini(group_rating_info, user){
         if (user.rating_show_status) {
             $('#filed_rating_show_mini').prop("checked", true);
-            $('#div_btn_rating_link_mini').show();
+           // $('#div_btn_rating_link_mini').show();
             $('#btn_rating_link_mini').text("Выполняя ежедневные практики, вы улучшаете свои позиции в рейтинге марафонцев вашего потока. " +
                 "Сейчас Вы на " + group_rating_info.rating_user + " месте из " + group_rating_info.rating_all + " участников");
         } else {
             $('#filed_rating_show_mini').prop("checked", false);
-            $('#div_btn_rating_link_mini').hide();
+           // $('#div_btn_rating_link_mini').hide();
         }
 
 
@@ -2365,6 +2596,48 @@ $( document ).ready(function() {
         $('#rating_group_table').bsTable(undefined, false, undefined, undefined, false);
 
     }
+    function setGroupRatingTime(group_rating_info, user){
+        if (user.rating_show_status) {
+            $('#filed_rating_show').prop("checked", true);
+            $('#div_btn_rating_link_time').show();
+            $('#btn_rating_link_time').text("Выполняя ежедневные практики, вы улучшаете свои позиции в рейтинге марафонцев вашего потока. " +
+                "Сейчас Вы на " + group_rating_info.rating_user + " месте из " + group_rating_info.rating_all + " участников");
+        } else {
+            $('#filed_rating_show').prop("checked", false);
+            $('#div_btn_rating_link_time').hide();
+        }
+
+
+
+        var row = '<table class="table table-hover table-bordered table-condensed" >';
+        row    += '<thead><tr> <th>Место</th> <th>Прогресс</th> <th>Имя</th> </tr></thead><tbody>';
+        $.each(group_rating_info.rating_table, function (i, item) {
+            if (item.user_place <= 25) {
+                row += '<tr>';
+                row += '<td class="column_rating_place"><h5>' + item.user_place    + '</h5></td>';
+
+                var progress_percent = item.user_progress + "%";
+                row += '<td class="div_row_fact text-center"><div class="progress">';
+
+                if (item.user_id == user.id){
+                    row += '<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="' + item.user_progress + '" aria-valuemin="0" aria-valuemax="100" style="width: ' + progress_percent + '; min-width: 2em;">';
+                } else {
+                    row += '<div class="progress-bar progress-bar-info    progress-bar-striped active" role="progressbar" aria-valuenow="' + item.user_progress + '" aria-valuemin="0" aria-valuemax="100" style="width: ' + progress_percent + '; min-width: 2em;">';
+                }
+
+                row += progress_percent;
+                row += '</div></div></td>';
+
+                row += '<td class="column_rating_name"><h5>' + item.user_name     + '</h5></td>';
+                row += '</tr>';
+            }
+        });
+        row += '</tbody></table';
+        $('#rating_group_table') .empty();
+        $('#rating_group_table').append(row);
+        $('#rating_group_table').bsTable(undefined, false, undefined, undefined, false);
+
+    }
 
 
     $('#btn_rating_link').click(function() {
@@ -2403,37 +2676,37 @@ $( document ).ready(function() {
             failure: function(errMsg) {
                 alert(errMsg.toString());}
         });
-    });
+            });
 
-    $('#btn_exit, #btn_user_exit, #btn_login_exit, #btn_reg_exit').click(function () {
+        $('#btn_exit, #btn_user_exit, #btn_login_exit, #btn_reg_exit').click(function () {
 
-        setCookie(cookie_name_token);
-        cookie_token = getCookie(cookie_name_token);
-        ifLogin();
-        hide_all_in_user();
-        hide_all_in_admin();
-        $("#nav_bar")     .hide();
-        $("#nav_bar_admin")     .hide();
-        $("#page_login")     .show();
+            setCookie(cookie_name_token);
+            cookie_token = getCookie(cookie_name_token);
+            ifLogin();
+            hide_all_in_user();
+            hide_all_in_admin();
+            $("#nav_bar")     .hide();
+            $("#nav_bar_admin")     .hide();
+            $("#page_login")     .show();
 
-    });
-    $('#wait_logo').click(function (){
-        $('#hidden_info_wait').show();
-    });
-    $('#reg_foto_logo').click(function (){
-        $('#hidden_info_reg').show();
-    });
+        });
+        $('#wait_logo').click(function (){
+            $('#hidden_info_wait').show();
+        });
+        $('#reg_foto_logo').click(function (){
+            $('#hidden_info_reg').show();
+        });
 
-    $('#activate_bonus').click(function() {
-        console.log("1");
-        $.ajax({
-            type: "POST",
-            url:  api_url + "activate_bonus",
-            headers: {
-                'Authorization':'Token token=' + cookie_token,
-                'Content-Type':'application/x-www-form-urlencoded'
-            },
-            success: function(data) {
+        $('#activate_bonus').click(function() {
+            console.log("1");
+            $.ajax({
+                type: "POST",
+                url:  api_url + "activate_bonus_3mini",
+                headers: {
+                    'Authorization':'Token token=' + cookie_token,
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                success: function(data) {
                 update_user_info();
                 alert("В верхнем меню Вам теперь доступен дневник для марафонов полезных привычек")
             },
@@ -2441,6 +2714,8 @@ $( document ).ready(function() {
                 alert(errMsg.toString());}
         });
     });
+
+
 
 
 //Program
@@ -2836,6 +3111,10 @@ $( document ).ready(function() {
             }
         }
 
+        if (day_num > 1) {
+            $('#meditation_settings').show();
+        }
+
         if (day_num > 4) {
             $('#kaoshiki_settings').show();
         }
@@ -3053,9 +3332,9 @@ $( document ).ready(function() {
         }
 
         if (current_day.day_num == 60 && current_day.average_day_progress >= 85) {
-            $('#div_btn_download_sertifacate').show();
+            $('#div_btn_download_sertifacate_detox').show();
         } else {
-            $('#div_btn_download_sertifacate').hide();
+            $('#div_btn_download_sertifacate_detox').hide();
         }
 
 
@@ -3069,6 +3348,8 @@ $( document ).ready(function() {
         $('#user_progress_bar').text(progress+'%');
     }
     $('#btn_user_previus_day, #btn_user_next_day').click(function() {
+        clearTimeout(comment_timer_detox);
+        userSaveDayDetox($('#filed_water_fact').attr("data-day-num"));
         getDayInfoDetox($(this).val());
     });
     $('#filed_no_snacking_fact, #filed_diet, #filed_tongue_day, #filed_tongue_night, #filed_phisic, #filed_therapy, #filed_asana, #filed_psy, #filed_half_bath_day, #filed_half_bath_night, #filed_ahimsa, #filed_satya, #filed_asteya, #filed_brahma, #filed_aparigraha, #filed_shaucha, #filed_santosha, #filed_tapah, #filed_svadhya, #filed_ishvara, #filed_social_practic').change(function() {
@@ -3155,10 +3436,10 @@ $( document ).ready(function() {
             $('.comment_loader_tick_detox').show();
             $('.comment_loader_tick_detox').fadeOut(3000);
             $('.loader_ball').fadeOut(3000);
-        }, 2500);
+        }, 2000);
     });
 
-    $('#btn_user_material, #btn_user_material_family').click(function (){
+    $('#btn_user_material, #btn_user_material_family, #btn_user_material_time').click(function (){
         var win = window.open($(this).val(), '_blank');
         win.focus();
     });
@@ -3444,23 +3725,60 @@ $( document ).ready(function() {
 
 
 
-    $('#btn_download_sertifacate').click(function (){
+    $('#btn_download_sertifacate_detox').click(function (){
         var name = "Сашенька";
-        $('#modal_certificate').modal('hide');
-        $('#certificate_name').text($('#field_certificate_name').val() + ", поздравляем с завершением онлайн-марафона йоги и здоровья HYLS!");
+        $('#modal_certificate_detox').modal('hide');
+        $('#detox_certificate_name').text($('#field_certificate_name_detox').val() + ", поздравляем с завершением онлайн-марафона йоги и здоровья HYLS!");
         $('#page_user_main').hide();
         $('#detox_certificate').show();
 
-        html2canvas(document.querySelector("#detox_certificate")).then(canvas => {
+        html2canvas(document.querySelector("#detox_certificate")).then(function(canvas) {
+            console.log(canvas);
+            document.body.appendChild(canvas);
+            saveAs(canvas.toDataURL(), 'HYLS.png');
+        });
+    });
+
+    $('#btn_download_sertifacate_family').click(function (){
+        $('#modal_certificate_family').modal('hide');
+        $('#family_certificate_name').text($('#field_certificate_name_family').val() + ", поздравляем с завершением онлайн-марафона йоги и здоровья HYLS!");
+        $('#page_user_main').hide();
+        $('#family_certificate').show();
+
+        html2canvas($("#family_certificate").get(0)).then(function(canvas) {
             console.log(canvas);
             document.body.appendChild(canvas);
             saveAs(canvas.toDataURL(), 'HYLS.png');
         });
 
 
+      // $('#family_certificate_name').text($('#field_certificate_name_detox').val() + ", поздравляем с завершением онлайн-марафона йоги и здоровья HYLS!");
+      // $('#page_user_main').hide();
+      // $('#detox_certificate').show();
 
+      // html2canvas(document.querySelector("#detox_certificate")).then(canvas => {
+      //     console.log(canvas);
+      //     document.body.appendChild(canvas);
+      //     saveAs(canvas.toDataURL(), 'HYLS.png');
+      // });
     });
 
+    $('#btn_marafon_continue').click(function () {
+        $.ajax({
+            type: "POST",
+            url:  api_url + "continue_marafon",
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                update_user_info();
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
 
     function saveAs(uri, filename) {
         var link = document.createElement('a');
@@ -3475,6 +3793,7 @@ $( document ).ready(function() {
 
         $('#page_user_main')   .show();
         $('#detox_certificate').hide();
+        $('#family_certificate').hide();
     }
 
 
@@ -3508,11 +3827,7 @@ $( document ).ready(function() {
     }
 
     function setDayMini(current_day, marafon_day, materials){
-        if (current_day.day_id != 0){
 
-        } else {
-
-        }
         console.log(current_day);
         day_num = current_day.day_num;
         day_id  = current_day.day_id;
@@ -3674,6 +3989,7 @@ $( document ).ready(function() {
             $('#filed_tongue_night_mini')        .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_therapy_mini')             .prop("checked", false).attr("data-day-num", day_num);
 
+            $('#filed_social_minute_mini')        .val(null).attr("data-day-num", day_num);
             $('#filed_social_control_mini')             .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_social_film_mini')             .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_social_phone_mini')             .prop("checked", false).attr("data-day-num", day_num);
@@ -3692,7 +4008,7 @@ $( document ).ready(function() {
 
             $('#filed_communication_athinking_mini')   .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_communication_message_mini')     .prop("checked", false).attr("data-day-num", day_num);
-            $('#filed_social_minute_mini')             .val(null).attr("data-day-num", day_num);
+
             $('#filed_parasites_listwork_mini')        .val(null).attr("data-day-num", day_num);
             $('#filed_parasites_mini')         .val(null).attr("data-day-num", day_num);
             $('#filed_aparasites_mini')        .val(null).attr("data-day-num", day_num);
@@ -3947,12 +4263,12 @@ $( document ).ready(function() {
             if (social_active)    {
                 $('#div_buy_checkbox_social').hide();
                 if (social_read_material) {
-                    if (social_material_num <= 1) {
+                    if (social_material_num >= 1) {
                         $('#row_social_minute_mini')  .show();
                         $('#row_social_control_mini') .show();
-                        $('#row_social_film_mini')    .show();
+                        social_film_active ? $('#row_social_film_mini') .show() : $('#row_social_film_mini') .hide();
                     }
-                    if (social_material_num <= 2) {
+                    if (social_material_num >= 2 && day_num >=  current_day.social_material_2) {
                         $('#row_social_phone_mini')   .show();
                     }
                 }
@@ -3961,11 +4277,13 @@ $( document ).ready(function() {
             if (extra_active)    {
                 $('#div_buy_checkbox_extra').hide();
                 if (extra_read_material) {
-                    if (extra_material_num <= 1) {
-                        $('#row_extra_type_mini')  .show();
+                    if (extra_material_num >= 1) {
+                        if (day_num == 1) {
+                            $('#row_extra_type_mini')  .show();
+                        }
                         $('#row_extra_space_mini') .show();
                     }
-                    if (extra_material_num <= 2) {
+                    if (extra_material_num >= 2 && day_num >= current_day.extra_material_2) {
                         $('#row_extra_stickers_mini') .show();
                         $('#row_extra_shoes_mini')    .show();
                     }
@@ -3973,9 +4291,9 @@ $( document ).ready(function() {
             } else $('#div_buy_checkbox_extra').show();
 
             if (parasites_active)    {
-                $('#div_buy_checkbox_extra').hide();
-                if (extra_read_material) {
-                    $('#div_parasites_words')  .show();
+                $('#div_buy_checkbox_parasites').hide();
+                if (parasites_read_material) {
+                    $('.div_parasites_words')  .show();
 
                     if (current_day.day_num == 1) {
                         $('#row_parasites_list_mini')  .show();
@@ -3988,27 +4306,27 @@ $( document ).ready(function() {
                         $('#row_parasites_alist_mini') .show();
                     }
 
-                    if (extra_material_num <= 2) {
+                    if (parasites_material_num >= 2  && day_num >= current_day.parasites_material_2) {
                         $('#row_parasites_read_mini')         .show();
                         $('#row_parasites_listwork_mini')     .show();
                         $('#row_parasites_speach_mini')       .show();
                     }
-                    if (extra_material_num <= 3) {
+                    if (parasites_material_num >= 3 && day_num >= current_day.parasites_material_3) {
                         $('#row_parasites_repeats_mini')      .show();
                         $('#row_parasites_posters_mini')      .show();
                         $('#row_parasites_speech_public_mini').show();
                     }
                 }
-            } else $('#div_buy_checkbox_extra').show();
+            } else $('#div_buy_checkbox_parasites').show();
 
 
             if (communication_active)    {
                 $('#div_buy_checkbox_communication').hide();
                 if (communication_read_material) {
-                    if (communication_material_num <= 1) {
+                    if (communication_material_num >= 1) {
                         $('#row_communication_athinking_mini')  .show();
                     }
-                    if (communication_material_num <= 2) {
+                    if (communication_material_num >= 2  && day_num >=  current_day.communication_material_2) {
                         $('#row_communication_message_mini') .show();
                     }
                 }
@@ -4160,13 +4478,12 @@ $( document ).ready(function() {
     });
 
     var save_day_mini_timer;
-    $('#filed_social_practic_mini, #filed_detox_fact_mini, #filed_snacking_mini, #filed_overeat_mini, #filed_sugar_mini, #filed_family_no_critic_mini, #filed_family_benevolence_mini, #filed_family_no_agression_mini, #filed_family_enjoy_mini, #filed_vegan_mini, #filed_asana_mini_1, #filed_asana_mini_2, #filed_tongue_day_mini, #filed_tongue_night_mini, #filed_therapy_mini' +
-        '#filed_social_control_mini, #filed_social_film_mini, #filed_social_phone_mini, #filed_extra_type_mini, #filed_extra_space_mini, #filed_extra_stickers_mini, #filed_extra_shoes_mini, #filed_parasites_list_mini, #filed_parasites_alist_mini, #filed_parasites_read_mini, #filed_parasites_speach_mini, #filed_parasites_repeats_mini, #filed_parasites_posters_mini, #filed_parasites_speech_public_mini, #filed_communication_athinking_mini, #filed_communication_message_mini').change(function() {
+    $('#filed_social_practic_mini, #filed_detox_fact_mini, #filed_snacking_mini, #filed_overeat_mini, #filed_sugar_mini, #filed_family_no_critic_mini, #filed_family_benevolence_mini, #filed_family_no_agression_mini, #filed_family_enjoy_mini, #filed_vegan_mini, #filed_asana_mini_1, #filed_asana_mini_2, #filed_tongue_day_mini, #filed_tongue_night_mini, #filed_therapy_mini, #filed_social_control_mini, #filed_social_film_mini, #filed_social_phone_mini, #filed_extra_type_mini, #filed_extra_space_mini, #filed_extra_stickers_mini, #filed_extra_shoes_mini, #filed_parasites_list_mini, #filed_parasites_alist_mini, #filed_parasites_read_mini, #filed_parasites_speach_mini, #filed_parasites_repeats_mini, #filed_parasites_posters_mini, #filed_parasites_speech_public_mini, #filed_communication_athinking_mini, #filed_communication_message_mini').change(function() {
         console.log($(this).attr("data-day-num"));
         userSaveDayMini($(this).attr("data-day-num"));
     });
     $("#filed_water_fact_mini, #filed_wake_up_fact_hour_mini, #filed_wake_up_fact_minute_mini, #filed_thanks_fact_mini, #filed_kaoshiki_fact_mini, #filed_meditation_day_fact_mini, #filed_meditation_night_fact_mini" +
-        "#filed_social_minute_mini, #filed_parasites_listwork_mini").on('change keyup paste', function () {
+        "#filed_social_minute_mini, #filed_parasites_listwork_mini, #filed_social_minute_mini").on('change keyup paste', function () {
        console.log($(this).attr("data-day-num"));
        clearTimeout(save_day_mini_timer);
         var day_mini_practic = $(this).attr("data-day-num");
@@ -4238,8 +4555,8 @@ $( document ).ready(function() {
                 extra_stickers:     $('#filed_extra_stickers_mini')     .is(':checked'),
                 extra_shoes:     $('#filed_extra_shoes_mini')     .is(':checked'),
 
-                parasites_words:     $('#filed_parasites_mini')     .is(':checked'),
-                parasites_awords:     $('#filed_aparasites_mini')     .is(':checked'),
+                parasites_words:     $('#filed_parasites_mini')    .val(),
+                parasites_awords:     $('#filed_aparasites_mini')  .val(),
                 parasites_list:     $('#filed_parasites_list_mini')     .is(':checked'),
                 parasites_alist:     $('#filed_parasites_alist_mini')     .is(':checked'),
                 parasites_read:     $('#filed_parasites_read_mini')     .is(':checked'),
@@ -4248,6 +4565,9 @@ $( document ).ready(function() {
                 parasites_repeats:     $('#filed_parasites_repeats_mini')     .is(':checked'),
                 parasites_posters:     $('#filed_parasites_posters_mini')     .is(':checked'),
                 parasites_speech_public:     $('#filed_parasites_speech_public_mini')     .is(':checked'),
+
+                communication_athinking:   $('#filed_communication_athinking_mini')   .is(':checked'),
+                communication_message:     $('#filed_communication_message_mini')     .is(':checked'),
 
                 kaoshiki_minutes_fact:         $('#filed_kaoshiki_fact_mini')          .val(),
 
@@ -4645,6 +4965,14 @@ $( document ).ready(function() {
         var family_father_beliefs_active    = current_day.family_father_beliefs_active     ;
         var family_satisfaction_active      = current_day.family_satisfaction_active     ;
         var family_research2_active         = current_day.family_research2_active     ;
+        var family_father_bows_active         = current_day.family_father_bows_active     ;
+        var family_mother_bows_active         = current_day.family_mother_bows_active     ;
+        var family_mother_beliefs_active         = current_day.family_mother_beliefs_active     ;
+        var family_mother_discontent_active         = current_day.family_mother_discontent_active     ;
+        var family_forgiveness_active         = current_day.family_forgiveness_active     ;
+        var family_shavasana_active         = current_day.family_shavasana_active     ;
+        var family_self_discontent_active         = current_day.family_self_discontent_active     ;
+        var family_self_beliefs_active         = current_day.family_self_beliefs_active     ;
 
         var family_nonviolence_active = current_day.family_nonviolence_active;
         var family_generosity_active  = current_day.family_generosity_active ;
@@ -4672,6 +5000,14 @@ $( document ).ready(function() {
         var family_father_beliefs_fact    = current_day.family_father_beliefs_fact;
         var family_satisfaction_fact      = current_day.family_satisfaction_fact;
         var family_research2_fact         = current_day.family_research2_fact;
+        var family_father_bows_fact         = current_day.family_father_bows_fact;
+        var family_mother_bows_fact         = current_day.family_mother_bows_fact;
+        var family_mother_beliefs_fact         = current_day.family_mother_beliefs_fact;
+        var family_mother_discontent_fact         = current_day.family_mother_discontent_fact;
+        var family_forgiveness_fact         = current_day.family_forgiveness_fact;
+        var family_shavasana_fact         = current_day.family_shavasana_fact;
+        var family_self_discontent_fact         = current_day.family_self_discontent_fact;
+        var family_self_beliefs_fact         = current_day.family_self_beliefs_fact;
 
 
         var family_wake_up_active               = current_day.family_wake_up_active;
@@ -4734,6 +5070,14 @@ $( document ).ready(function() {
             $('#row_family_father_beliefs')    .hide();
             $('#row_family_satisfaction')    .hide();
             $('#row_family_research2')    .hide();
+            $('#row_family_father_bows')    .hide();
+            $('#row_family_mother_bows')    .hide();
+            $('#row_family_mother_beliefs')    .hide();
+            $('#row_family_mother_discontent')    .hide();
+            $('#row_family_forgiveness')    .hide();
+            $('#row_family_shavasana')    .hide();
+            $('#row_family_self_discontent')    .hide();
+            $('#row_family_self_beliefs')    .hide();
 
             $('#family_practise')       .hide();
             $('.row_family_nonviolence').hide();
@@ -4762,6 +5106,15 @@ $( document ).ready(function() {
             $('#filed_family_father_beliefs')   .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_family_satisfaction')     .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_family_research2')        .prop("checked", false).attr("data-day-num", day_num);
+
+            $('#filed_family_father_bows')        .prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_family_mother_bows')        .prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_family_mother_beliefs')        .prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_family_mother_discontent')        .prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_family_forgiveness')        .prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_family_shavasana')        .prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_family_self_discontent')        .prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_family_self_beliefs')        .prop("checked", false).attr("data-day-num", day_num);
 
 
             $('#filed_wake_up_fact_hour_family')      .val(null).attr("data-day-num", day_num);
@@ -4825,7 +5178,7 @@ $( document ).ready(function() {
 
             if (family_phisic_active)       {
                 $('#row_family_phisic').show();
-                $('#filed_family_phisic').prop("checked", family_phisic_fact);
+                $ ('#filed_family_phisic').prop("checked", family_phisic_fact);
             }
 
 
@@ -4846,6 +5199,15 @@ $( document ).ready(function() {
 
                     $('#row_wake_up_family').show();
                     $('#question_wake_up_family').hide();
+
+                    if (day_num === 50){
+                        $('#family_sleep').hide();
+                        $('#family_wake_up').hide();
+                    } else {
+                        $('#family_sleep').show();
+                        $('#family_wake_up').show();
+                    }
+
 
                 } else {
                     console.log("1");
@@ -4920,7 +5282,40 @@ $( document ).ready(function() {
                 $('#row_family_research2').show();
                 $('#filed_family_research2').prop("checked", family_research2_fact);
             }
+            if (family_father_bows_active)       {
+                $('#row_family_father_bows').show();
+                $('#filed_family_father_bows').prop("checked", family_father_bows_fact);
+            }
 
+            if (family_mother_bows_active)       {
+                $('#row_family_mother_bows').show();
+                $('#filed_family_mother_bows').prop("checked", family_mother_bows_fact);
+            }
+            if (family_mother_beliefs_active)       {
+                $('#row_family_mother_beliefs').show();
+                $('#filed_family_mother_beliefs').prop("checked", family_mother_beliefs_fact);
+            }
+            if (family_mother_discontent_active)       {
+                $('#row_family_mother_discontent').show();
+                $('#filed_family_mother_discontent').prop("checked", family_mother_discontent_fact);
+            }
+            if (family_forgiveness_active)       {
+                $('#row_family_forgiveness').show();
+                $('#filed_family_forgiveness').prop("checked", family_forgiveness_fact);
+            }
+            if (family_shavasana_active)       {
+                $('#row_family_shavasana').show();
+                $('#filed_family_shavasana').prop("checked", family_shavasana_fact);
+            }
+            if (family_self_discontent_active)       {
+                $('#row_family_self_discontent').show();
+                $('#filed_family_self_discontent').prop("checked", family_self_discontent_fact);
+            }
+
+            if (family_self_beliefs_active)       {
+                $('#row_family_self_beliefs').show();
+                $('#filed_family_self_beliefs').prop("checked", family_self_beliefs_fact);
+            }
 
 
 
@@ -5062,6 +5457,11 @@ $( document ).ready(function() {
             $('#btn_user_docs_family').attr("href", "https://drive.google.com/open?id=1csemrlE3N0iFagaiROBg-QdxNX5EFnTA");
         }
 
+        if (day_num == 45) {
+            $('#div_btn_user_docs_family').show();
+            $('#btn_user_docs_family').attr("href", "https://drive.google.com/open?id=1o315BzNgW-zOQsfXje922Wdf2z1u18XW");
+        }
+
 
         var progress = day_progress;
         $('#user_progress_bar_family').css('width', progress+'%').attr('aria-valuenow', progress);
@@ -5072,7 +5472,7 @@ $( document ).ready(function() {
         getDayInfoFamily($(this).val());
     });
 
-    $('#filed_family_meditation, #filed_family_film, #filed_family_thinking, #filed_family_bracelet, #filed_family_pages, #filed_family_nice, #filed_family_phisic, #filed_wake_up_fact_hour_family, #filed_wake_up_fact_minute_family, #filed_water_fact_family, #filed_family_beliefs, #filed_family_joy, #filed_family_research, #filed_family_sympathy, #filed_family_bright, #filed_family_father_discontent, #filed_family_understanding, #filed_family_father_beliefs, #filed_family_satisfaction, #filed_family_research2').change(function() {
+    $('#filed_family_meditation, #filed_family_film, #filed_family_thinking, #filed_family_bracelet, #filed_family_pages, #filed_family_nice, #filed_family_phisic, #filed_wake_up_fact_hour_family, #filed_wake_up_fact_minute_family, #filed_water_fact_family, #filed_family_beliefs, #filed_family_joy, #filed_family_research, #filed_family_sympathy, #filed_family_bright, #filed_family_father_discontent, #filed_family_understanding, #filed_family_father_beliefs, #filed_family_satisfaction, #filed_family_research2, #filed_family_father_bows, #filed_family_mother_bows, #filed_family_mother_beliefs, #filed_family_mother_discontent, #filed_family_forgiveness, #filed_family_shavasana, #filed_family_self_discontent, #filed_family_self_beliefs').change(function() {
         console.log($(this).attr("data-day-num"));
         userSaveDayFamily($(this).attr("data-day-num"));
     });
@@ -5127,6 +5527,15 @@ $( document ).ready(function() {
                 family_father_beliefs_fact:    $('#filed_family_father_beliefs')    .is(':checked'),
                 family_satisfaction_fact:      $('#filed_family_satisfaction')    .is(':checked'),
                 family_research2_fact:         $('#filed_family_research2')    .is(':checked'),
+
+                family_father_bows_fact:         $('#filed_family_father_bows')    .is(':checked'),
+                family_mother_bows_fact:         $('#filed_family_mother_bows')    .is(':checked'),
+                family_mother_beliefs_fact:         $('#filed_family_mother_beliefs')    .is(':checked'),
+                family_mother_discontent_fact:         $('#filed_family_mother_discontent')    .is(':checked'),
+                family_forgiveness_fact:         $('#filed_family_forgiveness')    .is(':checked'),
+                family_shavasana_fact:         $('#filed_family_shavasana')    .is(':checked'),
+                family_self_discontent_fact:         $('#filed_family_self_discontent')    .is(':checked'),
+                family_self_beliefs_fact:         $('#filed_family_self_beliefs')    .is(':checked'),
 
                 family_wake_up_hours_fact:      $('#filed_wake_up_fact_hour_family')  .val(),
                 family_wake_up_minutes_fact:    $('#filed_wake_up_fact_minute_family').val(),
@@ -5222,6 +5631,365 @@ $( document ).ready(function() {
             }
         });
     });
+
+
+    /////////////////TIME/////////////////////////////
+    function getDayInfoTime(day_num){
+        if (day_num > 0) {
+            $.ajax({
+                type: "GET",
+                url:  api_url + "get_day_info_time",
+                data: {
+                    day_num: day_num
+                },
+                headers: {
+                    'Authorization':'Token token=' + cookie_token,
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                success: function(data){
+                    console.log(data);
+                    day_new = data.current_day.day_num;
+                    setDayTime(data.current_day, data.marafon_day);
+
+                },
+                failure: function(errMsg) {
+                    alert(errMsg.toString());
+                }
+            });
+        }
+    }
+
+    function setDayTime(current_day, marafon_day){
+        console.log(current_day);
+        day_num = current_day.day_num;
+        day_id  = current_day.day_id;
+
+        var time_targets_active         = current_day.time_targets_active;
+        var time_targets_fact           = current_day.time_targets_fact;
+        var time_requests_active        = current_day.time_requests_active;
+        var time_requests_fact          = current_day.time_requests_fact;
+        var time_errors_active          = current_day.time_errors_active;
+        var time_errors_fact            = current_day.time_errors_fact;
+        var time_tasks_active           = current_day.time_tasks_active;
+        var time_tasks_fact             = current_day.time_tasks_fact;
+        var time_tasks_complete_active  = current_day.time_tasks_complete_active;
+        var time_tasks_complete_fact    = current_day.time_tasks_complete_fact;
+
+        var time_wake_up_active         = current_day.time_wake_up_active;
+        var time_wake_up_hours_target    = current_day.time_wake_up_hours_target;
+        var time_wake_up_minutes_target  = current_day.time_wake_up_minutes_target;
+        var time_wake_up_hours_fact      = current_day.time_wake_up_hours_fact;
+        var time_wake_up_minutes_fact    = current_day.time_wake_up_minutes_fact;
+        var time_wake_up_recomendation  = current_day.time_wake_up_recomendation;
+        var time_wake_up_next_day       = current_day.time_wake_up_next_day;
+
+
+        var time_wake_up_extra_active   = current_day.time_wake_up_extra_active;
+        var time_wake_up_extra_name     = current_day.time_wake_up_extra_name;
+        var time_wake_up_extra_fact     = current_day.time_wake_up_extra_fact;
+        var time_meditation_active      = current_day.time_meditation_active;
+        var time_meditation_fact        = current_day.time_meditation_fact;
+        var time_snacking_active        = current_day.time_snacking_active;
+        var time_snacking_fact          = current_day.time_snacking_fact;
+        var time_sport_active           = current_day.time_sport_active;
+        var time_sport_fact             = current_day.time_sport_fact;
+
+
+        var day_comment_time           = current_day.day_comment_time;
+        var day_progress                 = current_day.day_progress;
+
+        if (day_show_now !== day_new) {
+            $('.db_row_dialog')     .hide();
+            $('#question_wake_up_time').hide();
+
+            $('.time_checkbox').prop("checked", false).attr("data-day-num", day_num);
+
+
+            $('#filed_wake_up_fact_hour_time')      .val(null).attr("data-day-num", day_num);
+            $('#filed_wake_up_fact_minute_time')    .val(null).attr("data-day-num", day_num);
+            $('#filed_time_errors')       .val(null).attr("data-day-num", day_num);
+            $('#filed_tasks_complete')    .val(null).attr("data-day-num", day_num);
+
+            $('#field_day_comment_time')            .val(null).attr("data-day-num", day_num);
+
+
+
+
+            if (time_targets_active) {
+                $('#row_time_targets').show();
+                $('#filed_time_targets').prop("checked", time_targets_fact);
+            }
+            if (time_requests_active)          {
+                $('#row_time_requests').show();
+                $('#filed_time_requests').prop("checked", time_requests_fact);
+            }
+            if (time_errors_active)          {
+                $('#row_time_errors').show();
+                $('#filed_time_errors').text(time_errors_fact);
+            }
+            if (time_tasks_active)        {
+                $('#row_time_tasks').show();
+                $('#filed_time_tasks').prop("checked", time_tasks_fact);
+            }
+            if (time_tasks_complete_active)       {
+                $('#row_time_tasks_complete').show();
+                $('#filed_tasks_complete').val(time_tasks_complete_fact);
+            }
+
+            if (time_wake_up_active) {
+                if (time_wake_up_hours_target != null) {
+                    $('#wake_up_text_time').text(time_wake_up_recomendation);
+                    $('#wake_up_tomorrow_time').text(time_wake_up_next_day);
+                    if (time_wake_up_minutes_target < 10) {
+                        var wake_up_time = time_wake_up_hours_target + ":0" + time_wake_up_minutes_target;
+                    } else {
+                        var wake_up_time = time_wake_up_hours_target + ":" + time_wake_up_minutes_target;
+                    }
+                    $('#filed_wake_up_plan_time').text(wake_up_time);
+
+                    if (day_num == 6) {
+                        $('#filed_wake_up_fact_hours_time')  .hide();
+                        $('#filed_wake_up_fact_minutes_time').hide();
+                    } else {
+                        $('#filed_wake_up_fact_hours_time')  .show().val(time_wake_up_hours_fact);
+                        $('#filed_wake_up_fact_minutes_time').show().val(time_wake_up_minutes_fact);
+                    }
+
+
+                    $('#row_wake_up_time').show();
+                    $('#question_wake_up_time').hide();
+
+
+                } else {
+                    console.log("1");
+                    $('#question_wake_up_time').show();
+                }
+            } else if (day_num >= 6 && time_wake_up_next_day.length === 0){
+                console.log("2");
+                $('#question_wake_up_time').show();
+            }
+
+
+
+
+
+            if (time_wake_up_extra_active)       {
+                $('#row_wake_up_extra').show();
+                $('#time_wake_up_extra_').text(time_wake_up_extra_name);
+                $('#filed_wake_up_extra').prop("checked", time_wake_up_extra_fact);
+            }
+
+            if (time_meditation_active)       {
+                $('#row_time_meditation').show();
+                $('#filed_time_meditation').prop("checked", time_meditation_fact);
+            }
+
+            if (time_snacking_active)       {
+                $('#row_time_snacking').show();
+                $('#filed_time_snacking').prop("checked", time_snacking_fact);
+            } else if (day_num >= 11) {
+                $('#question_snacking_time').show();
+            }
+
+            if (time_sport_active)       {
+                $('#row_time_sport').show();
+                $('#filed_time_sport').prop("checked", time_sport_fact);
+            }
+
+
+            day_comment_time != "" && day_comment_time != false  ?  $('#field_day_comment_time').val(day_comment_time)   : $('#field_day_comment_time').val();
+            $('#field_day_comment_time')[0]         .style.height = ($('#field_day_comment_time')[0].scrollHeight) + "px";
+
+            $('#btn_user_material_time')    .val(current_day.program_time_material);
+        }
+
+        day_show_now = day_num;
+
+        if (day_new == 0) {
+            day_new = day_show_now;
+        }
+
+
+
+        $('#btn_user_next_day_time')    .val(day_num + 1);
+        $('#btn_user_previus_day_time') .val(day_num - 1);
+        if (current_day.day_num == marafon_day) {
+            $('#user_current_day_time')    .text("День " + day_num);
+            //  $('#user_current_day_time')    .text("День " + day_num + " (сегодня)");
+            $('#btn_user_previus_day_time') .show();
+            $('#btn_user_next_day_time')    .hide();
+        } else if (current_day.day_num == marafon_day - 1){
+            $('#user_current_day_time')     .text("День " + day_num);
+            //  $('#user_current_day_time')     .text("День " + day_num + " (вчера)");
+            $('#btn_user_next_day_time')    .show();
+            $('#btn_user_previus_day_time') .show();
+        } else if (current_day.day_num == marafon_day + 1) {
+            $('#user_current_day_time')    .text("День " + day_num + " (завтра)");
+        } else {
+            $('#user_current_day_time')    .text("День " + day_num);
+            //   $('#user_current_day_time')    .text("День " + day_num + " (" + current_day.day_date + ")");
+            $('#btn_user_previus_day_time') .show();
+            $('#btn_user_next_day_time')    .show();
+        }
+
+        if (day_num == 1) {
+            $('#btn_user_previus_day_time') .hide();
+            if (marafon_day == 1) {
+                $('#btn_user_next_day_time')   .hide();
+            } else {
+                $('#btn_user_next_day_time')   .show();
+            }
+        }
+
+        var progress = day_progress;
+        $('#user_progress_bar_time').css('width', progress+'%').attr('aria-valuenow', progress);
+        $('#user_progress_bar_time').text(progress+'%');
+    }
+
+    $('#btn_user_previus_day_time, #btn_user_next_day_time').click(function() {
+        getDayInfoTime($(this).val());
+    });
+
+    $('.time_checkbox, #filed_time_errors, #filed_tasks_complete').change(function() {
+        console.log($(this).attr("data-day-num"));
+        userSaveDayTime($(this).attr("data-day-num"));
+    });
+
+
+
+    var comment_timer_time;
+    $('#field_day_comment_time').on('change keyup paste', function () {
+        $(this)[0].style.height = "50px";
+        $(this)[0].style.height = ( $(this)[0].scrollHeight)+"px";
+
+        $('.comment_loader_ball_time').show();
+
+        var day_time_comment = $(this).attr("data-day-num");
+        clearTimeout(comment_timer_time);
+        comment_timer_time = setTimeout(function (){
+            userSaveDayTime(day_time_comment);
+            $('.comment_loader_ball_time').hide();
+            $('.comment_loader_tick_time').show();
+            $('.comment_loader_tick_time').fadeOut(3000);
+            $('.loader_ball').fadeOut(3000);
+        }, 1500);
+    });
+
+
+    function userSaveDayTime(day_num) {
+        //console.log("save day");
+        $.ajax({
+            type: "POST",
+            url:  api_url + "save_day_status_time",
+            data: {
+
+
+                time_targets_fact:         $('#filed_time_targets').is(':checked'),
+                time_requests_fact:        $('#filed_time_requests')      .is(':checked'),
+                time_errors_fact:          $('#filed_time_errors')  .val(),
+                time_tasks_fact:           $('#filed_time_tasks')  .is(':checked'),
+                time_tasks_complete_fact:  $('#filed_tasks_complete')     .val(),
+                time_wake_up_hours_fact:   $('#filed_wake_up_fact_hours_time')  .val(),
+                time_wake_up_minutes_fact: $('#filed_wake_up_fact_minutes_time').val(),
+                time_wake_up_extra_fact:   $('#filed_time_wake_up_extra')    .is(':checked'),
+                time_meditation_fact:      $('#filed_time_meditation')       .is(':checked'),
+                time_snacking_fact:        $('#filed_time_snacking')    .is(':checked'),
+                time_sport_fact:           $('#filed_time_sport')    .is(':checked'),
+                day_comment_time:          $('#field_day_comment_time')    .val(),
+                day_num:    day_num
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                setDayTime(data.current_day, data.marafon_day);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    }
+
+    $('#btn_question_wake_up_save_time').click(function (){
+        $('#btn_question_wake_up_save_time').prop('disabled', true);
+
+        if ($('#filed_question_wake_up_fact_hour_time').val()  != "" && $('#filed_question_wake_up_fact_minute_time').val()  != "" && $('#filed_question_wake_up_target_hour_time').val()  != "" && $('#filed_question_wake_up_target_minute_time').val( ) != ""){
+            $.ajax({
+                type: "POST",
+                url:  api_url + "save_wake_up_answer_time",
+                data: {
+                    answer_wake_up_fact_hour:          $('#question_wake_up_fact_hour_time')    .val(),
+                    answer_wake_up_fact_minute:        $('#question_wake_up_fact_minute_time')  .val(),
+                    answer_wake_up_target_hour:        $('#question_wake_up_target_hour_time')  .val(),
+                    answer_wake_up_target_minute:      $('#question_wake_up_target_minute_time').val(),
+                    answer_wake_up_step:               $('#question_wake_up_step_time').val()
+                },
+                headers: {
+                    'Authorization':'Token token=' + cookie_token,
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                success: function(data){
+                    $('#btn_question_wake_up_save_time').prop('disabled', false);
+                    $('#question_wake_up_time').hide();
+                    update_user_info();
+                },
+                failure: function(errMsg) {
+                    alert(errMsg.toString());
+                }
+            });
+
+        } else {
+            alert("Заполните все поля");
+            $('#btn_question_wake_up_save_time').prop('disabled', false);
+        }
+    });
+
+    $('#btn_question_snacking_save_time').click(function (){
+        $('#btn_question_snacking_save_time').prop('disabled', true);
+
+        $.ajax({
+            type: "POST",
+            url:  api_url + "save_snacking_answer_time",
+            data: {
+                answer_snacking_time: $('#filed_question_snacking_time').is(':checked')
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                $('#btn_question_snacking_save_time').prop('disabled', false);
+                $('#question_snacking_time').hide();
+                update_user_info();},
+            failure: function(errMsg) {
+                alert(errMsg.toString());}});
+
+    });
+
+    function setUserDiaryTime(diary){
+        console.log(diary);
+        var diary_row = '<table class="table table-hover table-bordered table-condensed" >';
+        diary_row    += '<thead><tr> <th>День</th> <th>Описание</th> <th>Выполнено</th><th>Запись</th></tr></thead><tbody>';
+        $.each(diary, function (i, item) {
+            diary_row += '<tr>';
+            diary_row += '<td><h5 align="center"><a href="#" class="diary_day_time reg_link" name="' + item.day_num +'">' + item.day_num + '</a></h5></td>';
+            diary_row += '<td><h5><a href="'+ item.day_materials +'" class="reg_link" target="_blank">' + item.day_description + '</a></h5></td>';
+            diary_row += '<td><h5 align="center">' + item.day_progress + '</h5></td>';
+            diary_row += '<td><h5>' + item.day_comment + '</h5></td>';
+            diary_row += '</tr>';
+        });
+        diary_row += '</tbody></table';
+        $('#user_diary_time').empty();
+        $('#user_diary_time').append(diary_row);
+    }
+    $(document).on('click', '.diary_day_time', function () {
+        console.log($(this).attr("name"));
+        hide_all_in_user();
+        $('#page_user_programm').show();
+        getDayInfoTime($(this).attr("name"));
+    });
+
 //Diary
 
     function setUserDiaryDetox(diary){
@@ -5357,7 +6125,11 @@ $( document ).ready(function() {
             case "asana":      material_for_practic = "Практика асан"; break;
             case "therapy":      material_for_practic = "Натуральные терапии"; break;
             case "meditation": material_for_practic = "Практика медитации"; break;
-            case "vegan":   material_for_practic = "Переход на вегетарианство"; break;
+            case "vegan":           material_for_practic = "Переход на вегетарианство"; break;
+            case "social":          material_for_practic = "Контроль соц. сетей"; break;
+            case "extra":           material_for_practic = "Избавление от лишнего"; break;
+            case "parasites":       material_for_practic = "Избавление от слов-паразитов"; break;
+            case "communication":   material_for_practic = "Общение без конфликтов"; break;
             case "recipes": material_for_practic = "Полезные рецепты"; break;
         }
         return material_for_practic;
@@ -5643,8 +6415,8 @@ $( document ).ready(function() {
         $.ajax({
             type: "GET",
             url:  api_url_full,
-            data: { query_update: "user_edit_water_answer",
-                question_water:        $('#filed_question_water_edit')       .val()
+            data: { query_update:   "user_edit_water_answer",
+                    question_water: $('#filed_question_water_edit')       .val()
             },
             headers: {
                 'Authorization':'Token token=' + cookie_token,
@@ -5785,13 +6557,13 @@ $( document ).ready(function() {
         });
     });
 
-    $('.btn_password_save').click(function() {
+    $('#btn_password_save').click(function() {
         $.ajax({
             type: "GET",
             url:  api_url_full,
             data: { query_update: "user_new_password",
-                    password_old: $('.password_old').val(),
-                    password_new: $('.password_new').val()
+                    password_old: $('#password_old').val(),
+                    password_new: $('#password_new').val()
             },
             headers: {
                 'Authorization':'Token token=' + cookie_token,
