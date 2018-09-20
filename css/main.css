@@ -44,7 +44,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .diary_body {margin-top: 20px ;}
 .diary_body_name {margin-top: 0px !important;}
 .marafon_name {margin-bottom: 15px;}
-#user_programm_day, #user_programm_day_mini, #user_programm_day_family { font-size: 24px;  margin-top: 15px; margin-bottom: 10px;
+#user_programm_day, #user_programm_day_mini, #user_programm_day_family , #user_programm_day_time { font-size: 24px;  margin-top: 15px; margin-bottom: 10px;
     display:flex; flex-direction: row; justify-content: center; align-items: center;}
 #user_current_day, #user_current_day_mini, #user_current_day_family, #user_current_day_time {margin-left: 5px; margin-right: 5px}
 .btns_unicorn_padding {

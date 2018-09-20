@@ -1949,6 +1949,8 @@ $( document ).ready(function() {
 
                     if (data.user.photo != null && data.user.photo != "") {
                         $('.user_ava').attr("src", data.user.photo);
+                    } else if (data.program_num == 5) {
+                        $('.user_ava').attr("src", "img/ava_time.jpg");
                     }
 
                     if (data.user.target_detox != null && data.user.target_detox != ""){
@@ -2034,11 +2036,6 @@ $( document ).ready(function() {
                                 $('#before_detox_wait_practise').show();
                                 $('#before_detox_practise_text').show();
                             }
-                        }
-
-                        if (data.program_num == 5) {
-                            //showBonusesTime(data.bonus_info);
-                           // div_reg_before_practise
                         }
 
 
@@ -2161,8 +2158,11 @@ $( document ).ready(function() {
                         } else if (data.program_num == 3) {
                             document.getElementById("nav_bonus_mini").children[0].style.display = "none";
                             document.getElementById("nav_rating").children[0].style.display = "none";
+                            $('.btn_footer ').show();
+
 
                             if (data.marafon_day > 21  && !data.user.continue_mini) {
+
                                 $('#diary_marafon_end').show();
                                 $('#end_header_mini').show();
                                 $('#user_marafon_start').show();
@@ -2275,6 +2275,14 @@ $( document ).ready(function() {
                             $('#materials_family').hide();
                             $('#materials_time').show();
 
+                            if (data.bonus_info.has_bonuses) {
+                                document.getElementById("nav_bonus_mini").children[0].style.display = "block";
+
+                                showBonusesTime(data.bonus_info);
+                            } else {
+                                document.getElementById("nav_bonus_mini").children[0].style.display = "none";
+                            }
+
                             setDayTime(data.marafon_info_today, data.marafon_day);
                             setGroupRatingTime(data.group_rating_info, data.user);
 
@@ -2304,7 +2312,7 @@ $( document ).ready(function() {
     }
 
     function showBonusesDetox(bonus_info){
-        $('#play_bonuses_div, #wait_bonuses_div').hide();
+        $('#play_bonuses_div_detox, #wait_bonuses_div_detox').hide();
         $('#play_bonus_yoga, #wait_bonus_yoga').hide();
         $('#play_bonus_yoganidra, #wait_bonus_yoganidra').hide();
         $('#play_bonus_3mini, #wait_bonus_3mini').hide();
@@ -2313,8 +2321,9 @@ $( document ).ready(function() {
 
         console.log("start");
         if (bonus_info.has_bonuses) {
-            $('#wait_bonuses_div').show();
-            $('#play_bonuses_div').show();
+            $('#play_bonuses_div_time').hide();
+            $('#wait_bonuses_div_detox').show();
+            $('#play_bonuses_div_detox').show();
 
             if (bonus_info.bonus_available) {
                 $('#play_bonus_yoga, #wait_bonus_yoga').show();
@@ -2365,6 +2374,45 @@ $( document ).ready(function() {
             });
         }
     }
+    function showBonusesTime(bonus_info){
+        $('#play_bonuses_div_time').hide();
+
+        $('#play_bonus_savematerial_time').hide();
+        $('#play_bonus_yoganidra_time').hide();
+        $('#play_bonus_2mini_time').hide();
+
+        if (bonus_info.has_bonuses) {
+            $('#play_bonuses_div_time').show();
+            $('#wait_bonuses_div_detox').hide();
+            $('#play_bonuses_div_detox').hide();
+
+            if (bonus_info.bonus_available) {
+                $('#play_bonus_savematerial_time').show();
+                $('#play_bonus_yoganidra_time').show();
+                $('#play_bonus_2mini_time').show();
+            }
+
+            $.each(bonus_info.active_bonuses, function (i, item) {
+                console.log(item);
+                console.log(item.bonus_name);
+                switch (item.bonus_name){
+                    case "yoganidra_time":
+                        $('#play_bonus_yoganidra_time').show();
+                        $("[data-bonus-name='yoganidra_time']").attr('href', 'https://hyls.ru/yoga_nidra');
+                        $("[data-bonus-name='yoganidra_time']").text("Открыть").show();
+                        break;
+                    case "2mini_time":
+                        $('#play_bonus_2mini_time').show();
+                        $("[data-bonus-name='2mini_time']").hide();
+                        break;
+                    case "savematerial_time":
+                        $('#play_bonus_savematerial_time').show();
+                        $("[data-bonus-name='savematerial_time']").hide();
+                        break;
+                }
+            });
+        }
+    }
 
     $('.user_bonus').click(function() {
         var bonus_name = $(this).attr("data-bonus-name");
@@ -2381,6 +2429,7 @@ $( document ).ready(function() {
                 console.log(data);
                 $('.user_bonus').prop("disabled", false);
                 showBonusesDetox(data.bonus_info);
+                showBonusesTime(data.bonus_info);
             },
             failure: function(errMsg) {
                 alert(errMsg.toString());}
@@ -5699,7 +5748,7 @@ $( document ).ready(function() {
         var day_progress                 = current_day.day_progress;
 
         if (day_show_now !== day_new) {
-            $('.db_row_dialog')     .hide();
+            $('.time_diary_row')     .hide();
             $('#question_wake_up_time').hide();
 
             $('.time_checkbox').prop("checked", false).attr("data-day-num", day_num);
@@ -5709,6 +5758,7 @@ $( document ).ready(function() {
             $('#filed_wake_up_fact_minute_time')    .val(null).attr("data-day-num", day_num);
             $('#filed_time_errors')       .val(null).attr("data-day-num", day_num);
             $('#filed_tasks_complete')    .val(null).attr("data-day-num", day_num);
+            $('#filed_wake_up_fact_hours_time, #filed_wake_up_fact_minutes_time')    .val(null).attr("data-day-num", day_num);
 
             $('#field_day_comment_time')            .val(null).attr("data-day-num", day_num);
 
@@ -5748,18 +5798,16 @@ $( document ).ready(function() {
                     $('#filed_wake_up_plan_time').text(wake_up_time);
 
                     if (day_num == 6) {
+                        $('#dots_wake_up_time').hide();
+                        $('#filed_wake_up_plan_time').hide();
                         $('#filed_wake_up_fact_hours_time')  .hide();
                         $('#filed_wake_up_fact_minutes_time').hide();
                     } else {
                         $('#filed_wake_up_fact_hours_time')  .show().val(time_wake_up_hours_fact);
                         $('#filed_wake_up_fact_minutes_time').show().val(time_wake_up_minutes_fact);
                     }
-
-
                     $('#row_wake_up_time').show();
                     $('#question_wake_up_time').hide();
-
-
                 } else {
                     console.log("1");
                     $('#question_wake_up_time').show();
@@ -5850,7 +5898,7 @@ $( document ).ready(function() {
         getDayInfoTime($(this).val());
     });
 
-    $('.time_checkbox, #filed_time_errors, #filed_tasks_complete').change(function() {
+    $('.time_checkbox, #filed_time_errors, #filed_tasks_complete, #filed_wake_up_fact_hours_time, #filed_wake_up_fact_minutes_time').change(function() {
         console.log($(this).attr("data-day-num"));
         userSaveDayTime($(this).attr("data-day-num"));
     });
@@ -5914,7 +5962,7 @@ $( document ).ready(function() {
     $('#btn_question_wake_up_save_time').click(function (){
         $('#btn_question_wake_up_save_time').prop('disabled', true);
 
-        if ($('#filed_question_wake_up_fact_hour_time').val()  != "" && $('#filed_question_wake_up_fact_minute_time').val()  != "" && $('#filed_question_wake_up_target_hour_time').val()  != "" && $('#filed_question_wake_up_target_minute_time').val( ) != ""){
+        if ($('#question_wake_up_fact_hour_time').val()  != "" && $('#question_wake_up_fact_minute_time').val()  != "" && $('#question_wake_up_target_hour_time').val()  != "" && $('#question_wake_up_target_minute_time').val( ) != "" && $('#question_wake_up_step_time').val( ) != ""){
             $.ajax({
                 type: "POST",
                 url:  api_url + "save_wake_up_answer_time",
@@ -5930,9 +5978,11 @@ $( document ).ready(function() {
                     'Content-Type':'application/x-www-form-urlencoded'
                 },
                 success: function(data){
+                    alert("Установите будильник на " +  $('#question_wake_up_fact_hour_time').val() + ":" + $('#question_wake_up_fact_minute_time')  .val());
                     $('#btn_question_wake_up_save_time').prop('disabled', false);
                     $('#question_wake_up_time').hide();
                     update_user_info();
+
                 },
                 failure: function(errMsg) {
                     alert(errMsg.toString());
