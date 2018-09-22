@@ -14,15 +14,15 @@ $( document ).ready(function() {
     var cookie_token = getCookie(cookie_name_token);
 
     var interval_white_page;
-    var timer_white_page = setTimeout(function (){
-        interval_white_page = setInterval(function (){
-            if ($('#page_login').is(':visible') || $('#page_admin_main').is(':visible') || $('#page_user_main').is(':visible') ){
-                $('#text_white_page').hide();
-            } else {
-                $('#text_white_page').show();
-            }
-        }, 7000);
-    }, 7000);
+    //var timer_white_page = setTimeout(function (){
+    //    interval_white_page = setInterval(function (){
+    //        if ($('#page_login').is(':visible') || $('#page_admin_main').is(':visible') || $('#page_user_main').is(':visible') ){
+    //            $('#text_white_page').hide();
+    //        } else {
+    //            $('#text_white_page').show();
+    //        }
+    //    }, 7000);
+    //}, 7000);
 
     var chat_url;
     var payment_flow = "";
@@ -966,7 +966,7 @@ $( document ).ready(function() {
         switch (buy_practic_counter) {
             case 1:
                 marafon_mini_cost = 300;
-                marafon_mini_cost = 1;
+              //  marafon_mini_cost = 1;
 
                 break;
 
@@ -1280,6 +1280,12 @@ $( document ).ready(function() {
             case "reg_marafon_family":
                 query = "user_confirm_payment_family";
                 break;
+
+            case "buy_material":
+                query = "buy_end_material_fiat";
+                break;
+
+
         }
 
         console.log("query " + query);
@@ -1287,9 +1293,9 @@ $( document ).ready(function() {
             type: "GET",
             url:  api_url_full,
             data: { query_info: query,
-                payment_id:   send_data.order_id,
+                payment_id:         send_data.order_id,
                 payment_currency:   send_data.currency,
-                payment_amount:       send_data.amount,
+                payment_amount:     send_data.amount,
                 payment_card:       send_data.masked_card,
                 payment_requisites: send_data.sender_email,
                 payment_approval_code: send_data.approval_code,
@@ -1494,11 +1500,7 @@ $( document ).ready(function() {
                 $('#leave_flows').selectpicker("deselectAll");
                 $('#leave_flows').selectpicker("refresh");
 
-
-
-
                 drawChartLeaves(data);
-
 
                 $('#div_chart_leave_users').show();
             },
@@ -1580,8 +1582,8 @@ $( document ).ready(function() {
                 }
             }
         });
-
     }
+
     document.getElementById("chart_leave_users").onclick = function (evt) {
         var activePoints = chart_leave_users.getElementAtEvent(evt);
         var theElement = chart_leave_users.config.data.datasets[activePoints[0]._datasetIndex].data[activePoints[0]._index];
@@ -1811,7 +1813,7 @@ $( document ).ready(function() {
                 button.setHost("api.fondy.eu");
                 button.setProtocol("https");
                 button.setMerchantId(merchant_id);
-                button.setAmount(500,"RUB", false);
+                button.setAmount(1000,"RUB", false);
                 button.setResponseUrl(response_url);
                 button.addParam("lang","ru");
                 button.addParam("order_desc", "HYLS support");
@@ -1951,6 +1953,8 @@ $( document ).ready(function() {
                         $('.user_ava').attr("src", data.user.photo);
                     } else if (data.program_num == 5) {
                         $('.user_ava').attr("src", "img/ava_time.jpg");
+                    } else  {
+                        $('.user_ava').attr("src", "img/ava.png");
                     }
 
                     if (data.user.target_detox != null && data.user.target_detox != ""){
@@ -2048,113 +2052,121 @@ $( document ).ready(function() {
 
 
                         if (data.program_num == 1 || data.program_num == 2) {
-                            if (data.block_programm) {
-                                $('#page_user_programm').show();
-                                $('#user_marafon_block').show();
-                            } else {
-                                $('#page_user_programm').show();
-                                $('#user_marafon_start').show();
-                                $('#diary_marafon_detox').show();
-                                $('#nav_bar').show();
-                            }
+                            if (data.marafon_day > 60  && !data.user.continue_detox) {
 
-                            if (data.bonus_info.has_bonuses) {
-                                $('[name=nav_bonus_mini]').show();
+                                showEndInformation("detox");
                                 showBonusesDetox(data.bonus_info);
+
                             } else {
-                                document.getElementById("nav_bonus_mini").children[0].style.display = "none";
-                            }
-
-                            $('[name=nav_faq_mini]').hide();
-
-                            $('.marafon_name').text("Марафон 60 дней");
-
-                            $('#settings_detox').show();
-                            $('#settings_mini') .hide();
-
-                            chat_url = data.messenger_link;
-
-                            $('#settings_messenger_link').attr("href", data.messenger_link).text("Ссылка");
-                            $('.btn_footer_chat').attr("href", data.messenger_link);
-
-                            $('#filed_meditation_base_edit')  .val(data.medi_kao_target.meditation_base);
-                            $('#filed_meditation_target_edit').val(data.medi_kao_target.meditation_target);
-                            $('#filed_kaoshiki_base_edit')    .val(data.medi_kao_target.kaoshiki_base);
-                            $('#filed_kaoshiki_target_edit')  .val(data.medi_kao_target.kaoshiki_target);
-
-                            setPractiseDetox(data.practise_complete);
-                            setDayDetox(data.marafon_info_today, data.marafon_day);
-                            setGroupRatingDetox(data.group_rating_info, data.user);
-
-                            setUserDiaryDetox(data.user_diary_detox);
 
 
-                            if (data.daily_payment == true){
-                                $('#div_settings_payment_change').show();
-                                $('#div_settings_payment_start').hide();
-                                $('#filed_payment_size_edit').val(data.daily_payment_amount);
-                                $('#daily_payment_currency').text(data.daily_payment_currency);
-                            } else {
-                                $('#div_settings_payment_change').hide();
-                                $('#div_settings_payment_start').show();
-                            }
-
-                            if (data.detox_type !== null ){
-                                $('#detox_settings').show();
-                                $('#detox_name')    .text(data.detox_type);
-                                $('#detox_time')    .text(data.user.detox_time_new);
-
-
-                                var detox_last_date1;
-                                var detox_time1 = data.user.detox_time_new;
-                                detox_days_for_settings = detox_time1;
-
-                                switch (parseInt(data.user.detox_type_new)){
-                                    case 1:
-                                        detox_days = 30;
-                                        detox_last_date1 = 60 - detox_time1 - 2;
-                                        break;
-                                    case 2:
-                                        detox_days = 20;
-                                        detox_last_date1 = 60 - detox_time1 - 2 - 5;
-                                        break;
-                                    case 3:
-                                        detox_days = 15;
-                                        detox_last_date1 = 60 - detox_time1 - 2 - 2 - 5;
-                                        break;
-                                    case 4:
-                                        detox_days_for_settings = detox_time1 + 2;
-                                        detox_days = 5;
-                                        detox_last_date1 = 60 - detox_time1 - 2 - 1 - 1 - 2 - 1 - 2 - 5;
-                                        break;
+                                if (data.block_programm) {
+                                    $('#page_user_programm').show();
+                                    $('#user_marafon_block').show();
+                                } else {
+                                    $('#page_user_programm').show();
+                                    $('#user_marafon_start').show();
+                                    $('#diary_marafon_detox').show();
+                                    $('#nav_bar').show();
                                 }
 
-                                var i;
-                                var detox_time_row      = '';
-                                for (i = 1; i < detox_days + 1; i++) {
-                                    detox_time_row      += '<li><a href="#" class="link_detox_time_edit" name="'+ i +'">' + i + '</a></li>';
+                                if (data.bonus_info.has_bonuses) {
+                                    $('[name=nav_bonus_mini]').show();
+                                    showBonusesDetox(data.bonus_info);
+                                } else {
+                                    document.getElementById("nav_bonus_mini").children[0].style.display = "none";
                                 }
-                                $('#detox_answer_time_edit') .empty();
-                                $('#detox_answer_time_edit') .append(detox_time_row);
+
+                                $('[name=nav_faq_mini]').hide();
+
+                                $('.marafon_name').text("Марафон 60 дней");
+
+                                $('#settings_detox').show();
+                                $('#settings_mini').hide();
+
+                                chat_url = data.messenger_link;
+
+                                $('#settings_messenger_link').attr("href", data.messenger_link).text("Ссылка");
+                                $('.btn_footer_chat').attr("href", data.messenger_link);
+
+                                $('#filed_meditation_base_edit').val(data.medi_kao_target.meditation_base);
+                                $('#filed_meditation_target_edit').val(data.medi_kao_target.meditation_target);
+                                $('#filed_kaoshiki_base_edit').val(data.medi_kao_target.kaoshiki_base);
+                                $('#filed_kaoshiki_target_edit').val(data.medi_kao_target.kaoshiki_target);
+
+                                setPractiseDetox(data.practise_complete);
+                                setDayDetox(data.marafon_info_today, data.marafon_day);
+                                setGroupRatingDetox(data.group_rating_info, data.user);
+
+                                setUserDiaryDetox(data.user_diary_detox);
 
 
-                                var i1;
-                                var detox_start      = '';
-                                for (i1 = 28; i1 < detox_last_date1 + 1; i1++) {
-                                    detox_start      += '<li><a href="#" class="link_detox_start_edit" name="'+ i1 +'">' + i1 + " день" + '</a></li>';
+                                if (data.daily_payment == true) {
+                                    $('#div_settings_payment_change').show();
+                                    $('#div_settings_payment_start').hide();
+                                    $('#filed_payment_size_edit').val(data.daily_payment_amount);
+                                    $('#daily_payment_currency').text(data.daily_payment_currency);
+                                } else {
+                                    $('#div_settings_payment_change').hide();
+                                    $('#div_settings_payment_start').show();
                                 }
-                                $('#detox_answer_start_edit') .empty();
-                                $('#detox_answer_start_edit') .append(detox_start);
-                            }
-                            if (data.user.detox_stop == true) {
-                                $('#detox_settings').hide();
-                            }
-                            if (data.user.detox_start_new  <= data.marafon_info_today.day_num) {
-                                $('#detox_settings').show();
-                            }
-                            $('#materials_detox').show();
-                            $('#materials_mini') .hide();
 
+                                if (data.detox_type !== null) {
+                                    $('#detox_settings').show();
+                                    $('#detox_name').text(data.detox_type);
+                                    $('#detox_time').text(data.user.detox_time_new);
+
+
+                                    var detox_last_date1;
+                                    var detox_time1 = data.user.detox_time_new;
+                                    detox_days_for_settings = detox_time1;
+
+                                    switch (parseInt(data.user.detox_type_new)) {
+                                        case 1:
+                                            detox_days = 30;
+                                            detox_last_date1 = 60 - detox_time1 - 2;
+                                            break;
+                                        case 2:
+                                            detox_days = 20;
+                                            detox_last_date1 = 60 - detox_time1 - 2 - 5;
+                                            break;
+                                        case 3:
+                                            detox_days = 15;
+                                            detox_last_date1 = 60 - detox_time1 - 2 - 2 - 5;
+                                            break;
+                                        case 4:
+                                            detox_days_for_settings = detox_time1 + 2;
+                                            detox_days = 5;
+                                            detox_last_date1 = 60 - detox_time1 - 2 - 1 - 1 - 2 - 1 - 2 - 5;
+                                            break;
+                                    }
+
+                                    var i;
+                                    var detox_time_row = '';
+                                    for (i = 1; i < detox_days + 1; i++) {
+                                        detox_time_row += '<li><a href="#" class="link_detox_time_edit" name="' + i + '">' + i + '</a></li>';
+                                    }
+                                    $('#detox_answer_time_edit').empty();
+                                    $('#detox_answer_time_edit').append(detox_time_row);
+
+
+                                    var i1;
+                                    var detox_start = '';
+                                    for (i1 = 28; i1 < detox_last_date1 + 1; i1++) {
+                                        detox_start += '<li><a href="#" class="link_detox_start_edit" name="' + i1 + '">' + i1 + " день" + '</a></li>';
+                                    }
+                                    $('#detox_answer_start_edit').empty();
+                                    $('#detox_answer_start_edit').append(detox_start);
+                                }
+                                if (data.user.detox_stop == true) {
+                                    $('#detox_settings').hide();
+                                }
+                                if (data.user.detox_start_new <= data.marafon_info_today.day_num) {
+                                    $('#detox_settings').show();
+                                }
+                                $('#materials_detox').show();
+                                $('#materials_mini').hide();
+                            }
                         } else if (data.program_num == 3) {
                             document.getElementById("nav_bonus_mini").children[0].style.display = "none";
                             document.getElementById("nav_rating").children[0].style.display = "none";
@@ -2162,13 +2174,7 @@ $( document ).ready(function() {
 
 
                             if (data.marafon_day > 21  && !data.user.continue_mini) {
-
-                                $('#diary_marafon_end').show();
-                                $('#end_header_mini').show();
-                                $('#user_marafon_start').show();
-                                $('#nav_bar').show();
-                                $('#page_user_programm').show();
-                                hide_user_action_bar();
+                                showEndInformation("mini");
                             } else {
                                 $('.marafon_name').text("Полезные привычки");
                                 $('#page_user_programm').show();
@@ -2212,12 +2218,7 @@ $( document ).ready(function() {
                             }
                         } else if (data.program_num == 4) {
                             if (data.marafon_day > 50 && !data.user.continue_family) {
-                                $('#diary_marafon_end').show();
-                                $('#end_header_family').show();
-                                $('#user_marafon_start').show();
-                                $('#nav_bar').show();
-                                $('#page_user_programm').show();
-                                hide_user_action_bar();
+                                showEndInformation("family");
                             } else {
 
                                 $('.marafon_name').text("Семейные отношения");
@@ -2249,48 +2250,49 @@ $( document ).ready(function() {
                                 setUserDiaryFamily(data.user_diary_family);
                             }
                         } else if (data.program_num == 5) {
-                            document.getElementById("nav_bonus_mini").children[0].style.display = "none";
 
-                            $('.marafon_name').text("Управление временем");
-                            $('#page_user_programm').show();
-                            document.getElementById("nav_bonus_mini").children[0].style.display = "display";
-                            document.getElementById("nav_settings").children[0].style.display = "none";
-                            document.getElementById("nav_faq").children[0].style.display = "none";
-
-                            if (data.block_programm) {
-                                $('#user_marafon_block').show();
-                            } else {
-                                $('#user_marafon_start').show();
-                                $('#diary_marafon_time').show();
-                                $('#nav_bar').show();
-                            }
-
-                            $('.btn_footer_chat').attr("href", data.messenger_link);
-                            chat_url = data.messenger_link;
-
-                            $('#settings_detox').hide();
-                            $('#settings_mini').hide();
-
-                            $('#materials_detox').hide();
-                            $('#materials_family').hide();
-                            $('#materials_time').show();
-
-                            if (data.bonus_info.has_bonuses) {
-                                document.getElementById("nav_bonus_mini").children[0].style.display = "block";
-
+                            if (data.marafon_day > 21  && !data.user.continue_time) {
+                                showEndInformation("time");
                                 showBonusesTime(data.bonus_info);
                             } else {
                                 document.getElementById("nav_bonus_mini").children[0].style.display = "none";
-                            }
 
-                            setDayTime(data.marafon_info_today, data.marafon_day);
-                            setGroupRatingTime(data.group_rating_info, data.user);
+                                $('.marafon_name').text("Управление временем");
+                                $('#page_user_programm').show();
+                                document.getElementById("nav_bonus_mini").children[0].style.display = "display";
+                                document.getElementById("nav_settings").children[0].style.display = "none";
+                                document.getElementById("nav_faq").children[0].style.display = "none";
 
-                            setUserDiaryTime(data.user_diary_time);
+                                if (data.block_programm) {
+                                    $('#user_marafon_block').show();
+                                } else {
+                                    $('#user_marafon_start').show();
+                                    $('#diary_marafon_time').show();
+                                    $('#nav_bar').show();
+                                }
 
+                                $('.btn_footer_chat').attr("href", data.messenger_link);
+                                chat_url = data.messenger_link;
 
-                            if (data.marafon_day > 21  && !data.user.continue_time) {
+                                $('#settings_detox').hide();
+                                $('#settings_mini').hide();
 
+                                $('#materials_detox').hide();
+                                $('#materials_family').hide();
+                                $('#materials_time').show();
+
+                                if (data.bonus_info.has_bonuses) {
+                                    document.getElementById("nav_bonus_mini").children[0].style.display = "block";
+
+                                    showBonusesTime(data.bonus_info);
+                                } else {
+                                    document.getElementById("nav_bonus_mini").children[0].style.display = "none";
+                                }
+
+                                setDayTime(data.marafon_info_today, data.marafon_day);
+                                setGroupRatingTime(data.group_rating_info, data.user);
+
+                                setUserDiaryTime(data.user_diary_time);
                             }
                         }
                     }
@@ -2311,6 +2313,90 @@ $( document ).ready(function() {
         }
     }
 
+
+    function showEndInformation(marafon){
+        $('#diary_marafon_detox').hide();
+        $('#diary_marafon_mini').hide();
+        $('#diary_marafon_family').hide();
+        $('#diary_marafon_time').hide();
+
+        $('#diary_marafon_end').show();
+
+        $('#end_header_detox') .hide();
+        $('#end_header_mini')  .hide();
+        $('#end_header_family').hide();
+        $('#end_header_time')  .hide();
+
+        $('#end_next_detox') .show();
+        $('#end_next_mini')  .show();
+        $('#end_next_time')  .show();
+        $('#end_next_family').show();
+
+        switch (marafon){
+            case "detox":
+                $('#end_header_detox').show();
+                $('#end_next_detox')  .hide();
+                break;
+            case "mini":
+                $('#end_header_mini').show();
+                $('#end_next_mini')  .hide();
+
+                $('#end_continue')  .hide();
+                break;
+            case "family":
+                $('#end_header_family').show();
+                $('#end_next_family')  .hide();
+
+                $('#end_continue')  .hide();
+
+
+                break;
+            case "time":
+                $('#end_header_time').show();
+                $('#end_next_time')  .hide();
+                break;
+        }
+
+        $('#user_marafon_start').show();
+        $('#nav_bar').show();
+        $('#page_user_programm').show();
+        hide_user_action_bar();
+
+        payment_flow = "buy_material";
+
+        var button = $ipsp.get("button");
+        button.setHost("api.fondy.eu");
+        button.setProtocol("https");
+        button.setMerchantId(merchant_id);
+        button.setAmount(1,"RUB", true);
+        button.setResponseUrl(response_url);
+        button.addParam("lang","ru");
+        button.addParam("order_desc", "HYLS buy_material");
+        button.addField({
+            "hidden": true,
+            "label": "HYLS buy_material",
+            "value": "buy_material_" + marafon,
+            "name": "id-vGpm0xWfdY"
+        });
+        //button.addParam("required_rectoken", "Y");
+        var url = button.getUrl();
+        $ipsp("checkout").config({
+            "wrapper": "#checkout_buy_material",
+            "styles": {
+                "body": {
+                    "overflow": "hidden"
+                }
+            }
+        }).scope(function () {
+            this.width("100%");
+            this.height(480);
+            this.action("resize", function (data) {
+                this.setCheckoutHeight(data.height);
+            });
+            this.loadUrl(url)
+        });
+    }
+
     function showBonusesDetox(bonus_info){
         $('#play_bonuses_div_detox, #wait_bonuses_div_detox').hide();
         $('#play_bonus_yoga, #wait_bonus_yoga').hide();
@@ -2319,11 +2405,15 @@ $( document ).ready(function() {
         $('#play_bonus_savematerial, #wait_bonus_savematerial').hide();
         $('#play_bonus_individual,   #wait_bonus_individual').hide();
 
+        $('#end_continue').hide();
+        $('#end_buy_material').show();
+
         console.log("start");
         if (bonus_info.has_bonuses) {
             $('#play_bonuses_div_time').hide();
             $('#wait_bonuses_div_detox').show();
             $('#play_bonuses_div_detox').show();
+            $('.play_bonuses_hyls_coins').text(bonus_info.bonus_available_count);
 
             if (bonus_info.bonus_available) {
                 $('#play_bonus_yoga, #wait_bonus_yoga').show();
@@ -2361,6 +2451,8 @@ $( document ).ready(function() {
                         $('#wait_bonus_savematerial').show();
                         $('#play_bonus_savematerial').show();
                         $("[data-bonus-name='savematerial']").hide();
+                        $('#end_continue').show();
+                        $('#end_buy_material').hide();
                         break;
 
                     case "individual":
@@ -2381,10 +2473,16 @@ $( document ).ready(function() {
         $('#play_bonus_yoganidra_time').hide();
         $('#play_bonus_2mini_time').hide();
 
+
+        $('#end_continue').hide();
+        $('#end_buy_material').show();
+
         if (bonus_info.has_bonuses) {
             $('#play_bonuses_div_time').show();
             $('#wait_bonuses_div_detox').hide();
             $('#play_bonuses_div_detox').hide();
+            $('.play_bonuses_hyls_coins').text(bonus_info.bonus_available_count);
+
 
             if (bonus_info.bonus_available) {
                 $('#play_bonus_savematerial_time').show();
@@ -2408,6 +2506,9 @@ $( document ).ready(function() {
                     case "savematerial_time":
                         $('#play_bonus_savematerial_time').show();
                         $("[data-bonus-name='savematerial_time']").hide();
+
+                        $('#end_continue').show();
+                        $('#end_buy_material').hide();
                         break;
                 }
             });
@@ -3398,7 +3499,7 @@ $( document ).ready(function() {
     }
     $('#btn_user_previus_day, #btn_user_next_day').click(function() {
         clearTimeout(comment_timer_detox);
-        userSaveDayDetox($('#filed_water_fact').attr("data-day-num"));
+       // userSaveDayDetox($('#filed_water_fact').attr("data-day-num"));
         getDayInfoDetox($(this).val());
     });
     $('#filed_no_snacking_fact, #filed_diet, #filed_tongue_day, #filed_tongue_night, #filed_phisic, #filed_therapy, #filed_asana, #filed_psy, #filed_half_bath_day, #filed_half_bath_night, #filed_ahimsa, #filed_satya, #filed_asteya, #filed_brahma, #filed_aparigraha, #filed_shaucha, #filed_santosha, #filed_tapah, #filed_svadhya, #filed_ishvara, #filed_social_practic').change(function() {
@@ -3810,6 +3911,12 @@ $( document ).ready(function() {
       //     document.body.appendChild(canvas);
       //     saveAs(canvas.toDataURL(), 'HYLS.png');
       // });
+    });
+
+    $('#btn_marafon_continue_buy').click(function () {
+        $('#checkout_buy_material').show();
+        $('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
+
     });
 
     $('#btn_marafon_continue').click(function () {
@@ -5775,7 +5882,7 @@ $( document ).ready(function() {
             }
             if (time_errors_active)          {
                 $('#row_time_errors').show();
-                $('#filed_time_errors').text(time_errors_fact);
+                $('#filed_time_errors').val(time_errors_fact);
             }
             if (time_tasks_active)        {
                 $('#row_time_tasks').show();
@@ -5835,7 +5942,7 @@ $( document ).ready(function() {
             if (time_snacking_active)       {
                 $('#row_time_snacking').show();
                 $('#filed_time_snacking').prop("checked", time_snacking_fact);
-            } else if (day_num >= 11) {
+            } else if (day_num >= 11 && current_day.time_snacking_active_marafon != true) {
                 $('#question_snacking_time').show();
             }
 
@@ -5898,11 +6005,14 @@ $( document ).ready(function() {
         getDayInfoTime($(this).val());
     });
 
-    $('.time_checkbox, #filed_time_errors, #filed_tasks_complete, #filed_wake_up_fact_hours_time, #filed_wake_up_fact_minutes_time').change(function() {
+    $('.time_checkbox').change(function() {
         console.log($(this).attr("data-day-num"));
         userSaveDayTime($(this).attr("data-day-num"));
     });
 
+    $(' #filed_time_errors, #filed_tasks_complete, #filed_wake_up_fact_hours_time, #filed_wake_up_fact_minutes_time').on('change keyup paste', function () {
+        userSaveDayTime($(this).attr("data-day-num"));
+    });
 
 
     var comment_timer_time;
@@ -5978,7 +6088,7 @@ $( document ).ready(function() {
                     'Content-Type':'application/x-www-form-urlencoded'
                 },
                 success: function(data){
-                    alert("Установите будильник на " +  $('#question_wake_up_fact_hour_time').val() + ":" + $('#question_wake_up_fact_minute_time')  .val());
+                    alert("Установите будильник на " +  data.wake_up_time);
                     $('#btn_question_wake_up_save_time').prop('disabled', false);
                     $('#question_wake_up_time').hide();
                     update_user_info();
@@ -7760,6 +7870,7 @@ $( document ).ready(function() {
                 $('#field_user_edit_phone').val(data.user.phone);
                 $('#field_user_edit_vk')   .val(data.user.link_vk);
                 $('#field_user_edit_fb')   .val(data.user.link_fb);
+                $('#field_user_payment_size')   .val(data.user.payment_size);
             },
             failure: function(errMsg) {
                 alert(errMsg.toString());
@@ -7773,6 +7884,7 @@ $( document ).ready(function() {
         var user_phone      = $('#field_user_edit_phone').val();
         var user_link_vk    = $('#field_user_edit_vk')   .val();
         var user_link_fb    = $('#field_user_edit_fb')   .val();
+        var user_payment_size    = $('#field_user_payment_size')   .val();
 
         $.ajax({
             type: "GET",
@@ -7783,16 +7895,15 @@ $( document ).ready(function() {
                 user_name:   user_name,
                 user_phone:  user_phone,
                 user_link_vk:     user_link_vk,
-                user_link_fb:     user_link_fb
+                user_link_fb:     user_link_fb,
+                payment_size: user_payment_size
             },
             headers: {
                 'Authorization':'Token token=' + cookie_token,
                 'Content-Type':'application/x-www-form-urlencoded'
             },
             success: function(data){
-                setUsersRegPay(data.users_reg_pay);
 
-                update_admin_info();
                 $('#modal_edit_user') .modal('hide');},
             failure: function(errMsg) {
                 alert(errMsg.toString());
@@ -7858,7 +7969,6 @@ $( document ).ready(function() {
            // user_register_row += ' <li><a href="#" class="link_curator_status" data-user-id="' + item.user_id + '" name="2 - отказ">отказ</a></li>';
            // user_register_row += '</ul></div></td>';
 
-            user_register_row += '<td><textarea class="user_comment_admin" name="' + item.user_id + '">' + item.user_comment + '</textarea></td>';
             user_register_row += '<td><button type="button" class="btn btn-warning btn-sm" name="btns_edit_user" value="'       +  item.user_id + '"  data-toggle="modal" data-target="#modal_edit_user"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
             user_register_row += '<td><button type="button" class="btn btn-success btn-sm" name="btns_to_group" value="'        +  item.user_id + '"  data-toggle="modal" data-target="#modal_to_group"> <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button></td>';
             user_register_row += '<td><button type="button" class="btn btn-danger btn-sm"  name="btns_user_delete" value="'     +  item.user_id + '"  data-toggle="modal" data-target="#modal_user_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
@@ -8066,8 +8176,10 @@ $( document ).ready(function() {
             reg_mini_communication:  reg_admin_mini_communication
         };
 
-        if (group_id == null) {
-            alert("Выберите группу");
+        var payment_size =  $('#group_add_user_payment_size').val();
+        console.log(payment_size);
+        if (group_id == null || payment_size == "") {
+            alert("Выберите группу и укажите сумму оплаты");
             $('#btn_to_group').prop('disabled', false);
 
         } else {
@@ -8079,6 +8191,7 @@ $( document ).ready(function() {
                 data: { query_update: "join_to_group",
                     user_id:       user_id,
                     group_id:      group_id,
+                    payment_size:  payment_size,
                     mini_marafons: mini_marafon_admin},
                 headers: {
                     'Authorization':'Token token=' + cookie_token,
@@ -8942,12 +9055,12 @@ $( document ).ready(function() {
         });
     });
 
-    $('#btn_double_diary').click(function () {
+    $('#btn_name_from_amo').click(function () {
         //console.log("chekbox" + $('#field_eat_no_snacking_active').is(':checked'));
 
         $.ajax({
-            type: "POST",
-            url:  api_url + "check_for_double_diary",
+            type: "GET",
+            url:  api_url + "set_user_name_from_amo",
             headers: {
                 'Authorization':'Token token=' + cookie_token,
                 'Content-Type':'application/x-www-form-urlencoded'

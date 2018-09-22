@@ -218,6 +218,7 @@ textarea {  resize: none;
 
 .wake_up_string {font-size: 14px;}
 .field_wake_up {width: 30px}
+.field_percent {width: 35px}
 
 .modal-body {
     max-height: calc(100vh - 212px);

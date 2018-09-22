@@ -62,8 +62,8 @@
 
     <script                                   src="js/html2canvas.js"></script>
     <script                                   src="js/canvas2image.js"></script>
-    <script                                   src="js/main.js?v1.75"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css?v1.75">
+    <script                                   src="js/main.js?v1.76"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css?v1.76">
 </head>
 
 <body>
@@ -258,7 +258,7 @@
 
         -->
           <button type="button" class="btn btn-warning" id="btn_test_zvonobot">ZVONOBOT</button>
-          <button type="button" class="btn btn-warning" id="btn_double_diary">DOUBLE</button>
+          <button type="button" class="btn btn-warning" id="btn_name_from_amo">Name from amo</button>
           <button type="button" class="btn btn-warning" id="btn_create_user_groups"></button>
 
       </div>
@@ -515,11 +515,12 @@
                 </div>
                 <div class="modal-body" align="center">
                     <table style="border: 0">
-                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>E-mail пользователя</h5></td>          <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_edit_email"        placeholder=""></td></tr>
-                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Имя пользователя</h5></td>             <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_edit_name"         placeholder=""></td></tr>
-                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Телефон(логин) пользователя</h5></td>  <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_edit_phone"        placeholder=""></td></tr>
-                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Профиль ВК (vk.com/id12345)</h5></td>                <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_edit_vk"           placeholder=""></td></tr>
-                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Профиль ФБ</h5></td>                <td class="db_row_input_admin"><input type="text" class="form-control" id="field_user_edit_fb"           placeholder=""></td></tr>
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>E-mail пользователя</h5></td>          <td class="db_row_input_admin"><input type="text"   class="form-control" id="field_user_edit_email"        placeholder=""></td></tr>
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Имя пользователя</h5></td>             <td class="db_row_input_admin"><input type="text"   class="form-control" id="field_user_edit_name"         placeholder=""></td></tr>
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Телефон(логин) пользователя</h5></td>  <td class="db_row_input_admin"><input type="text"   class="form-control" id="field_user_edit_phone"        placeholder=""></td></tr>
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Профиль ВК (vk.com/id12345)</h5></td>  <td class="db_row_input_admin"><input type="text"   class="form-control" id="field_user_edit_vk"           placeholder=""></td></tr>
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Профиль ФБ</h5></td>                   <td class="db_row_input_admin"><input type="text"   class="form-control" id="field_user_edit_fb"           placeholder=""></td></tr>
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Сумма оплаты</h5></td>                 <td class="db_row_input_admin"><input type="number" class="form-control" id="field_user_payment_size"      placeholder=""></td></tr>
                     </table>
                 </div>
                 <div class="modal-footer">
@@ -538,8 +539,9 @@
                 </div>
                 <div class="modal-body" id="modal_to_group_body" align="center">
                     <table style="border: 0">
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Сумма оплаты</h5></td>      <td class="db_row_input_admin"><input id="group_add_user_payment_size" type="number"/></td></tr>
 
-                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Выберите группу</h5></td>       <td class="db_row_input_admin"><select id="group_add_user"   class="selectpicker"></select></td></tr>
+                        <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Выберите группу</h5></td>   <td class="db_row_input_admin"><select id="group_add_user"   class="selectpicker"></select></td></tr>
 
                     </table>
 
@@ -1509,7 +1511,7 @@
                     <br/>
                     <div align="center" class="payment_header"><b>Оплата марафона <span class="black_color">H</span>Y<span class="black_color">LS</span></b>
                         <br>
-                        <span class="black_color"><b>Старт 19.09.2018</b></span>
+                        <span class="black_color"><b>Старт 26.09.2018</b></span>
                     </div>
 
                     <div class="col-xs-12 col-md-12 col-sm-12 text-left">
@@ -2006,32 +2008,35 @@
                   </div>
 
                   <div id="wait_bonuses_div_detox" class="diary_body" hidden>
-                      <h3 align="center">Доступные бонусы</h3>
+                      <h3 align="center">
+                          На Вашем счету
+                          <span class="play_bonuses_hyls_coins"></span> HYLScoins
+                      </h3>
 
                       <div  id="wait_bonus_yoga" class="diary_body" hidden>
                           <h4 align="center">Участие в еженедельных онлайн занятиях по йоге с куратором марафона на протяжении всего марафона (8 занятий)</h4>
-                          <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoga">Активировать</a>
+                          <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoga">1000 HYLScoins</a>
                       </div>
 
                       <div id="wait_bonus_yoganidra" class="diary_body" hidden>
                           <h4 align="center">4 аудиозаписи для полного расслабления тела и психики, йога-нидра (практики нет в марафоне)</h4>
 
-                          <a  href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoganidra">Активировать</a>
+                          <a  href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoganidra">1000 HYLScoins</a>
                       </div>
 
                       <div  id="wait_bonus_3mini" class="diary_body" hidden>
                           <h4 align="center">Доступ к 3 уникальным марафонам на 21 день по полезным привычкам: контроль активности в соцсетях, избавление от слов-паразитов, общение без конфликтов и споров</h4>
-                          <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="3mini">Активировать</a>
+                          <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="3mini">1000 HYLScoins</a>
                       </div>
 
                       <div  id="wait_bonus_savematerial" class="diary_body" hidden>
                           <h4 align="center">Возможность пользоваться материалами и личным дневником с практиками после окончания марафона</h4>
-                          <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="savematerial">Активировать</a>
+                          <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="savematerial">1000 HYLScoins</a>
                       </div>
 
                       <div  id="wait_bonus_individual" class="diary_body" hidden>
                           <h4 align="center">Доступ в отдельный чат с индивидуальной поддержкой куратора - эксперта по йоге и натуропатии, </h4>
-                          <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="individual">Активировать</a>
+                          <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="individual">1000 HYLScoins</a>
                       </div>
                 </div>
 
@@ -3843,6 +3848,11 @@
                     <div id="end_header" class="diary_body">
                         <h3 align="center">Поздравляем!</h3>
                         <br>
+                        <div id="end_header_detox" class="text_mini_end" hidden>
+                            Вы закончили марафон 60 Дней. Используйте то,
+                            что вы узнали и чему научились и дальше! Возможно, вам будут интересны другие привычки
+                        </div>
+
                         <div id="end_header_mini" class="text_mini_end" hidden>
                             Вы закончили марафон формирования полезной привычки за 21 день! Надеемся, этот путь был
                             для вас интересным и полезным, даже если порой было очень сложно.
@@ -3859,12 +3869,9 @@
                             каждый день становиться лучше и счастливее.
                             <br>
                             <div id="div_btn_download_sertifacate_family" >
-                            <br/>
-                            <!--   <button id="btn_user_material"  type="button" class="btn btn-info btn-block">Открыть материал дня</button>   -->
-                            <a data-toggle="modal" data-target="#modal_certificate_family"  href="#" class="btns_unicorn_padding button button-glow button-rounded button-action button-block">Получить сертификат</a>
-
-
-                            <div class="modal fade" id="modal_certificate_family" tabindex="-1" role="dialog" aria-labelledby="modal_label_certificate_family">
+                                <br/>
+                                <a data-toggle="modal" data-target="#modal_certificate_family"  href="#" class="btns_unicorn_padding button button-glow button-rounded button-action button-block">Получить сертификат</a>
+                                <div class="modal fade" id="modal_certificate_family" tabindex="-1" role="dialog" aria-labelledby="modal_label_certificate_family">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -3883,10 +3890,24 @@
                                     </div>
                                 </div>
                             </div>
+                            </div>
 
                         </div>
 
+                        <div id="end_header_time" class="text_mini_end" hidden>
+                            Вы закончили марафон Управления временем. Используйте то,
+                            что вы узнали и чему научились и дальше! Возможно, вам будут интересны другие привычки
                         </div>
+                    </div>
+
+                    <div id="end_next_detox" class="diary_body">
+                        <h3 align="center">60-дневный марафон</h3>
+                        <br>
+                        <p class="text_mini_end">
+                            А если вы хотите полностью погрузиться в тему здорового образа жизни, узнать намного больше о
+                            йоге и правильном питании, регистрируйтесь на 60-дневный марафон.
+                            Все подробности здесь: <a href="https://hyls.ru" target="_blank" class="yoga_color">https://hyls.ru</a>
+                        </p>
                     </div>
 
                     <div id="end_next_mini" class="diary_body" >
@@ -4076,23 +4097,33 @@
 
                     </div>
 
-                    <div id="end_next_detox" class="diary_body">
-                        <h3 align="center">60-дневный марафон</h3>
+                    <div id="end_next_time" class="diary_body">
+                        <h3 align="center">Управление временем</h3>
                         <br>
                         <p class="text_mini_end">
-                            А если вы хотите полностью погрузиться в тему здорового образа жизни, узнать намного больше о
-                            йоге и правильном питании, регистрируйтесь на 60-дневный марафон.
-                            Все подробности здесь: <a href="https://hyls.ru" target="_blank" class="yoga_color">https://hyls.ru</a>
+                           Управление временем.
+                            Все подробности здесь и зарегистрироваться можно здесь: <a href="https://hyls.ru/time" target="_blank" class="yoga_color">https://hyls.ru/time</a>
                         </p>
                     </div>
 
-                    <div class="diary_body">
+                    <div id="end_next_family" class="diary_body">
+                        <h3 align="center">Семейные отношения</h3>
+                        <br>
+                        <p class="text_mini_end">
+                            Семейные отношения.
+                            Все подробности здесь и зарегистрироваться можно здесь: <a href="https://hyls.ru/family" target="_blank" class="yoga_color">https://hyls.ru/family</a>
+                        </p>
+                    </div>
 
-                        <p align="center" class="text_mini_end">Или вы можете продолжить Ваш марафон</p>
+                    <div id="end_continue" class="diary_body">
+                        <p align="center" class="text_mini_end">Вы можете продолжить Ваш марафон</p>
                         <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_marafon_continue">Продолжить марафон</a>
+                    </div>
 
-
-
+                    <div id="end_buy_material" class="diary_body">
+                        <p align="center" class="text_mini_end">Возможность пользовататься дневником и материалами дальше</p>
+                        <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_marafon_continue_buy">Оплатить</a>
+                        <div id="checkout_buy_material" hidden></div>
                     </div>
 
 
@@ -4849,7 +4880,7 @@
                             <button id="btn_question_wake_up_save_time"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
                         </div>
 
-                        <div id="question_snacking_time" hidden>
+                        <div id="question_snacking_time" class="question_mini" hidden>
                             <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -4939,7 +4970,7 @@
                                     <td valign="middle">Пройти тест на ошибки по организации своего времени</td>
                                     <td class="db_row_input">          </td>
                                     <td class="db_row_input text-center div_row_fact">
-                                        <input type="text" class="field_wake_up" id="filed_time_errors" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="">
+                                        <input type="text" class="field_percent" id="filed_time_errors" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="">
                                     </td>
                                 </tr>
 
@@ -4960,7 +4991,7 @@
                                     <td valign="middle">Итоги дня, %</td>
                                     <td class="db_row_input">          </td>
                                     <td class="db_row_input text-center div_row_fact">
-                                        <input type="text" class="field_wake_up" id="filed_tasks_complete" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="">
+                                        <input type="text" class="field_percent" id="filed_tasks_complete" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="">
                                     </td>
                                 </tr>
 
@@ -5241,50 +5272,58 @@
         <div class="col-sm-3 col-md-3"></div>
         <div class="col-sm-6 col-md-6 col-xs-12" align="center">
             <div id="play_bonuses_div_detox" class="diary_body" hidden>
-                <h4 align="center">Доступные бонусы</h4>
+                <h4 align="center">
+                    На Вашем счету
+                    <span class="play_bonuses_hyls_coins"></span> HYLScoins.
+                    Вы можете увеличить их кол-во, просто <a href="#" class="reg_link nav-link-user" name="nav_user_support">поддержав</a> наш Проект
+                </h4>
 
                 <div  id="play_bonus_yoga" class="diary_body" hidden>
                     <h4 align="center">Участие в еженедельных онлайн занятиях по йоге с куратором марафона на протяжении всего марафона (8 занятий)</h4>
-                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoga">Активировать</a>
+                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoga">1000 HYLScoins</a>
                 </div>
 
                 <div  id="play_bonus_savematerial" class="diary_body" hidden>
                     <h4 align="center">Возможность пользоваться материалами и личным дневником с практиками после окончания марафона</h4>
-                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="savematerial">Активировать</a>
+                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="savematerial">1000 HYLScoins</a>
                 </div>
 
                 <div id="play_bonus_yoganidra" class="diary_body" hidden>
                     <h4 align="center">4 аудиозаписи для полного расслабления тела и психики, йога-нидра (практики нет в марафоне)</h4>
-                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoganidra">Активировать</a>
+                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoganidra">1000 HYLScoins</a>
                 </div>
 
                 <div  id="play_bonus_3mini" class="diary_body" hidden>
                     <h4 align="center">Доступ к 3 уникальным марафонам на 21 день по полезным привычкам: контроль активности в соцсетях, избавление от слов-паразитов, общение без конфликтов и споров</h4>
-                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="3mini">Активировать</a>
+                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="3mini">1000 HYLScoins</a>
                 </div>
 
                 <div  id="play_bonus_individual" class="diary_body" hidden>
                     <h4 align="center">Доступ в отдельный чат с индивидуальной поддержкой куратора - эксперта по йоге и натуропатии, </h4>
-                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="individual">Вступить</a>
+                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="individual">1000 HYLScoins</a>
                 </div>
             </div>
 
             <div id="play_bonuses_div_time" class="diary_body" hidden>
-                <h4 align="center">Доступные бонусы</h4>
+                <h4 align="center">
+                    На Вашем счету
+                    <span class="play_bonuses_hyls_coins"></span> HYLScoins.
+                    Вы можете увеличить их кол-во, просто <a href="#" class="reg_link nav-link-user" name="nav_user_support">поддержав</a> наш Проект
+                </h4>
 
                 <div  id="play_bonus_savematerial_time" class="diary_body" hidden>
                     <h4 align="center">Возможность пользоваться материалами и личным дневником с практиками после окончания марафона</h4>
-                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="savematerial_time">Активировать</a>
+                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="savematerial_time">1000 HYLScoins</a>
                 </div>
 
                 <div  id="play_bonus_yoganidra_time" class="diary_body" hidden>
                     <h4 align="center">4 аудиозаписи для полного расслабления тела и психики, йога-нидра (практики нет в марафоне)</h4>
-                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoganidra_time">Активировать</a>
+                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoganidra_time">1000 HYLScoins</a>
                 </div>
 
                 <div  id="play_bonus_2mini_time" class="diary_body" hidden>
                     <h4 align="center">Доступ к 2 уникальным марафонам на 21 день по полезным привычкам: "избавление от слов-паразитов" и "общение без конфликтов и споров"</h4>
-                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="2mini_time">Активировать</a>
+                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="2mini_time">1000 HYLScoins</a>
                 </div>
 
             </div>
