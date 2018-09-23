@@ -2053,6 +2053,11 @@
             <div id="diary_marafon_detox"  hidden class="row">
                 <div class="col-xs-0  col-sm-2"></div>
                 <div class="col-xs-12 col-sm-8" align="center">
+                    <div id="alert_detox_read_intro" class="alert alert-warning alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Приветствуем!</strong> Чтобы узнать как проходит участие в марафоне ознакомтесь пожалуйста с <a id="link_intro_detox" href="https://hyls.ru/hello" target="_blank">материалом</a>.
+                    </div>
+
                     <div class="diary_header">
                         <h2 class="marafon_name"></h2>
                         <div class="row">
@@ -3901,17 +3906,21 @@
                     </div>
 
                     <div id="end_next_detox" class="diary_body">
-                        <h3 align="center">60-дневный марафон</h3>
+                        <h3 align="center">60-дневный марафон здоровья и йоги</h3>
                         <br>
                         <p class="text_mini_end">
-                            А если вы хотите полностью погрузиться в тему здорового образа жизни, узнать намного больше о
-                            йоге и правильном питании, регистрируйтесь на 60-дневный марафон.
-                            Все подробности здесь: <a href="https://hyls.ru" target="_blank" class="yoga_color">https://hyls.ru</a>
+                            Eсли вы хотите полностью погрузиться в тему здорового образа жизни, узнать намного больше о
+                            йоге и правильном питании, регистрируйтесь на 60-дневный марафон. Все подробности здесь: <a href="https://hyls.ru" target="_blank" class="yoga_color">https://hyls.ru</a>
+                            , а зарегистрироваться можно здесь
                         </p>
+                        <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_end_buy_detox">Зарегистрироваться</a>
+                            <div id="end_checkout_detox" hidden></div>
+
                     </div>
 
                     <div id="end_next_mini" class="diary_body" >
-                        <h3 align="center">Доступные привычки</h3>
+                        <h3 align="center">Формирования здоровых привычек за 21 день!</h3>
+                        <p>Выбирайте нужные привычки и начинайте в удобный для Вас день</p>
                         <br>
                         <div align="left" class="buy_practiv_div"  id="div_buy_checkbox_water">
                             <div class="pretty p-default p-curve p-thick p-smooth p-bigger cb_buy_mini">
@@ -4102,19 +4111,27 @@
                         <br>
                         <p class="text_mini_end">
                            Управление временем.
-                            Все подробности здесь и зарегистрироваться можно здесь: <a href="https://hyls.ru/time" target="_blank" class="yoga_color">https://hyls.ru/time</a>
+                            Все подробности здесь: <a href="https://hyls.ru/time" target="_blank" class="yoga_color">https://hyls.ru/time</a>
+                            , а зарегистрироваться можно здесь
                         </p>
+                        <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_end_buy_time">Зарегистрироваться</a>
+                        <div id="end_checkout_time" hidden></div>
                     </div>
 
+                    <!--
                     <div id="end_next_family" class="diary_body">
                         <h3 align="center">Семейные отношения</h3>
                         <br>
                         <p class="text_mini_end">
                             Семейные отношения.
-                            Все подробности здесь и зарегистрироваться можно здесь: <a href="https://hyls.ru/family" target="_blank" class="yoga_color">https://hyls.ru/family</a>
+                            Все подробности здесь: <a href="https://hyls.ru/family" target="_blank" class="yoga_color">https://hyls.ru/family</a>
+                            , а зарегистрироваться можно здесь
                         </p>
-                    </div>
 
+                        <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_end_buy_family">Зарегистрироваться</a>
+                        <div id="end_checkout_family" hidden></div>
+                    </div>
+-->
                     <div id="end_continue" class="diary_body">
                         <p align="center" class="text_mini_end">Вы можете продолжить Ваш марафон</p>
                         <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_marafon_continue">Продолжить марафон</a>
@@ -4131,8 +4148,6 @@
 
                     <img src="img/reg_foto_logo2.png" class="img-responsive">
                 </div>
-
-
             </div>
 
             <div id="diary_marafon_family" hidden class="row">
@@ -4891,13 +4906,16 @@
                                 </thead>
                                 <tbody>
                                 <tr class="db_row_dialog">
-                                    <td valign="middle">      <h5>Включить ли практику "Без перекусов и переедания" в Ваш дневник?</h5></td>
-                                    <td class="db_row_input text-center">
-                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                            <input type="checkbox"  id="filed_question_snacking_time" />
-                                            <div class="state p-success-o">
-                                                <label></label>
-                                            </div>
+                                    <td class="row_detox"><h5>Включить ли практику "Без перекусов и переедания" в Ваш дневник?</h5></td>
+                                    <td class="row_detox">
+                                        <div class="dropdown">
+                                            <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_time_snacking" value="yes">
+                                                Да<span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" class="link_time_snacking" name="yes">Да</a></li>
+                                                <li><a href="#" class="link_time_snacking" name="no">Нет</a></li>
+                                            </ul>
                                         </div>
                                     </td>
                                 </tr>
@@ -4907,6 +4925,7 @@
                             <br/>
                             <br/>
                         </div>
+
 
 
 
@@ -5103,9 +5122,13 @@
                     <br/>
                     <br/>
                     <br/>
-                    <h1>Ваш дневник заблокирован</h1>
-                    <br/>
-                    <button id="btn_unlock_diary" class="btn btn-block btn-success btn-lg">Разблокировать</button>
+                    <div class="diary_body">
+                        <h1>Ваш дневник заблокирован</h1>
+                        <br/>
+                        <button id="btn_unlock_diary" class="btn btn-block btn-success btn-lg">Разблокировать</button>
+
+                        <div id="checkout_unlock_diary" hidden></div>
+                    </div>
                 </div>
                 <div class="col-xs-0  col-sm-3"></div>
             </div>
