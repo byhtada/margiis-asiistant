@@ -7896,7 +7896,9 @@ $( document ).ready(function() {
                 'Authorization':'Token token=' + cookie_token,
                 'Content-Type':'application/x-www-form-urlencoded'
             },
-            success: function(data){},
+            success: function(data){
+                alert("Дневник разблокирован");
+            },
             failure: function(errMsg) {alert(errMsg.toString());}
         });
     });
