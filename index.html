@@ -62,8 +62,8 @@
 
     <script                                   src="js/html2canvas.js"></script>
     <script                                   src="js/canvas2image.js"></script>
-    <script                                   src="js/main.js?v1.76"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css?v1.76">
+    <script                                   src="js/main.js?v1.77"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css?v1.77">
 </head>
 
 <body>
@@ -238,11 +238,9 @@
                         <a class="nav-link-admin" id="nav_materials"   href="#">Материалы</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link-admin" id="nav_conversion"   href="#">Конверсия</a>
+                        <a class="nav-link-admin" id="nav_metrics"   href="#">Метрики</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link-admin" id="nav_leaved"   href="#">Забившие</a>
-                    </li>
+
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -253,15 +251,7 @@
         </div><!-- /.container-fluid -->
     </nav>
 
-    <div id="page_test" hidden>
-        <!--   <button type="button" class="btn btn-warning" id="btn_set_soc_practic">Назначить социальный практики</button>
 
-        -->
-          <button type="button" class="btn btn-warning" id="btn_test_zvonobot">ZVONOBOT</button>
-          <button type="button" class="btn btn-warning" id="btn_name_from_amo">Name from amo</button>
-          <button type="button" class="btn btn-warning" id="btn_create_user_groups"></button>
-
-      </div>
 
     <div id="page_groups"  class="container-fluid" hidden>
 
@@ -434,30 +424,31 @@
               Поиск пользователя
               <input  id="field_find_user" type="text" placeholder="Поиск по email, телефону или ВК ID">
               <button id="btn_find_user" type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+              <button id="btn_modal_register" type="button" class="btn btn-success"  data-toggle="modal" data-target="#modal_register"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
           </h3>
           <div id="table_users_find"></div>
 
           <br/>
           <br/>
+        <!--
+                 <h3 align="center">
+                     Зарегистрированные
+                     <button id="btn_modal_register" type="button" class="btn btn-success"  data-toggle="modal" data-target="#modal_register"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                     <button id="btn_hide_user_register" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
+                 </h3>
+                 <div id="table_users_register"></div>
 
-          <h3 align="center">
-              Зарегистрированные
-              <button id="btn_modal_register" type="button" class="btn btn-success"  data-toggle="modal" data-target="#modal_register"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-              <button id="btn_hide_user_register" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
-          </h3>
-          <div id="table_users_register"></div>
 
+                 <h3 align="center">Оплатившие
+                     <button id="btn_modal_to_group_all" type="button" class="btn btn-success"  data-toggle="modal" data-target="#modal_to_group_all"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
 
-          <h3 align="center">Оплатившие
-             <!-- <button id="btn_modal_to_group_all" type="button" class="btn btn-success"  data-toggle="modal" data-target="#modal_to_group_all"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
-             -->
               <button id="btn_hide_user_paid"     type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
 
           </h3>
           <div id="table_users_pay"></div>
 
 
-          <!--
+
           <h3 align="center">В группах <button id="btn_hide_user_group"    type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button></h3>
           <div id="div_table_users_in_group" class="row">
               <div class="col-xs-1"></div>
@@ -991,101 +982,43 @@
 
 
 
-    <div id="page_conversion" class="container-fluid" hidden>
-        <div class="col-xs-2"></div>
-        <div class="col-xs-10">
-            <h2 align="center">
-                Конверсия пользователей
-                <button type="button" class="btn btn-info btn-sm"  data-toggle="modal" data-target="#modal_conversion_date">   <span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span></button>
-            </h2>
-            <br/>
+    <div id="page_metrics" class="container-fluid" hidden>
 
+        <h3 align="center">
+            <select id="metrics_group_1"   class="selectpicker"></select>
+            Сравнение метрик групп
+            <select id="metrics_group_2"   class="selectpicker"></select>
+            <br>
+            <button id="get_comprasion" type="button" class="btn btn-success">Сравнить</button>
+        </h3>
 
-            <table class="table  table-hover">
-                <thead>
-                <tr class="db_row_dialog">
-                    <td><h5 align="center"><b>Способ регистрации</b></h5></td>
-                    <td><h5 align="center"><b>Кликов</b></h5></td>
-                    <td><h5 align="center"><b>Регистраций</b></h5></td>
-                    <td><h5 align="center"><b>Потери</b></h5></td>
-                    <td><h5 align="center"><b>Участников, всего</b></h5></td>
-                    <td><h6 align="center">оплативших</h6></td>
-                    <td><h6 align="center">безоплаты</h6></td>
-                    <td><h5 align="center"><b>Конверсия</b></h5></td>
-                    <td><h5 align="center"><b>Ср. ежедневный платеж, руб</b></h5></td>
-                </tr>
-                </thead>
+        <div class="row">
+            <div class="col-xs-6">
 
-                <tbody>
-                <tr class="db_row_dialog">
-                    <td valign="middle"><h5>ВКонтакте</h5></td>
-                    <td valign="middle"><h5 align="center" id="conv_vk_clicks"></h5></td>
-                    <td valign="middle"><h5 align="center"><button id="conv_vk_regs"       value="vk" type="button" class="btn btn-link conv_regs_all">  </button></h5></td>
-                    <td valign="middle"><h5 align="center"><button                         value="vk" type="button" class="btn btn-sm   conv_lost_reg">   <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></h5></td>
-                    <td valign="middle"><h5 align="center"><button id="conv_vk_users_all"  value="vk" type="button" class="btn btn-link conv_practics_all">  </button></h5></td>
-                    <td valign="middle"><h5 align="center"><button id="conv_vk_users_pay"  value="vk" type="button" class="btn btn-link conv_practics_pay">  </button></h5></td>
-                    <td valign="middle"><h5 align="center"><button id="conv_vk_users_free" value="vk" type="button" class="btn btn-link conv_practics_free">  </button></h5></td>
-                    <td valign="middle"><h5 align="center" id="conv_vk_users_conv"></h5></td>
-                    <td valign="middle"><h5 align="center" id="conv_vk_users_profit"></h5></td>
-                </tr>
-
-                <tr class="db_row_dialog">
-                    <td valign="middle"><h5>FaceBook</h5></td>
-                    <td valign="middle"><h5 align="center" id="conv_fb_clicks"></h5></td>
-                    <td valign="middle"><h5 align="center"><button id="conv_fb_regs"       value="fb" type="button" class="btn btn-link conv_regs_all">  </button></h5></td>
-                    <td valign="middle"><h5 align="center"><button                         value="fb" type="button" class="btn btn-sm   conv_lost_reg">   <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></h5></td>
-                    <td valign="middle"><h5 align="center"><button id="conv_fb_users_all"  value="fb" type="button" class="btn btn-link conv_practics_all">  </button></h5></td>
-                    <td valign="middle"><h5 align="center"><button id="conv_fb_users_pay"  value="fb" type="button" class="btn btn-link conv_practics_pay">  </button></h5></td>
-                    <td valign="middle"><h5 align="center"><button id="conv_fb_users_free" value="fb" type="button" class="btn btn-link conv_practics_free">  </button></h5></td>
-                    <td valign="middle"><h5 align="center" id="conv_fb_users_conv"></h5></td>
-                    <td valign="middle"><h5 align="center" id="conv_fb_users_profit"></h5></td>
-
-                </tr>
-
-                <tr class="db_row_dialog">
-                    <td valign="middle"><h5>Ручная рег.</h5></td>
-                    <td valign="middle"><h5 align="center" id="conv_hand_clicks"></h5></td>
-                    <td valign="middle"><h5 align="center"><button id="conv_hand_regs"       value="hand" type="button" class="btn btn-link conv_regs_all">  </button></h5></td>
-                    <td valign="middle"><h5 align="center"><button                           value="hand" type="button" class="btn btn-sm   conv_lost_reg">   <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></h5></td>
-                    <td valign="middle"><h5 align="center"><button id="conv_hand_users_all"  value="hand" type="button" class="btn btn-link conv_practics_all">  </button></h5></td>
-                    <td valign="middle"><h5 align="center"><button id="conv_hand_users_pay"  value="hand" type="button" class="btn btn-link conv_practics_pay">  </button></h5></td>
-                    <td valign="middle"><h5 align="center"><button id="conv_hand_users_free" value="hand" type="button" class="btn btn-link conv_practics_free">  </button></h5></td>
-                    <td valign="middle"><h5 align="center" id="conv_hand_users_conv"></h5></td>
-                    <td valign="middle"><h5 align="center" id="conv_hand_users_profit"></h5></td>
-                </tr>
-
-                <tr class="db_row_dialog">
-                    <td valign="middle"><h5><b>Всего</b></h5></td>
-                    <td valign="middle"><h5 align="center" id="conv_all_clicks"></h5></td>
-                    <td valign="middle"><h5 align="center" id="conv_all_regs"></h5></td>
-                    <td valign="middle"><h5 align="center" ></h5></td>
-                    <td valign="middle"><h5 align="center" id="conv_all_users_all"></h5></td>
-                    <td valign="middle"><h5 align="center" id="conv_all_users_pay"></h5></td>
-                    <td valign="middle"><h5 align="center" id="conv_all_users_free"></h5></td>
-                    <td valign="middle"><h5 align="center" id="conv_all_users_conv"></h5></td>
-                    <td valign="middle"><h5 align="center" id="conv_all_users_profit"></h5></td>
-
-                </tr>
-                </tbody>
-            </table>
-
-            <br/>
-            <br/>
-            <br/>
-
-
-            <h2 align="center">
-                <button id="get_chart_leave_users" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
-                График ухода пользователей после дня Х
-                <select id="leave_flows"   class="selectpicker"></select>
-                <button id="get_chart_leave_flow" type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-
-            </h2>
-            <div id="div_chart_leave_users">
-                <canvas id="chart_leave_users"       ></canvas>
             </div>
+
+            <div class="col-xs-6"></div>
         </div>
-        <div class="col-xs-2"></div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <h2 align="center">
+            <button id="get_chart_leave_users" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
+            График ухода пользователей после дня Х
+            <select id="leave_flows"   class="selectpicker"></select>
+            <button id="get_chart_leave_flow" type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+        </h2>
+
+        <div id="div_chart_leave_users">
+            <canvas id="chart_leave_users"       ></canvas>
+        </div>
     </div>
 
     <div class="modal fade" id="modal_conversion_date" tabindex="-1" role="dialog" aria-labelledby="modal_label_conversion_date">
@@ -1180,19 +1113,15 @@
     </div>
 
 
-    <div id="page_leaved"  class="container-fluid" hidden>
-        <h2 align="center">Неактивные пользователи</h2>
-        <br/>
+    <div id="page_test" hidden>
+        <!--   <button type="button" class="btn btn-warning" id="btn_set_soc_practic">Назначить социальный практики</button>
 
-        <div class="row">
-            <div class="col-xs-1"></div>
-            <div class="col-xs-10">
-                <div id="table_users_leaved"></div>
-            </div>
-            <div class="col-xs-1"></div>
-        </div>
+        -->
+        <button type="button" class="btn btn-warning" id="btn_test_zvonobot">ZVONOBOT</button>
+        <button type="button" class="btn btn-warning" id="btn_name_from_amo">Name from amo</button>
+        <button type="button" class="btn btn-warning" id="btn_activate_bonuses_for_old">Бонусы</button>
+
     </div>
-
 
     <div id="page_group_info"  class="container-fluid" hidden>
         <div class="row">
@@ -1286,7 +1215,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li  id="nav_bonus_mini" class="nav-item">
-                        <a class="nav-link-user" name="nav_user_bonus"   href="#">Бонусы</a>
+                        <a class="nav-link-user" name="nav_user_bonus"   href="#">Мои бонусы</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link-user" name="nav_user_support"   href="#">Поддержать HYLS</a>
@@ -3920,7 +3849,7 @@
 
                     <div id="end_next_mini" class="diary_body" >
                         <h3 align="center">Формирования здоровых привычек за 21 день!</h3>
-                        <p>Выбирайте нужные привычки и начинайте в удобный для Вас день</p>
+                        <h5 align="center">Выбирайте нужные привычки и начинайте в удобный для Вас день</h5>
                         <br>
                         <div align="left" class="buy_practiv_div"  id="div_buy_checkbox_water">
                             <div class="pretty p-default p-curve p-thick p-smooth p-bigger cb_buy_mini">
@@ -4137,7 +4066,7 @@
                         <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_marafon_continue">Продолжить марафон</a>
                     </div>
 
-                    <div id="end_buy_material" class="diary_body">
+                    <div id="end_buy_material" class="diary_body" hidden>
                         <p align="center" class="text_mini_end">Возможность пользовататься дневником и материалами дальше</p>
                         <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_marafon_continue_buy">Оплатить</a>
                         <div id="checkout_buy_material" hidden></div>
@@ -5124,6 +5053,7 @@
                     <br/>
                     <div class="diary_body">
                         <h1>Ваш дневник заблокирован</h1>
+                        <h4></h4>
                         <br/>
                         <button id="btn_unlock_diary" class="btn btn-block btn-success btn-lg">Разблокировать</button>
 
@@ -5295,7 +5225,7 @@
         <div class="col-sm-3 col-md-3"></div>
         <div class="col-sm-6 col-md-6 col-xs-12" align="center">
             <div id="play_bonuses_div_detox" class="diary_body" hidden>
-                <h4 align="center">
+                <h4 id="play_bonuses_detox_header" align="center">
                     На Вашем счету
                     <span class="play_bonuses_hyls_coins"></span> HYLScoins.
                     Вы можете увеличить их кол-во, просто <a href="#" class="reg_link nav-link-user" name="nav_user_support">поддержав</a> наш Проект
