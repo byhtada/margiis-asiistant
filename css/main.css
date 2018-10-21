@@ -30,11 +30,23 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 #family_certificate {width: 595px; height: 842px;}
 
 
+#partner_link_text {color: rgba(0,0,0,0.25);}
+
+
 .bs_table_header {background-color: rgba(255, 126, 42, 0.85);}
 
 
 .diary_header, .diary_body, .settings_div {
     padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(232, 229, 225, 0.19);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.div_partner {
+    height: 100%;
+    padding: 15px;
+    margin: 5px;
     border-radius: 10px;
     background-color: rgba(232, 229, 225, 0.19);
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
@@ -245,7 +257,7 @@ textarea {  resize: none;
 
 
 .row_detox           {border: 0; width:  50%;   }
-.db_row_input        {border: 0; padding: 0; width:  100px; }
+.db_row_input        {border: 0; padding: 0; width:  105px; }
 .div_row_fact {align-items: center; align-content: center;}
 .db_row_input_admin  {border: 0; width:  200px; padding-left: 10px;}
 

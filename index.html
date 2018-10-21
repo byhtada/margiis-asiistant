@@ -62,8 +62,8 @@
 
     <script                                   src="js/html2canvas.js"></script>
     <script                                   src="js/canvas2image.js"></script>
-    <script                                   src="js/main.js?v1.77"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css?v1.77">
+    <script                                   src="js/main.js?v1.84"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css?v1.84">
 </head>
 
 <body>
@@ -74,14 +74,13 @@
 
 
 
-<!-- Yandex.Metrika counter --> <script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter47972495 = new Ya.Metrika2({ id:47972495, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/tag.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks2"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47972495" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
 
 <div id="error_500" hidden>
     <br>
     <div class="diary_body error_background">
         <img src="img/reg_foto_logo2.png" class="img-responsive logo_error">
         <p class="error_text">Просим прощение за неудобство. Это окно показывается когда у нашего пользователя возникла ошибка.</p>
-        <p class="error_text"> Что бы оперативно устранить проблему дайте нам знать в Телеграм или Viber +380973143889</p>
+        <p class="error_text">Что бы оперативно устранить проблему дайте нам знать в Телеграм или Viber +380973143889, в сообщении напишите сразу Ваш логин</p>
     </div>
 </div>
 
@@ -240,6 +239,9 @@
                     <li class="nav-item">
                         <a class="nav-link-admin" id="nav_metrics"   href="#">Метрики</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link-admin" id="nav_partners"  href="#">Партнеры</a>
+                    </li>
 
                 </ul>
 
@@ -312,6 +314,9 @@
                                       <li><a href="#" class="amount_link_group" name="2">Больше минимальной</a></li>
                                   </ul>
                               </div>
+                          </td></tr>
+                          <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Номер гипотезы</h5></td>          <td class="db_row_input_admin">
+                              <input type="text" class="form-control" id="group_hypothesis"  placeholder="">
                           </td></tr>
                       </table>
                   </div>
@@ -982,24 +987,185 @@
 
 
 
-    <div id="page_metrics" class="container-fluid" hidden>
-
+    <div id="page_partners" class="container-fluid" hidden>
         <h3 align="center">
-            <select id="metrics_group_1"   class="selectpicker"></select>
-            Сравнение метрик групп
-            <select id="metrics_group_2"   class="selectpicker"></select>
-            <br>
-            <button id="get_comprasion" type="button" class="btn btn-success">Сравнить</button>
+            Добавить партнера
+            <button id="btn_modal_add_partner" type="button" class="btn btn-success"  data-toggle="modal" data-target="#modal_add_partner"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
         </h3>
 
-        <div class="row">
-            <div class="col-xs-6">
+        <div id="table_partners"></div>
 
+        <div class="modal fade" id="modal_add_partner"     tabindex="-1" role="dialog" aria-labelledby="modal_label_add_partner">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="modal_label_add_partner">Добавить партнера</h4>
+                    </div>
+                    <div class="modal-body" align="center">
+                        <table style="border: 0">
+                            <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Имя</h5></td>                   <td class="db_row_input_admin"><input type="text" class="form-control" id="field_add_partner_name"         placeholder=""></td></tr>
+                            <tr class="db_row_dialog"><td align="right" valign="middle"><h5>E-mail</h5></td>                <td class="db_row_input_admin"><input type="text" class="form-control" id="field_add_partner_email"        placeholder=""></td></tr>
+                            <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Пароль пользователя</h5></td>   <td class="db_row_input_admin"><input type="text" class="form-control" id="field_add_partner_password"     placeholder=""></td></tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        <button id="btn_add_partner" type="button" class="btn btn-success">Добавить</button>
+                    </div>
+                </div>
             </div>
-
-            <div class="col-xs-6"></div>
         </div>
 
+
+    </div>
+
+    <div id="page_metrics" class="container-fluid" hidden>
+
+        <div class="diary_body">
+            <h3 align="center">
+                <select id="metrics_group_1"   class="selectpicker"></select>
+                Сравнение метрик групп
+                <select id="metrics_group_2"   class="selectpicker"></select>
+                <br>
+                <button id="get_comprasion" type="button" class="btn btn-success">Сравнить</button>
+            </h3>
+
+            <table class="table table-hover table_comprasion" hidden>
+                <thead>
+                    <tr>
+                        <td><h4  align="center"><b>Метрики</b></h4></td>
+                        <td><h4 id="group_name_1" align="center"></h4></td>
+                        <td><h4 id="group_name_2" align="center"></h4></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td bgcolor="#c1c1c1" style="line-height:10px;" colspan=3>Основная информация</td>
+                    </tr>
+
+                    <tr>
+                        <td><p>День марафона</p></td>
+                        <td><p align="center" id="metrics_marafon_day_1"></p></td>
+                        <td><p align="center" id="metrics_marafon_day_2"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td><p>Кол-во участников</p></td>
+                        <td><p align="center"><button id="metrics_total_users_1" type="button" value="1" class="btn btn-link yoga_color"  data-toggle="modal" data-target="#modal_group_info"></button></p></td>
+                        <td><p align="center"><button id="metrics_total_users_2" type="button" value="2" class="btn btn-link yoga_color"  data-toggle="modal" data-target="#modal_group_info"></button></p></td>
+                    </tr>
+
+                    <tr>
+                        <td><p>Активных пользователей на сегодня</p></td>
+                        <td><p align="center" id="metrics_users_active_1"></p></td>
+                        <td><p align="center" id="metrics_users_active_2"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td><p>Средняя заполняемость дневника, %</p></td>
+                        <td><p align="center" id="metrics_average_involvement_1"></p></td>
+                        <td><p align="center" id="metrics_average_involvement_2"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td bgcolor="#c1c1c1" style="line-height:10px;" colspan=3>Финансы</td>
+                    </tr>
+
+
+                    <tr>
+                        <td><p>Выручка от регистраций</p></td>
+                        <td><p align="center" id="metrics_revenu_reg_1"></p></td>
+                        <td><p align="center" id="metrics_revenu_reg_2"></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Средний чек при регистрации</p></td>
+                        <td><p align="center" id="metrics_average_check_1"></p></td>
+                        <td><p align="center" id="metrics_average_check_2"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td><p>Оплата более 1000</p></td>
+                        <td><p align="center" id="metrics_total_over_1000_1"></p></td>
+                        <td><p align="center" id="metrics_total_over_1000_2"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td><p>Выручка от поддержки</p></td>
+                        <td><p align="center" id="metrics_revenu_support_1"></p></td>
+                        <td><p align="center" id="metrics_revenu_support_2"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td bgcolor="#c1c1c1" style="line-height:10px;" colspan=3>Бонусы</td>
+                    </tr>
+
+
+                    <tr>
+                        <td><p>Бонусов активировано</p></td>
+                        <td><p align="center" id="metrics_bonuses_activate_1"></p></td>
+                        <td><p align="center" id="metrics_bonuses_activate_2"></p></td>
+                    </tr>
+
+
+                    <tr>
+                        <td><p>Бонус - Возможность пользоваться материалами и личным дневником с практиками после окончания марафона</p></td>
+                        <td><p align="center" id="metrics_bonus_savematerial_1"></p></td>
+                        <td><p align="center" id="metrics_bonus_savematerial_2"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td><p>Бонус - участие в еженедельных онлайн занятиях по йоге с куратором марафона на протяжении всего марафона</p></td>
+                        <td><p align="center" id="metrics_bonus_yoga_1"></p></td>
+                        <td><p align="center" id="metrics_bonus_yoga_2"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td><p>Бонус - 4 аудиозаписи для полного расслабления тела и психики, йога-нидра</p></td>
+                        <td><p align="center" id="metrics_bonus_yoganidra_1"></p></td>
+                        <td><p align="center" id="metrics_bonus_yoganidra_2"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td><p>Бонус - доступ к марафонам на 21 день по полезным привычкам</p></td>
+                        <td><p align="center" id="metrics_bonus_mini_1"></p></td>
+                        <td><p align="center" id="metrics_bonus_mini_2"></p></td>
+                    </tr>
+
+
+                    <tr>
+                        <td><p>Бонус - доступ в отдельный чат с индивидуальной поддержкой куратора - эксперта по йоге и натуропатии</p></td>
+                        <td><p align="center" id="metrics_bonus_individual_1"></p></td>
+                        <td><p align="center" id="metrics_bonus_individual_2"></p></td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+
+
+            <div class="modal fade" id="modal_group_info" tabindex="-1" role="dialog" aria-labelledby="modal_label_group_info">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="modal_label_group_info">Информация о группе</h4>
+                        </div>
+                        <div class="modal-body"  align="center">
+                            <div id="table_group_info"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Оке</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
         <br>
         <br>
         <br>
@@ -1009,7 +1175,7 @@
         <br>
         <br>
 
-        <h2 align="center">
+        <h2 align="center" hidden>
             <button id="get_chart_leave_users" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
             График ухода пользователей после дня Х
             <select id="leave_flows"   class="selectpicker"></select>
@@ -1118,8 +1284,10 @@
 
         -->
         <button type="button" class="btn btn-warning" id="btn_test_zvonobot">ZVONOBOT</button>
-        <button type="button" class="btn btn-warning" id="btn_name_from_amo">Name from amo</button>
+        <button type="button" class="btn btn-warning" id="btn_test_new_email">Test new email</button>
         <button type="button" class="btn btn-warning" id="btn_activate_bonuses_for_old">Бонусы</button>
+        <button type="button" class="btn btn-warning" id="btn_check_for_double_diary">Задвоение дневника</button>
+        <button type="button" class="btn btn-warning" id="btn_correct_diary">Исправление дневника</button>
 
     </div>
 
@@ -1175,6 +1343,102 @@
 
 </div>
 
+<div id="page_partner_main" hidden>
+    <nav class="navbar navbar-default" >
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation_bar_user" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand black_color nav-link-user" name="nav_user_header"  href="#"><b>H<span class="yoga_color">Y</span>LS</b></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" >
+                <ul class="nav navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link-user" name="nav_user_diary"   href="#">Основная</a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><a id="btn_partner_exit" href="#" hidden>Выход</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="row">
+        <div class="col-xs-0  col-sm-2"></div>
+        <div class="col-xs-12 col-sm-8">
+
+            <div class="row div_partner">
+                <h3 align="center">Общая информация</h3>
+                <div class="col-xs-12 col-sm-5">
+                    <div class="div_partner">
+                        <h4 align="center">Сводный отчет</h4>
+                        <table class="table  table-hover">
+                            <tbody>
+                            <tr class="db_row_dialog">
+                                <td valign="middle"><h5>Всего лидов</h5></td>
+                                <td class="db_row_input"><h5 id="partner_leads"></h5></td>
+                            </tr>
+                            <tr class="db_row_dialog">
+                                <td valign="middle"><h5>Оплаченных заявок</h5></td>
+                                <td class="db_row_input"><h5 id="partner_clients"></h5></td>
+                            </tr>
+                            <tr class="db_row_dialog">
+                                <td valign="middle"><h5>Выручка, рублей</h5></td>
+                                <td class="db_row_input"><h5 id="partner_total_amount"></h5></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="col-xs-12 col-sm-7">
+                    <div class="div_partner">
+
+                        <h4 align="center">Ссылки</h4>
+                        <table class="table  table-hover">
+                        <tbody>
+                        <tr class="db_row_dialog">
+                            <td valign="middle"><h5>Детокс</h5></td>
+                            <td><h5>  <a href="#" id="partner_link_detox"></a></h5></td>
+                        </tr>
+                        <tr class="db_row_dialog">
+                            <td valign="middle"><h5>Семейные отношения</h5></td>
+                            <td><h5><a href="#" id="partner_link_family"></a></h5></td>
+                        </tr>
+                        <tr class="db_row_dialog">
+                            <td valign="middle"><h5>Управление временем</h5></td>
+                            <td><h5><a href="#" id="partner_link_time"></a></h5></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                        <h5 align="center" id="partner_link_text"></h5>
+                    </div>
+
+                   <!-- <a href="#" id="partner_link_mini"></a> -->
+
+                </div>
+            </div>
+
+            <br>
+            <div class="div_partner">
+                <h3 align="center">Сгенерированные лиды</h3>
+                <div id="table_partner_leads"></div>
+            </div>
+
+        </div>
+        <div class="col-xs-0  col-sm-2"></div>
+    </div>
+
+</div>
 
 <div id="page_user_main" hidden>
     <nav class="navbar navbar-default" id="nav_bar" hidden>
@@ -2518,7 +2782,6 @@
                             <thead>
                             <tr class="db_row_dialog">
                                 <td><h4 align="center"><b>Практика</b></h4></td>
-                                <td><h4 align="center"><b>План</b></h4></td>
                                 <td><h4 align="center"><b>Сделал</b></h4></td>
                             </tr>
                             </thead>
@@ -2528,7 +2791,6 @@
 
                             <tr id="row_social_practic" class="db_row_dialog">
                                 <td valign="middle"><button id="btn_social_practic" type="button" class="btn btn-link btn_social_practic"  data-toggle="modal" data-target="#modal_social_practic">#hylsзадание</button> </td>
-                                <td class="db_row_input">          </td>
                                 <td class="db_row_input text-center" >
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_social_practic" />
@@ -2545,8 +2807,9 @@
                                     Время для отхода ко сну <span id="wake_up_text"></span><br/>
                                     Время подъема на завтра <span id="wake_up_tomorrow"></span>
                                 </td>
-                                <td class="db_row_input"><h5 align="center"  id="filed_wake_up_plan" ></h5></td>
+
                                 <td valign="middle" class="db_row_input">
+                                    <h6 align="center"  id="filed_wake_up_plan" ></h6>
                                     <p>
                                         <input type="text" class="field_wake_up" id="filed_wake_up_fact_hour"   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="чч">
                                         <span>:</span>
@@ -2557,7 +2820,6 @@
 
                             <tr id="row_tongue" class="db_row_dialog">
                                 <td valign="middle">Чистка языка (утро и вечер)</td>
-                                <td class="db_row_input">          </td>
                                 <td class="db_row_input text-center div_row_fact">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_tongue_day" />
@@ -2577,20 +2839,21 @@
                             </tr>
 
                             <tr id="row_kirtan_day" class="db_row_dialog">
-                                <td valign="middle">Киртан утро, минут</td>
+                                <td valign="middle">Киртан утро</td>
                                 <td class="db_row_input">                   <input type="number" class="form-control" id="filed_kirtan_day_plan" disabled></td>
                                 <td valign="middle" class="db_row_input">   <input type="text" class="form-control" id="filed_kirtan_day_fact" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
                             </tr>
 
                             <tr id="row_meditation_day" class="db_row_dialog">
-                                <td valign="middle"> Медитация утро, минут</td>
-                                <td class="db_row_input">                   <input type="text"   class="form-control" id="filed_meditation_day_plan" disabled></td>
-                                <td class="db_row_input">   <input type="text"   class="form-control" id="filed_meditation_day_fact" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                                <td valign="middle"> Медитация утро</td>
+
+                                <td class="db_row_input">
+                                    <h6 align="center" id="filed_meditation_day_plan"></h6>
+                                    <input type="text"   class="form-control" id="filed_meditation_day_fact" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
                             </tr>
 
                             <tr id="row_phisic" class="db_row_dialog">
                                 <td valign="middle"> Физические упражнения</td>
-                                <td class="db_row_input">          </td>
                                 <td class="db_row_input text-center" >
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_phisic" />
@@ -2599,14 +2862,11 @@
                                             <label></label>
                                         </div>
                                     </div>
-
-
                                 </td>
                             </tr>
 
                             <tr id="row_therapy" class="db_row_dialog">
                                 <td valign="middle"> Терапии</td>
-                                <td class="db_row_input">          </td>
                                 <td class="db_row_input text-center">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_therapy" />
@@ -2620,8 +2880,7 @@
                             </tr>
 
                             <tr id="row_asana" class="db_row_dialog">
-                                <td valign="middle"> Асаны</td>
-                                <td class="db_row_input">          </td>
+                                <td valign="middle">Асаны</td>
                                 <td class="db_row_input text-center">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_asana" />
@@ -2634,8 +2893,7 @@
                             </tr>
 
                             <tr id="row_psy" class="db_row_dialog">
-                                <td valign="middle"> Психологические практики</td>
-                                <td class="db_row_input">          </td>
+                                <td valign="middle"> Психологическая практика<span id="psy_name"></span></td>
                                 <td class="db_row_input text-center">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_psy" />
@@ -2648,7 +2906,6 @@
 
                             <tr id="row_half_bath" class="db_row_dialog">
                                 <td valign="middle"> Полуванна</td>
-                                <td class="db_row_input">          </td>
                                 <td class="db_row_input text-center">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_half_bath_day" />
@@ -2667,7 +2924,6 @@
 
                             <tr id="row_ahimsa" class="db_row_dialog">
                                 <td valign="middle">Ахимса</td>
-                                <td class="db_row_input">          </td>
                                 <td class="db_row_input text-center">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_ahimsa" />
@@ -2680,7 +2936,6 @@
 
                             <tr id="row_satya" class="db_row_dialog">
                                 <td valign="middle">Сатья</td>
-                                <td class="db_row_input">          </td>
                                 <td class="db_row_input text-center">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_satya" />
@@ -2693,7 +2948,6 @@
 
                             <tr id="row_asteya" class="db_row_dialog">
                                 <td valign="middle">Астея</td>
-                                <td class="db_row_input">          </td>
                                 <td class="db_row_input text-center">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_asteya" />
@@ -2706,7 +2960,6 @@
 
                             <tr id="row_brahma" class="db_row_dialog">
                                 <td valign="middle">Брахмачарья</td>
-                                <td class="db_row_input">          </td>
                                 <td class="db_row_input text-center">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_brahma" />
@@ -2719,7 +2972,6 @@
 
                             <tr id="row_aparigraha" class="db_row_dialog">
                                 <td valign="middle">Апариграха</td>
-                                <td class="db_row_input">          </td>
                                 <td class="db_row_input text-center">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_aparigraha" />
@@ -2733,7 +2985,6 @@
 
                             <tr id="row_shaucha" class="db_row_dialog">
                                 <td valign="middle">Шауча</td>
-                                <td class="db_row_input">          </td>
                                 <td class="db_row_input text-center">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_shaucha_fact" />
@@ -2746,7 +2997,6 @@
 
                             <tr id="row_santosha" class="db_row_dialog">
                                 <td valign="middle">Сантоша</td>
-                                <td class="db_row_input">          </td>
                                 <td class="db_row_input text-center">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_santosha" />
@@ -2759,7 +3009,6 @@
 
                             <tr id="row_tapah" class="db_row_dialog">
                                 <td valign="middle">Тапах</td>
-                                <td class="db_row_input">          </td>
                                 <td class="db_row_input text-center">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_tapah" />
@@ -2772,7 +3021,6 @@
 
                             <tr id="row_svadhya" class="db_row_dialog">
                                 <td valign="middle">Свадхья</td>
-                                <td class="db_row_input">          </td>
                                 <td class="db_row_input text-center">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_svadhya" />
@@ -2787,7 +3035,6 @@
 
                             <tr id="row_ishvara" class="db_row_dialog">
                                 <td valign="middle">Ишвара пранидхана</td>
-                                <td class="db_row_input">          </td>
                                 <td class="db_row_input text-center">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_ishvara" />
@@ -2801,34 +3048,37 @@
 
 
                             <tr id="row_kaoshiki" class="db_row_dialog">
-                                <td valign="middle"> Каушики, минут</td>
-                                <td class="db_row_input">                    <input type="text" class="form-control" id="filed_kaoshiki_plan" disabled></td>
-                                <td valign="middle" class="db_row_input">    <input type="text" class="form-control" id="filed_kaoshiki_fact" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                                <td valign="middle"> Каушики</td>
+                                <td valign="middle" class="db_row_input">
+                                    <h6 align="center" id="filed_kaoshiki_plan"></h6>
+                                    <input type="text" class="form-control" id="filed_kaoshiki_fact" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
                             </tr>
 
 
                             <tr id="row_kirtan_night" class="db_row_dialog">
-                                <td valign="middle"> Киртан вечер, минут</td>
+                                <td valign="middle"> Киртан вечер</td>
                                 <td class="db_row_input">                  <input type="number" class="form-control" id="filed_kirtan_night_plan" disabled></td>
                                 <td valign="middle" class="db_row_input">  <input type="text" class="form-control" id="filed_kirtan_night_fact" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
                             </tr>
 
                             <tr id="row_meditation_night" class="db_row_dialog">
-                                <td valign="middle"> Медитация вечер, минут</td>
-                                <td class="db_row_input">                  <input type="text" class="form-control" id="filed_meditation_night_plan" disabled></td>
-                                <td valign="middle" class="db_row_input">  <input type="text" class="form-control" id="filed_meditation_night_fact" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                                <td valign="middle"> Медитация вечер</td>
+                                <td valign="middle" class="db_row_input">
+                                    <h6 align="center" id="filed_meditation_night_plan"></h6>
+                                    <input type="text" class="form-control" id="filed_meditation_night_fact" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
                             </tr>
 
 
                             <tr id="row_water" class="db_row_dialog">
-                                <td valign="middle"> Питьё воды, мл</td>
-                                <td class="db_row_input">          <input type="text" class="form-control" id="filed_water_plan" disabled></td>
-                                <td class="db_row_input">          <input type="text" class="form-control" id="filed_water_fact" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                                <td valign="middle"> Питьё воды</td>
+
+                                <td class="db_row_input">
+                                    <h6 align="center" id="filed_water_plan"></h6>
+                                    <input type="text" class="form-control" id="filed_water_fact" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
                             </tr>
 
                             <tr id="row_no_snacking" class="db_row_dialog">
                                 <td valign="middle"> День без перекусов и переедания</td>
-                                <td class="db_row_input">          </td>
                                 <td class="db_row_input text-center">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_no_snacking_fact" />
@@ -2841,7 +3091,6 @@
 
                             <tr id="row_diet" class="db_row_dialog">
                                 <td valign="middle"> <div id="text_diet">Диета</div></td>
-                                <td class="db_row_input">          </td>
                                 <td class="db_row_input text-center">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_diet" />
@@ -3277,6 +3526,7 @@
                                 </td>
                                 <td class="db_row_input">                  <h5 align="center"  id="filed_wake_up_plan_mini" ></h5></td>
                                 <td valign="middle" class="db_row_input">
+
                                     <p>
                                         <input type="text" class="field_wake_up" id="filed_wake_up_fact_hour_mini"   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="чч">
                                         <span>:</span>
@@ -3833,6 +4083,24 @@
                             что вы узнали и чему научились и дальше! Возможно, вам будут интересны другие привычки
                         </div>
                     </div>
+                    <div id="end_social" class="diary_body text_mini_end">
+                        Уверены, марафон оказался для вас полезным и вы немало интересного узнали! Поделитесь об этом со своими друзьями :)
+                        <br>Расскажите на своей странице в ВК или instagram под хэштэгом <span class="yoga_color">#hylsпомогает</span> каким навыкам вы научились, как себя чувствовали себя до марафона, а что стало после участия в нем.
+                        <br>Хэштэг очень важен - так мы объединим все отзывы, чтобы все больше и больше людей меняли жизнь к лучшему!
+                        <br>Ваши результаты вдохновят других к более осозанной и счастливой жизни :)
+                    </div>
+
+                    <div id="end_continue" class="diary_body">
+                        <p align="center" class="text_mini_end">Вы можете продолжить Ваш марафон</p>
+                        <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_marafon_continue">Продолжить марафон</a>
+                    </div>
+
+                    <div id="end_buy_material" class="diary_body" hidden>
+                        <p align="center" class="text_mini_end">Возможность пользовататься дневником end_continueи материалами дальше</p>
+                        <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_marafon_continue_buy">Оплатить</a>
+                        <div id="checkout_buy_material" hidden></div>
+                    </div>
+
 
                     <div id="end_next_detox" class="diary_body">
                         <h3 align="center">60-дневный марафон здоровья и йоги</h3>
@@ -4026,7 +4294,7 @@
                         <br/>
 
                         <div id="div_btn_buy_mini" hidden>
-                            <button id="btn_buy_mini" type="button" class="btn btn-success btn-lg btn-block">Оплатить</button>
+                            <button id="btn_buy_mini_end" type="button" class="btn btn-success btn-lg btn-block">Оплатить</button>
                         </div>
 
                         <div id="div_checkout_buy_mini" hidden>
@@ -4061,16 +4329,6 @@
                         <div id="end_checkout_family" hidden></div>
                     </div>
 -->
-                    <div id="end_continue" class="diary_body">
-                        <p align="center" class="text_mini_end">Вы можете продолжить Ваш марафон</p>
-                        <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_marafon_continue">Продолжить марафон</a>
-                    </div>
-
-                    <div id="end_buy_material" class="diary_body" hidden>
-                        <p align="center" class="text_mini_end">Возможность пользовататься дневником и материалами дальше</p>
-                        <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_marafon_continue_buy">Оплатить</a>
-                        <div id="checkout_buy_material" hidden></div>
-                    </div>
 
 
                     <br>
@@ -4995,6 +5253,33 @@
                                     </td>
                                 </tr>
 
+
+                                <tr id="row_time_analize" class="db_row_dialog time_diary_row">
+                                    <td valign="middle">Провести анализ своей продуктивности</td>
+                                    <td class="db_row_input">          </td>
+                                    <td class="db_row_input text-center div_row_fact">
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_time_analize" class="time_checkbox"/>
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr id="row_time_frog" class="db_row_dialog time_diary_row">
+                                    <td valign="middle">Съесть "лягушку"</td>
+                                    <td class="db_row_input">          </td>
+                                    <td class="db_row_input text-center div_row_fact">
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_time_frog" class="time_checkbox"/>
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
                                 </tbody>
                             </table>
 
@@ -5052,12 +5337,14 @@
                     <br/>
                     <br/>
                     <div class="diary_body">
-                        <h1>Ваш дневник заблокирован</h1>
-                        <h4></h4>
+                        <h1 align="center">Ваш дневник заблокирован</h1>
                         <br/>
                         <button id="btn_unlock_diary" class="btn btn-block btn-success btn-lg">Разблокировать</button>
 
-                        <div id="checkout_unlock_diary" hidden></div>
+                        <div id="div_checkout_unlock_diary" hidden>
+                            <h4 align="center">Для разблокировки внесите любую сумму и постарайтесь больше не забывать про марафон :) </h4>
+                            <div id="checkout_unlock_diary"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-0  col-sm-3"></div>
@@ -5178,7 +5465,7 @@
         <div class="col-sm-3 col-md-3"></div>
         <div class="col-sm-6 col-md-6 col-xs-12" align="center">
             <div class="diary_body">
-                <h3 >Вы можете поддержать проект с помощью формы, расположенной ниже, используя банковскую карту любой страны </h3>
+                <h4>Вы можете поддержать проект с помощью формы, расположенной ниже, используя банковскую карту любой страны </h4>
                 <br/>
 
 
@@ -5616,9 +5903,29 @@
                 </div>
 
                 <div class="settings_div" id="detox_settings" hidden >
-                    <h4>Ваша текущая детокс программа: "<span id="detox_name"></span>" длительностью <span id="detox_time"></span> дней</h4>
+                    <h4>Ваша текущая детокс программа: "<span id="detox_name"></span>" длительностью <span id="detox_time"></span> дней. Старт в <span id="detox_start"></span> день марафона</h4>.
+
                     <table class="table  table-hover">
                         <tbody>
+                        <tr id="row_quest_detox_type_edit"  class="db_row_dialog">
+                            <td class="row_detox" valign="middle"><h5>Изменить вариант детокса</h5></td>
+                            <td class="row_detox">
+                                <div class="dropdown">
+                                    <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_detox_type_edit">
+                                        Выберите вариант <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#" class="link_detox_type_edit" name="1">Полезная йоговская (оставите без изменений)</a></li>
+                                        <li><a href="#" class="link_detox_type_edit" name="2">Фрукты, сырые и приготовленные овощи</a></li>
+                                        <li><a href="#" class="link_detox_type_edit" name="3">Фрукты</a></li>
+                                        <li><a href="#" class="link_detox_type_edit" name="4">Соки и овощные бульоны</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td > <button id="btn_detox_edit_type"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
+
+                        </tr>
+
                         <tr id="row_quest_detox_time_edit"  class="db_row_dialog">
                             <td valign="middle" ><h5>Изменить длительность детокса, дней</h5></td>
                             <td  class="db_row_input">
@@ -5907,9 +6214,9 @@
 
 <!-- Latest compiled and minified JavaScript -->
 
+<!-- Yandex.Metrika counter --> <script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter47972495 = new Ya.Metrika2({ id:47972495, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/tag.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks2"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47972495" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
 
 
 </body>
-
 
 </html>
