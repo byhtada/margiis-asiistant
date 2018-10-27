@@ -9,7 +9,8 @@
 
     <!--   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
 
-    <link rel="manifest" href="site.webmanifest">
+    <link rel="manifest" href="manifest.json">
+
     <link rel="apple-touch-icon" href="icon.png">
     <!-- Place favicon.ico in the root directory -->
 
@@ -64,6 +65,7 @@
     <script                                   src="js/canvas2image.js"></script>
     <script                                   src="js/main.js?v1.84"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css?v1.84">
+
 </head>
 
 <body>
@@ -1283,7 +1285,7 @@
         <!--   <button type="button" class="btn btn-warning" id="btn_set_soc_practic">Назначить социальный практики</button>
 
         -->
-        <button type="button" class="btn btn-warning" id="btn_test_zvonobot">ZVONOBOT</button>
+        <button type="button" class="btn btn-warning" id="btn_test_bizon">BIZON</button>
         <button type="button" class="btn btn-warning" id="btn_test_new_email">Test new email</button>
         <button type="button" class="btn btn-warning" id="btn_activate_bonuses_for_old">Бонусы</button>
         <button type="button" class="btn btn-warning" id="btn_check_for_double_diary">Задвоение дневника</button>
@@ -1704,7 +1706,7 @@
                     <br/>
                     <div align="center" class="payment_header"><b>Оплата марафона <span class="black_color">H</span>Y<span class="black_color">LS</span></b>
                         <br>
-                        <span class="black_color"><b>Старт 26.09.2018</b></span>
+                      <!--  <span class="black_color"><b>Старт 26.09.2018</b></span>-->
                     </div>
 
                     <div class="col-xs-12 col-md-12 col-sm-12 text-left">
@@ -2207,7 +2209,7 @@
                       </h3>
 
                       <div  id="wait_bonus_yoga" class="diary_body" hidden>
-                          <h4 align="center">Участие в еженедельных онлайн занятиях по йоге с куратором марафона на протяжении всего марафона (8 занятий)</h4>
+                          <h4 align="center" class="bonus_yoga_text">Участие в еженедельных онлайн занятиях по йоге с куратором марафона на протяжении всего марафона (8 занятий)</h4>
                           <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoga">1000 HYLScoins</a>
                       </div>
 
@@ -2312,6 +2314,16 @@
                             </div>
 
                         </div>
+                    </div>
+
+                    <div class="diary_friends" hidden>
+                        <h2 align="center">Позови друга — получи бонус</h2>
+                        <h5>Мы хотим, чтобы здоровых и счастливых людей было как можно больше, и дарим вам возможность
+                            пригласить друга и получить приятный бонус от HYLS! <br><br>
+                            Кликните на ссылку (она скопируется в буфер обмена) <a id="friends_link" href="#" class="reg_link"></a> и отправьте другу.
+                            После его оплаты участия в марафоне вы оба получите один из специальных бонусов HYLS!
+                            Предложение действительно следующие три дня: успевайте осчастливить друзей!</h5>
+
 
                     </div>
 
@@ -4096,8 +4108,8 @@
                     </div>
 
                     <div id="end_buy_material" class="diary_body" hidden>
-                        <p align="center" class="text_mini_end">Возможность пользовататься дневником end_continueи материалами дальше</p>
-                        <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_marafon_continue_buy">Оплатить</a>
+                        <p align="center" class="text_mini_end">Возможность пользовататься дневником и материалами дальше</p>
+                        <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_marafon_continue_buy">Приобрести</a>
                         <div id="checkout_buy_material" hidden></div>
                     </div>
 
@@ -5326,6 +5338,293 @@
                 </div>
                 <div class="col-xs-0  col-sm-3"></div>
             </div>
+            <div id="diary_marafon_detox_mini" hidden class="row">
+                <div class="col-xs-0  col-sm-3"></div>
+                <div class="col-xs-12 col-sm-6" align="center">
+
+                    <div class="diary_header">
+                            <h2 class="marafon_name"></h2>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-4">
+                                    <div id="user_programm_day_detox_mini">
+
+                                        <button id="btn_user_previus_day_detox_mini"  class="button button-box button-small button-highlight "><i class="fa fa-chevron-left"></i></button>
+                                        <!--  <button id="btn_user_previus_day" type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+                                                                        <button id="btn_user_next_day"    type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+
+                                        -->
+                                        <span id="user_current_day_detox_mini">День Х (сегодня)</span>
+                                        <button id="btn_user_next_day_detox_mini"  class="button button-box button-small button-highlight "><i class="fa fa-chevron-right"></i></button>
+
+                                    </div>
+
+                                    <div id="div_btn_user_material_detox_mini">
+                                        <br/>
+                                        <!--   <button id="btn_user_material"  type="button" class="btn btn-info btn-block">Открыть материал дня</button>   -->
+                                        <a  id="btn_user_material_detox_mini"  href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block">Материал дня</a>
+                                    </div>
+                                </div>
+                                <div class="hidden-xs col-sm-4">
+                                    <a href="#"  data-toggle="modal" data-target="#modal_set_ava"><img src="img/ava.png" class="user_ava img-circle"></a>
+
+                                </div>
+                                <div class="col-xs-6 col-sm-4">
+                                    <h4>Моя цель:</h4>
+                                    <textarea id="user_detox_mini_target" type="text" class="field_target form-control" placeholder="Поле для записи цели"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                    <!--
+                    <div id="question_wake_up_detox_mini" class="question_mini" hidden>
+                            <div class="alert alert-danger"  role="alert" >Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                            <table class="table  table-hover">
+                                <thead>
+                                <tr class="db_row_dialog">
+                                    <td><h4 align="center"><b>Вопросы (отвечайте после прочтения материала)</b></h4></td>
+                                    <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr class="db_row_dialog">
+                                    <td valign="middle">      <h5>Во сколько Вы обычно просыпаетесь?</h5></td>
+                                    <td >
+                                        <p>
+                                            <input type="text" class="field_wake_up" id="question_wake_up_fact_hour_time"   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="чч">
+                                            <span>:</span>
+                                            <input type="text" class="field_wake_up" id="question_wake_up_fact_minute_time" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="мм">
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr class="db_row_dialog">
+                                    <td valign="middle">      <h5>Установите цель по времени подъема</h5></td>
+                                    <td >
+                                        <p>
+                                            <input type="text" class="field_wake_up" id="question_wake_up_target_hour_time"   placeholder="чч"  value="5"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
+                                            <span>:</span>
+                                            <input type="text" class="field_wake_up" id="question_wake_up_target_minute_time" placeholder="мм"  value="30" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr class="db_row_dialog">
+                                    <td valign="middle">      <h5>На сколько приближаться к цели каждый день (шаг), минут</h5></td>
+                                    <td><input type="text" class="field_wake_up" id="question_wake_up_step_time"   placeholder="минут"  value="10"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <button id="btn_question_wake_up_save_time"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                        </div>
+-->
+                    <div id="question_water_detox_mini" class="question_mini" hidden>
+                        <div class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                        <table class="table  table-hover">
+                            <thead>
+                            <tr class="db_row_dialog">
+                                <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
+                                <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr class="db_row_dialog">
+                                <td valign="middle">      <h5>Сколько воды вы выпиваете в среднем воды за день (в мл)?</h5></td>
+                                <td > <input type="text" class="form-control" id="question_water_start_detox_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                            </tr>
+
+                            <tr class="db_row_dialog">
+                                <td valign="middle">      <h5>Сколько вы планируете выпивать воды в день (в мл)?</h5></td>
+                                <td > <input type="text" class="form-control" id="question_water_target_detox_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                            </tr>
+
+                            <tr class="db_row_dialog">
+                                <td valign="middle">      <h5>На сколько увеличивать кол-во воды по сравнению с прошлым днем в мл?</h5></td>
+                                <td > <input type="text" class="form-control" id="question_water_step_detox_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button id="btn_question_water_save_detox_mini"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                    </div>
+
+
+                    <div class="diary_body">
+
+                            <h3>Дневник практик</h3>
+                            <table class="table  table-hover">
+                                <thead>
+                                <tr class="db_row_dialog">
+                                    <td><h4 align="center"><b>Практика</b></h4></td>
+                                    <td><h4 align="center"><b></b></h4></td>
+                                    <td><h4 align="center"><b>Сделал</b></h4></td>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+
+<!--
+                                <tr id="row_wake_up_detox_mini" class="db_row_dialog diary_row_detox_mini">
+                                    <td valign="middle">
+                                        Подъем (время)
+                                        <p id="time_sleep">Время для отхода ко сну <span id="wake_up_text_time"></span></p>
+                                        <p id="time_wake_up">Время подъема на завтра <span id="wake_up_tomorrow_time"></span>
+                                    </td>
+                                    <td valign="middle" class="db_row_input">
+                                        <h5 align="center"  id="filed_wake_up_plan_detox_mini" ></h5>
+                                        <p>
+                                            <input type="text" class="field_wake_up" id="filed_wake_up_fact_hours_detox_mini"   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="чч">
+                                            <span id="dots_wake_up_detox_mini">:</span>
+                                            <input type="text" class="field_wake_up" id="filed_wake_up_fact_minutes_detox_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="мм">
+                                        </p>
+                                    </td>
+                                </tr>
+                                -->
+
+                                <tr id="row_tongue_detox_mini" class="db_row_dialog diary_row_detox_mini">
+                                    <td valign="middle">Чистка языка (утро и вечер)</td>
+                                    <td class="db_row_input text-center div_row_fact">
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_tongue_day_detox_mini" class="detox_mini_checkbox" />
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_tongue_night_detox_mini" class="detox_mini_checkbox" />
+
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr id="row_meditation_day_detox_mini" class="db_row_dialog diary_row_detox_mini">
+                                    <td valign="middle">Медитация утро</td>
+
+                                    <td class="db_row_input">
+                                        <h6 align="center" id="filed_meditation_day_plan_detox_mini"></h6>
+                                        <input type="text"   class="form-control" id="filed_meditation_day_fact_detox_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                                </tr>
+
+                                <tr id="row_phisic_detox_mini" class="db_row_dialog diary_row_detox_mini">
+                                    <td valign="middle"> Физические упражнения</td>
+                                    <td class="db_row_input text-center" >
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_phisic_detox_mini" class="detox_mini_checkbox"/>
+
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr id="row_asana_detox_mini" class="db_row_dialog diary_row_detox_mini">
+                                    <td valign="middle">Асаны</td>
+                                    <td class="db_row_input text-center">
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_asana_detox_mini" class="detox_mini_checkbox" />
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                                <tr id="row_psy_detox_mini" class="db_row_dialog diary_row_detox_mini">
+                                    <td valign="middle">Психологическая практика <span id="psy_name_detox_mini"></span></td>
+                                    <td class="db_row_input text-center">
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_psy_detox_mini" class="detox_mini_checkbox" />
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr id="row_kaoshiki_detox_mini" class="db_row_dialog diary_row_detox_mini">
+                                    <td valign="middle">Каушики</td>
+                                    <td valign="middle" class="db_row_input">
+                                        <h6 align="center" id="filed_kaoshiki_plan_detox_mini"></h6>
+                                        <input type="text" class="form-control" id="filed_kaoshiki_fact_detox_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                                </tr>
+
+                                <tr id="row_meditation_night_detox_mini" class="db_row_dialog diary_row_detox_mini">
+                                    <td valign="middle">Медитация вечер</td>
+                                    <td valign="middle" class="db_row_input">
+                                        <h6 align="center" id="filed_meditation_night_plan_detox_mini"></h6>
+                                        <input type="text" class="form-control" id="filed_meditation_night_fact_detox_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                                </tr>
+
+                                <tr id="row_water_detox_mini" class="db_row_dialog diary_row_detox_mini">
+                                    <td valign="middle"> Питьё воды</td>
+
+                                <td class="db_row_input">
+                                    <h6 align="center" id="filed_water_plan_detox_mini"></h6>
+                                    <input type="text" class="form-control" id="filed_water_fact_detox_mini" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"></td>
+                                </tr>
+
+                                <tr id="row_no_snacking_detox_mini" class="db_row_dialog diary_row_detox_mini">
+                                    <td valign="middle"> День без перекусов и переедания</td>
+                                    <td class="db_row_input text-center">
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_no_snacking_fact_detox_mini" class="detox_mini_checkbox" />
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr id="row_diet_detox_mini" class="db_row_dialog diary_row_detox_mini">
+                                    <td valign="middle"> <div id="text_diet_detox_mini">Диета</div></td>
+                                    <td class="db_row_input text-center">
+                                        <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                            <input type="checkbox"  id="filed_diet_detox_mini"  class="detox_mini_checkbox" />
+                                            <div class="state p-success-o">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+                            <div id="div_user_progress_bar_detox_mini">
+                                <div class="progress">
+                                    <div id="user_progress_bar_detox_mini" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%; min-width: 2em;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br/>
+
+                            <div class="comment_field" >
+                                <textarea  id="field_day_comment_detox_mini" class="time_practise_input form-control"   data-practic-name="comment" data-practic-comment="comment"  placeholder="Здесь Вы можете оставлять свои заметки о прошедшем дне Программы"></textarea>
+
+                                <img class="comment_loader_ball_time loader_ball" hidden src="img/load_comment.gif">
+                                <img class="comment_loader_tick_time loader_tick" hidden src="img/load_success.png">
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row footer">
+                            <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer btn_footer_chat" >                 Чат</a></div>
+                            <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_diary"   >Материалы</a></div>
+                            <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_support" >Поддержать</a></div>
+                            <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_settings">Настройки</a></div>
+                        </div>
+
+
+                </div>
+                <div class="col-xs-0  col-sm-3"></div>
+            </div>
 
         </div>
 
@@ -5401,6 +5700,17 @@
                 </div>
             </div>
             <div class="col-xs-0  col-sm-3"></div>
+        </div>
+        <div id="materials_detox_mini" class="row">
+            <div class="col-xs-0  col-sm-2"></div>
+            <div class="col-xs-12  col-sm-8">
+                <div class="diary_body">
+                    <h3 align="center">Пройденные материалы</h3>
+                    <div id="user_diary_detox_mini"></div>
+                </div>
+
+            </div>
+            <div class="col-xs-0  col-sm-2"></div>
         </div>
     </div>
 
@@ -5519,7 +5829,7 @@
                 </h4>
 
                 <div  id="play_bonus_yoga" class="diary_body" hidden>
-                    <h4 align="center">Участие в еженедельных онлайн занятиях по йоге с куратором марафона на протяжении всего марафона (8 занятий)</h4>
+                    <h4 align="center"  class="bonus_yoga_text">Участие в еженедельных онлайн занятиях по йоге с куратором марафона на протяжении всего марафона (8 занятий)</h4>
                     <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoga">1000 HYLScoins</a>
                 </div>
 
@@ -5575,9 +5885,7 @@
     <div id="page_user_settings"   class="container-fluid">
         <div class="col-sm-3 col-md-3"></div>
         <div class="col-sm-6 col-md-6 col-xs-12" align="center">
-            <h4 align="center"><a href="#" id="settings_messenger_link" class="reg_link" target="_blank"></a> на чат группы </h4>
 
-            <br/>
 
             <div id="settings_detox">
                 <div class="settings_div" >

@@ -20,6 +20,10 @@ html {
 h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .text_mini_end {font-size: 18px;}
 
+
+
+
+
 .btn_social_practic {color: #46d444;}
 
 .end_marafon_or {margin-top: 10px; margin-bottom: 10px;}
@@ -40,6 +44,17 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
     padding: 15px;
     border-radius: 10px;
     background-color: rgba(232, 229, 225, 0.19);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.diary_friends {
+    margin-top: 20px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    border-radius: 10px;
+    background-color: rgba(101, 232, 83, 0.19);
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -155,6 +170,9 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
     border-radius: 10px;
     background-color: rgba(70, 216, 70, 0.15)
 }
+
+
+
 
 #table_question_detox, #detox_settings, #table_question_therapy, #practise_continue_settings, #table_question_water, #table_question_wake_up {
     margin-top: 15px;
