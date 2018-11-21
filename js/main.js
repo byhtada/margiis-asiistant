@@ -1446,7 +1446,7 @@ $( document ).ready(function() {
                     $('#nav_bar_admin').show();
 
                     setCurators(data.curators);
-                    setUsersRegPay(data.users_reg_pay);
+                //    setUsersRegPay(data.users_reg_pay);
                     setGroups(data.groups);
                     setPrograms(data.programs);
                     setMaterial(data.material);
@@ -2143,7 +2143,7 @@ $( document ).ready(function() {
                         if (data.program_num == 1 || data.program_num == 2) {
 
                             if (data.marafon_day > 60  && !data.user.continue_detox) {
-                                showEndInformation("detox");
+                                showEndInformation("detox", data.main_marafon);
                                 showBonusesDetox(data.bonus_info);
                                 if (data.user.average_day_progress >= 70) { $('#sertifacate_detox_end').show();
                                 } else { $('#sertifacate_detox_end').hide();}
@@ -2267,7 +2267,7 @@ $( document ).ready(function() {
 
 
                         if (data.marafon_day > 21  && !data.user.continue_mini) {
-                                showEndInformation("mini");
+                                showEndInformation("mini", data.main_marafon);
                                 $('#end_continue').show();
                             } else {
                                 $('.marafon_name').text("Полезные привычки");
@@ -2312,7 +2312,7 @@ $( document ).ready(function() {
                             }
                         } else if (data.program_num == 4) {
                             if (data.marafon_day > 39 && !data.user.continue_family) {
-                                showEndInformation("family");
+                                showEndInformation("family", data.main_marafon);
                                 $('#end_continue').show();
                             } else {
                                 $('[name=nav_user_rating]')  .hide();
@@ -2350,7 +2350,7 @@ $( document ).ready(function() {
 
 
                             if (data.marafon_day > 21  && !data.user.continue_time) {
-                                showEndInformation("time");
+                                showEndInformation("time", data.main_marafon);
                                 showBonusesTime(data.bonus_info);
                             } else {
                                 document.getElementById("nav_bonus_mini").children[0].style.display = "none";
@@ -2391,7 +2391,7 @@ $( document ).ready(function() {
                         } else if (data.program_num == 6) {
 
                             if (data.marafon_day > 28  ) {
-                                //showEndInformation("detox");
+                                //showEndInformation("detox", data.main_marafon);
                                 // showBonusesDetox(data.bonus_info);
                             } else {
 
@@ -2446,7 +2446,7 @@ $( document ).ready(function() {
         alert("Ссылка скопирована в буфер обмена");
     });
 
-    function showEndInformation(marafon){
+    function showEndInformation(marafon, main_marafon){
         $('#diary_marafon_detox').hide();
         $('#diary_marafon_mini').hide();
         $('#diary_marafon_family').hide();
@@ -2478,10 +2478,7 @@ $( document ).ready(function() {
             case "family":
                 $('#end_header_family').show();
                 $('#end_next_family')  .hide();
-
                 $('#end_buy_material')  .hide();
-
-
                 break;
             case "time":
                 $('#end_header_time').show();
@@ -2493,6 +2490,18 @@ $( document ).ready(function() {
         $('#nav_bar').show();
         $('#page_user_programm').show();
         hide_user_action_bar();
+
+        if (main_marafon){
+            $('#div_buy_checkbox_water').hide();
+            $('#div_buy_checkbox_detox').hide();
+            $('#div_buy_checkbox_wakeup').hide();
+            $('#div_buy_checkbox_snacking').hide();
+            $('#div_buy_checkbox_vegan').hide();
+            $('#div_buy_checkbox_kaoshiki').hide();
+            $('#div_buy_checkbox_asana').hide();
+        }
+
+
 
         payment_flow = "buy_material";
 
@@ -5597,7 +5606,7 @@ $( document ).ready(function() {
                     $('#row_wake_up_family').show();
                     $('#question_wake_up_family').hide();
 
-                    if (day_num === 50){
+                    if (day_num === 39){
                         $('#family_sleep').hide();
                         $('#family_wake_up').hide();
                     } else {
