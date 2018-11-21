@@ -428,7 +428,7 @@ $( document ).ready(function() {
         });
     }
 
-    function start() {
+    function  start() {
         try {
             $.ajax({
                 type: "GET",
@@ -497,6 +497,26 @@ $( document ).ready(function() {
             }
         });
     });
+    $('#btn_base_info').click(function (){
+        $.ajax({
+            type: "POST",
+            url:   api_url + "base_info_save",
+            data: {},
+            headers: {
+                'Authorization': 'Token token=' + cookie_token,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            success: function (data) {
+                $('#modal_base_info').modal("hide");
+                console.log(data);
+            },
+            failure: function (errMsg) {
+                alert(errMsg);
+            }
+        });
+    });
+
+
 
     $('#link_intro_mini').click(function (){
         $.ajax({
@@ -541,9 +561,6 @@ $( document ).ready(function() {
 
 
     });
-
-
-
 
 
     console.log( "document loaded" );
@@ -1785,6 +1802,13 @@ $( document ).ready(function() {
                                 $('#page_marafon_reg').show();
                                 $('#reg_marafon_time').show();
                             }
+                        } else if (marafon_name === "detox_mini") {
+                            if (data.error == 0){
+                                // $('#page_user_programm').show();
+                                // $('#diary_marafon_family').show();
+                            } else {
+                                $('#page_marafon_reg').show();
+                            }
                         }
 
                         if (data.error == 0){
@@ -1868,6 +1892,26 @@ $( document ).ready(function() {
         }
     });
 
+
+    $('#btn_forget_pass').click(function(){
+        $.ajax({
+            type: "POST",
+            url: api_url + "forget_pass",
+            data: {email: $('#field_forget_email').val()},
+            headers: {
+                'Authorization': 'Token token=' + cookie_token,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            success: function (data) {
+                if (data.error == 0){
+                    $('#modal_forget_pass').modal('hide');
+                    alert("Пароль выслан на вашу почту");
+                } else {
+                    alert("Учетная запись с такой почтой не обнаружена");
+                }
+            }
+        });
+    });
 
     $('#btn_ava_set').click(function(){
         $.ajax({
@@ -1966,6 +2010,13 @@ $( document ).ready(function() {
                 },
                 success: function (data) {
                     hide_all_in_user();
+                    if (typeof data.offline_marafon != "undefined" && data.offline_marafon === false){
+                        $('[name=select_marafon]').show();
+                        $('[name=select_marafon_mini]').hide();
+                    } else {
+                        $('[name=select_marafon]').hide();
+                        $('[name=select_marafon_mini]').show();
+                    }
 
                     if (data.user.photo != null && data.user.photo != "") {
                         $('.user_ava').attr("src", data.user.photo);
@@ -2035,6 +2086,7 @@ $( document ).ready(function() {
 
                     } else if  (data.marafon_day > -998 && data.marafon_day < 1){
                         console.log("wait");
+
                         $('.before_detox').hide();
                         $('#before_detox_wait_text').hide();
                         $('#before_detox_wait_practise').hide();
@@ -2044,6 +2096,18 @@ $( document ).ready(function() {
                         $('#wait_messenger_link')    .attr("href", data.messenger_link).text("по ссылке");
                         document.getElementById("nav_settings").children[0].style.display = "display";
 
+                        if (!data.user.base_info_save){
+                            $('#base_info').html(
+                                "Добавьте этот сайт в закладки браузера — так вы сможете быстрее " +
+                                "подключаться к личному дневнику и отмечать выполненные практики." +
+                                "Сохраните свои данные в заметки или другое удобное вам место, чтобы не потерять:<br /><br />" +
+                                "1. Сайт дневника: marafon.hyls.ru<br />" +
+                                "2. Логин: " + data.user.email + "<br />" +
+                                "3. Пароль: " + data.user.password + "<br /><br />" +
+                                "Оставайтесь на волне HYLS и не забывайте отмечать выполненные практики ;)"
+                            );
+                            $('#modal_base_info').modal("show");
+                        }
 
                         if (data.program_num == 1 || data.program_num == 2) {
                             showBonusesDetox(data.bonus_info);
@@ -2061,6 +2125,14 @@ $( document ).ready(function() {
                         }
 
 
+
+                        if (data.program_num == 3){
+                            $('#reg_join_chat').hide();
+                        } else {
+                            $('#reg_join_chat').show();
+                        }
+
+
                         if (data.marafon_count > 1){
                             hide_user_action_bar();
                             $('[name=nav_faq_mini]').hide();
@@ -2068,16 +2140,13 @@ $( document ).ready(function() {
                         }
                     } else if (data.marafon_day > 0 && data.marafon_day < 5000) {
 
-
                         if (data.program_num == 1 || data.program_num == 2) {
 
-
-
                             if (data.marafon_day > 60  && !data.user.continue_detox) {
-
                                 showEndInformation("detox");
                                 showBonusesDetox(data.bonus_info);
-
+                                if (data.user.average_day_progress >= 70) { $('#sertifacate_detox_end').show();
+                                } else { $('#sertifacate_detox_end').hide();}
                             } else {
 
                             data.user.read_intro_detox ? $('#alert_detox_read_intro').hide() : $('#alert_detox_read_intro').show();
@@ -2196,6 +2265,7 @@ $( document ).ready(function() {
                         $('.btn_footer ').show();
 
 
+
                         if (data.marafon_day > 21  && !data.user.continue_mini) {
                                 showEndInformation("mini");
                                 $('#end_continue').show();
@@ -2241,10 +2311,11 @@ $( document ).ready(function() {
                                 setHylsStoreMini(data.hyls_store_mini, data.user);
                             }
                         } else if (data.program_num == 4) {
-                            if (data.marafon_day > 50 && !data.user.continue_family) {
+                            if (data.marafon_day > 39 && !data.user.continue_family) {
                                 showEndInformation("family");
                                 $('#end_continue').show();
                             } else {
+                                $('[name=nav_user_rating]')  .hide();
 
                                 $('.marafon_name').text("Семейные отношения");
                                 $('#page_user_programm').show();
@@ -2317,36 +2388,37 @@ $( document ).ready(function() {
 
                                 setUserDiaryTime(data.user_diary_time);
                             }
-                        }
-                    } else if (data.program_num == 6) {
+                        } else if (data.program_num == 6) {
 
-                        if (data.marafon_day > 28  ) {
-                            //showEndInformation("detox");
-                           // showBonusesDetox(data.bonus_info);
-                        } else {
+                            if (data.marafon_day > 28  ) {
+                                //showEndInformation("detox");
+                                // showBonusesDetox(data.bonus_info);
+                            } else {
 
-                            $('#page_user_main').show();
-                            $('#page_user_programm').show();
-                            $('#user_marafon_start').show();
-                            $('#diary_marafon_detox_mini').show();
-                            $('#nav_bar').show();
+                                console.log("Detox mini");
+                                $('#page_user_programm').show();
+                                $('#user_marafon_start').show();
+                                $('#diary_marafon_detox_mini').show();
+                                $('#nav_bar').show();
 
-                            $('[name=nav_faq_mini]').hide();
-                            $('[name=nav_user_settings]').hide();
-                            $('[name=nav_user_bonus]').hide();
-                            $('[name=nav_user_rating]').hide();
-                            $('[name=select_marafon]').hide();
+                                $('[name=nav_faq_mini]').hide();
+                                $('[name=nav_user_settings]').hide();
+                                $('[name=nav_user_rating]').hide();
 
-                            $('.marafon_name').text("Марафон 28 дней");
+                                $('[name=select_marafon]').hide();
 
-                            $('.btn_footer_chat').attr("href", data.messenger_link);
+                                $('.marafon_name').text("Марафон 28 дней");
+                                $('#user_detox_mini_target').val(data.user.set_target_detox_mini);
 
-                            $('#user_detox_mini_target').val(data.user.user_detox_mini_target);
+                                $('.btn_footer_chat').attr("href", data.messenger_link);
 
-                            setDayDetoxMini(data.marafon_info_today, data.marafon_day);
-                            setUserDiaryDetoxMini(data.user_diary_detox);
+                                showBonusesDetoxMini(data.bonus_info);
+                                setDayDetoxMini(data.marafon_info_today, data.marafon_day);
+                                setUserDiaryDetoxMini(data.user_diary);
+                            }
                         }
                     }
+
 
 
 
@@ -2547,9 +2619,52 @@ $( document ).ready(function() {
             $('                          #wait_bonus_individual')  .show();
             $('#play_bonuses_detox_header')       .show();
         }
-
-
     }
+    function showBonusesDetoxMini(bonus_info){
+        $('[name=nav_user_bonus]').show();
+
+        $('#play_bonus_yoganidra_mini  ').hide();
+        $('#play_bonus_3mini_mini      ').hide();
+        $('#play_bonus_savematerial_mini').hide();
+
+
+        $('#play_bonuses_div_time').hide();
+        $('#play_bonuses_div_detox').hide();
+        $('#play_bonuses_div_detox_mini').show();
+
+        $('#end_continue').hide();
+        $('#end_buy_material').show();
+
+        $.each(bonus_info.active_bonuses, function (i, item) {
+            console.log(item);
+            console.log(item.bonus_name);
+            switch (item.bonus_name){
+                case "yoganidra_mini":
+                    $('#play_bonus_yoganidra_mini').show();
+                    $("[data-bonus-name='yoganidra_mini']").attr('href', 'https://hyls.ru/yoga_nidra');
+                    $("[data-bonus-name='yoganidra_mini']").text("Открыть").show();
+                    break;
+                case "3mini_mini":
+                    $('#play_bonus_3mini_mini').show();
+                    $("[data-bonus-name='3mini_mini']").hide();
+                    $('[name=select_marafon_mini]').show();
+
+                    break;
+                case "savematerial_mini":
+                    $('#play_bonus_savematerial_mini').show();
+                    $("[data-bonus-name='savematerial_mini']").hide();
+                    $('#end_continue').show();
+                    $('#end_buy_material').hide();
+                    break;
+            }
+        });
+
+
+        $('#play_bonus_yoganidra_mini').show();
+        $('#play_bonus_3mini_mini    ').show();
+        $('#play_bonus_savematerial_mini')  .show();
+    }
+
     function showBonusesTime(bonus_info){
         $('#play_bonuses_div_time').hide();
 
@@ -2597,7 +2712,6 @@ $( document ).ready(function() {
                         break;
                 }
         });
-
     }
 
     $('.user_bonus').click(function() {
@@ -3566,6 +3680,7 @@ $( document ).ready(function() {
 
 
         $('#btn_user_material')    .val(current_day.day_materials);
+        $('#btn_user_material')    .attr("href", current_day.day_materials);
         $('#btn_user_previus_day') .val(day_num - 1);
         $('#btn_user_next_day')    .val(day_num + 1);
         $('#btn_user_save_day')    .val(day_num);
@@ -3666,7 +3781,7 @@ $( document ).ready(function() {
         }, 2000);
     });
 
-    $('#btn_user_material, #btn_user_material_family, #btn_user_material_time').click(function (){
+    $(' #btn_user_material_family, #btn_user_material_time').click(function (){
         var win = window.open($(this).val(), '_blank');
         win.focus();
     });
@@ -4029,13 +4144,11 @@ $( document ).ready(function() {
     function saveAs(uri, filename) {
         var link = document.createElement('a');
 
-        if (typeof link.download === 'string') {
             link.href = uri;
             link.download = filename;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-        } else {window.open(uri);}
 
         $('#page_user_main')   .show();
         $('#detox_certificate').hide();
@@ -5217,6 +5330,8 @@ $( document ).ready(function() {
         var family_mother_discontent_active         = current_day.family_mother_discontent_active     ;
         var family_forgiveness_active         = current_day.family_forgiveness_active     ;
         var family_shavasana_active         = current_day.family_shavasana_active     ;
+        var family_truthfulness_active         = current_day.family_truthfulness_active     ;
+        var family_thanks_active         = current_day.family_thanks_active     ;
         var family_self_discontent_active         = current_day.family_self_discontent_active     ;
         var family_self_beliefs_active         = current_day.family_self_beliefs_active     ;
 
@@ -5226,6 +5341,9 @@ $( document ).ready(function() {
         var family_convergence_active = current_day.family_convergence_active ;
         var family_speech_active      = current_day.family_speech_active ;
         var family_meaningful_active  = current_day.family_meaningful_active ;
+        var family_success_active  = current_day.family_success_active ;
+        var family_empathy_active  = current_day.family_empathy_active ;
+        var family_shine_active  = current_day.family_shine_active ;
 
         var family_meditation_fact           = current_day.family_meditation_fact ;
         var family_film_fact                 = current_day.family_film_fact;
@@ -5252,6 +5370,8 @@ $( document ).ready(function() {
         var family_mother_discontent_fact         = current_day.family_mother_discontent_fact;
         var family_forgiveness_fact         = current_day.family_forgiveness_fact;
         var family_shavasana_fact         = current_day.family_shavasana_fact;
+        var family_truthfulness_fact         = current_day.family_truthfulness_fact;
+        var family_thanks_fact         = current_day.family_thanks_fact;
         var family_self_discontent_fact         = current_day.family_self_discontent_fact;
         var family_self_beliefs_fact         = current_day.family_self_beliefs_fact;
 
@@ -5293,6 +5413,21 @@ $( document ).ready(function() {
         var family_meaningful_action        = current_day.family_meaningful_action;
 
 
+        var family_success_plus          = current_day.family_success_plus;
+        var family_success_minus         = current_day.family_success_minus;
+        var family_success_action        = current_day.family_success_action;
+
+
+        var family_empathy_plus          = current_day.family_empathy_plus;
+        var family_empathy_minus         = current_day.family_empathy_minus;
+        var family_empathy_action        = current_day.family_empathy_action;
+
+
+        var family_shine_plus          = current_day.family_shine_plus;
+        var family_shine_minus         = current_day.family_shine_minus;
+        var family_shine_action        = current_day.family_shine_action;
+
+
         var day_comment_family                  = current_day.day_comment_family;
         var day_progress                 = current_day.day_progress;
 
@@ -5322,6 +5457,8 @@ $( document ).ready(function() {
             $('#row_family_mother_discontent')    .hide();
             $('#row_family_forgiveness')    .hide();
             $('#row_family_shavasana')    .hide();
+            $('#row_family_truthfulness')    .hide();
+            $('#row_family_thanks')    .hide();
             $('#row_family_self_discontent')    .hide();
             $('#row_family_self_beliefs')    .hide();
 
@@ -5332,6 +5469,9 @@ $( document ).ready(function() {
             $('.row_family_convergence') .hide();
             $('.row_family_speech') .hide();
             $('.row_family_meaningful') .hide();
+            $('.row_family_success') .hide();
+            $('.row_family_empathy') .hide();
+            $('.row_family_shine') .hide();
 
 
 
@@ -5359,6 +5499,8 @@ $( document ).ready(function() {
             $('#filed_family_mother_discontent')        .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_family_forgiveness')        .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_family_shavasana')        .prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_family_truthfulness')        .prop("checked", false).attr("data-day-num", day_num);
+            $('#filed_family_thanks')        .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_family_self_discontent')        .prop("checked", false).attr("data-day-num", day_num);
             $('#filed_family_self_beliefs')        .prop("checked", false).attr("data-day-num", day_num);
 
@@ -5386,6 +5528,15 @@ $( document ).ready(function() {
             $('#field_family_meaningful_plus')        .val(null).attr("data-day-num", day_num);
             $('#field_family_meaningful_minus')       .val(null).attr("data-day-num", day_num);
             $('#field_family_meaningful_action')      .val(null).attr("data-day-num", day_num);
+            $('#field_family_success_plus')        .val(null).attr("data-day-num", day_num);
+            $('#field_family_success_minus')       .val(null).attr("data-day-num", day_num);
+            $('#field_family_success_action')      .val(null).attr("data-day-num", day_num);
+            $('#field_family_empathy_plus')        .val(null).attr("data-day-num", day_num);
+            $('#field_family_empathy_minus')       .val(null).attr("data-day-num", day_num);
+            $('#field_family_empathy_action')      .val(null).attr("data-day-num", day_num);
+            $('#field_family_shine_plus')        .val(null).attr("data-day-num", day_num);
+            $('#field_family_shine_minus')       .val(null).attr("data-day-num", day_num);
+            $('#field_family_shine_action')      .val(null).attr("data-day-num", day_num);
 
             $('#field_day_comment_family')            .val(null).attr("data-day-num", day_num);
 
@@ -5459,7 +5610,7 @@ $( document ).ready(function() {
                     console.log("1");
                     $('#question_wake_up_family').show();
                 }
-            } else if (day_num >= 11 && family_wake_up_next_day.length === 0){
+            } else if (day_num >= 10 && family_wake_up_next_day.length === 0){
                 console.log("2");
                 $('#question_wake_up_family').show();
             }
@@ -5553,6 +5704,14 @@ $( document ).ready(function() {
                 $('#row_family_shavasana').show();
                 $('#filed_family_shavasana').prop("checked", family_shavasana_fact);
             }
+            if (family_truthfulness_active)       {
+                $('#row_family_truthfulness').show();
+                $('#filed_family_truthfulness').prop("checked", family_truthfulness_fact);
+            }
+            if (family_thanks_active)       {
+                $('#row_family_thanks').show();
+                $('#filed_family_thanks').prop("checked", family_thanks_fact);
+            }
             if (family_self_discontent_active)       {
                 $('#row_family_self_discontent').show();
                 $('#filed_family_self_discontent').prop("checked", family_self_discontent_fact);
@@ -5606,6 +5765,26 @@ $( document ).ready(function() {
                 $('#field_family_meaningful_action').val(family_meaningful_action);
             }
 
+            if (family_success_active)     {
+                $('.row_family_success').show();
+                $('#field_family_success_plus')  .val(family_success_plus);
+                $('#field_family_success_minus') .val(family_success_minus);
+                $('#field_family_success_action').val(family_success_action);
+            }
+
+            if (family_empathy_active)     {
+                $('.row_family_empathy').show();
+                $('#field_family_empathy_plus')  .val(family_empathy_plus);
+                $('#field_family_empathy_minus') .val(family_empathy_minus);
+                $('#field_family_empathy_action').val(family_empathy_action);
+            }
+
+            if (family_shine_active)     {
+                $('.row_family_shine').show();
+                $('#field_family_shine_plus')  .val(family_shine_plus);
+                $('#field_family_shine_minus') .val(family_shine_minus);
+                $('#field_family_shine_action').val(family_shine_action);
+            }
 
             if (family_nonviolence_active || family_generosity_active) {
                 $('#family_practise').show();
@@ -5630,6 +5809,19 @@ $( document ).ready(function() {
             $('#field_family_speech_plus')[0]         .style.height = ($('#field_family_speech_plus')[0].scrollHeight) + "px";
             $('#field_family_speech_minus')[0]        .style.height = ($('#field_family_speech_minus')[0].scrollHeight) + "px";
             $('#field_family_speech_action')[0]       .style.height = ($('#field_family_speech_action')[0].scrollHeight) + "px";
+
+
+            $('#field_family_success_plus')[0]         .style.height = ($('#field_family_success_plus')[0].scrollHeight) + "px";
+            $('#field_family_success_minus')[0]        .style.height = ($('#field_family_success_minus')[0].scrollHeight) + "px";
+            $('#field_family_success_action')[0]       .style.height = ($('#field_family_success_action')[0].scrollHeight) + "px";
+
+            $('#field_family_empathy_plus')[0]         .style.height = ($('#field_family_empathy_plus')[0].scrollHeight) + "px";
+            $('#field_family_empathy_minus')[0]        .style.height = ($('#field_family_empathy_minus')[0].scrollHeight) + "px";
+            $('#field_family_empathy_action')[0]       .style.height = ($('#field_family_empathy_action')[0].scrollHeight) + "px";
+
+            $('#field_family_shine_plus')[0]         .style.height = ($('#field_family_shine_plus')[0].scrollHeight) + "px";
+            $('#field_family_shine_minus')[0]        .style.height = ($('#field_family_shine_minus')[0].scrollHeight) + "px";
+            $('#field_family_shine_action')[0]       .style.height = ($('#field_family_shine_action')[0].scrollHeight) + "px";
 
 
             $('#field_day_comment_family')[0]         .style.height = ($('#field_day_comment_family')[0].scrollHeight) + "px";
@@ -5693,17 +5885,17 @@ $( document ).ready(function() {
 
         $('#div_btn_user_docs_family').hide();
 
-        if (day_num == 28) {
+        if (day_num == 23 || day_num == 29 || day_num == 33) {
             $('#div_btn_user_docs_family').show();
             $('#btn_user_docs_family').attr("href", "https://drive.google.com/open?id=1MjQPy7wjnWrVn7924Gi5bmEGSwkyWjb4");
         }
 
-        if (day_num == 29) {
+        if (day_num == 24 || day_num == 30 || day_num == 34) {
             $('#div_btn_user_docs_family').show();
             $('#btn_user_docs_family').attr("href", "https://drive.google.com/open?id=1csemrlE3N0iFagaiROBg-QdxNX5EFnTA");
         }
 
-        if (day_num == 45) {
+        if (day_num == 37) {
             $('#div_btn_user_docs_family').show();
             $('#btn_user_docs_family').attr("href", "https://drive.google.com/open?id=1o315BzNgW-zOQsfXje922Wdf2z1u18XW");
         }
@@ -5718,7 +5910,7 @@ $( document ).ready(function() {
         getDayInfoFamily($(this).val());
     });
 
-    $('#filed_family_meditation, #filed_family_film, #filed_family_thinking, #filed_family_bracelet, #filed_family_pages, #filed_family_nice, #filed_family_phisic, #filed_wake_up_fact_hour_family, #filed_wake_up_fact_minute_family, #filed_water_fact_family, #filed_family_beliefs, #filed_family_joy, #filed_family_research, #filed_family_sympathy, #filed_family_bright, #filed_family_father_discontent, #filed_family_understanding, #filed_family_father_beliefs, #filed_family_satisfaction, #filed_family_research2, #filed_family_father_bows, #filed_family_mother_bows, #filed_family_mother_beliefs, #filed_family_mother_discontent, #filed_family_forgiveness, #filed_family_shavasana, #filed_family_self_discontent, #filed_family_self_beliefs').change(function() {
+    $('#filed_family_truthfulness, #filed_family_thanks, #filed_family_meditation, #filed_family_film, #filed_family_thinking, #filed_family_bracelet, #filed_family_pages, #filed_family_nice, #filed_family_phisic, #filed_wake_up_fact_hour_family, #filed_wake_up_fact_minute_family, #filed_water_fact_family, #filed_family_beliefs, #filed_family_joy, #filed_family_research, #filed_family_sympathy, #filed_family_bright, #filed_family_father_discontent, #filed_family_understanding, #filed_family_father_beliefs, #filed_family_satisfaction, #filed_family_research2, #filed_family_father_bows, #filed_family_mother_bows, #filed_family_mother_beliefs, #filed_family_mother_discontent, #filed_family_forgiveness, #filed_family_shavasana, #filed_family_self_discontent, #filed_family_self_beliefs').change(function() {
         console.log($(this).attr("data-day-num"));
         userSaveDayFamily($(this).attr("data-day-num"));
     });
@@ -5780,6 +5972,8 @@ $( document ).ready(function() {
                 family_mother_discontent_fact:         $('#filed_family_mother_discontent')    .is(':checked'),
                 family_forgiveness_fact:         $('#filed_family_forgiveness')    .is(':checked'),
                 family_shavasana_fact:         $('#filed_family_shavasana')    .is(':checked'),
+                family_truthfulness_fact:         $('#filed_family_truthfulness')    .is(':checked'),
+                family_thanks_fact:         $('#filed_family_thanks')    .is(':checked'),
                 family_self_discontent_fact:         $('#filed_family_self_discontent')    .is(':checked'),
                 family_self_beliefs_fact:         $('#filed_family_self_beliefs')    .is(':checked'),
 
@@ -5805,6 +5999,16 @@ $( document ).ready(function() {
                 family_meaningful_plus:          $('#field_family_meaningful_plus')    .val(),
                 family_meaningful_minus:         $('#field_family_meaningful_minus')   .val(),
                 family_meaningful_action:        $('#field_family_meaningful_action')  .val(),
+
+                family_success_plus:          $('#field_family_success_plus')    .val(),
+                family_success_minus:         $('#field_family_success_minus')   .val(),
+                family_success_action:        $('#field_family_success_action')  .val(),
+                family_empathy_plus:          $('#field_family_empathy_plus')    .val(),
+                family_empathy_minus:         $('#field_family_empathy_minus')   .val(),
+                family_empathy_action:        $('#field_family_empathy_action')  .val(),
+                family_shine_plus:          $('#field_family_shine_plus')    .val(),
+                family_shine_minus:         $('#field_family_shine_minus')   .val(),
+                family_shine_action:        $('#field_family_shine_action')  .val(),
                 day_comment_family:          $('#field_day_comment_family')        .val(),
                 day_num:    day_num
             },
@@ -6309,6 +6513,8 @@ $( document ).ready(function() {
         var wake_up_hours_fact     = current_day.wake_up_hours_fact;
         var wake_up_minutes_target     = current_day.wake_up_minutes_target;
         var wake_up_minutes_fact     = current_day.wake_up_minutes_fact;
+        var wake_up_recomendation     = current_day.wake_up_recomendation;
+        var wake_up_next_day     = current_day.wake_up_next_day;
         var tongue_clean_active     = current_day.tongue_clean_active;
         var tongue_clean_day     = current_day.tongue_clean_day;
         var tongue_clean_night     = current_day.tongue_clean_night;
@@ -6344,17 +6550,21 @@ $( document ).ready(function() {
             $('#filed_meditation_day_fact_detox_mini')     .val(null).attr("data-day-num", day_num);
             $('#filed_meditation_night_fact_detox_mini')   .val(null).attr("data-day-num", day_num);
             $('#filed_kaoshiki_fact_detox_mini')           .val(null).attr("data-day-num", day_num);
-            $('#filed_water_plan_detox_mini')              .val(null).attr("data-day-num", day_num);
-            $('#field_day_comment_detox_mini')             .val(null).attr("data-day-num", day_num);
+            $('#filed_water_fact_detox_mini')              .val(null).attr("data-day-num", day_num);
+            $('#filed_day_comment_detox_mini')             .val(null).attr("data-day-num", day_num);
 
 
 
             if (day_num >= 9) {
                 if (current_day.water_answer != null) {
                     $('#row_water_detox_mini').show();
-                    $('#filed_water_plan_detox_mini').text(water_target);
+                    $('#filed_water_plan_detox_mini').text("План: " + water_target + " мл.");
                     $('#filed_water_fact_detox_mini').val(water_fact);
                     $('#question_water_detox_mini').hide();
+
+                    if (day_num == 9) {
+                        $('#row_water_detox_mini').hide();
+                    }
                 } else {
                     console.log("1");
                     $('#question_water_detox_mini').show();
@@ -6369,46 +6579,44 @@ $( document ).ready(function() {
             }
 
             if (eat_diet_active) {
-                $('#row_family_meditation').show();
+                $('#row_diet_detox_mini').show();
                 $('#text_diet_detox_mini').text("Диета: " + eat_diet_description);
                 $('#filed_diet_detox_mini').prop("checked", eat_diet_fact);
             }
 
-/*
+
+
             if (wake_up_active) {
-                if (family_wake_up_hours_target != null) {
-                    $('#wake_up_text_family').text(family_wake_up_recomendation);
-                    $('#wake_up_tomorrow_family').text(family_wake_up_next_day);
-                    if (family_wake_up_minutes_target < 10) {
-                        var wake_up_time = family_wake_up_hours_target + ":0" + family_wake_up_minutes_target;
+                if (wake_up_hours_target != null) {
+                    $('#wake_up_text_detox_mini').text(wake_up_recomendation);
+                    $('#wake_up_tomorrow_detox_mini').text(wake_up_next_day);
+                    if (wake_up_minutes_target < 10) {
+                        var wake_up_time = wake_up_hours_target + ":0" + wake_up_minutes_target;
                     } else {
-                        var wake_up_time = family_wake_up_hours_target + ":" + family_wake_up_minutes_target;
+                        var wake_up_time = wake_up_hours_target + ":" + wake_up_minutes_target;
                     }
-                    $('#filed_wake_up_plan_family').text(wake_up_time);
+                    $('#filed_wake_up_plan_detox_mini').text(wake_up_time);
 
-
-                    $('#filed_wake_up_fact_hour_family').val(family_wake_up_hours_fact);
-                    $('#filed_wake_up_fact_minute_family').val(family_wake_up_minutes_fact);
-
-                    $('#row_wake_up_family').show();
-                    $('#question_wake_up_family').hide();
-
-                    if (day_num === 50){
-                        $('#family_sleep').hide();
-                        $('#family_wake_up').hide();
+                    if (day_num == 12) {
+                        $('#dots_wake_up_detox_mini').hide();
+                        $('#filed_wake_up_plan_detox_mini').hide();
+                        $('#filed_wake_up_fact_hours_detox_mini')  .hide();
+                        $('#filed_wake_up_fact_minutes_detox_mini').hide();
                     } else {
-                        $('#family_sleep').show();
-                        $('#family_wake_up').show();
+                        $('#filed_wake_up_fact_hours_detox_mini')  .show().val(wake_up_hours_fact);
+                        $('#filed_wake_up_fact_minutes_detox_mini').show().val(wake_up_minutes_fact);
                     }
+                    $('#row_wake_up_detox_mini').show();
+                    $('#question_wake_up_detox_mini').hide();
                 } else {
                     console.log("1");
-                    $('#question_wake_up_family').show();
+                    $('#question_wake_up_detox_mini').show();
                 }
-            } else if (day_num >= 12 && family_wake_up_next_day.length === 0){
+            } else if (day_num >= 12 && wake_up_next_day.length === 0){
                 console.log("2");
-                $('#question_wake_up_family').show();
+                $('#question_wake_up_detox_mini').show();
             }
-*/
+
 
             if (tongue_clean_active)          {
                 $('#row_tongue_detox_mini').show();
@@ -6419,19 +6627,19 @@ $( document ).ready(function() {
 
             if (meditation_day_active)          {
                 $('#row_meditation_day_detox_mini').show();
-                $('#filed_meditation_day_plan_detox_mini').text(meditation_day_target);
+                $('#filed_meditation_day_plan_detox_mini').text("План: " + meditation_day_target + " мин.");
                 $('#filed_meditation_day_fact_detox_mini').val(meditation_day_fact);
             }
 
             if (meditation_night_active)        {
                 $('#row_meditation_night_detox_mini').show();
-                $('#filed_meditation_night_plan_detox_mini').text(meditation_night_target);
+                $('#filed_meditation_night_plan_detox_mini').text("План: " + meditation_night_target + " мин.");
                 $('#filed_meditation_night_fact_detox_mini').val(meditation_night_fact);
             }
 
             if (kaoshiki_active)       {
                 $('#row_kaoshiki_detox_mini').show();
-                $('#filed_kaoshiki_plan_detox_mini').text(kaoshiki_minutes_target);
+                $('#filed_kaoshiki_plan_detox_mini').text("План: " + kaoshiki_minutes_target + " мин.");
                 $('#filed_kaoshiki_fact_detox_mini').val(kaoshiki_minutes_fact);
             }
 
@@ -6454,10 +6662,10 @@ $( document ).ready(function() {
             }
 
 
-            day_comment != "" && day_comment != false  ?  $('#field_day_comment_detox_mini').val(day_comment)   : $('#field_day_comment_detox_mini').val();
-            $('#field_day_comment_detox_mini')[0].style.height = ($('#field_day_comment_detox_mini')[0].scrollHeight) + "px";
+            day_comment != "" && day_comment != false  ?  $('#filed_day_comment_detox_mini').val(day_comment)   : $('#filed_day_comment_detox_mini').val();
+            $('#filed_day_comment_detox_mini')[0].style.height = ($('#filed_day_comment_detox_mini')[0].scrollHeight) + "px";
 
-            $('#btn_user_material_detox_mini').val(day_materials);
+            $('#btn_user_material_detox_mini').attr("href", day_materials);
         }
 
         day_show_now = day_num;
@@ -6514,7 +6722,7 @@ $( document ).ready(function() {
 
 
     var comment_timer_detox_mini;
-    $('#field_day_comment_detox_mini').on('change keyup paste', function () {
+    $('#filed_day_comment_detox_mini').on('change keyup paste', function () {
         $(this)[0].style.height = "50px";
         $(this)[0].style.height = ( $(this)[0].scrollHeight)+"px";
 
@@ -6537,19 +6745,20 @@ $( document ).ready(function() {
             type: "POST",
             url:  api_url + "save_day_status_detox_mini",
             data: {
+                day_num: day_num,
                 water_fact:            $('#filed_water_fact_detox_mini')             .val(),
-                no_snacking_fact:      $('#filed_no_snacking_fact_detox_mini')       .is(':checked'),
-                diet_fact:             $('#filed_diet_detox_mini')                   .is(':checked'),
-                wake_up_hours_fact:    $('#filed_wake_up_fact_hour_detox_mini')           .val(),
-                wake_up_minutes_fact:  $('#filed_wake_up_fact_minute_detox_mini')         .val(),
-                tongue_day:            $('#filed_tongue_day_detox_mini')             .is(':checked'),
-                tongue_night:          $('#filed_tongue_night_detox_mini')           .is(':checked'),
+                eat_no_snacking_fact:      $('#filed_no_snacking_fact_detox_mini')       .is(':checked'),
+                eat_diet_fact:             $('#filed_diet_detox_mini')                   .is(':checked'),
+                wake_up_hours_fact:    $('#filed_wake_up_fact_hours_detox_mini')           .val(),
+                wake_up_minutes_fact:  $('#filed_wake_up_fact_minutes_detox_mini')         .val(),
+                tongue_clean_day:            $('#filed_tongue_day_detox_mini')             .is(':checked'),
+                tongue_clean_night:          $('#filed_tongue_night_detox_mini')           .is(':checked'),
                 meditation_day_fact:   $('#filed_meditation_day_fact_detox_mini')    .val(),
                 meditation_night_fact: $('#filed_meditation_night_fact_detox_mini')  .val(),
                 kaoshiki_fact:         $('#filed_kaoshiki_fact_detox_mini')          .val(),
-                phisic:                $('#filed_phisic_detox_mini')                 .is(':checked'),
-                asana:                 $('#filed_asana_detox_mini')                  .is(':checked'),
-                psy:                   $('#filed_psy_detox_mini')                    .is(':checked'),
+                phisic_fact:                $('#filed_phisic_detox_mini')                 .is(':checked'),
+                asana_fact:                 $('#filed_asana_detox_mini')                  .is(':checked'),
+                psy_fact:                   $('#filed_psy_detox_mini')                    .is(':checked'),
                 day_comment:           $('#filed_day_comment_detox_mini')      .val()
             },
             headers: {
@@ -6586,7 +6795,7 @@ $( document ).ready(function() {
         target_timer_time = setTimeout(function (){
             $.ajax({
                 type: "POST",
-                url: api_url + "set_detox_mini_time",
+                url: api_url + "set_target_detox_mini",
                 data: {target: $('#user_detox_mini_target').val()},
                 headers: {
                     'Authorization': 'Token token=' + cookie_token,
@@ -6597,8 +6806,64 @@ $( document ).ready(function() {
         }, 1500);
     });
 
+    $('#btn_question_water_save_detox_mini').click(function (){
+        $('#btn_question_water_save_detox_mini').prop('disabled', true);
+        $.ajax({
+            type: "POST",
+            url:  api_url + "save_water_answer_detox_mini",
+            data: {
+                answer_water_start:       $('#question_water_start_detox_mini')  .val(),
+                answer_water_target:      $('#question_water_target_detox_mini') .val(),
+                answer_water_step:        $('#question_water_step_detox_mini')   .val()
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                $('#btn_question_water_save_detox_mini').prop('disabled', false);
+                update_user_info(); },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
 
+    $('#btn_question_wake_up_save_detox_mini').click(function (){
+        $('#btn_question_wake_up_save_detox_mini').prop('disabled', true);
 
+        if ($('#question_wake_up_fact_hour_detox_mini').val()  != "" && $('#question_wake_up_fact_minute_detox_mini').val()  != "" && $('#question_wake_up_target_hour_detox_mini').val()  != "" && $('#question_wake_up_target_minute_detox_mini').val( ) != "" && $('#question_wake_up_step_detox_mini').val( ) != ""){
+            $.ajax({
+                type: "POST",
+                url:  api_url + "save_wake_up_answer_detox_mini",
+                data: {
+                    answer_wake_up_fact_hour:          $('#question_wake_up_fact_hour_detox_mini')    .val(),
+                    answer_wake_up_fact_minute:        $('#question_wake_up_fact_minute_detox_mini')  .val(),
+                    answer_wake_up_target_hour:        $('#question_wake_up_target_hour_detox_mini')  .val(),
+                    answer_wake_up_target_minute:      $('#question_wake_up_target_minute_detox_mini').val(),
+                    answer_wake_up_step:               $('#question_wake_up_step_detox_mini').val()
+                },
+                headers: {
+                    'Authorization':'Token token=' + cookie_token,
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                success: function(data){
+                    alert("Установите будильник на " +  data.wake_up_time);
+                    $('#btn_question_wake_up_save_detox_mini').prop('disabled', false);
+                    $('#question_wake_up_detox_mini').hide();
+                    update_user_info();
+
+                },
+                failure: function(errMsg) {
+                    alert(errMsg.toString());
+                }
+            });
+
+        } else {
+            alert("Заполните все поля");
+            $('#btn_question_wake_up_save_detox_mini').prop('disabled', false);
+        }
+    });
 
 
 
@@ -9685,6 +9950,25 @@ $( document ).ready(function() {
     });
 
 
+
+
+    $('#btn_analitic').click(function () {
+        //console.log("chekbox" + $('#field_eat_no_snacking_active').is(':checked'));
+        $.ajax({
+            type: "POST",
+            url:  api_url + "get_analitic",
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                console.log(data);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
 
     $('#btn_test_bizon').click(function () {
         //console.log("chekbox" + $('#field_eat_no_snacking_active').is(':checked'));

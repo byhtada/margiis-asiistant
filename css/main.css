@@ -71,9 +71,9 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .diary_body {margin-top: 20px ;}
 .diary_body_name {margin-top: 0px !important;}
 .marafon_name {margin-bottom: 15px;}
-#user_programm_day, #user_programm_day_mini, #user_programm_day_family , #user_programm_day_time { font-size: 24px;  margin-top: 15px; margin-bottom: 10px;
+#user_programm_day, #user_programm_day_mini, #user_programm_day_family, #user_programm_day_time, #user_programm_day_detox_mini { font-size: 24px;  margin-top: 15px; margin-bottom: 10px;
     display:flex; flex-direction: row; justify-content: center; align-items: center;}
-#user_current_day, #user_current_day_mini, #user_current_day_family, #user_current_day_time {margin-left: 5px; margin-right: 5px}
+#user_current_day, #user_current_day_mini, #user_current_day_family, #user_current_day_time, #user_current_day_detox_mini {margin-left: 5px; margin-right: 5px}
 .btns_unicorn_padding {
     padding-left:  5px;
     padding-right: 5px;
@@ -214,7 +214,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
     }
 .family_practic_name{margin-top: 0px !important;}
 .family_practise_divider{width: 100%; height: 1px; border: 1px solid rgba(0, 0, 0, 0.69);}
-#field_family_nonviolence_action, #field_family_generosity_action, #field_family_purity_action, #field_family_convergence_action, #field_family_speech_action , #field_family_meaningful_action { margin-top: 15px;}
+#field_family_nonviolence_action, #field_family_generosity_action, #field_family_purity_action, #field_family_convergence_action, #field_family_speech_action , #field_family_meaningful_action, #field_family_success_action, #field_family_empathy_action, #field_family_shine_action { margin-top: 15px;}
 
 
 .checkbox_div   {align-content: center}
