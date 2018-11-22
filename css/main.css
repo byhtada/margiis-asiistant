@@ -26,9 +26,12 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 
 .btn_social_practic {color: #46d444;}
 
+
+#certificate_divider {height: 2500px;}
+
 .end_marafon_or {margin-top: 10px; margin-bottom: 10px;}
 .certificate_back {position: absolute; top: 0px; left: 0px;}
-#detox_certificate_name {position: absolute; top: 160px; left: 100px; font-size: 19px; font-weight: bold; width: 400px; font-family: 'Baloo Bhai', cursive;}
+#detox_certificate_name, #detox_mini_certificate_name {position: absolute; top: 160px; left: 100px; font-size: 19px; font-weight: bold; width: 400px; font-family: 'Baloo Bhai', cursive;}
 #family_certificate_name {position: absolute; top: 175px; left: 70px; font-size: 22px; font-weight: bold; width: 460px; font-family: 'Baloo Bhai', cursive;}
 #detox_certificate {width: 595px; height: 842px;}
 #family_certificate {width: 595px; height: 842px;}

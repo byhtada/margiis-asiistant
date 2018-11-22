@@ -1486,7 +1486,7 @@
                         <a href="#" name="select_marafon" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Мои марафоны<span class="caret"></span></a>
                         <ul id="my_marafon_dropdown" class="dropdown-menu">
                             <li><a class="nav-link-user" name="nav_user_marafon" data-value="detox"   href="#">Марафон 60 дней</a></li>
-                            <li><a class="nav-link-user" name="nav_user_marafon" data-value="mini"    href="#">Полезные привычки</a></li>
+                            <li><a class="nav-link-user" name="nav_user_marafon" data-value="mini"    href="#" id="mini_marafon">Полезные привычки</a></li>
                             <li><a class="nav-link-user" name="nav_user_marafon" data-value="family"  href="#">Семейные отношения</a></li>
                             <li><a class="nav-link-user" name="nav_user_marafon" data-value="time"    href="#">Управление временем</a></li>
                         </ul>
@@ -2931,7 +2931,7 @@
                             </tr>
 
                             <tr id="row_psy" class="db_row_dialog">
-                                <td valign="middle"> Психологическая практика<span id="psy_name"></span></td>
+                                <td valign="middle">Психологическая практика: <span id="psy_name"></span></td>
                                 <td class="db_row_input text-center">
                                     <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
                                         <input type="checkbox"  id="filed_psy"  class="sp_notify_prompt"/>
@@ -4076,6 +4076,15 @@
                                 <!--   <button id="btn_user_material"  type="button" class="btn btn-info btn-block">Открыть материал дня</button>   -->
                                 <a data-toggle="modal" data-target="#modal_certificate_detox"  href="#" class="btns_unicorn_padding button button-glow button-rounded button-action button-block">Мой сертификат</a>
                             </div>
+
+                        </div>
+                        <div id="end_header_detox_mini" class="text_mini_end" hidden>
+                            Вы закончили 28-дневный марафон йоги и здоровья вместе с HYLS! Используйте то, что вы узнали и чему научились, в своей жизни и дальше, ведь полезные привычки не должны заканчиваться вместе с марафоном! Становитесь лучше каждый новый день — это в ваших интересах и уж точно в ваших силах!
+                            Возможно, вам будут интересны другие полезные привычки в формате коротких марафонов за 21 день, с ними вы можете познакомиться ниже.
+                            <br/>
+                            Спасибо, что выбрали HYLS: вы можете получить свой личный сертификат за участие в марафоне и его завершение!
+                                <!--   <button id="btn_user_material"  type="button" class="btn btn-info btn-block">Открыть материал дня</button>   -->
+                            <a data-toggle="modal" data-target="#modal_certificate_detox_mini"  href="#" class="btns_unicorn_padding button button-glow button-rounded button-action button-block">Мой сертификат</a>
 
                         </div>
 
@@ -6668,10 +6677,38 @@
     </div>
 </div>
 
+<div class="modal fade" id="modal_certificate_detox_mini" tabindex="-1" role="dialog" aria-labelledby="modal_label_certificate_mini">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modal_label_certificate_mini">Мой сертификат</h4>
+            </div>
+            <div class="modal-body" align="center">
+                <table style="border: 0">
+                    <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Ваше имя</h5></td>  <td class="db_row_input_admin"><input type="text" class="form-control" id="field_certificate_name_detox_mini"  placeholder=""></td></tr>
 
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_download_sertifacate_detox_mini" type="button" class="btn btn-success">Скачать сертификат</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="certificate_divider" hidden></div>
 <div id="detox_certificate"  hidden>
     <img class="certificate_back" src="img/certificate_detox.jpg">
     <p id="detox_certificate_name" align="center"></p>
+</div>
+
+<div id="detox_mini_certificate"  hidden>
+    <img class="certificate_back" src="img/certificate_detox_mini.jpg">
+    <p id="detox_mini_certificate_name" align="center"></p>
 </div>
 
 <div id="family_certificate"  hidden>

@@ -2316,6 +2316,7 @@ $( document ).ready(function() {
                                 $('#end_continue').show();
                             } else {
                                 $('[name=nav_user_rating]')  .hide();
+                                $('#div_btn_rating_link_family').hide();
 
                                 $('.marafon_name').text("Семейные отношения");
                                 $('#page_user_programm').show();
@@ -2390,11 +2391,10 @@ $( document ).ready(function() {
                             }
                         } else if (data.program_num == 6) {
 
-                            if (data.marafon_day > 28  ) {
-                                //showEndInformation("detox", data.main_marafon);
-                                // showBonusesDetox(data.bonus_info);
+                            if (data.marafon_day > 28  && !data.user.continue_detox_mini ) {
+                                showEndInformation("detox_mini", data.main_marafon);
+                               // showBonusesDetox(data.bonus_info);
                             } else {
-
                                 console.log("Detox mini");
                                 $('#page_user_programm').show();
                                 $('#user_marafon_start').show();
@@ -2447,6 +2447,17 @@ $( document ).ready(function() {
     });
 
     function showEndInformation(marafon, main_marafon){
+        if (main_marafon){
+            $('#div_buy_checkbox_water').hide();
+            $('#div_buy_checkbox_detox').hide();
+            $('#div_buy_checkbox_wakeup').hide();
+            $('#div_buy_checkbox_snacking').hide();
+            $('#div_buy_checkbox_vegan').hide();
+            $('#div_buy_checkbox_kaoshiki').hide();
+            $('#div_buy_checkbox_asana').hide();
+        }
+
+
         $('#diary_marafon_detox').hide();
         $('#diary_marafon_mini').hide();
         $('#diary_marafon_family').hide();
@@ -2455,6 +2466,7 @@ $( document ).ready(function() {
         $('#diary_marafon_end').show();
 
         $('#end_header_detox') .hide();
+        $('#end_header_detox_mini') .hide();
         $('#end_header_mini')  .hide();
         $('#end_header_family').hide();
         $('#end_header_time')  .hide();
@@ -2468,6 +2480,19 @@ $( document ).ready(function() {
             case "detox":
                 $('#end_header_detox').show();
                 $('#end_next_detox')  .hide();
+                break;
+
+            case "detox_mini":
+                $('#end_header_detox_mini').show();
+                $('#end_next_detox').hide();
+
+                $('#div_buy_checkbox_water').hide();
+                $('#div_buy_checkbox_wakeup').hide();
+                $('#div_buy_checkbox_snacking').hide();
+                $('#div_buy_checkbox_vegan').hide();
+                $('#div_buy_checkbox_kaoshiki').hide();
+                $('#div_buy_checkbox_asana').hide();
+
                 break;
             case "mini":
                 $('#end_header_mini').show();
@@ -2491,15 +2516,6 @@ $( document ).ready(function() {
         $('#page_user_programm').show();
         hide_user_action_bar();
 
-        if (main_marafon){
-            $('#div_buy_checkbox_water').hide();
-            $('#div_buy_checkbox_detox').hide();
-            $('#div_buy_checkbox_wakeup').hide();
-            $('#div_buy_checkbox_snacking').hide();
-            $('#div_buy_checkbox_vegan').hide();
-            $('#div_buy_checkbox_kaoshiki').hide();
-            $('#div_buy_checkbox_asana').hide();
-        }
 
 
 
@@ -2586,7 +2602,8 @@ $( document ).ready(function() {
                     case "3mini":
                         $('#wait_bonus_3mini').show();
                         $('#play_bonus_3mini').show();
-                        $("[data-bonus-name='3mini']").hide();
+                        $(".bonus_yoga_text").text("Начать марафон здоровых привычек (рекомендуем приступить как только остаётесь с марафоном здоровых привычек 60 дней)\n");
+                        $("[data-bonus-name='3mini']").text("Перейти к марафону").attr("id", "bonus_3mini").show();
 
                         break;
                     case "savematerial":
@@ -2629,6 +2646,9 @@ $( document ).ready(function() {
             $('#play_bonuses_detox_header')       .show();
         }
     }
+
+
+
     function showBonusesDetoxMini(bonus_info){
         $('[name=nav_user_bonus]').show();
 
@@ -2724,30 +2744,36 @@ $( document ).ready(function() {
     }
 
     $('.user_bonus').click(function() {
-        var bonus_name = $(this).attr("data-bonus-name");
-        $('.user_bonus').prop("disabled", true);
-        $.ajax({
-            type: "POST",
-            url:  api_url + "bonus_activate",
-            data: {bonus_name: bonus_name},
-            headers: {
-                'Authorization':'Token token=' + cookie_token,
-                'Content-Type':'application/x-www-form-urlencoded'
-            },
-            success: function(data) {
-                console.log(data);
-                $('.user_bonus').prop("disabled", false);
-                if (data.error == 0) {
-                    alert("Бонус Активирован!");
-                    update_user_info();
-                } else {
-                    alert("Недостаточно HYLScoins для активации бонуса");
-                }
+        if ($(this).attr("id") != "bonus_3mini"){
+            var bonus_name = $(this).attr("data-bonus-name");
+            $('.user_bonus').prop("disabled", true);
+            $.ajax({
+                type: "POST",
+                url:  api_url + "bonus_activate",
+                data: {bonus_name: bonus_name},
+                headers: {
+                    'Authorization':'Token token=' + cookie_token,
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                success: function(data) {
+                    console.log(data);
+                    $('.user_bonus').prop("disabled", false);
+                    if (data.error == 0) {
+                        alert("Бонус Активирован!");
+                        update_user_info();
+                    } else {
+                        alert("Недостаточно HYLScoins для активации бонуса");
+                    }
 
-            },
-            failure: function(errMsg) {
-                alert(errMsg.toString());}
-        });
+                },
+                failure: function(errMsg) {
+                    alert(errMsg.toString());}
+            });
+        } else {
+            console.log("aa");
+            $('#mini_marafon').click();
+        }
+
     });
 
 
@@ -3183,6 +3209,7 @@ $( document ).ready(function() {
         var therapy_active         = current_day.therapy_active;
         var asana_active           = current_day.asana_active;
         var psi_active             = current_day.psi_active;
+        var psi_desc             = current_day.psi_desc;
         var half_bath_active             = current_day.half_bath_active;
 
         var ahimsa_active            = current_day.ahimsa_active;
@@ -3300,7 +3327,12 @@ $( document ).ready(function() {
             if (phisic_active         ) {$('#row_phisic').show();}
             if (therapy_active        ) {$('#row_therapy').show();}
             if (asana_active          ) {$('#row_asana').show();}
-            if (psi_active            ) {$('#row_psy').show();}
+            if (psi_active            ) {
+
+                $('#psy_name').text(psi_desc);
+                $('#row_psy').show();
+
+            }
             if (half_bath_active      ) {$('#row_half_bath').show();}
 
             if (ahimsa_active    ) {$('#row_ahimsa').show();}
@@ -4090,6 +4122,20 @@ $( document ).ready(function() {
         });
     });
 
+
+    $('#btn_download_sertifacate_detox_mini').click(function (){
+        $('#modal_certificate_detox_mini').modal('hide');
+        $('#detox_mini_certificate_name').text($('#field_certificate_name_detox_mini').val() + ", поздравляем с завершением онлайн-марафона йоги и здоровья HYLS!");
+        $('#page_user_main').hide();
+        $('#detox_mini_certificate').show();
+
+        html2canvas($("#detox_mini_certificate").get(0)).then(function(canvas) {
+            console.log(canvas);
+            document.body.appendChild(canvas);
+            saveAs(canvas.toDataURL(), 'HYLS.png');
+        });
+    });
+
     $('#btn_download_sertifacate_family').click(function (){
         $('#modal_certificate_family').modal('hide');
         $('#family_certificate_name').text($('#field_certificate_name_family').val() + ", поздравляем с завершением онлайн-марафона йоги и здоровья HYLS!");
@@ -4101,17 +4147,6 @@ $( document ).ready(function() {
             document.body.appendChild(canvas);
             saveAs(canvas.toDataURL(), 'HYLS.png');
         });
-
-
-      // $('#family_certificate_name').text($('#field_certificate_name_detox').val() + ", поздравляем с завершением онлайн-марафона йоги и здоровья HYLS!");
-      // $('#page_user_main').hide();
-      // $('#detox_certificate').show();
-
-      // html2canvas(document.querySelector("#detox_certificate")).then(canvas => {
-      //     console.log(canvas);
-      //     document.body.appendChild(canvas);
-      //     saveAs(canvas.toDataURL(), 'HYLS.png');
-      // });
     });
 
     $('#btn_end_buy_detox').click(function () {
@@ -4161,6 +4196,7 @@ $( document ).ready(function() {
 
         $('#page_user_main')   .show();
         $('#detox_certificate').hide();
+        $('#detox_mini_certificate').hide();
         $('#family_certificate').hide();
     }
 
