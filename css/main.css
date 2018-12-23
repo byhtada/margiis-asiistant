@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .certificate_back {position: absolute; top: 0px; left: 0px;}
 #detox_certificate_name, #detox_mini_certificate_name {position: absolute; top: 160px; left: 100px; font-size: 19px; font-weight: bold; width: 400px; font-family: 'Baloo Bhai', cursive;}
 #family_certificate_name {position: absolute; top: 175px; left: 70px; font-size: 22px; font-weight: bold; width: 460px; font-family: 'Baloo Bhai', cursive;}
-#detox_certificate {width: 595px; height: 842px;}
+#detox_certificate, #detox_mini_certificate {width: 595px; height: 842px;}
 #family_certificate {width: 595px; height: 842px;}
 
 
@@ -74,9 +74,9 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .diary_body {margin-top: 20px ;}
 .diary_body_name {margin-top: 0px !important;}
 .marafon_name {margin-bottom: 15px;}
-#user_programm_day, #user_programm_day_mini, #user_programm_day_family, #user_programm_day_time, #user_programm_day_detox_mini { font-size: 24px;  margin-top: 15px; margin-bottom: 10px;
+#user_programm_day, #user_programm_day_mini, #user_programm_day_family, #user_programm_day_time, #user_programm_day_detox_mini, #user_programm_day_ananda{ font-size: 24px;  margin-top: 15px; margin-bottom: 10px;
     display:flex; flex-direction: row; justify-content: center; align-items: center;}
-#user_current_day, #user_current_day_mini, #user_current_day_family, #user_current_day_time, #user_current_day_detox_mini {margin-left: 5px; margin-right: 5px}
+#user_current_day, #user_current_day_mini, #user_current_day_family, #user_current_day_time, #user_current_day_detox_mini, #user_current_day_ananda {margin-left: 5px; margin-right: 5px}
 .btns_unicorn_padding {
     padding-left:  5px;
     padding-right: 5px;
@@ -136,6 +136,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .pay_img        {width: 84px; height: 84px;}
 .db_row_pay_img      {border: 0; width:  130px; }
 .pay_confirm_input   {width:  100%; }
+.orange_color            {color: rgb(255, 127, 76)}
 .reg_link            {color: rgb(255, 127, 76)}
 #btn_rating_link     {font-size: 24px; color: rgb(121, 178, 63)}
 
@@ -190,7 +191,8 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
     background-color: rgba(70, 162, 216, 0.15)
 }
 
-#div_settings_payment {
+#div_settings_payment, #question_meditation_ananda, #question_kaoshiki_ananda, #question_kirtan_ananda  {
+    margin-top: 15px;
     padding: 15px;
     border-radius: 10px;
     background-color: rgba(216, 143, 91, 0.25)
@@ -280,6 +282,7 @@ textarea {  resize: none;
 .row_detox           {border: 0; width:  50%;   }
 .db_row_input        {border: 0; padding: 0; width:  105px; }
 .div_row_fact {align-items: center; align-content: center;}
+.div_row_progress {align-items: center; align-content: center; width: 100%}
 .db_row_input_admin  {border: 0; width:  200px; padding-left: 10px;}
 
 

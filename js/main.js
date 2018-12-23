@@ -163,7 +163,13 @@ $( document ).ready(function() {
 
 
         switch (checkout_type){
-
+            case "end_buy_rerun_detox":
+                payment_flow = "rerun_detox";
+                wrapper = "#checkout_rerun_detox";
+                order_desc = "Повторная оплата марафона HYLS";
+                query =  "rerun_detox";
+                program_type = "rerun_detox";
+                break;
 
             case "unlock_diary":
                 payment_flow = "unlock_diary";
@@ -171,6 +177,14 @@ $( document ).ready(function() {
                 order_desc = "HYLS. Разблокировка дневника";
                 query =  "unlock_diary";
                 program_type = "unlock_diary";
+                break;
+
+            case "reg_ananda_continue":
+                payment_flow = "reg_marafon_ananda";
+                wrapper = "#end_checkout_ananda";
+                order_desc = "HYLS Advanced. Оплата за марафон из ЛК после другого марафона";
+                query =  "user_confirm_payment_ananda";
+                program_type = "ananda_pc after";
                 break;
 
             case "reg_time_continue":
@@ -497,6 +511,23 @@ $( document ).ready(function() {
             }
         });
     });
+    $('#close_complete_practise').click(function (){
+        $.ajax({
+            type: "POST",
+            url:   api_url + "read_complete_practise",
+            data: {},
+            headers: {
+                'Authorization': 'Token token=' + cookie_token,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            success: function (data) {
+                console.log(data);
+            },
+            failure: function (errMsg) {
+                alert(errMsg);
+            }
+        });
+    });
     $('#btn_base_info').click(function (){
         $.ajax({
             type: "POST",
@@ -701,6 +732,7 @@ $( document ).ready(function() {
             if (data.status == 500) {
                 console.log("Error 500 ");
                 $('#error_500').show();
+                sendError();
             }
         }
     });
@@ -709,6 +741,21 @@ $( document ).ready(function() {
     }
 
 
+    function sendError(){
+        $.ajax({
+            type: "POST",
+            url:  api_url + "send_error",
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    }
 
 
 
@@ -1047,6 +1094,7 @@ $( document ).ready(function() {
                 break;
         }
 
+        $('#buy_mini_cost').show();
         $('#buy_mini_cost').text("Стоимость марафона: " + marafon_mini_cost + " руб.");
 
         if (buy_practic_counter > 0){
@@ -1292,10 +1340,17 @@ $( document ).ready(function() {
 
         switch (payment_flow) {
 
+            case "rerun_detox":
+                query = "rerun_detox";
+                break;
+
             case "unlock_diary":
                 query = "unlock_diary";
                 break;
 
+            case "reg_marafon_ananda":
+                query = "user_confirm_payment_ananda";
+                break;
             case "reg_marafon_time":
                 query = "user_confirm_payment_time";
                 break;
@@ -1419,7 +1474,7 @@ $( document ).ready(function() {
         $('#current_program') .hide();
         $('#page_metrics') .hide();
         $('#page_partners') .hide();
-        $('#page_leaved') .hide();
+        $('#page_losts') .hide();
         $('#page_test')  .hide();
     }
     function update_admin_info() {
@@ -1483,6 +1538,10 @@ $( document ).ready(function() {
                 break;
             case "nav_metrics":
                 $('#page_metrics').show();
+                break;
+
+                case "nav_metrics":
+                $('#page_losts').show();
                 break;
             case "nav_partners":
                 $('#page_partners').show();
@@ -1647,6 +1706,7 @@ $( document ).ready(function() {
         $('#reg_marafon_mini').hide();
         $('#reg_marafon_family').hide();
         $('#reg_marafon_time').hide();
+        $('#reg_marafon_ananda').hide();
 
         $('#page_user_programm').hide();
         $('#diary_marafon_detox').hide();
@@ -1654,11 +1714,15 @@ $( document ).ready(function() {
         $('#diary_marafon_end').hide();
         $('#diary_marafon_family').hide();
         $('#diary_marafon_time').hide();
+        $('#diary_marafon_ananda').hide();
 
         $('#page_user_materials').hide();
         $('#page_user_hyls_store').hide();
         $('#page_user_rating').hide();
         $('#page_user_bonus').hide();
+        $('#settings_ananda').hide();
+        $('#settings_detox').hide();
+        $('#settings_mini').hide();
         $('#page_user_settings').hide();
         $('#page_user_support').hide();
     }
@@ -1700,6 +1764,9 @@ $( document ).ready(function() {
         $('#materials_detox_mini')    .hide();
         $('#diary_marafon_detox_mini').hide();
 
+        $('#materials_ananda')    .hide();
+        $('#diary_marafon_ananda').hide();
+
         $('#reg_marafon_time')  .hide();
         $('#diary_marafon_time').hide();
         $('#materials_time')    .hide();
@@ -1734,6 +1801,12 @@ $( document ).ready(function() {
                 $('#reg_marafon_time').show();
                 $('#diary_marafon_time').show();
                 $('#materials_time').show();
+                break;
+
+            case "ananda":
+                $('#reg_marafon_ananda').show();
+                $('#diary_marafon_ananda').show();
+                $('#materials_ananda').show();
                 break;
         }
     }
@@ -1809,6 +1882,13 @@ $( document ).ready(function() {
                             } else {
                                 $('#page_marafon_reg').show();
                             }
+                        } else if (marafon_name === "ananda") {
+                            if (data.error == 0){
+                                // $('#page_user_programm').show();
+                                // $('#diary_marafon_family').show();
+                            } else {
+                                $('#page_marafon_reg').show();
+                            }
                         }
 
                         if (data.error == 0){
@@ -1830,22 +1910,110 @@ $( document ).ready(function() {
                 $('#page_user_main').show();
                 $('#page_user_programm').show();
                 $('#user_marafon_start').show();
+
                 break;
             case "nav_user_diary":
-                show_marafon_element(marafon_name_main);
-                $('#page_user_materials').show();
+
+                $.ajax({
+                    type: "GET",
+                    url: api_url + "get_user_diary",
+                    headers: {
+                        'Authorization': 'Token token=' + cookie_token,
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function (data) {
+
+                        switch (data.program_num){
+                            case 1:
+                                setUserDiaryDetox(data.user_diary);
+                                break;
+                            case 2:
+                                setUserDiaryDetox(data.user_diary);
+                                break;
+                            case 3:
+                                setUserDiaryMini(data.user_diary);
+                                break;
+                            case 4:
+                                setUserDiaryFamily(data.user_diary);
+                                break;
+                            case 5:
+                                setUserDiaryTime(data.user_diary);
+                                break;
+                            case 6:
+                                setUserDiaryDetoxMini(data.user_diary);
+                                break;
+                            case 7:
+                                setUserDiaryAnanda(data.user_diary);
+                                break;
+                        }
+
+                        show_marafon_element(marafon_name_main);
+                        $('#page_user_materials').show();
+
+                    }
+                });
+
 
                 break;
 
             case "nav_user_rating":
-                $('#page_user_rating').show();
+                $.ajax({
+                    type: "GET",
+                    url: api_url + "get_rating_detox",
+                    headers: {
+                        'Authorization': 'Token token=' + cookie_token,
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function (data) {
+                        if (data.program_id == 1){
+                            $('#page_user_rating').show();
+                            setGroupRatingDetox(data.group_rating_info, data.user)
+                        }
+                    }
+                });
+
+
+
                 break;
 
             case "nav_user_bonus":
                 $('#page_user_bonus').show();
                 break;
             case "nav_user_settings":
-                $('#page_user_settings').show();
+                $.ajax({
+                    type: "GET",
+                    url: api_url + "get_settings_info",
+                    headers: {
+                        'Authorization': 'Token token=' + cookie_token,
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function (data) {
+                        $('#page_user_settings').show();
+
+                        if (data.program_id == 1 || data.program_id == 2) {
+                            $('#filed_meditation_base_edit').val(data.medi_kao_target.meditation_base);
+                            $('#filed_meditation_target_edit').val(data.medi_kao_target.meditation_target);
+                            $('#filed_kaoshiki_base_edit').val(data.medi_kao_target.kaoshiki_base);
+                            $('#filed_kaoshiki_target_edit').val(data.medi_kao_target.kaoshiki_target);
+
+                            setPractiseDetox(data.practise_complete);
+                            $('#settings_detox').show();
+
+
+                        }
+                        if (data.program_id == 3) {
+                            $('#settings_mini').show();
+
+                        }
+
+                        if (data.program_id == 7) {
+                            $('#settings_ananda').show();
+
+                        }
+
+                    }
+                });
+
                 break;
             case "nav_user_support":
                 payment_flow = "support";
@@ -2018,6 +2186,12 @@ $( document ).ready(function() {
                         $('[name=select_marafon_mini]').show();
                     }
 
+                    if (data.ananda_marafon) {
+                        $('[data-value="ananda"]').show();
+                    } else {
+                        $('[data-value="ananda"]').hide();
+                    }
+
                     if (data.user.photo != null && data.user.photo != "") {
                         $('.user_ava').attr("src", data.user.photo);
                     } else if (data.program_num == 5) {
@@ -2039,6 +2213,9 @@ $( document ).ready(function() {
                     }
                     if (data.user.target_time != null && data.user.target_time != ""){
                         $('#user_time_target').val(data.user.target_time);
+                    }
+                    if (data.user.target_ananda != null && data.user.target_ananda != ""){
+                        $('#user_ananda_target').val(data.user.target_ananda);
                     }
 
                     console.log(data);
@@ -2110,7 +2287,7 @@ $( document ).ready(function() {
                         }
 
                         if (data.program_num == 1 || data.program_num == 2) {
-                            showBonusesDetox(data.bonus_info);
+                            showBonusesDetox(data.bonus_info, data.marafon_day);
                             $('#before_detox_wait_text').show();
                             if (data.user.before_detox_practise != null) {
                                 var btn_id = "before_detox_" + data.user.before_detox_practise;
@@ -2144,13 +2321,22 @@ $( document ).ready(function() {
 
                             if (data.marafon_day > 60  && !data.user.continue_detox) {
                                 showEndInformation("detox", data.main_marafon);
-                                showBonusesDetox(data.bonus_info);
+                                showBonusesDetox(data.bonus_info, data.marafon_day);
                                 if (data.user.average_day_progress >= 70) { $('#sertifacate_detox_end').show();
                                 } else { $('#sertifacate_detox_end').hide();}
                             } else {
 
                             data.user.read_intro_detox ? $('#alert_detox_read_intro').hide() : $('#alert_detox_read_intro').show();
 
+                            if (data.user.complete_practise_first) {
+                                if (data.user.complete_practise_read){
+                                    $('#alert_detox_complete_practise').hide();
+                                } else {
+                                    $('#alert_detox_complete_practise').show();
+                                }
+                            } else {
+                                $('#alert_detox_complete_practise').hide();
+                            }
 
                             // if (data.block_programm && data.user.block_program) {
                             //     $('#page_user_programm').show();
@@ -2165,7 +2351,7 @@ $( document ).ready(function() {
                             $('#nav_bar').show();
                             //}
 
-                            showBonusesDetox(data.bonus_info);
+                            showBonusesDetox(data.bonus_info, data.marafon_day);
 
 
                             $('[name=nav_faq_mini]').hide();
@@ -2180,27 +2366,23 @@ $( document ).ready(function() {
                           //  $('#settings_messenger_link').attr("href", data.messenger_link).text("Ссылка");
                             $('.btn_footer_chat').attr("href", data.messenger_link);
 
-                            $('#filed_meditation_base_edit').val(data.medi_kao_target.meditation_base);
-                            $('#filed_meditation_target_edit').val(data.medi_kao_target.meditation_target);
-                            $('#filed_kaoshiki_base_edit').val(data.medi_kao_target.kaoshiki_base);
-                            $('#filed_kaoshiki_target_edit').val(data.medi_kao_target.kaoshiki_target);
 
-                            setPractiseDetox(data.practise_complete);
+                        //
                             setDayDetox(data.marafon_info_today, data.marafon_day);
                             setGroupRatingDetox(data.group_rating_info, data.user);
+                            $('[name=nav_user_rating]').attr("id", "btn_rating_detox");
+                           // setUserDiaryDetox(data.user_diary_detox);
 
-                            setUserDiaryDetox(data.user_diary_detox);
 
-
-                            if (data.daily_payment == true) {
-                                $('#div_settings_payment_change').show();
-                                $('#div_settings_payment_start').hide();
-                                $('#filed_payment_size_edit').val(data.daily_payment_amount);
-                                $('#daily_payment_currency').text(data.daily_payment_currency);
-                            } else {
-                                $('#div_settings_payment_change').hide();
-                                $('#div_settings_payment_start').show();
-                            }
+                           // if (data.daily_payment == true) {
+                           //     $('#div_settings_payment_change').show();
+                           //     $('#div_settings_payment_start').hide();
+                           //     $('#filed_payment_size_edit').val(data.daily_payment_amount);
+                           //     $('#daily_payment_currency').text(data.daily_payment_currency);
+                           // } else {
+                           //     $('#div_settings_payment_change').hide();
+                           //     $('#div_settings_payment_start').show();
+                           // }
 
                             if (data.detox_type !== null) {
                                 $('#detox_settings').show();
@@ -2253,9 +2435,9 @@ $( document ).ready(function() {
                             if (data.user.detox_stop == true) {
                                 $('#detox_settings').hide();
                             }
-                            if (data.user.detox_start_new <= data.marafon_info_today.day_num) {
-                                $('#detox_settings').show();
-                            }
+                           // if (data.user.detox_start_new <= data.marafon_info_today.day_num) {
+                           //     $('#detox_settings').show();
+                           // }
                             $('#materials_detox').show();
                             $('#materials_mini').hide();
                         }
@@ -2301,7 +2483,6 @@ $( document ).ready(function() {
 
                                 setDayMini(data.marafon_info_today, data.marafon_day, data.materials_mini.materials);
                                 setGroupRatingMini(data.group_rating_info, data.user);
-                                setUserDiaryMini(data.user_diary_mini);
                                 setUserMaterialsMini(data.materials_mini);
 
                                 detox_stop_mini = data.user.detox_stop_mini;
@@ -2344,7 +2525,6 @@ $( document ).ready(function() {
                                 setDayFamily(data.marafon_info_today, data.marafon_day);
                                 setGroupRatingFamily(data.group_rating_info, data.user);
 
-                                setUserDiaryFamily(data.user_diary_family);
                             }
                         } else if (data.program_num == 5) {
 
@@ -2387,13 +2567,12 @@ $( document ).ready(function() {
                                 setDayTime(data.marafon_info_today, data.marafon_day);
                                 setGroupRatingTime(data.group_rating_info, data.user);
 
-                                setUserDiaryTime(data.user_diary_time);
                             }
                         } else if (data.program_num == 6) {
 
                             if (data.marafon_day > 28  && !data.user.continue_detox_mini ) {
                                 showEndInformation("detox_mini", data.main_marafon);
-                               // showBonusesDetox(data.bonus_info);
+                               // (data.bonus_info);
                             } else {
                                 console.log("Detox mini");
                                 $('#page_user_programm').show();
@@ -2414,7 +2593,33 @@ $( document ).ready(function() {
 
                                 showBonusesDetoxMini(data.bonus_info);
                                 setDayDetoxMini(data.marafon_info_today, data.marafon_day);
-                                setUserDiaryDetoxMini(data.user_diary);
+                            }
+                        } else if (data.program_num == 7) {
+
+                            if (data.marafon_day > 30  && !data.user.continue_ananda ) {
+                                showEndInformation("ananda", data.main_marafon);
+                               // (data.bonus_info);
+                            } else {
+                                console.log("Ananda");
+                                $('#page_user_programm').show();
+                                $('#user_marafon_start').show();
+                                $('#diary_marafon_ananda').show();
+                                $('#nav_bar').show();
+
+                                $('[name=nav_faq_mini]').hide();
+                                $('[name=nav_user_bonus]').hide();
+
+
+                                $('.marafon_name').text("Углубленный марафон");
+                                $('#user_ananda_target').val(data.user.target_ananda);
+
+                                $('.btn_footer_chat').attr("href", data.messenger_link);
+
+                               // showBonusesAnanda(data.bonus_info);
+                                setSettingsAnanda(data.settings, data.marafon_info_today, data.marafon_day);
+                                setDayAnanda(data.marafon_info_today, data.marafon_day);
+                                setGroupRatingAnanda(data.group_rating_info, data.user);
+
                             }
                         }
                     }
@@ -2470,15 +2675,20 @@ $( document ).ready(function() {
         $('#end_header_mini')  .hide();
         $('#end_header_family').hide();
         $('#end_header_time')  .hide();
+        $('#end_header_ananda')  .hide();
 
         $('#end_next_detox') .show();
         $('#end_next_mini')  .show();
         $('#end_next_time')  .show();
         $('#end_next_family').show();
+        $('#end_next_ananda').show();
+
+        $('#end_rerun_detox').hide();
 
         switch (marafon){
             case "detox":
                 $('#end_header_detox').show();
+                $('#end_rerun_detox').show();
                 $('#end_next_detox')  .hide();
                 break;
 
@@ -2508,6 +2718,21 @@ $( document ).ready(function() {
             case "time":
                 $('#end_header_time').show();
                 $('#end_next_time')  .hide();
+                break;
+
+                case "ananda":
+                $('#end_header_ananda').show();
+                $('#end_next_ananda')  .hide();
+
+                $('#end_next_detox')  .hide();
+                $('#div_buy_checkbox_detox').hide();
+
+                $('#div_buy_checkbox_water').hide();
+                $('#div_buy_checkbox_wakeup').hide();
+                $('#div_buy_checkbox_snacking').hide();
+                $('#div_buy_checkbox_vegan').hide();
+                $('#div_buy_checkbox_kaoshiki').hide();
+                $('#div_buy_checkbox_asana').hide();
                 break;
         }
 
@@ -2554,7 +2779,7 @@ $( document ).ready(function() {
         });
     }
 
-    function showBonusesDetox(bonus_info){
+    function showBonusesDetox(bonus_info, marafon_day){
         $('#play_bonus_yoga,         #wait_bonus_yoga').hide();
         $('#play_bonus_yoganidra,    #wait_bonus_yoganidra').hide();
         $('#play_bonus_3mini,        #wait_bonus_3mini').hide();
@@ -2573,9 +2798,6 @@ $( document ).ready(function() {
         $('[name=nav_user_bonus]').show();
 
 
-
-
-
         if (bonus_info.show_chat) {
             $('#reg_join_chat').show();
         } else {
@@ -2589,9 +2811,17 @@ $( document ).ready(function() {
                     case "yoga":
                         $('#wait_bonus_yoga').show();
                         $('#play_bonus_yoga').show();
-                        $("[data-bonus-name='yoga']").attr('href', 'https://vk.me/join/AJQ1d8g9swc87z_NIhFY8ieV');
-                        $("[data-bonus-name='yoga']").text("Перейти").show();
-                        $(".bonus_yoga_text").text("Пожалуйста перейдите в закрытую группу во ВКонтаке. В ней мы размещаем видеоуроки по асанам");
+                        $("[data-bonus-name='yoga']").hide();
+                        $(".bonus_yoga_text").text("Бонус 'Асана-класс' активирован");
+
+                        $('#play_bonuses_asana_table').show();
+                        if (marafon_day >= 4) $('#asana_class_1').prop("href", "https://hyls.ru/page4254552.html").removeClass('black_color').addClass('orange_color').removeAttr('disabled');
+                        if (marafon_day >= 11)$('#asana_class_2').prop("href", "https://hyls.ru/page4256965.html").removeClass('black_color').addClass('orange_color').removeAttr('disabled');
+                        if (marafon_day >= 18)$('#asana_class_3').prop("href", "https://hyls.ru/page4257639.html").removeClass('black_color').addClass('orange_color').removeAttr('disabled');
+                        if (marafon_day >= 25)$('#asana_class_4').prop("href", "https://hyls.ru/page4259935.html").removeClass('black_color').addClass('orange_color').removeAttr('disabled');
+                        if (marafon_day >= 32)$('#asana_class_5').prop("href", "https://hyls.ru/page4260266.html").removeClass('black_color').addClass('orange_color').removeAttr('disabled');
+                        if (marafon_day >= 39)$('#asana_class_6').prop("href", "https://hyls.ru/page4260435.html").removeClass('black_color').addClass('orange_color').removeAttr('disabled');
+
                         break;
                     case "yoganidra":
                         $('#wait_bonus_yoganidra').show();
@@ -2602,7 +2832,7 @@ $( document ).ready(function() {
                     case "3mini":
                         $('#wait_bonus_3mini').show();
                         $('#play_bonus_3mini').show();
-                        $(".bonus_yoga_text").text("Начать марафон здоровых привычек (рекомендуем приступить как только остаётесь с марафоном здоровых привычек 60 дней)\n");
+                        $(".bonus_3mini_text").text("Начать марафон здоровых привычек (рекомендуем приступить как только остаётесь с марафоном здоровых привычек 60 дней)\n");
                         $("[data-bonus-name='3mini']").text("Перейти к марафону").attr("id", "bonus_3mini").show();
 
                         break;
@@ -2642,7 +2872,7 @@ $( document ).ready(function() {
             $('#play_bonus_yoganidra,    #wait_bonus_yoganidra')   .show();
             $('#play_bonus_3mini,        #wait_bonus_3mini')       .show();
             $('#play_bonus_savematerial, #wait_bonus_savematerial').show();
-            $('                          #wait_bonus_individual')  .show();
+            //$('                          #wait_bonus_individual')  .show();
             $('#play_bonuses_detox_header')       .show();
         }
     }
@@ -2796,6 +3026,11 @@ $( document ).ready(function() {
                 alert(errMsg.toString());}
         });
     });
+    $('#btn_rating_detox').click(function() {
+        console.log('111');
+
+    });
+
 
 
 
@@ -2804,24 +3039,24 @@ $( document ).ready(function() {
 
         if (practise.practise_setting_show) {
             $('#practise_continue_settings').show();
-            practise.water_practise_complete     ? $('#div_setting_water').show()       : $('#div_setting_water').hide()
-            practise.tongue_practise_complete    ? $('#div_setting_tongue').show()      : $('#div_setting_tongue').hide()
-            practise.snacking_practise_complete  ? $('#div_setting_no_snacking').show() : $('#div_setting_no_snacking').hide()
-            practise.half_bath_practise_complete ? $('#div_setting_half_bath').show()   : $('#div_setting_half_bath').hide()
-            practise.asana_practise_complete     ? $('#div_setting_asana').show()       : $('#div_setting_asana').hide()
-            practise.phisic_practise_complete    ? $('#div_setting_phisic').show()      : $('#div_setting_phisic').hide()
+            practise.water_practise_complete     ? $('#div_setting_water').show()       : $('#div_setting_water').hide();
+            practise.tongue_practise_complete    ? $('#div_setting_tongue').show()      : $('#div_setting_tongue').hide();
+            practise.snacking_practise_complete  ? $('#div_setting_no_snacking').show() : $('#div_setting_no_snacking').hide();
+            practise.half_bath_practise_complete ? $('#div_setting_half_bath').show()   : $('#div_setting_half_bath').hide();
+            practise.asana_practise_complete     ? $('#div_setting_asana').show()       : $('#div_setting_asana').hide();
+            practise.phisic_practise_complete    ? $('#div_setting_phisic').show()      : $('#div_setting_phisic').hide();
 
-            practise.ahimsa_practise_complete     ? $('#div_setting_ahimsa').show()      : $('#div_setting_ahimsa').hide()
-            practise.satya_practise_complete      ? $('#div_setting_satya').show()       : $('#div_setting_satya').hide()
-            practise.asteya_practise_complete     ? $('#div_setting_asteya').show()      : $('#div_setting_asteya').hide()
-            practise.brahma_practise_complete     ? $('#div_setting_brahma').show()      : $('#div_setting_brahma').hide()
-            practise.aparigraha_practise_complete ? $('#div_setting_aparigraha').show()  : $('#div_setting_aparigraha').hide()
+            practise.ahimsa_practise_complete     ? $('#div_setting_ahimsa').show()      : $('#div_setting_ahimsa').hide();
+            practise.satya_practise_complete      ? $('#div_setting_satya').show()       : $('#div_setting_satya').hide();
+            practise.asteya_practise_complete     ? $('#div_setting_asteya').show()      : $('#div_setting_asteya').hide();
+            practise.brahma_practise_complete     ? $('#div_setting_brahma').show()      : $('#div_setting_brahma').hide();
+            practise.aparigraha_practise_complete ? $('#div_setting_aparigraha').show()  : $('#div_setting_aparigraha').hide();
 
-            practise.shaucha_practise_complete  ? $('#div_setting_shaucha').show()   : $('#div_setting_shaucha').hide()
-            practise.santosha_practise_complete ? $('#div_setting_santosha').show()  : $('#div_setting_santosha').hide()
-            practise.tapah_practise_complete    ? $('#div_setting_tapah').show()     : $('#div_setting_tapah').hide()
-            practise.svadhya_practise_complete  ? $('#div_setting_svadhya').show()   : $('#div_setting_svadhya').hide()
-            practise.ishvara_practise_complete  ? $('#div_setting_ishvara').show()   : $('#div_setting_ishvara').hide()
+            practise.shaucha_practise_complete  ? $('#div_setting_shaucha').show()   : $('#div_setting_shaucha').hide();
+            practise.santosha_practise_complete ? $('#div_setting_santosha').show()  : $('#div_setting_santosha').hide();
+            practise.tapah_practise_complete    ? $('#div_setting_tapah').show()     : $('#div_setting_tapah').hide();
+            practise.svadhya_practise_complete  ? $('#div_setting_svadhya').show()   : $('#div_setting_svadhya').hide();
+            practise.ishvara_practise_complete  ? $('#div_setting_ishvara').show()   : $('#div_setting_ishvara').hide();
 
 
 
@@ -2849,6 +3084,7 @@ $( document ).ready(function() {
             $('#practise_continue_settings').hide();
         }
     }
+
     function setGroupRatingDetox(group_rating_info, user){
         if (user.rating_show_status) {
             $('#filed_rating_show').prop("checked", true);
@@ -2867,16 +3103,17 @@ $( document ).ready(function() {
 
 
         var row = '<table class="table table-hover table-bordered table-condensed" >';
-        row    += '<thead><tr> <th>Место</th> <th>Прогресс</th>    </tr></thead><tbody>';
+        row    += '<thead><tr> <th>Место</th> <th>Имя</th> <th>Прогресс</th>    </tr></thead><tbody>';
         $.each(group_rating_info.rating_table, function (i, item) {
             if (item.user_place <= 25) {
                 row += '<tr>';
                 row += '<td class="column_rating_place"><h5>' + item.user_place    + '</h5></td>';
+                row += '<td><h5>' + item.user_name    + '</h5></td>';
 
 
 
                 var progress_percent = item.user_progress + "%";
-                row += '<td class="div_row_fact text-center"><div class="progress">';
+                row += '<td class="div_row_progress text-center"><div class="progress">';
 
                 if (item.user_id == user.id){
                     row += '<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="' + item.user_progress + '" aria-valuemin="0" aria-valuemax="100" style="width: ' + progress_percent + '; min-width: 2em;">';
@@ -3479,11 +3716,7 @@ $( document ).ready(function() {
         }
 
 
-        if (day_num == 1) {
-            $('#psy_name').text(": намерение");
-        } else {
-            $('#psy_name').text("");
-        }
+
 
         if (day_num >= 10 && day_num <= 13) {
             $('#diary_friends').show();
@@ -4157,6 +4390,10 @@ $( document ).ready(function() {
         initFondy("reg_time_continue", 0);
         $('#end_checkout_time').show();
     });
+    $('#btn_end_buy_ananda').click(function () {
+        initFondy("reg_ananda_continue", 0);
+        $('#end_checkout_ananda').show();
+    });
     $('#btn_end_buy_family').click(function () {
         $('#end_checkout_family').show();
     });
@@ -4166,6 +4403,14 @@ $( document ).ready(function() {
        // initFondy("end_buy_material", 0);
         $('#checkout_buy_material').show();
         $('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
+    });
+
+    $('#btn_marafon_rerun_buy').click(function () {
+        alert("Внимание! Имейте ввиду, что это действие приведет к полной очистке вашего текущего дневника и созданию нового.")
+        initFondy("end_buy_rerun_detox", 0);
+        $('#checkout_rerun_detox').show();
+        $('#btn_marafon_rerun_buy').hide();
+        //$('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
     });
 
     $('#btn_marafon_continue').click(function () {
@@ -6911,6 +7156,706 @@ $( document ).ready(function() {
     });
 
 
+    /////////////////ANANDA/////////////////////////////
+
+    function getDayInfoAnanda(day_num){
+        if (day_num > 0) {
+            $.ajax({
+                type: "GET",
+                url:  api_url + "get_day_info_ananda",
+                data: {
+                    day_num: day_num
+                },
+                headers: {
+                    'Authorization':'Token token=' + cookie_token,
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                success: function(data){
+                    console.log(data);
+                    day_new = data.current_day.day_num;
+                    setDayAnanda(data.current_day, data.marafon_day);
+
+                },
+                failure: function(errMsg) {
+                    alert(errMsg.toString());
+                }
+            });
+        }
+    }
+
+    function setSettingsAnanda(settings, marafon_info_today, marafon_day){
+        $('#settings_ananda').show();
+        $('#settings_detox').hide();
+        $('#settings_mini').hide();
+
+        if (marafon_day >= 1 && marafon_info_today.meditation_answer){
+            $('#ananda_meditation_settings').show();
+            $('#filed_meditation_target_edit_ananda').val(settings.meditation);
+        }
+        if (marafon_day >= 2 && marafon_info_today.kaoshiki_answer){
+            $('#ananda_kaoshiki_settings').show();
+            $('#filed_kaoshiki_target_edit_ananda').val(settings.kaoshiki);
+        }
+        if (marafon_day >= 5 && marafon_info_today.kirtan_answer){
+            $('#ananda_kirtan_settings').show();
+            $('#filed_kirtan_target_edit_ananda').val(settings.kirtan);
+        }
+    }
+
+    function setDayAnanda(current_day, marafon_day){
+        console.log(current_day);
+        day_num = current_day.day_num;
+        day_id  = current_day.day_id;
+
+        var day_materials   = current_day.day_materials;
+        var day_comment     = current_day.day_comment;
+        var day_progress    = current_day.day_progress;
+
+        if (day_show_now !== day_new) {
+            $('.diary_row_ananda')        .hide();
+            $('.row_ananda_djama')        .hide();
+            $('.row_ananda_principles')        .hide();
+            $('.question_ananda')        .hide();
+            $('#ananda_djama_niyama').hide();
+            $('#ananda_principles').hide();
+            $('.ananda_checkbox')           .prop("checked", false).attr("data-day-num", day_num);
+            $('.checkbox_ananda_djama')     .prop("checked", false).attr("data-day-num", day_num);
+            $('.checkbox_ananda_principles').prop("checked", false).attr("data-day-num", day_num);
+
+            $('#filed_ananda_kirtan_fact')           .val(null).attr("data-day-num", day_num);
+            $('#filed_ananda_meditation_day_fact')   .val(null).attr("data-day-num", day_num);
+            $('#filed_ananda_kaoshiki_fact')         .val(null).attr("data-day-num", day_num);
+            $('#filed_ananda_meditation_night_fact') .val(null).attr("data-day-num", day_num);
+            $('#field_day_comment_ananda')           .val(null).attr("data-day-num", day_num);
+
+
+            if (day_num >= 1) {
+                if (current_day.meditation_answer == true) {
+                    $('#row_ananda_meditation_day').show();
+                    $('#row_ananda_meditation_night').show();
+                    $('#filed_ananda_meditation_day_plan, #filed_ananda_meditation_night_plan').text("План: " + current_day.meditation_day_target + " мин");
+
+                    $('#filed_ananda_meditation_day_fact')  .val(current_day.meditation_day_fact);
+                    $('#filed_ananda_meditation_night_fact').val(current_day.meditation_night_fact);
+                    $('#question_meditation_ananda').hide();
+                } else {
+                    $('#question_meditation_ananda').show();
+                }
+            } else {
+                $('#question_meditation_ananda').hide();
+            }
+
+
+            if (day_num >= 2) {
+                if (current_day.kaoshiki_answer == true) {
+                    $('#row_ananda_kaoshiki').show();
+                    $('#filed_ananda_kaoshiki_plan').text("План: " + current_day.kaoshiki_minutes_target + " мин");
+                    $('#filed_ananda_kaoshiki_fact').val(current_day.kaoshiki_minutes_fact);
+                    $('#question_kaoshiki_ananda').hide();
+                } else {
+                    $('#question_kaoshiki_ananda').show();
+                }
+            } else {
+                $('#question_kaoshiki_ananda').hide();
+            }
+
+            if (day_num >= 5) {
+                if (current_day.kirtan_answer == true) {
+                    $('#row_ananda_kirtan').show();
+                    $('#ananda_kirtan_target').text("План: " + current_day.kirtan_minutes_target + " мин");
+                    $('#filed_ananda_kirtan_fact')  .val(current_day.kirtan_minutes_fact);
+                    $('#question_kirtan_ananda').hide();
+
+                    if (current_day.kirtan_minutes_target == 0) {
+                        $('#row_ananda_kirtan').hide();
+                    }
+
+                } else {
+                    $('#question_kirtan_ananda').show();
+                }
+            } else {
+                $('#question_kirtan_ananda').hide();
+            }
+
+
+            if (current_day.asana_active) {
+                $('#row_ananda_asana').show();
+                $('#filed_ananda_asana').prop("checked", current_day.asana_fact);
+            }
+
+            if (current_day.eat_diet_active) {
+                $('#row_ananda_diet').show();
+                $('#text_ananda_diet').text(current_day.eat_diet_description);
+                $('#filed_ananda_diet').prop("checked", current_day.eat_diet_fact);
+            }
+
+            if (current_day.chakra_active) {
+                $('#row_ananda_chakra').show();
+                $('#text_ananda_chakra') .text("Работа с " + current_day.chakra_name + " чакрой");
+                $('#filed_ananda_chakra').prop("checked", current_day.chakra_fact);
+            }
+
+            if (current_day.silence_active) {
+                $('#row_ananda_silence').show();
+                $('#filed_ananda_silence').prop("checked", current_day.silence_fact);
+            }
+
+            if (current_day.ahimsa_active) {
+                $('#ananda_djama_niyama').show();
+                $('#row_ananda_ahimsa').show();
+                $('#filed_ananda_ahimsa').prop("checked", current_day.ahimsa_fact);
+            }
+
+            if (current_day.satya_active) {
+                $('#row_ananda_satya').show();
+                $('#filed_ananda_satya').prop("checked", current_day.satya_fact);
+            }
+
+            if (current_day.asteya_active) {
+                $('#row_ananda_asteya').show();
+                $('#filed_ananda_asteya').prop("checked", current_day.asteya_fact);
+            }
+
+            if (current_day.brahma_active) {
+                $('#row_ananda_brahma').show();
+                $('#filed_ananda_brahma').prop("checked", current_day.brahma_fact);
+            }
+
+            if (current_day.aparigraha_active) {
+                $('#row_ananda_aparigraha').show();
+                $('#filed_ananda_aparigraha').prop("checked", current_day.aparigraha_fact);
+            }
+            if (current_day.shaucha_active) {
+                $('#nijama_name').show();
+                $('#row_ananda_shaucha').show();
+                $('#filed_ananda_shaucha').prop("checked", current_day.shaucha_fact);
+            } else {
+                $('#nijama_name').hide();
+            }
+            if (current_day.santosha_active) {
+                $('#row_ananda_santosha').show();
+                $('#filed_ananda_santosha').prop("checked", current_day.santosha_fact);
+            }
+            if (current_day.tapah_active) {
+                $('#row_ananda_tapah').show();
+                $('#filed_ananda_tapah').prop("checked", current_day.tapah_fact);
+            }
+            if (current_day.svadhya_active) {
+                $('#row_ananda_svadhya').show();
+                $('#filed_ananda_svadhya').prop("checked", current_day.svadhya_fact);
+            }
+            if (current_day.ishvara_active) {
+                $('#row_ananda_ishvara').show();
+                $('#filed_ananda_ishvara').prop("checked", current_day.ishvara_fact);
+            }
+
+
+
+            if (current_day.forgiveness_active) {
+                $('#ananda_principles').show();
+                $('#row_ananda_forgiveness').show();
+                $('#filed_ananda_forgiveness').prop("checked", current_day.forgiveness_fact);
+            }
+            if (current_day.generosity_active) {
+                $('#row_ananda_generosity').show();
+                $('#filed_ananda_generosity').prop("checked", current_day.generosity_fact);
+            }
+            if (current_day.control_active) {
+                $('#row_ananda_control').show();
+                $('#filed_ananda_control').prop("checked", current_day.control_fact);
+            }
+            if (current_day.intention_active) {
+                $('#row_ananda_intention').show();
+                $('#filed_ananda_intention').prop("checked", current_day.intention_fact);
+            }
+            if (current_day.restraint_active) {
+                $('#row_ananda_restraint').show();
+                $('#filed_ananda_restraint').prop("checked", current_day.restraint_fact);
+            }
+            if (current_day.goodwill_active) {
+                $('#row_ananda_goodwill').show();
+                $('#filed_ananda_goodwill').prop("checked", current_day.goodwill_fact);
+            }
+            if (current_day.courage_active) {
+                $('#row_ananda_courage').show();
+                $('#filed_ananda_courage').prop("checked", current_day.courage_fact);
+            }
+            if (current_day.ownexample_active) {
+                $('#row_ananda_ownexample').show();
+                $('#filed_ananda_ownexample').prop("checked", current_day.ownexample_fact);
+            }
+            if (current_day.nocritic_active) {
+                $('#row_ananda_nocritic').show();
+                $('#filed_ananda_nocritic').prop("checked", current_day.nocritic_fact);
+            }
+            if (current_day.moral_active) {
+                $('#row_ananda_moral').show();
+                $('#filed_ananda_moral').prop("checked", current_day.moral_fact);
+            }
+            if (current_day.correction_active) {
+                $('#row_ananda_correction').show();
+                $('#filed_ananda_correction').prop("checked", current_day.correction_fact);
+            }
+            if (current_day.noarrogance_active) {
+                $('#row_ananda_noarrogance').show();
+                $('#filed_ananda_noarrogance').prop("checked", current_day.noarrogance_fact);
+            }
+            if (current_day.nochatter_active) {
+                $('#row_ananda_nochatter').show();
+                $('#filed_ananda_nochatter').prop("checked", current_day.nochatter_fact);
+            }
+            if (current_day.codex_active) {
+                $('#row_ananda_codex').show();
+                $('#filed_ananda_codex').prop("checked", current_day.codex_fact);
+            }
+            if (current_day.responsibility_active) {
+                $('#row_ananda_responsibility').show();
+                $('#filed_ananda_responsibility').prop("checked", current_day.responsibility_fact);
+            }
+
+
+
+
+
+            day_comment != "" && day_comment != false  ?  $('#field_day_comment_ananda').val(day_comment)   : $('#field_day_comment_ananda').val();
+           // $('#field_day_comment_ananda').style.height = ($('#field_day_comment_ananda').scrollHeight) + "px";
+
+            $('#btn_user_material_ananda').attr("href", day_materials);
+        }
+
+        day_show_now = day_num;
+
+        if (day_new == 0) {
+            day_new = day_show_now;
+        }
+
+
+
+        $('#btn_user_next_day_ananda')    .val(day_num + 1);
+        $('#btn_user_previus_day_ananda') .val(day_num - 1);
+        $('#user_current_day_ananda')    .text("День " + day_num);
+
+        if (current_day.day_num == marafon_day) {
+            $('#btn_user_previus_day_ananda') .show();
+            $('#btn_user_next_day_ananda')    .hide();
+        } else if (current_day.day_num == marafon_day - 1){
+            $('#btn_user_next_day_ananda')    .show();
+            $('#btn_user_previus_day_ananda') .show();
+        } else {
+            $('#btn_user_previus_day_ananda') .show();
+            $('#btn_user_next_day_ananda')    .show();
+        }
+
+        if (day_num == 1) {
+            $('#btn_user_previus_day_ananda') .hide();
+            if (marafon_day == 1) {
+                $('#btn_user_next_day_ananda')   .hide();
+            } else {
+                $('#btn_user_next_day_ananda')   .show();
+            }
+        }
+
+        var progress = day_progress;
+        $('#user_progress_bar_ananda').css('width', progress+'%').attr('aria-valuenow', progress);
+        $('#user_progress_bar_ananda').text(progress+'%');
+    }
+
+    $('#btn_user_previus_day_ananda, #btn_user_next_day_ananda').click(function() {
+        getDayInfoAnanda($(this).val());
+    });
+
+    $('.ananda_checkbox, .checkbox_ananda_djama, .checkbox_ananda_principles').change(function() {
+        console.log($(this).attr("data-day-num"));
+        userSaveDayAnanda($(this).attr("data-day-num"));
+    });
+
+    $('#filed_ananda_kirtan_fact, #filed_ananda_meditation_day_fact, ' +
+        '#filed_ananda_kaoshiki_fact, #filed_ananda_meditation_night_fact').on('change keyup paste', function () {
+        userSaveDayAnanda($(this).attr("data-day-num"));
+    });
+
+
+    var comment_timer_ananda;
+    $('#field_day_comment_ananda').on('change keyup paste', function () {
+        $(this)[0].style.height = "50px";
+        $(this)[0].style.height = ( $(this)[0].scrollHeight)+"px";
+
+        $('.comment_loader_ball_time').show();
+
+        var day_time_comment = $(this).attr("data-day-num");
+        clearTimeout(comment_timer_ananda);
+        comment_timer_ananda = setTimeout(function (){
+            userSaveDayAnanda(day_time_comment);
+            $('.comment_loader_ball_time').hide();
+            $('.comment_loader_tick_time').show();
+            $('.comment_loader_tick_time').fadeOut(3000);
+            $('.loader_ball').fadeOut(3000);
+        }, 1500);
+    });
+
+    function userSaveDayAnanda(day_num) {
+        //console.log("save day");
+        $.ajax({
+            type: "POST",
+            url:  api_url + "save_day_status_ananda",
+            data: {
+                day_num: day_num,
+                kirtan_minutes_fact:   $('#filed_ananda_kirtan_fact')        .val(),
+                meditation_day_fact:   $('#filed_ananda_meditation_day_fact').val(),
+                kaoshiki_minutes_fact: $('#filed_ananda_kaoshiki_fact')      .val(),
+                meditation_night_fact: $('#filed_ananda_meditation_night_fact').val(),
+
+                asana_fact:     $('#filed_ananda_asana').is(':checked'),
+                eat_diet_fact:     $('#filed_ananda_diet').is(':checked'),
+                silence_fact:     $('#filed_ananda_silence').is(':checked'),
+                chakra_fact:      $('#filed_ananda_chakra').is(':checked'),
+
+                ahimsa_fact:     $('#filed_ananda_ahimsa').is(':checked'),
+                satya_fact:      $('#filed_ananda_satya').is(':checked'),
+                asteya_fact:     $('#filed_ananda_asteya').is(':checked'),
+                brahma_fact:     $('#filed_ananda_brahma').is(':checked'),
+                aparigraha_fact: $('#filed_ananda_aparigraha').is(':checked'),
+                shaucha_fact:    $('#filed_ananda_shaucha').is(':checked'),
+                santosha_fact:   $('#filed_ananda_santosha').is(':checked'),
+                tapah_fact:      $('#filed_ananda_tapah').is(':checked'),
+                svadhya_fact:    $('#filed_ananda_svadhya').is(':checked'),
+                ishvara_fact:    $('#filed_ananda_ishvara').is(':checked'),
+
+                forgiveness_fact:    $('#filed_ananda_forgiveness').is(':checked'),
+                generosity_fact:     $('#filed_ananda_generosity').is(':checked'),
+                control_fact:        $('#filed_ananda_control').is(':checked'),
+                intention_fact:      $('#filed_ananda_intention').is(':checked'),
+                restraint_fact:      $('#filed_ananda_restraint').is(':checked'),
+                goodwill_fact:       $('#filed_ananda_goodwill').is(':checked'),
+                courage_fact:        $('#filed_ananda_courage').is(':checked'),
+                ownexample_fact:     $('#filed_ananda_ownexample').is(':checked'),
+                nocritic_fact:       $('#filed_ananda_nocritic').is(':checked'),
+                moral_fact:          $('#filed_ananda_moral').is(':checked'),
+                correction_fact:     $('#filed_ananda_correction').is(':checked'),
+                noarrogance_fact:    $('#filed_ananda_noarrogance').is(':checked'),
+                nochatter_fact:      $('#filed_ananda_nochatter').is(':checked'),
+                codex_fact:          $('#filed_ananda_codex').is(':checked'),
+                responsibility_fact: $('#filed_ananda_responsibility').is(':checked'),
+
+
+                day_comment:           $('#field_day_comment_ananda')      .val()
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                setDayAnanda(data.current_day, data.marafon_day);
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    }
+
+    function setUserDiaryAnanda(diary){
+        console.log(diary);
+        var diary_row = '<table class="table table-hover table-bordered table-condensed" >';
+        diary_row    += '<thead><tr> <th>День</th> <th>Описание</th> <th>Выполнено</th><th>Запись</th></tr></thead><tbody>';
+        $.each(diary, function (i, item) {
+            diary_row += '<tr>';
+            diary_row += '<td><h5 align="center"><a href="#" class="diary_day_time reg_link" name="' + item.day_num +'">' + item.day_num + '</a></h5></td>';
+            diary_row += '<td><h5><a href="'+ item.day_materials +'" class="reg_link" target="_blank">' + item.day_description + '</a></h5></td>';
+            diary_row += '<td><h5 align="center">' + item.day_progress + '</h5></td>';
+            diary_row += '<td><h5>' + item.day_comment + '</h5></td>';
+            diary_row += '</tr>';
+        });
+        diary_row += '</tbody></table';
+        $('#user_diary_ananda').empty();
+        $('#user_diary_ananda').append(diary_row);
+    }
+    $('#user_ananda_target').on('change keyup paste', function () {
+        clearTimeout(target_timer_time);
+        target_timer_time = setTimeout(function (){
+            $.ajax({
+                type: "POST",
+                url: api_url + "set_target_ananda",
+                data: {target_ananda: $('#user_ananda_target').val()},
+                headers: {
+                    'Authorization': 'Token token=' + cookie_token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function (data) {}
+            });
+        }, 1500);
+    });
+
+    $('#btn_question_meditation_save_ananda').click(function (){
+        console.log($('#question_meditation_start_ananda').val());
+        var message = "";
+
+        if ($('#question_meditation_start_ananda').val() == "") {
+            message += "Укажите стартовое время медитации. ";
+        }
+        if ($('#question_meditation_target_ananda').val() == "") {
+            message += "Укажите планируемое время медитации. ";
+        }
+        if ($('#question_meditation_target_ananda').val() < 15) {
+            message += "Планируемое время медитации должно быть больше 15 минут. ";
+        }
+        if ($('#question_meditation_step_ananda').val() == "") {
+            message += "Укажите планируемый шаг. ";
+        }
+        if ($('#question_meditation_step_ananda').val() < 1) {
+            message += "Шаг должен быть больше 0. ";
+        }
+
+        if (message == "") {
+            $('#btn_question_meditation_save_ananda').prop('disabled', true);
+            $.ajax({
+                type: "POST",
+                url:  api_url + "save_meditation_answer_ananda",
+                data: {
+                    answer_meditation_start:       $('#question_meditation_start_ananda')  .val(),
+                    answer_meditation_target:      $('#question_meditation_target_ananda') .val(),
+                    answer_meditation_step:        $('#question_meditation_step_ananda')   .val()
+                },
+                headers: {
+                    'Authorization':'Token token=' + cookie_token,
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                success: function(data){
+                    $('#btn_question_meditation_save_ananda').prop('disabled', false);
+                    update_user_info(); },
+                failure: function(errMsg) {
+                    alert(errMsg.toString());
+                }
+            });
+        } else {
+            alert(message);
+        }
+
+    });
+    $('#btn_meditation_edit_ananda').click(function (){
+        $('#btn_meditation_edit_ananda').prop('disabled', true);
+        var target = $('#filed_meditation_target_edit_ananda').val();
+
+        if (target === ""){
+            alert("Поле плановое значение должны быть заполнены");
+            $('#btn_meditation_edit_ananda').prop('disabled', false);
+        } else {
+                $.ajax({
+                    type: "POST",
+                    url:  api_url + "edit_meditation_ananda",
+                    data: { target: target},
+                    headers: {
+                        'Authorization':'Token token=' + cookie_token,
+                        'Content-Type':'application/x-www-form-urlencoded'
+                    },
+                    success: function(data){
+                        $('#btn_meditation_edit_ananda').prop('disabled', false);
+                        update_user_info();
+                        alert("Изменения приняты");
+                    },
+                    failure: function(errMsg) {
+                        alert(errMsg.toString());
+                    }
+                });
+
+        }
+    });
+
+
+
+    $('#btn_question_kaoshiki_save_ananda').click(function (){
+        var message = "";
+
+        if ($('#question_kaoshiki_start_ananda').val() == "") {
+            message += "Укажите стартовое время каошики. ";
+        }
+        if ($('#question_kaoshiki_target_ananda').val() == "") {
+            message += "Укажите планируемое время каошики. ";
+        }
+        if ($('#question_kaoshiki_target_ananda').val() < 5) {
+            message += "Планируемое время медитации должно быть больше 5 минут. ";
+        }
+        if ($('#question_kaoshiki_step_ananda').val() == "") {
+            message += "Укажите планируемый шаг. ";
+        }
+        if ($('#question_kaoshiki_step_ananda').val() < 1) {
+            message += "Шаг должен быть больше 0. ";
+        }
+
+        if (message == ""){
+            $('#btn_question_kaoshiki_save_ananda').prop('disabled', true);
+            $.ajax({
+                type: "POST",
+                url:  api_url + "save_kaoshiki_answer_ananda",
+                data: {
+                    answer_kaoshiki_start:       $('#question_kaoshiki_start_ananda')  .val(),
+                    answer_kaoshiki_target:      $('#question_kaoshiki_target_ananda') .val(),
+                    answer_kaoshiki_step:        $('#question_kaoshiki_step_ananda')   .val()
+                },
+                headers: {
+                    'Authorization':'Token token=' + cookie_token,
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                success: function(data){
+                    $('#btn_question_kaoshiki_save_ananda').prop('disabled', false);
+                    update_user_info(); },
+                failure: function(errMsg) {
+                    alert(errMsg.toString());
+                }
+            });
+        } else {
+            alert(message);
+        }
+
+    });
+    $('#btn_kaoshiki_edit_ananda').click(function (){
+        $('#btn_kaoshiki_edit_ananda').prop('disabled', true);
+        var target = $('#filed_kaoshiki_target_edit_ananda').val();
+
+        if (target === ""){
+            alert("Поле плановое значение должны быть заполнены");
+            $('#btn_kaoshiki_edit_ananda').prop('disabled', false);
+        } else {
+            $.ajax({
+                type: "POST",
+                url:  api_url + "edit_kaoshiki_ananda",
+                data: { target: target},
+                headers: {
+                    'Authorization':'Token token=' + cookie_token,
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                success: function(data){
+                    $('#btn_kaoshiki_edit_ananda').prop('disabled', false);
+                    update_user_info();
+                    alert("Изменения приняты");
+                },
+                failure: function(errMsg) {
+                    alert(errMsg.toString());
+                }
+            });
+
+        }
+    });
+
+
+
+    $('#btn_question_kirtan_save_ananda').click(function (){
+        var message = "";
+
+        if ($('#question_kirtan_start_ananda').val() == "") {
+            message += "Укажите стартовое время киртана. ";
+        }
+        if ($('#question_kirtan_target_ananda').val() == "") {
+            message += "Укажите планируемое время киртана. ";
+        }
+        if ($('#question_kirtan_target_ananda').val() < 10) {
+            message += "Планируемое время киртана должно быть больше 10 минут. ";
+        }
+        if ($('#question_kirtan_step_ananda').val() == "") {
+            message += "Укажите планируемый шаг. ";
+        }
+
+
+        if (message == ""){
+            $('#btn_question_kirtan_save_ananda').prop('disabled', true);
+            $.ajax({
+                type: "POST",
+                url:  api_url + "save_kirtan_answer_ananda",
+                data: {
+                    answer_kirtan_start:       $('#question_kirtan_start_ananda')  .val(),
+                    answer_kirtan_target:      $('#question_kirtan_target_ananda') .val(),
+                    answer_kirtan_step:        $('#question_kirtan_step_ananda')   .val()
+                },
+                headers: {
+                    'Authorization':'Token token=' + cookie_token,
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                success: function(data){
+                    $('#btn_question_kirtan_save_ananda').prop('disabled', false);
+                    update_user_info(); },
+                failure: function(errMsg) {
+                    alert(errMsg.toString());
+                }
+            });
+        } else {
+            alert (message);
+        }
+
+
+    });
+    $('#btn_kirtan_edit_ananda').click(function (){
+        $('#btn_kirtan_edit_ananda').prop('disabled', true);
+        var target = $('#filed_kirtan_target_edit_ananda').val();
+
+        if (target === ""){
+            alert("Поле плановое значение должны быть заполнены");
+            $('#btn_kirtan_edit_ananda').prop('disabled', false);
+        } else {
+            $.ajax({
+                type: "POST",
+                url:  api_url + "edit_kirtan_ananda",
+                data: { target: target},
+                headers: {
+                    'Authorization':'Token token=' + cookie_token,
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                success: function(data){
+                    $('#btn_kirtan_edit_ananda').prop('disabled', false);
+                    update_user_info();
+                    alert("Изменения приняты");
+                },
+                failure: function(errMsg) {
+                    alert(errMsg.toString());
+                }
+            });
+
+        }
+    });
+
+    function setGroupRatingAnanda(group_rating_info, user){
+        if (user.rating_show_status) {
+            $('#filed_rating_show').prop("checked", true);
+            $('#div_btn_rating_link_ananda').show();
+            $('#btn_rating_link_ananda').text("Выполняя ежедневные практики, вы улучшаете свои позиции в рейтинге марафонцев вашего потока. " +
+                "Сейчас Вы на " + group_rating_info.rating_user + " месте из " + group_rating_info.rating_all + " участников");
+        } else {
+            $('#filed_rating_show').prop("checked", false);
+            $('#div_btn_rating_link_ananda').hide();
+        }
+
+
+
+        var row = '<table class="table table-hover table-bordered table-condensed" >';
+        row    += '<thead><tr> <th>Место</th> <th>Прогресс</th> <th>Имя</th> </tr></thead><tbody>';
+        $.each(group_rating_info.rating_table, function (i, item) {
+            if (item.user_place <= 25) {
+                row += '<tr>';
+                row += '<td class="column_rating_place"><h5>' + item.user_place    + '</h5></td>';
+
+                var progress_percent = item.user_progress + "%";
+                row += '<td class="div_row_fact text-center"><div class="progress">';
+
+                if (item.user_id == user.id){
+                    row += '<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="' + item.user_progress + '" aria-valuemin="0" aria-valuemax="100" style="width: ' + progress_percent + '; min-width: 2em;">';
+                } else {
+                    row += '<div class="progress-bar progress-bar-info    progress-bar-striped active" role="progressbar" aria-valuenow="' + item.user_progress + '" aria-valuemin="0" aria-valuemax="100" style="width: ' + progress_percent + '; min-width: 2em;">';
+                }
+
+                row += progress_percent;
+                row += '</div></div></td>';
+
+                row += '<td class="column_rating_name"><h5>' + item.user_name     + '</h5></td>';
+                row += '</tr>';
+            }
+        });
+        row += '</tbody></table';
+        $('#rating_group_table') .empty();
+        $('#rating_group_table').append(row);
+        $('#rating_group_table').bsTable(undefined, false, undefined, undefined, false);
+
+    }
+
+
+
 
 //Diary
 
@@ -7539,6 +8484,33 @@ $( document ).ready(function() {
         });
     });
 
+    $('#btn_password_save_ananda').click(function() {
+        $.ajax({
+            type: "GET",
+            url:  api_url_full,
+            data: { query_update: "user_new_password",
+                password_old: $('#password_old_ananda').val(),
+                password_new: $('#password_new_ananda').val()
+            },
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+
+                if (data.error == 0) {
+                    alert("Новый пароль установлен");
+                } else {
+                    alert("Новый пароль не установлен");
+                }
+
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
+
     $('#btn_payment_edit').click(function (){
         if ( parseInt($('#filed_payment_size_edit').val()) > 0) {
             $.ajax({
@@ -7799,6 +8771,7 @@ $( document ).ready(function() {
             groups_row += item.group_start   + '</h5></td><td><h5>';
             groups_row += item.group_hypothesis + '</h5></td><td><h5>';
             groups_row += item.group_users   + '</h5></td>';
+            groups_row += '<td><button type="button" class="btn btn-default btn-sm" name="btns_group_rating" value="'  +  item.group_id + '"  > <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></button></td>';
             groups_row += '<td><button type="button" class="btn btn-info    btn-sm" name="btns_group_info"   value="'  +  item.group_id + '"  > <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></td>';
             groups_row += '<td><button type="button" class="btn btn-warning btn-sm" name="btns_group_edit"   value="'  +  item.group_id + '"  data-toggle="modal" data-target="#modal_group_edit"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
             groups_row += '<td><button type="button" class="btn btn-danger  btn-sm" name="btns_group_delete" value="'  +  item.group_id + '"  data-toggle="modal" data-target="#modal_group_delete"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>';
@@ -8159,7 +9132,7 @@ $( document ).ready(function() {
         group_messenger = $(this).attr("name");
     });
     $(document).on('click', '.amount_link_group',       function () {
-        parseInt($(this).attr("name")) == 1 ? $('#btn_dd_amount_group').text("Минимальная") : $('#btn_dd_amount_group').text("Больше минимальной");
+        parseInt($(this).attr("name")) == 1 ? $('#btn_dd_amount_group').text("Фикс. оплата") : $('#btn_dd_amount_group').text("Свободная оплата");
         group_amount_type = $(this).attr("name");
     });
     $('#btn_group_add').click(function () {
@@ -8287,6 +9260,44 @@ $( document ).ready(function() {
         });
     });
 
+    $(document).on('click', '[name="btns_group_rating"]' , function() {
+        //console.log($(this).val());
+        $.ajax({
+            type: "GET",
+            url:  api_url + "get_rating_admin",
+            data: { group_id: $(this).val()},
+            headers: {
+                'Authorization':'Token token=' + cookie_token,
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            success: function(data){
+                console.log(data);
+
+
+                var row = '<table class="table table-hover table-bordered table-condensed" >';
+                row    += '<thead><tr> <th>Позиция</th> <th>Рейтинг</th> <th>Имя</th> <th>Телефон</th> <th>Почта</th>  </tr></thead><tbody>';
+                $.each(data.rating_info.rating_table, function (i, item) {
+                    row += '<tr><td><h5>';
+                    row += item.user_place  + '</h5></td><td><h5>';
+                    row += item.user_progress  + '</h5></td><td><h5>';
+                    row += item.user_name   + '</h5></td><td><h5>';
+                    row += item.user_phone  + '</h5></td><td><h5>';
+                    row += item.user_email  + '</h5></td>';
+                    row += '</tr>';
+                });
+                row += '</tbody></table';
+                $('#table_rating_admin') .empty();
+                $('#table_rating_admin').append(row);
+                $('#table_rating_admin').bsTable(undefined, true, undefined, undefined, true);
+
+                $('#modal_group_rating') .modal('show');
+
+            },
+            failure: function(errMsg) {
+                alert(errMsg.toString());
+            }
+        });
+    });
     $(document).on('click', '[name="btns_group_info"]' , function() {
         //console.log($(this).val());
         $.ajax({
@@ -8331,7 +9342,7 @@ $( document ).ready(function() {
 
 
                 var group_users_row = '<table id="group_users" class="table table-hover table-bordered table-condensed" >';
-                group_users_row    += '<thead><tr> <th>id</th> <th>Имя</th> <th>Телефон</th> <th>Почта</th> <th>Пароль</th> <th>Оплата</th><th>Баланс</th> </tr></thead><tbody>';
+                group_users_row    += '<thead><tr> <th>id</th> <th>Имя</th> <th>Телефон</th> <th>Почта</th> <th>Пароль</th>  </tr></thead><tbody>';
                 $.each(data.group_users, function (i, item) {
                     group_users_row += '<tr><td><h5>';
                     group_users_row += item.user_id    + '</h5></td><td><h5>';
@@ -8344,8 +9355,6 @@ $( document ).ready(function() {
                   // }
                     group_users_row += '<td><h5>' + item.email + '</h5></td>';
                     group_users_row += '<td><h5>' + item.password + '</h5></td>';
-                    group_users_row += '<td><h5>' + item.payment_size + '</h5></td>';
-                    group_users_row += '<td><h5>' + item.bonus_coins + '</h5></td>';
                     group_users_row += '<td><button type="button" class="btn btn-info btn-sm"   name="btns_group_user_info"   value="'  +  item.user_id + '"  > <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></td>';
                     group_users_row += '<td><button type="button" class="btn btn-warning btn-sm" name="btns_edit_user" value="'  +  item.user_id + '"  data-toggle="modal" data-target="#modal_edit_user"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>';
 
@@ -9574,7 +10583,7 @@ $( document ).ready(function() {
         var current_group = [];
         parseInt($(this).val()) === 1 ? current_group = group_users_1 : current_group = group_users_2;
 
-        var row = '<table class="table table-hover table-bordered"><thead><tr class="db_main_row"> ';
+        var row = '<table class="table table-hover table-bordered"><thead><tr class="db_main_row">';
         row    += '<th>Имя</th>';
         row    += '<th>Почта</th>';
         row    += '<th>Телефон</th>';
