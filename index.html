@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="ru">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -127,7 +127,7 @@
                 <br/>
 
                 <h1 align="center"><span class="yoga_color">Марафон</span> H<span class="yoga_color">Y</span>LS</h1>
-                <h3 align="center">Регистрация/вход в личный кабинет</h3>
+                <h3 align="center">Вход в личный кабинет</h3>
                 <br/>
 
                 <div id="div_reg_other" hidden>
@@ -180,11 +180,11 @@
                     </div>
                 </div>
 
+                <!--
                 <br/>
-
                 <br/>
                 <button id="btn_reg_other" type="button" class="btn btn-link btn-block "><p class="reg_link">альтернативный вариант</p> </button>
-
+                -->
 
 
 
@@ -291,7 +291,10 @@
               <div class="col-xs-2"></div>
               <div class="col-xs-8">
                   <div id="groups_table"></div>
+                  <button type="button" id="btn_admin_show_all_group"    class="btn btn-default btn-block">Показать все</button>
 
+                  <br/>
+                  <br/>
               </div>
               <div class="col-xs-2"></div>
           </div>
@@ -313,6 +316,7 @@
                                   <ul class="dropdown-menu" id="program_list_for_group"></ul>
                               </div>
                           </td></tr>
+                          <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Поток группы</h5></td>  <td class="db_row_input_admin"><input type="text" class="form-control" id="group_flow"  placeholder=""></td></tr>
                           <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Название группы</h5></td>  <td class="db_row_input_admin"><input type="text" class="form-control" id="group_name"  placeholder=""></td></tr>
                           <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Дата старта</h5></td>      <td class="db_row_input_admin"><input type="date" class="form-control" id="group_start"    placeholder=""></td></tr>
                           <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Куратор группы</h5></td>   <td class="db_row_input_admin"><select id="group_add_curator"   class="selectpicker"></select></td></tr>
@@ -325,25 +329,11 @@
                                   <ul class="dropdown-menu">
                                       <li><a href="#" class="messenger_link_group" name="WhatsApp">WhatsApp</a></li>
                                       <li><a href="#" class="messenger_link_group" name="VK">VK</a></li>
-                                      <li><a href="#" class="messenger_link_group" name="Тест">Тест</a></li>
+                                      <li><a href="#" class="messenger_link_group" name="Other">Прочее</a></li>
                                   </ul>
                               </div>
                           </td></tr>
                           <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Ссылка на чат</h5></td>  <td class="db_row_input_admin"><input type="text" class="form-control" id="group_messenger_link"  placeholder=""></td></tr>
-                          <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Тип группы по оплате</h5></td>          <td class="db_row_input_admin">
-                              <div class="dropdown">
-                                  <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_amount_group">
-                                      Размер оплаты <span class="caret"></span>
-                                  </button>
-                                  <ul class="dropdown-menu">
-                                      <li><a href="#" class="amount_link_group" name="1">Фикс. оплата</a></li>
-                                      <li><a href="#" class="amount_link_group" name="2">Свободная оплата</a></li>
-                                  </ul>
-                              </div>
-                          </td></tr>
-                          <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Номер гипотезы</h5></td>          <td class="db_row_input_admin">
-                              <input type="text" class="form-control" id="group_hypothesis"  placeholder="">
-                          </td></tr>
                       </table>
                   </div>
                   <div class="modal-footer">
@@ -676,6 +666,61 @@
                         </a>
                     </span>
                         </div>
+
+
+
+                        <div align="left" class="buy_practiv_div">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="admin_checkbox_social" class="admin_mini" />
+                                <div class="state p-success-o"><label></label></div>
+                            </div>
+                            <span class="buy_mini_practic_text">
+                        Контроль активности в соц.сетях
+                        <a href="https://hyls.ru/phone" target="_blank" >
+                            <img class="icon_question" src="img/icon_question.png"  data-toggle="tooltip" data-placement="top" title="Научитесь уделять больше внимания миру вокруг, а не внутри своего смартфона ">
+                        </a>
+                    </span>
+                        </div>
+
+                        <div align="left" class="buy_practiv_div">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="admin_checkbox_extra" class="admin_mini" />
+                                <div class="state p-success-o"><label></label></div>
+                            </div>
+                            <span class="buy_mini_practic_text">
+                        Избавление от лишнего
+                        <a href="https://hyls.ru/page3267902.html" target="_blank" >
+                            <img class="icon_question" src="img/icon_question.png"  data-toggle="tooltip" data-placement="top" title="Научитесь не накапливать лишних вещей и избавлять от того, что вам уже не нужно, всего за 21 день">
+                        </a>
+                    </span>
+                        </div>
+
+                        <div align="left" class="buy_practiv_div">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="admin_checkbox_parasites" class="admin_mini" />
+                                <div class="state p-success-o"><label></label></div>
+                            </div>
+                            <span class="buy_mini_practic_text">
+                        Избавление от слов-паразитов
+                        <a href="https://hyls.ru/words" target="_blank" >
+                            <img class="icon_question" src="img/icon_question.png"  data-toggle="tooltip" data-placement="top" title="Очистите свою повседневную речь от словесного мусора">
+                        </a>
+                    </span>
+                        </div>
+
+                        <div align="left" class="buy_practiv_div">
+                            <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                <input type="checkbox"  id="admin_checkbox_communication" class="admin_mini" />
+                                <div class="state p-success-o"><label></label></div>
+                            </div>
+                            <span class="buy_mini_practic_text">
+                        Общение без конфликтов и споров
+                        <a href="https://hyls.ru/conflict" target="_blank" >
+                            <img class="icon_question" src="img/icon_question.png"  data-toggle="tooltip" data-placement="top" title="Узнайте о способах выхода из конфликтных ситуаций и научитесь использовать их для улучшения своей жизни">
+                        </a>
+                    </span>
+                        </div>
+
 
 
                     </div>
@@ -1054,6 +1099,11 @@
                 Сравнение метрик групп
                 <select id="metrics_group_2"   class="selectpicker"></select>
                 <br>
+
+
+                <input type="checkbox" id="checbox_comprasion_flow">
+                <label for="checbox_comprasion_flow"><h5>По потоку?</h5></label>
+
                 <button id="get_comprasion" type="button" class="btn btn-success">Сравнить</button>
             </h3>
 
@@ -1093,7 +1143,7 @@
                     <td><p align="center" id="metrics_average_involvement_1"></p></td>
                     <td><p align="center" id="metrics_average_involvement_2"></p></td>
                 </tr>
-
+<!--
                 <tr>
                     <td bgcolor="#c1c1c1" style="line-height:10px;" colspan=3>Финансы</td>
                 </tr>
@@ -1121,7 +1171,7 @@
                     <td><p align="center" id="metrics_revenu_support_1"></p></td>
                     <td><p align="center" id="metrics_revenu_support_2"></p></td>
                 </tr>
-
+-->
                 <tr>
                     <td bgcolor="#c1c1c1" style="line-height:10px;" colspan=3>Бонусы</td>
                 </tr>
@@ -1134,6 +1184,11 @@
                 </tr>
 
 
+                <tr>
+                    <td><p>Доступ в чат</p></td>
+                    <td><p align="center" id="metrics_bonus_chat_1"></p></td>
+                    <td><p align="center" id="metrics_bonus_chat_2"></p></td>
+                </tr>
                 <tr>
                     <td><p>Бонус - Возможность пользоваться материалами и личным дневником с практиками после окончания марафона</p></td>
                     <td><p align="center" id="metrics_bonus_savematerial_1"></p></td>
@@ -1159,11 +1214,6 @@
                 </tr>
 
 
-                <tr>
-                    <td><p>Бонус - доступ в отдельный чат с индивидуальной поддержкой куратора - эксперта по йоге и натуропатии</p></td>
-                    <td><p align="center" id="metrics_bonus_individual_1"></p></td>
-                    <td><p align="center" id="metrics_bonus_individual_2"></p></td>
-                </tr>
 
 
                 </tbody>
@@ -1178,6 +1228,31 @@
                             <h4 class="modal-title" id="modal_label_group_info">Информация о группе</h4>
                         </div>
                         <div class="modal-body"  align="center">
+
+                            <div class="row" id="group_filters">
+                                <div class="col-xs-3">
+                                    <button type="button" value="rating" class="btn_filter_group btn btn-default">
+                                        <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Заполняемость
+                                    </button>
+                                </div>
+                                <div class="col-xs-3">
+                                    <button type="button" value="last_visit" class="btn_filter_group btn btn-default">
+                                        <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Посл. заход
+                                    </button>
+                                </div>
+                                <div class="col-xs-3">
+                                    <button type="button" value="last_activity" class="btn_filter_group btn btn-default">
+                                        <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Посл. актив.
+                                    </button>
+                                </div>
+                                <div class="col-xs-3">
+                                    <button type="button" value="rating_last_5" class="btn_filter_group btn btn-default">
+                                        <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Заполняемость, 5 д.
+                                    </button>
+                                </div>
+                            </div>
+                            <br/>
+
                             <div id="table_group_info"></div>
                         </div>
                         <div class="modal-footer">
@@ -1327,6 +1402,7 @@
         -->
         <button type="button" class="btn btn-warning" id="btn_analitic">Analitic</button>
         <button type="button" class="btn btn-warning" id="btn_test_bizon">BIZON</button>
+        <button type="button" class="btn btn-warning" id="btn_test_amo">Test amo</button>
         <button type="button" class="btn btn-warning" id="btn_test_new_email">Test new email</button>
         <button type="button" class="btn btn-warning" id="btn_activate_bonuses_for_old">Бонусы</button>
         <button type="button" class="btn btn-warning" id="btn_check_for_double_diary">Задвоение дневника</button>
@@ -1500,7 +1576,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navigation_bar_user">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
+                    <li class="dropdown" id="marafon_selector_main" hidden>
                         <a href="#" name="select_marafon" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Мои марафоны<span class="caret"></span></a>
                         <ul id="my_marafon_dropdown" class="dropdown-menu">
                             <li><a class="nav-link-user" name="nav_user_marafon" data-value="detox"   href="#">Марафон 60 дней</a></li>
@@ -1511,7 +1587,7 @@
                         </ul>
                     </li>
 
-                    <li class="dropdown">
+                    <li class="dropdown" id="marafon_selector">
                         <a href="#" name="select_marafon_mini" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Мои марафоны<span class="caret"></span></a>
                         <ul id="my_marafon_dropdown1" class="dropdown-menu">
                             <li><a class="nav-link-user" name="nav_user_marafon" data-value="detox_mini"  href="#">Марафон 28 дней</a></li>
@@ -2146,64 +2222,25 @@
         </div>
         <div id="reg_marafon_time"            hidden  class="col-xs-12 col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3" align="center">
 
-            <br>
-            <br>
-            <br>
-            <h2 align="center">Ознакомиться и зарегистрироваться в марафон можно <a href="https://hyls.ru/time" target="_blank" class="yoga_color">по ссылке</a></h2>
-            <img src="img/reg_foto_logo2.png" class="img-responsive" />
 
-            <!--
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <br/>
-                <div align="center" class="payment_header_family"><b>Оплата марафона <span class="black_color">H</span>Y<span class="black_color">LS</span>_family</b>
-                    <br>
-                    <span class="black_color"><b>Старт 16.08.2018</b></span>
-                </div>
-
-                <div class="col-xs-12 col-md-12 col-sm-12 text-left">
-                    <div class="reg-text">
-                        Мы хотим, чтобы любой человек мог участвовать в марафоне, поэтому оплата марафона <b>свободная</b> - вы сами выбираете ту стоимость, которая будет вас мотивировать пройти марафон.
-                    </div>
-
-                    <div class="reg-text">
-                        <b>Рекомендации:</b></div>
-
-                    <div class="reg-text">
-                        <ul>
-                            <li><b>до 2000 р.</b> — для людей с финансовыми трудностями (если ваш доход меньше 15 т.р.
-                                в месяц). Вы получаете полный доступ к марафону 60 дней, личному кабинету,
-                                практикам и чату с поддержкой кураторов</li>
-                            <li><b>2000-5000 р.</b> и выше — полный доступ + возможность пользоваться материалами
-                                после окончания марафона, а также возможность продолжать пользоваться личным дневником
-                                с практиками</li>
-                            <li><b>От 5000 р.</b> и выше — спасибо, вы даёте возможность участвовать людям с
-                                низкими финансовыми возможностями. Для вас дополнительный бонус помимо всего
-                                перечисленного выше: Вебинар с Александром Тимофеевым
-                                (ведущий эксперт проекта, коуч, психолог)</li>
-                            <li><b>От 9000 р.</b> и выше —  вы настоящие меценаты проекта. Спасибо за поддержку!
-                                Для вас помимо всего выше Бонус — индивидуальная консультация высококвалифицированного
-                                специалиста Александра Тимофеева, психолога, коуча, специалиста в области семейных
-                                отношений. Подробнее <a href="https://hyls.ru/bonusfamily" target="_blank" class="reg_link">по ссылке</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="reg-text">
-                        Оплата с карты любой страны!
-                    </div>
-                </div>
-
-
-                <button id="btn_checkout_family" type="button" class="btn btn-success btn-block btn-lg">Оплатить</button>
-                <div id="div_checkout_reg_family" hidden>
-                    <div id="checkout_reg_family"></div>
-
-                    <div class="reg-text">
-                        Если у вас возникли вопросы или сложности с оплатой, свяжитесь с нами: <a href="mailto:info@hyls.ru" class="reg_link" target="_blank">info@hyls.ru</a>,
-                        <a href="https://vk.com/hyls_ru" target="_blank" class="reg_link">ВКонтакте</a>, <a href="https://www.facebook.com/HYLS.ru" target="_blank" class="reg_link">Facebook</a> или WhatsApp +7(923)416-60-72
-                    </div>
+            <div id="div_time_start_date" hidden>
+                <h3 align="center">Вы всегда можете переключиться между марафонами используя вкладку "Мои марафоны"</h3>
+                <div class="diary_body row">
+                    <h4 align="left">Если вы готовы начать марафон Управления временем HYLS, то нажмите на кнопку "Начать", либо вернитесь сюда позже</h4>
+                    <button id="btn_time_start" type="button" class="btn btn-success btn-block">Начать сегодня!</button>
                 </div>
             </div>
-            -->
+
+            <div id="div_time_reg" hidden>
+                <br>
+                <br>
+                <br>
+                <h2 align="center">Ознакомиться и зарегистрироваться в марафон можно <a href="https://hyls.ru/time" target="_blank" class="yoga_color">по ссылке</a></h2>
+                <img src="img/reg_foto_logo2.png" class="img-responsive" />
+
+            </div>
+
+
         </div>
 
 
@@ -2215,7 +2252,7 @@
             <br/>
             <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3" align="center">
                   <div id="user_marafon_wait_text" class="reg-header h1" align="center"></div>
-                  <h3 id="reg_join_chat" align="center">Присоединяйтесь к чату группы <a id="wait_messenger_link" class="reg_link" href="#"></a></h3>
+                  <h3 id="reg_join_chat" align="center" hidden>Присоединяйтесь к чату группы <a id="wait_messenger_link" class="reg_link" href="#"></a></h3>
 
                   <img id="wait_logo" src="img/reg_foto_logo2.png" class="img-responsive img_reg" />
                   <div id="hidden_info_wait" hidden>
@@ -2232,7 +2269,6 @@
                           <span class="sr-only"></span>
                       </div>
                   </div>
-
 
                   <div class="diary_body" id="before_detox_wait_practise">
                       <div class="reg-header h4" align="center">
@@ -2263,37 +2299,41 @@
                           <span class="play_bonuses_hyls_coins"></span> HYLScoins
                       </h3>
 
-                      <div  id="wait_bonus_yoga" class="diary_body" hidden>
-                          <h4 align="center" class="bonus_yoga_text">Участие в еженедельных онлайн занятиях по йоге на протяжении всего марафона (8 занятий)</h4>
-                          <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoga">1000 HYLScoins</a>
+                      <div id="wait_bonuses">
+
+
+                          <div  id="wait_bonus_chat" class="diary_body" hidden>
+                              <h4 align="center">Доступ в общий чат участников с поддержкой куратора</h4>
+                              <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="chat">1000 HYLScoins</a>
+                          </div>
+
+                          <div  id="wait_bonus_yoga" class="diary_body" hidden>
+                              <h4 align="center" class="bonus_yoga_text">Участие в еженедельных видео-занятиях по йоге с куратором на протяжении всего марафона</h4>
+                              <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoga">1000 HYLScoins</a>
+                          </div>
+
+                          <div id="wait_bonus_yoganidra" class="diary_body" hidden>
+                              <h4 align="center">4 аудиозаписи для полного расслабления тела и психики, йога-нидра (практики нет в марафоне)</h4>
+
+                              <a  href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoganidra">1000 HYLScoins</a>
+                          </div>
+
+
+                          <div  id="wait_bonus_savematerial" class="diary_body" hidden>
+                              <h4 align="center">Возможность пользоваться материалами и личным дневником с практиками после окончания марафона</h4>
+                              <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="savematerial">1000 HYLScoins</a>
+                          </div>
+
+
+                          <div  id="wait_bonus_individual" class="diary_body" hidden>
+                              <h4 align="center">Доступ в отдельный чат с индивидуальной поддержкой куратора - эксперта по йоге и натуропатии, </h4>
+                              <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="individual">1000 HYLScoins</a>
+                          </div>
+
                       </div>
 
-                      <div id="wait_bonus_yoganidra" class="diary_body" hidden>
-                          <h4 align="center">4 аудиозаписи для полного расслабления тела и психики, йога-нидра (практики нет в марафоне)</h4>
-
-                          <a  href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoganidra">1000 HYLScoins</a>
-                      </div>
-
-                      <div  id="wait_bonus_3mini" class="diary_body" hidden>
-                          <h4 align="center">Доступ к 3 уникальным марафонам на 21 день по полезным привычкам: контроль активности в соцсетях, избавление от слов-паразитов, общение без конфликтов и споров</h4>
-                          <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="3mini">1000 HYLScoins</a>
-                      </div>
-
-                      <div  id="wait_bonus_savematerial" class="diary_body" hidden>
-                          <h4 align="center">Возможность пользоваться материалами и личным дневником с практиками после окончания марафона</h4>
-                          <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="savematerial">1000 HYLScoins</a>
-                      </div>
-
-                      <div  id="wait_bonus_individual" class="diary_body" hidden>
-                          <h4 align="center">Доступ в отдельный чат с индивидуальной поддержкой куратора - эксперта по йоге и натуропатии, </h4>
-                          <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="individual">1000 HYLScoins</a>
-                      </div>
+                      <div id="wait_bonus_wait" style="font-size: 16px;" hidden>Мы отключили на сегодня возможность выбора бонусов марафона, т.к. на сайте происходят тех. работы.  Завтра вы сможете заново выбрать бонусы и ими вопользоваться</div>
                 </div>
-
-
-
-
-
 
             </div>
             <div class="modal fade" id="modal_base_info"    tabindex="-1" role="dialog" aria-labelledby="modal_label_base_info">
@@ -2330,7 +2370,7 @@
                     </div>
 
                     <div class="diary_header">
-                        <h2 class="marafon_name"></h2>
+                        <h2 id="detox_marafon_name" class="marafon_name"></h2>
                         <div class="row">
                             <div class="col-xs-6 col-sm-4">
                                 <div id="user_programm_day">
@@ -2348,7 +2388,7 @@
                                 <div id="div_btn_user_material">
                                     <br/>
                                     <!--   <button id="btn_user_material"  type="button" class="btn btn-info btn-block">Открыть материал дня</button>   -->
-                                    <a  id="btn_user_material"  href="#" target="_blank" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block">Материал дня</a>
+                                    <a  id="btn_user_material"  href="#" target="_blank" class="btn_orange_style btns_unicorn_padding button button-glow button-rounded button-highlight button-block">Материал дня</a>
 
                                 </div>
 
@@ -2368,7 +2408,11 @@
                                 <textarea id="user_detox_target" type="text" class="field_target form-control" placeholder="Поле для записи цели"></textarea>
                             </div>
 
+
                         </div>
+
+                        <a   href="#" target="_blank" class="btns_next_material btn_orange_style btns_unicorn_padding button button-glow button-rounded button-highlight button-block">Материал на завтра</a>
+
                     </div>
 
                     <div class="diary_friends" hidden>
@@ -2385,7 +2429,7 @@
                     <div class="diary_body">
                         <h2 class="diary_body_name">Дневник</h2>
 
-                        <div id="table_question_water" hidden>
+                        <div class="question_background" id="table_question_water" hidden>
                             <div id="water_alert_no_answer"     class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -2404,10 +2448,8 @@
                                 </tbody>
                             </table>
                             <button id="btn_question_water_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                            <br/>
-                            <br/>
                         </div>
-                        <div id="table_question_wake_up" hidden>
+                        <div class="question_background" id="table_question_wake_up" hidden>
                             <div id="wake_up_alert_no_answer"   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -2442,7 +2484,7 @@
                             </table>
                             <button id="btn_question_wake_up_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
                         </div>
-                        <div id="table_question_detox" hidden>
+                        <div class="question_background" id="table_question_detox" hidden>
                             <div id="detox_alert_no_answer"   class="alert alert-danger"  role="alert">Пожалуйста, ответьте на вопросы ниже. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -2498,7 +2540,7 @@
                             </table>
                             <button id="btn_question_detox_save" hidden type="button" class="btn btn-success btn-block">Отправить ответ</button>
                         </div>
-                        <div id="table_question_half_bath" hidden>
+                        <div class="question_background" id="table_question_half_bath" hidden>
                             <div id="half_bath_alert_no_answer"     class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -2524,10 +2566,8 @@
                                 </tbody>
                             </table>
                             <button id="btn_question_half_bath_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                            <br/>
-                            <br/>
                         </div>
-                        <div id="table_question_therapy" hidden>
+                        <div class="question_background" id="table_question_therapy" hidden>
                             <div id="therapy_alert_no_answer"   class="alert alert-danger"  role="alert">Пожалуйста, ответьте на вопросы ниже. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -2546,13 +2586,13 @@
                                                 Выберите вариант <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a href="#" class="link_therapy_type" name="1">Каждый день</a></li>
+                                                <li><a href="#" class="link_therapy_type" name="0">Не буду выполнять</a></li>
+                                                <li><a href="#" class="link_therapy_type" name="1">Каждый день  </a></li>
                                                 <li><a href="#" class="link_therapy_type" name="2">1 раз в 2 дня</a></li>
                                                 <li><a href="#" class="link_therapy_type" name="3">1 раз в 3 дня</a></li>
                                                 <li><a href="#" class="link_therapy_type" name="4">1 раз в 4 дня</a></li>
                                                 <li><a href="#" class="link_therapy_type" name="5">1 раз в 5 дней</a></li>
                                                 <li><a href="#" class="link_therapy_type" name="7">1 раз в неделю</a></li>
-                                                <li><a href="#" class="link_therapy_type" name="0">Не буду выполнять</a></li>
                                             </ul>
                                         </div>
                                     </td>
@@ -2563,7 +2603,7 @@
                         </div>
 
 
-                        <div id="table_question_ahimsa" hidden>
+                        <div class="question_background" id="table_question_ahimsa" hidden>
                             <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -2587,11 +2627,8 @@
                                 </tbody>
                             </table>
                             <button id="btn_question_ahimsa_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                            <br/>
-                            <br/>
                         </div>
-
-                        <div id="table_question_satya" hidden>
+                        <div class="question_background" id="table_question_satya" hidden>
                             <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -2615,11 +2652,8 @@
                                 </tbody>
                             </table>
                             <button id="btn_question_satya_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                            <br/>
-                            <br/>
                         </div>
-
-                        <div id="table_question_asteya" hidden>
+                        <div class="question_background" id="table_question_asteya" hidden>
                             <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -2643,11 +2677,8 @@
                                 </tbody>
                             </table>
                             <button id="btn_question_asteya_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                            <br/>
-                            <br/>
                         </div>
-
-                        <div id="table_question_brahma" hidden>
+                        <div class="question_background" id="table_question_brahma" hidden>
                             <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -2671,11 +2702,8 @@
                                 </tbody>
                             </table>
                             <button id="btn_question_brahma_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                            <br/>
-                            <br/>
                         </div>
-
-                        <div id="table_question_aparigraha" hidden>
+                        <div class="question_background" id="table_question_aparigraha" hidden>
                             <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -2699,11 +2727,8 @@
                                 </tbody>
                             </table>
                             <button id="btn_question_aparigraha_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                            <br/>
-                            <br/>
                         </div>
-
-                        <div id="table_question_shaucha" hidden>
+                        <div class="question_background" id="table_question_shaucha" hidden>
                             <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -2727,11 +2752,8 @@
                                 </tbody>
                             </table>
                             <button id="btn_question_shaucha_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                            <br/>
-                            <br/>
                         </div>
-
-                        <div id="table_question_santosha" hidden>
+                        <div class="question_background" id="table_question_santosha" hidden>
                             <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -2755,11 +2777,8 @@
                                 </tbody>
                             </table>
                             <button id="btn_question_santosha_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                            <br/>
-                            <br/>
                         </div>
-
-                        <div id="table_question_tapah" hidden>
+                        <div class="question_background" id="table_question_tapah" hidden>
                             <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -2783,11 +2802,8 @@
                                 </tbody>
                             </table>
                             <button id="btn_question_tapah_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                            <br/>
-                            <br/>
                         </div>
-
-                        <div id="table_question_svadhya" hidden>
+                        <div class="question_background" id="table_question_svadhya" hidden>
                             <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -2811,11 +2827,8 @@
                                 </tbody>
                             </table>
                             <button id="btn_question_svadhya_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                            <br/>
-                            <br/>
                         </div>
-
-                        <div id="table_question_ishvara" hidden>
+                        <div class="question_background" id="table_question_ishvara" hidden>
                             <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -2839,8 +2852,6 @@
                                 </tbody>
                             </table>
                             <button id="btn_question_ishvara_save"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
-                            <br/>
-                            <br/>
                         </div>
 
 
@@ -2867,11 +2878,13 @@
                                 </td>
                             </tr>
 
+
+
                             <tr id="row_wake_up" class="db_row_dialog">
                                 <td valign="middle">
                                     Подъем (время) <br/>
-                                    Время для отхода ко сну <span id="wake_up_text"></span><br/>
-                                    Время подъема на завтра <span id="wake_up_tomorrow"></span>
+                                    <span hidden id="wake_up_text"></span><br/>
+                                    <span hidden id="wake_up_tomorrow"></span>
                                 </td>
 
                                 <td valign="middle" class="db_row_input">
@@ -3097,8 +3110,6 @@
                                 </td>
                             </tr>
 
-
-
                             <tr id="row_ishvara" class="db_row_dialog">
                                 <td valign="middle">Ишвара пранидхана</td>
                                 <td class="db_row_input text-center">
@@ -3168,6 +3179,17 @@
                             </tr>
 
 
+                            <tr id="row_hyls_report" class="db_row_dialog">
+                                <td valign="middle"><button id="btn_hyls_report" type="button" class="btn btn-link btn_social_practic"  data-toggle="modal" data-target="#modal_hyls_report">#hyls_отчет</button> </td>
+                                <td class="db_row_input text-center" >
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="filed_hyls_report" class="sp_notify_prompt"/>
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
 
@@ -3180,6 +3202,22 @@
                                     </div>
                                     <div class="modal-body" align="left">
                                         <p id="social_practic_description"></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">ОК</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="modal_hyls_report"    tabindex="-1" role="dialog" aria-labelledby="modal_label_hyls_report">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="modal_label_hyls_report">Подробности задания</h4>
+                                    </div>
+                                    <div class="modal-body" align="left">
+                                        <p id="hyls_report_description"></p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">ОК</button>
@@ -3223,11 +3261,13 @@
     <!--
                        <button id="btn_user_save_day"  type="button" class="btn btn-success btn-block">Сохранить отчет</button>
    -->
+                    <div align="center"><a href="https://drive.google.com/file/d/1HILNNTcwTUORCtS7ij7Ygg_B73gYtPaA/view?usp=sharing" target="_blank" style="margin-bottom: 10px;" class="btn_orange_style button button-block button-rounded button-highlight  " >Программа марафона</a></div>
+
                     <div class="row footer">
-                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer btn_footer_chat" >                 Чат</a></div>
-                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_diary"   >Материалы</a></div>
-                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_support" >Поддержать</a></div>
-                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_settings">Настройки</a></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="btn_orange_style button button-block button-rounded button-highlight btn_footer btn_footer_chat" >                 Чат</a></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="btn_orange_style button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_diary"   >Материалы</a></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="btn_orange_style button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_support" >Поддержать</a></div>
+                        <div class="col-xs-6 col-sm-3" align="center"><a href="#" class="btn_orange_style button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_settings">Настройки</a></div>
                     </div>
 
 
@@ -4096,14 +4136,23 @@
                         <h3 align="center">Поздравляем!</h3>
                         <br>
                         <div id="end_header_detox" class="text_mini_end" hidden>
-                            Вы закончили 60-дневный марафон йоги и здоровья вместе с HYLS! Используйте то, что вы узнали и чему научились, в своей жизни и дальше, ведь полезные привычки не должны заканчиваться вместе с марафоном! Становитесь лучше каждый новый день — это в ваших интересах и уж точно в ваших силах!
-                            Возможно, вам будут интересны другие полезные привычки в формате коротких марафонов за 21 день, с ними вы можете познакомиться ниже.
+                            Вы закончили 60-дневный марафон йоги и здоровья вместе с HYLS! Используйте и дальше то,
+                            что вы узнали и чему научились, ведь полезные привычки не должны заканчиваться вместе с марафоном!
+                            Становитесь лучше каждый новый день — это в ваших интересах и уж точно в ваших силах!
+                            Если вы хотите продолжить изучение йоговских практик и ещё сильнее углубиться в их значение,
+                            регистрируйтесь на марафон <a href="https://hyls.ru/advanced" class="yoga_color" target="_blank">HYLS advanced</a> — это подробное изучение философии йоги и её влияния
+                            на организм, вас ждёт много новых знаний и ещё больше практики.
                             <div id="sertifacate_detox_end" hidden>
                                 <br/>
                                 Спасибо, что выбрали HYLS: вы можете получить свой личный сертификат за участие в марафоне и его завершение!
                                 <!--   <button id="btn_user_material"  type="button" class="btn btn-info btn-block">Открыть материал дня</button>   -->
                                 <a data-toggle="modal" data-target="#modal_certificate_detox"  href="#" class="btns_unicorn_padding button button-glow button-rounded button-action button-block">Мой сертификат</a>
                             </div>
+                            <div >
+                                <a href="https://hyls.ru/advanced" class="btns_unicorn_padding button button-glow button-rounded button-action button-block">HYLS advanced</a>
+                            </div>
+
+
 
                         </div>
                         <div id="end_header_detox_mini" class="text_mini_end" hidden>
@@ -4169,12 +4218,31 @@
                             Будем рады, если вы поделитесь в общем чате своими впечатлениями — так вы поможете нам делать полезные марафоны и улучшать то, что уже есть.
 
                             Спасибо, что выбрали нас в помощники себе на пути к здоровой и счастливой жизни. Желаем удачи!  </div>
+
+                        <div id="end_header_10days" class="text_mini_end" hidden>
+                            Вы завершили марафон знакомства с основными практиками йоги! Продолжайте практиковать дома,
+                            совершенствуя свои навыки и получая всё больше пользы от занятий. Если вы хотите ещё больше
+                            узнать о йоге, её влиянии на организм, о здоровом образе жизни и многом другом, оставляйте
+                            заявку на участие в 60-дневном марафоне Йоги и Здоровья HYLS.
+                            <br>
+                            <br>
+                            До встречи!
+                            <br>
+                            <br>
+                            <div>
+                                <a href="https://hyls.ru/page5131579.html" class="btns_unicorn_padding button button-glow button-rounded button-action button-block">Узнать детали</a>
+                            </div>
+
+                        </div>
+
                     </div>
 
                     <div id="end_rerun_detox" hidden class="diary_body text_mini_end">
                         Если вы хотите пройти марафон ещё раз (чтобы улучшить свои навыки, укрепить полезные привычки,
                         добавить себе стимула или по любым другим причинам), оплатите любую сумму и начинайте проходить
-                        марафон здорового йоговского образа жизни HYLS снова!
+                        марафон здорового йоговского образа жизни HYLS снова. При этом ваш личный дневник также начнётся
+                        сначала, т.е. практики, отмеченные вами в течение этих 60-ти дней, не будут учитываться,
+                        вы начнёте их сначала.
                         <br/>
                         <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_marafon_rerun_buy">Начать заново!</a>
                         <div id="checkout_rerun_detox" hidden></div>
@@ -4188,16 +4256,18 @@
                     </div>
 
                     <div id="end_continue" class="diary_body">
-                        <p align="center" class="text_mini_end">Вы можете продолжить Ваш марафон</p>
-                        <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_marafon_continue">Продолжить марафон</a>
+                        <p align="center" class="text_mini_end">Вы можете продолжить свой личный марафон и отмечать
+                            практики в дневнике. Если вы уже активировали этот бонус, дневник и материалы уже доступны вам,
+                            используйте их, когда появится потребность.</p>
+                        <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_marafon_continue">Пользоваться дневником дальше</a>
                     </div>
                     <div id="end_buy_material" class="diary_body" hidden>
-                        <p align="center" class="text_mini_end">Возможность пользовататься дневником и материалами дальше</p>
-                        <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_marafon_continue_buy">Приобрести</a>
+                        <p align="center" class="text_mini_end">Если вы хотите сохранить доступ к дневнику и материалам сейчас, вы можете приобрести специальный бонус, нажав кнопку ниже.</p>
+                        <a href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block" id="btn_marafon_continue_buy">Приобрести бонус и сохранить дневник и материалы</a>
                         <div id="checkout_buy_material" hidden></div>
                     </div>
 
-                    <div id="end_next_ananda" class="diary_body">
+                    <div id="end_next_ananda" hidden class="diary_body">
                         <h3 align="center">Марафон продвинутых практик йоги</h3>
                         <br>
                         <p class="text_mini_end">
@@ -4228,6 +4298,7 @@
 
                     </div>
 
+                    <!--
                     <div id="end_next_mini" class="diary_body" >
                         <h3 align="center">Формирования здоровых привычек за 21 день!</h3>
                         <h5 align="center">Выбирайте нужные привычки и начинайте в удобный для Вас день</h5>
@@ -4415,6 +4486,7 @@
                         </div>
 
                     </div>
+                    -->
 
                     <div id="end_next_time" class="diary_body">
                         <h3 align="center">Управление временем</h3>
@@ -5208,7 +5280,7 @@
                 <div class="col-xs-0  col-sm-3"></div>
                 <div class="col-xs-12 col-sm-6" align="center">
 
-                        <div class="diary_header">
+                    <div class="diary_header">
                             <h2 class="marafon_name"></h2>
                             <div class="row">
                                 <div class="col-xs-6 col-sm-4">
@@ -5241,7 +5313,54 @@
                             </div>
                         </div>
 
-                        <div id="question_wake_up_time" class="question_mini" hidden>
+                    <div id="question_plan_time" class="question_mini" hidden>
+                        <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                        <table class="table  table-hover">
+                            <thead>
+                            <tr class="db_row_dialog">
+                                <td><h4 align="center"><b>Ответьте на вопрос</b></h4></td>
+                                <td><h4 align="center"><b>Ваш ответ</b></h4></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="db_row_dialog">
+                                <td class="row_detox"><h5>В какое время вам удобно составлять список дел на день?</h5></td>
+                                <td class="row_detox">
+                                    <div class="dropdown">
+                                        <button class="btn btn-default  btn-block  dropdown-toggle" type="button" data-toggle="dropdown" id="btn_dd_time_plan" value="yes">
+                                            Выберите ответ<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#" class="link_time_plan" name="day">В этот день, утром</a></li>
+                                            <li><a href="#" class="link_time_plan" name="night">За день, вечером</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button id="btn_question_plan_save_time"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
+                        <br/>
+                        <br/>
+                    </div>
+
+                    <div class="modal fade" id="modal_time_chat"    tabindex="-1" role="dialog" aria-labelledby="modal_label_time_chat">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="modal_label_time_chat">Чат марафона</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Поключитесь прямо сейчас к индивидуальному чату с куратором в ВК
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="https://vk.com/app5898182_-171392209#s=189551" id="btn_time_chat"  target="_blank" type="button" class="btn btn-success">Подключиться</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="question_wake_up_time" class="question_mini" hidden>
                             <div class="alert alert-danger"  role="alert" >Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -5282,7 +5401,7 @@
                             <button id="btn_question_wake_up_save_time"  type="button" class="btn btn-success btn-block">Отправить ответ</button>
                         </div>
 
-                        <div id="question_snacking_time" class="question_mini" hidden>
+                    <div id="question_snacking_time" class="question_mini" hidden>
                             <div   class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
                             <table class="table  table-hover">
                                 <thead>
@@ -5501,7 +5620,7 @@
                         </div>
 
 
-                        <div id="div_btn_rating_link_time" class="diary_body">
+                        <div id="div_btn_rating_link_time" hidden class="diary_body">
                             <div class="row">
                                 <div class="col-xs-2">
                                     <img src="img/rating_cup.png" class="rating_cup">
@@ -5855,7 +5974,11 @@
                                     <h4>Моя цель:</h4>
                                     <textarea id="user_ananda_target" type="text" class="field_target form-control" placeholder="Поле для записи цели"></textarea>
                                 </div>
+
                             </div>
+
+                            <a   href="#" target="_blank" class="btns_next_material btn_orange_style btns_unicorn_padding button button-glow button-rounded button-highlight button-block">Материал на завтра</a>
+
                         </div>
 
 
@@ -6429,6 +6552,288 @@
                     <br/>
                     <br/>
 
+                    <div align="center"><a href="https://drive.google.com/file/d/1JrZJOTI_BSNa6gFVqeO5EooaMpSOeVkL/view?usp=sharing" target="_blank" style="margin-bottom: 10px;" class="btn_orange_style button button-block button-rounded button-highlight  " >Программа марафона</a></div>
+
+                    <div class="row footer">
+                            <div class="col-xs-4" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer btn_footer_chat" >                 Чат</a></div>
+                            <div class="col-xs-4" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_diary"   >Материалы</a></div>
+                            <div class="col-xs-4" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_support" >Поддержать</a></div>
+                        </div>
+
+                </div>
+                <div class="col-xs-0  col-sm-3"></div>
+            </div>
+            <div id="diary_marafon_10days" hidden class="row">
+                <div class="col-xs-0  col-sm-3"></div>
+                <div class="col-xs-12 col-sm-6" align="center">
+                        <div class="diary_header">
+                            <h2 class="marafon_name"></h2>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-4">
+                                    <div id="user_programm_day_10days">
+
+                                        <button id="btn_user_previus_day_10days"  class="button button-box button-small button-highlight "><i class="fa fa-chevron-left"></i></button>
+                                        <!--  <button id="btn_user_previus_day" type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+                                                                        <button id="btn_user_next_day"    type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+
+                                        -->
+                                        <span id="user_current_day_10days">День Х (сегодня)</span>
+                                        <button id="btn_user_next_day_10days"  class="button button-box button-small button-highlight "><i class="fa fa-chevron-right"></i></button>
+
+                                    </div>
+
+                                    <div id="div_btn_user_material_10days">
+                                        <br/>
+                                        <!--   <button id="btn_user_material"  type="button" class="btn btn-info btn-block">Открыть материал дня</button>   -->
+                                        <a  id="btn_user_material_10days"  href="#" class="btns_unicorn_padding button button-glow button-rounded button-highlight button-block">Материал дня</a>
+
+                                    </div>
+
+                                    <div id="div_btn_user_docs_10days" hidden>
+                                        <br/>
+                                        <!--   <button id="btn_user_material"  type="button" class="btn btn-info btn-block">Открыть материал дня</button>   -->
+                                        <a  id="btn_user_docs_10days"  href="#" target="_blank" class="btns_unicorn_padding button button-glow button-rounded button-royal button-block">Приложение</a>
+
+                                    </div>
+
+                                </div>
+                                <div class="hidden-xs col-sm-4">
+                                    <a href="#"  data-toggle="modal" data-target="#modal_set_ava"><img src="img/ava.png" class="user_ava img-circle"></a>
+
+                                </div>
+                                <div class="col-xs-6 col-sm-4">
+                                    <h4>Моя цель:</h4>
+                                    <textarea id="user_10days_target" type="text" class="field_target form-control" placeholder="Поле для записи цели"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    <div id="question_10days_halfbath" class="question_10days" hidden>
+                        <div  class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                        <h4>Включить полуванну в ежедневные практики?</h4>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <button name="no"  type="button" class="question_10days_save btn btn-danger btn-block">Нет</button>
+                            </div>
+                            <div class="col-xs-6">
+                                <button name="yes"  type="button" class="question_10days_save btn btn-success btn-block">Да</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="question_10days_main_reg" class="question_10days" hidden>
+                        <div  class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                        <h4>Если вы хотите продолжить знакомство с практиками йоги, регистрируйтесь на марафон Йоги и Здоровья HYLS</h4>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <a href="https://hyls.ru/page5131579.html" class="question_10days_save btn btn-success btn-block">Узнать подробности</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="question_10days_main_wait" class="question_10days" hidden>
+                        <div  class="alert alert-danger"  role="alert" hidden>Пожалуйста, ответьте на вопрос. От этого зависит дальнейшая программа</div>
+                        <h4>Вы зарегистрировались в марафон Йоги и Здоровья, детали после завершения этого марафона</h4>
+
+                    </div>
+
+
+
+
+                    <div class="diary_body">
+                        <h3 align="center">Дневник практик</h3>
+
+                        <table class="table  table-hover">
+                            <thead>
+                            <tr class="db_row_dialog">
+                                <td><h4 align="center"><b>Практика</b></h4></td>
+                                <td><h4 align="center"><b>Сделал</b></h4></td>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+
+                            <tr id="row_10days_meditation_familiarity" class="db_row_dialog diary_row_10days">
+                                <td valign="middle">
+                                    Знакомство с медитацией
+                                </td>
+
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="field_10days_meditation_familiarity"  class="sp_notify_prompt days10_checkbox" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                            <tr id="row_10days_meditation_practise" class="db_row_dialog diary_row_ananda">
+                                <td valign="middle">
+                                    Медитация, мин
+                                    <p class="recommend_time" id="field_10days_meditation_recommend"></p>
+                                </td>
+                                <td valign="middle" class="db_row_input">
+                                    <input type="text" class="form-control" id="field_10days_meditation_fact" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
+                                </td>
+                            </tr>
+
+
+                            <tr id="row_10days_halfbath" class="db_row_dialog diary_row_10days">
+                                <td valign="middle">
+                                    Полуванна
+                                </td>
+
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="field_10days_halfbath"  class="sp_notify_prompt days10_checkbox" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                            <tr id="row_10days_kaoshiki_familiarity" class="db_row_dialog diary_row_10days">
+                                <td valign="middle">
+                                    Знакомство с каушики
+                                </td>
+
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="field_10days_kaoshiki_familiarity"  class="sp_notify_prompt days10_checkbox" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                            <tr id="row_10days_kaoshiki_practise" class="db_row_dialog diary_row_10days">
+                                <td valign="middle">
+                                    Каушики, мин
+                                    <p class="recommend_time" id="field_10days_kaoshiki_recommend"></p>
+                                </td>
+                                <td valign="middle" class="db_row_input">
+                                    <input type="text" class="form-control" id="field_10days_kaoshiki_fact" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr id="row_10days_kaoshiki_ideation" class="db_row_dialog diary_row_10days">
+                                <td valign="middle">
+                                    Знакомство с идеацией каушики
+                                </td>
+
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="field_10days_kaoshiki_ideation"  class="sp_notify_prompt days10_checkbox" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                            <tr id="row_10days_asana_familiarity" class="db_row_dialog diary_row_10days">
+                                <td valign="middle">
+                                    Знакомство с базовыми асанами йоги
+                                </td>
+
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="field_10days_asana_familiarity"  class="sp_notify_prompt days10_checkbox" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                            <tr id="row_10days_asana" class="db_row_dialog diary_row_10days">
+                                <td valign="middle">
+                                    Асаны
+                                </td>
+
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="field_10days_asana"  class="sp_notify_prompt days10_checkbox" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr id="row_10days_massage" class="db_row_dialog diary_row_10days">
+                                <td valign="middle">
+                                    Самомассаж
+                                </td>
+
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="field_10days_massage"  class="sp_notify_prompt days10_checkbox" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr id="row_10days_shavasana" class="db_row_dialog diary_row_10days">
+                                <td valign="middle">
+                                    Шавасана
+                                </td>
+
+                                <td class="db_row_input text-center">
+                                    <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                        <input type="checkbox"  id="field_10days_shavasana"  class="sp_notify_prompt days10_checkbox" />
+                                        <div class="state p-success-o">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+
+
+
+                            </tbody>
+                        </table>
+
+                        <div>
+                            <div class="progress">
+                                <div id="user_progress_bar_10days" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%; min-width: 2em;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="comment_field" >
+                            <textarea  id="field_day_comment_10days" class="form-control"   data-practic-name="comment" data-practic-comment="comment"  placeholder="Здесь Вы можете оставлять свои заметки о прошедшем дне Программы"></textarea>
+
+                            <img class="comment_comment_loader_ball_family loader_ball" hidden src="img/load_comment.gif">
+                            <img class="comment_comment_loader_tick_family loader_tick" hidden src="img/load_success.png">
+                        </div>
+                    </div>
+
+                    <br/>
+
                     <div class="row footer">
                             <div class="col-xs-4" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer btn_footer_chat" >                 Чат</a></div>
                             <div class="col-xs-4" align="center"><a href="#" class="button button-block button-rounded button-highlight btn_footer nav-link-user" name="nav_user_diary"   >Материалы</a></div>
@@ -6536,6 +6941,17 @@
             </div>
             <div class="col-xs-0  col-sm-2"></div>
         </div>
+        <div id="materials_10days" class="row">
+            <div class="col-xs-0  col-sm-2"></div>
+            <div class="col-xs-12  col-sm-8">
+                <div class="diary_body">
+                    <h3 align="center">Пройденные материалы</h3>
+                    <div id="user_diary_10days"></div>
+                </div>
+
+            </div>
+            <div class="col-xs-0  col-sm-2"></div>
+        </div>
     </div>
 
     <div id="page_user_hyls_store"  class="container-fluid">
@@ -6585,10 +7001,13 @@
             <div class="col-xs-0  col-sm-2"></div>
             <div class="col-xs-12  col-sm-8">
                 <div class="diary_body">
+
                     <h1 align="center">Топ25 Вашего потока</h1>
+                    <h4 align="center" id="rating_loader" hidden>Обновляем рейтинг...</h4>
+
                     <div id="rating_group_table"></div>
 
-                </div>
+                </div>nav_bar
                           </div>
             <div class="col-xs-0  col-sm-2"></div>
         </div>
@@ -6692,8 +7111,14 @@
                     Вы можете увеличить их кол-во, просто <a href="#" class="reg_link nav-link-user" name="nav_user_support">поддержав</a> наш Проект
                 </h4>
 
+
+                <div  id="play_bonus_chat" class="diary_body" hidden>
+                    <h4 align="center">Доступ в общий чат участников с поддержкой куратора</h4>
+                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="chat">1000 HYLScoins</a>
+                </div>
+
                 <div  id="play_bonus_yoga" class="diary_body" hidden>
-                    <h4 align="center"  class="bonus_yoga_text">Участие в еженедельных онлайн занятиях по йоге на протяжении всего марафона (8 занятий)</h4>
+                    <h4 align="center"  class="bonus_yoga_text">Участие в еженедельных видео-занятиях по йоге с куратором на протяжении всего марафона</h4>
                     <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoga">1000 HYLScoins</a>
                 </div>
 
@@ -6707,10 +7132,7 @@
                     <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoganidra">1000 HYLScoins</a>
                 </div>
 
-                <div  id="play_bonus_3mini" class="diary_body" hidden>
-                    <h4 align="center" class="bonus_3mini_text">Доступ к 3 уникальным марафонам на 21 день по полезным привычкам: контроль активности в соцсетях, избавление от слов-паразитов, общение без конфликтов и споров</h4>
-                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="3mini">1000 HYLScoins</a>
-                </div>
+
 
                 <div  id="play_bonus_individual" class="diary_body" hidden>
                     <h4 align="center">Доступ в отдельный чат с индивидуальной поддержкой куратора - эксперта по йоге и натуропатии, </h4>
@@ -6732,10 +7154,7 @@
                     <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="yoganidra_mini">1000 HYLScoins</a>
                 </div>
 
-                <div  id="play_bonus_3mini_mini" class="diary_body" hidden>
-                    <h4 align="center">Доступ к 3 уникальным марафонам на 21 день по полезным привычкам: контроль активности в соцсетях, избавление от слов-паразитов, общение без конфликтов и споров</h4>
-                    <a href="#"  class="btn btn-block btn-success btn-lg user_bonus" data-bonus-name="3mini_mini">1000 HYLScoins</a>
-                </div>
+
 
             </div>
 
@@ -6799,7 +7218,7 @@
                         <tr id="ananda_kirtan_settings" hidden class="db_row_dialog">
                             <td valign="middle" ><h5>Изменить плановое время киртана (что бы отменить введите 0)</h5></td>
                             <td  class="db_row_input">
-                                <input id="filed_kaoshiki_target_edit_kirtan" type="text" class="form-control" placeholder="Цель" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="10">
+                                <input id="filed_kirtan_target_edit_ananda" type="text" class="form-control" placeholder="Цель" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="10">
                             </td>
                             <td><button id="btn_kirtan_edit_ananda"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
 
@@ -6915,6 +7334,23 @@
                             <td > <button id="btn_half_bath_edit"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
                         </tr>
 
+                        <tr id="diet_settings" class="db_row_dialog" hidden>
+                            <td valign="middle" ><h5>Практика вегетарианства</h5></td>
+                            <td class="db_row_input text-center">
+
+                                <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox"  id="filed_diet_settings" />
+
+                                    <div class="state p-success-o">
+                                        <label></label>
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td > <button id="btn_diet_edit"  type="button" class="btn btn-warning btn-block">Сохранить</button></td>
+                        </tr>
+
+
                         <tr id="therapy_settings" class="db_row_dialog" hidden>
                             <td valign="middle" ><h5>Терапии</h5></td>
                             <td class="db_row_input text-center">
@@ -6965,7 +7401,7 @@
                             <td valign="middle" ><h5>Практика чистки языка</h5></td>
                             <td class="db_row_input text-center div_row_fact">
                                 <div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox"  id="setting_practiс_tongue" />
+                                    <input type="checkbox"  id="setting_practic_tongue" />
                                     <div class="state p-success-o">
                                         <label></label>
                                     </div>
@@ -7464,7 +7900,7 @@
 
 
 <div class="modal fade" id="modal_group_rating" tabindex="-1" role="dialog" aria-labelledby="modal_label_rating">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
