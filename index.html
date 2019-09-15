@@ -83,11 +83,11 @@
                     <h3 align="center">АМ тренинг</h3>
                     <button value="link"      type="button" class="main_nav btn btn-link btn-block"  >Ссылка на программу</button>
                     <button value="50vriti"   type="button" class="main_nav btn btn-default btn-block">50 врити</button>
-                    <button value="16puncts"  type="button" class="main_nav btn btn-default btn-block"  disabled="disabled">16 пунктов</button>
+                    <button value="16points"  type="button" class="main_nav btn btn-default btn-block">16 пунктов</button>
                     <button value="15shils"   type="button" class="main_nav btn btn-default btn-block"  disabled="disabled">15 шил</button>
                     <button value="10nrav"    type="button" class="main_nav btn btn-default btn-block"  disabled="disabled">Яма/Нияма</button>
                     <button value="mantras"   type="button" class="main_nav btn btn-default btn-block"  disabled="disabled">Мантры</button>
-                    <button hidden value="donation"  type="button" class="main_nav btn btn-link btn-block"     disabled="disabled">Donation</button>
+
                 </div>
 
 
@@ -96,10 +96,10 @@
                     <div id="page_50vriti_options">
                         <h3 align="center">50 врити</h3>
                         <p>Выберите режим тренировки</p>
+                        <button value="learn"                         type="button" class="nav_50vriti btn btn-default btn-block">Показать все</button>
                         <button value="order"  type="button" class="nav_50vriti btn btn-default btn-block">По порядку</button>
                         <button value="random" data-direct="sans_rus" type="button" class="nav_50vriti btn btn-default btn-block">В разброс (санс -> рус)</button>
                         <button value="random" data-direct="rus_sans" type="button" class="nav_50vriti btn btn-default btn-block">В разброс (рус -> санс)</button>
-                        <button value="learn"                         type="button" class="nav_50vriti btn btn-default btn-block">Показать все</button>
                     </div>
                     <div id="page_50vriti_test_order" hidden>
                         <h3 align="center">50 врити</h3>
@@ -128,6 +128,41 @@
                     <div id="page_50vriti_results" hidden>
                         <h3 align="center">50 врити</h3>
                         <p id="50vriti_results"></p>
+                        <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+                    </div>
+
+                </div>
+                <div id="page_16points" hidden>
+                    <h3 align="center">16 пунктов</h3>
+
+                    <div id="page_16points_options">
+                        <p>Выберите режим тренировки</p>
+                        <button value="learn"  type="button" class="nav_16points btn btn-default btn-block">Показать все</button>
+                        <button value="order"  type="button" class="nav_16points btn btn-default btn-block">По порядку</button>
+                        <button value="random" type="button" class="nav_16points btn btn-default btn-block">В разброс</button>
+                    </div>
+                    <div id="page_16points_test_order" hidden>
+                        <p id="16points_question_order">Помните следующую врити?</p>
+                        <div id="16points_answer_order"></div>
+                        <button value="next" id="nav_16points_order_next" type="button" class="nav_16points_test_order btn btn-warning btn-block">Дальше</button>
+                        <button value="no"   id="nav_16points_order_no"   type="button" class="nav_16points_test_order btn btn-warning btn-block">Нет</button>
+                        <button value="yes"  id="nav_16points_order_yes"  type="button" class="nav_16points_test_order btn btn-success btn-block">Да</button>
+                    </div>
+                    <div id="page_16points_test_random" hidden>
+                        <p id="16points_question_random"></p>
+                        <div id="16points_answer_random"></div>
+                        <button value="next" id="nav_16points_random_next" type="button" class="nav_16points_test_random btn btn-warning btn-block">Дальше</button>
+                        <button value="no"   id="nav_16points_random_no"   type="button" class="nav_16points_test_random btn btn-warning btn-block">Нет</button>
+                        <button value="yes"  id="nav_16points_random_yes"  type="button" class="nav_16points_test_random btn btn-success btn-block">Да</button>
+
+                    </div>
+                    <div id="page_16points_learn" hidden>
+                        <div id="16points_all"></div>
+                        <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+                    </div>
+
+                    <div id="page_16points_results" hidden>
+                        <p id="16points_results"></p>
                         <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
                     </div>
 

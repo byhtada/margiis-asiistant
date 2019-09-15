@@ -58,10 +58,31 @@ $( document ).ready(function() {
         {chakra: 'Агья', sound: 'ha', sanscrit: 'Pará ', rus: 'духовное знание'},
     ];
 
-    var vritis_random_shuffle   = [];
-    var vritis_answers_count   = 0;
-    var vritis_answers_correct = 0;
+    var random_shuffle   = [];
+    var answers_count   = 0;
+    var answers_correct = 0;
     var vritis_random_direct = "";
+
+
+    var points_all = [
+        "1. После мочеиспускания омойте мочеполовые органы водой.",
+        "2. Мужчины должны либо подвергаться обрезанию, либо сдвигать крайнюю плоть назад.",
+        "3. Не удаляйте волосы в паху и в подмышечных впадинах. ",
+        "4. Мужчины должны всегда пользоваться каупи́ной (ланго́том). ",
+        "5. Выполняйте вьпа́ка шаучу согласно приведенным инструкциям. ",
+        "6. Принимайте ванну и душ согласно предписанной системе. ",
+        "7. Употребляйте только саттви́чную [благоприятную для разума] пищу. ",
+        "8. Голодайте согласно приведенным инструкциям: <br/> а) На экадаши (для маргов), Пурниму и Амавасью (для лфт, ачарий и неженатых маргов).<br/>б) Без воды.",
+        "9. Регулярно выполняйте са́дхану:<br/>а) Используйте Мадхувидью.<br/>б) Все уроки 4 (2) раза в день.<br/>в) Асаны дважды в день.<br/>д) Сарватмака Шаоча (Внутренняя и внешняя).<br/>е) Тапах. Четыре типа джагьи: питри джагья, бхута джагья, нр джагья (шудрочитта сева, вайяшьячитта сева, кшатриячитта сева, випрочитта сева), адхьятма джайна.",
+        "10. Сохраняйте бескомпромиссную твердость и веру в святость и́шты (цели).",
+        "11. Сохраняйте бескомпромиссную твердость и веру в святость ада́рши (идеологии).",
+        "12. Сохраняйте бескомпромиссную твердость и веру в святость Высшего указания.",
+        "13. Сохраняйте бескомпромиссную твердость и веру в святость Правил поведения.",
+        "14. Всегда помните о данных вами клятвах.",
+        "15. Регулярное посещение еженедельной дхармача́кры в местном джа́грити должно быть обязательным.",
+        "16. Соблюдайте C.S.D.K. 9 (Правила поведения, семинары, обязанности, ки́ртан)"
+    ];
+
 
 
     function start(){
@@ -83,8 +104,10 @@ $( document ).ready(function() {
                 $('#first_screen').hide();
                 $('#page_50vriti').show();
                 break;
-            case "16puncts":
+            case "16points":
 
+                $('#first_screen').hide();
+                $('#page_16points').show();
                 break;
             case "15shils":
 
@@ -111,14 +134,14 @@ $( document ).ready(function() {
 
         switch ($(this).val()) {
             case "order":
-                var vritis_answers_count_text = vritis_answers_count + 1;
+                var vritis_answers_count_text = answers_count + 1;
                 $('#page_50vriti_test_order').show();
                 $('#50vriti_question_order').text("Помните врити №" + vritis_answers_count_text + "?");
 
                 break;
             case "random":
                 $('#page_50vriti_test_random').show();
-                vritis_random_shuffle = shuffle(Array.from({length: vritis_all.length}, (v, k) => k));
+                random_shuffle = shuffle(Array.from({length: vritis_all.length}, (v, k) => k));
                 vritis_random_direct = $(this).attr("data-direct");
                 setVritiRandomQuestion();
                 break;
@@ -141,8 +164,6 @@ $( document ).ready(function() {
                 break;
         }
     });
-
-
     $(document).on('click', '.nav_50vriti_test_order',  function () {
         $('#50vriti_answer_order').hide().empty();
         $('#nav_50vriti_order_next').hide();
@@ -152,27 +173,27 @@ $( document ).ready(function() {
 
         switch ($(this).val()) {
             case "next":
-                var vritis_answers_count_text = vritis_answers_count + 1;
+                var vritis_answers_count_text = answers_count + 1;
                 $('#50vriti_question_order').text("Помните врити №" + vritis_answers_count_text + "?");
 
-                if (vritis_answers_count  === vritis_all.length ){
+                if (answers_count  === vritis_all.length ){
                     showVritiResults();
                 }
                 break;
             case "yes":
-                vritis_answers_count += 1;
-                vritis_answers_correct += 1;
-                var vritis_answers_count_text = vritis_answers_count + 1;
+                answers_count += 1;
+                answers_correct += 1;
+                var vritis_answers_count_text = answers_count + 1;
                 $('#50vriti_question_order').text("Помните врити №" + vritis_answers_count_text + "?");
 
-                if (vritis_answers_count  === vritis_all.length ){
+                if (answers_count  === vritis_all.length ){
                     showVritiResults();
                 }
                 break;
             case "no":
-                var current_vriti = vritis_all[vritis_answers_count];
+                var current_vriti = vritis_all[answers_count];
 
-                vritis_answers_count += 1;
+                answers_count += 1;
                 $('#50vriti_answer_order').show().empty().append(current_vriti.sanscrit + " - " + current_vriti.sound + " - " + current_vriti.rus + "<br/>" + current_vriti.chakra);
                 $('#nav_50vriti_order_next').show();
                 $('#nav_50vriti_order_no')  .hide();
@@ -190,7 +211,7 @@ $( document ).ready(function() {
 
         switch ($(this).val()) {
             case "next":
-                if (vritis_answers_count  === vritis_all.length ){
+                if (answers_count  === vritis_all.length ){
                     showVritiResults();
                 }
 
@@ -199,9 +220,9 @@ $( document ).ready(function() {
 
                 break;
             case "yes":
-                vritis_answers_count += 1;
-                vritis_answers_correct += 1;
-                if (vritis_answers_count  === vritis_all.length ){
+                answers_count += 1;
+                answers_correct += 1;
+                if (answers_count  === vritis_all.length ){
                     showVritiResults();
                     return;
                 }
@@ -210,9 +231,9 @@ $( document ).ready(function() {
 
                 break;
             case "no":
-                var current_vriti = vritis_all[vritis_random_shuffle[vritis_answers_count]];
+                var current_vriti = vritis_all[random_shuffle[answers_count]];
 
-                vritis_answers_count += 1;
+                answers_count += 1;
 
                 var answer = "";
                 if (vritis_random_direct === "sans_rus") {
@@ -229,32 +250,21 @@ $( document ).ready(function() {
                 break;
         }
     });
-
     function setVritiRandomQuestion(){
-        console.log("vritis_random_shuffle", vritis_random_shuffle);
-        console.log("vritis_answers_count", vritis_answers_count);
-        console.log("vritis_random_shuffle[vritis_answers_count]", vritis_random_shuffle[vritis_answers_count]);
-        console.log("vritis_all[vritis_random_shuffle[vritis_answers_count]]", vritis_all[vritis_random_shuffle[vritis_answers_count]]);
+        console.log("random_shuffle", random_shuffle);
+        console.log("answers_count", answers_count);
+        console.log("random_shuffle[answers_count]", random_shuffle[answers_count]);
+        console.log("vritis_all[random_shuffle[answers_count]]", vritis_all[random_shuffle[answers_count]]);
 
         var question = "";
         if (vritis_random_direct === "sans_rus"){
-            question = "Помнишь перевод врити: " + vritis_all[vritis_random_shuffle[vritis_answers_count]].sanscrit;
+            question = "Помнишь перевод врити: " + vritis_all[random_shuffle[answers_count]].sanscrit;
         } else {
-            question = "Помнишь перевод врити: " + vritis_all[vritis_random_shuffle[vritis_answers_count]].rus;
+            question = "Помнишь перевод врити: " + vritis_all[random_shuffle[answers_count]].rus;
         }
 
         $('#50vriti_question_random').empty().show().text(question);
     }
-
-
-    function shuffle(a) {
-        for (let i = a.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [a[i], a[j]] = [a[j], a[i]];
-        }
-        return a;
-    }
-
     function showVritiResults(){
         $('#page_50vriti_test_order') .hide();
         $('#page_50vriti_test_random').hide();
@@ -263,24 +273,176 @@ $( document ).ready(function() {
 
 
         $('#page_50vriti_results')    .show();
-        $('#50vriti_results')    .text("Результат " + vritis_answers_correct + "/" + vritis_answers_count);
+        $('#50vriti_results')    .text("Результат " + answers_correct + "/" + answers_count);
 
 
-        vritis_answers_count   = 0;
-        vritis_answers_correct = 0;
+        answers_count   = 0;
+        answers_correct = 0;
 
     }
 
 
 
+    $(document).on('click', '.nav_16points',  function () {
+        $('#page_16points_options').hide();
+        $('#nav_16points_order_next').hide();
+        $('#nav_16points_random_next').hide();
+
+
+
+        switch ($(this).val()) {
+            case "order":
+                var answers_count_text = answers_count + 1;
+                $('#page_16points_test_order').show();
+                $('#16points_question_order').text("Помнишь пункт №" + answers_count_text + "?");
+
+                break;
+            case "random":
+                $('#page_16points_test_random').show();
+                random_shuffle = shuffle(Array.from({length: points_all.length}, (v, k) => k));
+                setPointsRandomQuestion();
+                break;
+            case "learn":
+
+                var row = '<table class="table table-hover table-bordered table-condensed" >';
+                $.each(points_all, function (i, item) {
+                    row += '<tr>';
+                    row += '<td>' + item    + '</td>';
+                    row += '</tr>';
+                });
+                row += '</tbody></table>';
+                $('#16points_all').empty().append(row);
+                $('#page_16points_learn').show();
+
+
+                break;
+        }
+    });
+    $(document).on('click', '.nav_16points_test_order',  function () {
+        $('#16points_answer_order').hide().empty();
+        $('#nav_16points_order_next').hide();
+        $('#nav_16points_order_no')  .show();
+        $('#nav_16points_order_yes') .show();
+
+
+        switch ($(this).val()) {
+            case "next":
+                var answers_count_text = answers_count + 1;
+                $('#16points_question_order').text("Помнишь пункт №" + answers_count_text + "?");
+
+                if (answers_count  === points_all.length ){
+                    showPointsResults();
+                }
+                break;
+            case "yes":
+                answers_count += 1;
+                answers_correct += 1;
+                var answers_count_text = answers_count + 1;
+                $('#16points_question_order').text("Помните пункт №" + answers_count_text + "?");
+
+                if (answers_count  === points_all.length ){
+                    showPointsResults();
+                }
+                break;
+            case "no":
+                var current_point = points_all[answers_count];
+
+                answers_count += 1;
+                $('#16points_answer_order').show().empty().append(current_point);
+                $('#nav_16points_order_next').show();
+                $('#nav_16points_order_no')  .hide();
+                $('#nav_16points_order_yes') .hide();
+
+                break;
+        }
+    });
+    $(document).on('click', '.nav_16points_test_random',  function () {
+        $('#16points_answer_random').hide().empty();
+        $('#nav_16points_random_next').hide();
+        $('#nav_16points_random_no')  .show();
+        $('#nav_16points_random_yes') .show();
+
+
+        switch ($(this).val()) {
+            case "next":
+                if (answers_count  === points_all.length ){
+                    showPointsResults();
+                }
+
+                setPointsRandomQuestion();
+
+
+                break;
+            case "yes":
+                answers_count += 1;
+                answers_correct += 1;
+                if (answers_count  === points_all.length ){
+                    showPointsResults();
+                    return;
+                }
+                setPointsRandomQuestion();
+
+                break;
+            case "no":
+                var current = points_all[random_shuffle[answers_count]];
+
+                answers_count += 1;
+
+                var answer = current;
+
+
+                $('#16points_answer_random').show().empty().append(answer);
+                $('#nav_16points_random_next').show();
+                $('#nav_16points_random_no')  .hide();
+                $('#nav_16points_random_yes') .hide();
+
+                break;
+        }
+    });
+    function setPointsRandomQuestion(){
+        var point_num = random_shuffle[answers_count] + 1;
+        var question = "Помнишь пункт № " + point_num + "?";
+
+        $('#16points_question_random').empty().show().text(question);
+    }
+
+    function showPointsResults(){
+        $('#page_16points_test_order') .hide();
+        $('#page_16points_test_random').hide();
+        $('#page_16points_learn').hide();
+
+        $('#page_16points_results')    .show();
+        $('#16points_results')    .text("Результат " + answers_correct + "/" + answers_count);
+
+
+        answers_count   = 0;
+        answers_correct = 0;
+
+    }
+
+    function shuffle(a) {
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
     $(document).on('click', '.nav_to_main',  function () {
         $('#page_50vriti_test_order') .hide();
         $('#page_50vriti_test_random').hide();
         $('#page_50vriti_learn').hide();
-
         $('#page_50vriti_results').hide();
         $('#page_50vriti').hide();
         $('#page_50vriti_options').show();
+
+        $('#page_16points_test_order') .hide();
+        $('#page_16points_test_random').hide();
+        $('#page_16points_learn').hide();
+        $('#page_16points_results').hide();
+        $('#page_16points').hide();
+        $('#page_16points_options').show();
+
+
         $('#first_screen').show();
     });
 
