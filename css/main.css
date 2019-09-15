@@ -16,23 +16,32 @@ html {
     font-size: 1em;
     line-height: 1.4;
 }
+td {vertical-align: middle !important;}
+
 
 h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .text_mini_end {font-size: 18px;}
+
+.material_link {font-size: 14px;}
 
 .recommend_time{font-size: 14px;}
 
 
 .btn_social_practic {color: #46d444;}
+.progress-bar-danger {background-color: #f96c6c !important;}
+.btn-danger {background-color: #f96c6c !important;}
 
+
+#navigation_bar_admin {vertical-align: baseline  !important }
 
 #certificate_divider {height: 2500px;}
 
 .end_marafon_or {margin-top: 10px; margin-bottom: 10px;}
 .certificate_back {position: absolute; top: 0px; left: 0px;}
-#detox_certificate_name, #detox_mini_certificate_name {position: absolute; top: 160px; left: 100px; font-size: 19px; font-weight: bold; width: 400px; font-family: 'Baloo Bhai', cursive;}
+#detox_certificate_name, #detox_mini_certificate_name {position: absolute; top: 420px; left: 508px; font-size: 55px; font-weight: bold; width: 640px; font-family: 'Roboto', cursive; }
+#detox_certificate_progress {position: absolute; top: 755px; left: 1340px; font-size: 35px; font-weight: bold; width: 130px; font-family: 'Roboto', cursive; }
 #family_certificate_name {position: absolute; top: 175px; left: 70px; font-size: 22px; font-weight: bold; width: 460px; font-family: 'Baloo Bhai', cursive;}
-#detox_certificate, #detox_mini_certificate {width: 595px; height: 842px;}
+#detox_certificate, #detox_mini_certificate {width: 1654px; height: 1166px;}
 #family_certificate {width: 595px; height: 842px;}
 
 
@@ -69,7 +78,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
-.error_background {margin: 20px;  background-color: white;}
+.error_background {margin: 20px;  background-color: white; width: 450px; align-items: center}
 .diary_body {margin-top: 20px ;}
 .diary_body_name {margin-top: 0px !important;}
 .marafon_name {margin-bottom: 15px;}
@@ -188,7 +197,16 @@ h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 }
 
 
-#question_kaoshiki_extra,#question_kaoshiki_time,#question_10days_main_reg, #question_10days_main_wait, #question_10days_halfbath, #table_question_detox, #detox_settings, #table_question_therapy, #practise_continue_settings, #table_question_water, #table_question_wake_up {
+#question_kaoshiki_extra, #question_kaoshiki_time {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #fff7f7;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+#question_10days_main_reg, #question_10days_main_wait, #question_10days_halfbath, #table_question_detox, #detox_settings, #table_question_therapy, #practise_continue_settings, #table_question_water, #table_question_wake_up {
     margin-top: 15px;
     padding: 15px;
     border-radius: 10px;
@@ -262,7 +280,7 @@ textarea {  resize: none;
 #modal_to_group_body, #modal_to_group_body_all {height: 300px;}
 
 .wake_up_string {font-size: 14px;}
-.field_wake_up {width: 30px}
+.field_wake_up {width: 35px}
 .field_percent {width: 35px}
 
 .modal-body {
