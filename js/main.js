@@ -88,16 +88,25 @@ $( document ).ready(function() {
 
 
     var mantras_all = [
-        {name: 'Гуру Сакаш', sansckrit: 'Prātaḥ shiraśi shukleábje<br/>dvinetram dvibhujaḿ gurum;<br/>varábhayakrtahastaḿ<br/>smarettaḿ námapúrvakam.<br/>Рано утром, сидящего в Гуру чакре, в белом лотосе,<br/><br/>' , russian: 'Рано утром, сидящего в Гуру чакре, в белом лотосе,<br/>С двумя глазами и двумя руками, я представляю Гуру,<br/>Руки держащего в варабхая мудре,<br/>Я вспоминаю Его, произнося Его святое имя.<br/><br/><br/><br/><br/>'},
+        {name: 'Гуру Сакаш',
+            src: "mantras/guru_sakash.wav",
+            sansckrit: 'Prātaḥ shiraśi shukleábje<br/>dvinetram dvibhujaḿ gurum;<br/>varábhayakrtahastaḿ<br/>smarettaḿ námapúrvakam.<br/>Рано утром, сидящего в Гуру чакре, в белом лотосе,<br/><br/>' , russian: 'Рано утром, сидящего в Гуру чакре, в белом лотосе,<br/>С двумя глазами и двумя руками, я представляю Гуру,<br/>Руки держащего в варабхая мудре,<br/>Я вспоминаю Его, произнося Его святое имя.<br/><br/><br/><br/><br/>'},
         {
             name: 'Гуру Пуджа',
+            src: "mantras/guru_pudja.wav",
             sansckrit: 'Akhańd́a mańd́alákáraḿ vyáptaḿ yena carácaraḿ,<br/>tadpadaḿ darshitaḿ yena tasmae shrii gurave namah.<br/>Ajiṋánatimirándhasya jiṋánáiṋjana shalákaya,<br/>cakśurunmilitaḿ yena tasmae shrii gurave namah.<br/>Gurur brahmá, gurur viśńu, gurur devo maheshvara,<br/>gurureva parama brahma, tasmae shrii gurave namah.<br/>—Tava dravyaḿ jagatguro, tubhyameva samarpaye—.<br/>' ,
             russian: 'Я приветствую того высшего гуру, который пронизывает всю эту движущуюся и неподвижную сферическую вселенную.<br/>Я приветствую того высшего гуру, который рассеивает тьму и открывает глаза знания бальзамом духовности.<br/>Гуру – творец, Гуру – хранитель,<br/>Гуру – разрушитель. Гуру есть поистине высший Брахма.<br/>Я приветствую этого высшего Гуру<br/>О, Гуру Вселенной, все то, что Ты мне дал,<br/>я отдаю обратно Тебе<br/>'},
 
-        {name: 'Нитьям шудхам', sansckrit: 'Nityam shuddhaḿ nirábhásaḿ,<br/>nirákáraḿ nirainjanam;<br/>nityabodhaḿ cidánandaḿ,<br/>gurur Brahama namámyaham.<br/><br/>' , russian: 'вечный чистый непостижимый<br/>бесформенный незапятнанный<br/>всезнающий полный блаженства<br/>гуру – Брахма я приветствую<br/><br/>'},
+        {name: 'Нитьям шудхам',
+            src: "mantras/nityam_shudham.wav",
+            sansckrit: 'Nityam shuddhaḿ nirábhásaḿ,<br/>nirákáraḿ nirainjanam;<br/>nityabodhaḿ cidánandaḿ,<br/>gurur Brahama namámyaham.<br/><br/>' , russian: 'вечный чистый непостижимый<br/>бесформенный незапятнанный<br/>всезнающий полный блаженства<br/>гуру – Брахма я приветствую<br/><br/>'},
 
-        {name: 'Saḿgacchadhvaḿ', sansckrit: 'Saḿgacchadhvaḿ saḿvadadhvaḿ<br/>saḿ vo manáḿsi jánatám,<br/>devábhágaḿ yathápúrve<br/>saḿjánáná upásate.<br/>Samánii va ákútih<br/>samáná hrdayánivah,<br/>samánamastu vo mano<br/>yathá vah susahásati.<br/>' , russian: 'Давайте двигаться вместе, давайте петь вместе, <br/>вместе познаем самих себя.<br/>Давайте наслаждаться этой Вселенной<br/>подобно святым прошлого.<br/>Объединим наши усилия,<br/>пусть наши сердца будут едины.<br/>Когда наши разумы сольются воедино,<br/>мы познаем Единого.<br/>'},
-        {name: 'Мантра для купания.', sansckrit: 'Pitr puruśebhyo namah,<br/>RSI devebhyo namah<br/>Brahmarpanam brahmáhavir,<br/>brahmágnao brahmanánhutam<br/>brahmaeva tena gantavyam,<br/>brahmakarma samādhinā.<br/><br/>' , russian: 'Я приветствую предков<br/>и Божественных Риши (мудрецов, изобретателей).<br/>Процесс приношения - это Брахма, приношение - это Брахма, <br/>огонь жертвования - Брахма, тот кто предлагает приношение - это Брахма,<br/>тот кому предлагают - Брахма.<br/>Выполнив обязанности данные Брахмой, человек сольется с ним.<br/><br/>'},
+        {name: 'Saḿgacchadhvaḿ',
+            src: "mantras/samga.wav",
+            sansckrit: 'Saḿgacchadhvaḿ saḿvadadhvaḿ<br/>saḿ vo manáḿsi jánatám,<br/>devábhágaḿ yathápúrve<br/>saḿjánáná upásate.<br/>Samánii va ákútih<br/>samáná hrdayánivah,<br/>samánamastu vo mano<br/>yathá vah susahásati.<br/>' , russian: 'Давайте двигаться вместе, давайте петь вместе, <br/>вместе познаем самих себя.<br/>Давайте наслаждаться этой Вселенной<br/>подобно святым прошлого.<br/>Объединим наши усилия,<br/>пусть наши сердца будут едины.<br/>Когда наши разумы сольются воедино,<br/>мы познаем Единого.<br/>'},
+        {name: 'Мантра для купания.',
+            src: "mantras/pitri.wav",
+            sansckrit: 'Pitr puruśebhyo namah,<br/>RSI devebhyo namah<br/>Brahmarpanam brahmáhavir,<br/>brahmágnao brahmanánhutam<br/>brahmaeva tena gantavyam,<br/>brahmakarma samādhinā.<br/><br/>' , russian: 'Я приветствую предков<br/>и Божественных Риши (мудрецов, изобретателей).<br/>Процесс приношения - это Брахма, приношение - это Брахма, <br/>огонь жертвования - Брахма, тот кто предлагает приношение - это Брахма,<br/>тот кому предлагают - Брахма.<br/>Выполнив обязанности данные Брахмой, человек сольется с ним.<br/><br/>'},
     ];
 
     function start(){
@@ -107,19 +116,6 @@ $( document ).ready(function() {
         //var audio = document.getElementById('');
        // $('mantra_pronounce').attr('src', 'audio/mantras/samga.wav');
 
-
-        var x = document.createElement("AUDIO");
-
-        if (x.canPlayType("audio/mpeg")) {
-            x.setAttribute("src","http://byhtada.github.io/audio/mantras/samga.wav");
-        } else {
-            x.setAttribute("src","http://byhtada.github.io/audio/mantras/samga.wav");
-        }
-
-        x.setAttribute("controls", "controls");
-
-
-        $('#mantra_pronounce').empty().append(x);
 
         //mantra_pronounce
         //document.body.appendChild(x);
@@ -478,7 +474,10 @@ $( document ).ready(function() {
         $('#mantra_sanskrit').empty().append(mantra.sansckrit);
         $('#mantra_russian') .empty().append(mantra.russian);
 
-
+        var mantra_url = "https://byhtada.github.io/am_training/audio/" + mantra.src;
+        $('#mantra_pronounce').attr("src", mantra_url);
+        var audio = document.getElementById("mantra_pronounce_main");
+        audio.load();
         $('#mantra_value').show();
 
     });
@@ -486,6 +485,9 @@ $( document ).ready(function() {
     $('#mantras_back').click(function (){
         $('#mantras_table').show();
         $('#mantra_value').hide();
+
+        var audio = document.getElementById("mantra_pronounce_main");
+        audio.pause();
     });
 
 
@@ -514,6 +516,9 @@ $( document ).ready(function() {
         $('#page_mantras').hide();
         $('#mantras_table').show();
         $('#mantra_value').hide();
+        var audio = document.getElementById("mantra_pronounce_main");
+        audio.pause();
+
 
         $('#page_supreme').hide();
 
