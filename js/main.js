@@ -119,7 +119,7 @@ $( document ).ready(function() {
 
                 break;
             case "donation":
-
+                $('#modal_donation').modal('show');
                 break;
         }
     });
