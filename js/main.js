@@ -197,9 +197,28 @@ $( document ).ready(function() {
 
                 var vritis = '<table class="table table-hover table-bordered table-condensed" >';
                 $.each(vritis_all, function (i, item) {
-                    vritis += '<tr>';
-                    vritis += '<td>' + item.chakra    + '</td>';
-                    vritis += '<td>' + item.sanscrit    + '</td>';
+                    switch (item.chakra) {
+                        case vritis_all[0].chakra:
+                            vritis += '<tr style="background-color: rgba(255,74,72, 0.5)">';
+                            break;
+                        case vritis_all[4].chakra:
+                            vritis += '<tr style="background-color: rgba(255,136,26,0.5)">';
+                            break;
+                        case vritis_all[10].chakra:
+                            vritis += '<tr style="background-color: rgba(255,226,66,0.5)">';
+                            break;
+                        case vritis_all[22].chakra:
+                            vritis += '<tr style="background-color: rgba(119,255,72,0.5)">';
+                            break;
+                        case vritis_all[47].chakra:
+                            vritis += '<tr style="background-color: rgba(74,219,255,0.8)">';
+                            break;
+                        case vritis_all[49].chakra:
+                            vritis += '<tr style="background-color: rgba(80,90,255,0.8)">';
+                            break;
+                    }
+
+                    vritis += '<td class="vriti_pronounce" data-vriti-num="' + i + '">' + item.sanscrit    + '</td>';
                     vritis += '<td>' + item.rus    + '</td>';
                     vritis += '<td>' + item.sound    + '</td>';
                     vritis += '</tr>';
@@ -211,6 +230,14 @@ $( document ).ready(function() {
 
                 break;
         }
+    });
+    $(document).on('click', '.vriti_pronounce',  function () {
+
+        var vriti_url = "https://byhtada.github.io/am_training/audio/vritis/" + $(this).attr("data-vriti-num") + ".mp3";
+        $('#vriti_pronounce').attr("src", vriti_url);
+        var audio = document.getElementById("vriti_pronounce_main");
+        audio.load();
+       // audio.pla;
     });
     $(document).on('click', '.nav_50vriti_test_order',  function () {
         $('#50vriti_answer_order').hide().empty();
