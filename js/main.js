@@ -90,23 +90,34 @@ $( document ).ready(function() {
     var mantras_all = [
         {name: 'Гуру Сакаш',
             src: "mantras/guru_sakash.wav",
-            sansckrit: 'Prātaḥ shiraśi shukleábje<br/>dvinetram dvibhujaḿ gurum;<br/>varábhayakrtahastaḿ<br/>smarettaḿ námapúrvakam.<br/>Рано утром, сидящего в Гуру чакре, в белом лотосе,<br/><br/>' , russian: 'Рано утром, сидящего в Гуру чакре, в белом лотосе,<br/>С двумя глазами и двумя руками, я представляю Гуру,<br/>Руки держащего в варабхая мудре,<br/>Я вспоминаю Его, произнося Его святое имя.<br/><br/><br/><br/><br/>'},
+            sansckrit: 'Prātaḥ shiraśi shukleábje<br/>dvinetram dvibhujaḿ gurum;<br/>varábhayakrtahastaḿ<br/>smarettaḿ námapúrvakam.<br/><br/>' , russian: 'Рано утром, сидящего в Гуру чакре, в белом лотосе,<br/>С двумя глазами и двумя руками, я представляю Гуру,<br/>Руки держащего в варабхая мудре,<br/>Я вспоминаю Его, произнося Его святое имя.<br/><br/>'},
+        {name: 'Dhyana mūlam', sansckrit: 'Dhyana mūlam gurora mūrtiḥ,<br/>Puja’ mūlam guroh padam;<br/>Mantra mūlam gurora vākyam,<br/>Mokṣa mūlam guroh kṛpā.<br/><br/>' , russian: 'Основа (корень) дхьяны (медитации) - это форма Гуру;<br/>основа приношения - стопы Гуру.<br/>Мантра - основа слова Гуру,<br/>основа спасения - милость Гуру.<br/><br/>'},
+        {name: 'Shriináthe jánakiináthe', sansckrit: 'Shriináthe jánakiináthe<br/>cábhede paramátmani,<br/>tathápi mam sarvasvam<br/>Ramah kamalalocanah<br/><br/>' , russian: 'Зовут ли Его Вишну или Рама, Господь Сита,<br/>для Высшего Я нет разницы. Но для меня Рама,<br/>чьи глаза подобны свежим лепесткам лотоса, -<br/>это все для меня.<br/><br/>'},
+        {name: 'Bhaktir bhagavataḥ Sheva', sansckrit: 'Bhaktir bhagavataḥ Sheva<br/>Bhaktih premasvarupinii;<br/>Bhaktir ánandarúpá ca<br/>Bhaktir bhaktasya jiivanam.<br/><br/>' , russian: 'Преданность - это служение Богу, преданность - это истинная суть любви. Преданность принимает форму блаженства, преданность - это вся жизнь преданного.<br/><br/>'},
+        {name: 'Tava tattvama na jánámi', sansckrit: 'Tava tattvama na jánámi<br/>kiidrshośi Maheshvara<br/>Yádrshosi Mahadeva<br/>tádrsháya namo namah.<br/><br/>' , russian: 'О Махешвара, я не понимаю Твоей природы. Какова твоя природа? Она за пределами того, я склоняюсь перед тобой, о Махешвара!<br/><br/>'},
+        {name: 'Mukam karoti vácálam,', sansckrit: 'Mukam karoti vácálam,<br/>Panga laḿghayate girim<br/>yat krpa’ Jagata Vande,<br/>Paramānanda mádhavam.<br/><br/>' , russian: 'Милостью бога немой может говорить, а хромой покорить горные вершины. Перед его милостью склоняется вся вселения.<br/><br/>'},
+        {name: 'Tvameva mátá ca pitá tvameva,', sansckrit: 'Tvameva mátá ca pitá tvameva,<br/>tvameva bandhushca sakhá tvameva;<br/>tvameva vidyá dravinám tvameva,<br/>tvameva sarvaḿ mamadevadeva.<br/><br/>' , russian: 'Ты моя мать. Ты мой отец. Ты мой брат и мой друг. Ты мое богатство. Ты мое знание. Ты - мое все, Бог богов.<br/><br/>'},
+        {name: 'Asado-má sadagamayo', sansckrit: 'Asado-má sadagamayo<br/>tamaso-má jyotir gamayo<br/>mrtyur-má amrtyor gamayo<br/>avi rávi mayaedhi<br/><br/>' , russian: 'О, Боже, веди меня от временного к вечному!<br/>Все формы временные, только Бог неизменный, Сат, Вечная Истина. Поэтому веди меня от асат, временного, к сат, вечному.<br/>О, Боже, веди меня от темноты к свету!<br/>Темнота - это майя или незнание, которое не дает возможность видеть реальность как она есть. Когда Майя исчезает, индивидуальная душа становится Универсальной душой.<br/>О Боже, веди меня от смерти к жизни!<br/>Смерть просто означает изменение. В этой вселенной все меняется и будет меняться. Поэтому, все живые существа и вещи подвержены смерти. Истинная жизнь - это достичь абсолютного, вечного и неизменного, за пределами смертного царства.<br/><br/>'},
+        {name: 'Oṋḿ bhúr bhuvah svah', sansckrit: 'Oṋḿ bhúr bhuvah svah<br/>oṋḿ tat saviturvareńyaḿ;<br/>bhargo devasya dhiimahi<br/>dhiyo yo nah pracodayát, oṋḿ<br/><br/>' , russian: 'Meaning Baba explained:<br/>We meditate on Dhii Mahii (He) Why meditate on Him? For He can guide our intellect in the path of righteousness. This universe is Saptalokátmaka, has seven layers: Bhuh, bhuvah, svah, mahah, janah, tapah and satya. Its creator is given the name "Savita". Savita means "Progenitor". Some people mistakenly give the name of Savita their daughters. The name of a child should not be Savita. Savita means father (male). We meditate on the venerable divine effulgence of the Creator of the seven lokas. Why we meditate on Him? So He can lead our intellect (buddhi, medha) by the appropriate path. Dhii means intellect, nah mean our, pracodayat \'means guiding the proper way. There should be only one sentence from humans, that his intellect is guided to the right path. If the intellect reform, everything has been achieved. If the intellect goes astray, nothing yet achieved if we got it all. "<br/>Shree Shree Anandamurti - Patna August 24, 1978<br/><br/>'},
+        {name: 'Nityánandaḿ paramasukhadaḿ', sansckrit: 'Nityánandaḿ paramasukhadaḿ, Kevalam jiṋánamúrtim;<br/>vishvátiitaḿ gaganasadrshaḿ, tatvamasyádilakśyaḿ.<br/>Ekam nityam Vimalam acalaḿ, sarvadhisákśiibhútam;<br/>bhávátiitaḿ triguńarahitaḿ, sadguruḿ Tam nama’mi -<br/><br/>' , russian: 'You are the eternal bliss, the Giver of infinite happiness, the only Personified Knowledge. You are beyond the universe, like the sky. You do understand me, "You are That". You are One, Eternal, the purest of the pure, unchangeable. You are the witness of all beings. You are beyond the realm of existence, devoid of the three gunas (creative principles). A Ti, Sadaguru, I offer my greetings<br/><br/>'},
+        {name: 'Нитьям шудхам',
+            src: "mantras/nityam_shudham.wav",
+            sansckrit: 'Nityam shuddhaḿ nirábhásaḿ,<br/>nirákáraḿ nirainjanam;<br/>nityabodhaḿ cidánandaḿ,<br/>gurur Brahama namámyaham.<br/><br/>' , russian: 'вечный чистый непостижимый<br/>бесформенный незапятнанный<br/>всезнающий полный блаженства<br/>гуру – Брахма я приветствую<br/><br/>'},
         {
             name: 'Гуру Пуджа',
             src: "mantras/guru_pudja.wav",
             sansckrit: 'Akhańd́a mańd́alákáraḿ vyáptaḿ yena carácaraḿ,<br/>tadpadaḿ darshitaḿ yena tasmae shrii gurave namah.<br/>Ajiṋánatimirándhasya jiṋánáiṋjana shalákaya,<br/>cakśurunmilitaḿ yena tasmae shrii gurave namah.<br/>Gurur brahmá, gurur viśńu, gurur devo maheshvara,<br/>gurureva parama brahma, tasmae shrii gurave namah.<br/>—Tava dravyaḿ jagatguro, tubhyameva samarpaye—.<br/>' ,
             russian: 'Я приветствую того высшего гуру, который пронизывает всю эту движущуюся и неподвижную сферическую вселенную.<br/>Я приветствую того высшего гуру, который рассеивает тьму и открывает глаза знания бальзамом духовности.<br/>Гуру – творец, Гуру – хранитель,<br/>Гуру – разрушитель. Гуру есть поистине высший Брахма.<br/>Я приветствую этого высшего Гуру<br/>О, Гуру Вселенной, все то, что Ты мне дал,<br/>я отдаю обратно Тебе<br/>'},
-
-        {name: 'Нитьям шудхам',
-            src: "mantras/nityam_shudham.wav",
-            sansckrit: 'Nityam shuddhaḿ nirábhásaḿ,<br/>nirákáraḿ nirainjanam;<br/>nityabodhaḿ cidánandaḿ,<br/>gurur Brahama namámyaham.<br/><br/>' , russian: 'вечный чистый непостижимый<br/>бесформенный незапятнанный<br/>всезнающий полный блаженства<br/>гуру – Брахма я приветствую<br/><br/>'},
-
+        {name: 'Sarvétra sukhinah bhavantu', sansckrit: 'Sarvétra sukhinah bhavantu<br/>sarve santu nirámayáh;<br/>sarve bhadráńi pashyantu<br/>na kashcid duhkhamápnuyát.<br/>ONM Shantih, ONM Shantih, ONM shantih.<br/><br/>' , russian: 'Пусть все будут счастливы. Пусть все будут свободны от физических и ментальных болезней. Пусть все смотрят на положительные стороны вещей. Пускай никому не приходится страдать от проблем, под давлением обстоятельств. Мир, мир, мир.<br/><br/>'},
+        {name: 'Мантра после ванны',
+            src: "mantras/pitri.wav",
+            sansckrit: 'Pitr puruśebhyo namah,<br/>RSI devebhyo namah<br/>Brahmarpanam brahmáhavir,<br/>brahmágnao brahmanánhutam<br/>brahmaeva tena gantavyam,<br/>brahmakarma samādhinā.<br/><br/>' , russian: 'Я приветствую предков<br/>и Божественных Риши (мудрецов, изобретателей).<br/>Процесс приношения - это Брахма, приношение - это Брахма, <br/>огонь жертвования - Брахма, тот кто предлагает приношение - это Брахма,<br/>тот кому предлагают - Брахма.<br/>Выполнив обязанности данные Брахмой, человек сольется с ним.<br/><br/>'},
+        {name: 'Onm madhu vata rtayate', sansckrit: 'Onm madhu vata rtayate madhu ksarantu sindhavah,<br/>madhviirnah santvosadhiih madhu naktamutasaso,<br/>madhumat prathivam rajah, madhu dyaorastu nah pita,<br/>madhumanno banaspatir, madhuman asta suryah,<br/>madhviirgavo bhavantu nah;<br/>oṋḿ madhu, oṋḿ madhu, oṋḿ madhu.<br/><br/>' , russian: 'Пусть дыханье ветра будет благословенно, а океан приносит удачу!<br/>Пусть благословенны будут наши посевы,<br/>а дни и ночи полны сладостного аромата!<br/>Пусть будут благословенны частицы пыли,<br/>пусть наши всходы будут урожайными!<br/>Пусть духовное царство божественных сущностей<br/>и почтенных предков будет к нам благосклонно!<br/>Пусть будут благословенны наши домашние животные, и солнце льет удачу!<br/>Брахма мадху, Брахма мадху, Брахма мадху.<br/><br/>'},
         {name: 'Saḿgacchadhvaḿ',
             src: "mantras/samga.wav",
             sansckrit: 'Saḿgacchadhvaḿ saḿvadadhvaḿ<br/>saḿ vo manáḿsi jánatám,<br/>devábhágaḿ yathápúrve<br/>saḿjánáná upásate.<br/>Samánii va ákútih<br/>samáná hrdayánivah,<br/>samánamastu vo mano<br/>yathá vah susahásati.<br/>' , russian: 'Давайте двигаться вместе, давайте петь вместе, <br/>вместе познаем самих себя.<br/>Давайте наслаждаться этой Вселенной<br/>подобно святым прошлого.<br/>Объединим наши усилия,<br/>пусть наши сердца будут едины.<br/>Когда наши разумы сольются воедино,<br/>мы познаем Единого.<br/>'},
-        {name: 'Мантра для купания.',
-            src: "mantras/pitri.wav",
-            sansckrit: 'Pitr puruśebhyo namah,<br/>RSI devebhyo namah<br/>Brahmarpanam brahmáhavir,<br/>brahmágnao brahmanánhutam<br/>brahmaeva tena gantavyam,<br/>brahmakarma samādhinā.<br/><br/>' , russian: 'Я приветствую предков<br/>и Божественных Риши (мудрецов, изобретателей).<br/>Процесс приношения - это Брахма, приношение - это Брахма, <br/>огонь жертвования - Брахма, тот кто предлагает приношение - это Брахма,<br/>тот кому предлагают - Брахма.<br/>Выполнив обязанности данные Брахмой, человек сольется с ним.<br/><br/>'},
+        {name: 'Satyameva jayate, nánrtam', sansckrit: 'Satyameva jayate, nánrtam<br/><br/>' , russian: 'Только истина восторжествует, а не ложь.<br/><br/>'},
+        {name: 'Parampita Baba kii ... Jaya!', sansckrit: 'Parampita Baba kii ... Jaya!<br/><br/>' , russian: 'Победа высшему отцу!<br/><br/>'},
     ];
 
     function start(){
@@ -151,7 +162,14 @@ $( document ).ready(function() {
 
                 var row = "";
                 $.each(mantras_all, function (i, item) {
-                    row += '<div class="mantra_row diary_body" data-mantra-num="' + i + '">';
+                    if (i === 0 || i === 10 || i === 11 || i === 13 || i === 15  ){
+                        row += '<div class="mantra_row diary_body" style="background-color: rgba(232,111,8,0.5)" data-mantra-num="' + i + '">';
+
+                    } else {
+                        row += '<div class="mantra_row diary_body" data-mantra-num="' + i + '">';
+
+                    }
+
                     row += item.name ;
 
                     row += '</div>';
@@ -268,7 +286,6 @@ $( document ).ready(function() {
             case "no":
                 var current_vriti = vritis_all[answers_count];
                 var sanscrit = '<div class="vriti_pronounce" data-vriti-num="' + answers_count + '">' + current_vriti.sanscrit + '</div>';
-
 
                 $('#50vriti_answer_order').show().empty().append(sanscrit).append(current_vriti.sound + " - " + current_vriti.rus + "<br/>" + current_vriti.chakra);
 
@@ -505,7 +522,7 @@ $( document ).ready(function() {
         $('#mantra_sanskrit').empty().append(mantra.sansckrit);
         $('#mantra_russian') .empty().append(mantra.russian);
 
-        var mantra_url = "https://byhtada.github.io/am_training/audio/" + mantra.src;
+        var mantra_url = "https://byhtada.github.io/am_training/audio/mantras/m" + $(this).attr("data-mantra-num") +".mp3";
         $('#mantra_pronounce').attr("src", mantra_url);
         var audio = document.getElementById("mantra_pronounce_main");
         audio.load();
