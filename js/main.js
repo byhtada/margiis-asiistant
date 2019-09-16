@@ -147,7 +147,9 @@ $( document ).ready(function() {
                 $('#modal_donation').modal('show');
                 break;
             case "supreme":
-                $('#modal_supreme').modal('show');
+                $('#first_screen').hide();
+
+                $('#page_supreme').show();
                 break;
         }
     });
@@ -488,6 +490,10 @@ $( document ).ready(function() {
         $('#page_16points_options').show();
 
         $('#page_mantras').hide();
+        $('#mantras_table').show();
+        $('#mantra_value').hide();
+
+        $('#page_supreme').hide();
 
 
         $('#first_screen').show();
