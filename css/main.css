@@ -18,7 +18,7 @@ html {
 }
 td {vertical-align: middle !important;}
 
-
+.vriti_pronounce{cursor: pointer;}
 h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
 .text_mini_end {font-size: 18px;}
 

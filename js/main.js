@@ -267,9 +267,13 @@ $( document ).ready(function() {
                 break;
             case "no":
                 var current_vriti = vritis_all[answers_count];
+                var sanscrit = '<div class="vriti_pronounce" data-vriti-num="' + answers_count + '">' + current_vriti.sanscrit + '</div>';
+
+
+                $('#50vriti_answer_order').show().empty().append(sanscrit).append(current_vriti.sound + " - " + current_vriti.rus + "<br/>" + current_vriti.chakra);
 
                 answers_count += 1;
-                $('#50vriti_answer_order').show().empty().append(current_vriti.sanscrit + " - " + current_vriti.sound + " - " + current_vriti.rus + "<br/>" + current_vriti.chakra);
+
                 $('#nav_50vriti_order_next').show();
                 $('#nav_50vriti_order_no')  .hide();
                 $('#nav_50vriti_order_yes') .hide();
