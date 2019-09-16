@@ -100,10 +100,29 @@ $( document ).ready(function() {
         {name: 'Мантра для купания.', sansckrit: 'Pitr puruśebhyo namah,<br/>RSI devebhyo namah<br/>Brahmarpanam brahmáhavir,<br/>brahmágnao brahmanánhutam<br/>brahmaeva tena gantavyam,<br/>brahmakarma samādhinā.<br/><br/>' , russian: 'Я приветствую предков<br/>и Божественных Риши (мудрецов, изобретателей).<br/>Процесс приношения - это Брахма, приношение - это Брахма, <br/>огонь жертвования - Брахма, тот кто предлагает приношение - это Брахма,<br/>тот кому предлагают - Брахма.<br/>Выполнив обязанности данные Брахмой, человек сольется с ним.<br/><br/>'},
     ];
 
-        function start(){
+    function start(){
         $('#page_load').hide();
         $('#page_main').show();
 
+        //var audio = document.getElementById('');
+       // $('mantra_pronounce').attr('src', 'audio/mantras/samga.wav');
+
+
+        var x = document.createElement("AUDIO");
+
+        if (x.canPlayType("audio/mpeg")) {
+            x.setAttribute("src","http://byhtada.github.io/audio/mantras/samga.wav");
+        } else {
+            x.setAttribute("src","http://byhtada.github.io/audio/mantras/samga.wav");
+        }
+
+        x.setAttribute("controls", "controls");
+
+
+        $('#mantra_pronounce').empty().append(x);
+
+        //mantra_pronounce
+        //document.body.appendChild(x);
     }
 
     start();

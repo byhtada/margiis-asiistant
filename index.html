@@ -48,15 +48,9 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-    <script                                   src="js/main.js?v1.85"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css?v1.85">
-    <script src="/audio/audiojs/audio.min.js"></script>
+    <script                                   src="js/main.js?v1.86"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css?v1.86">
 
-    <script>
-        audiojs.events.ready(function() {
-            var as = audiojs.createAll();
-        });
-    </script>
 </head>
 
 <body>
@@ -189,8 +183,14 @@
                     <br/>
                     <div id="mantra_value" hidden>
                         <h4 id="mantra_name"></h4>
-                        <audio src="http://byhtada.github.io/am_training/audio/mantras/samga.wav" preload="auto"></audio>
 
+                        <div id="mantra_pronounce"></div>
+
+
+                        <audio controls preload="auto">
+                            <source src="https://byhtada.github.io/audio/mantras/samga.wav" type="audio/mpeg">
+                        </audio>
+                        <br/>
                         <div id="mantra_sanskrit"></div>
                         <br/>
                         <div id="mantra_russian"></div>
