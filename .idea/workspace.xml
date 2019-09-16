@@ -1,80 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m0.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m1.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m10.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m11.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m12.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m13.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m14.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m15.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m16.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m17.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m2.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m3.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m4.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m5.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m6.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m7.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m8.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/mantras/m9.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/0.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/1.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/10.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/11.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/12.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/13.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/14.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/15.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/16.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/17.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/18.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/19.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/2.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/20.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/21.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/22.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/23.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/24.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/26.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/27.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/28.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/29.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/3.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/30.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/31.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/32.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/33.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/34.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/35.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/36.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/37.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/38.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/39.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/4.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/40.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/41.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/42.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/43.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/44.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/45.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/46.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/47.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/48.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/49.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/5.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/50.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/6.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/7.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/8.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/vritis/9.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
-    </list>
     <list id="72cc56a1-c8c6-463d-98e1-855a34d7d87f" name="registration" comment="" />
+    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -92,14 +22,14 @@
     <favorites_list name="hyls_client" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6429504">
+    <splitter split-orientation="horizontal" split-proportion="0.6481723">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/js/main.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="396">
-                  <caret line="234" lean-forward="true" selection-start-line="234" selection-end-line="234" />
+                <state relative-caret-position="481">
+                  <caret line="239" column="9" selection-start-line="239" selection-start-column="9" selection-end-line="239" selection-end-column="9" />
                   <folding>
                     <element signature="e#55#4725#0" />
                     <element signature="e#4875#6527#0" />
@@ -152,11 +82,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="549">
-                  <caret line="191" column="57" selection-start-line="191" selection-start-column="36" selection-end-line="191" selection-end-column="57" />
+                <state relative-caret-position="277">
+                  <caret line="141" column="53" selection-start-line="141" selection-start-column="53" selection-end-line="141" selection-end-column="53" />
                   <folding>
                     <element signature="n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" />
                     <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
@@ -183,8 +113,8 @@
           <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/main.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="166">
-                  <caret line="502" column="7" lean-forward="true" selection-start-line="502" selection-start-column="7" selection-end-line="505" selection-end-column="21" />
+                <state relative-caret-position="234">
+                  <caret line="507" column="25" selection-start-line="507" selection-start-column="25" selection-end-line="507" selection-end-column="25" />
                   <folding>
                     <element signature="e#55#4725#0" />
                     <element signature="e#4875#6527#0" />
@@ -290,8 +220,8 @@
       <find>setPointsRandomQuestion</find>
       <find>start</find>
       <find>main.js</find>
-      <find>50vriti_all</find>
       <find>audio</find>
+      <find>50vriti_all</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -329,8 +259,8 @@
         <option value="$PROJECT_DIR$/node_modules/pretty-checkbox/dist/pretty-checkbox.min.css" />
         <option value="$PROJECT_DIR$/js/bs-table.js" />
         <option value="$PROJECT_DIR$/css/main.css" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/main.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -378,6 +308,12 @@
               <item name="am_trainin" type="462c0819:PsiDirectoryNode" />
               <item name="audio" type="462c0819:PsiDirectoryNode" />
               <item name="mantras" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="am_trainin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="am_trainin" type="462c0819:PsiDirectoryNode" />
+              <item name="audio" type="462c0819:PsiDirectoryNode" />
+              <item name="vritis" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -865,14 +801,7 @@
       <workItem from="1568090657584" duration="11797000" />
       <workItem from="1568190768047" duration="14056000" />
       <workItem from="1568490237279" duration="1265000" />
-      <workItem from="1568530544516" duration="21524000" />
-    </task>
-    <task id="LOCAL-00078" summary="1">
-      <created>1530975490289</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1530975490289</updated>
+      <workItem from="1568530544516" duration="21774000" />
     </task>
     <task id="LOCAL-00079" summary="1">
       <created>1530975811946</created>
@@ -1210,15 +1139,21 @@
       <option name="project" value="LOCAL" />
       <updated>1568628278987</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="before">
+      <created>1568644732236</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1568644732236</updated>
+    </task>
+    <option name="localTasksCounter" value="128" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2334135000" />
+    <option name="totallyTimeSpent" value="2334385000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="85" y="-8" width="1843" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.47761193" visible="true" weight="0.15124653" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -1598,23 +1533,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="191" column="57" selection-start-line="191" selection-start-column="36" selection-end-line="191" selection-end-column="57" />
-          <folding>
-            <element signature="n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#2;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="234" lean-forward="true" selection-start-line="234" selection-end-line="234" />
+        <state relative-caret-position="481">
+          <caret line="239" column="9" selection-start-line="239" selection-start-column="9" selection-end-line="239" selection-end-column="9" />
           <folding>
             <element signature="e#55#4725#0" />
             <element signature="e#4875#6527#0" />
@@ -1662,6 +1584,19 @@
             <element signature="e#19889#21085#0" />
             <element signature="n#!!block;n#shuffle#0" />
             <element signature="e#18458#18569#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="141" column="53" selection-start-line="141" selection-start-column="53" selection-end-line="141" selection-end-column="53" />
+          <folding>
+            <element signature="n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#2;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
           </folding>
         </state>
       </provider>
