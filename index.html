@@ -50,11 +50,17 @@
 
     <script                                   src="js/main.js?v1.85"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css?v1.85">
+    <script src="/audio/audiojs/audio.min.js"></script>
 
-
+    <script>
+        audiojs.events.ready(function() {
+            var as = audiojs.createAll();
+        });
+    </script>
 </head>
 
 <body>
+
 
 <div id="page_load">
     <br/>
@@ -183,6 +189,8 @@
                     <br/>
                     <div id="mantra_value" hidden>
                         <h4 id="mantra_name"></h4>
+                        <audio src="http://byhtada.github.io/am_training/audio/mantras/samga.wav" preload="auto"></audio>
+
                         <div id="mantra_sanskrit"></div>
                         <br/>
                         <div id="mantra_russian"></div>

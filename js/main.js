@@ -1,5 +1,8 @@
 $( document ).ready(function() {
 
+
+
+
     var vritis_all = [
         {chakra: 'Муладхара', sound: 'va', sanscrit: 'Dharma', rus: 'психо-духовная жажда'},
         {chakra: 'Муладхара', sound: 'sha', sanscrit: 'Artha', rus: 'психическая жажда'},
