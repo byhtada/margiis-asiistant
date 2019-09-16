@@ -84,8 +84,20 @@ $( document ).ready(function() {
     ];
 
 
+    var mantras_all = [
+        {name: 'Гуру Сакаш', sansckrit: 'Prātaḥ shiraśi shukleábje<br/>dvinetram dvibhujaḿ gurum;<br/>varábhayakrtahastaḿ<br/>smarettaḿ námapúrvakam.<br/>Рано утром, сидящего в Гуру чакре, в белом лотосе,<br/><br/>' , russian: 'Рано утром, сидящего в Гуру чакре, в белом лотосе,<br/>С двумя глазами и двумя руками, я представляю Гуру,<br/>Руки держащего в варабхая мудре,<br/>Я вспоминаю Его, произнося Его святое имя.<br/><br/><br/><br/><br/>'},
+        {
+            name: 'Гуру Пуджа',
+            sansckrit: 'Akhańd́a mańd́alákáraḿ vyáptaḿ yena carácaraḿ,<br/>tadpadaḿ darshitaḿ yena tasmae shrii gurave namah.<br/>Ajiṋánatimirándhasya jiṋánáiṋjana shalákaya,<br/>cakśurunmilitaḿ yena tasmae shrii gurave namah.<br/>Gurur brahmá, gurur viśńu, gurur devo maheshvara,<br/>gurureva parama brahma, tasmae shrii gurave namah.<br/>—Tava dravyaḿ jagatguro, tubhyameva samarpaye—.<br/>' ,
+            russian: 'Я приветствую того высшего гуру, который пронизывает всю эту движущуюся и неподвижную сферическую вселенную.<br/>Я приветствую того высшего гуру, который рассеивает тьму и открывает глаза знания бальзамом духовности.<br/>Гуру – творец, Гуру – хранитель,<br/>Гуру – разрушитель. Гуру есть поистине высший Брахма.<br/>Я приветствую этого высшего Гуру<br/>О, Гуру Вселенной, все то, что Ты мне дал,<br/>я отдаю обратно Тебе<br/>'},
 
-    function start(){
+        {name: 'Нитьям шудхам', sansckrit: 'Nityam shuddhaḿ nirábhásaḿ,<br/>nirákáraḿ nirainjanam;<br/>nityabodhaḿ cidánandaḿ,<br/>gurur Brahama namámyaham.<br/><br/>' , russian: 'вечный чистый непостижимый<br/>бесформенный незапятнанный<br/>всезнающий полный блаженства<br/>гуру – Брахма я приветствую<br/><br/>'},
+
+        {name: 'Saḿgacchadhvaḿ', sansckrit: 'Saḿgacchadhvaḿ saḿvadadhvaḿ<br/>saḿ vo manáḿsi jánatám,<br/>devábhágaḿ yathápúrve<br/>saḿjánáná upásate.<br/>Samánii va ákútih<br/>samáná hrdayánivah,<br/>samánamastu vo mano<br/>yathá vah susahásati.<br/>' , russian: 'Давайте двигаться вместе, давайте петь вместе, <br/>вместе познаем самих себя.<br/>Давайте наслаждаться этой Вселенной<br/>подобно святым прошлого.<br/>Объединим наши усилия,<br/>пусть наши сердца будут едины.<br/>Когда наши разумы сольются воедино,<br/>мы познаем Единого.<br/>'},
+        {name: 'Мантра для купания.', sansckrit: 'Pitr puruśebhyo namah,<br/>RSI devebhyo namah<br/>Brahmarpanam brahmáhavir,<br/>brahmágnao brahmanánhutam<br/>brahmaeva tena gantavyam,<br/>brahmakarma samādhinā.<br/><br/>' , russian: 'Я приветствую предков<br/>и Божественных Риши (мудрецов, изобретателей).<br/>Процесс приношения - это Брахма, приношение - это Брахма, <br/>огонь жертвования - Брахма, тот кто предлагает приношение - это Брахма,<br/>тот кому предлагают - Брахма.<br/>Выполнив обязанности данные Брахмой, человек сольется с ним.<br/><br/>'},
+    ];
+
+        function start(){
         $('#page_load').hide();
         $('#page_main').show();
 
@@ -116,10 +128,26 @@ $( document ).ready(function() {
 
                 break;
             case "mantras":
+                $('#first_screen').hide();
+
+
+                var row = "";
+                $.each(mantras_all, function (i, item) {
+                    row += '<div class="mantra_row diary_body" data-mantra-num="' + i + '">';
+                    row += item.name ;
+
+                    row += '</div>';
+                });
+                row += '</tbody></table>';
+                $('#mantras_table').empty().append(row);
+                $('#page_mantras').show();
 
                 break;
             case "donation":
                 $('#modal_donation').modal('show');
+                break;
+            case "supreme":
+                $('#modal_supreme').modal('show');
                 break;
         }
     });
@@ -405,7 +433,6 @@ $( document ).ready(function() {
 
         $('#16points_question_random').empty().show().text(question);
     }
-
     function showPointsResults(){
         $('#page_16points_test_order') .hide();
         $('#page_16points_test_random').hide();
@@ -419,6 +446,24 @@ $( document ).ready(function() {
         answers_correct = 0;
 
     }
+
+    $(document).on('click', '.mantra_row',  function () {
+        var mantra = mantras_all[$(this).attr("data-mantra-num")];
+        $('#mantras_table').hide();
+        $('#mantra_name')    .empty().append(mantra.name);
+        $('#mantra_sanskrit').empty().append(mantra.sansckrit);
+        $('#mantra_russian') .empty().append(mantra.russian);
+
+
+        $('#mantra_value').show();
+
+    });
+
+    $('#mantras_back').click(function (){
+        $('#mantras_table').show();
+        $('#mantra_value').hide();
+    });
+
 
     function shuffle(a) {
         for (let i = a.length - 1; i > 0; i--) {
@@ -441,6 +486,8 @@ $( document ).ready(function() {
         $('#page_16points_results').hide();
         $('#page_16points').hide();
         $('#page_16points_options').show();
+
+        $('#page_mantras').hide();
 
 
         $('#first_screen').show();

@@ -81,12 +81,17 @@
 
                 <div id="first_screen">
                     <h3 align="center">АМ тренинг</h3>
-                    <button value="link"      type="button" class="main_nav btn btn-default btn-block">Ссылка на программу</button>
-                    <button value="50vriti"   type="button" class="main_nav btn btn-default btn-block">50 врити</button>
+                    <button value="link"      type="button" class="main_nav btn btn-link btn-block">Ссылка на программу</button>
+                    <br/>
                     <button value="16points"  type="button" class="main_nav btn btn-default btn-block">16 пунктов</button>
                     <button value="15shils"   type="button" class="main_nav btn btn-default btn-block"  disabled="disabled">15 шил</button>
                     <button value="10nrav"    type="button" class="main_nav btn btn-default btn-block"  disabled="disabled">Джама/Нияма</button>
-                    <button value="mantras"   type="button" class="main_nav btn btn-default btn-block"  disabled="disabled">Мантры</button>
+
+                    <br/>
+                    <button value="mantras"   type="button" class="main_nav btn btn-default btn-block">Мантры</button>
+                    <button value="mantras"   type="button" class="main_nav btn btn-default btn-block">Ананда Сутрам</button>
+                    <button value="supreme"   type="button" class="main_nav btn btn-default btn-block">Высшее Указание</button>
+                    <button value="50vriti"   type="button" class="main_nav btn btn-default btn-block">50 врити</button>
                     <br/>
                     <button value="donation"   type="button" class="main_nav btn btn-link btn-block">Donation</button>
 
@@ -169,6 +174,28 @@
                     </div>
 
                 </div>
+                <div id="page_mantras" hidden>
+                    <h3 align="center">Мантры</h3>
+
+                    <div id="mantras_table">
+                    </div>
+
+                    <br/>
+                    <div id="mantra_value" hidden>
+                        <h4 id="mantra_name"></h4>
+                        <div id="mantra_sanskrit"></div>
+                        <br/>
+                        <div id="mantra_russian"></div>
+
+                        <button id="mantras_back"   type="button" class="main_nav btn btn-default btn-block">К мантрам</button>
+
+                    </div>
+
+                    <br/>
+                    <br/>
+                    <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+
+                </div>
 
             </div>
             <div class="col-xs-0  col-sm-2"></div>
@@ -202,6 +229,38 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default modal_close" data-dismiss="modal">Хорошо :)</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_supreme"    tabindex="-1" role="dialog" aria-labelledby="modal_label_supreme">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modal_label_supreme">Высшее указание</h4>
+            </div>
+            <div class="modal-body" align="center">
+                <p align="left">
+                    В разуме тех, кто выполняет садхану регулярно два раза в день, в момент смерти непременно возникнет мысль
+                    о Парама Пуруше. Поэтому каждому ананда марги, следует выполнять садхану дважды в день. Это является указанием
+                    Парама Пуруши.
+                </p>
+                <p align="left">
+                    Без соблюдения Джамы и Ниямы садхана невозможно, поэтому необходимо строго придерживаться этих принципов.
+                    Не следовать данному указанию, значит подвергнуть себя мукам животной жизни на десятки миллионов лет.
+                    Для того что бы никто не испытывал таких страданий и все могли получить возможность насладиться вечным
+                    спокойствием под любящей защитой Парама Пуруши, каждый ананда марги должен стремиться привести всех на
+                    путь праведности. Это неотъемлимая часть садханы, вести других по пути праведности.
+                </p>
+                <p align="left">
+                    Шри Шри Анандамурти
+                </p>
+                <br/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default modal_close" data-dismiss="modal">Закрыть</button>
             </div>
         </div>
     </div>
