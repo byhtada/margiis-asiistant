@@ -172,6 +172,69 @@ $( document ).ready(function() {
             russian:   "[Мост между Ниргу́на и Сагу́на Бра́хмой называется Та́рака Бра́хма, или освобождающий Бра́хма.]"}
     ];
 
+
+    var shils_all = [
+        {russian: "1. Прощение. "},
+        {russian: "2. Великодушие. "},
+        {russian: "3. Постоянная сдержанность в эмоциях и поведении. "},
+        {russian: "4. Готовность пожертвовать всем в жизни ради идеологии. "},
+        {russian: "5. Самоконтроль во всем. "},
+        {russian: "6. Доброжелательность и улыбчивость. "},
+        {russian: "7. Нравственная твердость. "},
+        {russian: "8. Подайте пример собственным поведением, прежде чем спрашивать с других. "},
+        {russian: "9. Воздерживайтесь от критики, осуждения, клеветы и оскорблений, а также избегайте всех форм группизма . "},
+        {russian: "10. Строгое соблюдение принципов джа́мы и ния́мы. "},
+        {russian: "11. Если ошибка совершена по небрежности или неосознанно, следует немедленно признать ее и просить о наказании. "},
+        {russian: "12. Даже общаясь с враждебно настроенным человеком, не будьте надменными и не поддавайтесь ненависти и гневу. "},
+        {russian: "13. Воздержание от пустой болтовни. "},
+        {russian: "14. Подчинение кодексу дисциплины организационной структуры. "},
+        {russian: "15. Чувство ответственности."}
+    ];
+
+    var socials_all = [
+        {russian: "1.	Вы должны благодарить того, кто оказывает вам служение (говоря «спасибо»)."},
+        {russian: "2.	Вы должны немедленно отвечать на чей-либо Намаскар тем же."},
+        {russian: "3.	Следует принимать или предлагать что-либо со следующей мудрой: вытяните правую руку, касаясь левой рукой правого локтя."},
+        {russian: "4.	Следует встать, если к вам подходит почтенный пожилой человек."},
+        {russian: "5.	Когда зеваете, прикройте рот и одновременно с этим щелкните пальцами."},
+        {russian: "6.	Во время разговора всегда уважительно отзывайтесь об отсутствующих."},
+        {russian: "7.	Чихая, прикройте рот носовым платком или рукой."},
+        {russian: "8.	Почистив нос, вымойте руки. Если при раздаче пищи вы зевнули или чихнули, немедленно помойте руки."},
+        {russian: "9.	После дефекации и последующего использования воды вымойте руки с мылом, намылив мылом вначале правую руку, а затем правой рукой – левую."},
+        {russian: "10.	Перед тем как подойти к людям занятых разговором, спросите их разрешение."},
+        {russian: "11.	Вы не должны вести конфиденциальных разговоров (касающихся организации) в поезде, автобусе или любом другом общественном транспорте."},
+        {russian: "12.	Не берите без разрешения чужие вещи."},
+        {russian: "13.	Не пользуйтесь ничем, что принадлежит другому."},
+        {russian: "14.	Разговаривая, не используйте резких и колких слов. Выразите то, что хотите сказать косвенно."},
+        {russian: "15.	Не позволяйте себе критиковать чужие ошибки и недостатки."},
+        {russian: "16.	Собираясь встретиться с официальным лицом, договоритесь заранее: пошлите визитную карточку или получите устное согласие."},
+        {russian: "17.	Следует воздерживаться от чтения чужих личных писем."},
+        {russian: "18.	Во время беседы следите за тем, чтобы другие тоже имели возможность высказать свою точку зрения."},
+        {russian: "19.	Слушая кого-либо, время от времени голосом подтверждайте, что слушаете внимательно."},
+        {russian: "20.	Говоря с человеком, не отводите глаз и не отворачивайте лицо в сторону."},
+        {russian: "21.	Не сидите в позе «Заминдари»  и не пританцовывайте по-дурацки ногами."},
+        {russian: "22.	Если тот, с кем вы собираетесь поговорить, в это время пишет, не смотрите в написанную им или ей бумагу"},
+        {russian: "23.	Никогда не берите пальцы в рот, и не откусывайте ногти зубами."},
+        {russian: "24.	Если во время разговора вы чего-то не поняли, скромно скажите: «Извините меня, пожалуйста»."},
+        {russian: "25.	Когда кто-либо справляется о вашем здоровье и ваших делах, следует сердечно поблагодарить его или ее."},
+        {russian: "26.	Здоровайтесь «Доброе утро», «Добрый вечер» или «Доброй ночи» согласно времени суток."},
+        {russian: "27.	Вы не должны посещать чужой дом или звонить кому-либо после 9 часов вечера."},
+        {russian: "28.	Если вы должны сообщить человеку что-то неприятное, вначале скажите «извините меня», и уже затем начинайте говорить."},
+        {russian: "29.	Перед приемом пищи вымойте руки и ноги."},
+        {russian: "30.	Если вы хотите меда, ешьте его с водой."},
+        {russian: "31.	Не говорите, стоя перед человеком, принимающим пищу."},
+        {russian: "32.	Не чихайте и не кашляйте, находясь за обеденным столом."},
+        {russian: "33.	Не предлагайте другому человеку тарелку с пищей левой рукой."},
+        {russian: "34.	Не мойтесь и не пейте воду в положении стоя."},
+        {russian: "35.	Мочеиспускание и дефекация не должны производиться стоя."},
+        {russian: "36.	Когда активна ваша левая ноздря (ида нади), следует принимать жидкую пищу, а когда активна правая (пиунгала), то твердую."},
+        {russian: "37.	Когда работает преимущественно ида нади, следует использовать это время для садханы."},
+        {russian: "38.	Предлагая стакан с водой, следует держаться только за его нижнюю часть."},
+        {russian: "39.	Когда вы готовите кому-либо питье, вначале вымойте стакан, а затем наполните его водой. "},
+        {russian: "40.	Если во время принятия пищи вы сильно вспотели, вытрите пот носовым платком."}
+    ];
+
+
     function start(){
         $('#page_load').hide();
         $('#page_main').show();
@@ -204,6 +267,13 @@ $( document ).ready(function() {
                 break;
             case "15shils":
 
+                $('#first_screen').hide();
+                $('#page_15shils').show();
+                break;
+            case "40socials":
+
+                $('#first_screen').hide();
+                $('#page_40socials').show();
                 break;
             case "10nrav":
 
@@ -581,6 +651,273 @@ $( document ).ready(function() {
 
     }
 
+
+
+
+    $(document).on('click', '.nav_15shils',  function () {
+        $('#page_15shils_options').hide();
+        $('#nav_15shils_order_next').hide();
+        $('#nav_15shils_random_next').hide();
+
+
+
+        switch ($(this).val()) {
+            case "order":
+                var answers_count_text = answers_count + 1;
+                $('#page_15shils_test_order').show();
+                $('#15shils_question_order').text("Помнишь шилу №" + answers_count_text + "?");
+
+                break;
+            case "random":
+                $('#page_15shils_test_random').show();
+                random_shuffle = shuffle(Array.from({length: shils_all.length}, (v, k) => k));
+                setShilsRandomQuestion();
+                break;
+            case "learn":
+
+                var row = '<table class="table table-hover table-bordered table-condensed" >';
+                $.each(shils_all, function (i, item) {
+                    row += '<tr>';
+                    row += '<td>' + item.russian    + '</td>';
+                    row += '</tr>';
+                });
+                row += '</tbody></table>';
+                $('#15shils_all').empty().append(row);
+                $('#page_15shils_learn').show();
+
+
+                break;
+        }
+    });
+    $(document).on('click', '.nav_15shils_test_order',  function () {
+        $('#15shils_answer_order').hide().empty();
+        $('#nav_15shils_order_next').hide();
+        $('#nav_15shils_order_no')  .show();
+        $('#nav_15shils_order_yes') .show();
+
+
+        switch ($(this).val()) {
+            case "next":
+                var answers_count_text = answers_count + 1;
+                $('#15shils_question_order').text("Помнишь шилу №" + answers_count_text + "?");
+
+                if (answers_count  === shils_all.length ){
+                    showShilsResults();
+                }
+                break;
+            case "yes":
+                answers_count += 1;
+                answers_correct += 1;
+                var answers_count_text = answers_count + 1;
+                $('#15shils_question_order').text("Помнишь шилу №" + answers_count_text + "?");
+
+                if (answers_count  === shils_all.length ){
+                    showShilsResults();
+                }
+                break;
+            case "no":
+                var current_shila = shils_all[answers_count];
+
+                answers_count += 1;
+                $('#15shils_answer_order').show().empty().append(current_shila.russian);
+                $('#nav_15shils_order_next').show();
+                $('#nav_15shils_order_no')  .hide();
+                $('#nav_15shils_order_yes') .hide();
+
+                break;
+        }
+    });
+    $(document).on('click', '.nav_15shils_test_random',  function () {
+        $('#15shils_answer_random').hide().empty();
+        $('#nav_15shils_random_next').hide();
+        $('#nav_15shils_random_no')  .show();
+        $('#nav_15shils_random_yes') .show();
+
+
+        switch ($(this).val()) {
+            case "next":
+                if (answers_count  === shils_all.length ){
+                    showShilsResults();
+                }
+                setShilsRandomQuestion();
+                break;
+            case "yes":
+                answers_count += 1;
+                answers_correct += 1;
+                if (answers_count  === shils_all.length ){
+                    showShilsResults();
+                    return;
+                }
+                setShilsRandomQuestion();
+
+                break;
+            case "no":
+                var current = shils_all[random_shuffle[answers_count]];
+
+                answers_count += 1;
+
+                var answer = current.russian;
+
+
+                $('#15shils_answer_random').show().empty().append(answer);
+                $('#nav_15shils_random_next').show();
+                $('#nav_15shils_random_no')  .hide();
+                $('#nav_15shils_random_yes') .hide();
+
+                break;
+        }
+    });
+    function setShilsRandomQuestion(){
+        var point_num = random_shuffle[answers_count] + 1;
+        var question = "Помнишь шилу № " + point_num + "?";
+
+        $('#15shils_question_random').empty().show().text(question);
+    }
+    function showShilsResults(){
+        $('#page_15shils_test_order') .hide();
+        $('#page_15shils_test_random').hide();
+        $('#page_15shils_learn').hide();
+
+        $('#page_15shils_results')    .show();
+        $('#15shils_results')    .text("Результат " + answers_correct + "/" + answers_count);
+
+        answers_count   = 0;
+        answers_correct = 0;
+    }
+
+
+
+
+    $(document).on('click', '.nav_40socials',  function () {
+        $('#page_40socials_options').hide();
+        $('#nav_40socials_order_next').hide();
+        $('#nav_40socials_random_next').hide();
+
+        switch ($(this).val()) {
+            case "order":
+                var answers_count_text = answers_count + 1;
+                $('#page_40socials_test_order').show();
+                $('#40socials_question_order').text("Помнишь норму №" + answers_count_text + "?");
+
+                break;
+            case "random":
+                $('#page_40socials_test_random').show();
+                random_shuffle = shuffle(Array.from({length: socials_all.length}, (v, k) => k));
+                setSocialsRandomQuestion();
+                break;
+            case "learn":
+
+                var row = '<table class="table table-hover table-bordered table-condensed" >';
+                $.each(socials_all, function (i, item) {
+                    row += '<tr>';
+                    row += '<td>' + item.russian    + '</td>';
+                    row += '</tr>';
+                });
+                row += '</tbody></table>';
+                $('#40socials_all').empty().append(row);
+                $('#page_40socials_learn').show();
+
+                break;
+        }
+    });
+    $(document).on('click', '.nav_40socials_test_order',  function () {
+        $('#40socials_answer_order').hide().empty();
+        $('#nav_40socials_order_next').hide();
+        $('#nav_40socials_order_no')  .show();
+        $('#nav_40socials_order_yes') .show();
+
+
+        switch ($(this).val()) {
+            case "next":
+                var answers_count_text = answers_count + 1;
+                $('#40socials_question_order').text("Помнишь норму №" + answers_count_text + "?");
+
+                if (answers_count  === socials_all.length ){
+                    showSocialsResults();
+                }
+                break;
+            case "yes":
+                answers_count += 1;
+                answers_correct += 1;
+                var answers_count_text = answers_count + 1;
+                $('#40socials_question_order').text("Помнишь норму №" + answers_count_text + "?");
+
+                if (answers_count  === socials_all.length ){
+                    showSocialsResults();
+                }
+                break;
+            case "no":
+                var current_social = socials_all[answers_count];
+
+                answers_count += 1;
+                $('#40socials_answer_order').show().empty().append(current_social.russian);
+                $('#nav_40socials_order_next').show();
+                $('#nav_40socials_order_no')  .hide();
+                $('#nav_40socials_order_yes') .hide();
+
+                break;
+        }
+    });
+    $(document).on('click', '.nav_40socials_test_random',  function () {
+        $('#40socials_answer_random').hide().empty();
+        $('#nav_40socials_random_next').hide();
+        $('#nav_40socials_random_no')  .show();
+        $('#nav_40socials_random_yes') .show();
+
+
+        switch ($(this).val()) {
+            case "next":
+                if (answers_count  === socials_all.length ){
+                    showSocialsResults();
+                }
+                setSocialsRandomQuestion();
+                break;
+            case "yes":
+                answers_count += 1;
+                answers_correct += 1;
+                if (answers_count  === socials_all.length ){
+                    showSocialsResults();
+                    return;
+                }
+                setSocialsRandomQuestion();
+
+                break;
+            case "no":
+                var current = socials_all[random_shuffle[answers_count]];
+
+                answers_count += 1;
+
+                var answer = current.russian;
+
+
+                $('#40socials_answer_random').show().empty().append(answer);
+                $('#nav_40socials_random_next').show();
+                $('#nav_40socials_random_no')  .hide();
+                $('#nav_40socials_random_yes') .hide();
+
+                break;
+        }
+    });
+    function setSocialsRandomQuestion(){
+        var point_num = random_shuffle[answers_count] + 1;
+        var question = "Помнишь норму № " + point_num + "?";
+
+        $('#40socials_question_random').empty().show().text(question);
+    }
+    function showSocialsResults(){
+        $('#page_40socials_test_order') .hide();
+        $('#page_40socials_test_random').hide();
+        $('#page_40socials_learn').hide();
+
+        $('#page_40socials_results')    .show();
+        $('#40socials_results')    .text("Результат " + answers_correct + "/" + answers_count);
+
+        answers_count   = 0;
+        answers_correct = 0;
+    }
+
+
+
     $(document).on('click', '.mantra_row',  function () {
         var mantra = mantras_all[$(this).attr("data-mantra-num")];
         $('#mantras_table').hide();
@@ -626,6 +963,20 @@ $( document ).ready(function() {
         $('#page_16points_results').hide();
         $('#page_16points').hide();
         $('#page_16points_options').show();
+
+        $('#page_15shils_test_order') .hide();
+        $('#page_15shils_test_random').hide();
+        $('#page_15shils_learn').hide();
+        $('#page_15shils_results').hide();
+        $('#page_15shils').hide();
+        $('#page_15shils_options').show();
+
+        $('#page_40socials_test_order') .hide();
+        $('#page_40socials_test_random').hide();
+        $('#page_40socials_learn').hide();
+        $('#page_40socials_results').hide();
+        $('#page_40socials').hide();
+        $('#page_40socials_options').show();
 
         $('#page_mantras').hide();
         $('#mantras_table').show();

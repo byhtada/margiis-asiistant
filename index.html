@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="ru">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -48,8 +48,8 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-    <script                                   src="js/main.js?v1.92"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css?v1.92">
+    <script                                   src="js/main.js?v1.93"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css?v1.93">
 
 </head>
 
@@ -84,16 +84,17 @@
                     <button value="link"      type="button" class="main_nav btn btn-link btn-block">Ссылка на программу</button>
                     <br/>
                     <button value="16points"  type="button" class="main_nav btn btn-default btn-block">16 пунктов</button>
-                    <button value="15shils"   type="button" class="main_nav btn btn-default btn-block"  disabled="disabled">15 шил</button>
                     <button value="10nrav"    type="button" class="main_nav btn btn-default btn-block"  disabled="disabled">Джама/Нияма</button>
-                    <button value="social_norms"    type="button" class="main_nav btn btn-default btn-block"  disabled="disabled">Общественные нормы поведения</button>
-                    <button value="enemies"    type="button" class="main_nav btn btn-default btn-block"  disabled="disabled">Враги и оковы</button>
+                    <button value="15shils"   type="button" class="main_nav btn btn-default btn-block">15 шил</button>
+                    <button value="40socials"    type="button" class="main_nav btn btn-default btn-block">Общественные нормы поведения</button>
 
                     <br/>
                     <button value="mantras"   type="button" class="main_nav btn btn-default btn-block">Мантры</button>
                     <button value="ananda_sutras"   type="button" class="main_nav btn btn-default btn-block">Ананда Сутры</button>
                     <button value="supreme"   type="button" class="main_nav btn btn-default btn-block">Высшее Указание</button>
                     <button value="50vriti"   type="button" class="main_nav btn btn-default btn-block">50 врити</button>
+                    <button value="enemies"    type="button" class="main_nav btn btn-default btn-block"  disabled="disabled">Враги и оковы</button>
+
                     <br/>
                     <button value="donation"   type="button" class="main_nav btn btn-link btn-block">Donation</button>
 
@@ -183,6 +184,83 @@
                     </div>
 
                 </div>
+                <div id="page_15shils" hidden>
+                    <h3 align="center">15 шил</h3>
+
+                    <div id="page_15shils_options">
+                        <p>Выберите режим тренировки</p>
+                        <button value="learn"  type="button" class="nav_15shils btn btn-default btn-block">Показать все</button>
+                        <button value="order"  type="button" class="nav_15shils btn btn-default btn-block">По порядку</button>
+                        <button value="random" type="button" class="nav_15shils btn btn-default btn-block">В разброс</button>
+                    </div>
+                    <div id="page_15shils_test_order" hidden>
+                        <p id="15shils_question_order">Помните следующую шилу?</p>
+                        <div id="15shils_answer_order"></div>
+                        <br/>
+                        <button value="next" id="nav_15shils_order_next" type="button" class="nav_15shils_test_order btn btn-warning btn-block">Дальше</button>
+                        <button value="no"   id="nav_15shils_order_no"   type="button" class="nav_15shils_test_order btn btn-warning btn-block">Нет</button>
+                        <button value="yes"  id="nav_15shils_order_yes"  type="button" class="nav_15shils_test_order btn btn-success btn-block">Да</button>
+                    </div>
+                    <div id="page_15shils_test_random" hidden>
+                        <p id="15shils_question_random"></p>
+                        <div id="15shils_answer_random"></div>
+                        <br/>
+                        <button value="next" id="nav_15shils_random_next" type="button" class="nav_15shils_test_random btn btn-warning btn-block">Дальше</button>
+                        <button value="no"   id="nav_15shils_random_no"   type="button" class="nav_15shils_test_random btn btn-warning btn-block">Нет</button>
+                        <button value="yes"  id="nav_15shils_random_yes"  type="button" class="nav_15shils_test_random btn btn-success btn-block">Да</button>
+
+                    </div>
+                    <div id="page_15shils_learn" hidden>
+                        <div id="15shils_all"></div>
+                        <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+                    </div>
+
+                    <div id="page_15shils_results" hidden>
+                        <p id="15shils_results"></p>
+                        <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+                    </div>
+
+                </div>
+                <div id="page_40socials" hidden>
+                    <h3 align="center">Общественные нормы поведения</h3>
+
+                    <div id="page_40socials_options">
+                        <p>Выберите режим тренировки</p>
+                        <button value="learn"  type="button" class="nav_40socials btn btn-default btn-block">Показать все</button>
+                        <button value="order"  type="button" class="nav_40socials btn btn-default btn-block">По порядку</button>
+                        <button value="random" type="button" class="nav_40socials btn btn-default btn-block">В разброс</button>
+                    </div>
+                    <div id="page_40socials_test_order" hidden>
+                        <p id="40socials_question_order">Помните следующую норму?</p>
+                        <div id="40socials_answer_order"></div>
+                        <br/>
+                        <button value="next" id="nav_40socials_order_next" type="button" class="nav_40socials_test_order btn btn-warning btn-block">Дальше</button>
+                        <button value="no"   id="nav_40socials_order_no"   type="button" class="nav_40socials_test_order btn btn-warning btn-block">Нет</button>
+                        <button value="yes"  id="nav_40socials_order_yes"  type="button" class="nav_40socials_test_order btn btn-success btn-block">Да</button>
+                    </div>
+                    <div id="page_40socials_test_random" hidden>
+                        <p id="40socials_question_random"></p>
+                        <div id="40socials_answer_random"></div>
+                        <br/>
+                        <button value="next" id="nav_40socials_random_next" type="button" class="nav_40socials_test_random btn btn-warning btn-block">Дальше</button>
+                        <button value="no"   id="nav_40socials_random_no"   type="button" class="nav_40socials_test_random btn btn-warning btn-block">Нет</button>
+                        <button value="yes"  id="nav_40socials_random_yes"  type="button" class="nav_40socials_test_random btn btn-success btn-block">Да</button>
+
+                    </div>
+                    <div id="page_40socials_learn" hidden>
+                        <div id="40socials_all"></div>
+                        <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+                    </div>
+
+                    <div id="page_40socials_results" hidden>
+                        <p id="40socials_results"></p>
+                        <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+                    </div>
+
+                </div>
+
+
+
                 <div id="page_mantras" hidden>
                     <h3 align="center">Мантры</h3>
 
