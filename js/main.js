@@ -86,6 +86,18 @@ $( document ).ready(function() {
         "16. Соблюдайте C.S.D.K. 9 (Правила поведения, семинары, обязанности, ки́ртан)"
     ];
 
+    var djama_niyama_all = [
+        {russian_name: "Джама. Ахимса", russian_desc: "Не причинение никому вреда ни мыслью, ни словом, ни действием."},
+        {russian_name: "Джама. Сатья", russian_desc: "Все мысли, существующие в разуме, и все используемые словесные выражения должны служить целям благосостояния (физический, ментальный и духовный аспекты)"},
+        {russian_name: "Джама. Астейя ", russian_desc: "Не воровать физически, мысленно. Не лишать других того, что им причитается в ни действиях ни в мыслях"},
+        {russian_name: "Джама. Брахмачарья", russian_desc: "Оставаться во взаимосвязи с Брахмой, Высшим Сознанием. Для этого необходимо смотреть на всех людей и все внешние объекты, как различные проявления Брахмы.оставаться во взаимосвязи с Брахмой, Высшим Сознанием.  "},
+        {russian_name: "Джама. Апариграха", russian_desc: "Воздерживаться от вещей и удовольствий, не являющихся необходимыми для поддержания жизни."},
+        {russian_name: "Нияма. Шаоча", russian_desc: "Поддержание чистоты тела и внешнего окружения, а также сохранение внутренней ментальной чистоты. "},
+        {russian_name: "Нияма. Сантоша", russian_desc: "Всегда находиться в состоянии ментального покоя и удовлетворения."},
+        {russian_name: "Нияма. Тапах", russian_desc: "Жертвовать чем-либо или испытывать лишения, оказывая служение другим"},
+        {russian_name: "Нияма. Свадхьяя", russian_desc: "Чтение духовных писаний для приобретения ясного понимания сути изложенного"},
+        {russian_name: "Нияма. Ишвара Пранидхана", russian_desc: "Утверждение себя в Космической Идее, принятие Ишвары в качестве единственного идеала и движение с возрастающей скоростью по направлению к этому Высшему Прибежищу, Богу."},
+    ];
 
     var mantras_all = [
         {name: 'Гуру Сакаш',
@@ -235,6 +247,8 @@ $( document ).ready(function() {
     ];
 
 
+
+
     function start(){
         $('#page_load').hide();
         $('#page_main').show();
@@ -276,6 +290,21 @@ $( document ).ready(function() {
                 $('#page_40socials').show();
                 break;
             case "10nrav":
+                $('#first_screen').hide();
+
+                var row = "";
+                $.each(djama_niyama_all, function (i, item) {
+
+                    row += '<div class=" diary_body" data-10nrav-num="' + i + '">';
+
+                    row += "<b>" +  item.russian_name + "</b><br/>";
+                    row += item.russian_desc ;
+
+                    row += '</div>';
+                });
+                row += '</tbody></table>';
+                $('#10nrav_table').empty().append(row);
+                $('#page_10nrav').show();
 
                 break;
             case "mantras":
@@ -313,7 +342,7 @@ $( document ).ready(function() {
 
                 var row = "";
                 $.each(sutras_all, function (i, item) {
-                    row += '<div class="mantra_row diary_body" data-sutra-num="' + i + '">';
+                    row += '<div class="sutra_row diary_body" data-sutra-num="' + i + '">';
                     row += item.sansckrit + "<br/><br/>" ;
                     row += item.russian ;
 
@@ -388,10 +417,13 @@ $( document ).ready(function() {
     $(document).on('click', '.vriti_pronounce',  function () {
 
         var vriti_url = "https://byhtada.github.io/am_training/audio/vritis/" + $(this).attr("data-vriti-num") + ".mp3";
-        $('#vriti_pronounce').attr("src", vriti_url);
-        var audio = document.getElementById("vriti_pronounce_main");
+        $('#background_pronounce').attr("src", vriti_url);
+        var audio = document.getElementById("background_pronounce_main");
         audio.load();
        // audio.pla;
+
+
+
     });
     $(document).on('click', '.nav_50vriti_test_order',  function () {
         $('#50vriti_answer_order').hide().empty();
@@ -933,6 +965,15 @@ $( document ).ready(function() {
 
     });
 
+    $(document).on('click', '.sutra_row',  function () {
+
+
+        var vriti_url = "https://byhtada.github.io/am_training/audio/sutras/" + $(this).attr("data-sutra-num") + ".mp3";
+        $('#background_pronounce').attr("src", vriti_url);
+        var audio = document.getElementById("background_pronounce_main");
+        audio.load();
+    });
+
     $('#mantras_back').click(function (){
         $('#mantras_table').show();
         $('#mantra_value').hide();
@@ -977,6 +1018,9 @@ $( document ).ready(function() {
         $('#page_40socials_results').hide();
         $('#page_40socials').hide();
         $('#page_40socials_options').show();
+
+        $('#page_10nrav').hide();
+
 
         $('#page_mantras').hide();
         $('#mantras_table').show();

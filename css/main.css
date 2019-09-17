@@ -9,7 +9,6 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
-@import url("//portal.fondy.eu/mportal/static/saas/fondy/css/style.css");
 
 html {
     color: #222;
@@ -19,7 +18,7 @@ html {
 td {vertical-align: middle !important;}
 
 .vriti_pronounce{cursor: pointer;}
-h1, h2, h3, h4, h5, h6, p, span, div {font-family: 'Roboto', sans-serif;}
+h1, h2, h3, h4, h5, h6 {font-weight: bold}
 .text_mini_end {font-size: 18px;}
 
 .material_link {font-size: 14px;}
