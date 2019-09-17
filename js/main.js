@@ -609,7 +609,7 @@ $( document ).ready(function() {
                         break;
                 }
 
-                vritis += '<td>' + item.sanscrit    + '</td>';
+                vritis += '<td class="vriti_pronounce" data-vriti-num="' + itm + '">' + item.sanscrit    + '</td>';
                 vritis += '<td>' + item.rus    + '</td>';
                 vritis += '<td>' + item.sound    + '</td>';
                 vritis += '</tr>';
@@ -987,18 +987,21 @@ $( document ).ready(function() {
                 }
                 break;
             case "yes":
-                answers_count += 1;
-                answers_correct += 1;
-                var answers_count_text = answers_count + 1;
-                $('#40socials_question_order').text("Помнишь норму №" + answers_count_text + "?");
 
-                if (answers_count  === socials_all.length ){
-                    showSocialsResults();
-                }
+                var current_social = socials_all[answers_count];
+                answers_correct += 1;
+                answers_count += 1;
+                $('#40socials_answer_order').show().empty().append(current_social.russian);
+                $('#nav_40socials_order_next').show();
+                $('#nav_40socials_order_no')  .hide();
+                $('#nav_40socials_order_yes') .hide();
+
+
                 break;
             case "no":
                 var current_social = socials_all[answers_count];
 
+                answers_uncorrect.push(answers_count);
                 answers_count += 1;
                 $('#40socials_answer_order').show().empty().append(current_social.russian);
                 $('#nav_40socials_order_next').show();
@@ -1061,6 +1064,21 @@ $( document ).ready(function() {
 
         $('#page_40socials_results')    .show();
         $('#40socials_results')    .text("Результат " + answers_correct + "/" + answers_count);
+
+        if (answers_uncorrect.length > 0){
+            var row = '<table class="table table-hover table-bordered table-condensed" >';
+            $.each(answers_uncorrect, function (i, item) {
+                row += '<tr>';
+
+                row += '<td>' + socials_all[item].russian    + '</td>';
+                row += '</tr>';
+            });
+            row += '</tbody></table>';
+            $('#div_40socials_uncorrect').show();
+            $('#table_40socials_uncorrect').empty().append(row);
+        }
+
+
 
         answers_count   = 0;
         answers_correct = 0;
