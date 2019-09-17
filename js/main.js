@@ -244,7 +244,7 @@ $( document ).ready(function() {
                 var row = "";
                 $.each(sutras_all, function (i, item) {
                     row += '<div class="mantra_row diary_body" data-sutra-num="' + i + '">';
-                    row += "<b>" + item.sansckrit + "</b><br/>" ;
+                    row += item.sansckrit + "<br/><br/>" ;
                     row += item.russian ;
 
                     row += '</div>';
