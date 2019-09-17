@@ -120,6 +120,58 @@ $( document ).ready(function() {
         {name: 'Parampita Baba kii ... Jaya!', sansckrit: 'Parampita Baba kii ... Jaya!<br/><br/>' , russian: 'Победа высшему отцу!<br/><br/>'},
     ];
 
+    var sutras_all = [
+        {sansckrit: "1-1. Shivashaktyátmakaḿ Brahma.", russian: "Бра́хма – это единство Ши́вы и Ша́кти"},
+        {sansckrit: "1-2. Shaktih Sá Shivasya Shaktih.",
+            russian: "[Шакти (действующее начало) – это шакти (cила) Шивы.]"},
+        {   sansckrit: "1-3. Tayoh siddhih saiṋcare pratisaiṋcare ca.",
+            russian:   "[Выражение обоих (Шивы и Шакти) происходит в санча́ре и пратисанча́ре.]"},
+        {   sansckrit: "1-4. Paramashivah Puruśottamah vishvasya kendram.",
+            russian:   "[Высшее Сознание, которое находится в Ядре Вселенной называется Пурушо́ттама или Парамашива.]"},
+        {   sansckrit: "1-5. Pravrttimukhii saiṋcarah guńadháráyám.",
+            russian:   "[Санча́ра (в Космическом Цикле) – это процесс  постепенного экстровертного движения под возрастающим сковывающим влиянием гун.] "},
+        {   sansckrit: "1-6. Nivrttimukhii pratisaiṋcarah guńávakśayeńa.",
+            russian:   "[Пратисанча́ра (в Космическом Цикле) – это постепенное интровертное движение под уменьшающимся влиянием гун.] "},
+        {   sansckrit: "1-7. Drk Puruśah darshanaḿ Shaktishca.",
+            russian:   "[Пуру́ша является свидетелем, а Пракри́ти – действием свидетельствования ( и тем что свидетельствуется).] "},
+        {   sansckrit: "1-8. Guńabandhanena guńábhivyaktih.",
+            russian:   "[По мере того как усиливается сковывающее влияние гун, они полностью проявляют себя через возникновение фундаментальных факторов.]"},
+        {   sansckrit: "1-9. Guńádhikye jad́asphot́ah bhútasámyábhávát.",
+            russian:   "[В результате чрезмерного давления гун утрачивается должный баланс между пятью фундаментальными факторами (бхута), и происходит взрыв твердого фактора (джадаспотах).] "},
+        {   sansckrit: "1-10. Guńaprabhávena bhútasaungharśádbalam.",
+            russian:   "[Под влиянием гун пять фундаментальных факторов приходят в столкновение, и возникает ба́ла, или энергия.]"},
+        {   sansckrit: "1-11. Dehakendrikáńi parińámabhútáńi baláni práńáh.",
+            russian:   "[Результирующая внутренненаправленная сила, формирующая ядро в физической структуре и сохраняющая ее целостность, называется пра́нах, или жизненная энергия.]"},
+        {   sansckrit: "1-12. Tiivrasaungharśeńa cúrńiibhútáni jad́áni cittáńu mánasadhátuh vá.",
+            russian:   "[Интенсивные столкновения становятся причиной измельчения некоторой части грубого фактора и возникновения частиц эктоплазмы, или вещества разума.]"},
+        {   sansckrit: "1-13. Vyaśt́idehe cittáńusamaváyena cittabodhah.",
+            russian:   "[Благодаря объединению частиц эктоплазмы в индивидуальной структуре возникает чувство чи́тты, или объективности.]"},
+        {   sansckrit: "1-14. Cittát guńávakśaye rajoguńaprábalye aham.",
+            russian:   "[В результате уменьшения воздействия сковывающих начал и преобладания динамичной силы из чи́тты возникает аха́м, или эго.]"},
+        {   sansckrit: "1-15. Súkśmábhimukhinii gatirudaye ahaḿtattvánmahat.",
+            russian:   "[В процессе дальнейшего утончения из ахамта́ттвы развивается маха́т.]"},
+        {   sansckrit: "1-16. Cittádahaḿprábalye buddhih.",
+            russian:   "[Когда аха́м начинает преобладать над чи́ттой, развивается интеллект.]"},
+        {   sansckrit: "1-17. Ahaḿtattvát mahadprábalye bodhih.",
+            russian:   "[Когда маха́т начинает доминировать над аха́мом, развивается интуиция.]"},
+        {   sansckrit: "1-18. Mahadahaḿvarjite anagrasare jiivadehe latágulme kevalaḿ cittam.",
+            russian:   "[В некоторых неразвитых живых существах (например, деревьях и пресмыкающихся) может быть выражена только чи́тта, а маха́т и аха́м оставаться не проявленными.]"},
+        {   sansckrit: "1-19. Mahadvarjite anagrasare jiivadehe latágulme cittayuktáham.",
+            russian:   "[В некоторых неразвитых живых существах (например, деревьях и пресмыкающихся) могут быть выражены аха́м и чи́тта, а маха́т оставаться не проявленным.]"},
+        {   sansckrit: "1-20. Prágrasare jiive latágulme mánuśe mahadahaḿcittáni.",
+            russian:   "[В сравнительно развитых живых существах (например, деревьях и пресмыкающихся), как и в человеке, проявлены маха́т, аха́м и чи́тта.]"},
+        {   sansckrit: "1-21. Bhúmávyápte Mahati ahaḿ cittayorprańáshe saguńásthitih savikalpasamádhih vá.",
+            russian:   "[Когда в процессе расширения единичного сознания аха́м и чи́тта преобразуются в космический Маха́т, это слияние называется савика́льпа самáдхи – состояние условного растворения, растворения в обусловленном состоянии.]"},
+        {   sansckrit: "1-22. Átmani mahadprańáshe nirguńásthitih nirvikalpasamádhih vá.",
+            russian:   "[Когда маха́т преобразуется в А́тман, он выходит из-под сковывающего влияния гун и погружается в состояние, называемое нирвика́льпа сама́дхи, состояние безусловной погруженности, полное растворение разума]\n"},
+        {   sansckrit: "1-23. Tasyasthitih amánasikeśu.",
+            russian:   "[Это состояние (нирвика́льпа сама́дхи) вне воспринимающей способности разума.]"},
+        {   sansckrit: "1-24. Abhávottaránandapratyayálambaniirvrttih tasya pramáńam.",
+            russian:   "[Блаженство, следующее за пустотой, является доказательством этого состояния, причиной твердой веры в существование этого состояния.]"},
+        {   sansckrit: "1-25. Bhávah bhávátiitayoh setuh Tárakabrahma.",
+            russian:   "[Мост между Ниргу́на и Сагу́на Бра́хмой называется Та́рака Бра́хма, или освобождающий Бра́хма.]"}
+    ];
+
     function start(){
         $('#page_load').hide();
         $('#page_main').show();
@@ -184,8 +236,22 @@ $( document ).ready(function() {
                 break;
             case "supreme":
                 $('#first_screen').hide();
-
                 $('#page_supreme').show();
+                break;
+            case "ananda_sutras":
+                $('#first_screen').hide();
+
+                var row = "";
+                $.each(sutras_all, function (i, item) {
+                    row += '<div class="mantra_row diary_body" data-sutra-num="' + i + '">';
+                    row += "<b>" + item.sansckrit + "</b><br/>" ;
+                    row += item.russian ;
+
+                    row += '</div>';
+                });
+                row += '</tbody></table>';
+                $('#sutras_table').empty().append(row);
+                $('#page_ananda_sutras').show();
                 break;
         }
     });
@@ -569,6 +635,7 @@ $( document ).ready(function() {
 
 
         $('#page_supreme').hide();
+        $('#page_ananda_sutras').hide();
 
 
         $('#first_screen').show();
