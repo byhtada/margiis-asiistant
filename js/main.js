@@ -64,6 +64,7 @@ $( document ).ready(function() {
     var random_shuffle   = [];
     var answers_count   = 0;
     var answers_correct = 0;
+    var answers_uncorrect = [];
     var vritis_random_direct = "";
 
 
@@ -248,6 +249,23 @@ $( document ).ready(function() {
 
 
 
+    var enemies_all = [
+        {russian: "Враг 1. Влечение к удовольствию, получаемому от объектов материального мира (káma - кама)"},
+        {russian: "Враг 2. Гнев (krodha - кродха)"},
+        {russian: "Враг 3. Жадность (lobha - лобха)"},
+        {russian: "Враг 4. Слепая привязанность (moha - моха)"},
+        {russian: "Враг 5. Гордыня, честолюбие (mada - мада)"},
+        {russian: "Враг 6. Зависть (mátsarya - матсарья)"},
+        {russian: "Окова 1. GHRNA’ - гхрина (ненависть)"},
+        {russian: "Окова 2. SHAUNKA’ - шанка (сомнение)"},
+        {russian: "Окова 3. BHAYA - бхая (страх)"},
+        {russian: "Окова 4. LAJJA’ - ладжжа (стеснительность)"},
+        {russian: "Окова 5. JUGUPSA’ - джугупса (лицемерие)"},
+        {russian: "Окова 6. KULA’ - кула (гордость происхождением)"},
+        {russian: "Окова 7. SHIILA - шила (комплекс культурного превосходства)"},
+        {russian: "Окова 8. MA’NA - мана (самовлюбленность)"}
+    ];
+
 
     function start(){
         $('#page_load').hide();
@@ -352,6 +370,20 @@ $( document ).ready(function() {
                 $('#sutras_table').empty().append(row);
                 $('#page_ananda_sutras').show();
                 break;
+            case "enemies":
+                $('#first_screen').hide();
+
+                var row = "";
+                $.each(enemies_all, function (i, item) {
+                    row += '<div class="diary_body">';
+                    row += item.russian;
+
+                    row += '</div>';
+                });
+                row += '</tbody></table>';
+                $('#enemies_table').empty().append(row);
+                $('#page_enemies').show();
+                break;
         }
     });
 
@@ -417,14 +449,16 @@ $( document ).ready(function() {
     $(document).on('click', '.vriti_pronounce',  function () {
 
         var vriti_url = "https://byhtada.github.io/am_training/audio/vritis/" + $(this).attr("data-vriti-num") + ".mp3";
-        $('#background_pronounce').attr("src", vriti_url);
-        var audio = document.getElementById("background_pronounce_main");
-        audio.load();
+        playBackground(vriti_url)
        // audio.pla;
 
-
-
     });
+    function playBackground(url){
+        $('#background_pronounce').attr("src", url);
+        var audio = document.getElementById("background_pronounce_main");
+        audio.load();
+    }
+
     $(document).on('click', '.nav_50vriti_test_order',  function () {
         $('#50vriti_answer_order').hide().empty();
         $('#nav_50vriti_order_next').hide();
@@ -442,21 +476,30 @@ $( document ).ready(function() {
                 }
                 break;
             case "yes":
-                answers_count += 1;
-                answers_correct += 1;
-                var vritis_answers_count_text = answers_count + 1;
-                $('#50vriti_question_order').text("Помните врити №" + vritis_answers_count_text + "?");
+                var current_vriti = vritis_all[answers_count];
 
-                if (answers_count  === vritis_all.length ){
-                    showVritiResults();
-                }
+                var sanscrit = '<div class="vriti_pronounce" data-vriti-num="' + answers_count + '">' + current_vriti.sanscrit + '</div>';
+
+                $('#50vriti_answer_order').show().empty().append(sanscrit).append(current_vriti.sound + " - " + current_vriti.rus + "<br/>" + current_vriti.chakra);
+                var vriti_url = "https://byhtada.github.io/am_training/audio/vritis/" + answers_count + ".mp3";
+                playBackground(vriti_url);
+                answers_correct += 1;
+                answers_count += 1;
+
+                $('#nav_50vriti_order_next').show();
+                $('#nav_50vriti_order_no')  .hide();
+                $('#nav_50vriti_order_yes') .hide();
+
                 break;
             case "no":
                 var current_vriti = vritis_all[answers_count];
                 var sanscrit = '<div class="vriti_pronounce" data-vriti-num="' + answers_count + '">' + current_vriti.sanscrit + '</div>';
 
                 $('#50vriti_answer_order').show().empty().append(sanscrit).append(current_vriti.sound + " - " + current_vriti.rus + "<br/>" + current_vriti.chakra);
+                var vriti_url = "https://byhtada.github.io/am_training/audio/vritis/" + answers_count + ".mp3";
+                playBackground(vriti_url);
 
+                answers_uncorrect.push(answers_count);
                 answers_count += 1;
 
                 $('#nav_50vriti_order_next').show();
@@ -539,6 +582,43 @@ $( document ).ready(function() {
         $('#page_50vriti_results')    .show();
         $('#50vriti_results')    .text("Результат " + answers_correct + "/" + answers_count);
 
+        if (answers_uncorrect.length > 0){
+
+            var vritis = '<table class="table table-hover table-bordered table-condensed" >';
+            $.each(answers_uncorrect, function (i, itm) {
+                var item = vritis_all[itm];
+
+                switch (item.chakra) {
+                    case vritis_all[0].chakra:
+                        vritis += '<tr style="background-color: rgba(255,74,72, 0.5)">';
+                        break;
+                    case vritis_all[4].chakra:
+                        vritis += '<tr style="background-color: rgba(255,136,26,0.5)">';
+                        break;
+                    case vritis_all[10].chakra:
+                        vritis += '<tr style="background-color: rgba(255,226,66,0.5)">';
+                        break;
+                    case vritis_all[22].chakra:
+                        vritis += '<tr style="background-color: rgba(119,255,72,0.5)">';
+                        break;
+                    case vritis_all[47].chakra:
+                        vritis += '<tr style="background-color: rgba(74,219,255,0.8)">';
+                        break;
+                    case vritis_all[49].chakra:
+                        vritis += '<tr style="background-color: rgba(80,90,255,0.8)">';
+                        break;
+                }
+
+                vritis += '<td>' + item.sanscrit    + '</td>';
+                vritis += '<td>' + item.rus    + '</td>';
+                vritis += '<td>' + item.sound    + '</td>';
+                vritis += '</tr>';
+            });
+            vritis += '</tbody></table>';
+            $('#div_vritis_uncorrect').show();
+            $('#table_vritis_uncorrect').empty().append(vritis);
+        }
+
 
         answers_count   = 0;
         answers_correct = 0;
@@ -599,17 +679,18 @@ $( document ).ready(function() {
                 }
                 break;
             case "yes":
-                answers_count += 1;
-                answers_correct += 1;
-                var answers_count_text = answers_count + 1;
-                $('#16points_question_order').text("Помните пункт №" + answers_count_text + "?");
+                var current_point = points_all[answers_count];
+                $('#16points_answer_order').show().empty().append(current_point);
+                $('#nav_16points_order_next').show();
+                $('#nav_16points_order_no')  .hide();
+                $('#nav_16points_order_yes') .hide();
 
-                if (answers_count  === points_all.length ){
-                    showPointsResults();
-                }
+                answers_correct += 1;
+                answers_count += 1;
                 break;
             case "no":
                 var current_point = points_all[answers_count];
+                answers_uncorrect.push(answers_count);
 
                 answers_count += 1;
                 $('#16points_answer_order').show().empty().append(current_point);
@@ -638,17 +719,20 @@ $( document ).ready(function() {
 
                 break;
             case "yes":
+                var current = points_all[random_shuffle[answers_count]];
+                var answer = current;
+
+                $('#16points_answer_random').show().empty().append(answer);
+                $('#nav_16points_random_next').show();
+                $('#nav_16points_random_no')  .hide();
+                $('#nav_16points_random_yes') .hide();
+
                 answers_count += 1;
                 answers_correct += 1;
-                if (answers_count  === points_all.length ){
-                    showPointsResults();
-                    return;
-                }
-                setPointsRandomQuestion();
-
                 break;
             case "no":
                 var current = points_all[random_shuffle[answers_count]];
+                answers_uncorrect.push(random_shuffle[answers_count]);
 
                 answers_count += 1;
 
@@ -677,6 +761,18 @@ $( document ).ready(function() {
         $('#page_16points_results')    .show();
         $('#16points_results')    .text("Результат " + answers_correct + "/" + answers_count);
 
+        if (answers_uncorrect.length > 0){
+            var row = '<table class="table table-hover table-bordered table-condensed" >';
+            $.each(answers_uncorrect, function (i, item) {
+                row += '<tr>';
+
+                row += '<td>' + points_all[item]    + '</td>';
+                row += '</tr>';
+            });
+            row += '</tbody></table>';
+            $('#div_16points_uncorrect').show();
+            $('#table_16points_uncorrect').empty().append(row);
+        }
 
         answers_count   = 0;
         answers_correct = 0;
@@ -738,17 +834,18 @@ $( document ).ready(function() {
                 }
                 break;
             case "yes":
-                answers_count += 1;
+                var current_shila = shils_all[answers_count];
                 answers_correct += 1;
-                var answers_count_text = answers_count + 1;
-                $('#15shils_question_order').text("Помнишь шилу №" + answers_count_text + "?");
+                answers_count += 1;
+                $('#15shils_answer_order').show().empty().append(current_shila.russian);
+                $('#nav_15shils_order_next').show();
+                $('#nav_15shils_order_no')  .hide();
+                $('#nav_15shils_order_yes') .hide();
 
-                if (answers_count  === shils_all.length ){
-                    showShilsResults();
-                }
                 break;
             case "no":
                 var current_shila = shils_all[answers_count];
+                answers_uncorrect.push(answers_count);
 
                 answers_count += 1;
                 $('#15shils_answer_order').show().empty().append(current_shila.russian);
@@ -774,24 +871,30 @@ $( document ).ready(function() {
                 setShilsRandomQuestion();
                 break;
             case "yes":
+
+                var current = shils_all[random_shuffle[answers_count]];
+
                 answers_count += 1;
                 answers_correct += 1;
-                if (answers_count  === shils_all.length ){
-                    showShilsResults();
-                    return;
-                }
-                setShilsRandomQuestion();
+
+                var answer = current.russian;
+
+                $('#15shils_answer_random').show().empty().append(answer);
+                $('#nav_15shils_random_next').show();
+                $('#nav_15shils_random_no')  .hide();
+                $('#nav_15shils_random_yes') .hide();
+
 
                 break;
             case "no":
                 var current = shils_all[random_shuffle[answers_count]];
+                answers_uncorrect.push(random_shuffle[answers_count]);
 
                 answers_count += 1;
 
                 var answer = current.russian;
 
-
-                $('#15shils_answer_random').show().empty().append(answer);
+                $('#15shils_answer_random')  .show().empty().append(answer);
                 $('#nav_15shils_random_next').show();
                 $('#nav_15shils_random_no')  .hide();
                 $('#nav_15shils_random_yes') .hide();
@@ -812,6 +915,21 @@ $( document ).ready(function() {
 
         $('#page_15shils_results')    .show();
         $('#15shils_results')    .text("Результат " + answers_correct + "/" + answers_count);
+
+        if (answers_uncorrect.length > 0){
+            var row = '<table class="table table-hover table-bordered table-condensed" >';
+            $.each(answers_uncorrect, function (i, item) {
+                row += '<tr>';
+
+                row += '<td>' + shils_all[item].russian    + '</td>';
+                row += '</tr>';
+            });
+            row += '</tbody></table>';
+            $('#div_15shils_uncorrect').show();
+            $('#table_15shils_uncorrect').empty().append(row);
+        }
+
+
 
         answers_count   = 0;
         answers_correct = 0;
@@ -1000,6 +1118,8 @@ $( document ).ready(function() {
         $('#page_50vriti_results').hide();
         $('#page_50vriti').hide();
         $('#page_50vriti_options').show();
+        var answers_uncorrect = [];
+        $('#div_vritis_uncorrect').hide();
 
         $('#page_16points_test_order') .hide();
         $('#page_16points_test_random').hide();
@@ -1034,6 +1154,7 @@ $( document ).ready(function() {
 
         $('#page_supreme').hide();
         $('#page_ananda_sutras').hide();
+        $('#page_enemies').hide();
 
 
         $('#first_screen').show();

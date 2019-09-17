@@ -48,8 +48,8 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-    <script                                   src="js/main.js?v1.95"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css?v1.95">
+    <script                                   src="js/main.js?v1.96"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css?v1.96">
 
 </head>
 
@@ -83,6 +83,9 @@
                     <h3 align="center">Ананда Марга</h3>
 
 
+                    <button value="diary"  type="button" class="main_nav btn btn-success btn-block" disabled="disabled">Ежедневник Марга</button>
+                    <br/>
+
                     <button value="16points"  type="button" class="main_nav btn btn-default btn-block">16 пунктов</button>
                     <button value="10nrav"    type="button" class="main_nav btn btn-default btn-block">Джама/Нияма</button>
                     <button value="15shils"   type="button" class="main_nav btn btn-default btn-block">15 шил</button>
@@ -93,7 +96,7 @@
                     <button value="ananda_sutras"   type="button" class="main_nav btn btn-default btn-block">Ананда Сутры</button>
                     <button value="supreme"   type="button" class="main_nav btn btn-default btn-block">Высшее Указание</button>
                     <button value="50vriti"   type="button" class="main_nav btn btn-default btn-block">50 врити</button>
-                    <button value="enemies"    type="button" class="main_nav btn btn-default btn-block"  disabled="disabled">Враги и оковы</button>
+                    <button value="enemies"    type="button" class="main_nav btn btn-default btn-block">Враги и оковы</button>
 
                     <br/>
                     <button value="donation"   type="button" class="main_nav btn btn-link btn-block">Donation</button>
@@ -105,11 +108,12 @@
                 <div id="page_50vriti" hidden>
                     <div id="page_50vriti_options">
                         <h3 align="center">50 врити</h3>
-                        <p>Выберите режим тренировки</p>
                         <button value="learn"                         type="button" class="nav_50vriti btn btn-default btn-block">Показать все</button>
-                        <button value="order"  type="button" class="nav_50vriti btn btn-default btn-block">По порядку</button>
-                        <button value="random" data-direct="sans_rus" type="button" class="nav_50vriti btn btn-default btn-block">В разброс (санс -> рус)</button>
+                        <button value="order"  type="button" class="nav_50vriti btn btn-default btn-block">Тренировка</button>
+                        <!--<button value="random" data-direct="sans_rus" type="button" class="nav_50vriti btn btn-default btn-block">В разброс (санс -> рус)</button>
                         <button value="random" data-direct="rus_sans" type="button" class="nav_50vriti btn btn-default btn-block">В разброс (рус -> санс)</button>
+
+                 -->
                     </div>
                     <div id="page_50vriti_test_order" hidden>
                         <h3 align="center">50 врити</h3>
@@ -140,21 +144,27 @@
                     <div id="page_50vriti_results" hidden>
                         <h3 align="center">50 врити</h3>
                         <p id="50vriti_results"></p>
+
+                        <div id="div_vritis_uncorrect" hidden>
+                            <br/>
+                            <br/>
+                            <h4>Повтори эти врити</h4>
+                            <div id="table_vritis_uncorrect"></div>
+                        </div>
                         <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
                     </div>
 
                     <audio  id="background_pronounce_main" autoplay>
-                        <source  id="background_pronounce" type="audio/mpeg">
+                        <source  id="background_pronounce" type="audio/mpeg" src="">
                     </audio>
                 </div>
                 <div id="page_16points" hidden>
                     <h3 align="center">16 пунктов</h3>
 
                     <div id="page_16points_options">
-                        <p>Выберите режим тренировки</p>
                         <button value="learn"  type="button" class="nav_16points btn btn-default btn-block">Показать все</button>
-                        <button value="order"  type="button" class="nav_16points btn btn-default btn-block">По порядку</button>
-                        <button value="random" type="button" class="nav_16points btn btn-default btn-block">В разброс</button>
+                        <button value="order"  type="button" class="nav_16points btn btn-default btn-block">Тренировка</button>
+                        <!-- <button value="random" type="button" class="nav_16points btn btn-default btn-block">В разброс</button> -->
                     </div>
                     <div id="page_16points_test_order" hidden>
                         <p id="16points_question_order">Помните следующую врити?</p>
@@ -180,6 +190,12 @@
 
                     <div id="page_16points_results" hidden>
                         <p id="16points_results"></p>
+                        <div id="div_16points_uncorrect" hidden>
+                            <br/>
+                            <br/>
+                            <h4>Повтори эти пункты</h4>
+                            <div id="table_16points_uncorrect"></div>
+                        </div>
                         <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
                     </div>
 
@@ -188,10 +204,9 @@
                     <h3 align="center">15 шил</h3>
 
                     <div id="page_15shils_options">
-                        <p>Выберите режим тренировки</p>
                         <button value="learn"  type="button" class="nav_15shils btn btn-default btn-block">Показать все</button>
-                        <button value="order"  type="button" class="nav_15shils btn btn-default btn-block">По порядку</button>
-                        <button value="random" type="button" class="nav_15shils btn btn-default btn-block">В разброс</button>
+                        <button value="order"  type="button" class="nav_15shils btn btn-default btn-block">Тренировка</button>
+                      <!--  <button value="random" type="button" class="nav_15shils btn btn-default btn-block">В разброс</button>  -->
                     </div>
                     <div id="page_15shils_test_order" hidden>
                         <p id="15shils_question_order">Помните следующую шилу?</p>
@@ -217,6 +232,12 @@
 
                     <div id="page_15shils_results" hidden>
                         <p id="15shils_results"></p>
+                        <div id="div_15shils_uncorrect" hidden>
+                            <br/>
+                            <br/>
+                            <h4>Повтори эти шилы</h4>
+                            <div id="table_15shils_uncorrect"></div>
+                        </div>
                         <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
                     </div>
 
@@ -225,10 +246,9 @@
                     <h3 align="center">Общественные нормы поведения</h3>
 
                     <div id="page_40socials_options">
-                        <p>Выберите режим тренировки</p>
                         <button value="learn"  type="button" class="nav_40socials btn btn-default btn-block">Показать все</button>
-                        <button value="order"  type="button" class="nav_40socials btn btn-default btn-block">По порядку</button>
-                        <button value="random" type="button" class="nav_40socials btn btn-default btn-block">В разброс</button>
+                        <button value="order"  type="button" class="nav_40socials btn btn-default btn-block">Тренировка</button>
+                        <!--<button value="random" type="button" class="nav_40socials btn btn-default btn-block">В разброс</button> -->
                     </div>
                     <div id="page_40socials_test_order" hidden>
                         <p id="40socials_question_order">Помните следующую норму?</p>
@@ -305,6 +325,14 @@
                     <h3 align="center">Ананда Сутры</h3>
 
                     <div id="sutras_table">
+                    </div>
+                    <br/>
+                    <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+                </div>
+                <div id="page_enemies" hidden>
+                    <h3 align="center">Враги и оковы</h3>
+
+                    <div id="enemies_table">
                     </div>
                     <br/>
                     <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
