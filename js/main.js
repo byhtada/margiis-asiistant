@@ -310,6 +310,9 @@ $( document ).ready(function() {
 
         //mantra_pronounce
         //document.body.appendChild(x);
+
+        checkOS();
+
     }
 
     start();
@@ -1263,4 +1266,30 @@ $( document ).ready(function() {
         $('#first_screen').show();
     });
 
+
+
+    function checkOS() {
+        var userAgent = window.navigator.userAgent,
+            platform = window.navigator.platform,
+            macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+            windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+            iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+            os = null;
+
+        if (macosPlatforms.indexOf(platform) !== -1) {
+            os = 'Mac OS';
+            alert('На технике Apple пока работает не весь функционал');
+        } else if (iosPlatforms.indexOf(platform) !== -1) {
+            os = 'iOS';
+            alert('На технике Apple пока работает не весь функционал');
+        } else if (windowsPlatforms.indexOf(platform) !== -1) {
+            os = 'Windows';
+        } else if (/Android/.test(userAgent)) {
+            os = 'Android';
+        } else if (!os && /Linux/.test(platform)) {
+            os = 'Linux';
+        }
+
+        return os;
+    }
 });
