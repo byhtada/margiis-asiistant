@@ -5,7 +5,7 @@ $( document ).ready(function() {
     var samgits_all = [
         {num: "1",    audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/1%20BANDHU%20HE%20NIYE%20CALO.mp3", russian_name: "БОНДХУ ХЕ"},
         {num: "2",    audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/2%20E%20GA%27N%20A%27MA%27R%20ALOR%20JHARN%27A%27DHA%27RA%27.mp3", russian_name: "Е ГА́Н А́МА́Р"},
-        {num: "6",    audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/6%20BANDHU%20A%27MA%27R%2C%20BANDHU%20A%27MA%27R%2C%20January%201st%201983%2C%20Ananda%20Nagar.mp3", russian_name: "BABA! BANDHU A'MA'R, BANDHU A'MA'R, January 1st 1983, Ananda Nagar"},
+        {num: "6",    audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/6%20BANDHU%20A%27MA%27R%2C%20BANDHU%20A%27MA%27R%2C%20January%201st%201983%2C%20Ananda%20Nagar.mp3", russian_name: "BANDHU A'MA'R, BANDHU A'MA'R, January 1st 1983, Ananda Nagar"},
         {num: "10",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/10%20MA%27YA%27%20MUKURE%20KE%20KII%20BHA%27VE%20KII%20KARE.mp3", russian_name: "МА́ЙЯ МУКУРЕ"},
         {num: "12",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/12%20NAYANE%20MAMATA%27%20BHARA%27%202.mp3", russian_name: "НОЙОНЕ МОМОТА́ БХОРА́"},
         {num: "29",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/29%20A%27MA%27Y%20CHOT%27T%27A%20EKAT%27I%20MAN%20DIYECHO.mp3", russian_name: "А́МА́Й ЧХОТ́Т́О ЕКТ́И МОН ДИЙЕЧХО"},
@@ -14,22 +14,22 @@ $( document ).ready(function() {
         {num: "63",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/63%20DIIPA%27VALII%20SA%27JA%27YECHI%20PRABHU.mp3", russian_name: "ДИ́ПА́БОЛИ́ "},
         {num: "68",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/68%20I%20LOVE%20THIS%20TINY%20GREEN%20ISLAND%202.mp3", russian_name: "I LOVE THIS TINY GREEN ISLAND"},
         {num: "80",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/80%20SVAPANE%20ESECHO%20A%27NANDAGHANA%20TUMI.mp3", russian_name: "ШВОПОНЕ ЕШЕЧХО А́НОНДОГХОНО ТУМИ"},
-        {num: "152",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/152%20CAMPAKA%20VANE%20MADHURA%20SVAPANE%2C%20May%2024th%201985%2C%20Calcutta.mp3", russian_name: "BABA! CAMPAKA VANE MADHURA SVAPANE, May 24th 1985, Calcutta"},
-        {num: "154",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/154%20ESO%20ESO%2C%20PRABHU%2C%20ESO%20ESO%2C%20A%27MA%27R%20HRDAYE%2C%20May%2024th%201985%2C%20Calcutta.mp3", russian_name: "BABA! ESO ESO, PRABHU, ESO ESO, A'MA'R HRDAYE, May 24th 1985, Calcutta\n"},
+        {num: "152",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/152%20CAMPAKA%20VANE%20MADHURA%20SVAPANE%2C%20May%2024th%201985%2C%20Calcutta.mp3", russian_name: "CAMPAKA VANE MADHURA SVAPANE, May 24th 1985, Calcutta"},
+        {num: "154",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/154%20ESO%20ESO%2C%20PRABHU%2C%20ESO%20ESO%2C%20A%27MA%27R%20HRDAYE%2C%20May%2024th%201985%2C%20Calcutta.mp3", russian_name: "ESO ESO, PRABHU, ESO ESO, A'MA'R HRDAYE, May 24th 1985, Calcutta\n"},
         {num: "158",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/158%20TUMI%20SABA%27R%20MANE%20A%27CHO.mp3", russian_name: "ТУМИ ШОБА́Р МОНЕ А́ЧХО"},
         {num: "159",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/159%20PRABHU%20A%27MI%20BHA%27LOBA%27SI.mp3", russian_name: "ПРОБХУ А́МИ БХА́ЛОБА́ШИ"},
         {num: "162",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/162%20KICHU%20KAYE%20JA%27O%20KICHU%20SUNE%20JA%27O.mp3", russian_name: "КИЧХУ КОЙЕ ДЖА́У"},
-        {num: "163",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/163%20MAN%20KE%20KONO%20CHOT%27O%20KA%27JEI%2C%20January%201st%201983%2C%20Ananda%20Nagar.mp3", russian_name: "BABA! MAN KE KONO CHOT'O KA'JEI, January 1st 1983, Ananda Nagar"},
+        {num: "163",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/163%20MAN%20KE%20KONO%20CHOT%27O%20KA%27JEI%2C%20January%201st%201983%2C%20Ananda%20Nagar.mp3", russian_name: "MAN KE KONO CHOT'O KA'JEI, January 1st 1983, Ananda Nagar"},
         {num: "342",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/342%20SUMUKHER%20PA%27NE%20CALE%20JA%27BO%20A%27MI.mp3", russian_name: "ШУМУКЕР ПА́́НЕ ЧОЛЕ ДЖА́́БО А́́МИ"},
-        {num: "647",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/647%20TUMI%20JE%20ESECHO%20A%27J%20%28part%29%2C%20May%2027%2C%201984%20morning%2C%20Ranchi.mp3", russian_name: "BABA! TUMI JE ESECHO A'J (part), May 27, 1984 morning, Ranchi\n"},
+        {num: "647",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/647%20TUMI%20JE%20ESECHO%20A%27J%20%28part%29%2C%20May%2027%2C%201984%20morning%2C%20Ranchi.mp3", russian_name: "TUMI JE ESECHO A'J (part), May 27, 1984 morning, Ranchi\n"},
         {num: "1025", audio: "http://xn--prabhta-sagiita-rjb5298j.net/1000-1999/1025%20A%27MA%27R%20JIIVANE%20TUMI%20KE.mp3", russian_name: "А́МА́Р ДЖИВОНЕ ТУМИ КЕ"},
         {num: "1041", audio: "http://xn--prabhta-sagiita-rjb5298j.net/1000-1999/1041%20ANEK%20SHUNIYA%27%20ANEK%20BHA%27VIYA%27.mp3", russian_name: "ОНЕК ШУНИЯ ОНЕК БХА́БИЯ"},
         {num: "1682", audio: "http://xn--prabhta-sagiita-rjb5298j.net/1000-1999/1682%20VASANTERI%20A%27GAMANE%20DHARA%27%20NAVA.mp3", russian_name: "БОШОНТОРИ А́́ГОМОНЕ"},
-        {num: "1698", audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/1698%20AJA%27NA%27%20PATHIK%20THA%27MO%20GO%20KS%27AN%27IK%20%28part%29%2C%20December%2031st%201985%2C%20Cacutta.mp3", russian_name: "BABA! AJA'NA' PATHIK THA'MO GO KS'AN'IK (part), December 31st 1985, Cacutta"},
+        {num: "1698", audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/1698%20AJA%27NA%27%20PATHIK%20THA%27MO%20GO%20KS%27AN%27IK%20%28part%29%2C%20December%2031st%201985%2C%20Cacutta.mp3", russian_name: "AJA'NA' PATHIK THA'MO GO KS'AN'IK (part), December 31st 1985, Cacutta"},
         {num: "2526", audio: "http://xn--prabhta-sagiita-rjb5298j.net/2000-2999/2526%20JAYA%2C%20SHUBHA%20VAJRADHARA.mp3", russian_name: "ДЖАЯ ШУБХА ВАДЖРАДХАРА "},
         {num: "2976", audio: "http://xn--prabhta-sagiita-rjb5298j.net/2000-2999/2976%20TOMA%27Y%20A%27MI%20PELU%27M2.mp3", russian_name: "ТОМА́Й А́МИ ПЕЛУМ"},
         {num: "3069", audio: "http://xn--prabhta-sagiita-rjb5298j.net/3000-3999/3069%20JYOTSNA%27%20DILE%20PHU%27L%20PHOT%27A%27LE.mp3", russian_name: "ДЖЁТШНА́ ДИЛЕ"},
-        {num: "3522", audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/3522%20TOMA%27RE%20D%27EKECHI%20TOMA%27RE%20CEYECHI%2C%20June%201st%201986%2C%20Calcutta.mp3", russian_name: "BABA! TOMA'RE D'EKECHI TOMA'RE CEYECHI, June 1st 1986, Calcutta"},
+        {num: "3522", audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/3522%20TOMA%27RE%20D%27EKECHI%20TOMA%27RE%20CEYECHI%2C%20June%201st%201986%2C%20Calcutta.mp3", russian_name: "TOMA'RE D'EKECHI TOMA'RE CEYECHI, June 1st 1986, Calcutta"},
         {num: "3951", audio: "http://xn--prabhta-sagiita-rjb5298j.net/3000-3999/3951%20TVAM%27%20MAMA%20PRIYAH%20TVAMASI%20AMEYA.mp3", russian_name: "ТВАМ́ МАМА ПРИЯХ"},
         {num: "4455", audio: "http://xn--prabhta-sagiita-rjb5298j.net/4000-5018/4455%20KE%20GO%20KE%20GO%20TUMI%20ACENA%27.mp3", russian_name: "КЕГО КЕГО ТУМИ А́ЧЕНА́"},
         {num: "5008", audio: "http://xn--prabhta-sagiita-rjb5298j.net/4000-5018/5008%20WE%20LOVE%20THAT%20GREAT%20ENTITY.mp3", russian_name: "WE LOVE THAT GREAT ENTITY"},
@@ -238,10 +238,10 @@ $( document ).ready(function() {
     ];
 
     var socials_all = [
-        {russian: "1.	Вы должны благодарить того, кто оказывает вам служение (говоря «спасибо»)."},
+        {russian: "1.	Вы должны благодарить того, кто оказывает вам служение (говоря «спасибо» или «благодарю»)."},
         {russian: "2.	Вы должны немедленно отвечать на чей-либо Намаскар тем же."},
         {russian: "3.	Следует принимать или предлагать что-либо со следующей мудрой: вытяните правую руку, касаясь левой рукой правого локтя."},
-        {russian: "4.	Следует встать, если к вам подходит почтенный пожилой человек."},
+        {russian: "4.	Следует встать, если к вам подходит почтенный/пожилой человек."},
         {russian: "5.	Когда зеваете, прикройте рот и одновременно с этим щелкните пальцами."},
         {russian: "6.	Во время разговора всегда уважительно отзывайтесь об отсутствующих."},
         {russian: "7.	Чихая, прикройте рот носовым платком или рукой."},
@@ -267,7 +267,7 @@ $( document ).ready(function() {
         {russian: "27.	Вы не должны посещать чужой дом или звонить кому-либо после 9 часов вечера."},
         {russian: "28.	Если вы должны сообщить человеку что-то неприятное, вначале скажите «извините меня», и уже затем начинайте говорить."},
         {russian: "29.	Перед приемом пищи вымойте руки и ноги."},
-        {russian: "30.	Если вы хотите меда, ешьте его с водой."},
+        {russian: "30.	Если вы хотите меда, ешьте его с жидкостью (вода, чай и пр.)."},
         {russian: "31.	Не говорите, стоя перед человеком, принимающим пищу."},
         {russian: "32.	Не чихайте и не кашляйте, находясь за обеденным столом."},
         {russian: "33.	Не предлагайте другому человеку тарелку с пищей левой рукой."},
@@ -323,6 +323,10 @@ $( document ).ready(function() {
             case "link":
                 var win = window.open('https://docs.google.com/document/d/1lnHcnZJi7RT6ny5GVo67HNkq0e4sUdVFFrm-v-atA5s/edit?usp=sharing', '_blank');
                 win.focus();
+                break;
+            case "duties":
+                $('#first_screen').hide();
+                $('#page_duties').show();
                 break;
             case "50vriti":
                 $('#first_screen').hide();
@@ -391,7 +395,7 @@ $( document ).ready(function() {
 
                 var row = "";
                 $.each(samgits_all, function (i, item) {
-                    if (item.russian_name.includes("BABA!")){
+                    if ([6, 152, 154, 163, 647, 1698, 3522].includes(parseInt(item.num))  ){
                         row += '<div class="samgit_row diary_body" style="background-color: rgba(232,111,8,0.5)" data-samgit-num="' + i + '">';
                     } else {
                         row += '<div class="samgit_row diary_body" data-samgit-num="' + i + '">';
@@ -1264,6 +1268,7 @@ $( document ).ready(function() {
         $('#page_supreme').hide();
         $('#page_ananda_sutras').hide();
         $('#page_enemies').hide();
+        $('#page_duties').hide();
 
 
         $('#first_screen').show();
