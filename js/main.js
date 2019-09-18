@@ -2,6 +2,39 @@ $( document ).ready(function() {
 
 
 
+    var samgits_all = [
+        {num: "1",    audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/1%20BANDHU%20HE%20NIYE%20CALO.mp3", russian_name: "БОНДХУ ХЕ"},
+        {num: "2",    audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/2%20E%20GA%27N%20A%27MA%27R%20ALOR%20JHARN%27A%27DHA%27RA%27.mp3", russian_name: "Е ГА́Н А́МА́Р"},
+        {num: "6",    audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/6%20BANDHU%20A%27MAR%2C%20BANDHU%20A%27MA%27R%202.mp3", russian_name: "БОНДХУ А́МА́Р"},
+        {num: "10",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/10%20MA%27YA%27%20MUKURE%20KE%20KII%20BHA%27VE%20KII%20KARE.mp3", russian_name: "МА́ЙЯ МУКУРЕ"},
+        {num: "12",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/12%20NAYANE%20MAMATA%27%20BHARA%27%202.mp3", russian_name: "НОЙОНЕ МОМОТА́ БХОРА́"},
+        {num: "29",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/29%20A%27MA%27Y%20CHOT%27T%27A%20EKAT%27I%20MAN%20DIYECHO.mp3", russian_name: "А́МА́Й ЧХОТ́Т́О ЕКТ́И МОН ДИЙЕЧХО"},
+        {num: "50",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/50%20RAKTIM%20KISHALAY%20A%27MI%20RAKTIM%20KISHALAY.mp3", russian_name: "РОКТИМ КИШОЛАЙ"},
+        {num: "53",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/53%20OGO%2C%20PRABHU%2C%20TOMA%27KE%20A%27MI%20BHA%27LOBA%27SI.mp3", russian_name: "ОГО ПРОБХУ ТОМА́КЕ А́́МИ"},
+        {num: "63",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/63%20DIIPA%27VALII%20SA%27JA%27YECHI%20PRABHU.mp3", russian_name: "ДИ́ПА́БОЛИ́ "},
+        {num: "68",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/68%20I%20LOVE%20THIS%20TINY%20GREEN%20ISLAND%202.mp3", russian_name: "I LOVE THIS TINY GREEN ISLAND"},
+        {num: "80",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/80%20SVAPANE%20ESECHO%20A%27NANDAGHANA%20TUMI.mp3", russian_name: "ШВОПОНЕ ЕШЕЧХО А́НОНДОГХОНО ТУМИ"},
+        {num: "152",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/152%20CAMPAKA%20VANE%20MADHURA%20SVAPANE.mp3", russian_name: "ЧОМПОКО БОНЕ МОДХУРО ШВОПОНЕ"},
+        {num: "154",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/154%20ESO%20ESO%20PRABHU%20ESO%20ESO%20A%27MA%27R%20HRDAYE.mp3", russian_name: "ЕШО ЕШО"},
+        {num: "158",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/158%20TUMI%20SABA%27R%20MANE%20A%27CHO.mp3", russian_name: "ТУМИ ШОБА́Р МОНЕ А́ЧХО"},
+        {num: "159",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/159%20PRABHU%20A%27MI%20BHA%27LOBA%27SI.mp3", russian_name: "ПРОБХУ А́МИ БХА́ЛОБА́ШИ"},
+        {num: "162",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/162%20KICHU%20KAYE%20JA%27O%20KICHU%20SUNE%20JA%27O.mp3", russian_name: "КИЧХУ КОЙЕ ДЖА́У"},
+        {num: "163",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/163%20MAN%20KE%20KONO%20CHOT%27O%20KA%27JEI.mp3", russian_name: "МОНКЕ КОНО"},
+        {num: "342",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/342%20SUMUKHER%20PA%27NE%20CALE%20JA%27BO%20A%27MI.mp3", russian_name: "ШУМУКЕР ПА́́НЕ ЧОЛЕ ДЖА́́БО А́́МИ"},
+        {num: "647",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/647%20TUMI%20JE%20ESECHO%20A%27J.mp3", russian_name: "ТУМИ ДЖЕ ЕШЕЧХО А́́ДЖ"},
+        {num: "1025", audio: "http://xn--prabhta-sagiita-rjb5298j.net/1000-1999/1025%20A%27MA%27R%20JIIVANE%20TUMI%20KE.mp3", russian_name: "А́МА́Р ДЖИВОНЕ ТУМИ КЕ"},
+        {num: "1041", audio: "http://xn--prabhta-sagiita-rjb5298j.net/1000-1999/1041%20ANEK%20SHUNIYA%27%20ANEK%20BHA%27VIYA%27.mp3", russian_name: "ОНЕК ШУНИЯ ОНЕК БХА́БИЯ"},
+        {num: "1682", audio: "http://xn--prabhta-sagiita-rjb5298j.net/1000-1999/1682%20VASANTERI%20A%27GAMANE%20DHARA%27%20NAVA.mp3", russian_name: "БОШОНТОРИ А́́ГОМОНЕ"},
+        {num: "1698", audio: "http://xn--prabhta-sagiita-rjb5298j.net/1000-1999/1698%20AJA%27NA%27%20PATHIK%20THA%27MO%20GO%20KS%27AN%27IK.mp3", russian_name: "ОДЖА́́НА́́ ПОТХИК ТХА́́МО ГО КХА́́НИК"},
+        {num: "2526", audio: "http://xn--prabhta-sagiita-rjb5298j.net/2000-2999/2526%20JAYA%2C%20SHUBHA%20VAJRADHARA.mp3", russian_name: "ДЖАЯ ШУБХА ВАДЖРАДХАРА "},
+        {num: "2976", audio: "http://xn--prabhta-sagiita-rjb5298j.net/2000-2999/2976%20TOMA%27Y%20A%27MI%20PELU%27M2.mp3", russian_name: "ТОМА́Й А́МИ ПЕЛУМ"},
+        {num: "3069", audio: "http://xn--prabhta-sagiita-rjb5298j.net/3000-3999/3069%20JYOTSNA%27%20DILE%20PHU%27L%20PHOT%27A%27LE.mp3", russian_name: "ДЖЁТШНА́ ДИЛЕ"},
+        {num: "3522", audio: "http://xn--prabhta-sagiita-rjb5298j.net/3000-3999/3522%20TOMA%27RE%20D%27EKECHI%20TOMA%27RE%20CEYECHI.mp3", russian_name: "ТОМА́́РЕ ДЕКХЕЧХИ ТОМА́́РЕ ЧЕЙЕЧХИ"},
+        {num: "3951", audio: "http://xn--prabhta-sagiita-rjb5298j.net/3000-3999/3951%20TVAM%27%20MAMA%20PRIYAH%20TVAMASI%20AMEYA.mp3", russian_name: "ТВАМ́ МАМА ПРИЯХ"},
+        {num: "4455", audio: "http://xn--prabhta-sagiita-rjb5298j.net/4000-5018/4455%20KE%20GO%20KE%20GO%20TUMI%20ACENA%27.mp3", russian_name: "КЕГО КЕГО ТУМИ А́ЧЕНА́"},
+        {num: "5008", audio: "http://xn--prabhta-sagiita-rjb5298j.net/4000-5018/5008%20WE%20LOVE%20THAT%20GREAT%20ENTITY.mp3", russian_name: "WE LOVE THAT GREAT ENTITY"},
+        {num: "5009", audio: "http://xn--prabhta-sagiita-rjb5298j.net/4000-5018/5009%20THIS%20LIFE%20IS%20FOR%20HIM%2C%20THIS%20MIND%20IS%20FOR%20HIM.mp3", russian_name: "THIS LIFE IS FOR HIM"}
+    ];
 
     var vritis_all = [
         {chakra: 'Муладхара', sound: 'va', sanscrit: 'Dharma', rus: 'психо-духовная жажда'},
@@ -346,6 +379,23 @@ $( document ).ready(function() {
                 row += '</tbody></table>';
                 $('#mantras_table').empty().append(row);
                 $('#page_mantras').show();
+
+                break;
+
+            case "samgits":
+                $('#first_screen').hide();
+
+
+                var row = "";
+                $.each(samgits_all, function (i, item) {
+
+                    row += '<div class="samgit_row diary_body" data-samgit-num="' + i + '">';
+                    row += item.num + ". " + item.russian_name;
+                    row += '</div>';
+                });
+                row += '</tbody></table>';
+                $('#samgits_table').empty().append(row);
+                $('#page_samgits').show();
 
                 break;
             case "donation":
@@ -1122,6 +1172,35 @@ $( document ).ready(function() {
 
 
 
+    $(document).on('click', '.samgit_row',  function () {
+        var samgit = samgits_all[$(this).attr("data-samgit-num")];
+        $('#samgits_table').hide();
+        $('#samgit_name')    .empty().append(samgit.russian_name);
+
+
+        var samgit_url = samgit.audio;
+        $('#samgit_pronounce').attr("src", samgit_url);
+        var audio = document.getElementById("samgit_pronounce_main");
+        audio.load();
+
+        var samgit_text_src = "img/samgits/" + samgit.num + ".png";
+        $('#samgit_text').attr("src", samgit_text_src);
+        $('#samgit_value').show();
+
+    });
+
+    $('#samgits_back').click(function (){
+        $('#samgits_table').show();
+        $('#samgit_value').hide();
+
+        var audio = document.getElementById("samgit_pronounce_main");
+        audio.pause();
+    });
+
+
+
+
+
     function shuffle(a) {
         for (let i = a.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -1167,6 +1246,12 @@ $( document ).ready(function() {
         $('#mantras_table').show();
         $('#mantra_value').hide();
         var audio = document.getElementById("mantra_pronounce_main");
+        audio.pause();
+
+        $('#page_samgits').hide();
+        $('#samgits_table').show();
+        $('#samgit_value').hide();
+        var audio = document.getElementById("samgit_pronounce_main");
         audio.pause();
 
 
