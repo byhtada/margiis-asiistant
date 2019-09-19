@@ -360,8 +360,6 @@ $( document ).ready(function() {
 
             if (data.status == 500) {
                 console.log("Error 500 ");
-                $('#error_500').show();
-                sendError();
             }
         }
     });
@@ -1333,6 +1331,7 @@ $( document ).ready(function() {
     var diary_total   = 0;
 
     $(document).on('click', '.nav_diary',  function () {
+        window.scrollTo(0, 0);
         switch ($(this).val()) {
             case "to_16points":
                 var row = '<table class="table table-hover table-bordered table-condensed" >';
@@ -1522,22 +1521,25 @@ $( document ).ready(function() {
 
 
     function setHistory(history){
-        var row = '<table class="table table-hover table-bordered table-condensed" >';
-        row    += '<thead><tr> <th>День</th> <th>Практики</th><th>16п</th> <th>15ш</th><th>Дж/Ни</th><th>40 НОП</th><th>Итог</th></tr></thead><tbody>';
-
+        var row = "";
         $.each(history, function (i, item) {
-            row += '<tr>';
-            row += '<td>' + item.diary_date_string     + '</td>';
-            row += '<td>' + item.day_practises_percent + "%" + '</td>';
-            row += '<td>' + item.day_16points_percent  + "%" + '</td>';
-            row += '<td>' + item.day_10nrav_percent    + "%" + '</td>';
-            row += '<td>' + item.day_15shils_percent   + "%" + '</td>';
-            row += '<td>' + item.day_40socials_percent + "%" + '</td>';
-            row += '<td>' + item.diary_total_percent   + "%" + '</td>';
-            row += '</tr>';
+            row += '<div class="diary_body">';
+            row += '<p class="margii_diary_header">' + item.diary_date_string + " - Общий итог " + item.diary_total_percent + "%" + '</p>';
+            row += '<div class="row">';
+            row += '<div class="col-xs-6">';
+            row += '<p>' + "Практики   "   + item.day_practises_percent + "%" +  '</p>';
+            row += '<p>' + "16 пунктов " + item.day_16points_percent + "%" +  '</p>';
+            row += '</div>';
+            row += '<div class="col-xs-6">';
+            row += '<p>' + "Джама/Нияма " + item.day_10nrav_percent + "%" +  '</p>';
+            row += '<p>' + "15 шил      " + item.day_15shils_percent + "%" +  '</p>';
+            row += '</div>';
+            row += '</div>';
+            row += '<p>' + "40 Cоциальных норм поведения " + item.day_40socials_percent + "%" +  '</p>';
+            row += '</div>';
         });
-        row += '</tbody></table>';
         $('#diary_history_table').empty().append(row);
+
     }
 
 
@@ -1661,15 +1663,17 @@ $( document ).ready(function() {
         $('#div_diary_15shils')  .hide();
         $('#div_diary_40socials').hide();
         $('#div_diary_results')  .hide();
+        $( ".diary_practises" ).prop("checked", true);
         $( ".diary_points" )   .prop("checked", true);
         $( ".diary_10nravs" )  .prop("checked", true);
         $( ".diary_15shils" )  .prop("checked", true);
         $( ".diary_40socials" ).prop("checked", true);
-        $('#diary_results_comment')  .val("");
+        $('#diary_practises_comment').val("");
         $('#diary_16points_comment') .val("");
         $('#diary_10nrav_comment')   .val("");
         $('#diary_15shils_comment')  .val("");
         $('#diary_40socials_comment').val("");
+        $('#diary_results_comment')  .val("");
 
         $('#page_mantras').hide();
         $('#mantras_table').show();
@@ -1751,5 +1755,8 @@ $( document ).ready(function() {
         return matches ? decodeURIComponent(matches[1]) : undefined;
     }
 
-
+    window.addEventListener("hashchange", function(e) {
+        if(e.oldURL.length > e.newURL.length)
+            $('#pratic').click();
+    });
 });
