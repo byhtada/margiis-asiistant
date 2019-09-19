@@ -351,7 +351,7 @@ $( document ).ready(function() {
                 //  console.log(data.responseText.includes("Incorrect credentials"));
 
                 if (data.responseText.includes("Incorrect credentials")) {
-                    alert(alert_login_error);
+                    alert("Неправильные данные");
                 }
                 if (data.responseText.includes("Bad Token")) {
                     cookie_token = getCookie(cookie_name_token);
@@ -1414,7 +1414,7 @@ $( document ).ready(function() {
                         practises_total += 1;
                     }
                 });
-                day_practises  = parseInt(100 * practises_total / 16);
+                day_practises  = parseInt(100 * practises_total / 11);
 
                 $('#practises_percent').text(day_practises + "%");
                 $('#practises_comment').text($('#diary_practises_comment').val());
