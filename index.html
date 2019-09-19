@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <script src="js/jquery-3.2.1.js"></script>
 
+    <script src="js/jquery.base64.js"></script>
 
     <script src="js/jquery-ui.min.js"></script>
     <link href="js/jquery-ui.css" rel="stylesheet" type="text/css"/>
@@ -70,10 +71,76 @@
     <br/>
 
 </div>
+<div id="page_login" hidden  >
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-0  col-sm-4"></div>
+            <div class="col-xs-12 col-sm-4" align="center">
+
+                <br/>
+                <br/>
+                <br/>
+
+                <img src="img/pratic.png" class="img-responsive">
+
+                <br/>
+
+                <form>
+                    <div class="form-group">
+                        <label for="login_login" id="text_login_login">Логин</label>
+                        <input type="text" class="form-control" id="login_login" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="login_password" id="text_login_pass">Пароль</label>
+                        <input type="password" class="form-control" id="login_password" placeholder="">
+                    </div>
+
+                    <button type="button" id="btn_login"    class="btn btn-success btn-block">Вход</button>
+
+                </form>
+                <br/>
+                <br/>
+
+                <!--
+                <button data-toggle="modal" data-target="#modal_register_self" type="button" class="btn btn-default btn-block ">Регистрация</button>
+-->
+
+
+
+                <div class="modal fade" id="modal_register_self"    tabindex="-1" role="dialog" aria-labelledby="modal_label_register_self">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="modal_label_register_self">Регистрация</h4>
+                            </div>
+                            <div class="modal-body" align="center">
+
+                                <table style="border: 0">
+                                    <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Санскритское имя</h5></td>        <td class="db_row_input_admin"><input type="text"   class="form-control" id="margii_reg_name"         placeholder=""></td></tr>
+                                    <tr class="db_row_dialog"><td align="right" valign="middle"><h5>E-mail (будет логином)</h5></td>  <td class="db_row_input_admin"><input type="text"   class="form-control" id="margii_reg_email"        placeholder=""></td></tr>
+                                    <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Пароль</h5></td>                  <td class="db_row_input_admin"><input type="text"   class="form-control" id="margii_reg_pass"     placeholder=""></td></tr>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                <button id="btn_register_self" type="button" class="btn btn-success">Зарегистрироваться</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xs-0  col-sm-4"></div>
+
+        </div>
+    </div>
+</div>
+
 <div id="page_main" hidden>
 
     <div  class="container-fluid" align="center">
-        <img src="img/pratic.png" class="img-responsive nav_to_main">
+        <img id="pratic" src="img/pratic.png" class="img-responsive nav_to_main">
 
         <div  class="row">
             <div class="col-xs-0  col-sm-2"></div>
@@ -103,6 +170,116 @@
 
                 </div>
 
+
+                <div id="page_diary" hidden>
+                    <div id="div_diary_history">
+                        <h3 align="center">
+                            История
+                            <button id="btn_create_history" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"       aria-hidden="true"></span></button>
+                        </h3>
+
+                        <div id="diary_history_table"></div>
+                    </div>
+
+
+                    <div id="div_diary_practises" hidden>
+                        <h3 >Практики</h3>
+                        <table class="table table-hover table-bordered table-condensed" >
+                            <tbody>
+                            <tr>
+                                <td>Гуру Сакаш</td>
+                                <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox" checked class="diary_practises" />
+                                    <div class="state p-success-o"><label></label></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Обещания</td>
+                                <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox" checked class="diary_practises" />
+                                    <div class="state p-success-o"><label></label></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Панчаджанья</td>
+                                <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                                    <input type="checkbox" checked class="diary_practises" />
+                                    <div class="state p-success-o"><label></label></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+                        <textarea id="diary_practises_comment" placeholder="Место для самоанализа"></textarea>
+                        <button value="to_16points"  type="button" class="nav_diary btn btn-default btn-block">Дальше</button>
+                    </div>
+                    <div id="div_diary_16points" hidden>
+                        <h3  id="diary_16points_name">Соблюдение 16 пунктов</h3>
+                        <div id="diary_16points_value"> </div>
+                        <textarea id="diary_16points_comment" placeholder="Место для самоанализа"></textarea>
+                        <button value="to_10nrav"  type="button" class="nav_diary btn btn-default btn-block">Дальше</button>
+                    </div>
+
+                    <div id="div_diary_10nrav" hidden>
+                        <h3  id="diary_10nrav_name">Соблюдение Джамы Ниямы</h3>
+                        <div id="diary_10nrav_value"> </div>
+                        <textarea id="diary_10nrav_comment" placeholder="Место для самоанализа"></textarea>
+                        <button value="to_15shils"  type="button" class="nav_diary btn btn-default btn-block">Дальше</button>
+                    </div>
+
+                    <div id="div_diary_15shils" hidden>
+                        <h3  id="diary_15shils_name">Соблюдение 15 шил</h3>
+                        <div id="diary_15shils_value"> </div>
+                        <textarea id="diary_15shils_comment" placeholder="Место для самоанализа"></textarea>
+                        <button value="to_40socials"  type="button" class="nav_diary btn btn-default btn-block">Дальше</button>
+                    </div>
+
+                    <div id="div_diary_40socials" hidden>
+                        <h3  id="diary_40socials_name">Соблюдение норм общественного поведения</h3>
+                        <div id="diary_40socials_value"> </div>
+                        <textarea id="diary_40socials_comment" placeholder="Место для самоанализа"></textarea>
+                        <button value="to_result"  type="button" class="nav_diary btn btn-default btn-block">Дальше</button>
+                    </div>
+                    <div id="div_diary_results" hidden>
+                        <h3  id="diary_results_name">Результат</h3>
+                        <table  class="table table-hover table-bordered table-condensed" >
+                            <tbody>
+                            <tr>
+                                <td>Практики</td>
+                                <td id="practises_percent"></td>
+                                <td id="practises_comment"></td>
+                            </tr>
+                            <tr>
+                                <td>16 пунктов</td>
+                                <td id="16points_percent"></td>
+                                <td id="16points_comment"></td>
+                            </tr>
+                            <tr>
+                                <td>Джама/Нияма</td>
+                                <td id="10nravs_percent"></td>
+                                <td id="10nravs_comment"></td>
+                            </tr>
+                            <tr>
+                                <td>15 шил</td>
+                                <td id="15shils_percent"></td>
+                                <td id="15shils_comment"></td>
+                            </tr>
+                            <tr>
+                                <td>40 норм</td>
+                                <td id="40socials_percent"></td>
+                                <td id="40socials_comment"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <h4 id="diary_total"></h4>
+                        <textarea id="diary_results_comment" placeholder="Комментарий дня"></textarea>
+                        <button value="save"  type="button" class="nav_diary btn btn-success btn-block">Сохранить</button>
+                    </div>
+                </div>
 
 
                 <div id="page_50vriti" hidden>
@@ -376,15 +553,16 @@
                     <h3>Высшее указание</h3>
                     <p align="left">
                         В разуме тех, кто выполняет садхану регулярно два раза в день, в момент смерти непременно возникнет мысль
-                        о Парама Пуруше. Поэтому каждому ананда марги, следует выполнять садхану дважды в день. Это является указанием
+                        о Парама Пуруше - они обязательно достигнут освобождения.
+                        Поэтому каждому анандамарги, следует выполнять садхану дважды в день - это является указанием
                         Парама Пуруши.
                     </p>
                     <p align="left">
                         Без соблюдения Джамы и Ниямы садхана невозможна, поэтому необходимо строго придерживаться этих принципов.
-                        Не следовать данному указанию, значит подвергнуть себя мукам животной жизни на десятки миллионов лет.
+                        Не следовать данному указанию - значит подвергнуть себя мукам животной жизни на десятки миллионов лет.
                         Для того что бы никто не испытывал таких страданий и все могли получить возможность насладиться вечным
                         спокойствием под любящей защитой Парама Пуруши, каждый ананда марги должен стремиться привести всех на
-                        путь праведности. Это неотъемлимая часть садханы, вести других по пути праведности.
+                        путь блаженства. Это неотъемлемая часть садханы - вести других по пути праведности.
                     </p>
                     <p align="left">
                         Шри Шри Анандамурти
@@ -425,6 +603,7 @@
     </div>
 
 
+    <p class="footer_text">от маргов для маргов</p>
 
 </div>
 

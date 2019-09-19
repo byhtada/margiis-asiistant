@@ -15,10 +15,15 @@ html {
     font-size: 1em;
     line-height: 1.4;
 }
+body {margin-left: 10px; margin-right: 10px; }
 td {vertical-align: middle !important;}
 
+.footer_text {font-size: 12px; color: #c3c3c3; text-align: center;
+}
 .vriti_pronounce{cursor: pointer;}
 h1, h2, h3, h4, h5, h6 {font-weight: bold}
+
+textarea {width: 100%}
 .text_mini_end {font-size: 18px;}
 
 .material_link {font-size: 14px;}
@@ -51,10 +56,11 @@ h1, h2, h3, h4, h5, h6 {font-weight: bold}
 
 #wake_up_text, #wake_up_tomorrow {font-size: 12px;}
 .diary_header, .diary_body, .settings_div {
-    padding: 15px;
-    border-radius: 10px;
+
+    padding: 12px;
+    border-radius: 6px;
     background-color: rgba(232, 229, 225, 0.19);
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .diary_friends {

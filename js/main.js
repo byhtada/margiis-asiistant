@@ -1,5 +1,10 @@
 $( document ).ready(function() {
 
+    var api_url = "https://hyls-api.ru/";
+
+    var cookie_name_token = "am_token";
+    var cookie_name_id = "am_id";
+    var cookie_token = getCookie(cookie_name_token);
 
 
     var samgits_all = [
@@ -280,8 +285,6 @@ $( document ).ready(function() {
         {russian: "40.	Если во время принятия пищи вы сильно вспотели, вытрите пот носовым платком."}
     ];
 
-
-
     var enemies_all = [
         {russian: "Враг 1. Влечение к удовольствию, получаемому от объектов материального мира (káma - кама)"},
         {russian: "Враг 2. Гнев (krodha - кродха)"},
@@ -299,23 +302,188 @@ $( document ).ready(function() {
         {russian: "Окова 8. MA’NA - мана (самовлюбленность)"}
     ];
 
+    function ifLogin()  {
+        checkOS();
+
+        if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
+            start();
+        } else {
+            $('#page_load').hide();
+            $("#page_login").show();
+        }
+    }
+    ifLogin();
+    function login_user(phone, pass){
+        var token_web = $.base64.encode(phone + ":" + pass);
+
+        $.ajax({
+            type: "GET",
+            url: api_url + "token",
+            headers: {
+                'Authorization': 'Basic ' + token_web,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            success: function (data) {
+                // console.log("try get token");
+                //  console.log(JSON.stringify(data));
+                if (data.token.length == 32) {
+                    //console.log("success get token");
+                    setCookie(cookie_name_token, data.token, {expires: 36000000000000});
+                    setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
+                    cookie_token = getCookie(cookie_name_token);
+                    ifLogin();}
+                else {
+                    //   console.log("fail get token");
+                }},
+            failure: function (errMsg) {
+                //    console.log(errMsg.toString());
+            }});
+    }
+    $.ajaxSetup({
+        error: function (data, textStatus, jqXHR) {
+            console.log(data);
+
+            if (data.status == 401) {
+                console.log("Error 401");
+                $('#page_login').show();
+                $("#page_user_main") .hide();
+                $('#page_admin_main').hide();
+                //  console.log(data.responseText.includes("Incorrect credentials"));
+
+                if (data.responseText.includes("Incorrect credentials")) {
+                    alert(alert_login_error);
+                }
+                if (data.responseText.includes("Bad Token")) {
+                    cookie_token = getCookie(cookie_name_token);
+                }
+            }
+
+            if (data.status == 500) {
+                console.log("Error 500 ");
+                $('#error_500').show();
+                sendError();
+            }
+        }
+    });
+    if (!navigator.cookieEnabled) {
+        alert('Включите cookie для комфортной работы');
+    }
+
+    $('#btn_login').click(function () {
+        var token_web = $.base64.encode($('#login_login').val() + ":" + $('#login_password').val());
+        //  console.log(token_web);
+        try {
+            $.ajax({
+                type: "GET",
+                url: api_url + "token",
+                headers: {
+                    'Authorization': 'Basic ' + token_web,
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function (data) {
+                    // console.log("try get token");
+                    console.log(JSON.stringify(data));
+
+                    if (data.token.length == 32) {
+                        //console.log("success get token");
+                        setCookie(cookie_name_token, data.token, {expires: 36000000000000});
+                        setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
+                        cookie_token = getCookie(cookie_name_token);
+                        ifLogin();
+                    } else {
+                        //   console.log("fail get token");
+                    }
+                },
+                failure: function (errMsg) {
+                    //    console.log(errMsg.toString());
+                }
+            });
+        }
+        catch (err) {
+            //  console.log(err);
+        }
+
+    });
+
+    $('#btn_register_self').click(function () {
+        var token_web = $.base64.encode($('#margii_reg_email').val() + ":" + $('#margii_reg_pass').val());
+        //  console.log(token_web);
+
+
+        if ($('#margii_reg_name').val() == "" || $('#margii_reg_email').val() == "" || $('#margii_reg_pass').val() == "" ) {
+            alert("Заполните все поля");
+            return;
+        }
+        try {
+            $.ajax({
+                type: "POST",
+                url: api_url + "margii_create",
+                data: {
+                    name:  $('#margii_reg_name').val(),
+                    email: $('#margii_reg_email').val(),
+                    password:  $('#margii_reg_pass').val(),
+                },
+                headers: {
+                    'Authorization': 'Basic ' + token_web,
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function (data) {
+                    // console.log("try get token");
+                    console.log(JSON.stringify(data));
+                    if (data.error === 0) {
+                        setCookie(cookie_name_token, data.user.auth_token, {expires: 36000000000000});
+                        setCookie(cookie_name_id,    data.user.id,         {expires: 36000000000000});
+                        cookie_token = getCookie(cookie_name_token);
+                        ifLogin();
+                    } else {
+                        alert("Не создано. Такой пользователь уже существует");
+                    }
+                },
+                failure: function (errMsg) {
+                    //    console.log(errMsg.toString());
+                }
+            });
+        }
+        catch (err) {
+            //  console.log(err);
+        }
+
+    });
+
 
     function start(){
-        $('#page_load').hide();
-        $('#page_main').show();
+        $.ajax({
+            type: "GET",
+            url: api_url + "margii_base_info",
+            headers: {
+                'Authorization': 'Token token=' + cookie_token,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            success: function (data) {
+                // console.log("try get token");
+                console.log(JSON.stringify(data));
+                $('#modal_register_self').modal('hide');
 
-        //var audio = document.getElementById('');
-       // $('mantra_pronounce').attr('src', 'audio/mantras/samga.wav');
 
+                if (data.margii){
+                    $('#page_load').hide();
+                    $('#page_login').hide();
+                    $('#page_main').show();
+                    setHistory(data.margiis_days);
 
-        //mantra_pronounce
-        //document.body.appendChild(x);
+                } else {
+                    alert("Это только для маргов");
+                }
+            },
+            failure: function (errMsg) {
+                //    console.log(errMsg.toString());
+            }
+        });
 
-        checkOS();
 
     }
 
-    start();
+    //start();
 
 
     $(document).on('click', '.main_nav',  function () {
@@ -365,6 +533,13 @@ $( document ).ready(function() {
                 $('#page_10nrav').show();
 
                 break;
+            case "diary":
+                $('#first_screen').hide();
+                $('#page_diary').show();
+
+
+                break;
+
             case "mantras":
                 $('#first_screen').hide();
 
@@ -415,13 +590,15 @@ $( document ).ready(function() {
                 $('#first_screen').hide();
                 $('#page_supreme').show();
                 break;
+
             case "ananda_sutras":
                 $('#first_screen').hide();
 
                 var row = "";
                 $.each(sutras_all, function (i, item) {
                     row += '<div class="sutra_row diary_body" data-sutra-num="' + i + '">';
-                    row += item.sansckrit + "<br/><br/>" ;
+                    row += "<b>" + item.sansckrit + "</b><br/>" ;
+
                     row += item.russian ;
 
                     row += '</div>';
@@ -1146,6 +1323,232 @@ $( document ).ready(function() {
 
 
 
+
+
+    var day_practises  = 0;
+    var day_16points  = 0;
+    var day_10nrav    = 0;
+    var day_15shils   = 0;
+    var day_40socials = 0;
+    var diary_total   = 0;
+
+    $(document).on('click', '.nav_diary',  function () {
+        switch ($(this).val()) {
+            case "to_16points":
+                var row = '<table class="table table-hover table-bordered table-condensed" >';
+
+                $.each(points_all, function (i, item) {
+                    row += '<tr>';
+                    row += '<td>' + item    + '</td>';
+                    row += '<td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">';
+                    row += '<input type="checkbox" checked class="diary_points" />';
+                    row += '<div class="state p-success-o"><label></label></div>';
+                    row += '</div></td>';
+                    row += '</tr>';
+                });
+                row += '</tbody></table>';
+                $('#diary_16points_value').empty().append(row);
+
+                $('#div_diary_practises')   .hide();
+
+                $('#div_diary_16points') .show();
+
+                break;
+            case "to_10nrav":
+                var row = '<table class="table table-hover table-bordered table-condensed" >';
+                $.each(djama_niyama_all, function (i, item) {
+                    row += '<tr>';
+                    row += '<td>' + item.russian_name    + '</td>';
+                    row += '<td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">';
+                    row += '<input type="checkbox" checked class="diary_10nravs" />';
+                    row += '<div class="state p-success-o"><label></label></div>';
+                    row += '</div></td>';
+                    row += '</tr>';
+                });
+                row += '</tbody></table>';
+                $('#diary_10nrav_value').empty().append(row);
+
+                $('#div_diary_16points') .hide();
+                $('#div_diary_10nrav')   .show();
+
+                break;
+            case "to_15shils":
+                var row = '<table class="table table-hover table-bordered table-condensed" >';
+                $.each(shils_all, function (i, item) {
+                    row += '<tr>';
+                    row += '<td>' + item.russian    + '</td>';
+                    row += '<td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">';
+                    row += '<input type="checkbox" checked class="diary_15shils" />';
+                    row += '<div class="state p-success-o"><label></label></div>';
+                    row += '</div></td>';
+                    row += '</tr>';
+                });
+                row += '</tbody></table>';
+                $('#diary_15shils_value').empty().append(row);
+
+                $('#div_diary_10nrav')   .hide();
+                $('#div_diary_15shils')  .show();
+                break;
+            case "to_40socials":
+                var row = '<table class="table table-hover table-bordered table-condensed" >';
+                $.each(socials_all, function (i, item) {
+                    row += '<tr>';
+                    row += '<td>' + item.russian    + '</td>';
+                    row += '<td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">';
+                    row += '<input type="checkbox" checked class="diary_40socials" />';
+                    row += '<div class="state p-success-o"><label></label></div>';
+                    row += '</div></td>';
+                    row += '</tr>';
+                });
+                row += '</tbody></table>';
+                $('#diary_40socials_value').empty().append(row);
+
+
+                $('#div_diary_15shils')  .hide();
+                $('#div_diary_40socials').show();
+                break;
+            case "to_result":
+                var practises_total = 0;
+                $( ".diary_practises" ).each( function( index, element ){
+                    if ( $( element ).is(":checked") ){
+                        practises_total += 1;
+                    }
+                });
+                day_practises  = parseInt(100 * practises_total / 16);
+
+                $('#practises_percent').text(day_practises + "%");
+                $('#practises_comment').text($('#diary_practises_comment').val());
+
+
+                var points_total = 0;
+                $( ".diary_points" ).each( function( index, element ){
+                    if ( $( element ).is(":checked") ){
+                        points_total += 1;
+                    }
+                });
+                day_16points  = parseInt(100 * points_total / 16);
+
+                $('#16points_percent').text(day_16points + "%");
+                $('#16points_comment').text($('#diary_16points_comment').val());
+
+
+
+                var nravs_total = 0;
+                $( ".diary_10nravs" ).each( function( index, element ){
+                    if ( $( element ).is(":checked") ){
+                        nravs_total += 1;
+                    }
+                });
+                day_10nrav    = parseInt(100 * nravs_total / 10);
+                $('#10nravs_percent').text(day_10nrav + "%");
+                $('#10nravs_comment').text($('#diary_10nrav_comment').val());
+
+
+                var shils_total = 0;
+                $( ".diary_15shils" ).each( function( index, element ){
+                    if ( $( element ).is(":checked") ){
+                        shils_total += 1;
+                    }
+                });
+                day_15shils   = parseInt(100 * shils_total / 15);
+                $('#15shils_percent').text(day_15shils + "%");
+                $('#15shils_comment').text($('#diary_15shils_comment').val());
+
+
+
+                var socials_total = 0;
+                $( ".diary_40socials" ).each( function( index, element ){
+                    if ( $( element ).is(":checked") ){
+                        socials_total += 1;
+                    }
+                });
+                day_40socials = parseInt(100 * socials_total / 40);
+                $('#40socials_percent').text(day_40socials + "%");
+                $('#40socials_comment').text($('#diary_40socials_comment').val());
+
+
+                diary_total = parseInt((day_practises + day_16points + day_10nrav + day_15shils + day_40socials) / 5);
+                $('#diary_total').text("Итог дня: " + diary_total + "%");
+
+
+                $('#div_diary_40socials').hide();
+                $('#div_diary_results')  .show();
+                break;
+            case "save":
+                $.ajax({
+                    type: "POST",
+                    url: api_url + "margii_save_day",
+                    data: {
+                        diary_date:            new Date(),
+                        day_practises_percent:  day_practises,
+                        day_16points_percent:  day_16points,
+                        day_10nrav_percent:    day_10nrav,
+                        day_15shils_percent:   day_15shils,
+                        day_40socials_percent: day_40socials,
+                        diary_total_percent:   diary_total,
+                        diary_practises_comment:   $('#diary_practises_comment').val(),
+                        diary_total_comment:   $('#diary_results_comment').val(),
+                        day_16points_comment:  $('#diary_16points_comment').val(),
+                        day_10nrav_comment:    $('#diary_10nrav_comment').val(),
+                        day_15shils_comment:   $('#diary_15shils_comment').val(),
+                        day_40socials_comment: $('#diary_40socials_comment').val()
+                    },
+                    headers: {
+                        'Authorization': 'Token token=' + cookie_token,
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function (data) {
+                        alert("Сохранили");
+                        setHistory(data.margiis_days);
+                        $('#pratic') .click();
+
+                    },
+                    failure: function (errMsg) {
+                        //    console.log(errMsg.toString());
+                    }
+                });
+                break;
+
+
+
+        }
+    });
+
+    $('#btn_create_history').click(function (){
+        $('#div_diary_history').hide();
+        $('#div_diary_practises').show();
+
+    });
+
+
+    function setHistory(history){
+        var row = '<table class="table table-hover table-bordered table-condensed" >';
+        row    += '<thead><tr> <th>День</th> <th>Практики</th><th>16п</th> <th>15ш</th><th>Дж/Ни</th><th>40 НОП</th><th>Итог</th></tr></thead><tbody>';
+
+        $.each(history, function (i, item) {
+            row += '<tr>';
+            row += '<td>' + item.diary_date_string     + '</td>';
+            row += '<td>' + item.day_practises_percent + "%" + '</td>';
+            row += '<td>' + item.day_16points_percent  + "%" + '</td>';
+            row += '<td>' + item.day_10nrav_percent    + "%" + '</td>';
+            row += '<td>' + item.day_15shils_percent   + "%" + '</td>';
+            row += '<td>' + item.day_40socials_percent + "%" + '</td>';
+            row += '<td>' + item.diary_total_percent   + "%" + '</td>';
+            row += '</tr>';
+        });
+        row += '</tbody></table>';
+        $('#diary_history_table').empty().append(row);
+    }
+
+
+
+
+
+
+
+
+
+
     $(document).on('click', '.mantra_row',  function () {
         var mantra = mantras_all[$(this).attr("data-mantra-num")];
         $('#mantras_table').hide();
@@ -1251,6 +1654,22 @@ $( document ).ready(function() {
 
         $('#page_10nrav').hide();
 
+        $('#page_diary').hide();
+        $('#div_diary_history')  .show();
+        $('#div_diary_16points') .hide();
+        $('#div_diary_10nrav')   .hide();
+        $('#div_diary_15shils')  .hide();
+        $('#div_diary_40socials').hide();
+        $('#div_diary_results')  .hide();
+        $( ".diary_points" )   .prop("checked", true);
+        $( ".diary_10nravs" )  .prop("checked", true);
+        $( ".diary_15shils" )  .prop("checked", true);
+        $( ".diary_40socials" ).prop("checked", true);
+        $('#diary_results_comment')  .val("");
+        $('#diary_16points_comment') .val("");
+        $('#diary_10nrav_comment')   .val("");
+        $('#diary_15shils_comment')  .val("");
+        $('#diary_40socials_comment').val("");
 
         $('#page_mantras').hide();
         $('#mantras_table').show();
@@ -1300,4 +1719,37 @@ $( document ).ready(function() {
 
         return os;
     }
+
+    function setCookie(name, value, options) {
+        options = options || {};
+        var expires = options.expires;
+
+        if (typeof expires == "number" && expires) {
+            var d = new Date();
+            d.setTime(d.getTime() + expires * 1000);
+            expires = options.expires = d;
+        }
+        if (expires && expires.toUTCString) {
+            options.expires = expires.toUTCString();
+        }
+
+        value = encodeURIComponent(value);
+        var updatedCookie = name + "=" + value;
+        for (var propName in options) {
+            updatedCookie += "; " + propName;
+            var propValue = options[propName];
+            if (propValue !== true) {
+                updatedCookie += "=" + propValue;
+            }
+        }
+        document.cookie = updatedCookie;
+    }
+    function getCookie(name) {
+        var matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+
+
 });
