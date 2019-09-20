@@ -136,6 +136,13 @@ $( document ).ready(function() {
         "9. Satyam (сатьям): ментальное движение к Сат (Космический Когнитивный Принцип, который не подвергается изменению); правильное применение мыслей и слов на благо человечества).",
         "10. Akrodha (акродха): свобода от злости. Это дает человеку преимущество над оппонентом."
     ];
+
+    var nocarma_all = [
+        "1. Оставь желание результата действия",
+        "2. Оставь гордость от действия",
+        "3. Отрекись от гордости инструмента",
+        "4. Относись ко всему вокруг себя как к Богу"
+    ];
     var random_shuffle   = [];
     var answers_count   = 0;
     var answers_correct = 0;
@@ -582,6 +589,22 @@ $( document ).ready(function() {
                 row += '</tbody></table>';
                 $('#dharma_table').empty().append(row);
                 $('#page_dharma').show();
+
+                break;
+            case "nocarma":
+                $('#first_screen').hide();
+
+                var row = "";
+                $.each(nocarma_all, function (i, item) {
+
+                    row += '<div class=" diary_body" data-dharma-num="' + i + '">';
+                    row += item ;
+
+                    row += '</div>';
+                });
+                row += '</tbody></table>';
+                $('#nocarma_table').empty().append(row);
+                $('#page_nocarma').show();
 
                 break;
             case "cc2_sadhana":
