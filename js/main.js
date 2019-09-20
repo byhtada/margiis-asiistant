@@ -688,6 +688,7 @@ $( document ).ready(function() {
                 $.each(sutras_all, function (i, item) {
                     row += '<div class="sutra_row diary_body" data-sutra-num="' + i + '">';
                     row += "<b>" + item.sansckrit + "</b><br/>" ;
+                    row += '<img class="img-responsive" src="img/sutras/' + i + '.png"/>' ;
 
                     row += item.russian ;
 
@@ -1784,6 +1785,8 @@ $( document ).ready(function() {
         $('#page_ananda_sutras').hide();
         $('#page_enemies').hide();
         $('#page_duties').hide();
+        $('#page_nocarma').hide();
+        $('#page_cc2_sadhana').hide();
 
 
         $('#first_screen').show();
