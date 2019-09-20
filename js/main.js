@@ -689,9 +689,7 @@ $( document ).ready(function() {
                     row += '<div class="sutra_row diary_body" data-sutra-num="' + i + '">';
                     row += "<b>" + item.sansckrit + "</b><br/>" ;
                     row += '<img class="img-responsive" src="img/sutras/' + i + '.png"/>' ;
-
-                    row += item.russian ;
-
+                    row += "<b>" + item.russian + "</b>" ;
                     row += '</div>';
                 });
                 row += '</tbody></table>';
