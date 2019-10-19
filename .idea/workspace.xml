@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserconfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserconfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hyls_client.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/pratic.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/pratic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site.webmanifest" beforeDir="false" afterPath="$PROJECT_DIR$/site.webmanifest" afterDir="false" />
-    </list>
     <list id="72cc56a1-c8c6-463d-98e1-855a34d7d87f" name="registration" comment="" />
+    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -38,8 +26,8 @@
           <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="493">
-                  <caret line="906" column="24" selection-start-line="906" selection-start-column="24" selection-end-line="906" selection-end-column="24" />
+                <state relative-caret-position="340">
+                  <caret line="148" column="9" lean-forward="true" selection-start-line="148" selection-start-column="9" selection-end-line="148" selection-end-column="9" />
                   <folding>
                     <element signature="n#head#0;n#html#0;n#!!top" />
                     <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
@@ -260,7 +248,7 @@
           <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/main.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="552">
+                <state relative-caret-position="183">
                   <caret line="312" column="14" lean-forward="true" selection-start-line="312" selection-start-column="14" selection-end-line="312" selection-end-column="14" />
                   <folding>
                     <element signature="e#104755#105054#0" />
@@ -974,7 +962,7 @@
       <workItem from="1571082154746" duration="1189000" />
       <workItem from="1571085087981" duration="4101000" />
       <workItem from="1571140957589" duration="20257000" />
-      <workItem from="1571499234941" duration="8285000" />
+      <workItem from="1571499234941" duration="8815000" />
     </task>
     <task id="LOCAL-00113" summary="before">
       <created>1545549564204</created>
@@ -1323,20 +1311,19 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2500526000" />
+    <option name="totallyTimeSpent" value="2501056000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="143" y="0" width="1784" height="1087" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.47761193" visible="true" weight="0.15864834" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47761193" visible="true" weight="0.15864834" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5050562" side_tool="true" weight="0.20779221" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32896176" />
       <window_info id="Structure" order="1" sideWeight="0.52238804" side_tool="true" weight="0.19320215" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49494383" weight="0.08713693" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49494383" visible="true" weight="0.426178" />
       <window_info id="Favorites" order="2" sideWeight="0.50643086" side_tool="true" weight="0.10193452" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1700,8 +1687,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="906" column="24" selection-start-line="906" selection-start-column="24" selection-end-line="906" selection-end-column="24" />
+        <state relative-caret-position="340">
+          <caret line="148" column="9" lean-forward="true" selection-start-line="148" selection-start-column="9" selection-end-line="148" selection-end-column="9" />
           <folding>
             <element signature="n#head#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
