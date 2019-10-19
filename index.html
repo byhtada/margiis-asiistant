@@ -1,18 +1,23 @@
 <!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8" />
+
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Margiis Assistant</title>
+    <title>Margii's Assistant</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=BGmjnk4RGN">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=BGmjnk4RGN">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=BGmjnk4RGN">
+    <link rel="manifest" href="/site.webmanifest?v=BGmjnk4RGN">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=BGmjnk4RGN" color="#fe3700">
+    <link rel="shortcut icon" href="/favicon.ico?v=BGmjnk4RGN">
+    <meta name="apple-mobile-web-app-title" content="Margii's Assistant">
+    <meta name="application-name" content="Margii's Assistant">
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="theme-color" content="#ffffff">
 
-    <!--   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
-
-    <link rel="manifest" href="manifest.json">
-
-    <link rel="apple-touch-icon" href="icon.png">
-    <!-- Place favicon.ico in the root directory -->
 
     <link rel="stylesheet" href="css/normalize.css">
     <script src="js/jquery-3.2.1.js"></script>
@@ -36,7 +41,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-ru_RU.min.js"></script>
 
 
-
     <link rel="stylesheet" href="node_modules/pretty-checkbox/dist/pretty-checkbox.min.css">
 
 
@@ -49,26 +53,22 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-    <script                                   src="js/main.js?v2.15"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css?v2.15">
+    <script                                   src="js/main.js?v2.46"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css?v2.46">
 
 </head>
 
 <body>
 
 
-<div id="page_load">
-    <br/>
-    <br/>
-    <br/>
-    <div align="center">
-        <h1 align="center" hidden>Подождите, идет загрузка...</h1>
-        <br/>
-        <br/>
-        <img src="img/pratic.png" class="img-responsive">
-    </div>
+<div id="page_load"  align="center">
+    <img id="logo_load" src="img/logo.svg" class="img-responsive">
 
     <br/>
+    <h3>Baba Nam Kevalam</h3>
+    <img src="img/bnk_sanscrit.jpg" class="img-responsive">
+
+
 
 </div>
 <div id="page_login" hidden  >
@@ -77,30 +77,28 @@
             <div class="col-xs-0  col-sm-4"></div>
             <div class="col-xs-12 col-sm-4" align="center">
 
+                <img  id="logo_login" src="img/logo.svg" class="img-responsive">
                 <br/>
-                <br/>
-                <br/>
-
-                <img src="img/pratic.png" class="img-responsive">
-                <h3 class="ideology_text">Для получения доступа напишите в личку Ашешу</h3>
 
                 <br/>
 
                 <form>
                     <div class="form-group">
-                        <label for="login_login" id="text_login_login">Логин</label>
+                        <label for="login_login" id="text_login_login"></label>
                         <input type="text" class="form-control" id="login_login" placeholder="">
                     </div>
                     <div class="form-group">
-                        <label for="login_password" id="text_login_pass">Пароль</label>
+                        <label for="login_password" id="text_login_pass"></label>
                         <input type="password" class="form-control" id="login_password" placeholder="">
                     </div>
 
-                    <button type="button" id="btn_login"    class="btn btn-success btn-block">Вход</button>
+                    <button type="button" id="btn_login"    class="btn btn-success btn-block"></button>
 
                 </form>
                 <br/>
                 <br/>
+                <h5 class="login_text_1"></h5>
+                <h6 class="login_text_2"></h6>
 
                 <!--
                 <button data-toggle="modal" data-target="#modal_register_self" type="button" class="btn btn-default btn-block ">Регистрация</button>
@@ -138,580 +136,789 @@
     </div>
 </div>
 
-<div id="page_main" hidden>
-
-    <div  class="container-fluid" align="center">
-
-        <br/>
-        <h3 class="ideology_text">Atmano mokshartham</h3>
-        <img id="pratic" src="img/pratic.png" class="img-responsive nav_to_main">
-        <h3 class="ideology_text">jagat hitaya cha</h3>
-
-        <div  class="row">
-            <div class="col-xs-0  col-sm-2"></div>
-            <div class="col-xs-12  col-sm-8 diary_body">
-
-                <div id="first_screen">
-                    <h3 align="center">Помощник Марга</h3>
-                    <button value="duties"    type="button" class="main_nav btn btn-success btn-block">Обязанности Марга</button>
-                    <br/>
-                    <button value="16points"  type="button" class="main_nav btn btn-default btn-block">16 пунктов</button>
-                    <button value="10nrav"    type="button" class="main_nav btn btn-default btn-block">Джама/Нияма</button>
-                    <button value="15shils"   type="button" class="main_nav btn btn-default btn-block">15 шил</button>
-                    <button value="40socials" type="button" class="main_nav btn btn-default btn-block">Общественные нормы поведения</button>
-
-                    <br/>
-                    <button value="diary"  type="button" class="main_nav btn btn-success btn-block">Ежедневник Марга</button>
-                    <br/>
-                    <button value="samgits"   type="button" class="main_nav btn btn-default btn-block">Песни преданности</button>
-                    <button value="kirtans"   type="button" class="main_nav btn btn-default btn-block" disabled="disabled">Киртаны</button>
-                    <button value="mantras"   type="button" class="main_nav btn btn-default btn-block">Шлоки/Мантры</button>
-                    <button value="ananda_sutras"   type="button" class="main_nav btn btn-default btn-block">Ананда Сутры</button>
-                    <button value="supreme"   type="button" class="main_nav btn btn-default btn-block">Высшее Указание</button>
-
-                    <br/>
-                    <button value="50vriti"   type="button" class="main_nav btn btn-default btn-block">50 врити</button>
-                    <button value="enemies"   type="button" class="main_nav btn btn-default btn-block">Враги и оковы</button>
-                    <button value="cc2_sadhana"  type="button" class="main_nav btn btn-default btn-block">Чарья Чарья 2. СА́ДХАНА</button>
-                    <button value="dharma"    type="button" class="main_nav btn btn-default btn-block">10 характеристик дхармичного человека</button>
-                    <button value="nocarma"  type="button" class="main_nav btn btn-default btn-block">Принципы недеяния</button>
-                    <button value="asanas"    type="button" class="main_nav btn btn-default btn-block" disabled="disabled">Асаны</button>
-                    <button value="recipes"    type="button" class="main_nav btn btn-default btn-block" disabled="disabled">Рецепты</button>
-
-                    <br/>
-                    <button value="donation"   type="button" class="main_nav btn btn-link btn-block">Donation</button>
-
-                </div>
-
-
-                <div id="page_diary" hidden>
-                    <div id="div_diary_history">
-                        <h3 align="center">
-                            История
-                            <button id="btn_create_history" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"       aria-hidden="true"></span></button>
-                        </h3>
-
-                        <div id="diary_history_table"></div>
-                    </div>
-
-
-                    <div id="div_diary_practises" hidden>
-                        <h3 >Практики</h3>
-                        <table class="table table-hover table-bordered table-condensed" >
-                            <tbody>
-                            <tr>
-                                <td>Гуру Сакаш</td>
-                                <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox" checked class="diary_practises" />
-                                    <div class="state p-success-o"><label></label></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Обещания</td>
-                                <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox" checked class="diary_practises" />
-                                    <div class="state p-success-o"><label></label></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Прабхат Самгит</td>
-                                <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox" checked class="diary_practises" />
-                                    <div class="state p-success-o"><label></label></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Панчаджанья</td>
-                                <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox" checked class="diary_practises" />
-                                    <div class="state p-success-o"><label></label></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Киртан</td>
-                                <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox" checked class="diary_practises" />
-                                    <div class="state p-success-o"><label></label></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Медитация</td>
-                                <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox" checked class="diary_practises" />
-                                    <div class="state p-success-o"><label></label></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Асаны</td>
-                                <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox" checked class="diary_practises" />
-                                    <div class="state p-success-o"><label></label></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Каошики/тандава</td>
-                                <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox" checked class="diary_practises" />
-                                    <div class="state p-success-o"><label></label></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Свадхьяя</td>
-                                <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox" checked class="diary_practises" />
-                                    <div class="state p-success-o"><label></label></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Маунаврата</td>
-                                <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox" checked class="diary_practises" />
-                                    <div class="state p-success-o"><label></label></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Аварта Киртан</td>
-                                <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
-                                    <input type="checkbox" checked class="diary_practises" />
-                                    <div class="state p-success-o"><label></label></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-
-
-                        <textarea id="diary_practises_comment" placeholder="Место для самоанализа"></textarea>
-                        <button value="to_16points"  type="button" class="nav_diary btn btn-default btn-block">Дальше</button>
-                    </div>
-                    <div id="div_diary_16points" hidden>
-                        <h3  id="diary_16points_name">Соблюдение 16 пунктов</h3>
-                        <div id="diary_16points_value"> </div>
-                        <textarea id="diary_16points_comment" placeholder="Место для самоанализа"></textarea>
-                        <button value="to_10nrav"  type="button" class="nav_diary btn btn-default btn-block">Дальше</button>
-                    </div>
-
-                    <div id="div_diary_10nrav" hidden>
-                        <h3  id="diary_10nrav_name">Соблюдение Джамы Ниямы</h3>
-                        <div id="diary_10nrav_value"> </div>
-                        <textarea id="diary_10nrav_comment" placeholder="Место для самоанализа"></textarea>
-                        <button value="to_15shils"  type="button" class="nav_diary btn btn-default btn-block">Дальше</button>
-                    </div>
-
-                    <div id="div_diary_15shils" hidden>
-                        <h3  id="diary_15shils_name">Соблюдение 15 шил</h3>
-                        <div id="diary_15shils_value"> </div>
-                        <textarea id="diary_15shils_comment" placeholder="Место для самоанализа"></textarea>
-                        <button value="to_40socials"  type="button" class="nav_diary btn btn-default btn-block">Дальше</button>
-                    </div>
-
-                    <div id="div_diary_40socials" hidden>
-                        <h3  id="diary_40socials_name">Соблюдение норм общественного поведения</h3>
-                        <div id="diary_40socials_value"> </div>
-                        <textarea id="diary_40socials_comment" placeholder="Место для самоанализа"></textarea>
-                        <button value="to_result"  type="button" class="nav_diary btn btn-default btn-block">Дальше</button>
-                    </div>
-                    <div id="div_diary_results" hidden>
-                        <h3  id="diary_results_name">Результат</h3>
-                        <table  class="table table-hover table-bordered table-condensed" >
-                            <tbody>
-                            <tr>
-                                <td>Практики</td>
-                                <td id="practises_percent"></td>
-                                <td id="practises_comment"></td>
-                            </tr>
-                            <tr>
-                                <td>16 пунктов</td>
-                                <td id="16points_percent"></td>
-                                <td id="16points_comment"></td>
-                            </tr>
-                            <tr>
-                                <td>Джама/Нияма</td>
-                                <td id="10nravs_percent"></td>
-                                <td id="10nravs_comment"></td>
-                            </tr>
-                            <tr>
-                                <td>15 шил</td>
-                                <td id="15shils_percent"></td>
-                                <td id="15shils_comment"></td>
-                            </tr>
-                            <tr>
-                                <td>40 норм</td>
-                                <td id="40socials_percent"></td>
-                                <td id="40socials_comment"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <h4 id="diary_total"></h4>
-                        <textarea id="diary_results_comment" placeholder="Комментарий дня"></textarea>
-                        <button value="save"  type="button" class="nav_diary btn btn-success btn-block">Сохранить</button>
-                    </div>
-                </div>
-
-
-                <div id="page_50vriti" hidden>
-                    <div id="page_50vriti_options">
-                        <h3 align="center">50 врити</h3>
-                        <button value="learn"                         type="button" class="nav_50vriti btn btn-default btn-block">Показать все</button>
-                        <button value="order"  type="button" class="nav_50vriti btn btn-default btn-block">Тренировка</button>
-                        <!--<button value="random" data-direct="sans_rus" type="button" class="nav_50vriti btn btn-default btn-block">В разброс (санс -> рус)</button>
-                        <button value="random" data-direct="rus_sans" type="button" class="nav_50vriti btn btn-default btn-block">В разброс (рус -> санс)</button>
-
-                 -->
-                    </div>
-                    <div id="page_50vriti_test_order" hidden>
-                        <h3 align="center">50 врити</h3>
-                        <p id="50vriti_question_order">Помните следующую врити?</p>
-                        <div id="50vriti_answer_order"></div>
-                        <br/>
-                        <button value="next" id="nav_50vriti_order_next" type="button" class="nav_50vriti_test_order btn btn-warning btn-block">Дальше</button>
-                        <button value="no"   id="nav_50vriti_order_no"   type="button" class="nav_50vriti_test_order btn btn-warning btn-block">Нет</button>
-                        <button value="yes"  id="nav_50vriti_order_yes"  type="button" class="nav_50vriti_test_order btn btn-success btn-block">Да</button>
-                    </div>
-                    <div id="page_50vriti_test_random" hidden>
-                        <h3 align="center">50 врити</h3>
-                        <p id="50vriti_question_random"></p>
-                        <div id="50vriti_answer_random"></div>
-                        <br/>
-                        <button value="next" id="nav_50vriti_random_next" type="button" class="nav_50vriti_test_random btn btn-warning btn-block">Дальше</button>
-                        <button value="no"   id="nav_50vriti_random_no"   type="button" class="nav_50vriti_test_random btn btn-warning btn-block">Нет</button>
-                        <button value="yes"  id="nav_50vriti_random_yes"  type="button" class="nav_50vriti_test_random btn btn-success btn-block">Да</button>
-
-                    </div>
-                    <div id="page_50vriti_learn" hidden>
-                        <h3 align="center">50 врити</h3>
-                        <div id="50vriti_all"></div>
-                        <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-
-                    </div>
-
-                    <div id="page_50vriti_results" hidden>
-                        <h3 align="center">50 врити</h3>
-                        <p id="50vriti_results"></p>
-
-                        <div id="div_vritis_uncorrect" hidden>
-                            <br/>
-                            <br/>
-                            <h4>Повтори эти врити</h4>
-                            <div id="table_vritis_uncorrect"></div>
-                        </div>
-                        <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-                    </div>
-
-                    <audio  id="background_pronounce_main" autoplay>
-                        <source  id="background_pronounce" type="audio/mpeg" src="">
-                    </audio>
-                </div>
-                <div id="page_16points" hidden>
-                    <h3 align="center">16 пунктов</h3>
-
-                    <div id="page_16points_options">
-                        <button value="learn"  type="button" class="nav_16points btn btn-default btn-block">Показать все</button>
-                        <button value="order"  type="button" class="nav_16points btn btn-default btn-block">Тренировка</button>
-                        <!-- <button value="random" type="button" class="nav_16points btn btn-default btn-block">В разброс</button> -->
-                    </div>
-                    <div id="page_16points_test_order" hidden>
-                        <p id="16points_question_order">Помните следующую врити?</p>
-                        <div id="16points_answer_order"></div>
-                        <br/>
-                        <button value="next" id="nav_16points_order_next" type="button" class="nav_16points_test_order btn btn-warning btn-block">Дальше</button>
-                        <button value="no"   id="nav_16points_order_no"   type="button" class="nav_16points_test_order btn btn-warning btn-block">Нет</button>
-                        <button value="yes"  id="nav_16points_order_yes"  type="button" class="nav_16points_test_order btn btn-success btn-block">Да</button>
-                    </div>
-                    <div id="page_16points_test_random" hidden>
-                        <p id="16points_question_random"></p>
-                        <div id="16points_answer_random"></div>
-                        <br/>
-                        <button value="next" id="nav_16points_random_next" type="button" class="nav_16points_test_random btn btn-warning btn-block">Дальше</button>
-                        <button value="no"   id="nav_16points_random_no"   type="button" class="nav_16points_test_random btn btn-warning btn-block">Нет</button>
-                        <button value="yes"  id="nav_16points_random_yes"  type="button" class="nav_16points_test_random btn btn-success btn-block">Да</button>
-
-                    </div>
-                    <div id="page_16points_learn" hidden>
-                        <div id="16points_all"></div>
-                        <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-                    </div>
-
-                    <div id="page_16points_results" hidden>
-                        <p id="16points_results"></p>
-                        <div id="div_16points_uncorrect" hidden>
-                            <br/>
-                            <br/>
-                            <h4>Повтори эти пункты</h4>
-                            <div id="table_16points_uncorrect"></div>
-                        </div>
-                        <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-                    </div>
-
-                </div>
-                <div id="page_15shils" hidden>
-                    <h3 align="center">15 шил</h3>
-
-                    <div id="page_15shils_options">
-                        <button value="learn"  type="button" class="nav_15shils btn btn-default btn-block">Показать все</button>
-                        <button value="order"  type="button" class="nav_15shils btn btn-default btn-block">Тренировка</button>
-                      <!--  <button value="random" type="button" class="nav_15shils btn btn-default btn-block">В разброс</button>  -->
-                    </div>
-                    <div id="page_15shils_test_order" hidden>
-                        <p id="15shils_question_order">Помните следующую шилу?</p>
-                        <div id="15shils_answer_order"></div>
-                        <br/>
-                        <button value="next" id="nav_15shils_order_next" type="button" class="nav_15shils_test_order btn btn-warning btn-block">Дальше</button>
-                        <button value="no"   id="nav_15shils_order_no"   type="button" class="nav_15shils_test_order btn btn-warning btn-block">Нет</button>
-                        <button value="yes"  id="nav_15shils_order_yes"  type="button" class="nav_15shils_test_order btn btn-success btn-block">Да</button>
-                    </div>
-                    <div id="page_15shils_test_random" hidden>
-                        <p id="15shils_question_random"></p>
-                        <div id="15shils_answer_random"></div>
-                        <br/>
-                        <button value="next" id="nav_15shils_random_next" type="button" class="nav_15shils_test_random btn btn-warning btn-block">Дальше</button>
-                        <button value="no"   id="nav_15shils_random_no"   type="button" class="nav_15shils_test_random btn btn-warning btn-block">Нет</button>
-                        <button value="yes"  id="nav_15shils_random_yes"  type="button" class="nav_15shils_test_random btn btn-success btn-block">Да</button>
-
-                    </div>
-                    <div id="page_15shils_learn" hidden>
-                        <div id="15shils_all"></div>
-                        <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-                    </div>
-
-                    <div id="page_15shils_results" hidden>
-                        <p id="15shils_results"></p>
-                        <div id="div_15shils_uncorrect" hidden>
-                            <br/>
-                            <br/>
-                            <h4>Повтори эти шилы</h4>
-                            <div id="table_15shils_uncorrect"></div>
-                        </div>
-                        <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-                    </div>
-
-                </div>
-                <div id="page_40socials" hidden>
-                    <h3 align="center">Общественные нормы поведения</h3>
-
-                    <div id="page_40socials_options">
-                        <button value="learn"  type="button" class="nav_40socials btn btn-default btn-block">Показать все</button>
-                        <button value="order"  type="button" class="nav_40socials btn btn-default btn-block">Тренировка</button>
-                        <!--<button value="random" type="button" class="nav_40socials btn btn-default btn-block">В разброс</button> -->
-                    </div>
-                    <div id="page_40socials_test_order" hidden>
-                        <p id="40socials_question_order">Помните следующую норму?</p>
-                        <div id="40socials_answer_order"></div>
-                        <br/>
-                        <button value="next" id="nav_40socials_order_next" type="button" class="nav_40socials_test_order btn btn-warning btn-block">Дальше</button>
-                        <button value="no"   id="nav_40socials_order_no"   type="button" class="nav_40socials_test_order btn btn-warning btn-block">Нет</button>
-                        <button value="yes"  id="nav_40socials_order_yes"  type="button" class="nav_40socials_test_order btn btn-success btn-block">Да</button>
-                    </div>
-                    <div id="page_40socials_test_random" hidden>
-                        <p id="40socials_question_random"></p>
-                        <div id="40socials_answer_random"></div>
-                        <br/>
-                        <button value="next" id="nav_40socials_random_next" type="button" class="nav_40socials_test_random btn btn-warning btn-block">Дальше</button>
-                        <button value="no"   id="nav_40socials_random_no"   type="button" class="nav_40socials_test_random btn btn-warning btn-block">Нет</button>
-                        <button value="yes"  id="nav_40socials_random_yes"  type="button" class="nav_40socials_test_random btn btn-success btn-block">Да</button>
-
-                    </div>
-                    <div id="page_40socials_learn" hidden>
-                        <div id="40socials_all"></div>
-                        <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-                    </div>
-
-                    <div id="page_40socials_results" hidden>
-                        <p id="40socials_results"></p>
-                        <div id="div_40socials_uncorrect" hidden>
-                            <br/>
-                            <br/>
-                            <h4>Повтори эти нормы</h4>
-                            <div id="table_40socials_uncorrect"></div>
-                        </div>
-
-                        <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-                    </div>
-
-                </div>
-                <div id="page_10nrav" hidden>
-                    <h3 align="center">Джама Нияма</h3>
-
-                    <div id="10nrav_table">
-                    </div>
-
-                    <br/>
-                    <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-
-                </div>
-                <div id="page_dharma" hidden>
-                    <h3 align="center">10 характеристик дхармичного человека</h3>
-
-                    <div id="dharma_table">
-                    </div>
-
-                    <br/>
-                    <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-
-                </div>
-                <div id="page_nocarma" hidden>
-                    <h3 align="center">Принципы недеяния</h3>
-
-                    <div id="nocarma_table">
-                    </div>
-
-                    <br/>
-                    <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-
-                </div>
-                <div id="page_cc2_sadhana" hidden>
-                    <h3 align="center">Чарья Чарья 2. СА́ДХАНА</h3>
-                    <h3 align="center"></h3>
-
-                    <div id="cc2_sadhana_table">
-                    </div>
-
-                    <br/>
-                    <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-
-                </div>
-
-
-
-                <div id="page_mantras" hidden>
-                    <h3 align="center">Шлоки/Мантры</h3>
-
-                    <div id="mantras_table">
-                    </div>
-
-                    <br/>
-                    <div id="mantra_value" hidden>
-                        <h4 id="mantra_name"></h4>
-
-
-                        <audio  id="mantra_pronounce_main" controls preload="auto">
-                            <source  id="mantra_pronounce" src="https://byhtada.github.io/am_training/audio/mantras/samga.wav" type="audio/mpeg">
-                        </audio>
-                        <br/>
-                        <br/>
-                        <div id="mantra_sanskrit" align="left9"></div>
-                        <br/>
-                        <div id="mantra_russian" align="left9"></div>
-
-                        <button id="mantras_back"   type="button" class="main_nav btn btn-default btn-block">К мантрам</button>
-
-                    </div>
-
-                    <br/>
-                    <br/>
-                    <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-
-                </div>
-                <div id="page_samgits" hidden>
-                    <h3 align="center">Песни преданности</h3>
-
-                    <div id="samgits_table"></div>
-
-                    <br/>
-                    <div id="samgit_value" hidden>
-                        <h4 id="samgit_name"></h4>
-
-
-                        <audio  id="samgit_pronounce_main" controls preload="auto">
-                            <source  id="samgit_pronounce" src="https://byhtada.github.io/am_training/audio/vritis/0.mp3" type="audio/mpeg">
-                        </audio>
-                        <br/>
-                        <br/>
-
-                        <img id="samgit_text" src="" class="img-responsive">
-
-                        <button id="samgits_back"   type="button" class="main_nav btn btn-default btn-block">К самгитам</button>
-
-                    </div>
-
-                    <br/>
-                    <br/>
-                    <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-
-                </div>
-
-                <div id="page_ananda_sutras" hidden>
-                    <h3 align="center">Ананда Сутры</h3>
-                    <h5 align="center">Нажмите на сутру</h5>
-
-                    <div id="sutras_table">
-                    </div>
-                    <br/>
-                    <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-                </div>
-                <div id="page_enemies" hidden>
-                    <h3 align="center">Враги и оковы</h3>
-
-                    <div id="enemies_table">
-                    </div>
-                    <br/>
-                    <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-                </div>
-                <div id="page_supreme" hidden>
-                    <h3>Высшее указание</h3>
-                    <p align="left">
-                        В разуме тех, кто выполняет садхану регулярно два раза в день, в момент смерти непременно возникнет мысль
-                        о Парама Пуруше - они обязательно достигнут освобождения.
-                        Поэтому каждому анандамарги, следует выполнять садхану дважды в день - это является указанием
-                        Парама Пуруши.
-                    </p>
-                    <p align="left">
-                        Без соблюдения Джамы и Ниямы садхана невозможна, поэтому необходимо строго придерживаться этих принципов.
-                        Не следовать данному указанию - значит подвергнуть себя мукам животной жизни на десятки миллионов лет.
-                        Для того что бы никто не испытывал таких страданий и все могли получить возможность насладиться вечным
-                        спокойствием под любящей защитой Парама Пуруши, каждый ананда марги должен стремиться привести всех на
-                        путь блаженства. Это неотъемлемая часть садханы - вести других по пути праведности.
-                    </p>
-                    <p align="left">
-                        Шри Шри Анандамурти
-                    </p>
-
-                    <br/>
-                    <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-
-                </div>
-                <div id="page_duties" hidden>
-                    <h3>Обязанности Марга</h3>
-                    <p align="left">
-                        1. Строгое соблюдение правил и норм, изложенных в «16 пунктах».
-                    </p>
-                    <p align="left">
-                        2. Соблюдение Панчада́ша ши́ла (15 шил) в повседневной жизни.
-                    </p>
-                    <p align="left">
-                        3. Следование наставлениям, приведенным в книгах «Ча́рьяча́рья» (ч. I, II и III) и касающимся физического, психического и духовного аспектов жизни.
-                    </p>
-                    <div align="left">
-                        4.Один пункт (локальный):
-                        <br/>А. Сохраняйте бескомпромиссную твердость и веру в святость и́шты (цели).
-                        <br/>B. Сохраняйте бескомпромиссную твердость и веру в святость ада́рши (идеологии).
-                        <br/>C. Сохраняйте бескомпромиссную твердость и веру в святость Высшего указания.
-                        <br/>D. Сохраняйте бескомпромиссную твердость и веру в святость Правил поведения
-                    </div>
-
-                    <br/>
-                    <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
-
-                </div>
-            </div>
-            <div class="col-xs-0  col-sm-2"></div>
-        </div>
-
-        <br/>
+<div id="page_main"  class="wrapper container-fluid" align="center" hidden>
+
+    <div class="top_bar row">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-2"><img src="img/icon_player.svg" class="btn_main_navigation"></div>
+        <div class="col-xs-4"><img id="logo" src="img/logo.svg" class="img-responsive nav_to_main"></div>
+        <div class="col-xs-2"></div>
+        <div class="col-xs-2"></div>
     </div>
 
+    <br/>
 
-    <p class="footer_text">от маргов для маргов</p>
+    <div  id="flow_div" class="diary_body" >
+        <h3 align="center" class="text_flow_header">Вселенский Поток</h3>
+        <h4 align="center" class="text_flow_detail" hidden>Вселенский Поток</h4>
+        <button id="btn_flow_about" type="button" class="btn_flow_join btn btn-success btn-block">Войти в Поток</button>
+
+        <div id="flow_about" hidden>
+            <div align="left" class="text_flow_about"></div>
+            <button id="btn_flow_join"  type="button" class="btn_flow_join btn btn-success btn-block">Войти в Поток</button>
+        </div>
+
+        <div id="flow_info" >
+
+            <br/>
+            <button id="btn_flow_panchadjanya"  type="button" class="btn btn-default btn-block">Панчаджанья</button>
+
+            <div id="div_flow_panchadjanya" hidden>
+                <!--
+<h4>Прабхат Самгит 12. НОЙОНЕ МОМОТА́ БХОРА</h4>
+                <audio controls preload="none">
+                    <source src="http://xn--prabhta-sagiita-rjb5298j.net/1-999/12%20NAYANE%20MAMATA%27%20BHARA%27%202.mp3" type="audio/mpeg">
+                </audio>
+                <img src="img/prabhat_samgiits/12.png" class="img-responsive"/>
+
+                <br/>
+
+
+-->
+
+                <audio id="audio_panchadjanya_samgiit" controls preload="none">
+                    <source src="#" type="audio/mpeg">
+                </audio>
+                <img id="text_samgiit" src="img/samgits/152.png" class="img-responsive"/>
+                <br/>
+                <br/>
+                <div id="div_panchadjanya_next" hidden>
+                    <br/>
+                    <audio id="audio_panchadjanya_samgiit_next" controls preload="none">
+                        <source src="https://margiis-assistant.am/audio/flow/152/samgiit.mp3" type="audio/mpeg">
+                    </audio>
+                    <img id="text_samgiit_next" src="img/samgits/152.png" class="img-responsive"/>
+                    <br/>
+                    <br/>
+                </div>
+
+                <h4 class="text_panchajanya_kiirtan">Киртан для Панчаджаньи:</h4>
+                <audio id="audio_panchadjanya_kiirtan" controls preload="none">
+                    <source src="#" type="audio/mpeg">
+                </audio>
+
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+
+                <!--
+                <br/>
+                <h4>Таймер для Панчаджаньи (10 мин)</h4>
+                <button id="btn_panchadjanya_timer_start" type="button" class="btn btn-success btn-block">Запустить таймер</button>
+                <button id="btn_panchadjanya_timer_stop"  style="display: none" type="button" class="btn btn-danger btn-block">Остановить таймер</button>
+
+
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                -->
+            </div>
+
+            <button data-type="1"  type="button" class="day_svadhyaya btn_svadhyaya_day   btn btn-default btn-block">Свадхьяя 1</button>
+            <button data-type="2"  type="button" class="day_svadhyaya btn_svadhyaya_night btn btn-default btn-block">Свадхьяя 2</button>
+
+            <button id="btn_flow_avarta"  type="button" class="btn btn-default btn-block">Аварта Киртан</button>
+
+            <div id="div_flow_avarta" hidden>
+                <h4 class="text_flow_avarta_small">Аварта Киртан на 12 минут</h4>
+                <audio id="audio_ak_small" controls preload="none">
+                    <source src="https://margiis-assistant.am/audio/flow/152/ak_small.mp3" type="audio/mpeg">
+                </audio>
+
+                <br/>
+                <h4 class="text_flow_avarta_big">Аварта Киртан на 24 минуты</h4>
+                <audio id="audio_ak_big" controls preload="none">
+                    <source src="https://margiis-assistant.am/audio/flow/152/ak_big.mp3" type="audio/mpeg">
+                </audio>
+                <br/>
+                <br/>
+                <img src="img/avarta_ideation.svg?v2.44"  class="img-responsive"/>
+
+                <br/>
+            </div>
+
+            <div>
+                <h4 class="text_learning_title">На этой неделе изучаем:</h4>
+                <div class="learn_base_ru"></div>
+                <div class="learn_pro_ru" hidden></div>
+            </div>
+
+            <br/>
+
+            <button id="btn_fasting" style="display: none"  data-toggle="modal" data-target="#modal_fasting"  type="button" class="btn btn-warning btn-block">Сегодня экадаши</button>
+
+            <button value="diary"  type="button" class="main_nav btn_margiis_diary    btn btn-success btn-block">Ежедневник Марга</button>
+
+        </div>
+    </div>
+
+    <div  id="main_div" class="diary_body">
+
+        <div id="first_screen">
+            <h3 align="center" class="app_name">Помощник Марга</h3>
+            <button value="oath"      type="button" class="main_nav oath_to_baba  btn btn-warning btn-block">Клятва Бабе</button>
+            <button value="rules"     type="button" class="main_nav sadhaka_rules btn btn-success btn-block">Правила поведения для садхак</button>
+            <br/>
+            <button value="16points"  type="button" class="main_nav  points_16 btn btn-default btn-block">16 пунктов</button>
+            <button value="10nrav"    type="button" class="main_nav  points_10 btn btn-default btn-block">Джама/Нияма</button>
+            <button value="15shils"   type="button" class="main_nav  points_15 btn btn-default btn-block">15 шил</button>
+            <button value="40socials" type="button" class="main_nav  points_40 btn btn-default btn-block">Общественные нормы поведения</button>
+
+            <!--
+            <button value="cc1"  type="button" class="main_nav btn btn-default btn-block" disabled="disabled">Чарья Чарья 1</button>
+            <button value="cc2"  type="button" class="main_nav btn btn-default btn-block" disabled="disabled">Чарья Чарья 2</button>
+            <button value="cc3"  type="button" class="main_nav btn btn-default btn-block" disabled="disabled">Чарья Чарья 3</button>
+-->
+            <br/>
+            <button value="samgits"       type="button" class="main_nav prabhat_samgiits btn btn-default btn-block">Прабхат Самгиты</button>
+            <button value="kirtans"       type="button" class="main_nav kiirtans btn btn-default btn-block">Киртаны</button>
+            <button value="kaoshiki"      type="button" class="main_nav kaoshikiis btn btn-default btn-block">Каошики</button>
+            <button value="mantras"       type="button" class="main_nav mantras btn btn-default btn-block">Шлоки/Мантры</button>
+            <button value="ananda_sutras" style="display: none" type="button" class="main_nav ananda_sutras btn btn-default btn-block">Ананда Сутры</button>
+            <button value="library"       type="button" class="main_nav library btn btn-default btn-block">Библиотека</button>
+            <button value="supreme"       type="button" class="main_nav supreme_command btn btn-default btn-block">Высшее Указание</button>
+            <button value="asanas"        type="button" class="main_nav asanas btn btn-default btn-block" disabled="disabled">Асаны</button>
+
+            <br/>
+
+            <button value="structure" type="button" class="main_nav structure         btn btn-default btn-block" disabled="disabled">Структура Ананда Марги</button>
+            <button value="50vriti"   type="button" class="main_nav vritti            btn btn-default btn-block">50 вритти</button>
+            <button value="enemies"   type="button" class="main_nav enemies_chains    btn btn-default btn-block">Враги и оковы</button>
+            <button value="dharma"    type="button" class="main_nav dharma_pattern    btn btn-default btn-block">10 характеристик дхармичного человека</button>
+            <button value="fasting"   type="button" class="main_nav calendar_fasting  btn btn-default btn-block">Календарь голоданий</button>
+            <button value="pampam"    type="button" class="main_nav calendar_holidays btn btn-default btn-block" disabled="disabled">Календарь праздников</button>
+            <button value="pampam"    type="button" class="main_nav dictionary_names  btn btn-default btn-block" disabled="disabled">Словарь санскристских имен</button>
+
+
+            <button value="recipes"    type="button" class="main_nav recipes btn btn-default btn-block" >Рецепты</button>
+
+            <br/>
+            <button value="secretary"  style="display: none"   type="button" class="main_nav secretary btn btn-default btn-block">Раздел секретаря</button>
+
+        </div>
+
+        <div id="page_test" hidden>
+            <h4 align="center">Тест Джама/Нияма</h4>
+
+            <br/>
+            <div id="page_test_go">
+                <p id="test_question"></p>
+                <div id="test_answer"></div>
+                <br/>
+                <button value="next" id="btn_test_next" type="button" class="nav_test btn btn-warning btn-block">Дальше</button>
+                <button value="no"   id="btn_test_no"   type="button" class="nav_test btn btn-warning btn-block">Нет</button>
+                <button value="yes"  id="btn_test_yes"  type="button" class="nav_test btn btn-success btn-block">Да</button>
+            </div>
+
+            <div id="page_test_results" hidden>
+                <h3 id="test_results"></h3>
+                <div id="div_test_uncorrect" hidden>
+                    <br/>
+                    <br/>
+                    <h4>Повтори эти Правила</h4>
+                    <div id="table_test_uncorrect"></div>
+                </div>
+                <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+            </div>
+
+        </div>
+
+        <div id="page_diary" hidden>
+            <div id="div_diary_history">
+                <h3 align="center">
+                    История
+                    <button id="btn_create_history" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"       aria-hidden="true"></span></button>
+                </h3>
+
+                <div id="diary_history_table"></div>
+            </div>
+
+
+            <div id="div_diary_practises" hidden>
+                <h3 >Практики</h3>
+                <table class="table table-hover table-bordered table-condensed" >
+                    <tbody>
+                    <tr>
+                        <td>Гуру Сакаш</td>
+                        <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                            <input type="checkbox" checked class="diary_practises" />
+                            <div class="state p-success-o"><label></label></div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Обещания</td>
+                        <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                            <input type="checkbox" checked class="diary_practises" />
+                            <div class="state p-success-o"><label></label></div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Прабхат Самгит</td>
+                        <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                            <input type="checkbox" checked class="diary_practises" />
+                            <div class="state p-success-o"><label></label></div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Панчаджанья</td>
+                        <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                            <input type="checkbox" checked class="diary_practises" />
+                            <div class="state p-success-o"><label></label></div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Киртан</td>
+                        <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                            <input type="checkbox" checked class="diary_practises" />
+                            <div class="state p-success-o"><label></label></div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Медитация</td>
+                        <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                            <input type="checkbox" checked class="diary_practises" />
+                            <div class="state p-success-o"><label></label></div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Асаны</td>
+                        <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                            <input type="checkbox" checked class="diary_practises" />
+                            <div class="state p-success-o"><label></label></div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Каошики/тандава</td>
+                        <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                            <input type="checkbox" checked class="diary_practises" />
+                            <div class="state p-success-o"><label></label></div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Свадхьяя</td>
+                        <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                            <input type="checkbox" checked class="diary_practises" />
+                            <div class="state p-success-o"><label></label></div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Маунаврата</td>
+                        <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                            <input type="checkbox" checked class="diary_practises" />
+                            <div class="state p-success-o"><label></label></div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Аварта Киртан</td>
+                        <td><div class="pretty p-default p-curve p-thick p-smooth p-bigger">
+                            <input type="checkbox" checked class="diary_practises" />
+                            <div class="state p-success-o"><label></label></div>
+                        </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                <textarea id="diary_practises_comment" placeholder="Место для самоанализа"></textarea>
+                <button value="to_16points"  type="button" class="nav_diary btn btn-default btn-block">Дальше</button>
+            </div>
+            <div id="div_diary_16points" hidden>
+                <h3  id="diary_16points_name">Соблюдение 16 пунктов</h3>
+                <div id="diary_16points_value"> </div>
+                <textarea id="diary_16points_comment" placeholder="Место для самоанализа"></textarea>
+                <button value="to_10nrav"  type="button" class="nav_diary btn btn-default btn-block">Дальше</button>
+            </div>
+
+            <div id="div_diary_10nrav" hidden>
+                <h3  id="diary_10nrav_name">Соблюдение Джамы Ниямы</h3>
+                <div id="diary_10nrav_value"> </div>
+                <textarea id="diary_10nrav_comment" placeholder="Место для самоанализа"></textarea>
+                <button value="to_15shils"  type="button" class="nav_diary btn btn-default btn-block">Дальше</button>
+            </div>
+
+            <div id="div_diary_15shils" hidden>
+                <h3  id="diary_15shils_name">Соблюдение 15 шил</h3>
+                <div id="diary_15shils_value"> </div>
+                <textarea id="diary_15shils_comment" placeholder="Место для самоанализа"></textarea>
+                <button value="to_40socials"  type="button" class="nav_diary btn btn-default btn-block">Дальше</button>
+            </div>
+
+            <div id="div_diary_40socials" hidden>
+                <h3  id="diary_40socials_name">Соблюдение норм общественного поведения</h3>
+                <div id="diary_40socials_value"> </div>
+                <textarea id="diary_40socials_comment" placeholder="Место для самоанализа"></textarea>
+                <button value="to_result"  type="button" class="nav_diary btn btn-default btn-block">Дальше</button>
+            </div>
+            <div id="div_diary_results" hidden>
+                <h3  id="diary_results_name">Результат</h3>
+                <table  class="table table-hover table-bordered table-condensed" >
+                    <tbody>
+                    <tr>
+                        <td>Практики</td>
+                        <td id="practises_percent"></td>
+                        <td id="practises_comment"></td>
+                    </tr>
+                    <tr>
+                        <td>16 пунктов</td>
+                        <td id="16points_percent"></td>
+                        <td id="16points_comment"></td>
+                    </tr>
+                    <tr>
+                        <td>Джама/Нияма</td>
+                        <td id="10nravs_percent"></td>
+                        <td id="10nravs_comment"></td>
+                    </tr>
+                    <tr>
+                        <td>15 шил</td>
+                        <td id="15shils_percent"></td>
+                        <td id="15shils_comment"></td>
+                    </tr>
+                    <tr>
+                        <td>40 норм</td>
+                        <td id="40socials_percent"></td>
+                        <td id="40socials_comment"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h4 id="diary_total"></h4>
+                <textarea id="diary_results_comment" placeholder="Комментарий дня"></textarea>
+                <button value="save"  type="button" class="nav_diary btn btn-success btn-block">Сохранить</button>
+            </div>
+        </div>
+
+
+        <div id="page_oath" hidden>
+            <h3 class="oath_to_baba">Клятва Бабе</h3>
+            <p align="left">
+                С этого момента и до последнего мига моей жизни на этой планете вся моя энергия, весь мой разум,
+                все мои дела должны быть подчинены пути всеобщего возвышения человеческого общества и
+                других живых и неживых существ, которыми пренебрегать недопустимо.
+            </p>
+            <br/>
+            <p align="left">
+                All my energy, all my mind, all my thoughts, all my deeds are to be goaded unto the path of
+                collective elevation of human society without neglecting other animate and inanimate objects
+                right from this moment until the last point of my living on this earth.
+            </p>
+
+            <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+
+        </div>
+        <div id="page_rules" hidden>
+            <h3 class="sadhaka_rules">Правила поведения для садхак</h3>
+            <br/>
+            <p align="left">1. Соблюдение Панчада́ша ши́ла (15 шил) в повседневной жизни.</p>
+            <p align="left">2. Следование наставлениям, приведенным в книгах «Ча́рьяча́рья» (ч. I, II и III) и касающимся физического, психического и духовного аспектов жизни.</p>
+            <p align="left">3. Бескомпромиссная твердость и вера в святость и́шты, ада́рши, Высшего указания и Правил поведения.</p>
+            <p align="left">4. Строгое соблюдение правил и норм, изложенных в «16 пунктах».</p>
+            <br/>
+            <p align="left">(Кроме того, существует отдельный свод правил поведения для семейных ача́рьев и других работников организации: ЛФТ, ЛПТ, та́ттвиков, ача́рьев и авадху́т).</p>
+
+
+
+            <br/>
+            <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+
+        </div>
+
+        <div id="page_16points" hidden>
+            <h3 align="center" class="points_16">16 пунктов</h3>
+
+            <div id="page_16points_options">
+                <button value="learn"  type="button" class="nav_16points btn btn-default btn-block">Показать все</button>
+                <button value="order"  type="button" class="nav_16points btn btn-default btn-block">Тренировка</button>
+                <!-- <button value="random" type="button" class="nav_16points btn btn-default btn-block">В разброс</button> -->
+            </div>
+            <div id="page_16points_test_order" hidden>
+                <p id="16points_question_order">Помните следующий пункт?</p>
+                <div id="16points_answer_order"></div>
+                <br/>
+                <button value="next" id="nav_16points_order_next" type="button" class="nav_16points_test_order btn btn-warning btn-block">Дальше</button>
+                <button value="no"   id="nav_16points_order_no"   type="button" class="nav_16points_test_order btn btn-warning btn-block">Нет</button>
+                <button value="yes"  id="nav_16points_order_yes"  type="button" class="nav_16points_test_order btn btn-success btn-block">Да</button>
+            </div>
+            <div id="page_16points_test_random" hidden>
+                <p id="16points_question_random"></p>
+                <div id="16points_answer_random"></div>
+                <br/>
+                <button value="next" id="nav_16points_random_next" type="button" class="nav_16points_test_random btn btn-warning btn-block">Дальше</button>
+                <button value="no"   id="nav_16points_random_no"   type="button" class="nav_16points_test_random btn btn-warning btn-block">Нет</button>
+                <button value="yes"  id="nav_16points_random_yes"  type="button" class="nav_16points_test_random btn btn-success btn-block">Да</button>
+            </div>
+            <div id="page_16points_learn" hidden>
+                <div id="16points_all"></div>
+                <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+            </div>
+
+            <div id="page_16points_results" hidden>
+                <p id="16points_results"></p>
+                <div id="div_16points_uncorrect" hidden>
+                    <br/>
+                    <br/>
+                    <h4>Повтори эти пункты</h4>
+                    <div id="table_16points_uncorrect"></div>
+                </div>
+                <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+            </div>
+
+        </div>
+        <div id="page_10nrav"   hidden>
+            <h3 align="center" class="djama">Джама Нияма</h3>
+            <div id="djama_table"></div>
+            <br/>
+
+            <h3 align="center" class="niyama">Джама Нияма</h3>
+            <div id="niyama_table"></div>
+            <br/>
+
+            <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+        </div>
+        <div id="page_15shils" hidden>
+            <h3 align="center" class="points_15">15 шил</h3>
+
+            <div id="page_15shils_options">
+                <button value="learn"  type="button" class="nav_15shils btn btn-default btn-block">Показать все</button>
+                <button value="order"  type="button" class="nav_15shils btn btn-default btn-block">Тренировка</button>
+                <!--  <button value="random" type="button" class="nav_15shils btn btn-default btn-block">В разброс</button>  -->
+            </div>
+            <div id="page_15shils_test_order" hidden>
+                <p id="15shils_question_order">Помните следующую шилу?</p>
+                <div id="15shils_answer_order"></div>
+                <br/>
+                <button value="next" id="nav_15shils_order_next" type="button" class="nav_15shils_test_order btn btn-warning btn-block">Дальше</button>
+                <button value="no"   id="nav_15shils_order_no"   type="button" class="nav_15shils_test_order btn btn-warning btn-block">Нет</button>
+                <button value="yes"  id="nav_15shils_order_yes"  type="button" class="nav_15shils_test_order btn btn-success btn-block">Да</button>
+            </div>
+            <div id="page_15shils_test_random" hidden>
+                <p id="15shils_question_random"></p>
+                <div id="15shils_answer_random"></div>
+                <br/>
+                <button value="next" id="nav_15shils_random_next" type="button" class="nav_15shils_test_random btn btn-warning btn-block">Дальше</button>
+                <button value="no"   id="nav_15shils_random_no"   type="button" class="nav_15shils_test_random btn btn-warning btn-block">Нет</button>
+                <button value="yes"  id="nav_15shils_random_yes"  type="button" class="nav_15shils_test_random btn btn-success btn-block">Да</button>
+
+            </div>
+            <div id="page_15shils_learn" hidden>
+                <div id="15shils_all"></div>
+                <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+            </div>
+
+            <div id="page_15shils_results" hidden>
+                <p id="15shils_results"></p>
+                <div id="div_15shils_uncorrect" hidden>
+                    <br/>
+                    <br/>
+                    <h4>Повтори эти шилы</h4>
+                    <div id="table_15shils_uncorrect"></div>
+                </div>
+                <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+            </div>
+
+        </div>
+        <div id="page_40socials" hidden>
+            <h3 align="center" class="points_40">Общественные нормы поведения</h3>
+
+            <div id="page_40socials_options">
+                <button value="learn"  type="button" class="nav_40socials btn btn-default btn-block">Показать все</button>
+                <button value="order"  type="button" class="nav_40socials btn btn-default btn-block">Тренировка</button>
+                <!--<button value="random" type="button" class="nav_40socials btn btn-default btn-block">В разброс</button> -->
+            </div>
+            <div id="page_40socials_test_order" hidden>
+                <p id="40socials_question_order">Помните следующую норму?</p>
+                <div id="40socials_answer_order"></div>
+                <br/>
+                <button value="next" id="nav_40socials_order_next" type="button" class="nav_40socials_test_order btn btn-warning btn-block">Дальше</button>
+                <button value="no"   id="nav_40socials_order_no"   type="button" class="nav_40socials_test_order btn btn-warning btn-block">Нет</button>
+                <button value="yes"  id="nav_40socials_order_yes"  type="button" class="nav_40socials_test_order btn btn-success btn-block">Да</button>
+            </div>
+            <div id="page_40socials_test_random" hidden>
+                <p id="40socials_question_random"></p>
+                <div id="40socials_answer_random"></div>
+                <br/>
+                <button value="next" id="nav_40socials_random_next" type="button" class="nav_40socials_test_random btn btn-warning btn-block">Дальше</button>
+                <button value="no"   id="nav_40socials_random_no"   type="button" class="nav_40socials_test_random btn btn-warning btn-block">Нет</button>
+                <button value="yes"  id="nav_40socials_random_yes"  type="button" class="nav_40socials_test_random btn btn-success btn-block">Да</button>
+
+            </div>
+            <div id="page_40socials_learn" hidden>
+                <div id="40socials_all"></div>
+                <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+            </div>
+
+            <div id="page_40socials_results" hidden>
+                <p id="40socials_results"></p>
+                <div id="div_40socials_uncorrect" hidden>
+                    <br/>
+                    <br/>
+                    <h4>Повтори эти нормы</h4>
+                    <div id="table_40socials_uncorrect"></div>
+                </div>
+
+                <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+            </div>
+
+        </div>
+
+
+        <div id="page_samgits" hidden>
+            <h3 align="center" class="prabhat_samgiits">Песни преданности</h3>
+
+            <div id="samgits_table"></div>
+
+            <br/>
+            <div id="samgit_value" hidden>
+                <h4 id="samgit_name"></h4>
+
+
+                <audio  id="samgit_pronounce_main" controls preload="auto">
+                    <source  id="samgit_pronounce" src="https://byhtada.github.io/am_training/audio/vritis/0.mp3" type="audio/mpeg">
+                </audio>
+                <br/>
+                <br/>
+
+                <img id="samgit_text" src="" class="img-responsive">
+
+                <button id="samgits_back"   type="button" class="main_nav btn btn-default btn-block">К самгитам</button>
+
+            </div>
+
+            <br/>
+            <br/>
+            <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+
+        </div>
+        <div id="page_kaoshikis" hidden>
+            <h3 align="center" class="kaoshikiis">Каошики</h3>
+
+            <iframe hidden id="video_kaoshiki" src="about:blank"  width="300" height="190" frameborder="0"  allowfullscreen ></iframe>
+
+            <div id="kaoshikis_table"></div>
+
+            <br/>
+
+            <br/>
+            <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+
+        </div>
+
+        <div id="page_mantras" hidden>
+            <h3 align="center" class="mantras">Шлоки/Мантры</h3>
+
+            <div id="mantras_table">
+            </div>
+
+            <br/>
+            <div id="mantra_value" hidden>
+                <h4 id="mantra_name"></h4>
+
+
+                <audio  id="mantra_pronounce_main" controls preload="auto">
+                    <source  id="mantra_pronounce" src="https://byhtada.github.io/am_training/audio/sutras/0.mp3" type="audio/mpeg">
+                </audio>
+                <br/>
+                <br/>
+                <div id="mantra_sanskrit" align="left9"></div>
+                <br/>
+                <div id="mantra_russian" align="left9"></div>
+
+                <button id="mantras_back"   type="button" class="main_nav btn btn-default btn-block">К мантрам</button>
+
+            </div>
+
+            <br/>
+            <br/>
+            <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+
+        </div>
+        <div id="page_ananda_sutras" hidden>
+            <h3 align="center" class="ananda_sutras">Ананда Сутры</h3>
+            <h5 align="center" class="click_to">Нажмите на сутру</h5>
+
+            <div id="sutras_table">
+            </div>
+            <br/>
+            <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+        </div>
+        <div id="page_supreme" hidden>
+            <h3 class="supreme_command">Высшее указание</h3>
+            <p align="left">
+                В разуме тех, кто выполняет садхану регулярно два раза в день, в момент смерти непременно возникнет мысль
+                о Парама Пуруше - они обязательно достигнут освобождения.
+                Поэтому каждому анандамарги, следует выполнять садхану дважды в день - это является указанием
+                Парама Пуруши.
+            </p>
+            <p align="left">
+                Без соблюдения Джамы и Ниямы садхана невозможна, поэтому необходимо строго придерживаться этих принципов.
+                Не следовать данному указанию - значит подвергнуть себя мукам животной жизни на десятки миллионов лет.
+                Для того что бы никто не испытывал таких страданий и все могли получить возможность насладиться вечным
+                спокойствием под любящей защитой Парама Пуруши, каждый ананда марги должен стремиться привести всех на
+                путь блаженства. Это неотъемлемая часть садханы - вести других по пути праведности.
+            </p>
+            <p align="left">
+                Шри Шри Анандамурти
+            </p>
+
+            <br/>
+            <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+
+        </div>
+
+
+        <div id="page_50vriti" hidden>
+            <div id="page_50vriti_options">
+                <h3 align="center" class="vritti">50 вритти</h3>
+                <button value="learn"                         type="button" class="nav_50vriti btn btn-default btn-block">Показать все</button>
+                <button value="order"  type="button" class="nav_50vriti btn btn-default btn-block">Тренировка</button>
+                <!--<button value="random" data-direct="sans_rus" type="button" class="nav_50vriti btn btn-default btn-block">В разброс (санс -> рус)</button>
+                <button value="random" data-direct="rus_sans" type="button" class="nav_50vriti btn btn-default btn-block">В разброс (рус -> санс)</button>
+
+         -->
+            </div>
+            <div id="page_50vriti_test_order" hidden>
+                <h3 align="center">50 вритти</h3>
+                <p id="50vriti_question_order">Помните следующую вритти?</p>
+                <div id="50vriti_answer_order"></div>
+                <br/>
+                <button value="next" id="nav_50vriti_order_next" type="button" class="nav_50vriti_test_order btn btn-warning btn-block">Дальше</button>
+                <button value="no"   id="nav_50vriti_order_no"   type="button" class="nav_50vriti_test_order btn btn-warning btn-block">Нет</button>
+                <button value="yes"  id="nav_50vriti_order_yes"  type="button" class="nav_50vriti_test_order btn btn-success btn-block">Да</button>
+            </div>
+            <div id="page_50vriti_test_random" hidden>
+                <h3 align="center">50 вритти</h3>
+                <p id="50vriti_question_random"></p>
+                <div id="50vriti_answer_random"></div>
+                <br/>
+                <button value="next" id="nav_50vriti_random_next" type="button" class="nav_50vriti_test_random btn btn-warning btn-block">Дальше</button>
+                <button value="no"   id="nav_50vriti_random_no"   type="button" class="nav_50vriti_test_random btn btn-warning btn-block">Нет</button>
+                <button value="yes"  id="nav_50vriti_random_yes"  type="button" class="nav_50vriti_test_random btn btn-success btn-block">Да</button>
+
+            </div>
+            <div id="page_50vriti_learn" hidden>
+                <h3 align="center">50 вритти</h3>
+                <div id="50vriti_all"></div>
+                <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+
+            </div>
+
+            <div id="page_50vriti_results" hidden>
+                <h3 align="center">50 вритти</h3>
+                <p id="50vriti_results"></p>
+
+                <div id="div_vritis_uncorrect" hidden>
+                    <br/>
+                    <br/>
+                    <h4>Повтори эти вритти</h4>
+                    <div id="table_vritis_uncorrect"></div>
+                </div>
+                <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+            </div>
+
+            <audio  id="background_pronounce_main" autoplay>
+                <source  id="background_pronounce" type="audio/mpeg" src="">
+            </audio>
+        </div>
+        <div id="page_enemies" hidden>
+            <h3 align="center" class="enemies">Враги</h3>
+            <div id="enemies_table"></div>
+            <br/>
+            <h3 align="center" class="chains">Оковы</h3>
+            <div id="chains_table"></div>
+            <br/>
+            <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+        </div>
+
+        <div id="page_dharma" hidden>
+            <h3 align="center" class="dharma_pattern">10 характеристик дхармичного человека</h3>
+
+            <div id="dharma_table">
+            </div>
+
+            <br/>
+            <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+
+        </div>
+
+        <div id="page_recipes" hidden>
+            <h3 align="center">Рецепты</h3>
+
+            <div id="recipes_table">
+            </div>
+            <br/>
+            <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+        </div>
+        <div id="page_secretary" hidden>
+            <h3>Раздел секретаря</h3>
+            <p>Дать доступ маргу</p>
+            <table style="border: 0">
+                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Имя</h5></td>                <td class="db_row_input_admin"><input type="text" class="form-control"  id="create_margii_name"         placeholder=""></td></tr>
+                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Юнит</h5></td>               <td class="db_row_input_admin"><input type="text" class="form-control" id="create_margii_unit"         placeholder=""></td></tr>
+                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>E-mail</h5></td>             <td class="db_row_input_admin"><input type="text" class="form-control"  id="create_margii_email"        placeholder=""></td></tr>
+                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Пароль</h5></td>             <td class="db_row_input_admin"><input type="text" class="form-control"  id="create_margii_password"     placeholder=""></td></tr>
+                <tr class="db_row_dialog"><td align="right" valign="middle"><h5>Проходил тренинг?</h5></td>  <td class="db_row_input_admin"><input type="checkbox"   id="create_margii_training"     placeholder=""></td></tr>
+            </table>
+
+            <button id="btn_secretary_access" type="button" class=" btn btn-success btn-block">Выдать доступ</button>
+
+            <br/>
+            <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+
+        </div>
+
+
+        <div id="page_nocarma" hidden>
+            <h3 align="center">Принципы недеяния</h3>
+
+            <div id="nocarma_table">
+            </div>
+
+            <br/>
+            <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+
+        </div>
+        <div id="page_cc2_sadhana" hidden>
+            <h3 align="center">Чарья Чарья 2. СА́ДХАНА</h3>
+            <h3 align="center"></h3>
+
+            <div id="cc2_sadhana_table">
+            </div>
+
+            <br/>
+            <button  type="button" class="nav_to_main btn btn-default btn-block">На главную</button>
+
+        </div>
+    </div>
+    <br/>
+
+
+
+    <div class="app_bar">
+        <a href="#" class="icon_add"><img  class="btn_main_navigation" src="./img/icon_home.svg" alt=""></a>
+        <a href="#" class="app_bar__link">
+            <span class="app_bar__link-img"><img class="btn_main_navigation" src="./img/icon_practise.svg" alt=""></span>
+        </a>
+        <a href="#" class="app_bar__link">
+            <span class="app_bar__link-img"><img class="btn_main_navigation" src="./img/icon_study.svg" alt=""></span>
+        </a>
+        <a href="#" class="app_bar__link">
+            <span class="app_bar__link-img"><img class="btn_main_navigation" src="./img/icon_unit.svg" alt=""></span>
+        </a>
+        <a href="#" class="app_bar__link">
+            <span class="app_bar__link-img"><img class="btn_main_navigation" src="./img/icon_am.svg" alt=""></span>
+        </a>
+    </div>
 
 </div>
 
@@ -737,6 +944,36 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default modal_close" data-dismiss="modal">Хорошо :)</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_svadhyaya"    tabindex="-1" role="dialog" aria-labelledby="modal_label_donation">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title svadhyaya_label " id="modal_label_svadhyaya">Свадхьяя дня</h4>
+            </div>
+            <div class="modal-body" align="left" id="svadhyaya_text"></div>
+            <div class="modal-footer">
+                <button type="button" class="svadhyaya_read_realized btn btn-default modal_close" data-dismiss="modal">Прочитал и осознал</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_fasting"    tabindex="-1" role="dialog" aria-labelledby="modal_label_donation">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title fasting_instruction_header" id="modal_label_fasting"></h4>
+            </div>
+            <div  class="fasting_instruction_value modal-body" align="left"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default modal_close" data-dismiss="modal">Oke</button>
             </div>
         </div>
     </div>

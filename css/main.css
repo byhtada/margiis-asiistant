@@ -18,11 +18,205 @@ html {
 body {margin-left: 10px; margin-right: 10px; }
 td {vertical-align: middle !important;}
 
+#logo, #logo_load, #logo_login {padding-top: 15px; max-height: 111px;}
+.login_text_1, .login_text_2 {font-size: 12px; color: #adadad; text-align: center; font-weight: bold; margin: 0px}
+
+
+
+#btn_flow_panchadjanya {margin-bottom: 5px}
+#btn_meditation_timer_stop {margin-top: 5px}
+
 .margii_diary_header {font-size: 16px; color: #000000; text-align: center; font-weight: bold}
-.ideology_text {font-size: 22px; color: #fe3700; text-align: center; font-weight: bold; margin: 0px}
+.ideology_text {font-size: 12px; color: #adadad; text-align: center; font-weight: bold; margin: 0px}
 .footer_text {font-size: 12px; color: #c3c3c3; text-align: center;}
 .vriti_pronounce{cursor: pointer;}
 h1, h2, h3, h4, h5, h6 {font-weight: bold}
+
+
+
+
+
+
+#main_div {margin-bottom: 85px}
+
+
+
+.app_bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 62px;
+    display: flex;
+    box-shadow: 0 -5px 10px rgba(81, 103, 82, 0.16);
+    background-color: #fff;
+    border-radius: 18px 18px 0 0 !important;
+
+    z-index: 99;
+
+
+}
+
+.app_bar .icon_add {
+    position: absolute;
+    left: 50%;
+    margin-left: -30px;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 2px  5px rgba(255, 127, 92, 0.6);
+    background-color: #FF7F5C;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 10px;
+}
+
+a.app_bar__link {
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 19%;
+    color: #c3cbce;
+    padding: 0 0 0 0;
+    border-bottom: 3px solid transparent;
+}
+
+a.app_bar__link span {
+    display: block;
+}
+
+span.app_bar__link-name {
+    color: #c3cbce;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+}
+
+a.app_bar__link:nth-last-child(2) {
+    margin-left: 24%;
+}
+
+a.app_bar__link span.app_bar__link-img {
+    flex-grow: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.btn_main_navigation {
+    width: 24px ;
+    height: 100%;
+}
+
+.app_bar .icon_add:before {
+    content: '';
+    width: 82px;
+    height: 82px;
+    background-color: #ffffff;
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    z-index: -3;
+    left: -11px;
+    top: -11px;
+    box-shadow: 0 -5px 10px rgba(81, 103, 82, 0.16);
+
+}
+
+
+.app_bar:before {
+    content: '';
+    background-image: linear-gradient(180deg, #ffffff 0%, rgba(226, 226, 226, 0.26) 100%);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    border-radius: 18px 18px 0 0 !important;
+
+}
+
+
+a.app_bar__link.active {
+    color: #46d444;
+    border-bottom-color: #46d444;
+}
+
+a.app_bar__link.active span {
+    color: #46d444;
+}
+
+
+
+.wrapper{
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+@media (min-width: 480px) {
+    .app_bar {
+        max-width: 480px;
+        left: 50% !important;
+        margin-left: -240px;
+    }
+    .wrapper_popup{
+
+        max-width: 480px;
+        left: 50% !important;
+        margin-left: -240px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 textarea {width: 100%}
 .text_mini_end {font-size: 18px;}
@@ -61,6 +255,14 @@ textarea {width: 100%}
     padding: 12px;
     border-radius: 6px;
     background-color: rgba(232, 229, 225, 0.0);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.congrats_div {
+
+    padding: 12px;
+    border-radius: 6px;
+    background-color: rgba(238, 115, 26, 0.84);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -123,15 +325,6 @@ textarea {width: 100%}
 .div_material_unread {background-color: rgba(59, 155, 0, 0.1)
 }
 
-
-
-#load_logo     {
-    width: 414px;
-    height: 164px;
-    -webkit-animation-duration: 2s;
-    -moz-animation-duration:    2s;
-    -o-animation-duration:      2s;
-    animation-duration:         2s;}
 
 #page_user_main {margin-bottom: 15px;}
 .yoga_color {color: #46d444}

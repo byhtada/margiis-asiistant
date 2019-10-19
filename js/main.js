@@ -1,414 +1,57 @@
 $( document ).ready(function() {
 
-    var api_url = "https://hyls-api.ru/";
+    var api_url = "http://localhost:3000/";
+  //  var api_url = "https://hyls-api.ru/";
+    var user_status = "";
+    var training_plus = ["margii_training", "secretary_training", "acarya"];
 
-    var cookie_name_token = "am_token";
-    var cookie_name_id = "am_id";
+
+    var cookie_name_token = "ma_token";
+    var cookie_name_id    = "ma_id";
     var cookie_token = getCookie(cookie_name_token);
 
-    var cc2_sadhana_all = ["1а) Единый, не имеющий формы и начала бесконечный Пара́ма Бра́хма (высшее Сознание) – та единственная сущность, к обретению которой следует стремиться каждому живому существу. Он и никто другой является джага́т Гу́ру (высшим наставником), и именно Он посредством имени и физической формы Анандамурти-джи сделал бра́хмави́дью (интуитивную науку) доступной для нас. Необходимо сделать так, чтобы все существа осознали Его величие.",
-            "1б) Независимо от того, больны вы или здоровы, сидите, лежите или едете в транспорте, вы должны два раза в день выполнять полноценную и́швара пранидха́ну. Независимо от того, насколько безотлагательна предстоящая в ближайшем будущем работа и насколько беспокоен разум, каждый са́дхака должен выполнить джа́пу согласно полученной технике медитации (т.е. повторить свою и́шта мантру – «мантру, которая ведет к конечной цели») сначала восемьдесят раз, а затем продолжить эту практику уже без счета. Не приступайте к завтраку до тех пор, пока не закончите утреннюю и́швара пранидха́ну. Не принимайтесь за ужин, пока не завершите свою вечернюю и́швара пранидха́ну.",
-            "1в) Все требования и запреты джа́мы и ния́мы должны соблюдаться при любых обстоятельствах.г) Вы не должны допускать, чтобы живые существа умирали голодной смертью. Даже тех, кто является вашими джа́та ша́тру (естественный враг), нельзя морить голодом или увечить. ",
-            "1д) Если позволяет состояние здоровья, обязательно посещайте еженедельную дхармача́кру. Если работа или уход за больным не позволяют вам присутствовать на дхармача́кре в назначенное время, необходимо посетить джа́грити в любое другое время в течение этого же дня и выполнить и́швара пранидха́ну. Если и это невозможно, тогда следует пропустить один прием пищи в выходные дни.",
-            "2) Когда вы голодаете с целью очищения разума, следует раздать свою пищу нуждающимся, а воду использовать для полива растений. ",
-            "3) Помните о том, что у вас есть обязательства, более того, вы в долгу перед каждым созданием в этой Вселенной. Но по отношению к вам ни у кого нет никаких обязательств, вам никто ничего не должен.",
-            "4) Жизнь животных посвящена плотским удовольствиям, жизнь человека предназначена для са́дханы. Однако для того чтобы выполнять са́дхану, необходимо тело, поэтому для поддержания его жизнедеятельности вы должны уделять внимание всем аспектам жизни.",
-            "5) Все нуждается в основании. Если в жизни нет прочного фундамента, ее может разрушить любая буря. Бра́хма – это самое надежное основание. ",
-            "6) Дха́рма (духовность) является чем-то внутренним. Тот, у кого внутри пустота, маскирует ее, звоня в колокола, стуча в барабаны и поднимая шум.",
-            "7) Позиция «я не знаю» – отправная точка любого познания. Только признав свое невежество, можно получить какое-то знание. Эта способность – неотъемлемая черта характера настоящего духовного искателя.",
-            "8) Человеческая жизнь быстротечна, поэтому разумно было бы получить все разъяснения, касающиеся са́дханы, как можно скорее. ",
-            "9) Только то состояние можно назвать му́кти (освобождение), когда поток сознания не встречает препятствий разума в виде эгоизма, ограниченности или предрассудков.",
-            "10) Что бы вы ни говорили и ни делали,<br/>Никогда не забывайте о Нем;<br/>Храня Его имя в сердце,<br/>Работайте и помните, что это для Него,<br/>И вечно деятельные, пребывайте в блаженстве.",
-            "11) Любыми делами, большими и малыми, человечество должно быть разбужено. Человечность в наиболее полном смысле этого слова равна божественности. Ее совершенство – брахма́тва (богобытие, единение с Брахмой). Духовный искатель ни на мгновение не должен забывать об этом.",
-            "12) Обнаружив в себе недостаток и не найдя способа для ша́сти (наказания с целью исправления), следует очищать разум голоданием.",
-            "13) Перед тем как критиковать кого-либо за некоторый изъян, убедитесь, что сами свободны от этого недостатка. ",
-            "14) Когда человек утвердился в принципах джа́мы и ния́мы, восемь оков (а́ста па́ша) теряют власть над разумом. Тот, кто свободен от оков, не знает предрассудков.",
-            "15) Действия, а не рассуждения, придают человеку значимость. ",
-            "16) Не пытайтесь добиться превосходства, принижая других, потому что комплекс неполноценности другого человека даст всходы и в вашем разуме.",
-            "17) Побеждайте осуждение похвалой, а тьму – светом.",
-            "18) Называть вещи чужими именами – значит лгать и кощунствовать. Поэтому те, кто под именем безначального, бесконечного и не имеющего формы Брахмы поклоняются идолам, сознательно и намеренно богохульствуют. Вы не должны предаваться этой разновидности махапа́пы (великого греха).",
-            "19) С помощью таких уроков са́дханы, как праная́ма (контроль жизненной энергии), пратьяха́ра (отвлечение разума от внешних ощущений), дха́рана (концентрация) и дхья́на (медитация), можно обуздать врагов своего разума. Вам следует взять под контроль врагов и оковы разума, нельзя позволять им контролировать вас. Но в разуме людей всегда будут присутствовать враги и оковы, так как это заложено в самой природе всех живых существ. ",
-            "20) Клевета и злословие в нашем мире держатся в основном на лжи. Некоторые лгут неосознанно, другие – потому, что были уязвлены их мелкие корыстные интересы, а третьих толкает к обману хи́мса ври́тти (психическая склонность к причинению вреда). Вы должны спокойно указать клеветнику на его ошибку, но, прежде чем сделать это, убедитесь, что в его высказываниях действительно нет ни слова правды. Если же за вами есть пусть даже небольшая вина, лучше промолчите и примите все, что о вас говорят, как должное. В этом случае следует поблагодарить человека, который таким образом указал вам на ошибку, и попросить о наказании.",
-            "21) Всегда помните о том, что не следует пытаться в споре доказать что-либо тем, кто критикует вашу и́шту (цель), ада́ршу (идеологию), Высшее указание или Правила поведения. В случае, когда имеет место такая критика, вам следует занять жесткую и бескомпромиссную позицию."];
 
-    var samgits_all = [
-        {num: "1",    audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/1%20BANDHU%20HE%20NIYE%20CALO.mp3", russian_name: "БОНДХУ ХЕ"},
-        {num: "2",    audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/2%20E%20GA%27N%20A%27MA%27R%20ALOR%20JHARN%27A%27DHA%27RA%27.mp3", russian_name: "Е ГА́Н А́МА́Р"},
-        {num: "6",    audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/6%20BANDHU%20A%27MA%27R%2C%20BANDHU%20A%27MA%27R%2C%20January%201st%201983%2C%20Ananda%20Nagar.mp3", russian_name: "BANDHU A'MA'R, BANDHU A'MA'R, January 1st 1983, Ananda Nagar"},
-        {num: "10",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/10%20MA%27YA%27%20MUKURE%20KE%20KII%20BHA%27VE%20KII%20KARE.mp3", russian_name: "МА́ЙЯ МУКУРЕ"},
-        {num: "12",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/12%20NAYANE%20MAMATA%27%20BHARA%27%202.mp3", russian_name: "НОЙОНЕ МОМОТА́ БХОРА́"},
-        {num: "29",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/29%20A%27MA%27Y%20CHOT%27T%27A%20EKAT%27I%20MAN%20DIYECHO.mp3", russian_name: "А́МА́Й ЧХОТ́Т́О ЕКТ́И МОН ДИЙЕЧХО"},
-        {num: "50",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/50%20RAKTIM%20KISHALAY%20A%27MI%20RAKTIM%20KISHALAY.mp3", russian_name: "РОКТИМ КИШОЛАЙ"},
-        {num: "53",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/53%20OGO%2C%20PRABHU%2C%20TOMA%27KE%20A%27MI%20BHA%27LOBA%27SI.mp3", russian_name: "ОГО ПРОБХУ ТОМА́КЕ А́́МИ"},
-        {num: "63",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/63%20DIIPA%27VALII%20SA%27JA%27YECHI%20PRABHU.mp3", russian_name: "ДИ́ПА́БОЛИ́ "},
-        {num: "68",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/68%20I%20LOVE%20THIS%20TINY%20GREEN%20ISLAND%202.mp3", russian_name: "I LOVE THIS TINY GREEN ISLAND"},
-        {num: "80",   audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/80%20SVAPANE%20ESECHO%20A%27NANDAGHANA%20TUMI.mp3", russian_name: "ШВОПОНЕ ЕШЕЧХО А́НОНДОГХОНО ТУМИ"},
-        {num: "152",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/152%20CAMPAKA%20VANE%20MADHURA%20SVAPANE%2C%20May%2024th%201985%2C%20Calcutta.mp3", russian_name: "CAMPAKA VANE MADHURA SVAPANE, May 24th 1985, Calcutta"},
-        {num: "154",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/154%20ESO%20ESO%2C%20PRABHU%2C%20ESO%20ESO%2C%20A%27MA%27R%20HRDAYE%2C%20May%2024th%201985%2C%20Calcutta.mp3", russian_name: "ESO ESO, PRABHU, ESO ESO, A'MA'R HRDAYE, May 24th 1985, Calcutta\n"},
-        {num: "158",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/158%20TUMI%20SABA%27R%20MANE%20A%27CHO.mp3", russian_name: "ТУМИ ШОБА́Р МОНЕ А́ЧХО"},
-        {num: "159",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/159%20PRABHU%20A%27MI%20BHA%27LOBA%27SI.mp3", russian_name: "ПРОБХУ А́МИ БХА́ЛОБА́ШИ"},
-        {num: "162",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/162%20KICHU%20KAYE%20JA%27O%20KICHU%20SUNE%20JA%27O.mp3", russian_name: "КИЧХУ КОЙЕ ДЖА́У"},
-        {num: "163",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/163%20MAN%20KE%20KONO%20CHOT%27O%20KA%27JEI%2C%20January%201st%201983%2C%20Ananda%20Nagar.mp3", russian_name: "MAN KE KONO CHOT'O KA'JEI, January 1st 1983, Ananda Nagar"},
-        {num: "342",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/1-999/342%20SUMUKHER%20PA%27NE%20CALE%20JA%27BO%20A%27MI.mp3", russian_name: "ШУМУКЕР ПА́́НЕ ЧОЛЕ ДЖА́́БО А́́МИ"},
-        {num: "647",  audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/647%20TUMI%20JE%20ESECHO%20A%27J%20%28part%29%2C%20May%2027%2C%201984%20morning%2C%20Ranchi.mp3", russian_name: "TUMI JE ESECHO A'J (part), May 27, 1984 morning, Ranchi\n"},
-        {num: "1025", audio: "http://xn--prabhta-sagiita-rjb5298j.net/1000-1999/1025%20A%27MA%27R%20JIIVANE%20TUMI%20KE.mp3", russian_name: "А́МА́Р ДЖИВОНЕ ТУМИ КЕ"},
-        {num: "1041", audio: "http://xn--prabhta-sagiita-rjb5298j.net/1000-1999/1041%20ANEK%20SHUNIYA%27%20ANEK%20BHA%27VIYA%27.mp3", russian_name: "ОНЕК ШУНИЯ ОНЕК БХА́БИЯ"},
-        {num: "1682", audio: "http://xn--prabhta-sagiita-rjb5298j.net/1000-1999/1682%20VASANTERI%20A%27GAMANE%20DHARA%27%20NAVA.mp3", russian_name: "БОШОНТОРИ А́́ГОМОНЕ"},
-        {num: "1698", audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/1698%20AJA%27NA%27%20PATHIK%20THA%27MO%20GO%20KS%27AN%27IK%20%28part%29%2C%20December%2031st%201985%2C%20Cacutta.mp3", russian_name: "AJA'NA' PATHIK THA'MO GO KS'AN'IK (part), December 31st 1985, Cacutta"},
-        {num: "2526", audio: "http://xn--prabhta-sagiita-rjb5298j.net/2000-2999/2526%20JAYA%2C%20SHUBHA%20VAJRADHARA.mp3", russian_name: "ДЖАЯ ШУБХА ВАДЖРАДХАРА "},
-        {num: "2976", audio: "http://xn--prabhta-sagiita-rjb5298j.net/2000-2999/2976%20TOMA%27Y%20A%27MI%20PELU%27M2.mp3", russian_name: "ТОМА́Й А́МИ ПЕЛУМ"},
-        {num: "3069", audio: "http://xn--prabhta-sagiita-rjb5298j.net/3000-3999/3069%20JYOTSNA%27%20DILE%20PHU%27L%20PHOT%27A%27LE.mp3", russian_name: "ДЖЁТШНА́ ДИЛЕ"},
-        {num: "3522", audio: "http://xn--prabhta-sagiita-rjb5298j.net/live/3522%20TOMA%27RE%20D%27EKECHI%20TOMA%27RE%20CEYECHI%2C%20June%201st%201986%2C%20Calcutta.mp3", russian_name: "TOMA'RE D'EKECHI TOMA'RE CEYECHI, June 1st 1986, Calcutta"},
-        {num: "3951", audio: "http://xn--prabhta-sagiita-rjb5298j.net/3000-3999/3951%20TVAM%27%20MAMA%20PRIYAH%20TVAMASI%20AMEYA.mp3", russian_name: "ТВАМ́ МАМА ПРИЯХ"},
-        {num: "4455", audio: "http://xn--prabhta-sagiita-rjb5298j.net/4000-5018/4455%20KE%20GO%20KE%20GO%20TUMI%20ACENA%27.mp3", russian_name: "КЕГО КЕГО ТУМИ А́ЧЕНА́"},
-        {num: "5008", audio: "http://xn--prabhta-sagiita-rjb5298j.net/4000-5018/5008%20WE%20LOVE%20THAT%20GREAT%20ENTITY.mp3", russian_name: "WE LOVE THAT GREAT ENTITY"},
-        {num: "5009", audio: "http://xn--prabhta-sagiita-rjb5298j.net/4000-5018/5009%20THIS%20LIFE%20IS%20FOR%20HIM%2C%20THIS%20MIND%20IS%20FOR%20HIM.mp3", russian_name: "THIS LIFE IS FOR HIM"}
-    ];
+    ifLogin();
+    function ifLogin()     {
+        // checkOS();
+        console.log("ifLogin");
 
-    var vritis_all = [
-        {chakra: 'Муладхара', sound: 'va', sanscrit: 'Dharma', rus: 'психо-духовная жажда'},
-        {chakra: 'Муладхара', sound: 'sha', sanscrit: 'Artha', rus: 'психическая жажда'},
-        {chakra: 'Муладхара', sound: 'śa', sanscrit: 'Káma', rus: 'жажда объектов материального мира'},
-        {chakra: 'Муладхара', sound: 'sa', sanscrit: 'Mokśa', rus: 'духовная жажда'},
-
-        {chakra: 'Свадхиштха́на', sound: 'ba', sanscrit: 'Avajiṋá', rus: 'презрение, принижение других'},
-        {chakra: 'Свадхиштха́на', sound: 'bha', sanscrit: 'Múrcchá', rus: 'отупение, отсутствие здравого смысла, ступор'},
-        {chakra: 'Свадхиштха́на', sound: 'ma', sanscrit: 'Prashraya', rus: 'потакание своим слабостям/желаниям'},
-        {chakra: 'Свадхиштха́на', sound: 'ya', sanscrit: 'Avishvása', rus: 'неуверенность, отсутствие веры'},
-        {chakra: 'Свадхиштха́на', sound: 'ra', sanscrit: 'Sarvanásha', rus: 'мысль о неминуемой смерти'},
-        {chakra: 'Свадхиштха́на', sound: 'la', sanscrit: 'Kruratá', rus: 'жестокость'},
-
-        {chakra: 'Манипу́ра', sound: 'd́a', sanscrit: 'Lajjá', rus: 'стыд, застенчивость'},
-        {chakra: 'Манипу́ра', sound: 'd́ha', sanscrit: 'Pishunatá', rus: 'садизм'},
-        {chakra: 'Манипу́ра', sound: 'ńa', sanscrit: 'Iirśá', rus: 'зависть'},
-        {chakra: 'Манипу́ра', sound: 'ta', sanscrit: 'Suśupti', rus: 'статичность, сонливость'},
-        {chakra: 'Манипу́ра', sound: 'tha', sanscrit: 'Viśáda', rus: 'меланхолия'},
-        {chakra: 'Манипу́ра', sound: 'da', sanscrit: 'Kaśáya', rus: 'раздражительность'},
-        {chakra: 'Манипу́ра', sound: 'dha', sanscrit: 'Trśńá', rus: 'жажда приобретения'},
-        {chakra: 'Манипу́ра', sound: 'na', sanscrit: 'Moha', rus: 'слепая привязанность'},
-        {chakra: 'Манипу́ра', sound: 'pa', sanscrit: 'Ghrńá', rus: 'ненависть, отвращение'},
-        {chakra: 'Манипу́ра', sound: 'pha', sanscrit: 'Bhaya', rus: 'страх'},
-
-        {chakra: 'Анаха́та', sound: 'ka', sanscrit: 'A’shá', rus: 'надежда'},
-        {chakra: 'Анаха́та', sound: 'kha', sanscrit: 'Cintá', rus: 'беспокойство'},
-        {chakra: 'Анаха́та', sound: 'ga', sanscrit: 'Ceśt́á', rus: 'усилие'},
-        {chakra: 'Анаха́та', sound: 'gha', sanscrit: 'Mamatá', rus: 'собственническая любовь'},
-        {chakra: 'Анаха́та', sound: 'uṋa', sanscrit: 'Dambha', rus: 'тщеславие'},
-        {chakra: 'Анаха́та', sound: 'ca', sanscrit: 'Viveka', rus: 'разборчивость, совесть'},
-        {chakra: 'Анаха́та', sound: 'cha', sanscrit: 'Vikalatá', rus: 'психическое оцепенение вследствие страха'},
-        {chakra: 'Анаха́та', sound: 'ja', sanscrit: 'Ahaḿkára', rus: 'эгоизм'},
-        {chakra: 'Анаха́та', sound: 'jha', sanscrit: 'Lolatá', rus: 'жадность'},
-        {chakra: 'Анаха́та', sound: 'iṋa', sanscrit: 'Kapat́atá', rus: 'лицемерие'},
-        {chakra: 'Анаха́та', sound: 't́a', sanscrit: 'Vitarka', rus: 'чрезмерная склонность к спорам'},
-        {chakra: 'Анаха́та', sound: 't́ha', sanscrit: 'Anutápa', rus: 'раскаянье'},
-
-        {chakra: 'Вишудха', sound: 'a', sanscrit: 'S’ad́aja', rus: 'крик павлина'},
-        {chakra: 'Вишудха', sound: 'á', sanscrit: 'Rśabha', rus: 'крик быка или буйвола'},
-        {chakra: 'Вишудха', sound: 'i', sanscrit: 'Gándhára', rus: 'блеяние козы'},
-        {chakra: 'Вишудха', sound: 'ii', sanscrit: 'Madhyama', rus: 'мычание оленя'},
-        {chakra: 'Вишудха', sound: 'u', sanscrit: 'Paiṋcama', rus: 'крик кукушки'},
-        {chakra: 'Вишудха', sound: 'ú', sanscrit: 'Dhaevata', rus: 'крик осла'},
-        {chakra: 'Вишудха', sound: 'r', sanscrit: 'Niśáda', rus: 'крик слона'},
-        {chakra: 'Вишудха', sound: 'rr', sanscrit: 'Oṋm', rus: 'акустический корень творения, сохранения, растворени'},
-        {chakra: 'Вишудха', sound: 'lr', sanscrit: 'hum', rus: 'звук пробуждения кулакундалини'},
-        {chakra: 'Вишудха', sound: 'lrr', sanscrit: 'Phat́', rus: 'воплощение теории в практику'},
-        {chakra: 'Вишудха', sound: 'e', sanscrit: 'Baośat́', rus: 'благополучие в мирской сфере'},
-        {chakra: 'Вишудха', sound: 'ae', sanscrit: 'Vaśat́', rus: 'благополучие в тонкой сфере'},
-        {chakra: 'Вишудха', sound: 'o', sanscrit: 'Sváhá', rus: 'выполнение благородных действий'},
-        {chakra: 'Вишудха', sound: 'ao', sanscrit: 'Namah', rus: 'вручение себя Высшему'},
-        {chakra: 'Вишудха', sound: 'aḿ', sanscrit: 'Viśa', rus: 'отталкивающие проявления'},
-        {chakra: 'Вишудха', sound: 'ah', sanscrit: 'Amrta', rus: 'приятные проявления'},
-
-        {chakra: 'Агья', sound: 'kśa', sanscrit: 'Apará ', rus: 'мирское знание'},
-        {chakra: 'Агья', sound: 'ha', sanscrit: 'Pará ', rus: 'духовное знание'},
-    ];
-
-
-    var dharma_all = [
-        "1. Dhrti (дхрити): терпение перед лицом опасности, бедствий и страдания.",
-        "2. Ksámá (кшама): прощение человека, который навредил тебе лично и исправился; воздержание от мести. На индивидуальном уровне человек не может прощать кого-то, кто навредил обществу.",
-        "3. Dama (дама): само-контроль; контроль над внутренними врагами.",
-        "4. Asteya (астея): не-воровство; не-воровстро физически и психически.",
-        "5. Shaoca' (шаоча): содержать физическое и ментальное тело в аккуратности и в чистоте.",
-        "6. Indriyanigraha (индрияниграха): полный контроль над сенсорными и моторными органами и нервами.",
-        "7. Dhii (дхии): интеллект свободный от низости, загрязнений и всех дегениративных качеств; дхрувасмрити, или постоянное повторение Ишты.  ",
-        "8. Vidyá (видья): духовная наука; движение разума к Парама Пуруше.",
-        "9. Satyam (сатьям): ментальное движение к Сат (Космический Когнитивный Принцип, который не подвергается изменению); правильное применение мыслей и слов на благо человечества).",
-        "10. Akrodha (акродха): свобода от злости. Это дает человеку преимущество над оппонентом."
-    ];
-
-    var nocarma_all = [
-        "1. Оставь желание результата действия",
-        "2. Оставь гордость от действия",
-        "3. Отрекись от гордости инструмента",
-        "4. Относись ко всему вокруг себя как к Богу"
-    ];
-    var random_shuffle   = [];
-    var answers_count   = 0;
-    var answers_correct = 0;
-    var answers_uncorrect = [];
-    var vritis_random_direct = "";
-
-
-    var points_all = [
-        "1. После мочеиспускания омойте мочеполовые органы водой.",
-        "2. Мужчины должны либо подвергаться обрезанию, либо сдвигать крайнюю плоть назад.",
-        "3. Не удаляйте волосы в паху и в подмышечных впадинах. ",
-        "4. Мужчины должны всегда пользоваться каупи́ной (ланго́том). ",
-        "5. Выполняйте вьпа́ка шаучу согласно приведенным инструкциям. ",
-        "6. Принимайте ванну и душ согласно предписанной системе. ",
-        "7. Употребляйте только саттви́чную [благоприятную для разума] пищу. ",
-        "8. Голодайте согласно приведенным инструкциям: <br/> а) На экадаши (для маргов), Пурниму и Амавасью (для лфт, ачарий и неженатых маргов).<br/>б) Без воды.",
-        "9. Регулярно выполняйте са́дхану:<br/>а) Используйте Мадхувидью.<br/>б) Все уроки 4 (2) раза в день.<br/>в) Асаны дважды в день.<br/>д) Сарватмака Шаоча (Внутренняя и внешняя).<br/>е) Тапах. Четыре типа джагьи: питри джагья, бхута джагья, нр джагья (шудрочитта сева, вайяшьячитта сева, кшатриячитта сева, випрочитта сева), адхьятма джайна.",
-        "10. Сохраняйте бескомпромиссную твердость и веру в святость и́шты (цели).",
-        "11. Сохраняйте бескомпромиссную твердость и веру в святость ада́рши (идеологии).",
-        "12. Сохраняйте бескомпромиссную твердость и веру в святость Высшего указания.",
-        "13. Сохраняйте бескомпромиссную твердость и веру в святость Правил поведения.",
-        "14. Всегда помните о данных вами клятвах.",
-        "15. Регулярное посещение еженедельной дхармача́кры в местном джа́грити должно быть обязательным.",
-        "16. Соблюдайте C.S.D.K. 9 (Правила поведения, семинары, обязанности, ки́ртан)"
-    ];
-
-    var djama_niyama_all = [
-        {russian_name: "Джама. Ахимса", russian_desc: "Не причинение никому вреда ни мыслью, ни словом, ни действием."},
-        {russian_name: "Джама. Сатья", russian_desc: "Все мысли, существующие в разуме, и все используемые словесные выражения должны служить целям благосостояния (физический, ментальный и духовный аспекты)"},
-        {russian_name: "Джама. Астейя ", russian_desc: "Не воровать физически, мысленно. Не лишать других того, что им причитается в ни действиях ни в мыслях"},
-        {russian_name: "Джама. Брахмачарья", russian_desc: "Оставаться во взаимосвязи с Брахмой, Высшим Сознанием. Для этого необходимо смотреть на всех людей и все внешние объекты, как различные проявления Брахмы.оставаться во взаимосвязи с Брахмой, Высшим Сознанием.  "},
-        {russian_name: "Джама. Апариграха", russian_desc: "Воздерживаться от вещей и удовольствий, не являющихся необходимыми для поддержания жизни."},
-        {russian_name: "Нияма. Шаоча", russian_desc: "Поддержание чистоты тела и внешнего окружения, а также сохранение внутренней ментальной чистоты. "},
-        {russian_name: "Нияма. Сантоша", russian_desc: "Всегда находиться в состоянии ментального покоя и удовлетворения."},
-        {russian_name: "Нияма. Тапах", russian_desc: "Жертвовать чем-либо или испытывать лишения, оказывая служение другим"},
-        {russian_name: "Нияма. Свадхьяя", russian_desc: "Чтение духовных писаний для приобретения ясного понимания сути изложенного"},
-        {russian_name: "Нияма. Ишвара Пранидхана", russian_desc: "Утверждение себя в Космической Идее, принятие Ишвары в качестве единственного идеала и движение с возрастающей скоростью по направлению к этому Высшему Прибежищу, Богу."},
-    ];
-
-    var mantras_all = [
-        {name: 'Гуру Сакаш',
-            src: "mantras/guru_sakash.wav",
-            sansckrit: 'Prātaḥ shiraśi shukleábje<br/>dvinetram dvibhujaḿ gurum;<br/>varábhayakrtahastaḿ<br/>smarettaḿ námapúrvakam.<br/><br/>' , russian: 'Рано утром, сидящего в Гуру чакре, в белом лотосе,<br/>С двумя глазами и двумя руками, я представляю Гуру,<br/>Руки держащего в варабхая мудре,<br/>Я вспоминаю Его, произнося Его святое имя.<br/><br/>'},
-        {name: 'Dhyana mūlam', sansckrit: 'Dhyana mūlam gurora mūrtiḥ,<br/>Puja’ mūlam guroh padam;<br/>Mantra mūlam gurora vākyam,<br/>Mokṣa mūlam guroh kṛpā.<br/><br/>' , russian: 'Основа (корень) дхьяны (медитации) - это форма Гуру;<br/>основа приношения - стопы Гуру.<br/>Мантра - основа слова Гуру,<br/>основа спасения - милость Гуру.<br/><br/>'},
-        {name: 'Shriináthe jánakiináthe', sansckrit: 'Shriináthe jánakiináthe<br/>cábhede paramátmani,<br/>tathápi mam sarvasvam<br/>Ramah kamalalocanah<br/><br/>' , russian: 'Зовут ли Его Вишну или Рама, Господь Сита,<br/>для Высшего Я нет разницы. Но для меня Рама,<br/>чьи глаза подобны свежим лепесткам лотоса, -<br/>это все для меня.<br/><br/>'},
-        {name: 'Bhaktir bhagavataḥ Sheva', sansckrit: 'Bhaktir bhagavataḥ Sheva<br/>Bhaktih premasvarupinii;<br/>Bhaktir ánandarúpá ca<br/>Bhaktir bhaktasya jiivanam.<br/><br/>' , russian: 'Преданность - это служение Богу, преданность - это истинная суть любви. Преданность принимает форму блаженства, преданность - это вся жизнь преданного.<br/><br/>'},
-        {name: 'Tava tattvama na jánámi', sansckrit: 'Tava tattvama na jánámi<br/>kiidrshośi Maheshvara<br/>Yádrshosi Mahadeva<br/>tádrsháya namo namah.<br/><br/>' , russian: 'О Махешвара, я не понимаю Твоей природы. Какова твоя природа? Она за пределами того, я склоняюсь перед тобой, о Махешвара!<br/><br/>'},
-        {name: 'Mukam karoti vácálam,', sansckrit: 'Mukam karoti vácálam,<br/>Panga laḿghayate girim<br/>yat krpa’ Jagata Vande,<br/>Paramānanda mádhavam.<br/><br/>' , russian: 'Милостью бога немой может говорить, а хромой покорить горные вершины. Перед его милостью склоняется вся вселения.<br/><br/>'},
-        {name: 'Tvameva mátá ca pitá tvameva,', sansckrit: 'Tvameva mátá ca pitá tvameva,<br/>tvameva bandhushca sakhá tvameva;<br/>tvameva vidyá dravinám tvameva,<br/>tvameva sarvaḿ mamadevadeva.<br/><br/>' , russian: 'Ты моя мать. Ты мой отец. Ты мой брат и мой друг. Ты мое богатство. Ты мое знание. Ты - мое все, Бог богов.<br/><br/>'},
-        {name: 'Asado-má sadagamayo', sansckrit: 'Asado-má sadagamayo<br/>tamaso-má jyotir gamayo<br/>mrtyur-má amrtyor gamayo<br/>avi rávi mayaedhi<br/><br/>' , russian: 'О, Боже, веди меня от временного к вечному!<br/>Все формы временные, только Бог неизменный, Сат, Вечная Истина. Поэтому веди меня от асат, временного, к сат, вечному.<br/>О, Боже, веди меня от темноты к свету!<br/>Темнота - это майя или незнание, которое не дает возможность видеть реальность как она есть. Когда Майя исчезает, индивидуальная душа становится Универсальной душой.<br/>О Боже, веди меня от смерти к жизни!<br/>Смерть просто означает изменение. В этой вселенной все меняется и будет меняться. Поэтому, все живые существа и вещи подвержены смерти. Истинная жизнь - это достичь абсолютного, вечного и неизменного, за пределами смертного царства.<br/><br/>'},
-        {name: 'Oṋḿ bhúr bhuvah svah', sansckrit: 'Oṋḿ bhúr bhuvah svah<br/>oṋḿ tat saviturvareńyaḿ;<br/>bhargo devasya dhiimahi<br/>dhiyo yo nah pracodayát, oṋḿ<br/><br/>' , russian: 'Meaning Baba explained:<br/>We meditate on Dhii Mahii (He) Why meditate on Him? For He can guide our intellect in the path of righteousness. This universe is Saptalokátmaka, has seven layers: Bhuh, bhuvah, svah, mahah, janah, tapah and satya. Its creator is given the name "Savita". Savita means "Progenitor". Some people mistakenly give the name of Savita their daughters. The name of a child should not be Savita. Savita means father (male). We meditate on the venerable divine effulgence of the Creator of the seven lokas. Why we meditate on Him? So He can lead our intellect (buddhi, medha) by the appropriate path. Dhii means intellect, nah mean our, pracodayat \'means guiding the proper way. There should be only one sentence from humans, that his intellect is guided to the right path. If the intellect reform, everything has been achieved. If the intellect goes astray, nothing yet achieved if we got it all. "<br/>Shree Shree Anandamurti - Patna August 24, 1978<br/><br/>'},
-        {name: 'Nityánandaḿ paramasukhadaḿ', sansckrit: 'Nityánandaḿ paramasukhadaḿ, Kevalam jiṋánamúrtim;<br/>vishvátiitaḿ gaganasadrshaḿ, tatvamasyádilakśyaḿ.<br/>Ekam nityam Vimalam acalaḿ, sarvadhisákśiibhútam;<br/>bhávátiitaḿ triguńarahitaḿ, sadguruḿ Tam nama’mi -<br/><br/>' , russian: 'You are the eternal bliss, the Giver of infinite happiness, the only Personified Knowledge. You are beyond the universe, like the sky. You do understand me, "You are That". You are One, Eternal, the purest of the pure, unchangeable. You are the witness of all beings. You are beyond the realm of existence, devoid of the three gunas (creative principles). A Ti, Sadaguru, I offer my greetings<br/><br/>'},
-        {name: 'Нитьям шудхам',
-            src: "mantras/nityam_shudham.wav",
-            sansckrit: 'Nityam shuddhaḿ nirábhásaḿ,<br/>nirákáraḿ nirainjanam;<br/>nityabodhaḿ cidánandaḿ,<br/>gurur Brahama namámyaham.<br/><br/>' , russian: 'вечный чистый непостижимый<br/>бесформенный незапятнанный<br/>всезнающий полный блаженства<br/>гуру – Брахма я приветствую<br/><br/>'},
-        {
-            name: 'Гуру Пуджа',
-            src: "mantras/guru_pudja.wav",
-            sansckrit: 'Akhańd́a mańd́alákáraḿ vyáptaḿ yena carácaraḿ,<br/>tadpadaḿ darshitaḿ yena tasmae shrii gurave namah.<br/>Ajiṋánatimirándhasya jiṋánáiṋjana shalákaya,<br/>cakśurunmilitaḿ yena tasmae shrii gurave namah.<br/>Gurur brahmá, gurur viśńu, gurur devo maheshvara,<br/>gurureva parama brahma, tasmae shrii gurave namah.<br/>—Tava dravyaḿ jagatguro, tubhyameva samarpaye—.<br/>' ,
-            russian: 'Я приветствую того высшего гуру, который пронизывает всю эту движущуюся и неподвижную сферическую вселенную.<br/>Я приветствую того высшего гуру, который рассеивает тьму и открывает глаза знания бальзамом духовности.<br/>Гуру – творец, Гуру – хранитель,<br/>Гуру – разрушитель. Гуру есть поистине высший Брахма.<br/>Я приветствую этого высшего Гуру<br/>О, Гуру Вселенной, все то, что Ты мне дал,<br/>я отдаю обратно Тебе<br/>'},
-        {name: 'Sarvétra sukhinah bhavantu', sansckrit: 'Sarvétra sukhinah bhavantu<br/>sarve santu nirámayáh;<br/>sarve bhadráńi pashyantu<br/>na kashcid duhkhamápnuyát.<br/>ONM Shantih, ONM Shantih, ONM shantih.<br/><br/>' , russian: 'Пусть все будут счастливы. Пусть все будут свободны от физических и ментальных болезней. Пусть все смотрят на положительные стороны вещей. Пускай никому не приходится страдать от проблем, под давлением обстоятельств. Мир, мир, мир.<br/><br/>'},
-        {name: 'Мантра после ванны',
-            src: "mantras/pitri.wav",
-            sansckrit: 'Pitr puruśebhyo namah,<br/>RSI devebhyo namah<br/>Brahmarpanam brahmáhavir,<br/>brahmágnao brahmanánhutam<br/>brahmaeva tena gantavyam,<br/>brahmakarma samādhinā.<br/><br/>' , russian: 'Я приветствую предков<br/>и Божественных Риши (мудрецов, изобретателей).<br/>Процесс приношения - это Брахма, приношение - это Брахма, <br/>огонь жертвования - Брахма, тот кто предлагает приношение - это Брахма,<br/>тот кому предлагают - Брахма.<br/>Выполнив обязанности данные Брахмой, человек сольется с ним.<br/><br/>'},
-        {name: 'Onm madhu vata rtayate', sansckrit: 'Onm madhu vata rtayate madhu ksarantu sindhavah,<br/>madhviirnah santvosadhiih madhu naktamutasaso,<br/>madhumat prathivam rajah, madhu dyaorastu nah pita,<br/>madhumanno banaspatir, madhuman asta suryah,<br/>madhviirgavo bhavantu nah;<br/>oṋḿ madhu, oṋḿ madhu, oṋḿ madhu.<br/><br/>' , russian: 'Пусть дыханье ветра будет благословенно, а океан приносит удачу!<br/>Пусть благословенны будут наши посевы,<br/>а дни и ночи полны сладостного аромата!<br/>Пусть будут благословенны частицы пыли,<br/>пусть наши всходы будут урожайными!<br/>Пусть духовное царство божественных сущностей<br/>и почтенных предков будет к нам благосклонно!<br/>Пусть будут благословенны наши домашние животные, и солнце льет удачу!<br/>Брахма мадху, Брахма мадху, Брахма мадху.<br/><br/>'},
-        {name: 'Saḿgacchadhvaḿ',
-            src: "mantras/samga.wav",
-            sansckrit: 'Saḿgacchadhvaḿ saḿvadadhvaḿ<br/>saḿ vo manáḿsi jánatám,<br/>devábhágaḿ yathápúrve<br/>saḿjánáná upásate.<br/>Samánii va ákútih<br/>samáná hrdayánivah,<br/>samánamastu vo mano<br/>yathá vah susahásati.<br/>' , russian: 'Давайте двигаться вместе, давайте петь вместе, <br/>вместе познаем самих себя.<br/>Давайте наслаждаться этой Вселенной<br/>подобно святым прошлого.<br/>Объединим наши усилия,<br/>пусть наши сердца будут едины.<br/>Когда наши разумы сольются воедино,<br/>мы познаем Единого.<br/>'},
-        {name: 'Satyameva jayate, nánrtam', sansckrit: 'Satyameva jayate, nánrtam<br/><br/>' , russian: 'Только истина восторжествует, а не ложь.<br/><br/>'},
-        {name: 'Parampita Baba kii ... Jaya!', sansckrit: 'Parampita Baba kii ... Jaya!<br/><br/>' , russian: 'Победа высшему отцу!<br/><br/>'},
-    ];
-
-    var sutras_all = [
-        {sansckrit: "1-1. Shivashaktyátmakaḿ Brahma.", russian: "Бра́хма – это единство Ши́вы и Ша́кти"},
-        {sansckrit: "1-2. Shaktih Sá Shivasya Shaktih.",
-            russian: "[Шакти (действующее начало) – это шакти (cила) Шивы.]"},
-        {   sansckrit: "1-3. Tayoh siddhih saiṋcare pratisaiṋcare ca.",
-            russian:   "[Выражение обоих (Шивы и Шакти) происходит в санча́ре и пратисанча́ре.]"},
-        {   sansckrit: "1-4. Paramashivah Puruśottamah vishvasya kendram.",
-            russian:   "[Высшее Сознание, которое находится в Ядре Вселенной называется Пурушо́ттама или Парамашива.]"},
-        {   sansckrit: "1-5. Pravrttimukhii saiṋcarah guńadháráyám.",
-            russian:   "[Санча́ра (в Космическом Цикле) – это процесс  постепенного экстровертного движения под возрастающим сковывающим влиянием гун.] "},
-        {   sansckrit: "1-6. Nivrttimukhii pratisaiṋcarah guńávakśayeńa.",
-            russian:   "[Пратисанча́ра (в Космическом Цикле) – это постепенное интровертное движение под уменьшающимся влиянием гун.] "},
-        {   sansckrit: "1-7. Drk Puruśah darshanaḿ Shaktishca.",
-            russian:   "[Пуру́ша является свидетелем, а Пракри́ти – действием свидетельствования ( и тем что свидетельствуется).] "},
-        {   sansckrit: "1-8. Guńabandhanena guńábhivyaktih.",
-            russian:   "[По мере того как усиливается сковывающее влияние гун, они полностью проявляют себя через возникновение фундаментальных факторов.]"},
-        {   sansckrit: "1-9. Guńádhikye jad́asphot́ah bhútasámyábhávát.",
-            russian:   "[В результате чрезмерного давления гун утрачивается должный баланс между пятью фундаментальными факторами (бхута), и происходит взрыв твердого фактора (джадаспотах).] "},
-        {   sansckrit: "1-10. Guńaprabhávena bhútasaungharśádbalam.",
-            russian:   "[Под влиянием гун пять фундаментальных факторов приходят в столкновение, и возникает ба́ла, или энергия.]"},
-        {   sansckrit: "1-11. Dehakendrikáńi parińámabhútáńi baláni práńáh.",
-            russian:   "[Результирующая внутренненаправленная сила, формирующая ядро в физической структуре и сохраняющая ее целостность, называется пра́нах, или жизненная энергия.]"},
-        {   sansckrit: "1-12. Tiivrasaungharśeńa cúrńiibhútáni jad́áni cittáńu mánasadhátuh vá.",
-            russian:   "[Интенсивные столкновения становятся причиной измельчения некоторой части грубого фактора и возникновения частиц эктоплазмы, или вещества разума.]"},
-        {   sansckrit: "1-13. Vyaśt́idehe cittáńusamaváyena cittabodhah.",
-            russian:   "[Благодаря объединению частиц эктоплазмы в индивидуальной структуре возникает чувство чи́тты, или объективности.]"},
-        {   sansckrit: "1-14. Cittát guńávakśaye rajoguńaprábalye aham.",
-            russian:   "[В результате уменьшения воздействия сковывающих начал и преобладания динамичной силы из чи́тты возникает аха́м, или эго.]"},
-        {   sansckrit: "1-15. Súkśmábhimukhinii gatirudaye ahaḿtattvánmahat.",
-            russian:   "[В процессе дальнейшего утончения из ахамта́ттвы развивается маха́т.]"},
-        {   sansckrit: "1-16. Cittádahaḿprábalye buddhih.",
-            russian:   "[Когда аха́м начинает преобладать над чи́ттой, развивается интеллект.]"},
-        {   sansckrit: "1-17. Ahaḿtattvát mahadprábalye bodhih.",
-            russian:   "[Когда маха́т начинает доминировать над аха́мом, развивается интуиция.]"},
-        {   sansckrit: "1-18. Mahadahaḿvarjite anagrasare jiivadehe latágulme kevalaḿ cittam.",
-            russian:   "[В некоторых неразвитых живых существах (например, деревьях и пресмыкающихся) может быть выражена только чи́тта, а маха́т и аха́м оставаться не проявленными.]"},
-        {   sansckrit: "1-19. Mahadvarjite anagrasare jiivadehe latágulme cittayuktáham.",
-            russian:   "[В некоторых неразвитых живых существах (например, деревьях и пресмыкающихся) могут быть выражены аха́м и чи́тта, а маха́т оставаться не проявленным.]"},
-        {   sansckrit: "1-20. Prágrasare jiive latágulme mánuśe mahadahaḿcittáni.",
-            russian:   "[В сравнительно развитых живых существах (например, деревьях и пресмыкающихся), как и в человеке, проявлены маха́т, аха́м и чи́тта.]"},
-        {   sansckrit: "1-21. Bhúmávyápte Mahati ahaḿ cittayorprańáshe saguńásthitih savikalpasamádhih vá.",
-            russian:   "[Когда в процессе расширения единичного сознания аха́м и чи́тта преобразуются в космический Маха́т, это слияние называется савика́льпа самáдхи – состояние условного растворения, растворения в обусловленном состоянии.]"},
-        {   sansckrit: "1-22. Átmani mahadprańáshe nirguńásthitih nirvikalpasamádhih vá.",
-            russian:   "[Когда маха́т преобразуется в А́тман, он выходит из-под сковывающего влияния гун и погружается в состояние, называемое нирвика́льпа сама́дхи, состояние безусловной погруженности, полное растворение разума]\n"},
-        {   sansckrit: "1-23. Tasyasthitih amánasikeśu.",
-            russian:   "[Это состояние (нирвика́льпа сама́дхи) вне воспринимающей способности разума.]"},
-        {   sansckrit: "1-24. Abhávottaránandapratyayálambaniirvrttih tasya pramáńam.",
-            russian:   "[Блаженство, следующее за пустотой, является доказательством этого состояния, причиной твердой веры в существование этого состояния.]"},
-        {   sansckrit: "1-25. Bhávah bhávátiitayoh setuh Tárakabrahma.",
-            russian:   "[Мост между Ниргу́на и Сагу́на Бра́хмой называется Та́рака Бра́хма, или освобождающий Бра́хма.]"}
-    ];
-
-
-    var shils_all = [
-        {russian: "1. Прощение. "},
-        {russian: "2. Великодушие. "},
-        {russian: "3. Постоянная сдержанность в эмоциях и поведении. "},
-        {russian: "4. Готовность пожертвовать всем в жизни ради идеологии. "},
-        {russian: "5. Самоконтроль во всем. "},
-        {russian: "6. Доброжелательность и улыбчивость. "},
-        {russian: "7. Нравственная твердость. "},
-        {russian: "8. Подайте пример собственным поведением, прежде чем спрашивать с других. "},
-        {russian: "9. Воздерживайтесь от критики, осуждения, клеветы и оскорблений, а также избегайте всех форм группизма . "},
-        {russian: "10. Строгое соблюдение принципов джа́мы и ния́мы. "},
-        {russian: "11. Если ошибка совершена по небрежности или неосознанно, следует немедленно признать ее и просить о наказании. "},
-        {russian: "12. Даже общаясь с враждебно настроенным человеком, не будьте надменными и не поддавайтесь ненависти и гневу. "},
-        {russian: "13. Воздержание от пустой болтовни. "},
-        {russian: "14. Подчинение кодексу дисциплины организационной структуры. "},
-        {russian: "15. Чувство ответственности."}
-    ];
-
-    var socials_all = [
-        {russian: "1.	Вы должны благодарить того, кто оказывает вам служение (говоря «спасибо» или «благодарю»)."},
-        {russian: "2.	Вы должны немедленно отвечать на чей-либо Намаскар тем же."},
-        {russian: "3.	Следует принимать или предлагать что-либо со следующей мудрой: вытяните правую руку, касаясь левой рукой правого локтя."},
-        {russian: "4.	Следует встать, если к вам подходит почтенный/пожилой человек."},
-        {russian: "5.	Когда зеваете, прикройте рот и одновременно с этим щелкните пальцами."},
-        {russian: "6.	Во время разговора всегда уважительно отзывайтесь об отсутствующих."},
-        {russian: "7.	Чихая, прикройте рот носовым платком или рукой."},
-        {russian: "8.	Почистив нос, вымойте руки. Если при раздаче пищи вы зевнули или чихнули, немедленно помойте руки."},
-        {russian: "9.	После дефекации и последующего использования воды вымойте руки с мылом, намылив мылом вначале правую руку, а затем правой рукой – левую."},
-        {russian: "10.	Перед тем как подойти к людям занятых разговором, спросите их разрешение."},
-        {russian: "11.	Вы не должны вести конфиденциальных разговоров (касающихся организации) в поезде, автобусе или любом другом общественном транспорте."},
-        {russian: "12.	Не берите без разрешения чужие вещи."},
-        {russian: "13.	Не пользуйтесь ничем, что принадлежит другому."},
-        {russian: "14.	Разговаривая, не используйте резких и колких слов. Выразите то, что хотите сказать косвенно."},
-        {russian: "15.	Не позволяйте себе критиковать чужие ошибки и недостатки."},
-        {russian: "16.	Собираясь встретиться с официальным лицом, договоритесь заранее: пошлите визитную карточку или получите устное согласие."},
-        {russian: "17.	Следует воздерживаться от чтения чужих личных писем."},
-        {russian: "18.	Во время беседы следите за тем, чтобы другие тоже имели возможность высказать свою точку зрения."},
-        {russian: "19.	Слушая кого-либо, время от времени голосом подтверждайте, что слушаете внимательно."},
-        {russian: "20.	Говоря с человеком, не отводите глаз и не отворачивайте лицо в сторону."},
-        {russian: "21.	Не сидите в позе «Заминдари»  и не пританцовывайте по-дурацки ногами."},
-        {russian: "22.	Если тот, с кем вы собираетесь поговорить, в это время пишет, не смотрите в написанную им или ей бумагу"},
-        {russian: "23.	Никогда не берите пальцы в рот, и не откусывайте ногти зубами."},
-        {russian: "24.	Если во время разговора вы чего-то не поняли, скромно скажите: «Извините меня, пожалуйста»."},
-        {russian: "25.	Когда кто-либо справляется о вашем здоровье и ваших делах, следует сердечно поблагодарить его или ее."},
-        {russian: "26.	Здоровайтесь «Доброе утро», «Добрый вечер» или «Доброй ночи» согласно времени суток."},
-        {russian: "27.	Вы не должны посещать чужой дом или звонить кому-либо после 9 часов вечера."},
-        {russian: "28.	Если вы должны сообщить человеку что-то неприятное, вначале скажите «извините меня», и уже затем начинайте говорить."},
-        {russian: "29.	Перед приемом пищи вымойте руки и ноги."},
-        {russian: "30.	Если вы хотите меда, ешьте его с жидкостью (вода, чай и пр.)."},
-        {russian: "31.	Не говорите, стоя перед человеком, принимающим пищу."},
-        {russian: "32.	Не чихайте и не кашляйте, находясь за обеденным столом."},
-        {russian: "33.	Не предлагайте другому человеку тарелку с пищей левой рукой."},
-        {russian: "34.	Не мойтесь и не пейте воду в положении стоя."},
-        {russian: "35.	Мочеиспускание и дефекация не должны производиться стоя."},
-        {russian: "36.	Когда активна ваша левая ноздря (ида нади), следует принимать жидкую пищу, а когда активна правая (пиунгала), то твердую."},
-        {russian: "37.	Когда работает преимущественно ида нади, следует использовать это время для садханы."},
-        {russian: "38.	Предлагая стакан с водой, следует держаться только за его нижнюю часть."},
-        {russian: "39.	Когда вы готовите кому-либо питье, вначале вымойте стакан, а затем наполните его водой. "},
-        {russian: "40.	Если во время принятия пищи вы сильно вспотели, вытрите пот носовым платком."}
-    ];
-
-    var enemies_all = [
-        {russian: "Враг 1. Влечение к удовольствию, получаемому от объектов материального мира (káma - кама)"},
-        {russian: "Враг 2. Гнев (krodha - кродха)"},
-        {russian: "Враг 3. Жадность (lobha - лобха)"},
-        {russian: "Враг 4. Слепая привязанность (moha - моха)"},
-        {russian: "Враг 5. Гордыня, честолюбие (mada - мада)"},
-        {russian: "Враг 6. Зависть (mátsarya - матсарья)"},
-        {russian: "Окова 1. GHRNA’ - гхрина (ненависть)"},
-        {russian: "Окова 2. SHAUNKA’ - шанка (сомнение)"},
-        {russian: "Окова 3. BHAYA - бхая (страх)"},
-        {russian: "Окова 4. LAJJA’ - ладжжа (стеснительность)"},
-        {russian: "Окова 5. JUGUPSA’ - джугупса (лицемерие)"},
-        {russian: "Окова 6. KULA’ - кула (гордость происхождением)"},
-        {russian: "Окова 7. SHIILA - шила (комплекс культурного превосходства)"},
-        {russian: "Окова 8. MA’NA - мана (самовлюбленность)"}
-    ];
-
-    function ifLogin()  {
-        checkOS();
 
         if (typeof cookie_token !== 'undefined' && cookie_token !== 'undefined') {
             start();
         } else {
+            getWords("login");
             $('#page_load').hide();
             $("#page_login").show();
+
         }
     }
-    ifLogin();
-    function login_user(phone, pass){
-        var token_web = $.base64.encode(phone + ":" + pass);
+    function getWords(kind){
+        var userLang = navigator.language || navigator.userLanguage;
+        var lang = userLang.split("-");
+        console.log("lang " + lang);
 
         $.ajax({
             type: "GET",
-            url: api_url + "token",
+            url: api_url + "get_words",
+            data: {kind: kind,
+            lang: lang[0]
+            },
             headers: {
-                'Authorization': 'Basic ' + token_web,
+                'Authorization': 'Token token=' + cookie_token,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             success: function (data) {
-                // console.log("try get token");
-                //  console.log(JSON.stringify(data));
-                if (data.token.length == 32) {
-                    //console.log("success get token");
-                    setCookie(cookie_name_token, data.token, {expires: 36000000000000});
-                    setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
-                    cookie_token = getCookie(cookie_name_token);
-                    ifLogin();}
-                else {
-                    //   console.log("fail get token");
-                }},
+                $('#text_login_login').text(data.words.login);
+                $('#text_login_pass') .text(data.words.password);
+                $('#btn_login')       .text(data.words.log_in);
+                $('.login_text_1')    .text(data.words.login_text_1);
+                $('.login_text_2')    .text(data.words.login_text_2);
+            },
             failure: function (errMsg) {
                 //    console.log(errMsg.toString());
-            }});
-    }
-    $.ajaxSetup({
-        error: function (data, textStatus, jqXHR) {
-            console.log(data);
-
-            if (data.status == 401) {
-                console.log("Error 401");
-                $('#page_login').show();
-                $("#page_user_main") .hide();
-                $('#page_admin_main').hide();
-                //  console.log(data.responseText.includes("Incorrect credentials"));
-
-                if (data.responseText.includes("Incorrect credentials")) {
-                    alert("Неправильные данные");
-                }
-                if (data.responseText.includes("Bad Token")) {
-                    cookie_token = getCookie(cookie_name_token);
-                }
             }
-
-            if (data.status == 500) {
-                console.log("Error 500 ");
-            }
-        }
-    });
-    if (!navigator.cookieEnabled) {
-        alert('Включите cookie для комфортной работы');
+        });
     }
 
     $('#btn_login').click(function () {
@@ -423,62 +66,17 @@ $( document ).ready(function() {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 success: function (data) {
-                    // console.log("try get token");
+                    console.log("try get token");
                     console.log(JSON.stringify(data));
 
                     if (data.token.length == 32) {
                         //console.log("success get token");
-                        setCookie(cookie_name_token, data.token, {expires: 36000000000000});
-                        setCookie(cookie_name_id,    data.user_id, {expires: 36000000000000});
+                        setCookie(cookie_name_token, data.token,   3600);
+                        setCookie(cookie_name_id,    data.user_id, 3600);
                         cookie_token = getCookie(cookie_name_token);
                         ifLogin();
                     } else {
-                        //   console.log("fail get token");
-                    }
-                },
-                failure: function (errMsg) {
-                    //    console.log(errMsg.toString());
-                }
-            });
-        }
-        catch (err) {
-            //  console.log(err);
-        }
-
-    });
-
-    $('#btn_register_self').click(function () {
-        var token_web = $.base64.encode($('#margii_reg_email').val() + ":" + $('#margii_reg_pass').val());
-        //  console.log(token_web);
-
-
-        if ($('#margii_reg_name').val() == "" || $('#margii_reg_email').val() == "" || $('#margii_reg_pass').val() == "" ) {
-            alert("Заполните все поля");
-            return;
-        }
-        try {
-            $.ajax({
-                type: "POST",
-                url: api_url + "margii_create",
-                data: {
-                    name:  $('#margii_reg_name').val(),
-                    email: $('#margii_reg_email').val(),
-                    password:  $('#margii_reg_pass').val(),
-                },
-                headers: {
-                    'Authorization': 'Basic ' + token_web,
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                success: function (data) {
-                    // console.log("try get token");
-                    console.log(JSON.stringify(data));
-                    if (data.error === 0) {
-                        setCookie(cookie_name_token, data.user.auth_token, {expires: 36000000000000});
-                        setCookie(cookie_name_id,    data.user.id,         {expires: 36000000000000});
-                        cookie_token = getCookie(cookie_name_token);
-                        ifLogin();
-                    } else {
-                        alert("Не создано. Такой пользователь уже существует");
+                        console.log("Проверьте логин и пароль");
                     }
                 },
                 failure: function (errMsg) {
@@ -494,49 +92,439 @@ $( document ).ready(function() {
 
 
     function start(){
+        console.log("start");
+
         $.ajax({
             type: "GET",
-            url: api_url + "margii_base_info",
+            url: api_url + "get_start_info",
             headers: {
                 'Authorization': 'Token token=' + cookie_token,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
+            data: {
+                hour_tail: -1 * (new Date().getTimezoneOffset() / 60)
+            },
             success: function (data) {
                 // console.log("try get token");
-                console.log(JSON.stringify(data));
-                $('#modal_register_self').modal('hide');
+                //console.log(JSON.stringify(data));
+                $('#page_load').hide();
+                $('#page_login').hide();
+                $('#page_main').show();
+                setWords(data.words);
+                setFasting(data.fasting);
 
 
-                if (data.margii){
-                    $('#page_load').hide();
-                    $('#page_login').hide();
-                    $('#page_main').show();
-                    setHistory(data.margiis_days);
+                if (data.in_flow){
+                    $('#btn_flow_about').hide();
+                    $('#flow_about')    .hide();
+                    $('#flow_info')     .show();
+                    $('.text_flow_detail').show().empty().append(data.words.text_flow_detail + data.flow_size + '<button value="chat" type="button" class="main_nav btn btn-default btn-xs"> <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button>\n');
+
+                    svadhyaya_day   = data.svadhyayas.day;
+                    svadhyaya_night = data.svadhyayas.night;
+
+                    var link = "https://margiis-assistant.am/audio/prabhat_samgiits/" + data.flow.samgiit_num + "/";
+
+
+                    $('#audio_panchadjanya_samgiit').attr("src", link + "samgiit.mp3");
+                    $('#text_samgiit').attr("src", link + "text_" + data.margii.lang + ".png");
+                    $('#audio_panchadjanya_kiirtan').attr("src", link + "kiirtan.mp3");
+                    $('#audio_ak_small').attr("src", link + "ak_small.mp3");
+                    $('#audio_ak_big')  .attr("src", link + "ak_big.mp3");
+
+                    $('.learn_base_ru').text(data.flow.learn_base_ru);
+                    $('.learn_pro_ru') .text(data.flow.learn_pro_ru);
+
+
+                    if (data.flow_next !== 0) {
+                        link = "https://margiis-assistant.am/audio/prabhat_samgiits/" + data.flow_next.samgiit_num + "/";
+                        $('#div_panchadjanya_next').show();
+                        $('#audio_panchadjanya_samgiit_next').attr("src", link + "samgiit.mp3");
+                        $('#text_samgiit_next').attr("src", link + "text_" + data.margii.lang + ".png");
+                    }
+
+
 
                 } else {
-                    alert("Это только для маргов");
+                    $('#btn_flow_about').show();
+                    $('#flow_about')    .hide();
+                    $('#flow_info')     .hide();
                 }
+
+                if (data.margii.training){
+                    $('.main_nav[value="ananda_sutras"]').show();
+                    $('.main_nav[value="mantras"]')      .show();
+                    $('.learn_pro_ru')          .show();
+                }
+
+                if (data.margii.status === "secretary"){
+                    $('.main_nav[value="secretary"]').show();
+                }
+
+
+
+
+
+                //$('#modal_register_self').modal('hide');
+                //
+                //var today = new Date();
+                //var dd = parseInt(String(today.getDate()).padStart(2, '0'));
+//
+                //if (dd === 7) {
+                //    $('#btn_fasting').text("Завтра экадаши. Инструкция");
+//
+                //} else if (dd == 8) {
+                //    $('#btn_fasting').text("Сегодня экадаши. Инструкция");
+//
+                //} else if (dd == 9 && today.getHours() < 10) {
+                //    $('#btn_fasting').text("Выход из экадаши. Инструкция");
+                //} else {
+                //    $('#btn_fasting').hide();
+                //}
+//
+//
+                //setSvadhyaya();
+//
+                //if (data.margii){
+                //    $('#page_load').hide();
+                //    $('#page_login').hide();
+                //    $('#page_main').show();
+                //    setHistory(data.margiis_days);
+//
+                //    if (data.in_flow){
+                //        $('#btn_flow_about').hide();
+                //        $('#flow_about')    .hide();
+                //        $('#flow_info')    .show();
+                //        $('#flow_header')    .empty().append("Мировой Марговский Поток<br/>Маргов в потоке: " + data.flow_size + '                    <button value="chat" type="button" class="main_nav btn btn-default btn-xs"> <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button>\n');
+//
+                //    } else {
+                //        $('#btn_flow_about').show();
+                //        $('#flow_about')    .hide();
+                //        $('#flow_info')     .hide();
+                //    }
+//
+                //} else {
+                //    alert("Упс. Ошибка. Напишите в телеграмм @aashesh");
+                //}
+//
+//
+//
+//
+                //user_status = data.user.status;
+                //if (training_plus.includes(user_status)){
+                //    $('.main_nav[value="ananda_sutras"]').show();
+                //    $('.main_nav[value="mantras"]').show();
+                //    $('.learning_for_training').show();
+                //}
+                //if (secretary.includes(user_status)){
+                //    $('.main_nav[value="secretary"]').show();
+                //}
+
             },
             failure: function (errMsg) {
                 //    console.log(errMsg.toString());
             }
         });
+    }
 
+    function setFasting(fasting){
+        console.log("fasting" , fasting);
+        var days_to_fasting = [0,1,3];
+        if (days_to_fasting.includes(fasting.days_to_fasting)){
+            $('#btn_fasting').show().text(fasting.btn_fasting_text);
+        }
+    }
+
+    var flow_success;
+    function setWords(words){
+        flow_success = words.flow_success;
+
+        $('.nav_to_main')             .text(words.nav_to_main);
+        $('.text_flow_header')        .text(words.text_flow_header);
+        $('.btn_flow_join')           .text(words.btn_flow_join);
+        $('.text_flow_about')         .text(words.text_flow_about);
+        $('#btn_flow_panchadjanya')   .text(words.btn_panchadjanya);
+        $('.text_panchajanya_kiirtan').text(words.text_panchajanya_kiirtan);
+        $('.btn_svadhyaya_day')       .text(words.btn_svadhyaya_day);
+        $('.btn_svadhyaya_night')     .text(words.btn_svadhyaya_night);
+        $('#btn_flow_avarta')         .text(words.btn_flow_avarta);
+        $('.text_flow_avarta_small')  .text(words.text_flow_avarta_small);
+        $('.text_flow_avarta_big')    .text(words.text_flow_avarta_big);
+
+        $('.svadhyaya_label')        .text(words.svadhyaya_label);
+        $('.svadhyaya_read_realized').text(words.svadhyaya_read_realized);
+
+        $('.text_learning_title').text(words.text_learning_title);
+        $('.btn_margiis_diary').text(words.btn_margiis_diary);
+
+        $('.app_name').text(words.app_name);
+        $('.oath_to_baba') .text(words.oath_to_baba);
+        $('.sadhaka_rules').text(words.sadhaka_rules);
+        $('.points_16')    .text(words.points_16);
+        $('.points_10')    .text(words.points_10);
+        $('.djama')        .text(words.djama);
+        $('.niyama')       .text(words.niyama);
+        $('.points_15')    .text(words.points_15);
+        $('.points_40')    .text(words.points_40);
+        $('.prabhat_samgiits')    .text(words.prabhat_samgiits);
+        $('.kiirtans')    .text(words.kiirtans);
+        $('.kaoshikiis')    .text(words.kaoshikiis);
+        $('.mantras')    .text(words.mantras);
+        $('.ananda_sutras')    .text(words.ananda_sutras);
+        $('.library')    .text(words.library);
+        $('.supreme_command')    .text(words.supreme_command);
+        $('.asanas')    .text(words.asanas);
+
+        $('.structure')     .text(words.structure);
+        $('.vritti')        .text(words.vritti);
+        $('.enemies_chains').text(words.enemies_chains);
+        $('.enemies')       .text(words.enemies);
+        $('.chains')        .text(words.chains);
+        $('.dharma_pattern')   .text(words.dharma_pattern);
+        $('.calendar_fasting') .text(words.calendar_fasting);
+        $('.calendar_holidays').text(words.calendar_holidays);
+        $('.dictionary_names') .text(words.dictionary_names);
+        $('.recipes')  .text(words.recipes);
+        $('.secretary').text(words.secretary);
+
+        $('.fasting_instruction_header').text(words.fasting_instruction_header);
+        $('.fasting_instruction_value').empty().append(words.fasting_instruction_value);
 
     }
 
-    //start();
+    $('#btn_flow_about').click(function () {
+        $('#btn_flow_about').hide();
+        $('#flow_about').show();
+    });
+
+    $('#btn_flow_join') .click(function () {
+        $('#btn_flow_about').hide();
+        $('#flow_about').show();
+    });
+
+
+    $('#btn_flow_join').click(function() {
+        $.ajax({
+            type: "POST",
+            url: api_url + "join_to_flow",
+            headers: {
+                'Authorization': 'Token token=' + cookie_token,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            success: function (data) {
+                alert(flow_success);
+
+                var win = window.open('https://t.me/joinchat/Eu4zOxacBg04DrVfC3ZbpQ', '_blank');
+                win.focus();
+
+                window.location.reload();
+
+            },
+            failure: function (errMsg) {
+                //    console.log(errMsg.toString());
+            }
+        });
+    });
+
+    var test_questions = [];
+    $('#btn_test').click(function() {
+        test_questions = [
+            {question: "Помнишь первый принцип Джамы?",    answer: "Первый принцип Джамы: Ахимса"},
+            {question: "Помнишь второй принцип Джамы?",    answer: "Второй принцип Джамы: Сатья"},
+            {question: "Помнишь третий принцип Джамы?",    answer: "Третий принцип Джамы: Астея"},
+            {question: "Помнишь четвертый принцип Джамы?", answer: "Четвертый принцип Джамы: Брахмачарья"},
+            {question: "Помнишь пятый принцип Джамы?",     answer: "Пятый принцип Джамы: Апариграха"},
+
+            {question: "Помнишь первый принцип Ниямы?",    answer: "Первый принцип Ниямы: Шауча"},
+            {question: "Помнишь второй принцип Ниямы?",    answer: "Второй принцип Ниямы: Сантоша"},
+            {question: "Помнишь третий принцип Ниямы?",    answer: "Третий принцип Ниямы: Тапах"},
+            {question: "Помнишь четвертый принцип Ниямы?", answer: "Четвертый принцип Ниямы: Свадхьяя"},
+            {question: "Помнишь пятый принцип Ниямы?",     answer: "Пятый принцип Ниямы: Ишвара Пранидхана"},
+
+            {question: "Помнишь что означает Ахимса?",     answer: "Ахимса: " + djama_niyama_all[0].russian_desc},
+            {question: "Помнишь что означает Сатья?",     answer: "Сатья: " + djama_niyama_all[1].russian_desc},
+            {question: "Помнишь что означает Астея?",     answer: "Астея: " + djama_niyama_all[2].russian_desc},
+            {question: "Помнишь что означает Брахмачарья?",     answer: "Брахмачарья: " + djama_niyama_all[3].russian_desc},
+            {question: "Помнишь что означает Апариграха?",     answer: "Апариграха: " + djama_niyama_all[4].russian_desc},
+            {question: "Помнишь что означает Шауча?",     answer: "Шауча: " + djama_niyama_all[5].russian_desc},
+            {question: "Помнишь что означает Сантоша?",     answer: "Сантоша: " + djama_niyama_all[6].russian_desc},
+            {question: "Помнишь что означает Тапах?",     answer: "Тапах: " + djama_niyama_all[7].russian_desc},
+            {question: "Помнишь что означает Свадхьяя?",     answer: "Свадхьяя: " + djama_niyama_all[8].russian_desc},
+            {question: "Помнишь что означает Ишвара пранидхана?",     answer: "Ишвара пранидхана: " + djama_niyama_all[9].russian_desc},
+        ];
+
+        $('#flow_div').hide();
+        $('#first_screen').hide();
+
+        $('#page_test').show();
+        $('#page_test_go').show();
+
+        random_shuffle = shuffle(Array.from({length: test_questions.length}, (v, k) => k));
+        setTestQuestion();
+    });
+    function setTestQuestion(){
+        $('#btn_test_next').hide();
+        $('#btn_test_no')  .show();
+        $('#btn_test_yes') .show();
+
+        var question_num = random_shuffle[answers_count] ;
+
+        $('#test_question').empty().show().text(test_questions[question_num].question);
+        $('#test_answer')  .empty().hide().text(test_questions[question_num].answer);
+    }
+    $(document).on('click', '.nav_test',  function () {
+
+        switch ($(this).val()) {
+            case "next":
+                if (answers_count  === test_questions.length ){
+                    showTestResults();
+                }
+                setTestQuestion();
+                break;
+            case "yes":
+                answers_count += 1;
+                answers_correct += 1;
+
+                $('#test_answer').show();
+                $('#btn_test_next').show();
+                $('#btn_test_no')  .hide();
+                $('#btn_test_yes') .hide();
+
+
+                break;
+            case "no":
+                var current = test_questions[random_shuffle[answers_count]];
+                answers_uncorrect.push(random_shuffle[answers_count]);
+                answers_count += 1;
+
+                $('#test_answer').show();
+                $('#btn_test_next').show();
+                $('#btn_test_no')  .hide();
+                $('#btn_test_yes') .hide();
+                break;
+        }
+    });
+    function showTestResults(){
+        $('#page_test_go').hide();
+        $('#page_test_results').show();
+        $('#test_results')  .text("Результат " + answers_correct + "/" + answers_count);
+
+        if (answers_uncorrect.length > 0){
+            var row = '<table class="table table-hover table-bordered table-condensed" >';
+            $.each(answers_uncorrect, function (i, item) {
+                row += '<tr>';
+                row += '<td>' + test_questions[item].answer    + '</td>';
+                row += '</tr>';
+            });
+            row += '</tbody></table>';
+            $('#div_test_uncorrect').show();
+            $('#table_test_uncorrect').empty().append(row);
+        } else {
+            var audio_url = "https://margiis-assistant.am/audio/veeery_good.mp3";
+            $('#background_pronounce').attr("src", audio_url);
+            var audio = document.getElementById("background_pronounce_main");
+            audio.load();
+        }
+
+        answers_count   = 0;
+        answers_correct = 0;
+    }
+
+
+
+
+    $('#btn_secretary_access').click(function() {
+        var name     = $('#create_margii_name')    .val();
+        var unit     = $('#create_margii_unit')    .val();
+        var email    = $('#create_margii_email')   .val();
+        var password = $('#create_margii_password').val();
+
+        if (name === "" || unit === "" || email === "" || password === "" ){
+            alert("Сначала заполните все поля");
+        } else {
+            var status = $('#create_margii_training').is(":checked") ? "margii_training" : "margii";
+
+            $.ajax({
+                type: "POST",
+                url: api_url + "margii_create",
+                data: {
+                    name:     name,
+                    unit:     unit,
+                    email:    email,
+                    password: password,
+                    status: status
+                },
+                headers: {
+                    'Authorization': 'Token token=' + cookie_token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function (data) {
+                    $('#create_margii_name')    .val("");
+                    $('#create_margii_unit')    .val("");
+                    $('#create_margii_email')   .val("");
+                    $('#create_margii_password').val("");
+
+                    var text_info = "Логин: " + email + "\nПароль: " + password + "\nАдрес сервиса: margiis-assistant.am";
+                    copyToClipboard(text_info);
+
+                    alert("Информация о доступе скопирована в буфер обмена. Можете вставить ее в любом месте и отправить");
+
+                    var pass = Math.floor(Math.random() * 10000) + 1;
+                    while (pass < 1000 && pass > 10000) {
+                        pass = Math.floor(Math.random() * 10000) + 1;
+                    }
+                    $('#create_margii_password').val(pass);
+                },
+                failure: function (errMsg) {
+                    //    console.log(errMsg.toString());
+                }
+            });
+        }
+
+    });
+
+
+    function setSvadhyaya(){
+        $.each(svadhyaya_all, function (i, item) {
+
+            var date_source = item.date.split(".");
+            var date = new Date();
+
+            if (parseInt(date_source[0]) === date.getDate() && parseInt(date_source[1]) === date.getMonth() + 1 && parseInt(date_source[2]) === date.getFullYear() ){
+                console.log(item);
+                svadhyaya_1 = item.svadhyaya_1;
+                svadhyaya_2 = item.svadhyaya_2;
+                return false;
+            }
+
+        });
+    }
 
 
     $(document).on('click', '.main_nav',  function () {
+
+        var links = ["donation", "library", "kirtans", "fasting", "chat"];
+        if (!links.includes($(this).val())) {
+            $('#flow_div').hide();
+        }
+
+
         switch ($(this).val()) {
+            case "chat":
+                var win = window.open('https://t.me/joinchat/Eu4zOxacBg04DrVfC3ZbpQ', '_blank');
+                win.focus();
+                break;
             case "link":
                 var win = window.open('https://docs.google.com/document/d/1lnHcnZJi7RT6ny5GVo67HNkq0e4sUdVFFrm-v-atA5s/edit?usp=sharing', '_blank');
                 win.focus();
                 break;
-            case "duties":
+            case "oath":
                 $('#first_screen').hide();
-                $('#page_duties').show();
+                $('#page_oath').show();
+                break;
+            case "rules":
+                $('#first_screen').hide();
+                $('#page_rules').show();
                 break;
             case "50vriti":
                 $('#first_screen').hide();
@@ -638,15 +626,17 @@ $( document ).ready(function() {
                 $.each(mantras_all, function (i, item) {
                     if (i === 0 || i === 10 || i === 11 || i === 13 || i === 15  ){
                         row += '<div class="mantra_row diary_body" style="background-color: rgba(232,111,8,0.5)" data-mantra-num="' + i + '">';
-
+                        row += item.name ;
+                        row += '</div>';
                     } else {
-                        row += '<div class="mantra_row diary_body" data-mantra-num="' + i + '">';
-
+                        if (training_plus.includes(user_status)){
+                            row += '<div class="mantra_row diary_body" data-mantra-num="' + i + '">';
+                            row += item.name ;
+                            row += '</div>';
+                        }
                     }
 
-                    row += item.name ;
 
-                    row += '</div>';
                 });
                 row += '</tbody></table>';
                 $('#mantras_table').empty().append(row);
@@ -654,7 +644,7 @@ $( document ).ready(function() {
 
                 break;
 
-            case "samgits":
+            case "samgiits":
                 $('#first_screen').hide();
 
 
@@ -671,6 +661,20 @@ $( document ).ready(function() {
                 row += '</tbody></table>';
                 $('#samgits_table').empty().append(row);
                 $('#page_samgits').show();
+
+                break;
+            case "kaoshiki":
+                $('#first_screen').hide();
+
+                var row = "";
+                $.each(kaoshikis_all, function (i, item) {
+                    row += '<div class="kaoshiki_row diary_body" data-kaoshiki-link="' + item.link + '">';
+                    row += item.name;
+                    row += '</div>';
+                });
+                row += '</tbody></table>';
+                $('#kaoshikis_table').empty().append(row);
+                $('#page_kaoshikis').show();
 
                 break;
             case "donation":
@@ -708,8 +712,148 @@ $( document ).ready(function() {
                 });
                 row += '</tbody></table>';
                 $('#enemies_table').empty().append(row);
+
+
+                var row = "";
+                $.each(chains_all, function (i, item) {
+                    row += '<div class="diary_body">';
+                    row += item.russian;
+
+                    row += '</div>';
+                });
+                row += '</tbody></table>';
+                $('#chains_table').empty().append(row);
+
+
                 $('#page_enemies').show();
                 break;
+
+            case "recipes":
+                $('#first_screen').hide();
+
+                var row = "";
+                $.each(recipes_all, function (i, item) {
+                    row += '<div class="diary_body recipe" data-link="' + item.link + '">';
+                    row += item.name;
+
+                    row += '</div>';
+                });
+                row += '</tbody></table>';
+                $('#recipes_table').empty().append(row);
+                $('#page_recipes').show();
+                break;
+            case "fasting":
+                var win = window.open('http://www.skillcase.com/fasting/', '_blank');
+                win.focus();
+                break;
+            case "kirtans":
+                alert("\"We must support our artists\" - Sri Sri Anandamurti");
+                var win = window.open('http://www.innersong.com/products/index.htm', '_blank');
+                win.focus();
+                break;
+            case "library":
+                var win = window.open('http://elib.amps.org/', '_blank');
+                win.focus();
+                break;
+            case "secretary":
+                $('#first_screen').hide();
+                $('#page_secretary').show();
+
+                var pass = Math.floor(Math.random() * 10000) + 1;
+                while (pass < 1000 && pass > 10000) {
+                    pass = Math.floor(Math.random() * 10000) + 1;
+                }
+
+                //  console.log("pass " + pass);
+                $('#create_margii_password').val(pass);
+                break;
+        }
+    });
+    $(document).on('click', '.day_svadhyaya',  function () {
+        var text = "";
+        if ($(this).attr("data-type") === "1") {
+            text = svadhyaya_day;
+        } else {
+            text = svadhyaya_night;
+        }
+        $('#svadhyaya_text') .empty().append(text);
+        $('#modal_svadhyaya').modal('show');
+
+    });
+    $('#btn_flow_panchadjanya').click(function(){
+        $('#div_flow_avarta').hide();
+
+        if ($("#div_flow_panchadjanya").is(":visible")) {
+            $('#div_flow_panchadjanya').hide();
+        } else {
+            $('#div_flow_panchadjanya').show();
+        }
+    });
+    let panchadjanyaTimerId;
+    $('#btn_panchadjanya_timer_start').click(function(){
+        $('#btn_panchadjanya_timer_start').hide();
+        $('#btn_panchadjanya_timer_stop') .show();
+
+         panchadjanyaTimerId =  setTimeout(() => $('#btn_panchadjanya_timer_stop').click(), 10 * 60 * 1000);
+    });
+    $('#btn_panchadjanya_timer_stop').click(function(){
+        clearTimeout(panchadjanyaTimerId);
+        $('#btn_panchadjanya_timer_start').show();
+        $('#btn_panchadjanya_timer_stop') .hide();
+        playBackground("https://margiis-assistant.am/audio/timer_end.mp3");
+       //  panchadjanyaTimerId =  setTimeout(() => alert('Привет'), 1000);
+    });
+
+
+
+
+    let meditationTimerId;
+    var meditation_now    = 0;
+    var meditation_target = 0;
+
+    $('#btn_open_meditation_timer').click(function(){
+        $('#btn_open_meditation_timer').hide();
+        $('#div_meditation_timer').show();
+    });
+
+    $('#btn_meditation_timer_start').click(function(){
+        meditation_target = parseInt($('#meditation_min').val()) * 60;
+        if (meditation_target > 0) {
+            $('#div_meditation_timer').hide();
+            $('#btn_meditation_timer_stop') .show();
+
+            meditationTimerId = setInterval(increaseTimer, 1000);
+
+           // meditationTimerId =  setTimeout(() => $('#btn_meditation_timer_stop').click(), meditation_target * 1000);
+        }
+    });
+    function increaseTimer(){
+        meditation_now += 1;
+        $('#timer').text(meditation_now);
+
+        if ( meditation_now >= meditation_target){
+            $('#btn_meditation_timer_stop').click()
+        }
+
+    }
+
+    $('#btn_meditation_timer_stop').click(function(){
+        //clearTimeout(meditationTimerId);
+        clearInterval(meditationTimerId);
+        $('#btn_open_meditation_timer').show();
+        $('#div_meditation_timer').hide();
+        $('#btn_meditation_timer_stop') .hide();
+        playBackground("https://margiis-assistant.am/audio/timer_end.mp3");
+    });
+
+
+    $('#btn_flow_avarta').click(function(){
+        $('#div_flow_panchadjanya').hide();
+
+        if ($("#div_flow_avarta").is(":visible")) {
+            $('#div_flow_avarta').hide();
+        } else {
+            $('#div_flow_avarta').show();
         }
     });
 
@@ -780,9 +924,12 @@ $( document ).ready(function() {
 
     });
     function playBackground(url){
-        $('#background_pronounce').attr("src", url);
-        var audio = document.getElementById("background_pronounce_main");
-        audio.load();
+
+        if (training_plus.includes(user_status)){
+            $('#background_pronounce').attr("src", url);
+            var audio = document.getElementById("background_pronounce_main");
+            audio.load();
+        }
     }
 
     $(document).on('click', '.nav_50vriti_test_order',  function () {
@@ -1088,8 +1235,9 @@ $( document ).ready(function() {
         $('#16points_results')    .text("Результат " + answers_correct + "/" + answers_count);
 
         if (answers_uncorrect.length > 0){
+
             var row = '<table class="table table-hover table-bordered table-condensed" >';
-            $.each(answers_uncorrect, function (i, item) {
+            $.each(answers_uncorrect.sort(function(a, b){return a - b}), function (i, item) {
                 row += '<tr>';
 
                 row += '<td>' + points_all[item]    + '</td>';
@@ -1098,6 +1246,11 @@ $( document ).ready(function() {
             row += '</tbody></table>';
             $('#div_16points_uncorrect').show();
             $('#table_16points_uncorrect').empty().append(row);
+        } else {
+            var audio_url = "https://margiis-assistant.am/audio/veeery_good.mp3";
+            $('#background_pronounce').attr("src", audio_url);
+            var audio = document.getElementById("background_pronounce_main");
+            audio.load();
         }
 
         answers_count   = 0;
@@ -1253,9 +1406,12 @@ $( document ).ready(function() {
             row += '</tbody></table>';
             $('#div_15shils_uncorrect').show();
             $('#table_15shils_uncorrect').empty().append(row);
+        } else {
+            var audio_url = "https://margiis-assistant.am/audio/veeery_good.mp3";
+            $('#background_pronounce').attr("src", audio_url);
+            var audio = document.getElementById("background_pronounce_main");
+            audio.load();
         }
-
-
 
         answers_count   = 0;
         answers_correct = 0;
@@ -1590,7 +1746,7 @@ $( document ).ready(function() {
                     success: function (data) {
                         alert("Сохранили");
                         setHistory(data.margiis_days);
-                        $('#pratic') .click();
+                        $('#logo') .click();
 
                     },
                     failure: function (errMsg) {
@@ -1689,11 +1845,12 @@ $( document ).ready(function() {
         var audio = document.getElementById("samgit_pronounce_main");
         audio.load();
 
-        var samgit_text_src = "img/samgits/" + samgit.num + ".png";
+        var samgit_text_src = "img/samgiits/" + samgit.num + ".png";
         $('#samgit_text').attr("src", samgit_text_src);
         $('#samgit_value').show();
 
     });
+
 
     $('#samgits_back').click(function (){
         $('#samgits_table').show();
@@ -1704,6 +1861,17 @@ $( document ).ready(function() {
     });
 
 
+    $(document).on('click', '.kaoshiki_row',  function () {
+        var kaoshiki_link = $(this).attr("data-kaoshiki-link") + "?autoplay=1";
+        $('#video_kaoshiki').attr("src", kaoshiki_link).show();
+        window.scrollTo(0, 0);
+    });
+
+
+    $(document).on('click', '.recipe',  function () {
+        var win = window.open($(this).attr('data-link'), '_blank');
+        win.focus();
+    });
 
 
 
@@ -1715,6 +1883,8 @@ $( document ).ready(function() {
         return a;
     }
     $(document).on('click', '.nav_to_main',  function () {
+        window.scrollTo(0, 0);
+
         $('#page_50vriti_test_order') .hide();
         $('#page_50vriti_test_random').hide();
         $('#page_50vriti_learn').hide();
@@ -1746,6 +1916,10 @@ $( document ).ready(function() {
         $('#page_40socials_options').show();
 
         $('#page_10nrav').hide();
+
+        $('#page_test').hide();
+        $('#page_test_go').show();
+        $('#page_test_results').hide();
 
         $('#page_diary').hide();
         $('#div_diary_history')  .show();
@@ -1779,15 +1953,27 @@ $( document ).ready(function() {
         audio.pause();
 
 
+
+        $('#page_kaoshikis').hide();
+        $('#video_kaoshiki').attr("src", "#").hide();
+
+
+
+        $('#page_dharma').hide();
+
         $('#page_supreme').hide();
         $('#page_ananda_sutras').hide();
         $('#page_enemies').hide();
         $('#page_duties').hide();
+        $('#page_oath').hide();
         $('#page_nocarma').hide();
         $('#page_cc2_sadhana').hide();
+        $('#page_secretary').hide();
+        $('#page_recipes').hide();
 
 
         $('#first_screen').show();
+        $('#flow_div').show();
     });
 
 
@@ -1817,29 +2003,17 @@ $( document ).ready(function() {
         return os;
     }
 
-    function setCookie(name, value, options) {
-        options = options || {};
-        var expires = options.expires;
+    function setCookie(name, value, days) {
 
-        if (typeof expires == "number" && expires) {
-            var d = new Date();
-            d.setTime(d.getTime() + expires * 1000);
-            expires = options.expires = d;
-        }
-        if (expires && expires.toUTCString) {
-            options.expires = expires.toUTCString();
-        }
 
-        value = encodeURIComponent(value);
-        var updatedCookie = name + "=" + value;
-        for (var propName in options) {
-            updatedCookie += "; " + propName;
-            var propValue = options[propName];
-            if (propValue !== true) {
-                updatedCookie += "=" + propValue;
-            }
+
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
         }
-        document.cookie = updatedCookie;
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
     }
     function getCookie(name) {
         var matches = document.cookie.match(new RegExp(
@@ -1850,6 +2024,59 @@ $( document ).ready(function() {
 
     window.addEventListener("hashchange", function(e) {
         if(e.oldURL.length > e.newURL.length)
-            $('#pratic').click();
+            $('#logo').click();
     });
+
+
+
+    $.ajaxSetup({
+        error: function (data, textStatus, jqXHR) {
+            console.log("ajaxSetup");
+            console.log(data);
+
+            if (data.status == 401) {
+                console.log("Error 401");
+                $('#page_login').show();
+                $("#page_user_main") .hide();
+                $('#page_admin_main').hide();
+                //  console.log(data.responseText.includes("Incorrect credentials"));
+
+                if (data.responseText.includes("Incorrect credentials")) {
+                    alert("Неправильные данные");
+                }
+                if (data.responseText.includes("Bad Token")) {
+                    cookie_token = getCookie(cookie_name_token);
+                }
+            }
+
+            if (data.status == 500) {
+                console.log("Error 500 ");
+            }
+        }
+    });
+    if (!navigator.cookieEnabled) {
+        alert('Включите cookie для комфортной работы');
+    }
+
+    function copyToClipboard(text) {
+        if (window.clipboardData && window.clipboardData.setData) {
+            // IE specific code path to prevent textarea being shown while dialog is visible.
+            return clipboardData.setData("Text", text);
+
+        } else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
+            var textarea = document.createElement("textarea");
+            textarea.textContent = text;
+            textarea.style.position = "fixed";  // Prevent scrolling to bottom of page in MS Edge.
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                return document.execCommand("copy");  // Security exception may be thrown by some browsers.
+            } catch (ex) {
+                console.warn("Copy to clipboard failed.", ex);
+                return false;
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+    }
 });
