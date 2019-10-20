@@ -16,14 +16,14 @@ html {
 
 }
 body {
-    max-width: 375px;
-    min-width: 375px;
+    max-width: 480px;
+    min-width: 480px;
     margin:0 auto;
 
 }
 #page_flow {
-    max-width: 375px;
-    min-width: 375px;
+    max-width: 480px;
+    min-width: 480px;
     margin:0 auto;
 
 }
@@ -57,8 +57,8 @@ h1, h2, h3, h4, h5, h6 {font-weight: bold}
 
 
 .top_bar_icons {
-    height: 65px;
-    width:  65px;
+    height: 70px;
+    width: 70px;
     border-top: 2px solid #FF7F5C;
 }
 
@@ -70,8 +70,8 @@ h1, h2, h3, h4, h5, h6 {font-weight: bold}
     flex-wrap: wrap;
     align-content: center;
 
-    max-width: 375px;
-    min-width: 375px;
+    max-width: 480px;
+    min-width: 480px;
 }
 
 .bottom_bar {
@@ -167,21 +167,21 @@ a.bottom_bar_icons.active span {
 
 
 .wrapper{
-    max-width: 375px;
+    max-width: 480px;
     margin: 0 auto;
 }
 
-@media (min-width: 375px) {
+@media (min-width: 480px) {
     .bottom_bar {
-        max-width: 375px;
+        max-width: 480px;
         left: 50% !important;
-        margin-left: -187.5px;
+        margin-left: -240px;
     }
     .wrapper_popup{
 
-        max-width: 375px;
+        max-width: 480px;
         left: 50% !important;
-        margin-left: -187.5px;
+        margin-left: -240px;
     }
 }
 
