@@ -258,6 +258,14 @@ $( document ).ready(function() {
         $('.btn_margiis_diary').text(words.btn_margiis_diary);
 
         $('.app_name').text(words.app_name);
+
+
+        $('.header_practises').text(words.header_practises);
+        $('.header_study')    .text(words.header_study);
+        $('.header_flow')     .text(words.header_flow);
+        $('.header_unit')     .text(words.header_unit);
+        $('.header_am')       .text(words.header_am);
+
         $('.oath_to_baba') .text(words.oath_to_baba);
         $('.sadhaka_rules').text(words.sadhaka_rules);
         $('.points_16')    .text(words.points_16);
@@ -297,11 +305,6 @@ $( document ).ready(function() {
         $('#flow_about').show();
     });
 
-    $('#btn_flow_join') .click(function () {
-        $('#btn_flow_about').hide();
-        $('#flow_about').show();
-    });
-
 
     $('#btn_flow_join').click(function() {
         $.ajax({
@@ -325,6 +328,64 @@ $( document ).ready(function() {
             }
         });
     });
+
+
+
+
+
+    $(document).on('click', '.icon_flow',  function () {
+        hide_all();
+        $('.top_bar_icons')   .css("border-top", "2px solid #FFFFFF");
+        $('.bottom_bar_icons').css("border-bottom", "2px solid #FFFFFF");
+        $('#page_flow').show();
+    });
+
+    $(document).on('click', '.bottom_bar_icons',  function () {
+        $('.top_bar_icons')   .css("border-top", "2px solid #FFFFFF");
+        $('.bottom_bar_icons').css("border-bottom", "2px solid #FFFFFF");
+        $(this).css("border-bottom", "2px solid #FF7F5C");
+
+        hide_all();
+
+        switch ($(this).attr("data-page")) {
+            case "practise":
+                $('#page_practise').show();
+                break;
+            case "study":
+                $('#page_study').show();
+                break;
+            case "unit":
+                $('#page_unit').show();
+                break;
+            case "am":
+                $('#page_am').show();
+                break;
+
+        }
+    });
+
+
+
+    function hide_all(){
+        $('#page_flow').hide();
+        $('#page_practise').hide();
+        $('#page_study').hide();
+        $('#page_unit').hide();
+        $('#page_am').hide();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     var test_questions = [];
     $('#btn_test').click(function() {
@@ -353,7 +414,7 @@ $( document ).ready(function() {
             {question: "Помнишь что означает Ишвара пранидхана?",     answer: "Ишвара пранидхана: " + djama_niyama_all[9].russian_desc},
         ];
 
-        $('#flow_div').hide();
+        $('#page_main_flow').hide();
         $('#first_screen').hide();
 
         $('#page_test').show();
@@ -505,7 +566,7 @@ $( document ).ready(function() {
 
         var links = ["donation", "library", "kirtans", "fasting", "chat"];
         if (!links.includes($(this).val())) {
-            $('#flow_div').hide();
+            $('#page_main_flow').hide();
         }
 
 
@@ -1973,7 +2034,7 @@ $( document ).ready(function() {
 
 
         $('#first_screen').show();
-        $('#flow_div').show();
+        $('#page_main_flow').show();
     });
 
 

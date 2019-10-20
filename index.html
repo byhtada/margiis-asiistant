@@ -136,168 +136,198 @@
     </div>
 </div>
 
-<div id="page_main"  class="wrapper container-fluid" align="center" hidden>
+<div id="page_main"  class="wrapper container" align="center" hidden>
 
-    <div class="top_bar row">
-        <div class="col-xs-2"></div>
-        <div class="col-xs-2"><img src="img/icon_player.svg" class="btn_main_navigation"></div>
-        <div class="col-xs-4"><img id="logo" src="img/logo.svg" class="img-responsive nav_to_main"></div>
-        <div class="col-xs-2"></div>
-        <div class="col-xs-2"></div>
+    <div class="wrapper_top_bar">
+        <div class="top_bar_icons"><img src="img/icon_notify.svg"    class="icon_top_navigation"></div>
+        <div class="top_bar_icons"><img src="img/icon_player.svg"    class="icon_top_navigation"></div>
+        <div                       ><img id="logo" src="img/logo.svg" class="img-responsive nav_to_main"></div>
+        <div class="top_bar_icons"><img src="img/icon_diary.svg"     class="icon_top_navigation"></div>
+        <div class="top_bar_icons"><img src="img/icon_personal.svg"  class="icon_top_navigation"></div>
     </div>
 
     <br/>
 
-    <div  id="flow_div" class="diary_body" >
-        <h3 align="center" class="text_flow_header">Вселенский Поток</h3>
-        <h4 align="center" class="text_flow_detail" hidden>Вселенский Поток</h4>
-        <button id="btn_flow_about" type="button" class="btn_flow_join btn btn-success btn-block">Войти в Поток</button>
+    <div  id="page_practise" hidden>
+        <div class="page_header header_practises"></div>
 
-        <div id="flow_about" hidden>
-            <div align="left" class="text_flow_about"></div>
-            <button id="btn_flow_join"  type="button" class="btn_flow_join btn btn-success btn-block">Войти в Поток</button>
-        </div>
+        <div class="wrapper_main">
 
-        <div id="flow_info" >
-
-            <br/>
-            <button id="btn_flow_panchadjanya"  type="button" class="btn btn-default btn-block">Панчаджанья</button>
-
-            <div id="div_flow_panchadjanya" hidden>
-                <!--
-<h4>Прабхат Самгит 12. НОЙОНЕ МОМОТА́ БХОРА</h4>
-                <audio controls preload="none">
-                    <source src="http://xn--prabhta-sagiita-rjb5298j.net/1-999/12%20NAYANE%20MAMATA%27%20BHARA%27%202.mp3" type="audio/mpeg">
-                </audio>
-                <img src="img/prabhat_samgiits/12.png" class="img-responsive"/>
-
-                <br/>
-
-
--->
-
-                <audio id="audio_panchadjanya_samgiit" controls preload="none">
-                    <source src="#" type="audio/mpeg">
-                </audio>
-                <img id="text_samgiit" src="img/samgits/152.png" class="img-responsive"/>
-                <br/>
-                <br/>
-                <div id="div_panchadjanya_next" hidden>
-                    <br/>
-                    <audio id="audio_panchadjanya_samgiit_next" controls preload="none">
-                        <source src="https://margiis-assistant.am/audio/flow/152/samgiit.mp3" type="audio/mpeg">
-                    </audio>
-                    <img id="text_samgiit_next" src="img/samgits/152.png" class="img-responsive"/>
-                    <br/>
-                    <br/>
-                </div>
-
-                <h4 class="text_panchajanya_kiirtan">Киртан для Панчаджаньи:</h4>
-                <audio id="audio_panchadjanya_kiirtan" controls preload="none">
-                    <source src="#" type="audio/mpeg">
-                </audio>
-
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-
-                <!--
-                <br/>
-                <h4>Таймер для Панчаджаньи (10 мин)</h4>
-                <button id="btn_panchadjanya_timer_start" type="button" class="btn btn-success btn-block">Запустить таймер</button>
-                <button id="btn_panchadjanya_timer_stop"  style="display: none" type="button" class="btn btn-danger btn-block">Остановить таймер</button>
-
-
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                -->
-            </div>
-
-            <button data-type="1"  type="button" class="day_svadhyaya btn_svadhyaya_day   btn btn-default btn-block">Свадхьяя 1</button>
-            <button data-type="2"  type="button" class="day_svadhyaya btn_svadhyaya_night btn btn-default btn-block">Свадхьяя 2</button>
-
-            <button id="btn_flow_avarta"  type="button" class="btn btn-default btn-block">Аварта Киртан</button>
-
-            <div id="div_flow_avarta" hidden>
-                <h4 class="text_flow_avarta_small">Аварта Киртан на 12 минут</h4>
-                <audio id="audio_ak_small" controls preload="none">
-                    <source src="https://margiis-assistant.am/audio/flow/152/ak_small.mp3" type="audio/mpeg">
-                </audio>
-
-                <br/>
-                <h4 class="text_flow_avarta_big">Аварта Киртан на 24 минуты</h4>
-                <audio id="audio_ak_big" controls preload="none">
-                    <source src="https://margiis-assistant.am/audio/flow/152/ak_big.mp3" type="audio/mpeg">
-                </audio>
-                <br/>
-                <br/>
-                <img src="img/avarta_ideation.svg?v2.44"  class="img-responsive"/>
-
-                <br/>
-            </div>
-
-            <div>
-                <h4 class="text_learning_title">На этой неделе изучаем:</h4>
-                <div class="learn_base_ru"></div>
-                <div class="learn_pro_ru" hidden></div>
-            </div>
-
-            <br/>
-
-            <button id="btn_fasting" style="display: none"  data-toggle="modal" data-target="#modal_fasting"  type="button" class="btn btn-warning btn-block">Сегодня экадаши</button>
-
-            <button value="diary"  type="button" class="main_nav btn_margiis_diary    btn btn-success btn-block">Ежедневник Марга</button>
-
-        </div>
-    </div>
-
-    <div  id="main_div" class="diary_body">
-
-        <div id="first_screen">
-            <h3 align="center" class="app_name">Помощник Марга</h3>
             <button value="oath"      type="button" class="main_nav oath_to_baba  btn btn-warning btn-block">Клятва Бабе</button>
             <button value="rules"     type="button" class="main_nav sadhaka_rules btn btn-success btn-block">Правила поведения для садхак</button>
-            <br/>
-            <button value="16points"  type="button" class="main_nav  points_16 btn btn-default btn-block">16 пунктов</button>
-            <button value="10nrav"    type="button" class="main_nav  points_10 btn btn-default btn-block">Джама/Нияма</button>
-            <button value="15shils"   type="button" class="main_nav  points_15 btn btn-default btn-block">15 шил</button>
-            <button value="40socials" type="button" class="main_nav  points_40 btn btn-default btn-block">Общественные нормы поведения</button>
 
-            <!--
-            <button value="cc1"  type="button" class="main_nav btn btn-default btn-block" disabled="disabled">Чарья Чарья 1</button>
-            <button value="cc2"  type="button" class="main_nav btn btn-default btn-block" disabled="disabled">Чарья Чарья 2</button>
-            <button value="cc3"  type="button" class="main_nav btn btn-default btn-block" disabled="disabled">Чарья Чарья 3</button>
--->
             <br/>
             <button value="samgits"       type="button" class="main_nav prabhat_samgiits btn btn-default btn-block">Прабхат Самгиты</button>
             <button value="kirtans"       type="button" class="main_nav kiirtans btn btn-default btn-block">Киртаны</button>
             <button value="kaoshiki"      type="button" class="main_nav kaoshikiis btn btn-default btn-block">Каошики</button>
             <button value="mantras"       type="button" class="main_nav mantras btn btn-default btn-block">Шлоки/Мантры</button>
-            <button value="ananda_sutras" style="display: none" type="button" class="main_nav ananda_sutras btn btn-default btn-block">Ананда Сутры</button>
-            <button value="library"       type="button" class="main_nav library btn btn-default btn-block">Библиотека</button>
             <button value="supreme"       type="button" class="main_nav supreme_command btn btn-default btn-block">Высшее Указание</button>
             <button value="asanas"        type="button" class="main_nav asanas btn btn-default btn-block" disabled="disabled">Асаны</button>
+            <button value="fasting"   type="button" class="main_nav calendar_fasting  btn btn-default btn-block">Календарь голоданий</button>
+            <button value="recipes"    type="button" class="main_nav recipes btn btn-default btn-block" >Рецепты</button>
+        </div>
+    </div>
+    <div  id="page_study" hidden>
+        <div class="page_header header_study"></div>
 
-            <br/>
+        <div class="wrapper_main">
+            <button value="library"       type="button" class="main_nav library btn btn-default btn-block">Библиотека</button>
 
-            <button value="structure" type="button" class="main_nav structure         btn btn-default btn-block" disabled="disabled">Структура Ананда Марги</button>
+            <button value="16points"  type="button" class="main_nav  points_16 btn btn-default btn-block">16 пунктов</button>
+            <button value="10nrav"    type="button" class="main_nav  points_10 btn btn-default btn-block">Джама/Нияма</button>
+            <button value="15shils"   type="button" class="main_nav  points_15 btn btn-default btn-block">15 шил</button>
+            <button value="40socials" type="button" class="main_nav  points_40 btn btn-default btn-block">Общественные нормы поведения</button>
+
+            <button value="ananda_sutras" style="display: none" type="button" class="main_nav ananda_sutras btn btn-default btn-block">Ананда Сутры</button>
+
             <button value="50vriti"   type="button" class="main_nav vritti            btn btn-default btn-block">50 вритти</button>
             <button value="enemies"   type="button" class="main_nav enemies_chains    btn btn-default btn-block">Враги и оковы</button>
             <button value="dharma"    type="button" class="main_nav dharma_pattern    btn btn-default btn-block">10 характеристик дхармичного человека</button>
-            <button value="fasting"   type="button" class="main_nav calendar_fasting  btn btn-default btn-block">Календарь голоданий</button>
-            <button value="pampam"    type="button" class="main_nav calendar_holidays btn btn-default btn-block" disabled="disabled">Календарь праздников</button>
+
             <button value="pampam"    type="button" class="main_nav dictionary_names  btn btn-default btn-block" disabled="disabled">Словарь санскристских имен</button>
 
-
-            <button value="recipes"    type="button" class="main_nav recipes btn btn-default btn-block" >Рецепты</button>
-
-            <br/>
-            <button value="secretary"  style="display: none"   type="button" class="main_nav secretary btn btn-default btn-block">Раздел секретаря</button>
-
         </div>
+    </div>
+    <div  id="page_flow">
+        <div class="page_header header_flow"></div>
+
+        <div class="wrapper_main">
+            <h3 align="center" class="text_flow_header">Вселенский Поток</h3>
+            <h4 align="center" class="text_flow_detail" hidden>Вселенский Поток</h4>
+            <button id="btn_flow_about" type="button" class="btn_flow_join btn btn-success btn-block">Войти в Поток</button>
+
+            <div id="flow_about" hidden>
+                <div align="left" class="text_flow_about"></div>
+                <button id="btn_flow_join"  type="button" class="btn_flow_join btn btn-success btn-block">Войти в Поток</button>
+            </div>
+
+            <div id="flow_info" >
+
+                <br/>
+                <button id="btn_flow_panchadjanya"  type="button" class="btn btn-default btn-block">Панчаджанья</button>
+
+                <div id="div_flow_panchadjanya" hidden>
+                    <!--
+    <h4>Прабхат Самгит 12. НОЙОНЕ МОМОТА́ БХОРА</h4>
+                    <audio controls preload="none">
+                        <source src="http://xn--prabhta-sagiita-rjb5298j.net/1-999/12%20NAYANE%20MAMATA%27%20BHARA%27%202.mp3" type="audio/mpeg">
+                    </audio>
+                    <img src="img/prabhat_samgiits/12.png" class="img-responsive"/>
+
+                    <br/>
+
+
+    -->
+
+                    <audio id="audio_panchadjanya_samgiit" controls preload="none">
+                        <source src="#" type="audio/mpeg">
+                    </audio>
+                    <img id="text_samgiit" src="img/samgits/152.png" class="img-responsive"/>
+                    <br/>
+                    <br/>
+                    <div id="div_panchadjanya_next" hidden>
+                        <br/>
+                        <audio id="audio_panchadjanya_samgiit_next" controls preload="none">
+                            <source src="https://margiis-assistant.am/audio/flow/152/samgiit.mp3" type="audio/mpeg">
+                        </audio>
+                        <img id="text_samgiit_next" src="img/samgits/152.png" class="img-responsive"/>
+                        <br/>
+                        <br/>
+                    </div>
+
+                    <h4 class="text_panchajanya_kiirtan">Киртан для Панчаджаньи:</h4>
+                    <audio id="audio_panchadjanya_kiirtan" controls preload="none">
+                        <source src="#" type="audio/mpeg">
+                    </audio>
+
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <!--
+                    <br/>
+                    <h4>Таймер для Панчаджаньи (10 мин)</h4>
+                    <button id="btn_panchadjanya_timer_start" type="button" class="btn btn-success btn-block">Запустить таймер</button>
+                    <button id="btn_panchadjanya_timer_stop"  style="display: none" type="button" class="btn btn-danger btn-block">Остановить таймер</button>
+
+
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    -->
+                </div>
+
+                <button data-type="1"  type="button" class="day_svadhyaya btn_svadhyaya_day   btn btn-default btn-block">Свадхьяя 1</button>
+                <button data-type="2"  type="button" class="day_svadhyaya btn_svadhyaya_night btn btn-default btn-block">Свадхьяя 2</button>
+
+                <button id="btn_flow_avarta"  type="button" class="btn btn-default btn-block">Аварта Киртан</button>
+
+                <div id="div_flow_avarta" hidden>
+                    <h4 class="text_flow_avarta_small">Аварта Киртан на 12 минут</h4>
+                    <audio id="audio_ak_small" controls preload="none">
+                        <source src="https://margiis-assistant.am/audio/flow/152/ak_small.mp3" type="audio/mpeg">
+                    </audio>
+
+                    <br/>
+                    <h4 class="text_flow_avarta_big">Аварта Киртан на 24 минуты</h4>
+                    <audio id="audio_ak_big" controls preload="none">
+                        <source src="https://margiis-assistant.am/audio/flow/152/ak_big.mp3" type="audio/mpeg">
+                    </audio>
+                    <br/>
+                    <br/>
+                    <img src="img/avarta_ideation.svg?v2.44"  class="img-responsive"/>
+
+                    <br/>
+                </div>
+
+                <div>
+                    <h4 class="text_learning_title">На этой неделе изучаем:</h4>
+                    <div class="learn_base_ru"></div>
+                    <div class="learn_pro_ru" hidden></div>
+                </div>
+
+                <br/>
+
+                <button id="btn_fasting" style="display: none"  data-toggle="modal" data-target="#modal_fasting"  type="button" class="btn btn-warning btn-block">Сегодня экадаши</button>
+
+                <button value="diary"  type="button" class="main_nav btn_margiis_diary    btn btn-success btn-block">Ежедневник Марга</button>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div  id="page_unit" hidden>
+        <div class="page_header header_unit"></div>
+
+        <div class="wrapper_main">
+            <button value="secretary"  style="display: none"   type="button" class="main_nav secretary btn btn-default btn-block">Раздел секретаря</button>
+        </div>
+    </div>
+
+    <div  id="page_am"   hidden>
+
+        <div class="page_header header_am"></div>
+
+        <div class="wrapper_main">
+            <button value="structure" type="button" class="main_nav structure         btn btn-default btn-block" disabled="disabled">Структура Ананда Марги</button>
+            <button value="pampam"    type="button" class="main_nav calendar_holidays btn btn-default btn-block" disabled="disabled">Календарь праздников</button>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <div  id="main_div" class="diary_body" hidden>
+
+
 
         <div id="page_test" hidden>
             <h4 align="center">Тест Джама/Нияма</h4>
@@ -904,19 +934,19 @@
 
 
 
-    <div class="app_bar">
-        <a href="#" class="icon_add"><img  class="btn_main_navigation" src="./img/icon_home.svg" alt=""></a>
-        <a href="#" class="app_bar__link">
-            <span class="app_bar__link-img"><img class="btn_main_navigation" src="./img/icon_practise.svg" alt=""></span>
+    <div class="bottom_bar">
+        <a href="#" class="icon_flow"><img  class="icon_bottom_navigation" src="./img/icon_home.svg" alt=""></a>
+        <a href="#" class="bottom_bar_icons" data-page="practise">
+            <span class="bottom_bar_icons-img"><img class="icon_bottom_navigation" src="./img/icon_practise.svg" alt=""></span>
         </a>
-        <a href="#" class="app_bar__link">
-            <span class="app_bar__link-img"><img class="btn_main_navigation" src="./img/icon_study.svg" alt=""></span>
+        <a href="#" class="bottom_bar_icons" data-page="study">
+            <span class="bottom_bar_icons-img"><img class="icon_bottom_navigation" src="./img/icon_study.svg" alt=""></span>
         </a>
-        <a href="#" class="app_bar__link">
-            <span class="app_bar__link-img"><img class="btn_main_navigation" src="./img/icon_unit.svg" alt=""></span>
+        <a href="#" class="bottom_bar_icons" data-page="unit">
+            <span class="bottom_bar_icons-img"><img class="icon_bottom_navigation" src="./img/icon_unit.svg" alt=""></span>
         </a>
-        <a href="#" class="app_bar__link">
-            <span class="app_bar__link-img"><img class="btn_main_navigation" src="./img/icon_am.svg" alt=""></span>
+        <a href="#" class="bottom_bar_icons" data-page="am">
+            <span class="bottom_bar_icons-img"><img class="icon_bottom_navigation" src="./img/icon_am.svg" alt=""></span>
         </a>
     </div>
 

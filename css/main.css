@@ -18,7 +18,7 @@ html {
 body {margin-left: 10px; margin-right: 10px; }
 td {vertical-align: middle !important;}
 
-#logo, #logo_load, #logo_login {padding-top: 15px; max-height: 111px;}
+#logo, #logo_load, #logo_login {max-height:  70px; margin-left: 25px; margin-right: 25px;    padding: 7px 7px;}
 .login_text_1, .login_text_2 {font-size: 12px; color: #adadad; text-align: center; font-weight: bold; margin: 0px}
 
 
@@ -35,13 +35,29 @@ h1, h2, h3, h4, h5, h6 {font-weight: bold}
 
 
 
-
+.page_header {font-size: 24px; color: #59514E; font-weight: bold; margin-bottom: 15px}
 
 #main_div {margin-bottom: 85px}
 
 
 
-.app_bar {
+
+.top_bar_icons {
+    height: 70px;
+    width: 70px;
+    border-top: 2px solid #FF7F5C;
+}
+
+
+.wrapper_top_bar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.bottom_bar {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -49,57 +65,48 @@ h1, h2, h3, h4, h5, h6 {font-weight: bold}
     height: 62px;
     display: flex;
     box-shadow: 0 -5px 10px rgba(81, 103, 82, 0.16);
+
     background-color: #fff;
     border-radius: 18px 18px 0 0 !important;
-
     z-index: 99;
-
-
 }
 
-.app_bar .icon_add {
+.bottom_bar .icon_flow {
     position: absolute;
     left: 50%;
     margin-left: -30px;
     width: 60px;
     height: 60px;
-    box-shadow: 0 2px  5px rgba(255, 127, 92, 0.6);
+    box-shadow: 0px 0px  20px rgb(255, 127, 92);
     background-color: #FF7F5C;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    bottom: 10px;
+    bottom: 15px;
 }
 
-a.app_bar__link {
+a.bottom_bar_icons {
     display: flex;
     text-decoration: none;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     width: 19%;
-    color: #c3cbce;
+    color: #fff;
     padding: 0 0 0 0;
-    border-bottom: 3px solid transparent;
 }
 
-a.app_bar__link span {
+a.bottom_bar_icons span {
     display: block;
 }
 
-span.app_bar__link-name {
-    color: #c3cbce;
-    font-size: 8px;
-    font-weight: 600;
-    letter-spacing: 0.8px;
-}
 
-a.app_bar__link:nth-last-child(2) {
+a.bottom_bar_icons:nth-last-child(2) {
     margin-left: 24%;
 }
 
-a.app_bar__link span.app_bar__link-img {
+a.bottom_bar_icons span.bottom_bar_icons-img {
     flex-grow: 2;
     display: flex;
     align-items: center;
@@ -107,30 +114,19 @@ a.app_bar__link span.app_bar__link-img {
     height: 100%;
 }
 
-.btn_main_navigation {
+.icon_bottom_navigation {
     width: 24px ;
     height: 100%;
 }
-
-.app_bar .icon_add:before {
-    content: '';
-    width: 82px;
-    height: 82px;
-    background-color: #ffffff;
-    display: block;
-    position: absolute;
-    border-radius: 50%;
-    z-index: -3;
-    left: -11px;
-    top: -11px;
-    box-shadow: 0 -5px 10px rgba(81, 103, 82, 0.16);
-
+.icon_top_navigation {
+    width: 20px ;
+    height: 100%;
 }
 
 
-.app_bar:before {
+
+.bottom_bar:before {
     content: '';
-    background-image: linear-gradient(180deg, #ffffff 0%, rgba(226, 226, 226, 0.26) 100%);
     width: 100%;
     height: 100%;
     position: absolute;
@@ -142,12 +138,12 @@ a.app_bar__link span.app_bar__link-img {
 }
 
 
-a.app_bar__link.active {
+a.bottom_bar_icons.active {
     color: #46d444;
     border-bottom-color: #46d444;
 }
 
-a.app_bar__link.active span {
+a.bottom_bar_icons.active span {
     color: #46d444;
 }
 
@@ -159,7 +155,7 @@ a.app_bar__link.active span {
 }
 
 @media (min-width: 480px) {
-    .app_bar {
+    .bottom_bar {
         max-width: 480px;
         left: 50% !important;
         margin-left: -240px;
@@ -172,6 +168,14 @@ a.app_bar__link.active span {
     }
 }
 
+.wrapper_main{
+    padding: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-radius: 8px;
+    background-color: rgba(232, 229, 225, 0.0);
+    box-shadow: 0px 5px 24px rgba(67, 67, 67, 0.2);
+}
 
 
 
@@ -255,7 +259,7 @@ textarea {width: 100%}
     padding: 12px;
     border-radius: 6px;
     background-color: rgba(232, 229, 225, 0.0);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0px 5px 24px rgba(67, 67, 67, 0.2);
 }
 
 .congrats_div {
