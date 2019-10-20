@@ -1,6 +1,7 @@
 $( document ).ready(function() {
 
-    var api_url = "http://localhost:3000/";
+   // var api_url = "http://localhost:3000/";
+    var api_url = "https://enigmatic-ridge-28028.herokuapp.com/";
   //  var api_url = "https://hyls-api.ru/";
     var user_status = "";
     var training_plus = ["margii_training", "secretary_training", "acarya"];
