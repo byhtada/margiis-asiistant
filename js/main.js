@@ -12,6 +12,7 @@ $( document ).ready(function() {
     var cookie_token = getCookie(cookie_name_token);
 
 
+
     ifLogin();
     function ifLogin()     {
         // checkOS();
@@ -165,7 +166,10 @@ $( document ).ready(function() {
 
 
 
-
+                var width = window.innerWidth
+                    || document.documentElement.clientWidth
+                    || document.body.clientWidth;
+                alert(width);
 
                 //$('#modal_register_self').modal('hide');
                 //
