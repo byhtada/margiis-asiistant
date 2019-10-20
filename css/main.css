@@ -58,6 +58,9 @@ h1, h2, h3, h4, h5, h6 {font-weight: bold}
     justify-content: space-evenly;
     flex-wrap: wrap;
     align-content: center;
+
+    max-width: 480px;
+    min-width: 480px;
 }
 
 .bottom_bar {
