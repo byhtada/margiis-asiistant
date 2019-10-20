@@ -171,6 +171,7 @@ a.bottom_bar_icons.active span {
     margin: 0 auto;
 }
 
+
 @media (min-width: 375px) {
     .bottom_bar {
         max-width: 375px;
