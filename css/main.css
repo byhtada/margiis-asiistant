@@ -16,14 +16,14 @@ html {
 
 }
 body {
-    max-width: 480px;
-    min-width: 480px;
+    max-width: 375px;
+    min-width: 375px;
     margin:0 auto;
 
 }
 #page_flow {
-    max-width: 480px;
-    min-width: 480px;
+    max-width: 375px;
+    min-width: 375px;
     margin:0 auto;
 
 }
@@ -70,8 +70,8 @@ h1, h2, h3, h4, h5, h6 {font-weight: bold}
     flex-wrap: wrap;
     align-content: center;
 
-    max-width: 480px;
-    min-width: 480px;
+    max-width: 375px;
+    min-width: 375px;
 }
 
 .bottom_bar {
@@ -167,21 +167,21 @@ a.bottom_bar_icons.active span {
 
 
 .wrapper{
-    max-width: 480px;
+    max-width: 375px;
     margin: 0 auto;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 375px) {
     .bottom_bar {
-        max-width: 480px;
+        max-width: 375px;
         left: 50% !important;
-        margin-left: -240px;
+        margin-left: -187.5px;
     }
     .wrapper_popup{
 
-        max-width: 480px;
+        max-width: 375px;
         left: 50% !important;
-        margin-left: -240px;
+        margin-left: -187.5px;
     }
 }
 
