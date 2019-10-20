@@ -13,10 +13,15 @@
 html {
     color: #222;
     font-size: 1em;
-    line-height: 1.4;
+
 }
-body {margin-left: 10px; margin-right: 10px; }
-td {vertical-align: middle !important;}
+body {
+    max-width: 480px;
+
+    margin:0 auto;
+
+}
+
 
 #logo, #logo_load, #logo_login {max-height:  70px; margin-left: 25px; margin-right: 25px;    padding: 7px 7px;}
 .login_text_1, .login_text_2 {font-size: 12px; color: #adadad; text-align: center; font-weight: bold; margin: 0px}
@@ -176,11 +181,11 @@ a.bottom_bar_icons.active span {
 
 .wrapper_main{
     padding: 15px;
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
     border-radius: 8px;
     background-color: rgba(232, 229, 225, 0.0);
-    box-shadow: 0px 5px 24px rgba(67, 67, 67, 0.2);
+    box-shadow: 0px 5px 20px rgba(67, 67, 67, 0.2);
 }
 
 
