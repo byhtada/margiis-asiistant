@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="" />
+    <list default="true" id="93b52132-c241-43e6-b008-3764b545dcc3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    </list>
     <list id="72cc56a1-c8c6-463d-98e1-855a34d7d87f" name="registration" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,8 +28,8 @@
           <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="119">
-                  <caret line="7" column="40" lean-forward="true" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+                <state relative-caret-position="353">
+                  <caret line="195" column="35" selection-start-line="195" selection-start-column="35" selection-end-line="195" selection-end-column="35" />
                   <folding>
                     <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
                     <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
@@ -190,8 +192,8 @@
           <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/js/main.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3009">
-                  <caret line="410" column="106" selection-start-line="410" selection-start-column="106" selection-end-line="410" selection-end-column="106" />
+                <state relative-caret-position="302">
+                  <caret line="171" column="29" selection-start-line="171" selection-start-column="29" selection-end-line="171" selection-end-column="29" />
                   <folding>
                     <element signature="e#104755#105054#0" />
                     <element signature="e#104894#104926#0" />
@@ -211,11 +213,8 @@
                     <element signature="e#107067#107155#0" />
                     <element signature="e#107218#107295#0" />
                     <element signature="e#107342#107387#0" />
-                    <element signature="e#107419#112736#0" />
-                    <element signature="e#3113#8499#0" />
                     <element signature="e#107560#107707#0" />
                     <element signature="e#3373#3405#0" />
-                    <element signature="e#107746#112608#0" />
                     <element signature="e#3515#3547#0" />
                     <element signature="e#108042#109746#0" />
                     <element signature="e#109318#109725#0" />
@@ -500,8 +499,9 @@
           <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/css/main.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="157">
-                  <caret line="46" column="14" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="14" />
+                <state relative-caret-position="174">
+                  <caret line="59" column="14" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
+                  <caret line="60" column="14" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="14" />
                   <folding>
                     <element signature="e#79#284#0" />
                     <element signature="e#286#481#0" />
@@ -633,7 +633,7 @@
             <entry file="file://$PROJECT_DIR$/js/main.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="166">
-                  <caret line="316" column="5" selection-start-line="316" selection-start-column="5" selection-end-line="316" selection-end-column="5" />
+                  <caret line="320" column="5" selection-start-line="320" selection-start-column="5" selection-end-line="320" selection-end-column="5" />
                   <folding>
                     <element signature="e#104755#105054#0" />
                     <element signature="e#105082#106068#0" />
@@ -672,7 +672,7 @@
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="306">
-                  <caret line="332" selection-start-line="332" selection-end-line="332" />
+                  <caret line="333" selection-start-line="333" selection-end-line="333" />
                   <folding>
                     <element signature="n#head#0;n#html#0;n#!!top" />
                     <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
@@ -729,7 +729,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>flow_success</find>
       <find>голодан</find>
       <find>fasting_instruction_value</find>
       <find>app_bar__link-img</find>
@@ -756,9 +755,10 @@
       <find>bottom_bar_icons</find>
       <find>bottom_bar</find>
       <find>375</find>
-      <find>name</find>
       <find>240</find>
+      <find>name</find>
       <find>480</find>
+      <find>70</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -796,9 +796,9 @@
         <option value="$PROJECT_DIR$/node_modules/pretty-checkbox/dist/pretty-checkbox.min.css" />
         <option value="$PROJECT_DIR$/js/bs-table.js" />
         <option value="$PROJECT_DIR$/js/123.js" />
+        <option value="$PROJECT_DIR$/css/main.css" />
         <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/css/main.css" />
       </list>
     </option>
   </component>
@@ -1349,7 +1349,7 @@
       <workItem from="1571082154746" duration="1189000" />
       <workItem from="1571085087981" duration="4101000" />
       <workItem from="1571140957589" duration="20257000" />
-      <workItem from="1571499234941" duration="20062000" />
+      <workItem from="1571499234941" duration="20467000" />
     </task>
     <task id="LOCAL-00114" summary="before">
       <created>1554200533565</created>
@@ -1698,11 +1698,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2512303000" />
+    <option name="totallyTimeSpent" value="2512708000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="143" y="0" width="1770" height="1087" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47761193" visible="true" weight="0.15993072" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -2039,8 +2038,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3009">
-          <caret line="410" column="106" selection-start-line="410" selection-start-column="106" selection-end-line="410" selection-end-column="106" />
+        <state relative-caret-position="302">
+          <caret line="171" column="29" selection-start-line="171" selection-start-column="29" selection-end-line="171" selection-end-column="29" />
           <folding>
             <element signature="e#104755#105054#0" />
             <element signature="e#104894#104926#0" />
@@ -2060,11 +2059,8 @@
             <element signature="e#107067#107155#0" />
             <element signature="e#107218#107295#0" />
             <element signature="e#107342#107387#0" />
-            <element signature="e#107419#112736#0" />
-            <element signature="e#3113#8499#0" />
             <element signature="e#107560#107707#0" />
             <element signature="e#3373#3405#0" />
-            <element signature="e#107746#112608#0" />
             <element signature="e#3515#3547#0" />
             <element signature="e#108042#109746#0" />
             <element signature="e#109318#109725#0" />
@@ -2347,8 +2343,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="46" column="14" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="14" />
+        <state relative-caret-position="174">
+          <caret line="59" column="14" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
+          <caret line="60" column="14" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="14" />
           <folding>
             <element signature="e#79#284#0" />
             <element signature="e#286#481#0" />
@@ -2473,8 +2470,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="40" lean-forward="true" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+        <state relative-caret-position="353">
+          <caret line="195" column="35" selection-start-line="195" selection-start-column="35" selection-end-line="195" selection-end-column="35" />
           <folding>
             <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
