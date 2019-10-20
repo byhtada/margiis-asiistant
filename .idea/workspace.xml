@@ -502,15 +502,12 @@
           <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/css/main.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="248">
-                  <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
+                <state relative-caret-position="259">
+                  <caret line="59" column="14" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
+                  <caret line="60" column="14" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="14" />
                   <folding>
                     <element signature="e#79#284#0" />
                     <element signature="e#286#481#0" />
-                    <element signature="e#1312#1385#0" />
-                    <element signature="e#1320#1572#0" />
-                    <element signature="e#1502#1786#0" />
-                    <element signature="e#1804#2045#0" />
                     <element signature="e#2068#2091#0" />
                     <element signature="e#2245#2270#0" />
                     <element signature="e#2311#2423#0" />
@@ -670,7 +667,7 @@
             <entry file="file://$PROJECT_DIR$/css/main.css">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="384">
-                  <caret line="277" column="51" lean-forward="true" selection-start-line="273" selection-end-line="277" selection-end-column="51" />
+                  <caret line="278" column="51" lean-forward="true" selection-start-line="274" selection-end-line="278" selection-end-column="51" />
                 </state>
               </provider>
             </entry>
@@ -736,7 +733,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>text_learning_title</find>
       <find>svadhyaya_night</find>
       <find>diary_body</find>
       <find>btn_flow_join</find>
@@ -757,7 +753,6 @@
       <find>app_bar__link</find>
       <find>app_bar</find>
       <find>top_bar_icons</find>
-      <find>bottom_bar_icons</find>
       <find>icon_add</find>
       <find>wrapper_main</find>
       <find>wrapper</find>
@@ -765,7 +760,9 @@
       <find>page_flow</find>
       <find>page_main</find>
       <find>wrapper_top_bar</find>
+      <find>bottom_bar_icons</find>
       <find>480</find>
+      <find>bottom_bar</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1356,7 +1353,7 @@
       <workItem from="1571082154746" duration="1189000" />
       <workItem from="1571085087981" duration="4101000" />
       <workItem from="1571140957589" duration="20257000" />
-      <workItem from="1571499234941" duration="18387000" />
+      <workItem from="1571499234941" duration="18875000" />
     </task>
     <task id="LOCAL-00114" summary="before">
       <created>1554200533565</created>
@@ -1705,7 +1702,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2510628000" />
+    <option name="totallyTimeSpent" value="2511116000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="143" y="0" width="1770" height="1087" extended-state="0" />
@@ -1718,7 +1715,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32896176" />
       <window_info id="Structure" order="1" sideWeight="0.52238804" side_tool="true" weight="0.19320215" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49494383" visible="true" weight="0.426178" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49494383" visible="true" weight="0.23141362" />
       <window_info id="Favorites" order="2" sideWeight="0.50643086" side_tool="true" weight="0.10193452" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -2516,15 +2513,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
+        <state relative-caret-position="259">
+          <caret line="59" column="14" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
+          <caret line="60" column="14" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="14" />
           <folding>
             <element signature="e#79#284#0" />
             <element signature="e#286#481#0" />
-            <element signature="e#1312#1385#0" />
-            <element signature="e#1320#1572#0" />
-            <element signature="e#1502#1786#0" />
-            <element signature="e#1804#2045#0" />
             <element signature="e#2068#2091#0" />
             <element signature="e#2245#2270#0" />
             <element signature="e#2311#2423#0" />
